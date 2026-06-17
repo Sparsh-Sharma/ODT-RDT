@@ -116,6 +116,13 @@ class param {
         int                         npsi;
         int                         ntheta;
 
+//////////----------------- strain-coupled ODT (RDT distortion preprocessor)
+        bool                    Lstrain;        ///< apply mean-strain operator A_ij u_j
+        bool                    LnoEddies;      ///< suppress eddy events (Level 1a)
+        std::string             strainClosure;  ///< "IP" or "LRR"
+        std::vector<std::vector<double>> Astrain;  ///< imposed mean velocity gradient A_ij
+        std::vector<std::vector<double>> Acal;     ///< combined op -A_ij + B_ij (per substep)
+
     //////////////////// MEMBER FUNCTIONS /////////////////
 
     private:
