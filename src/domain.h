@@ -94,6 +94,7 @@ class domain {
         double cyclePeriodicDomain(const int icycle);
         void   backCyclePeriodicDomain(const double backCycleDistance);
         double Ldomain();
+        void   updateStrainOperator();   ///< strain-coupled ODT: R_ij, B_ij; sets pram->Acal
 
     private:
 

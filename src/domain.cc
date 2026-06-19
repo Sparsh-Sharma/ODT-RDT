@@ -22,6 +22,7 @@
 #include "domaincase_odt_coldPropaneJet.h"
 #include "domaincase_odt_coldJet.h"
 #include "domaincase_odt_RT.h"
+#include "domaincase_odt_homogeneousStrain.h"
 #include <cmath>
 #include <iomanip>
 
@@ -120,6 +121,9 @@ void domain::init(inputoutput         *p_io,
 
      else if(pram->probType == "RT")
          domc = new domaincase_odt_RT();      // simple Rayleigh Taylor flow
+
+     else if(pram->probType == "HOMOGENEOUS_STRAIN")
+         domc = new domaincase_odt_homogeneousStrain(); // strain-coupled ODT (Level 1a)
 
      else {
          cout << endl << "ERROR, probType UNKNOWN" << endl;
@@ -377,3 +381,106 @@ void domain::backCyclePeriodicDomain(const double backCycleDistance) {
                        //    only when periodic eddies are accepted.
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/** Strain-coupled ODT: compute the line Reynolds stress, the rapid
+ *  pressure-strain operator B_ij from the Lyapunov solve B R + R B = Pi^r,
+ *  and store the combined operator Acal = -A + B in pram->Acal. Called once
+ *  per explicit substep from micromixer when pram->Lstrain is true.
+ */
+
+namespace {
+
+    // cyclic Jacobi eigensolver for a symmetric 3x3 matrix: A = Q diag(lam) Q^T
+    void jacobi3(const double Ain[3][3], double Q[3][3], double lam[3]) {
+        double a[3][3];
+        for(int i=0;i<3;i++) for(int j=0;j<3;j++){ a[i][j]=Ain[i][j]; Q[i][j]=(i==j)?1.0:0.0; }
+        for(int sweep=0; sweep<50; sweep++){
+            double off = std::fabs(a[0][1])+std::fabs(a[0][2])+std::fabs(a[1][2]);
+            if(off < 1e-30) break;
+            for(int p=0;p<2;p++) for(int q=p+1;q<3;q++){
+                if(std::fabs(a[p][q]) < 1e-300) continue;
+                double th = (a[q][q]-a[p][p])/(2.0*a[p][q]);
+                double tt = (th>=0?1.0:-1.0)/(std::fabs(th)+std::sqrt(th*th+1.0));
+                double c  = 1.0/std::sqrt(tt*tt+1.0), s=tt*c;
+                for(int k=0;k<3;k++){ double akp=a[k][p],akq=a[k][q]; a[k][p]=c*akp-s*akq; a[k][q]=s*akp+c*akq; }
+                for(int k=0;k<3;k++){ double apk=a[p][k],aqk=a[q][k]; a[p][k]=c*apk-s*aqk; a[q][k]=s*apk+c*aqk; }
+                for(int k=0;k<3;k++){ double qkp=Q[k][p],qkq=Q[k][q]; Q[k][p]=c*qkp-s*qkq; Q[k][q]=s*qkp+c*qkq; }
+            }
+        }
+        for(int i=0;i<3;i++) lam[i]=a[i][i];
+    }
+
+    // solve  B R + R B = P  for symmetric B (R symmetric positive-definite)
+    void lyapunovSym(const double R[3][3], const double P[3][3], double B[3][3]) {
+        double Q[3][3], lam[3]; jacobi3(R, Q, lam);
+        double QtP[3][3], Pp[3][3];
+        for(int i=0;i<3;i++) for(int j=0;j<3;j++){ double s=0; for(int k=0;k<3;k++) s+=Q[k][i]*P[k][j]; QtP[i][j]=s; }
+        for(int i=0;i<3;i++) for(int j=0;j<3;j++){ double s=0; for(int k=0;k<3;k++) s+=QtP[i][k]*Q[k][j]; Pp[i][j]=s; }
+        double Bp[3][3];
+        for(int i=0;i<3;i++) for(int j=0;j<3;j++) Bp[i][j]=Pp[i][j]/(lam[i]+lam[j]);
+        double QB[3][3];
+        for(int i=0;i<3;i++) for(int j=0;j<3;j++){ double s=0; for(int k=0;k<3;k++) s+=Q[i][k]*Bp[k][j]; QB[i][j]=s; }
+        for(int i=0;i<3;i++) for(int j=0;j<3;j++){ double s=0; for(int k=0;k<3;k++) s+=QB[i][k]*Q[j][k]; B[i][j]=s; }
+    }
+}
+
+void domain::updateStrainOperator() {
+
+    const vector<double> &u = uvel->d, &v = vvel->d, &w = wvel->d;
+
+    // --- length-weighted Reynolds stress, fluctuation about the line mean ---
+    //     (this block is the single averaging-mode seam: swap for an ensemble
+    //      or windowed average at Level 2 without touching anything else)
+    double Lsum=0, mu=0, mv=0, mw=0;
+    for(int i=0; i<ngrd; i++){
+        double dx = std::fabs(posf->d.at(i+1)-posf->d.at(i));
+        Lsum += dx; mu += u[i]*dx; mv += v[i]*dx; mw += w[i]*dx;
+    }
+    mu/=Lsum; mv/=Lsum; mw/=Lsum;
+    double R[3][3]={{0,0,0},{0,0,0},{0,0,0}};
+    for(int i=0; i<ngrd; i++){
+        double dx = std::fabs(posf->d.at(i+1)-posf->d.at(i));
+        double f[3] = {u[i]-mu, v[i]-mv, w[i]-mw};
+        for(int a=0;a<3;a++) for(int b=0;b<3;b++) R[a][b] += f[a]*f[b]*dx;
+    }
+    for(int a=0;a<3;a++) for(int b=0;b<3;b++) R[a][b] /= Lsum;
+    double kt = 0.5*(R[0][0]+R[1][1]+R[2][2]);
+
+    // --- mean strain S and rotation W from pram->Astrain ---
+    double A[3][3], S[3][3], W[3][3];
+    for(int i=0;i<3;i++) for(int j=0;j<3;j++) A[i][j]=pram->Astrain[i][j];
+    for(int i=0;i<3;i++) for(int j=0;j<3;j++){
+        S[i][j]=0.5*(A[i][j]+A[j][i]); W[i][j]=0.5*(A[i][j]-A[j][i]);
+    }
+
+    // --- production P_ij = -(A R + R A^T) ---
+    double P[3][3];
+    for(int i=0;i<3;i++) for(int j=0;j<3;j++){
+        double s=0; for(int k=0;k<3;k++) s += A[i][k]*R[k][j] + R[i][k]*A[j][k];
+        P[i][j] = -s;
+    }
+
+    // --- rapid pressure-strain Pi^r per closure ---
+    double Pir[3][3];
+    if(pram->strainClosure == "IP") {                 // -C2 (P - 1/3 trP I), C2=3/5
+        double trP = P[0][0]+P[1][1]+P[2][2];
+        for(int i=0;i<3;i++) for(int j=0;j<3;j++)
+            Pir[i][j] = -0.6*(P[i][j] - (i==j?trP/3.0:0.0));
+    }
+    else {                                            // LRR-QI: C2=4/5,C3=7/4,C4=131/100
+        double b[3][3];
+        for(int i=0;i<3;i++) for(int j=0;j<3;j++) b[i][j]=R[i][j]/(2*kt)-(i==j?1.0/3.0:0.0);
+        double trbS=0; for(int i=0;i<3;i++) for(int k=0;k<3;k++) trbS += b[i][k]*S[i][k];
+        for(int i=0;i<3;i++) for(int j=0;j<3;j++){
+            double bS_Sb=0, Wb_bW=0;
+            for(int k=0;k<3;k++){ bS_Sb += b[i][k]*S[j][k]+S[i][k]*b[j][k];
+                                  Wb_bW += W[i][k]*b[j][k]-b[i][k]*W[j][k]; }
+            Pir[i][j] = 0.8*kt*S[i][j] + 1.75*kt*(bS_Sb-(i==j?(2.0/3.0)*trbS:0.0))
+                      + 1.31*kt*Wb_bW;
+        }
+    }
+
+    // --- Lyapunov solve for B, then Acal = -A + B ---
+    double B[3][3]; lyapunovSym(R, Pir, B);
+    for(int i=0;i<3;i++) for(int j=0;j<3;j++) pram->Acal[i][j] = -A[i][j] + B[i][j];
+}

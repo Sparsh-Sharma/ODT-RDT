@@ -277,6 +277,8 @@ void solver::raiseDtSmean() {
 
 bool solver::sampleEddyAndImplementIfAccepted() {
 
+    if(domn->pram->LnoEddies) return false;   // strain-coupled ODT Level 1a: eddies off
+
     domn->ed->sampleEddySize();
 
     if(!testLES_fracDomain(domn->ed->eddySize))

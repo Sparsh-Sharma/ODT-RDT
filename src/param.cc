@@ -93,6 +93,18 @@ param::param(inputoutput *p_io) {
 
     umin_spatial   = io->params["umin_spatial"]   ? io->params["umin_spatial"].as<double>()  : 0.5;
 
+    //--------------------- strain-coupled ODT (RDT distortion preprocessor)
+
+    Lstrain        = io->params["Lstrain"]        ? io->params["Lstrain"].as<bool>()          : false;
+    LnoEddies      = io->params["LnoEddies"]      ? io->params["LnoEddies"].as<bool>()        : false;
+    strainClosure  = io->params["strainClosure"]  ? io->params["strainClosure"].as<string>()  : "LRR";
+    Astrain = vector<vector<double>>(3, vector<double>(3, 0.0));
+    Acal    = vector<vector<double>>(3, vector<double>(3, 0.0));
+    if(Lstrain) {
+        vector<double> a = io->params["Astrain"].as<vector<double>>();   // row-major 3x3
+        for(int i=0; i<3; i++) for(int j=0; j<3; j++) Astrain[i][j] = a[3*i+j];
+    }
+
     // Radiation variables ---------------------
 
     Lrad         = io->params["Lrad"]             ? io->params["Lrad"].as<bool>()               : false;

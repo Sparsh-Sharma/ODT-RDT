@@ -145,6 +145,8 @@ void micromixer::advanceOdtSingleStep_Explicit(){
     set_oldrho_or_rhov();
     if(domn->pram->Lspatial) transform(oldrho_or_rhov.begin(), oldrho_or_rhov.end(), domn->uvel->d.begin(), oldrho_or_rhov.begin(), multiplies<double>());
 
+    if(domn->pram->Lstrain) domn->updateStrainOperator();   // strain-coupled ODT: set Acal before sources
+
     for(int k=0; k<domn->v.size(); k++)
         if(domn->v.at(k)->L_transported) {
             domn->v.at(k)->getRhsMix(gf, dxc);

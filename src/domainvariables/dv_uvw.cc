@@ -39,7 +39,7 @@ void dv_uvw::getRhsSrc(const int ipt){
     if(!L_transported)
         return;
 
-    rhsSrc.resize(domn->ngrd, 0.0);
+    rhsSrc.assign(domn->ngrd, 0.0);   // zero base every call (safe for += strain term below)
 
     //-------------------------
 
@@ -67,6 +67,25 @@ void dv_uvw::getRhsSrc(const int ipt){
 
         if(domn->pram->Lspatial)
             rhsSrc.at(ipt) /= domn->uvel->d.at(ipt);
+    }
+
+    //--------- strain-coupled ODT: add A_cal_ij u_j  (acceleration)
+    if(domn->pram->Lstrain) {
+        int ic = (var_name=="uvel") ? 0 : (var_name=="vvel") ? 1 : 2;
+        const vector<vector<double>> &Ac = domn->pram->Acal;
+        const vector<double> &u = domn->uvel->d, &v = domn->vvel->d, &w = domn->wvel->d;
+        if(ipt==-1) {
+            for(int i=0; i<domn->ngrd; i++) {
+                double src = Ac[ic][0]*u.at(i) + Ac[ic][1]*v.at(i) + Ac[ic][2]*w.at(i);
+                if(domn->pram->Lspatial) src /= domn->uvel->d.at(i);
+                rhsSrc.at(i) += src;
+            }
+        }
+        else {
+            double src = Ac[ic][0]*u.at(ipt) + Ac[ic][1]*v.at(ipt) + Ac[ic][2]*w.at(ipt);
+            if(domn->pram->Lspatial) src /= domn->uvel->d.at(ipt);
+            rhsSrc.at(ipt) += src;
+        }
     }
 }
 
