@@ -5,8 +5,8 @@ date
 
 ###############################################################################
 
-inputDir="../input/homogeneousStrain"
-caseName="homogeneousStrain"          # was "channel"
+inputDir="../input/homogeneousStrain2"
+caseName="homogeneousStrain2"          # was "channel"
 
 ###############################################################################
 

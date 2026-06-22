@@ -96,6 +96,7 @@ param::param(inputoutput *p_io) {
     //--------------------- strain-coupled ODT (RDT distortion preprocessor)
 
     Lstrain        = io->params["Lstrain"]        ? io->params["Lstrain"].as<bool>()          : false;
+    Ldilatation    = io->params["Ldilatation"]    ? io->params["Ldilatation"].as<bool>()      : false;
     LnoEddies      = io->params["LnoEddies"]      ? io->params["LnoEddies"].as<bool>()        : false;
     strainClosure  = io->params["strainClosure"]  ? io->params["strainClosure"].as<string>()  : "LRR";
     Astrain = vector<vector<double>>(3, vector<double>(3, 0.0));
@@ -104,6 +105,9 @@ param::param(inputoutput *p_io) {
         vector<double> a = io->params["Astrain"].as<vector<double>>();   // row-major 3x3
         for(int i=0; i<3; i++) for(int j=0; j<3; j++) Astrain[i][j] = a[3*i+j];
     }
+    specKpWaves    = io->params["specKpWaves"]    ? io->params["specKpWaves"].as<double>()    : 8.0;
+    specNmodes     = io->params["specNmodes"]     ? io->params["specNmodes"].as<int>()         : 64;
+    strainCFL      = io->params["strainCFL"]      ? io->params["strainCFL"].as<double>()      : 0.01;
 
     // Radiation variables ---------------------
 

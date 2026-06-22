@@ -120,10 +120,14 @@ class param {
         //----------------- strain-coupled ODT (RDT distortion preprocessor)
 
         bool                    Lstrain;        ///< apply mean-strain operator A_ij u_j
+        bool                    Ldilatation;    ///< apply mean-strain line dilatation dL/L = A_22 dt
         bool                    LnoEddies;      ///< suppress eddy events (Level 1a)
         string                  strainClosure;  ///< "IP" or "LRR"
         vector<vector<double>>  Astrain;        ///< imposed mean velocity gradient A_ij (3x3)
         vector<vector<double>>  Acal;           ///< combined op -A_ij + B_ij (updated per substep)
+        double                  specKpWaves;    ///< spectral-IC peak: wavelengths per domain
+        int                     specNmodes;     ///< spectral-IC number of Fourier modes
+        double                  strainCFL;      ///< max total-strain increment per step, de = S dt
 
     //////////////////// MEMBER FUNCTIONS /////////////////
 

@@ -239,6 +239,17 @@ void domain::setDomainFromRegion(const int i1, const int i2) {
 
 int domain::domainPositionToIndex(double position, const bool LowSide, int dbg) {
 
+    // strain-coupled ODT: with the line dilatation active, the boundary can move
+    // inward by up to one timestep's compression between when an eddy edge is
+    // sampled/clamped and when it is indexed, leaving the edge a hair outside the
+    // current grid. Clamp such sub-step overshoots to the boundary rather than
+    // aborting; genuine (large) out-of-domain positions still error below.
+    if(pram->Lstrain && pram->Ldilatation) {
+        const double tol = 1.0e-3 * Ldomain();
+        if(position < posf->d.at(0)    && (posf->d.at(0)    - position) < tol) position = posf->d.at(0);
+        if(position > posf->d.at(ngrd) && (position - posf->d.at(ngrd)) < tol) position = posf->d.at(ngrd);
+    }
+
     if(abs(position-posf->d.at(0)) < 1.0E-14)
         return 0;
     if(abs(position-posf->d.at(ngrd)) < 1.0E-14)
@@ -483,4 +494,36 @@ void domain::updateStrainOperator() {
     // --- Lyapunov solve for B, then Acal = -A + B ---
     double B[3][3]; lyapunovSym(R, Pir, B);
     for(int i=0;i<3;i++) for(int j=0;j<3;j++) pram->Acal[i][j] = -A[i][j] + B[i][j];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/** Strain-coupled ODT: apply the mean-strain dilatation of the line.
+ *  The ODT line is aligned with the x_2 direction (the compression axis of the
+ *  stagnation-blocking strain), so its length evolves as d(ln L)/dt = A_22.
+ *  Over a substep this is the affine scaling  x -> xc + (x - xc) exp(A_22 dt)
+ *  about the domain centre xc. This geometric compression is what shifts the
+ *  resolved wavenumbers (k_2 grows as the line shortens) and is distinct from
+ *  the velocity-amplitude strain applied in dv_uvw::getRhsSrc. The mesh length
+ *  bounds and eddy-size scales are scaled by the same factor so the relative
+ *  resolution and eddy population track the compressing line.
+ *  Gated by pram->Ldilatation; a no-op otherwise. With bcType=WALL and zero wall
+ *  velocities, meshManager::enforceDomainSize() is a no-op and does not undo it.
+ */
+void domain::applyStrainDilatation(const double dt) {
+
+    if(!pram->Lstrain || !pram->Ldilatation) return;
+
+    const double A22 = pram->Astrain[1][1];           // d(ln L)/dt
+    const double f   = std::exp(A22 * dt);             // affine scale factor
+    const double xc  = pram->xDomainCenter;
+
+    for(int i=0; i<ngrdf; i++) posf->d.at(i) = xc + (posf->d.at(i) - xc)*f;
+    for(int i=0; i<ngrd;  i++) pos ->d.at(i) = xc + (pos ->d.at(i) - xc)*f;
+
+    // keep mesh-control lengths proportional to the (shrinking) line
+    pram->dxmin *= f;
+    pram->dxmax *= f;
+    pram->Lmin  *= f;
+    pram->Lmax  *= f;
+    pram->Lp    *= f;
 }

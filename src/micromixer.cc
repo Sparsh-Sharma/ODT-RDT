@@ -105,6 +105,22 @@ void micromixer::setNominalStepSize() {
     }
     dtStepNominal = domn->pram->diffCFL * 0.5 / coef;
 
+    //----- strain-coupled ODT: cap the step by the imposed strain rate so the
+    //  explicit advancement resolves the distortion timescale. With kvisc0=0 the
+    //  diffusive limit above is infinite and dt would otherwise collapse to the
+    //  dump interval, badly under-integrating the growing mode. strainCFL is the
+    //  maximum total-strain increment per step, de = S dt (S = sqrt(2 A:A)).
+    if (domn->pram->Lstrain) {
+        double AA = 0.0;
+        for (int i=0; i<3; i++) for (int j=0; j<3; j++)
+            AA += domn->pram->Astrain[i][j] * domn->pram->Astrain[i][j];
+        double Smag = std::sqrt(2.0 * AA);
+        if (Smag > 0.0) {
+            double dtStrain = domn->pram->strainCFL / Smag;
+            if (dtStrain < dtStepNominal) dtStepNominal = dtStrain;
+        }
+    }
+
     LforceSetNominalStepSize = false;
 }
 
@@ -163,6 +179,8 @@ void micromixer::advanceOdtSingleStep_Explicit(){
     if(domn->pram->LdoDL) do_DL("set DL_2");
 
     domn->mesher->enforceDomainSize();     // chop the domain
+
+    if(domn->pram->Lstrain) domn->applyStrainDilatation(dt);   // strain-coupled ODT: compress/expand line, dL/L = A_22 dt
 
 }
 
