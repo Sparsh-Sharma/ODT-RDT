@@ -25,6 +25,9 @@ params:
     Astrain:       [ 0.5, 0.0, 0.0,
                      0.0,-0.5, 0.0,
                      0.0, 0.0, 0.0 ]   #  row-major 3x3 mean velocity gradient A_ij
+    #  spectral initial condition (band-limited isotropic field, no grid-scale energy)
+    specKpWaves:   8.0            #  spectral peak: wavelengths per domain (E(k) peaks at this)
+    specNmodes:    64             #  number of Fourier modes (energy negligible beyond ~3x peak)
     #----------------------------------------------------------------------------------
     Z_param:       450.
     A_param:       0.66666666667
@@ -35,7 +38,7 @@ params:
     #----------------------------------------------------------------------------------
     Lsolver:       EXPLICIT
     #----------------------------------------------------------------------------------
-    bcType:        WALL
+    bcType:        WALL           #  PERIODIC rejected by mesher; BC unused (eddies off, inviscid, pointwise strain)
     cCoord:        1
     Lrestart:      false
     #----------------------------------------------------------------------------------
@@ -69,6 +72,6 @@ bcCond:
 dumpTimesGen:
     dTimeStart: 0.0
     dTimeEnd:   4.0
-    dTimeStep:  0.1
+    dTimeStep:  0.01
 
 dumpTimes:

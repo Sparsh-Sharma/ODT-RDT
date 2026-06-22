@@ -12,7 +12,7 @@ params:
     domainLength:  1.0
     ngrd0:         4000           #  many points: the line average is the ensemble
     rho0:          1.0
-    kvisc0:        0.0            #  inviscid -> matches rapid-distortion limit
+    kvisc0:        1.0e-4            #  inviscid -> matches rapid-distortion limit
     dPdx:          0.0
     pres:          101325.0
     chemMechFile:  not_used.yaml
@@ -20,11 +20,16 @@ params:
     #----------------------------------------------------------------------------------
     #  strain-coupled ODT controls (NEW)
     Lstrain:       true
-    LnoEddies:     true           #  Level 1a: suppress eddy events
+    LnoEddies:     false           #  Level 1a: suppress eddy events
+    Ldilatation:   true          #  Level 1b: compress the line under mean strain (dL/L = A_22 dt). OFF for 1a.
     strainClosure: LRR            #  LRR or IP
     Astrain:       [ 0.5, 0.0, 0.0,
                      0.0,-0.5, 0.0,
                      0.0, 0.0, 0.0 ]   #  row-major 3x3 mean velocity gradient A_ij
+    #  spectral initial condition (band-limited isotropic field, no grid-scale energy)
+    specKpWaves:   8.0            #  spectral peak: wavelengths per domain (E(k) peaks at this)
+    specNmodes:    64             #  number of Fourier modes (energy negligible beyond ~3x peak)
+    strainCFL:     0.01           #  max total-strain increment per step (de = S dt); decouples dt from dump cadence
     #----------------------------------------------------------------------------------
     Z_param:       450.
     A_param:       0.66666666667
@@ -35,7 +40,7 @@ params:
     #----------------------------------------------------------------------------------
     Lsolver:       EXPLICIT
     #----------------------------------------------------------------------------------
-    bcType:        WALL
+    bcType:        WALL           #  PERIODIC rejected by mesher; BC unused (eddies off, inviscid, pointwise strain)
     cCoord:        1
     Lrestart:      false
     #----------------------------------------------------------------------------------

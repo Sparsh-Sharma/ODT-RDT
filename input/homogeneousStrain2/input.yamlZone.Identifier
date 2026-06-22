@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://claude.ai/chat/abfb7be8-c46c-41f2-942b-2fd675bca8d9
+HostUrl=https://claude.ai/api/organizations/6d1d8a46-858c-4f52-9b18-b45698916b9c/conversations/abfb7be8-c46c-41f2-942b-2fd675bca8d9/wiggle/download-file?path=%2Fmnt%2Fuser-data%2Foutputs%2Finput_homogeneousStrain.yaml
