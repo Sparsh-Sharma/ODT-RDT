@@ -1,0 +1,77 @@
+################### Strain-coupled ODT -- Level 1a verification
+# Homogeneous turbulence under constant plane strain A = diag(a,-a,0), a=0.5,
+# so S = 1 and total strain e = S t = t. Eddies OFF, inviscid: this is the
+# rapid-distortion limit and must reproduce the Level 0 model curves.
+# Switch strainClosure between LRR and IP; expected u2^2/2k_t at e=4:
+#   LRR -> 0.6006,  IP -> 0.6500   (plane strain).
+
+params:
+
+    seed:          22
+    tEnd:          4.0            #  e = t since S = 1
+    domainLength:  1.0
+    ngrd0:         4000           #  many points: the line average is the ensemble
+    rho0:          1.0
+    kvisc0:        0.0            #  inviscid -> matches rapid-distortion limit
+    dPdx:          0.0
+    pres:          101325.0
+    chemMechFile:  not_used.yaml
+    probType:      HOMOGENEOUS_STRAIN
+    #----------------------------------------------------------------------------------
+    #  strain-coupled ODT controls (NEW)
+    Lstrain:       true
+    LnoEddies:     true           #  Level 1a: suppress eddy events
+    strainClosure: LRR            #  LRR or IP
+    Astrain:       [ 0.5, 0.0, 0.0,
+                     0.0,-0.5, 0.0,
+                     0.0, 0.0, 0.0 ]   #  row-major 3x3 mean velocity gradient A_ij
+    #  spectral initial condition (band-limited isotropic field, no grid-scale energy)
+    specKpWaves:   8.0            #  spectral peak: wavelengths per domain (E(k) peaks at this)
+    specNmodes:    64             #  number of Fourier modes (energy negligible beyond ~3x peak)
+    #----------------------------------------------------------------------------------
+    Z_param:       450.
+    A_param:       0.66666666667
+    C_param:       7.00
+    LES_type:      NONE
+    Z_LES:         0.0
+    diffCFL:       0.5
+    #----------------------------------------------------------------------------------
+    Lsolver:       EXPLICIT
+    #----------------------------------------------------------------------------------
+    bcType:        WALL           #  PERIODIC rejected by mesher; BC unused (eddies off, inviscid, pointwise strain)
+    cCoord:        1
+    Lrestart:      false
+    #----------------------------------------------------------------------------------
+    gDens:         30
+    dxmin:         0.0002
+    dxmax:         0.02
+    #----------------------------------------------------------------------------------
+    Pmax:          0.4
+    Pav:           0.02
+    dtfac:         2.0
+    nDtSmeanWait:  100000
+    eddyMinCells:  3
+    DAtimeFac:     4.0
+    tdfac:         1.0
+    sLastDA:       100
+    Lp:            0.015
+    Lmax:          0.333333333
+    #----------------------------------------------------------------------------------
+    modDump:       1000000
+
+bcCond:
+    uBClo:  0.0
+    uBChi:  0.0
+    vBClo:  0.0
+    vBChi:  0.0
+    wBClo:  0.0
+    wBChi:  0.0
+    sBClo:  0.0
+    sBChi:  0.0
+
+dumpTimesGen:
+    dTimeStart: 0.0
+    dTimeEnd:   4.0
+    dTimeStep:  0.01
+
+dumpTimes:

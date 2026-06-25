@@ -1,0 +1,13 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/shar_sp/ODT-RDT/build/cmake_install.cmake",
+		"/home/shar_sp/ODT-RDT/build/src/cmake_install.cmake",
+		"/home/shar_sp/ODT-RDT/build/src/cvode/cmake_install.cmake",
+		"/home/shar_sp/ODT-RDT/build/src/domainvariables/cmake_install.cmake",
+		"/home/shar_sp/ODT-RDT/build/src/radiation/cmake_install.cmake",
+		"/home/shar_sp/ODT-RDT/build/src/domaincases/cmake_install.cmake",
+		"/home/shar_sp/ODT-RDT/build/src/user_chemical_mechanisms/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -95,6 +95,7 @@ class domain {
         void   backCyclePeriodicDomain(const double backCycleDistance);
         double Ldomain();
         void   updateStrainOperator();   ///< strain-coupled ODT: R_ij, B_ij; sets pram->Acal
+        void   applyStrainDilatation(const double dt);  ///< strain-coupled ODT: compress/expand line, dL/L = A_22 dt
 
     private:
 

@@ -15,8 +15,11 @@
 #include <cmath>
 
 ////////////////////////////////////////////////////////////////////////////////
-/** Initialization: register variables and seed an isotropic fluctuation field
- *  whitened so that R_ij(0) = (2/3) delta_ij  (k_t = 1), matching Level 0.
+/** Initialization: register variables and seed a band-limited, isotropic
+ *  fluctuation field from a prescribed 1D spectrum, then whiten it so that
+ *  R_ij(0) = (2/3) delta_ij  (k_t = 1), matching Level 0. Replacing the former
+ *  white-noise field removes the grid-scale energy that mesh interpolation
+ *  damped, and provides a resolved spectrum for the Level 1b distortion study.
  */
 void domaincase_odt_homogeneousStrain::init(domain *p_domn){
 
@@ -50,12 +53,44 @@ void domaincase_odt_homogeneousStrain::init(domain *p_domn){
 
     int N = domn->ngrd;
     std::mt19937 rng(domn->pram->seed >= 0 ? domn->pram->seed : 22);
-    std::normal_distribution<double> gss(0.0, 1.0);
 
     vector<double> &u = domn->uvel->d;
     vector<double> &v = domn->vvel->d;
     vector<double> &w = domn->wvel->d;
-    for(int i=0;i<N;i++){ u[i]=gss(rng); v[i]=gss(rng); w[i]=gss(rng); }
+
+    //------------------- band-limited isotropic field from a prescribed
+    //  1D spectrum  E(k) = (k/kp)^4 exp(-2 (k/kp)^2)  (Passot-Pouquet form:
+    //  compact, peaked at kp, negligible energy near the grid scale, so the
+    //  field is well resolved and not damped by mesh interpolation). Each
+    //  component is an independent random-phase Fourier sum, giving isotropy.
+    //  The grid is uniform at initialization (dv_posf builds it uniform), so
+    //  cell centres are known analytically: y_i = xDomainCenter - L/2 + (i+1/2) dx.
+
+    const double L  = domn->pram->domainLength;
+    const double x0 = domn->pram->xDomainCenter - 0.5*L;
+    const double dx = L / N;
+    const double dk = 2.0*M_PI / L;                          // fundamental wavenumber
+    const double kp = 2.0*M_PI*domn->pram->specKpWaves / L;  // spectral peak
+    const int    Nm = domn->pram->specNmodes;                // number of modes
+
+    vector<double> amp(Nm+1, 0.0);                           // amplitude ~ sqrt(E(k_n))
+    for(int n=1;n<=Nm;n++){
+        double r = (n*dk)/kp;
+        amp[n] = std::sqrt( std::pow(r,4.0)*std::exp(-2.0*r*r) );
+    }
+    std::uniform_real_distribution<double> uni(0.0, 2.0*M_PI);
+    vector<double>* comp[3] = {&u, &v, &w};
+    for(int c=0;c<3;c++){
+        vector<double> ph(Nm+1);
+        for(int n=1;n<=Nm;n++) ph[n] = uni(rng);            // independent phases -> isotropy
+        vector<double> &f = *comp[c];
+        for(int i=0;i<N;i++){
+            double y = x0 + (i+0.5)*dx;
+            double s = 0.0;
+            for(int n=1;n<=Nm;n++) s += amp[n]*std::cos(n*dk*y + ph[n]);
+            f[i] = s;
+        }
+    }
 
     //------------------- remove mean, then whiten to R = (2/3) I
 

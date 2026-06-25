@@ -1,0 +1,76 @@
+################### Strain-coupled ODT — Section 4.2 base input
+# Homogeneous plane strain A = diag(0.5,-0.5,0): S=1, e=t, A22=-0.5.
+# This is the SINGLE source of truth. run_sec42.sh stamps the per-run flags
+# (LnoEddies, Ldilatation, kvisc0) into a per-case copy — do not edit those
+# three here; change them only via the driver so runs stay reproducible.
+
+params:
+
+    seed:          22
+    tEnd:          4.0
+    domainLength:  1.0
+    ngrd0:         4000
+    rho0:          1.0
+    kvisc0:        0.0            #  overridden per run by run_sec42.sh
+    dPdx:          0.0
+    pres:          101325.0
+    chemMechFile:  not_used.yaml
+    probType:      HOMOGENEOUS_STRAIN
+    #----------------------------------------------------------------------------------
+    Lstrain:       true           #  always on
+    LnoEddies:     true           #  overridden per run
+    Ldilatation:   false          #  overridden per run
+    strainClosure: LRR
+    Astrain:       [ 0.5, 0.0, 0.0,
+                     0.0,-0.5, 0.0,
+                     0.0, 0.0, 0.0 ]
+    specKpWaves:   8.0
+    specNmodes:    64
+    strainCFL:     0.01
+    #----------------------------------------------------------------------------------
+    Z_param:       450.
+    A_param:       0.66666666667
+    C_param:       7.00
+    LES_type:      NONE
+    Z_LES:         0.0
+    diffCFL:       0.5
+    #----------------------------------------------------------------------------------
+    Lsolver:       EXPLICIT
+    #----------------------------------------------------------------------------------
+    bcType:        WALL
+    cCoord:        1
+    Lrestart:      false
+    #----------------------------------------------------------------------------------
+    gDens:         30
+    dxmin:         0.0002
+    dxmax:         0.02
+    #----------------------------------------------------------------------------------
+    Pmax:          0.4
+    Pav:           0.02
+    dtfac:         2.0
+    nDtSmeanWait:  100000
+    eddyMinCells:  3
+    DAtimeFac:     4.0
+    tdfac:         1.0
+    sLastDA:       100
+    Lp:            0.015
+    Lmax:          0.333333333
+    #----------------------------------------------------------------------------------
+    modDump:       1000000
+
+bcCond:
+    uBClo:  0.0
+    uBChi:  0.0
+    vBClo:  0.0
+    vBChi:  0.0
+    wBClo:  0.0
+    wBChi:  0.0
+    sBClo:  0.0
+    sBChi:  0.0
+
+dumpTimesGen:
+    dTimeStart: 0.0
+    dTimeEnd:   4.0
+    dTimeStep:  0.1
+
+dumpTimes:

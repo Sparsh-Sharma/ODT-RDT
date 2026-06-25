@@ -1,16 +1,12 @@
 #!/bin/bash
 
-# Single realization run
-# run as "./runOne.sh" or as "./runOne.sh -r"
-# Change variables inputDir and caseName near the top.
-
-###############################################################################
 echo "the start time is"
 date
+
 ###############################################################################
 
-inputDir="../input/channelFlow"
-caseName="channel"
+inputDir="../input/homogeneousStrainB"
+caseName="homogeneousStrainB"          # was "channel"
 
 ###############################################################################
 
@@ -24,12 +20,9 @@ runCase () {
     cp     "$inputDir/"*        "../data/$caseName/input/" > /dev/null 2>&1
     cp -r  "$inputDir/restart"* "../data/$caseName/input/" > /dev/null 2>&1
 
-    #--------------------------------------------------------------------------
-
     echo "*** RUNNING ***"
-    echo "Output is being written to ../$caseName/runtime/runtime_* and ../$caseName/data"
-    ./odt.x $caseName 0          # 0 is the shift (realization # here)
-
+    echo "Output is being written to ../data/$caseName/runtime and ../data/$caseName/data"
+    ./odt.x $caseName 0
 }
 
 ###############################################################################
@@ -52,11 +45,8 @@ if [ "$1" == "-r" ]; then rebuild; fi
 
 runCase "$caseName"
 
-###############################################################################
 echo
 echo "the end simulation time is"
 date
-###############################################################################
 
 exit 0
-
