@@ -5,8 +5,18 @@ date
 
 ###############################################################################
 
+<<<<<<< HEAD
 inputDir="../input/homogeneousStrainB"
 caseName="homogeneousStrainB"          # was "channel"
+=======
+<<<<<<< Updated upstream
+inputDir="../input/homogeneousStrain2"
+caseName="homogeneousStrain2"          # was "channel"
+=======
+inputDir="../input/homogeneousStrainB"
+caseName="homogeneousStrainB"          # was "channel"
+>>>>>>> Stashed changes
+>>>>>>> 84119c7eb5e13b41eb3ea2beddfc5692c7836a2b
 
 ###############################################################################
 

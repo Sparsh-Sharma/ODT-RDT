@@ -1,55 +1,160 @@
-# ODT ##################
+<div align="center">
 
-This code implements the One-Dimensional Turbulence (ODT) model for turbulent reacting or
-nonreacting flows. See also the [Basic ODT](https://github.com/BYUignite/basicODT) implementation.
+# ODT‑RDT
 
-## Documentation ########
-Detailed documentation is available [here](https://ignite.byu.edu/ODT_documentation). 
-More information on the theory and application of ODT is available
-[here](https://odtresearch.com).
+### Hybrid aeroacoustics: **R**apid **D**istortion **T**heory × **O**ne‑**D**imensional **T**urbulence → Amiet leading‑edge noise
 
-A publication detailing this code is provided in the following reference:
-> V.B. Stephens, D.O. Lignell, “One-dimensional turbulence (ODT): computationally efficient modeling and simulation of turbulent flows,” SoftwareX, [13:100641 (2020)](https://www.sciencedirect.com/science/article/pii/S235271102030354X).
+*Replacing the frozen‑isotropic upwash assumption in Amiet's theory with a physically distorted, anisotropic spectrum from a strain‑coupled ODT model — nonlinear gust distortion at a fraction of LES cost.*
 
-A short video overview summarizing downloading, building, running, and processing the code is shown [here](https://youtu.be/unsMJiDpSVY).
+<br/>
 
-A [Code Ocean module](https://codeocean.com/capsule/4006133) that provides a runable version of the installed code is also available.
+<!-- build / runtime stack -->
+![C++17](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![CMake](https://img.shields.io/badge/CMake-%E2%89%A53.15-064F8C?logo=cmake&logoColor=white)
+![conda](https://img.shields.io/badge/conda-Miniforge-44A833?logo=anaconda&logoColor=white)
+![Cantera](https://img.shields.io/badge/Cantera-2.5.1-E5601F)
+![Linux](https://img.shields.io/badge/platform-Linux%20%2F%20Ubuntu-FCC624?logo=linux&logoColor=black)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-<!--
-The following two papers discussing theory and application of the code are available. Additional papers are available [here](http://ignite.byu.edu/publications.html).
-   * [D. Lignell et al., One-dimensioanl turbulence modeling for cylindrical and spherical flows: model formulation and application, Theoretical and Computational Fluid Dynamics, 32:495-520](https://ignite.byu.edu/public/Lignell_2018.pdf)
-   * [D. Lignell et al., Mesh adaption for efficient multiscale implementation of one-dimensional turbulence, Theoretical and Computational Fluid Dynamics, 27:273-295 (2013)](https://ignite.byu.edu/public/ODTmethod.pdf)
--->
+<!-- science / topics -->
+<br/>
 
-## Dependencies #################
+![ODT](https://img.shields.io/badge/One--Dimensional_Turbulence-1f6feb?style=flat-square)
+![RDT](https://img.shields.io/badge/Rapid_Distortion_Theory-1f6feb?style=flat-square)
+![Amiet](https://img.shields.io/badge/Amiet_Theory-1f6feb?style=flat-square)
+![Aeroacoustics](https://img.shields.io/badge/Aeroacoustics-8957e5?style=flat-square)
+![LE Noise](https://img.shields.io/badge/Leading--Edge_Noise-8957e5?style=flat-square)
+![Anisotropy](https://img.shields.io/badge/Anisotropic_Turbulence-8957e5?style=flat-square)
+![SUNDIALS](https://img.shields.io/badge/SUNDIALS_CVODE-238636?style=flat-square)
+![Boost](https://img.shields.io/badge/Boost-238636?style=flat-square)
+![fmt](https://img.shields.io/badge/fmt-238636?style=flat-square)
+![yaml-cpp](https://img.shields.io/badge/yaml--cpp-238636?style=flat-square)
 
-### ODT Code
-* [Cantera](http://cantera.org): open-source suite of tools for problems involving chemical kinetics, thermodynamics, and transport.
-* Yaml: input file format. This installation is conveniently built into the ODT build process. 
-* Cmake 3.12 or higher
-* (OPTIONAL) Doxygen: builds documentation. 
+</div>
 
-### Post-processing #############
-Post-processing data produced by ODT and ODT is processed via Python 3 scripts. We recommend Python 3.2 or higher. Scripts may not function properly using Python 2.x. The following packages are required and can be installed via pip3:
-* numpy
-* scipy
-* matplotlib
-* glob
-* yaml
-* sys
-* os
+---
 
-## Directory structure ###########
-* `build`: build the code
-* `data`: contains all data files output during a simulation
-    * The code will generate a subfolder with a name corresponding to case name specified in the run script in the `run` folder.
-        * This case subfolder will contain subfolders `input`, `runtime`, `data`, and `post`, which contain the input data files, runtime output, simulation data files, and post-processed data, respectively.
-* `doc`: contains documentation files
-* `input`: contains case input files
-    * Other input files include a Cantera mechanism file in the `user_gas_mechanisms` folder and an optional `restart.yaml` file.
-* `post`: contains post-processing scripts and files for given case types
-   * Output is placed in `data/caseName/post`. These are mostly Python files. Some cases also include experimental data files for comparison and plotting.
-* `run`: contains the code executable `odt.x` and several run scripts 
-    * The user specifies inputDir as the path to the input file containing the case to run and specifies a case name for variable caseName. Files are created and copied into `data/caseName`, as noted above.
-* `source`: contains source code (including header files) and `CMakeLists.txt` files
+## ⚡ Quick start — one file, one command
 
+You do **not** need to clone anything by hand. Download the single bootstrap
+script, run it, and it does the rest: installs dependencies, fetches the code,
+and compiles the solver.
+
+```bash
+# 1. grab the one script you need
+curl -fsSL -O https://raw.githubusercontent.com/Sparsh-Sharma/ODT-RDT/main/build_odt.sh
+
+# 2. run it
+bash build_odt.sh
+```
+
+<details>
+<summary><b>Prefer a true one‑liner?</b></summary>
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/Sparsh-Sharma/ODT-RDT/main/build_odt.sh)
+```
+
+> Downloading the file first (the two‑step version above) is recommended, so you
+> can re‑run or inspect it later.
+
+</details>
+
+That's it. When it finishes you'll have a compiled `odt.x` ready to run.
+
+```bash
+conda activate odt
+cd ODT-RDT/run
+./odt.x
+```
+
+> **Heads‑up:** the solver links its libraries from the `odt` conda environment,
+> so always `conda activate odt` before running it.
+
+---
+
+## 🧩 What the script sets up for you
+
+The bootstrap targets a **clean Ubuntu** machine and is **idempotent** — safe to
+re‑run; it reuses whatever already exists.
+
+| Stage | What happens |
+| --- | --- |
+| 🐍 **Conda** | Installs **Miniforge** automatically if `conda` is missing |
+| 📦 **Environment** | Creates a self‑contained `odt` env with a matched compiler + linker toolchain |
+| 🔬 **Core libs** | **Cantera 2.5.1**, **fmt**, **Boost**, **yaml‑cpp**, **SUNDIALS/CVODE** |
+| 🛠️ **Build** | Clean out‑of‑source **CMake** configure, then compiles on **8 cores** |
+| 📂 **Install** | Drops the fresh `odt.x` into `run/` and verifies the libraries resolve |
+| 📊 **Post‑processing** | Adds a non‑blocking Python stack: `numpy`, `scipy`, `matplotlib`, `pyyaml` |
+
+<details>
+<summary><b>Why a pinned, self‑contained environment?</b></summary>
+
+The solver is written against the **Cantera 2.5.x** API, which is not
+source‑compatible with Cantera 3.x. Pinning the whole stack inside one conda
+environment — compiler, linker, sysroot and libraries all from the same channel —
+keeps everything internally consistent and avoids the toolchain/`glibc` mismatches
+that arise when mixing a system compiler with conda libraries.
+
+</details>
+
+---
+
+## 🔁 Developing the code
+
+If you're editing the solver, use the fast rebuild loop instead of the full
+bootstrap. It **never touches the environment or dependencies** — it just
+recompiles what changed and refreshes `run/odt.x`.
+
+```bash
+# incremental: recompiles only the files you changed (seconds)
+bash rebuild_odt.sh
+
+# full recompile (after editing headers widely or CMakeLists.txt)
+CLEAN=1 bash rebuild_odt.sh
+```
+
+| Script | Use it when |
+| --- | --- |
+| `build_odt.sh` | First setup on a new machine, or to rebuild the environment from scratch (`FRESH_ENV=1`) |
+| `rebuild_odt.sh` | Your everyday edit → compile → run loop |
+
+---
+
+## 🧠 About the project
+
+`ODT‑RDT` couples **Rapid Distortion Theory** physics with **One‑Dimensional
+Turbulence** as a nonlinear distortion engine, feeding a physically distorted,
+anisotropic upwash spectrum into **Amiet's acoustic response** for
+leading‑edge noise prediction. The goal is to capture **nonlinear gust
+distortion near the leading edge** — behaviour the standard frozen‑isotropic
+assumption cannot represent — at a small fraction of the cost of a
+scale‑resolving LES.
+
+The ODT core is built on the [BYUignite/ODT](https://github.com/BYUignite/ODT)
+implementation.
+
+---
+
+## 📋 Requirements
+
+- A **Linux / Ubuntu** machine (the bootstrap installs everything else)
+- `git` and `curl` — auto‑installed via `apt` if missing
+- Internet access for the initial dependency download
+
+> macOS isn't targeted by the bootstrap script (the Miniforge installer line and
+> the optional `apt` calls are Linux‑specific).
+
+---
+
+## 📜 License
+
+Released under the **MIT License**. The underlying ODT solver is also MIT‑licensed
+(© BYU Ignite).
+
+---
+
+<div align="center">
+<sub>Turning turbulence into a binary, one eddy at a time.</sub>
+</div>

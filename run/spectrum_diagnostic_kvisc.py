@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/usr/bin/env python3
 r"""
 Spectrum diagnostic for the strain-coupled ODT (Section 4.2, sec:val-spectrum).
@@ -19,12 +20,40 @@ Domain length is read from each dump, so the dilatation (L(e)=L0 exp(A22 e)) is
 handled: as L shrinks the wavenumbers 2*pi*n/L grow and the spectrum migrates.
 
 Usage (Spyder): set DUMP_DIR, press Run.   CLI: python3 spectrum_diagnostic.py <dir>
+=======
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jun 23 19:00:54 2026
+
+@author: shar_sp
+"""
+
+#!/usr/bin/env python3
+r"""
+Comparison spectrum diagnostic (Section 4.2) for a kvisc0 sweep.
+
+Point DUMP_DIR at the PARENT data/ directory holding the case folders
+(hs2_kv1em4, hs2_kv1em5, ...). Produces TWO separate, manuscript-ready
+figures, each as .pdf AND .png:
+
+   fig_spectrum_compare_spectra   final-strain spectrum E(k)=Sum_i E_i vs nu
+   fig_spectrum_compare_centroid  spectral-centroid migration per case vs nu
+
+CENTROID SMOOTHING
+   Each centroid point is from a single ODT line (one realization), so with
+   eddies on the curve is jagged from stochastic eddy sampling -- that scatter
+   is real, not a plotting artefact. SMOOTH_WIN applies a centred moving average
+   of that many dumps in strain. Set SMOOTH_WIN=1 to see the raw data; if you
+   smooth, SAY SO in the caption. The physically correct fix is to ENSEMBLE
+   AVERAGE several seeds per case (see the multi-seed note at the bottom).
+>>>>>>> 84119c7eb5e13b41eb3ea2beddfc5692c7836a2b
 """
 import os, glob, re, sys
 import numpy as np
 import matplotlib
 # matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+<<<<<<< HEAD
 from matplotlib.lines import Line2D
 
 # ======================================================================
@@ -37,6 +66,18 @@ STRAINS  = [0.0, 1.0, 2.0, 3.0, 4.0]    # single-case mode: strains to show
 CENT_THRESH = 1e-3      # centroid integrates only where E>thresh*max (drops floor)
 OUTBASE  = "fig_spectrum"
 SAVE_EXT = ("pdf", "png")
+=======
+
+# ======================================================================
+DUMP_DIR    = r'\\wsl.localhost\Ubuntu\home\shar_sp\ODT-RDT\data'
+SMAG        = 1.0
+A22         = -0.5
+NUNIFORM    = 4096
+CENT_THRESH = 1e-3
+SMOOTH_WIN  = 5         # centred moving-average window (dumps). 1 = raw, no smoothing.
+OUTBASE     = "fig_spectrum_compare"
+SAVE_EXT    = ("pdf", "png")
+>>>>>>> 84119c7eb5e13b41eb3ea2beddfc5692c7836a2b
 # ======================================================================
 
 plt.rcParams.update({
@@ -50,6 +91,7 @@ plt.rcParams.update({
     "xtick.direction": "in", "ytick.direction": "in",
     "xtick.top": True, "ytick.right": True, "figure.dpi": 150,
 })
+<<<<<<< HEAD
 ccol = ["#1f77b4", "#d62728", "#2ca02c"]
 cnm  = [r"$E_1(k)$", r"$E_2(k)$", r"$E_3(k)$"]
 FIGSIZE = (5.4, 4.0)
@@ -60,6 +102,13 @@ def savefig(fig, name):
     print("wrote", os.path.abspath(f"{name}.pdf"), "(+ .png)")
 
 # ----------------------------------------------------------------------
+=======
+
+def savefig(fig, name):
+    for ext in SAVE_EXT: fig.savefig(f"{name}.{ext}", bbox_inches="tight")
+    print("wrote", os.path.abspath(f"{name}.pdf"), "(+ .png)")
+
+>>>>>>> 84119c7eb5e13b41eb3ea2beddfc5692c7836a2b
 def read_dump(fname):
     t=None; posf=[]; u=[]; v=[]; w=[]
     with open(fname) as f:
@@ -88,6 +137,19 @@ def centroid(k, E):
     m=E>CENT_THRESH*E.max()
     return (k[m]*E[m]).sum()/E[m].sum() if m.any() else np.nan
 
+<<<<<<< HEAD
+=======
+def smooth(y, win):
+    if win<=1 or y.size<3: return y
+    win=min(win, y.size if y.size%2 else y.size-1)
+    if win%2==0: win-=1
+    if win<3: return y
+    pad=win//2
+    yp=np.pad(y, pad, mode="edge")
+    ker=np.ones(win)/win
+    return np.convolve(yp, ker, mode="valid")
+
+>>>>>>> 84119c7eb5e13b41eb3ea2beddfc5692c7836a2b
 def dumps_in(case):
     for cand in (os.path.join(case,"data"), case):
         fs=glob.glob(os.path.join(cand,"data_*","dmp_*.dat")) or \
@@ -100,12 +162,19 @@ def load_case(case):
     for f in dumps_in(case):
         t,posf,u,v,w=read_dump(f)
         if t is not None: rows.append((t,posf,u,v,w))
+<<<<<<< HEAD
     rows.sort(key=lambda r:r[0])
     return rows
 
 def nice_label(name):
     s=name.replace("hs2_","").replace("kv","")
     s=s.replace("_",".").replace("em","e-").replace("ep","e+")
+=======
+    rows.sort(key=lambda r:r[0]); return rows
+
+def nice_label(name):
+    s=name.replace("hs2_","").replace("kv","").replace("_",".").replace("em","e-").replace("ep","e+")
+>>>>>>> 84119c7eb5e13b41eb3ea2beddfc5692c7836a2b
     return f"$\\nu$={s}"
 
 # ----------------------------------------------------------------------
@@ -117,6 +186,7 @@ else:
                  if os.path.isdir(d) and dumps_in(d))
 if not cases:
     print(f"no dumps found at/under {root}"); sys.exit(1)
+<<<<<<< HEAD
 
 # ======================================================================
 if len(cases)==1:
@@ -198,3 +268,49 @@ else:
     fig2.tight_layout(); savefig(fig2,f"Nosmooth_{OUTBASE}_compare_centroid")
 
 plt.show()
+=======
+print(f"[compare] {len(cases)} cases under {root}  (SMOOTH_WIN={SMOOTH_WIN})")
+cmap=plt.cm.viridis(np.linspace(0,0.92,len(cases)))
+
+# ---- FIGURE 1: final-strain spectra vs nu ----
+fig1,ax=plt.subplots(figsize=(5.8,4.2))
+centro={}
+for c,col in zip(cases,cmap):
+    rows=load_case(c)
+    if len(rows)<2: print(f"  skip {os.path.basename(c)} (<2 dumps)"); continue
+    _,pN,uN,vN,wN=rows[-1]; k,Es=spectra_of(pN,[uN,vN,wN],NUNIFORM)
+    ax.loglog(k,Es[0]+Es[1]+Es[2],color=col,lw=1.1,label=nice_label(os.path.basename(c)))
+    cN=[]; ee=[]
+    for (t,p,u,v,w) in rows:
+        kk,E=spectra_of(p,[u,v,w],NUNIFORM); cN.append(centroid(kk,E[0]+E[1]+E[2])); ee.append(t*SMAG)
+    cN=np.array(cN); ee=np.array(ee)
+    centro[os.path.basename(c)]=(ee, smooth(cN,SMOOTH_WIN)/cN[0], col)
+kref=np.array([3e1,3e2]); ax.loglog(kref,2e-1*(kref/kref[0])**(-5/3),"k:",lw=1.0)
+ax.text(1e2,3e-2,r"$k^{-5/3}$",fontsize=9)
+ax.set_xlabel(r"wavenumber $k$"); ax.set_ylabel(r"$E(k)=\sum_i E_i(k)$")
+ax.set_title(r"Final-strain spectrum vs $\nu$ (cascade depth)")
+ax.grid(alpha=0.25,which="both",lw=0.4); ax.legend(frameon=False,fontsize=8,loc="lower left")
+fig1.tight_layout(); savefig(fig1,f"{OUTBASE}_spectra")
+
+# ---- FIGURE 2: centroid migration vs nu ----
+fig2,ax=plt.subplots(figsize=(5.8,4.2))
+ee=np.linspace(0,4.0,100)
+ax.plot(ee,np.exp(-A22*ee),"k--",lw=1.4,label=r"linear RDT")
+for name,(eex,cc,col) in centro.items():
+    ax.plot(eex,cc,"-",color=col,lw=1.5,label=nice_label(name))
+ax.set_xlabel(r"total strain $e=S\,t$"); ax.set_ylabel(r"$\bar k(e)/\bar k(0)$")
+ttl=r"Centroid migration vs $\nu$"
+if SMOOTH_WIN>1: ttl += fr" ({SMOOTH_WIN}-pt moving avg.)"
+ax.set_title(ttl)
+ax.grid(alpha=0.25,lw=0.4); ax.legend(frameon=False,fontsize=8,loc="upper left")
+fig2.tight_layout(); savefig(fig2,f"{OUTBASE}_centroid")
+
+plt.show()
+
+# ----------------------------------------------------------------------
+# MULTI-SEED (ensemble) note: for the final figure, run each case a few times
+# with different `seed` in the input (e.g. seeds 22,23,24,25), put them under
+# data/<case>/seed_XX/, average cN over seeds at each strain, and plot the mean
+# (optionally with a +/- std band). That removes the scatter physically rather
+# than by smoothing, and is the version to put in the manuscript.
+>>>>>>> 84119c7eb5e13b41eb3ea2beddfc5692c7836a2b

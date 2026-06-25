@@ -1,5 +1,5 @@
 # Set an environment variable CMAKE_PREFIX_PATH with paths for find_library etc to search
-# or add: HINTS "/path/to/lib/dir" at the end of the find_library call
+# or add: HINTS "/path/to/lib/dir" at the end of the find_library calll
 
 add_executable(odt.x "")
 
