@@ -1,3 +1,15 @@
 data/**
 *~
 *.pyc
+
+# large run ensembles (live on caro AssamTea workspace, not in git)
+post/closure_bound/odt_null/*_ensemble.npz
+# redundant archives of the JFM_2026_ODT_RDT/ source folder
+JFM_2026_ODT_RDT*.zip
+# LaTeX build artifacts
+notes/*.aux
+notes/*.log
+notes/*.out
+notes/*.fls
+notes/*.fdb_latexmk
+notes/*.synctex.gz

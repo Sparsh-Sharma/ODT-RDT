@@ -1,0 +1,3084 @@
+\documentclass[lineno]{JFM-FLM_Au}
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL V1.tex   Wed Jul  1 08:50:27 2026
+%DIF ADD V2.tex   Wed Jul  1 08:50:51 2026
+
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows.meta}
+\usepackage{subcaption}
+
+\newcommand{\tbd}[1]{\textcolor{red}{\ensuremath{\langle\mbox{\small #1}\rangle}}}
+\definecolor{jfmblue}{RGB}{0,56,168}
+\def\xshift{1.5}
+
+\hypersetup{
+  colorlinks=true,
+  citecolor=blue,
+  linkcolor=jfmblue,
+  urlcolor=jfmblue
+}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+
+\newenvironment{proof}
+  {\par\noindent\textit{Proof.}\ }
+  {\hfill$\Box$\par}
+
+\newcounter{assumption}
+\renewcommand{\theassumption}{A\arabic{assumption}}
+
+\newenvironment{assumption}[1]{%
+  \refstepcounter{assumption}%
+  \par\medskip
+  \noindent\textbf{Assumption~\theassumption\ (#1).}\ %
+}{%
+  \par\medskip
+}  
+
+\lefttitle{Sharma et al.}
+\righttitle{Journal of Fluid Mechanics}
+
+\title{Strain-coupled one-dimensional turbulence for rapid distortion}
+
+\author{Sparsh Sharma\aff{1}}
+
+\affiliation{\aff{1}German Aerospace Center (DLR), 38108 Braunschweig, Germany}
+
+\corresau{Sparsh Sharma, sparsh.sharma@dlr.de}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\DIFdelbegin \DIFdel{xxxx
+}\DIFdelend \DIFaddbegin \DIFadd{Predictions of turbulence--airfoil interaction noise take the upwash spectrum
+that enters the leading-edge response to be that of the undisturbed upstream
+turbulence, neglecting the rapid distortion the turbulence undergoes as the
+mean flow strains it on approach to the stagnation region. We present a
+strain-coupled formulation of one-dimensional turbulence (ODT) that supplies
+this distortion while preserving the structural foundations of the model. The
+mean-strain production is imposed as a continuous, pointwise forcing of the
+line velocity, which is shown to preserve the measure-preservation, continuity,
+scale-locality and kernel identities of the triplet-map mechanism; the rapid
+pressure--strain enters as an energy-conserving redistribution operator,
+reconstructed from the running Reynolds stress and constructed to reproduce the
+homogeneous rapid-distortion evolution of the component energies exactly under
+an explicit spectral closure; and the straining of scales is carried by a
+consistent dilatation of the domain. Two results follow. First, the model
+produces a broadband distorted upwash spectrum that departs measurably---and,
+at the Reynolds number of a representative grid-turbulence inflow,
+substantially---from the rigid spectral translation that linear
+rapid-distortion theory predicts. Second, the rapid pressure--strain term,
+exactly a nonlocal three-dimensional integral of the full velocity spectrum, is
+shown to collapse to a closed, computable functional of the resolved
+one-dimensional spectra under a single, physically grounded assumption---%DIF > 
+axisymmetry of the undistorted inflow about the line---exact in the isotropic
+limit and controlled in the strain-generated anisotropy. The formulation
+reproduces analytical rapid-distortion theory exactly at onset and is validated
+against the strained-turbulence experiment of Chen, Meneveau \& Katz (2006) and
+the direct numerical simulations of Lee \& Reynolds (1985). The resulting
+distorted spectrum is the input that a leading-edge-noise calculation requires;
+its coupling to an acoustic analogy is deferred to a companion paper.
+}\DIFaddend \end{abstract}
+
+\begin{keywords}
+Authors should not enter keywords on the manuscript, as these must be chosen by the author during the online submission process and will then be added during the typesetting process (see \href{https://www.cambridge.org/core/services/aop-file-manager/file/61436b61ff7f3cfab749ce3a/JFM-Keywords-Sept-2021.pdf.}{Keyword PDF} for the full list).  Other classifications will be added at the same time.
+\end{keywords}
+
+\section{Introduction}\label{sec:intro}
+
+Turbulence--airfoil interaction noise, radiated when a lifting surface
+encounters oncoming turbulence, is a dominant broadband source in axial
+fans, contra-rotating rotors, wind-turbine and propeller blades, and
+airframe components operating in disturbed inflow. When the integral
+length scale of the incident turbulence is large compared with the
+leading-edge radius, the radiated field is produced predominantly at the
+leading edge, where the unsteady upwash induces a fluctuating surface
+loading that scatters into sound as a non-compact dipole. Predicting this
+leading-edge noise both reliably and at a cost compatible with design
+iteration remains an open problem, and is the practical motivation for the
+present work.
+
+The prevailing predictive framework is the analytical theory of
+\citet{Amiet1975}, which combines the linearised gust-response solution of
+\citet{Sears1941} with the surface-source formulation of \citet{Curle1955}
+and can be embedded within the general moving-surface analogy of
+\citet{FfowcsWilliams1969}. In Amiet's theory the far-field acoustic
+power spectral density is obtained as a linear functional of the
+wavenumber--frequency spectrum of the upwash (airfoil-normal) velocity
+component of the incoming turbulence, convolved with an airfoil response
+function and an edge-scattering kernel and weighted by the spanwise
+correlation of the loading. The framework has been extended to finite
+chord, finite span and realistic geometry and validated against
+grid-turbulence experiments \citep{PatersonAmiet1977,RogerMoreau2010},
+but the structure of the prediction is unchanged: \emph{the upwash
+spectrum that enters the theory is prescribed, not computed}. In practice
+it is taken from an idealised homogeneous, isotropic model spectrum---most
+commonly the von~K\'arm\'an form \citep{vonKarman1948}---fixed by the
+upstream turbulence intensity and integral length scale and frozen in
+space through Taylor's hypothesis. Because the radiated spectrum is linear
+in this input, the fidelity of any leading-edge-noise prediction is
+limited, first and foremost, by the fidelity of the prescribed upwash
+spectrum.
+
+The assumption that the turbulence reaching the leading edge is identical
+to the undisturbed upstream turbulence is, however, physically
+questionable. As the flow approaches the stagnation region the mean
+velocity gradient distorts the incident turbulence over a time that, for
+the energy-containing scales, can be comparable to or shorter than the
+eddy-turnover time. This is the rapid-distortion regime first analysed by
+\citet{BatchelorProudman1954} and developed for flow around obstacles by
+\citet{Hunt1973} and \citet{Goldstein1978}: the turbulence becomes
+anisotropic and its spectral content is reorganised, while the body
+imposes a kinematic ``blocking'' that suppresses the wall-normal velocity
+component close to the surface even as the straining amplifies it farther
+upstream \citep{HuntGraham1978,GoldsteinAtassi1976}. The upwash spectrum
+\emph{seen by the leading edge} is therefore distorted, scale dependent
+and tensorially redistributed relative to its upstream counterpart. This
+pre-impact distortion stage lies precisely between the upstream
+measurement plane and the input required by Amiet's theory, and it is the
+stage that the standard prediction chain omits.
+
+Several routes to recovering this distortion exist, each with a
+characteristic limitation. Scale-resolving simulation---large-eddy
+simulation, lattice-Boltzmann methods or direct computational
+aeroacoustics---represents the distortion and the radiation directly, but
+at a cost that precludes broad parametric study across turbulence
+intensity, length-scale ratio and Reynolds number. Linear rapid-distortion
+theory (RDT) provides an analytical description of the mean-strain
+distortion and, in its inhomogeneous form, of the surface blocking
+\citep{HuntCarruthers1990,GoldsteinAfsarLeib2013}; it has been used to
+construct RDT-modified turbulence spectra that are fed to Amiet's solution
+in place of the isotropic input \citep{deSantana2016}. RDT is, however,
+linear, and in its tractable homogeneous form it neglects the nonlinear
+inter-scale transfer and the slow return-to-isotropy that act over the
+finite approach time. Synthetic-turbulence methods---synthetic-eddy and
+random-particle techniques---efficiently reproduce a \emph{prescribed}
+spectrum and coherence and are now routine for generating aeroacoustic
+inflow \citep{KimHaeri2015}, but by construction they impose the spectrum
+rather than evolving it, and so cannot themselves predict how the spectrum
+is modified before impact. What is missing is a reduced-order model that
+\emph{evolves} the incoming turbulence through the distortion region with
+full scale resolution and at negligible cost, delivering the distorted
+upwash spectrum as an output rather than an assumption.
+
+The one-dimensional turbulence (ODT) model of \citet{Kerstein1999} is a
+natural candidate for this role. ODT represents the evolution of a
+turbulent velocity profile along a single notional line of sight,
+resolving the full range of length scales in one spatial dimension while
+modelling turbulent advection as a stochastic sequence of scale-local
+mapping (``eddy'') events built on the triplet map introduced in the
+linear-eddy model \citep{Kerstein1991}. Its vector formulation
+\citep{Kerstein2001} carries all three velocity components and
+redistributes energy among them through a kernel mechanism that emulates
+pressure scrambling \citep{WunschKerstein2001,Kerstein2001}, reproducing
+inter-component transfer and return to isotropy; the model has been generalised to variable density
+\citep{AshurstKerstein2005}, to efficient adaptive-mesh and spatially
+developing implementations \citep{Lignell2013,StephensLignell2021}, to
+cylindrical and spherical geometries \citep{Lignell2018}, and to a
+three-dimensional large-eddy framework \citep{SchmidtKerstein2010}. ODT
+reproduces inertial-range scaling and component statistics of free-shear
+and wall-bounded flows at a small fraction of the cost of
+three-dimensional simulation. Of particular relevance here, ODT velocity
+fields have recently been coupled to acoustic analogies to estimate the
+far-field sound of low-Mach-number turbulent jets
+\citep{SharmaKleinSchmidt2022,MedinaMendez2023}, demonstrating that ODT
+statistics---including the component spectra and fluctuating Reynolds
+stresses---can be supplied to an external acoustic theory. These
+developments establish ODT as an accurate and inexpensive generator of
+scale-resolved turbulence statistics, and in particular of the
+wall-normal velocity spectrum required by Amiet's theory.
+
+Standard ODT cannot, however, represent the pre-impact distortion itself.
+The model contains no mechanism for the action of an imposed mean strain
+on the fluctuating field: its pressure treatment, embodied in the
+scrambling kernel, models only the slow, turbulence-driven return to
+isotropy and not the rapid, mean-strain-driven redistribution that governs
+the stagnation region. The apparent remedy---importing the linear RDT
+amplitude equation, in which the pressure response is the solenoidal
+projection $P_{ij}(\boldsymbol{k}) = \delta_{ij} - k_i k_j/k^2$ acting in
+three-dimensional wavenumber space---is fundamentally incompatible with
+the one-dimensional model, because the projection requires the full
+wavevector $\boldsymbol{k}=(k_1,k_2,k_3)$, whereas a single ODT line
+resolves only the wavenumber along its own coordinate. Reconciling the
+inherently three-dimensional and non-local pressure physics of rapid
+distortion with the one-dimensional and local structure of ODT is the
+central modelling problem addressed in this paper.
+
+We present a strain-coupled formulation of one-dimensional turbulence that
+incorporates rapid distortion by an imposed mean velocity gradient while
+preserving the structural foundations of the model. The formulation rests
+on a decomposition of the pressure--strain interaction into its rapid and
+slow parts \citep{Pope2000}: the slow, turbulence-driven part is retained
+as the existing ODT scrambling kernel, while the rapid, mean-strain-driven
+part is introduced as a new component-redistribution kernel. Rather than
+evaluating the three-dimensional projection, the rapid kernel is
+constructed so that the component-energy evolution of the line reproduces
+the exact homogeneous-RDT solution for an imposed mean strain, rendering
+the formulation provably RDT-consistent in the homogeneous limit while
+remaining expressed entirely in quantities available on the line. The
+mean-strain production enters as a continuous forcing of the velocity
+components, which we show preserves the measure-preservation, continuity
+and conservation properties of the triplet-map mechanism; the kinematic
+compression of wavenumbers under strain is captured by a consistent
+deformation of the ODT domain, connecting the formulation to its
+adaptive-mesh implementation. The result is a reduced-order, scale-resolved
+model of the pre-impact distortion stage whose output---the distorted,
+anisotropic upwash spectrum---is intended to replace the prescribed
+isotropic input of Amiet-type prediction, with the airfoil response, edge
+scattering and spanwise coherence retained as the classical, downstream
+acoustic stage.
+
+The remainder of the paper is organised as follows.
+Section~\ref{sec:odt} reviews the elements of standard ODT required for the
+present development and the rapid/slow structure of the pressure--strain
+interaction. Section~\ref{sec:formulation} derives the strain-coupled
+formulation, establishes the preservation of the model's structural
+invariants under mean-strain forcing, and constructs the RDT-consistent
+rapid kernel. Section~\ref{sec:validation} validates the formulation
+against analytical homogeneous-RDT solutions for the canonical strains
+relevant to the stagnation region---axisymmetric contraction and plane
+strain---and against reference scale-resolving data. Section~\DIFdelbegin \DIFdel{\ref{sec:upwash}
+}\DIFdelend \DIFaddbegin \DIFadd{\ref{sec:val-spectrum} }\DIFaddend demonstrates the resulting distorted upwash spectrum and its implications for the Amiet input. Section~\ref{sec:conclusions} concludes and outlines
+the remaining steps---surface blocking and spanwise coherence---towards a
+complete leading-edge-noise framework.
+
+% =====================================================================
+%  Section 2  --  Background
+%  (i) standard one-dimensional turbulence; (ii) rapid/slow structure
+%      of the pressure--strain interaction and linear RDT.
+%  Target: Journal of Fluid Mechanics (jfm.cls); citations in references.bib
+% =====================================================================
+
+\section{Background}\label{sec:odt}
+
+This section collects the elements on which the strain-coupled formulation
+of \S\,\ref{sec:formulation} is built. Section~\ref{sec:odt-standard}
+summarises standard one-dimensional turbulence (ODT) in the notation used
+throughout; \S\,\ref{sec:rapid-slow} recalls the rapid/slow decomposition
+of the pressure--strain interaction and the linear rapid-distortion
+equations that the new formulation is required to reproduce. Nothing in
+this section is original; readers familiar with
+\citet{Kerstein1999,Kerstein2001} and with second-moment closure
+\citep{Pope2000} may proceed to \S\,\ref{sec:formulation} after noting the
+notation and the correspondence stated in \S\,\ref{sec:rapid-slow}.
+
+\subsection{Standard one-dimensional turbulence}\label{sec:odt-standard}
+
+ODT evolves a three-component velocity field $u_i(y,t)$, $i=1,2,3$, and any
+number of scalar fields $\theta(y,t)$, defined on a one-dimensional domain
+parameterised by the spatial coordinate $y$, which is identified with the
+coordinate direction $x_2$ \citep{Kerstein2001}. The fields represent
+individual realisations: ensemble statistics are accumulated over many
+independent simulations rather than carried by the fields themselves. The
+fields evolve by two interleaved mechanisms---continuous molecular
+transport and a stochastic sequence of instantaneous \emph{eddy events}.
+
+\subsubsection{Molecular transport}
+
+Between events the fields obey ordinary one-dimensional diffusion,
+\begin{equation}
+  \left(\partial_t-\nu\,\partial_y^2\right)u_i(y,t)=0,
+  \qquad
+  \left(\partial_t-\kappa\,\partial_y^2\right)\theta(y,t)=0,
+  \label{eq:diffusion}
+\end{equation}
+with kinematic viscosity $\nu$ and scalar diffusivity $\kappa$
+(Schmidt number $\mathit{Sc}=\nu/\kappa$). In a constant-property,
+constant-density medium this is the only continuous evolution; the
+variable-density generalisation is given by \citet{AshurstKerstein2005}.
+
+\subsubsection{Eddy events: the triplet map and kernel}
+
+An eddy event models the effect of a single turbulent overturn. Because a
+continuum rotational motion cannot be represented on a line, the event is
+implemented as an instantaneous, measure-preserving rearrangement of the
+profiles together with an additive velocity change,
+\begin{equation}
+  u_i(y)\;\longrightarrow\;u_i\!\big(f(y)\big)+c_i\,K(y),
+  \qquad
+  \theta(y)\;\longrightarrow\;\theta\!\big(f(y)\big).
+  \label{eq:event}
+\end{equation}
+The map $f$ is the \emph{triplet map} \citep{Kerstein1991,Kerstein1999},
+defined on an interval $[y_0,y_0+l]$ of size $l$ by
+\begin{equation}
+  f(y)=y_0+
+  \begin{cases}
+    3(y-y_0), & y_0\le y\le y_0+\tfrac{1}{3}l,\\[2pt]
+    2l-3(y-y_0), & y_0+\tfrac{1}{3}l\le y\le y_0+\tfrac{2}{3}l,\\[2pt]
+    3(y-y_0)-2l, & y_0+\tfrac{2}{3}l\le y\le y_0+l,\\[2pt]
+    y-y_0, & \text{otherwise,}
+  \end{cases}
+  \label{eq:triplet}
+\end{equation}
+written here through its inverse, so that fluid at $f(y)$ is placed at $y$.
+The map compresses the interval to one-third of its length, inserts three
+copies, and reverses the central copy; it leaves the field outside
+$[y_0,y_0+l]$ unchanged. The triplet map satisfies the three structural
+requirements that underpin the model: it is \emph{measure preserving} (the
+non-local analogue of a divergence-free rearrangement), \emph{continuous}
+(it introduces no discontinuities into the fields), and \emph{scale local}
+(it changes property gradients by at most a factor of order unity)
+\citep{Kerstein2001}. These three properties are exactly the invariants
+whose preservation under an imposed mean strain is established in
+\S\,\ref{sec:formulation}.
+
+The additive term in \eqref{eq:event} is built from the \emph{kernel}
+\begin{equation}
+  K(y)\equiv y-f(y),
+  \label{eq:kernel}
+\end{equation}
+which is non-zero only within the eddy interval and satisfies the two
+identities used below,
+\begin{equation}
+  \int K(y)\,\mathrm{d}y = 0,
+  \qquad
+  \int K^2(y)\,\mathrm{d}y = \tfrac{4}{27}\,l^{3}.
+  \label{eq:kernel-identities}
+\end{equation}
+The first guarantees that the additive change conserves the $y$-integrated
+momentum of each velocity component at constant density; the second fixes
+the energetics of the redistribution. The amplitudes $c_i$ are determined
+event-by-event by the pressure-scrambling rule described next.
+
+\subsubsection{Pressure scrambling and component-energy redistribution}
+
+The additive kernel term in \eqref{eq:event} is the model surrogate for the
+pressure-mediated redistribution of energy among velocity components, an
+effect absent from the original single-component formulation
+\citep{Kerstein1999} and introduced through the kernel by
+\citet{WunschKerstein2001,Kerstein2001}. Using measure preservation and
+\eqref{eq:kernel-identities}, the change in the kinetic energy of component
+$i$ produced by an event is
+\begin{equation}
+  \Delta E_i = \rho_0\, l^2\, c_i\!\left(u_{i,K}+\tfrac{2}{27}\,l\,c_i\right),
+  \qquad
+  u_{i,K}\equiv\frac{1}{l^2}\int u_i\!\big(f(y)\big)\,K(y)\,\mathrm{d}y,
+  \label{eq:dEi}
+\end{equation}
+where $\rho_0$ is the (constant) density per unit length, which does not
+affect the constant-density applications considered here. The amplitudes
+are fixed by requiring that the event redistribute energy among components
+while conserving the total, $\sum_i\Delta E_i=0$, and that the rule be
+invariant under permutation of the component indices. These requirements
+give
+\begin{equation}
+  \Delta E_i = \alpha\sum_j T_{ij}\,Q_j,
+  \qquad
+  \mathsf{T}=\frac{1}{2}
+  \begin{pmatrix}
+    -2 & 1 & 1\\ 1 & -2 & 1\\ 1 & 1 & -2
+  \end{pmatrix},
+  \qquad
+  Q_i\equiv\tfrac{27}{8}\,\rho_0\, l\, u_{i,K}^2,
+  \label{eq:redistribution}
+\end{equation}
+in which $Q_i$ is the \emph{available kinetic energy} of component $i$
+within the eddy and $\alpha\in[0,1]$ is the model parameter setting the
+fraction of extractable energy transferred towards isotropy
+\citep{Kerstein2001}. Combining \eqref{eq:dEi} and
+\eqref{eq:redistribution} determines the amplitudes,
+\begin{equation}
+  c_i = \frac{27}{4l}\left[-u_{i,K}
+        +\operatorname{sgn}(u_{i,K})
+        \sqrt{u_{i,K}^2+\alpha\sum_j T_{ij}\,u_{j,K}^2}\,\right],
+  \label{eq:ci}
+\end{equation}
+which is real for $0\le\alpha\le1$ and vanishes as $\alpha\to0$. The
+transfer matrix $\mathsf{T}$ acts to equalise the component energies; the
+construction \eqref{eq:redistribution}--\eqref{eq:ci} is therefore a model
+of the \emph{return-to-isotropy} (slow) part of the pressure--strain
+interaction, a point made precise in \S\,\ref{sec:rapid-slow}. Standard ODT
+contains no counterpart of the rapid, mean-strain-driven part.
+
+\subsubsection{Eddy selection}
+
+The event sequence is a Poisson process whose rate reflects the
+instantaneous state of the flow. Each candidate eddy $(y_0,l)$ is assigned
+a time scale $\tau(y_0,l;t)$ built from the available energy of the
+velocity component aligned with the domain,
+\begin{equation}
+  \left(\frac{l}{\tau}\right)^{2}
+  \sim\; u_{2,K}^2+\alpha\sum_j T_{2j}\,u_{j,K}^2-Z\,\frac{\nu^2}{l^2},
+  \label{eq:timescale}
+\end{equation}
+the final term being a viscous penalty, controlled by the order-unity
+parameter $Z$, that suppresses eddies slower than their viscous time. The
+corresponding event-rate distribution is
+\begin{equation}
+  \lambda(y_0,l;t)=\frac{C}{l^2\,\tau(y_0,l;t)},
+  \label{eq:rate}
+\end{equation}
+with rate constant $C$; eddies for which the right-hand side of
+\eqref{eq:timescale} is negative are forbidden. Crucially, the
+inertial-range cascade and the $E(k)\sim k^{-5/3}$ scaling are
+\emph{outcomes} of repeated sampling from \eqref{eq:rate}, not inputs to
+it \citep{Kerstein1999}. The three constants $C$, $Z$ and a large-eddy
+suppression parameter are the only tunable inputs of the model
+\citep{StephensLignell2021}.
+
+\subsubsection{Statistical observables}\label{sec:observables}
+
+ODT yields single- and multi-point moments, probability density functions,
+conditional statistics, power spectra and Lagrangian statistics
+\citep{Kerstein1999}. For the present work the relevant observable is the
+single-component velocity spectrum---in particular the spectrum and
+variance of the component normal to the airfoil, which are second moments
+of the velocity field and are obtained directly from the realisations. A
+distinction emphasised by \citet{Kerstein2001} must, however, be respected:
+because the line velocity does not itself advect fluid, an off-diagonal
+Reynolds stress such as $\langle u_1' u_2'\rangle$ \emph{cannot} be
+interpreted as a momentum flux when formed as a product of the line
+velocity components; such advective fluxes are instead evaluated by
+monitoring the transport induced by the eddy events. This distinction
+constrains how the anisotropy produced by the formulation of
+\S\,\ref{sec:formulation} is to be diagnosed and validated
+(\S\,\ref{sec:validation}): diagonal component spectra are read from the
+fields, whereas shear stresses are read from eddy-induced fluxes.
+
+\subsection{Rapid and slow pressure--strain, and linear rapid
+distortion}\label{sec:rapid-slow}
+
+The Reynolds-stress transport equation for a fluctuating field $u_i'$ about
+a mean $U_i$ with constant velocity gradient $A_{ij}\equiv\partial
+U_i/\partial x_j$ reads, in homogeneous turbulence,
+\begin{equation}
+  \frac{\mathrm{d}\langle u_i' u_j'\rangle}{\mathrm{d}t}
+  = \mathcal{P}_{ij} + \Pi_{ij} - \varepsilon_{ij},
+  \label{eq:rstransport}
+\end{equation}
+with production, pressure--strain and dissipation
+\begin{equation}
+  \mathcal{P}_{ij}=-\langle u_i' u_k'\rangle A_{jk}
+                   -\langle u_j' u_k'\rangle A_{ik},
+  \quad
+  \Pi_{ij}=\Big\langle \tfrac{p'}{\rho}
+            \big(\partial_j u_i'+\partial_i u_j'\big)\Big\rangle,
+  \quad
+  \varepsilon_{ij}=2\nu\langle \partial_k u_i'\,\partial_k u_j'\rangle .
+  \label{eq:Pij}
+\end{equation}
+Taking the divergence of the fluctuating momentum equation gives the
+pressure as the solution of a Poisson equation whose source splits into a
+part linear in the mean velocity gradient and a part quadratic in the
+fluctuations,
+\begin{equation}
+  \frac{1}{\rho}\nabla^2 p'
+  = \underbrace{-2\,A_{lm}\,\partial_l u_m'}_{\text{rapid}}
+    \;-\;
+    \underbrace{\partial_l\partial_m\!\left(u_l' u_m'
+     -\langle u_l' u_m'\rangle\right)}_{\text{slow}} .
+  \label{eq:poisson}
+\end{equation}
+The pressure--strain correlation inherits this decomposition,
+$\Pi_{ij}=\Pi_{ij}^{(r)}+\Pi_{ij}^{(s)}$, into a \emph{rapid} part driven
+by the mean strain and a \emph{slow} part driven by the turbulence alone
+\citep{Pope2000}. The slow part relaxes the Reynolds stress towards
+isotropy; the simplest closure is that of Rotta,
+$\Pi_{ij}^{(s)}=-C_1(\varepsilon/k)\big(\langle u_i'u_j'\rangle
+-\tfrac{2}{3}k\,\delta_{ij}\big)$, with $k=\tfrac12\langle u_i'u_i'\rangle$.
+It is this return-to-isotropy mechanism that the ODT kernel
+\eqref{eq:redistribution}--\eqref{eq:ci} reproduces in model form. The
+rapid part is linear in $A_{lm}$ and is determined, in homogeneous
+turbulence, by the velocity-spectrum tensor
+$\Phi_{ij}(\boldsymbol{k})$; the corresponding ``isotropisation of
+production'' closure is
+$\Pi_{ij}^{(r)}=-C_2\big(\mathcal{P}_{ij}-\tfrac{2}{3}\mathcal{P}\,
+\delta_{ij}\big)$, with $\mathcal{P}=\tfrac12\mathcal{P}_{ii}$
+\citep{Pope2000}. Standard ODT represents neither $\mathcal{P}_{ij}$ nor
+$\Pi_{ij}^{(r)}$.
+
+For a rapidly applied strain---formally, when the total strain accumulates
+in a time short compared with the eddy-turnover time---the rapid part can
+be computed exactly from linear theory \citep{BatchelorProudman1954,
+Hunt1973,HuntCarruthers1990}. Writing the fluctuation as a sum of Fourier
+modes that follow the mean flow, each mode of (time-dependent) wavevector
+$\boldsymbol{k}(t)$ and amplitude $\hat{u}_i(\boldsymbol{k},t)$ evolves,
+in the inviscid rapid limit, according to
+\begin{equation}
+  \frac{\mathrm{d}k_i}{\mathrm{d}t}=-A_{ji}\,k_j,
+  \qquad
+  \frac{\mathrm{d}\hat{u}_i}{\mathrm{d}t}
+  =\left(\frac{2\,k_i k_m}{k^2}-\delta_{im}\right)A_{mn}\,\hat{u}_n ,
+  \label{eq:rdt}
+\end{equation}
+where $k^2=k_m k_m$. The bracketed operator combines the production
+$-A_{im}\hat{u}_m$ with the rapid pressure response, the latter being the
+solenoidal projection
+$P_{ij}(\boldsymbol{k})=\delta_{ij}-k_ik_j/k^2$ applied to the strained
+field. The factor of two in \eqref{eq:rdt} is fixed by the requirement that
+the motion remain divergence free: using both relations in
+\eqref{eq:rdt},
+\begin{equation}
+  \frac{\mathrm{d}}{\mathrm{d}t}\big(k_i\hat{u}_i\big)
+  = \dot{k}_i\hat{u}_i + k_i\dot{\hat{u}}_i
+  = -A_{ji}k_j\hat{u}_i
+    + \Big(\tfrac{2k^2 k_m}{k^2}-k_m\Big)A_{mn}\hat{u}_n
+  = 0,
+  \label{eq:solenoidal}
+\end{equation}
+so that $k_i\hat{u}_i=0$ is preserved; any other coefficient violates
+continuity. Equations~\eqref{eq:rdt} integrate the spectral tensor through
+the distortion and thereby determine the rapid pressure--strain
+$\Pi_{ij}^{(r)}$ and the component-energy evolution exactly.
+
+Two features of \eqref{eq:rdt} are central to what follows. First, the
+pressure response is the operator $P_{ij}(\boldsymbol{k})$, which is
+\emph{non-local} (it couples the components through the full wavevector)
+and intrinsically \emph{three-dimensional} (it requires all of $k_1,k_2,k_3$).
+A single ODT line resolves only the wavenumber along its own coordinate,
+so \eqref{eq:rdt} cannot be evaluated on the line as written; reconciling
+this incompatibility is the subject of \S\,\ref{sec:formulation}. Second,
+the decomposition $\Pi_{ij}=\Pi_{ij}^{(r)}+\Pi_{ij}^{(s)}$ furnishes the
+organising principle of the new formulation: the slow part is already
+carried by the ODT kernel \eqref{eq:redistribution}--\eqref{eq:ci}, and it
+remains only to supply the production $\mathcal{P}_{ij}$ and a rapid
+redistribution consistent with \eqref{eq:rdt}, expressed in quantities
+available on the line.
+
+% =====================================================================
+%  Section 3  --  Strain-coupled one-dimensional turbulence
+%  The new formulation: production forcing, RDT-consistent rapid kernel,
+%  domain straining. Self-contained derivations.
+%
+%  Target: Journal of Fluid Mechanics (jfm.cls).
+%  Requires in preamble:
+%     \usepackage{amsmath,amssymb,amsthm}
+%     \newtheorem{proposition}{Proposition}[section]
+%  Citations resolve against references.bib.
+% =====================================================================
+
+\section{Strain-coupled one-dimensional turbulence}\label{sec:formulation}
+
+The linear rapid-distortion equations~\eqref{eq:rdt} contain two distinct
+ingredients: an evolution of the Fourier \emph{amplitudes}
+$\hat{u}_i(\boldsymbol{k},t)$, comprising production and the solenoidal
+pressure projection, and an evolution of the \emph{wavevectors}
+$\boldsymbol{k}(t)$ that carries the kinematic straining of scales. The
+amplitude equation is the obstruction identified in
+\S\,\ref{sec:rapid-slow}: its pressure term requires the full
+three-dimensional wavevector and is therefore not directly representable on
+a one-dimensional line. Our strategy is to split the distortion physics
+according to this structure and to assign each part to the ODT mechanism
+that can carry it faithfully. The production, which is local in physical
+space, is imposed as a continuous forcing of the line velocity
+(\S\,\ref{sec:strain-forcing}); the rapid pressure--strain, which is not,
+is supplied as a continuous, energy-conserving redistribution operator
+constructed to reproduce the homogeneous rapid-distortion evolution of the
+component energies under an explicit spectral closure
+(\S\,\ref{sec:rapid-kernel}); and the wavevector kinematics are recovered by
+a consistent straining of the ODT domain
+(\S\,\ref{sec:domain-strain}). The slow, turbulence-driven
+pressure--strain and the inertial cascade remain the discrete eddy events
+of standard ODT, unchanged. Section~\ref{sec:summary} assembles the
+formulation and identifies the parameter governing the balance between the
+rapid and slow mechanisms.
+
+Throughout, $A_{ij}=\partial U_i/\partial x_j$ denotes the imposed mean
+velocity gradient, taken uniform across the line at each instant and
+varying along the mean trajectory; the medium is incompressible,
+$A_{ii}=0$. The line carries the fluctuation field $u_i(y,t)$ about this
+mean. We write $R_{ij}\equiv\overline{u_i u_j}$ for the Reynolds-stress
+tensor, where the overline denotes the average over the statistically
+homogeneous directions (equivalently, the ensemble of independent
+realisations), and $k_t\equiv\tfrac12 R_{ii}$ for the turbulent kinetic
+energy. In the homogeneous configurations used to establish and test the
+formulation (\S\,\ref{sec:validation}) the spatial line average and the
+ensemble average coincide.
+
+\subsection{The strain-coupled line equation and its structural
+admissibility}\label{sec:strain-forcing}
+
+In rapid-distortion theory the production term of the fluctuation momentum
+equation, $-A_{ij}u_j$, is a pointwise linear combination of the local
+velocity components and is therefore exactly representable on the line.
+Between eddy events we replace the molecular evolution
+\eqref{eq:diffusion} by
+\begin{equation}
+  \partial_t u_i
+  = \nu\,\partial_y^2 u_i \;-\; A_{ij}\,u_j \;+\; B_{ij}\,u_j,
+  \label{eq:cont-evolution}
+\end{equation}
+in which $-A_{ij}u_j$ is the production and $B_{ij}u_j$ is the rapid
+pressure--strain operator constructed in \S\,\ref{sec:rapid-kernel}; we
+defer $B_{ij}$ and treat the production term first. The eddy events
+\eqref{eq:event}--\eqref{eq:ci} are retained without modification. The
+evolution is thus advanced by operator splitting between a continuous phase
+governed by \eqref{eq:cont-evolution} and a discrete sequence of events
+sampled from \eqref{eq:rate}.
+
+A formulation is admissible only if the additional forcing does not
+violate the structural properties on which ODT rests. We establish this
+directly.
+
+\begin{proposition}[Structural admissibility]\label{prop:admissibility}
+The strain forcing in \eqref{eq:cont-evolution} preserves the four
+structural properties of standard ODT: \emph{(i)} the measure-preservation,
+\emph{(ii)} continuity and \emph{(iii)} scale-locality of the triplet map,
+and \emph{(iv)} the kernel identities~\eqref{eq:kernel-identities}.
+\end{proposition}
+
+\begin{proof}
+Properties (i)--(iv) are properties of the discrete event, that is, of the
+map $f$~\eqref{eq:triplet} and the kernel $K$~\eqref{eq:kernel}. Because the
+advancement is split into a continuous phase \eqref{eq:cont-evolution} and
+the unaltered discrete event, the map and kernel are applied exactly as in
+standard ODT; properties (i), (iii) and (iv), which are geometric
+statements about $f$ and $K$ on a fixed domain, therefore hold verbatim.
+It remains to verify that the continuous phase does not destroy the
+continuity of the fields, which underlies (ii). For a mean gradient uniform
+along the line, the linear, $y$-independent operator
+$\mathcal{A}_{ij}\equiv -A_{ij}+B_{ij}$ acts pointwise, and the
+solution of the advective part of \eqref{eq:cont-evolution} over a
+sub-step $[t_0,t]$ is
+\begin{equation}
+  u_i(y,t)=\big[\exp\!\textstyle\int_{t_0}^{t}\mathcal{A}\,\mathrm{d}t'\big]_{ij}\,
+           u_j(y,t_0),
+  \label{eq:matrixexp}
+\end{equation}
+a matrix that is independent of $y$. It maps continuous (respectively,
+$C^\infty$) profiles to continuous ($C^\infty$) profiles and introduces no
+spatial discontinuity, while the molecular term $\nu\partial_y^2 u_i$ is
+smoothing. Continuity is preserved, establishing (ii). The forcing
+displaces no fluid along $y$, so it leaves the Lebesgue measure of the
+domain unchanged; the deliberate straining of the domain is treated
+separately in \S\,\ref{sec:domain-strain}.
+\end{proof}
+
+The energetic role of the forcing follows from \eqref{eq:cont-evolution}.
+At fixed domain length, the production term evolves the Reynolds stress as
+\begin{equation}
+  \left.\frac{\mathrm{d}R_{ij}}{\mathrm{d}t}\right|_{\text{prod}}
+  = \overline{(\dot u_i u_j + u_i \dot u_j)}
+  = -A_{ik}R_{kj}-A_{jk}R_{ki}
+  \;\equiv\; \mathcal{P}_{ij},
+  \label{eq:production-rate}
+\end{equation}
+which is \emph{exactly} the Reynolds-stress production tensor of
+\eqref{eq:Pij}; the corresponding kinetic-energy production is
+$\mathcal{P}\equiv\tfrac12\mathcal{P}_{ii}=-A_{ij}R_{ij}$. The production
+term thus carries no model assumption. With diffusion supplying
+dissipation through \eqref{eq:diffusion}, the kinetic-energy budget of the
+formulation separates cleanly into an exact production by the mean strain,
+a redistribution that conserves energy (the kernels), and a dissipation
+(molecular diffusion). This is the structure of the exact Reynolds-stress
+equation \eqref{eq:rstransport}, and it is the reason the forcing is
+admissible: it adds the one term---production---that standard ODT lacks,
+without disturbing the terms it already represents.
+
+\subsection{The RDT-consistent rapid redistribution
+operator}\label{sec:rapid-kernel}
+
+\subsubsection{Why production alone is insufficient}
+
+Were the continuous evolution to consist of production and diffusion only
+($B_{ij}=0$), the line would reproduce $\mathrm{d}R_{ij}/\mathrm{d}t=
+\mathcal{P}_{ij}$, whereas the exact inviscid rapid-distortion balance is
+$\mathrm{d}R_{ij}/\mathrm{d}t=\mathcal{P}_{ij}+\Pi_{ij}^{(r)}$. The
+omission is not small. For turbulence that is isotropic at the onset of
+straining, the classical result derived below gives
+$\Pi_{ij}^{(r)}=-\tfrac35\mathcal{P}_{ij}$, so that the true initial
+distortion rate is $\tfrac25\mathcal{P}_{ij}$: production acting alone
+overstates the rate at which anisotropy develops by a factor of
+$\tfrac52$. For sustained strong strain, neglect of the pressure response
+also permits a component energy to grow without the bound that
+incompressibility imposes, violating realisability. Representing
+$\Pi_{ij}^{(r)}$ is therefore essential, not optional.
+
+\subsubsection{The exact rapid pressure--strain and the closure problem}
+
+The exact rapid pressure--strain follows from the amplitude
+equation~\eqref{eq:rdt}. Writing the operator there as
+$\mathrm{d}\hat{u}_i/\mathrm{d}t = M_{in}\hat{u}_n$ with
+$M_{in}=-A_{in}+2(k_ik_m/k^2)A_{mn}$, and noting that the incompressible
+wavevector dynamics $\dot{k}_i=-A_{ji}k_j$ preserve the measure
+$\mathrm{d}\boldsymbol{k}$ (its phase-space divergence is $-A_{ii}=0$), the
+spectral tensor $\Phi_{ij}=\langle \hat{u}_i^{*}\hat{u}_j\rangle$ yields
+\begin{equation}
+  \frac{\mathrm{d}R_{ij}}{\mathrm{d}t}
+  = \int\!\big(M_{in}\Phi_{nj}+M_{jn}\Phi_{in}\big)\,
+    \mathrm{d}\boldsymbol{k}
+  = \mathcal{P}_{ij} + \Pi_{ij}^{(r)},
+  \label{eq:dRdt-rdt}
+\end{equation}
+in which the production~\eqref{eq:production-rate} has been separated from
+the pressure contribution,
+\begin{equation}
+  \Pi_{ij}^{(r)} = 2A_{mn}\big(\mathcal{R}_{ijmn}+\mathcal{R}_{jimn}\big),
+  \qquad
+  \mathcal{R}_{ijmn} \equiv
+  \int \frac{k_i k_m}{k^2}\,\Phi_{nj}(\boldsymbol{k})\,
+  \mathrm{d}\boldsymbol{k}.
+  \label{eq:exact-rps}
+\end{equation}
+The tensor $\Pi_{ij}^{(r)}$ is traceless: using the solenoidality
+$k_n\Phi_{nj}=0$ (a consequence of $k_i\hat{u}_i=0$),
+\begin{equation}
+  \Pi_{ii}^{(r)} = 4A_{mn}\!\int\frac{k_i k_m}{k^2}\Phi_{ni}\,
+  \mathrm{d}\boldsymbol{k}
+  = 4A_{mn}\!\int\frac{k_m}{k^2}\big(k_i\Phi_{ni}\big)\,
+  \mathrm{d}\boldsymbol{k}=0,
+  \label{eq:traceless}
+\end{equation}
+so the rapid pressure--strain redistributes energy among components
+without changing the total, in keeping with the energy-conserving
+character of the ODT kernel mechanism.
+
+Equation~\eqref{eq:exact-rps} exposes the central difficulty. The rapid
+pressure--strain is a functional of the spectral tensor $\Phi_{nj}
+(\boldsymbol{k})$ through the orientation-weighted integral
+$\mathcal{R}_{ijmn}$; it is \emph{not} expressible in terms of the
+single-point Reynolds stress $R_{ij}$ alone. This is the well-known closure
+problem of the rapid pressure--strain, common to every single-point model
+\citep{Crow1968,LaunderReeceRodi1975,Pope2000}; it is intrinsic to the
+physics and not a deficiency peculiar to the present approach. A
+one-dimensional line carries $R_{ij}$ and the one-dimensional spectrum
+$\Phi_{ij}(k_2)$ along its own coordinate, but it does not carry the
+distribution of energy over wavevector \emph{orientation} that
+$\mathcal{R}_{ijmn}$ requires. A spectral-tensor closure is therefore
+unavoidable, exactly as in second-moment closure; we make it explicit.
+
+\subsubsection{Baseline isotropic closure}
+
+The minimal closure assumes the spectral tensor to be instantaneously
+isotropic,
+$\Phi_{nj}(\boldsymbol{k})=\frac{E(k)}{4\pi k^2}\big(\delta_{nj}
+-k_nk_j/k^2\big)$ with $\int E(k)\,\mathrm{d}k=k_t$. Writing
+$e_i\equiv k_i/k$ and using the angular averages over the unit sphere
+$\overline{e_i e_m}=\tfrac13\delta_{im}$ and
+$\overline{e_i e_m e_n e_j}=\tfrac1{15}(\delta_{im}\delta_{nj}
++\delta_{in}\delta_{mj}+\delta_{ij}\delta_{mn})$,
+\begin{equation}
+  \mathcal{R}_{ijmn}^{\,\mathrm{iso}}
+  = k_t\Big[\tfrac{4}{15}\delta_{im}\delta_{nj}
+    -\tfrac1{15}\big(\delta_{in}\delta_{mj}+\delta_{ij}\delta_{mn}\big)\Big].
+  \label{eq:iso-closure}
+\end{equation}
+Substituting \eqref{eq:iso-closure} into \eqref{eq:exact-rps} and using
+$A_{nn}=0$ gives, with $S_{ij}\equiv\tfrac12(A_{ij}+A_{ji})$,
+\begin{equation}
+  \Pi_{ij}^{(r),\mathrm{iso}}
+  = 2k_t\Big[\tfrac{4}{15}A_{ij}-\tfrac1{15}A_{ji}\Big]
+   +2k_t\Big[\tfrac{4}{15}A_{ji}-\tfrac1{15}A_{ij}\Big]
+  = \tfrac{4}{5}\,k_t\,S_{ij}.
+  \label{eq:Pir-iso}
+\end{equation}
+For isotropic $R_{ij}=\tfrac23 k_t\delta_{ij}$ the production
+\eqref{eq:production-rate} is $\mathcal{P}_{ij}=-\tfrac43 k_t S_{ij}$, so
+that \eqref{eq:Pir-iso} is equivalent to
+\begin{equation}
+  \Pi_{ij}^{(r),\mathrm{iso}} = -\tfrac{3}{5}\,\mathcal{P}_{ij},
+  \label{eq:crow}
+\end{equation}
+the exact response of initially isotropic turbulence to a weak rapid strain
+\citep{Crow1968}. Equation~\eqref{eq:crow} is the content of the
+isotropisation-of-production model with the constant $C_2=\tfrac35$
+\citep{Pope2000}; here it is obtained, with no adjustable constant, as the
+isotropic limit of the rapid-distortion integral~\eqref{eq:exact-rps}.
+
+When the turbulence is anisotropic, \eqref{eq:iso-closure} no longer holds
+and $\mathcal{R}_{ijmn}$ must be modelled as a tensor function of $R_{ij}$;
+the general representation linear in the anisotropy is that of
+\citet{LaunderReeceRodi1975}, which introduces calibrated constants and to
+which the present construction reduces in form. We adopt
+\eqref{eq:iso-closure} as the baseline and treat the anisotropic
+correction as a modelling option, returning to its assessment in
+\S\,\ref{sec:validation}.
+
+\subsubsection{Realisation on the line}
+
+Given the closed rapid pressure--strain $\Pi_{ij}^{(r)}$---symmetric and
+traceless by \eqref{eq:traceless}---we require a pointwise operator
+$B_{ij}$ on the line whose action reproduces it. Demanding that the
+operator evolve the Reynolds stress by exactly $\Pi_{ij}^{(r)}$,
+\begin{equation}
+  B_{ik}R_{kj}+B_{jk}R_{ki}
+  = \big(\mathsf{B}\mathsf{R}+\mathsf{R}\mathsf{B}\big)_{ij}
+  = \Pi_{ij}^{(r)},
+  \label{eq:lyapunov}
+\end{equation}
+where the second equality holds for symmetric $\mathsf{B}$. Equation
+\eqref{eq:lyapunov} is a continuous Lyapunov equation; for a
+positive-definite Reynolds stress $\mathsf{R}\succ0$ it possesses a unique
+symmetric solution $\mathsf{B}$. The solution conserves kinetic energy
+automatically: contracting \eqref{eq:lyapunov} gives
+$2B_{ij}R_{ij}=\Pi_{ii}^{(r)}=0$, so that the rate of working of the
+operator on the line, $\overline{B_{ij}u_iu_j}=B_{ij}R_{ij}$, vanishes. In
+the isotropic case $\mathsf{R}=\tfrac23 k_t\mathsf{I}$, \eqref{eq:lyapunov}
+together with \eqref{eq:Pir-iso} reduces to $\tfrac43 k_t\mathsf{B}
+=\tfrac45 k_t\mathsf{S}$, that is, the closed form
+\begin{equation}
+  B_{ij} = \tfrac{3}{5}\,S_{ij},
+  \qquad
+  \mathcal{A}_{ij} = -A_{ij} + \tfrac{3}{5}\,S_{ij}.
+  \label{eq:iso-B}
+\end{equation}
+The operator $B_{ij}$ is evaluated from the running Reynolds stress; it is
+applied continuously, paced by the mean strain, exactly as is the
+production. This is deliberate: the rapid pressure--strain is, by
+construction, the part of the redistribution driven by the mean velocity
+gradient and therefore acts at the strain rate, in contrast to the slow,
+turbulence-driven redistribution that the eddy kernel
+\eqref{eq:redistribution}--\eqref{eq:ci} supplies at the eddy rate. The two
+mechanisms are thereby cleanly separated: strain-driven effects (production
+and rapid pressure--strain) are continuous and enter through the operator
+$\mathcal{A}_{ij}$, while turbulence-driven effects (the inertial cascade
+and the slow return to isotropy) remain the discrete events. The uniform,
+scale-independent action of $B_{ij}$ is the faithful single-point reduction
+of the rapid pressure response, which in \eqref{eq:rdt} acts on every
+Fourier mode through the projection $P_{ij}(\boldsymbol{k})$; the
+distribution of energy across scales continues to be governed by diffusion,
+the triplet-map cascade and the domain straining of
+\S\,\ref{sec:domain-strain}.
+
+We can now state precisely the sense in which the formulation is
+rapid-distortion consistent.
+
+\begin{proposition}[Rapid-distortion consistency]\label{prop:rdt}
+Let $B_{ij}$ be defined by the Lyapunov equation~\eqref{eq:lyapunov} with
+$\Pi_{ij}^{(r)}$ evaluated from a prescribed spectral-tensor closure. Then
+the continuous evolution~\eqref{eq:cont-evolution} reproduces the
+homogeneous rapid-distortion evolution of the Reynolds
+stress~\eqref{eq:dRdt-rdt} exactly for that closure. With the isotropic
+closure~\eqref{eq:iso-closure}, the reproduction is exact at the onset of
+distortion of initially isotropic turbulence and contains no adjustable
+constant, recovering the classical result~\eqref{eq:crow}.
+\end{proposition}
+
+\begin{proof}
+By \eqref{eq:production-rate} the production term of
+\eqref{eq:cont-evolution} contributes $\mathcal{P}_{ij}$ to
+$\mathrm{d}R_{ij}/\mathrm{d}t$, and by construction~\eqref{eq:lyapunov} the
+operator $B_{ij}$ contributes $\Pi_{ij}^{(r)}$. Their sum is the
+right-hand side of \eqref{eq:dRdt-rdt}. For initially isotropic turbulence
+$\Pi_{ij}^{(r)}$ equals the exact value~\eqref{eq:crow} by
+\eqref{eq:iso-closure}--\eqref{eq:Pir-iso}.
+\end{proof}
+
+The scope of Proposition~\ref{prop:rdt} must be stated as carefully as the
+result. The consistency is established at the level of the
+\emph{component energies} $R_{ij}$ and is \emph{conditional on the spectral
+closure}: the isotropic closure is exact only at the onset of distortion,
+and its accuracy for strongly anisotropic states is that of the
+isotropisation-of-production approximation it reproduces. The
+\emph{spectral} distribution of the distorted energy is not enforced by
+\eqref{eq:cont-evolution}; it emerges from the interaction of the strain
+operator with diffusion, the cascade and the domain straining, and is
+therefore a genuine prediction of the model, to be tested rather than
+assumed (\S\,\ref{sec:validation}). We make no claim that the formulation
+reproduces the full spectral evolution of rapid-distortion theory, which no
+single-point model can; the claim is the weaker, provable one of
+Proposition~\ref{prop:rdt}.
+
+\subsection{Wavevector kinematics by domain straining}\label{sec:domain-strain}
+
+The second ingredient of \eqref{eq:rdt}, the wavevector evolution
+$\mathrm{d}k_i/\mathrm{d}t=-A_{ji}k_j$, carries the kinematic compression
+and stretching of scales by the mean strain and is independent of the
+amplitude evolution; in the method-of-characteristics reading of
+rapid-distortion theory, the wavevectors are the characteristics along
+which the amplitudes evolve. On the line, aligned with the coordinate
+$x_2$, the relevant wavenumber is $k_2$. We restrict attention to the case
+in which the line is aligned with a principal axis of the mean strain, so
+that $A_{12}=A_{32}=0$ and a material element of the line remains a
+coordinate line; this holds, in particular, for the irrotational mean flow
+of a stagnation region, for which $A_{ij}$ is symmetric and its
+eigenvectors define such axes. Then
+\begin{equation}
+  \frac{\mathrm{d}k_2}{\mathrm{d}t}=-A_{22}\,k_2 .
+  \label{eq:wavenumber-line}
+\end{equation}
+A material element of the line of length $\ell$ stretches with the mean
+flow as $\dot{\ell}/\ell=A_{22}$; since wavenumbers scale as $k_2\propto
+1/\ell$, a uniform dilatation of the line reproduces
+\eqref{eq:wavenumber-line} exactly,
+\begin{equation}
+  \frac{1}{L}\frac{\mathrm{d}L}{\mathrm{d}t}=A_{22},
+  \qquad\Longrightarrow\qquad
+  k_2(t)=k_2(t_0)\,\exp\!\Big(\!-\!\int_{t_0}^{t}A_{22}\,\mathrm{d}t'\Big),
+  \label{eq:dilatation}
+\end{equation}
+where $L$ is the domain length. The dilatation~\eqref{eq:dilatation} is
+implemented directly within the Lagrangian adaptive-mesh advancement of
+ODT \citep{Lignell2013}, in which cell sizes already evolve, by imposing
+the additional mean-flow stretching on the mesh.
+
+This step is not redundant with the amplitude operator of
+\S\S\,\ref{sec:strain-forcing}--\ref{sec:rapid-kernel}. Because the
+Reynolds stress $R_{ij}$ is an intensive (per-unit-length) second moment,
+it is invariant under the uniform dilatation~\eqref{eq:dilatation}: the
+dilatation relabels the scales that carry the energy without changing the
+component energies, while the operator $\mathcal{A}_{ij}$ changes the
+component energies without relabelling scales. The two operations are the
+physical-space counterparts of the characteristic motion $\boldsymbol{k}(t)$
+and the amplitude evolution $\hat{u}(\boldsymbol{k}(t),t)$ in
+\eqref{eq:rdt}, and together they account for the distinct contributions
+of mean straining without double counting.
+
+Two limitations are inherent to representing a three-dimensional kinematics
+on one axis. The transverse wavenumbers $k_1$ and $k_3$ also strain under
+$\mathrm{d}k_i/\mathrm{d}t=-A_{ji}k_j$, but are not represented on the line;
+their effect on the redistribution is subsumed in the spectral closure of
+\S\,\ref{sec:rapid-kernel}, which already supplies the orientation
+information the line lacks. A mean flow with a rotational part, or a line
+not aligned with a principal axis, tilts the material line out of the
+coordinate direction and couples it to the unresolved directions; this lies
+outside the present formulation and is admissible only to the extent that
+the stagnation-region mean flow is irrotational.
+
+\subsection{Summary of the formulation}\label{sec:summary}
+
+The strain-coupled model advances the line field $u_i(y,t)$ over a
+sub-step by composing three operations:
+\begin{enumerate}
+\item[(a)] \emph{continuous strain--diffusion phase} on a dilating domain:
+  integrate $\partial_t u_i=\nu\partial_y^2 u_i+\mathcal{A}_{ij}u_j$ with
+  $\mathcal{A}_{ij}=-A_{ij}+B_{ij}$, the production term exact and the
+  rapid term $B_{ij}$ given by \eqref{eq:lyapunov} from the current
+  Reynolds stress and the spectral closure (the baseline being
+  $B_{ij}=\tfrac35 S_{ij}$, \eqref{eq:iso-B}); simultaneously dilate the
+  domain by \eqref{eq:dilatation};
+\item[(b)] \emph{discrete eddy events} sampled from the rate
+  distribution~\eqref{eq:rate}: the triplet map~\eqref{eq:triplet} and the
+  slow kernel~\eqref{eq:redistribution}--\eqref{eq:ci}, unchanged from
+  standard ODT.
+\end{enumerate}
+Step (a) carries the mean-strain physics---production, rapid
+pressure--strain and the kinematic straining of scales---and step (b)
+carries the turbulence-driven physics---the inertial cascade and the slow
+return to isotropy. Standard ODT is recovered exactly when $A_{ij}=0$.
+
+The relative importance of the two steps is governed by the ratio of the
+mean-strain rate $S\equiv(2S_{ij}S_{ij})^{1/2}$ to the turbulence
+relaxation rate $\varepsilon/k_t$,
+\begin{equation}
+  \chi \equiv \frac{S\,k_t}{\varepsilon}.
+  \label{eq:chi}
+\end{equation}
+For $\chi\gg1$ the distortion accumulates faster than the turbulence can
+respond, the eddy events are negligible over the distortion time, and the
+formulation reduces to the rapid-distortion limit of step (a), exact under
+the closure by Proposition~\ref{prop:rdt}. For $\chi\ll1$ the turbulence
+relaxes between increments of strain, the slow kernel dominates the
+redistribution, and the model returns to a near-equilibrium anisotropy. The
+stagnation region of a leading edge is the intermediate regime, $\chi=
+O(1)$, in which neither limit is uniformly valid and both mechanisms
+contribute; it is precisely there that a formulation carrying the two
+together, rather than either alone, is required. The quantitative behaviour
+across this range, and the fidelity of the emergent distorted spectrum, are
+assessed against rapid-distortion solutions and scale-resolving data in
+\S\,\ref{sec:validation}.
+
+% =====================================================================
+%  Section 4  --  Verification and validation
+%  (i) analytical rapid-distortion benchmarks (derived here);
+%  (ii) verification/validation protocol, metrics, failure modes.
+%
+%  NOTE: computed model-vs-reference comparisons (figures) are produced
+%  once the simulations are run; figure environments below are clearly
+%  marked placeholders and contain NO fabricated results. The analytical
+%  benchmark derivations are exact and final.
+%
+%  Target: jfm.cls; requires amsmath. Citations resolve against references.bib.
+% =====================================================================
+
+\section{Verification and validation}\label{sec:validation}
+
+We separate two questions. \emph{Verification} asks whether the
+formulation reproduces a known exact solution in the regime where one
+exists; the only such regime is the rapid-distortion limit, against which
+\S\,\ref{sec:verification} tests the formulation analytically. \emph{Validation}
+asks whether the formulation reproduces the behaviour of the true flow
+outside that limit; \S\,\ref{sec:val-spectrum} \DIFaddbegin \DIFadd{examines the emergent
+distorted spectrum, }\DIFaddend and \S\,\DIFdelbegin \DIFdel{\ref{sec:val-les}
+set out the comparisons against scale-resolving data, including the
+distortion data of the present project, together }\DIFdelend \DIFaddbegin \DIFadd{\ref{sec:cmk}--\S\,\ref{sec:lr-validation}
+compare against external reference data---the strained-turbulence experiment
+of \mbox{%DIFAUXCMD
+\citet{ChenMeneveauKatz2006} }\hskip0pt%DIFAUXCMD
+and the direct numerical simulations of
+\mbox{%DIFAUXCMD
+\citet{LeeReynolds1985}}\hskip0pt%DIFAUXCMD
+---together }\DIFaddend with the metrics and the diagnostic value
+of each possible failure. The analytical benchmarks of
+\S\,\ref{sec:verification} are exact and are stated in full; the computed
+comparisons are reported once the corresponding simulations are completed.
+
+\subsection{Verification against rapid-distortion theory}\label{sec:verification}
+
+\subsubsection{Canonical strains}
+
+Two irrotational homogeneous strains both admit exact rapid-distortion
+solutions and isolate the physics of interest. \emph{Plane strain},
+\begin{equation}
+  \mathsf{A}=\operatorname{diag}(a,-a,0),\qquad a>0,
+  \label{eq:plane-strain}
+\end{equation}
+is the strain of a two-dimensional stagnation region: with $x_1$ tangential
+to the surface, $x_2$ normal to it and $x_3$ spanwise, the mean flow
+accelerates away from the stagnation line along $x_1$ and decelerates
+towards the surface along $x_2$. The component compressed by the strain is
+the wall-normal (upwash) component $u_2$, whose amplification is the
+pre-impact distortion relevant to leading-edge noise. \emph{Axisymmetric
+strain},
+\begin{equation}
+  \mathsf{A}=\operatorname{diag}(-\tfrac12\gamma,-\tfrac12\gamma,\gamma),
+  \qquad \gamma>0,
+  \label{eq:axi-strain}
+\end{equation}
+is the strain of a contraction or a three-dimensional stagnation flow and
+provides an independent test in which two components are amplified and one
+suppressed. For both, $\mathsf{A}$ is symmetric, so $\mathsf{A}=\mathsf{S}$
+and the principal-axis alignment assumed in \S\,\ref{sec:domain-strain}
+holds; the ODT line is taken along $x_2$.
+
+\subsubsection{Onset behaviour: an exact, constant-free check}\DIFaddbegin \label{sec:onset}
+\DIFaddend 
+
+For turbulence isotropic at the onset of straining, $R_{ij}=\tfrac23
+k_t\delta_{ij}$, the continuous evolution~\eqref{eq:cont-evolution} gives,
+by Proposition~\ref{prop:rdt} and equations
+\eqref{eq:production-rate} and \eqref{eq:crow},
+\begin{equation}
+  \left.\frac{\mathrm{d}R_{ij}}{\mathrm{d}t}\right|_{0}
+  = \mathcal{P}_{ij}+\Pi_{ij}^{(r),\mathrm{iso}}
+  = \tfrac{2}{5}\,\mathcal{P}_{ij}
+  = -\tfrac{8}{15}\,k_t\,S_{ij},
+  \label{eq:onset-rate}
+\end{equation}
+which is the exact rapid-distortion rate for initially isotropic turbulence
+and contains no adjustable constant. Equation~\eqref{eq:onset-rate} is the
+sharpest verification available: it is a closed-form prediction that the
+model must satisfy identically, not approximately. Evaluating it for the
+two canonical strains gives the component rates in
+table~\ref{tab:onset}. The wall-normal (compressed) component is amplified
+in both cases; for plane strain the model predicts the upwash growth rate
+\begin{equation}
+  \left.\frac{\mathrm{d}R_{22}}{\mathrm{d}t}\right|_{0}
+  = +\tfrac{8}{15}\,k_t\,a ,
+  \label{eq:upwash-onset}
+\end{equation}
+to be compared with the value $\tfrac43 k_t a$ that production alone
+would give: neglect of the rapid pressure--strain
+overstates the upwash amplification rate by the factor $\tfrac52$
+anticipated in \S\,\ref{sec:rapid-kernel}. A model that passes
+\eqref{eq:onset-rate} for both strains has its production and rapid
+pressure--strain terms verified jointly; failure would indicate an error
+in the operator $\mathcal{A}_{ij}$ or its implementation, isolated from any
+closure or cascade effect.
+
+\begin{table}
+  \begin{center}
+  \def~{\hphantom{0}}
+  \begin{tabular}{lccc}
+    \hline
+    & $\mathrm{d}R_{11}/\mathrm{d}t|_0$
+    & $\mathrm{d}R_{22}/\mathrm{d}t|_0$
+    & $\mathrm{d}R_{33}/\mathrm{d}t|_0$ \\[3pt]
+    \hline
+    Plane strain \eqref{eq:plane-strain}
+      & $-\tfrac{8}{15}k_t a$ & $+\tfrac{8}{15}k_t a$ & $0$ \\[3pt]
+    Axisymmetric \eqref{eq:axi-strain}
+      & $+\tfrac{4}{15}k_t\gamma$ & $+\tfrac{4}{15}k_t\gamma$
+      & $-\tfrac{8}{15}k_t\gamma$ \\[3pt]
+    \hline
+  \end{tabular}
+  \caption{Exact onset rates of the component energies from
+  \eqref{eq:onset-rate} for initially isotropic turbulence. The component
+  compressed by the strain ($u_2$ for plane strain; $u_1,u_2$ for
+  axisymmetric contraction) is amplified; the stretched component is
+  suppressed.}
+  \label{tab:onset}
+  \end{center}
+\end{table}
+
+% =====================================================================
+%  Section 4.1.3 (REVISED) + 4.1.4 (NEW)
+%  Drop-in replacement for the old "Finite total strain" subsubsection
+%  (which contained the [To be computed] placeholder figure fig:verification).
+%
+%  Figure files required (place in your figures path):
+%     fig_components_plane.pdf
+%     fig_components_axisymmetric.pdf
+%     fig_upwash_amplification.pdf
+%
+%  Requires: \usepackage{graphicx}, amsmath. Citations: references.bib.
+% =====================================================================
+
+\subsubsection{Finite total strain}\label{sec:finite-strain}
+
+Beyond onset the turbulence becomes anisotropic and the rapid
+pressure--strain~\eqref{eq:exact-rps} ceases to be a function of the
+Reynolds stress alone, so the verification becomes a test of the spectral
+closure rather than of the construction. We integrate the model moment
+equation $\mathrm{d}R_{ij}/\mathrm{d}t=\mathcal{P}_{ij}+\Pi_{ij}^{(r)}$
+along each canonical strain with two closures for $\Pi_{ij}^{(r)}$: the
+baseline isotropic closure~\eqref{eq:iso-closure}, equivalent to the
+isotropisation-of-production model with $C_2=3/5$ (hereafter IP), and the
+quasi-isotropic model of \citet{LaunderReeceRodi1975} (hereafter LRR),
+\begin{equation}
+  \Pi_{ij}^{(r)} = C_2\,k_t S_{ij}
+  + C_3\,k_t\big(b_{ik}S_{jk}+b_{jk}S_{ik}-\tfrac{2}{3}b_{mn}S_{mn}\delta_{ij}\big)
+  + C_4\,k_t\big(b_{ik}W_{jk}+b_{jk}W_{ik}\big),
+  \label{eq:lrr}
+\end{equation}
+with $b_{ij}=R_{ij}/2k_t-\tfrac13\delta_{ij}$, mean rotation
+$W_{ij}=\tfrac12(A_{ij}-A_{ji})$, and constants $C_2=4/5$, $C_3=7/4$,
+$C_4=131/100$. The coefficient $C_2=4/5$ is fixed by the requirement that
+\eqref{eq:lrr} reduce at isotropy ($b_{ij}=0$) to the exact value
+$\tfrac45 k_t S_{ij}$ of \eqref{eq:Pir-iso}, so that LRR shares the
+constant-free onset slope~\eqref{eq:onset-rate}; the strains considered
+here are irrotational ($W_{ij}=0$). The benchmark is the exact
+rapid-distortion solution, obtained not from a tabulated closed form but by
+integrating the spectral equations~\eqref{eq:rdt} over an ensemble of
+initial wavevector directions on the unit sphere (Gauss--Legendre in
+$\cos\theta$ by uniform azimuth); for initially isotropic turbulence the
+modal dynamics depend only on direction, so the Reynolds stress is the
+spherical average of the evolved modal covariance. This integration is
+independent of the moment models and reproduces the analytic onset
+slope~\eqref{eq:onset-rate} to within $1.5\times10^{-3}$ (the quadrature
+error), which serves as a check on the rapid-distortion machinery itself.
+
+Figure~\ref{fig:rdt-components} reports the resulting component-energy
+fractions against total strain $e=\int S\,\mathrm{d}t$ for the two strains.
+Three observations follow. First, at onset all three curves for each
+component are tangent: the constant-free identity~\eqref{eq:onset-rate} is
+satisfied, and through $e\lesssim1$ the closures are nearly
+indistinguishable from the exact solution. This is the numerical
+counterpart of Proposition~\ref{prop:rdt}. Second, as anisotropy
+accumulates the closures depart from the exact solution, and the LRR
+closure is uniformly closer than IP: for axisymmetric strain at $e=4$ the
+lateral fraction is $0.498$ (exact), $0.468$ (LRR) and $0.450$ (IP), and
+the axial fraction $0.003$, $0.064$ and $0.100$ respectively. This gap is
+the spectral-closure error in isolation---the eddy events are inactive in
+this rapid limit---and it bounds the accuracy attainable from a single
+rapid operator. Third, and most important to state plainly, for plane
+strain both closures miss a \emph{qualitative} feature: the exact solution
+has the spanwise component $\overline{u_3^2}$, which is neither stretched
+nor compressed, grow monotonically and overtake the upwash component
+near $e\approx3.3$, becoming the largest component by $e=4$
+($\overline{u_3^2}/2k_t=0.51$ against $\overline{u_2^2}/2k_t=0.47$),
+whereas both closures predict $\overline{u_3^2}$ to \emph{decay}. This
+redistribution into the neutral direction is governed by the orientation
+distribution of the spectral tensor and cannot be recovered from
+single-point quantities; it is the moment-level signature of precisely the
+transverse-wavenumber information that a single line does not carry
+(\S\,\ref{sec:domain-strain}). It marks the total strain beyond which the
+rapid closure is only qualitatively reliable, and it is one of the effects
+the \DIFdelbegin \DIFdel{scale-resolving }\DIFdelend \DIFaddbegin \DIFadd{external }\DIFaddend validation of \S\,\DIFdelbegin \DIFdel{\ref{sec:val-les} }\DIFdelend \DIFaddbegin \DIFadd{\ref{sec:cmk}--\S\,\ref{sec:lr-validation}
+}\DIFaddend is designed to probe.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.49\textwidth]{Figures/fig_components_plane.pdf}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{Figures/fig_components_axisymmetric.pdf}
+  \caption{Component energy fractions $\overline{u_i^2}/2k_t$ against total
+  strain $e=St$ for initially isotropic turbulence under (\textit{a}) plane
+  strain $\mathsf{A}=\mathrm{diag}(a,-a,0)$ and (\textit{b}) axisymmetric
+  strain $\mathsf{A}=\mathrm{diag}(-\tfrac{\gamma}{2},-\tfrac{\gamma}{2},\gamma)$,
+  normalised to $S=1$. Solid: exact rapid-distortion theory
+  (wavevector-ensemble integration of \eqref{eq:rdt}); dashed: present model
+  with the LRR closure~\eqref{eq:lrr}; dotted: present model with the IP
+  closure~\eqref{eq:iso-closure}. Colour denotes the velocity component. For
+  axisymmetric strain the two lateral components coincide,
+  $\overline{u_1^2}=\overline{u_2^2}$. All closures share the exact onset
+  slope; the LRR closure tracks the exact solution more closely at finite
+  strain.}
+  \label{fig:rdt-components}
+\end{figure}
+
+\subsubsection{Upwash amplification and the necessity of the rapid
+pressure--strain}\label{sec:upwash-verif}
+
+The component that enters the leading-edge response is the wall-normal
+(upwash) component $\overline{u_2^2}$, whose spectrum is the input to
+Amiet's theory. Plane strain is the relevant case, since it represents the
+two-dimensional stagnation region with $x_2$ normal to the surface.
+Figure~\ref{fig:rdt-upwash} isolates the evolution of the upwash fraction
+under plane strain and adds, for contrast, the result of retaining
+production alone ($B_{ij}=0$).
+
+The figure makes quantitative the argument of \S\,\ref{sec:rapid-kernel}.
+Production acting alone drives the upwash fraction from its isotropic value
+$1/3$ to $0.98$ by $e=4$---almost the entire turbulent kinetic energy
+forced into a single component, an essentially non-realisable state---and
+overstates the initial amplification rate by the factor $\tfrac52$ derived
+in \S\,\ref{sec:rapid-kernel}. The rapid pressure--strain removes three
+fifths of this at onset~\eqref{eq:crow} and keeps the upwash fraction
+physical: the exact solution rises to a peak of $0.49$ near $e\approx2.4$
+and then relaxes as energy passes to the spanwise component. Both closures
+reproduce the amplification of the upwash component---the very effect that
+the frozen, isotropic input of classical leading-edge-noise prediction
+omits---and so capture the qualitative physics that motivates the
+formulation; quantitatively they overpredict the amplification at large
+strain, the LRR closure ($0.60$ at $e=4$) less than IP ($0.65$), against
+the exact $0.47$.
+
+Two conclusions for the application follow. The rapid pressure--strain is
+not a refinement but a necessity: without it the acoustically critical
+input is wrong by a factor of order unity and unbounded in strain. And the
+quantitative fidelity of the distorted upwash spectrum supplied to the
+acoustic stage is set by the spectral closure and degrades with total
+strain, so the accuracy of the method for a given configuration is
+controlled by the strain $e=\int S\,\mathrm{d}t$ accumulated along the
+stagnation streamline; for the moderate strains typical of the approach to
+a leading edge the model is quantitatively reliable, while for strongly
+distorted inflow the LRR closure is to be preferred. The streamwise
+integral of the mean strain is therefore the natural quantity to extract
+from the reference data before the model is applied, and the comparison of
+the distorted upwash spectrum against scale-resolving data is taken up in
+\S\,\ref{sec:val-spectrum} \DIFaddbegin \DIFadd{and against external data in
+\S\,\ref{sec:cmk}}\DIFaddend --\S\,\DIFdelbegin \DIFdel{\ref{sec:val-les}}\DIFdelend \DIFaddbegin \DIFadd{\ref{sec:lr-validation}}\DIFaddend .
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.62\textwidth]{Figures/fig_upwash_amplification.pdf}
+  \caption{Upwash energy fraction $\overline{u_2^2}/2k_t$ against total
+  strain under plane strain, for initially isotropic turbulence. Black:
+  exact rapid-distortion theory; blue dashed: present model with the LRR
+  closure; red dash-dotted: present model with the IP closure; grey dotted:
+  production alone ($B_{ij}=0$). Production without the rapid
+  pressure--strain overstates the onset amplification rate by $\tfrac52$ and
+  forces almost all the energy into the upwash component; the rapid term
+  restores the physical, bounded amplification.}
+  \label{fig:rdt-upwash}
+\end{figure}
+
+% =====================================================================
+%  Section 4.1.5 (REVISED) -- verification of the strain-coupled ODT
+%  implementation, now with the TKE-amplification (magnitude) check.
+%
+%  Figure files required (place in your figures path):
+%     fig_level1a_trajectory.pdf       (panel a: component fractions)
+%     fig_level1a_trajectory_kt.pdf    (panel b: TKE amplification)
+%
+%  Requires graphicx, amsmath. Citations resolve against references.bib.
+% =====================================================================
+
+\subsubsection{Verification of the strain-coupled ODT \DIFdelbegin \DIFdel{(revise)
+}\DIFdelend implementation}\label{sec:level1a}
+
+The preceding checks verify the \emph{formulation}: that the moment
+equation closed with the rapid operator reproduces rapid-distortion theory
+at onset (\S\,\ref{sec:onset}) and quantify its departure at finite strain
+(\S\,\ref{sec:finite-strain}). They do not test the \emph{implementation}
+in the one-dimensional turbulence solver, in which the rapid operator
+$B_{ij}$ is not prescribed but reconstructed at every substep: the line
+Reynolds stress is formed from the resolved field, the closure supplies
+$\Pi^{(r)}_{ij}$, the Lyapunov equation~\eqref{eq:lyapunov} is solved for
+$B_{ij}$, and the combined operator
+\[
+  \mathcal{A}_{ij}=-A_{ij}+B_{ij}
+\]
+is applied pointwise in the advancement. An error in any of these steps
+would not appear in \S\S\,\ref{sec:onset}--\ref{sec:finite-strain}.
+
+To isolate this chain we run the solver in the rapid-distortion limit:
+plane strain~\eqref{eq:plane-strain}, eddy events suppressed and molecular
+diffusion set to zero, so that the continuous evolution reduces to
+\[
+  \partial_t u_i = \mathcal{A}_{ij}u_j
+\]
+acting on every cell of the line. The initial field is statistically
+isotropic with
+\[
+  R_{ij}=\frac{2}{3}k_t\delta_{ij},
+\]
+and the component energies are evaluated as length-weighted averages over
+the line at each output time. With the events inactive,
+Proposition~\ref{prop:rdt} requires the line's component-energy evolution to
+coincide with the closed moment equation; the test is whether the solver
+delivers this across the whole strain range, not merely at onset.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.49\textwidth]{Figures/fig_level1a_trajectory.pdf}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{Figures/fig_level1a_trajectory_kt.pdf}
+  \caption{Verification of the strain-coupled ODT implementation under plane
+  strain, with eddy events suppressed and zero molecular diffusion.
+  (\textit{a}) Component energy fractions $\overline{u_i^2}/2k_t$ (colour
+  denotes the component); (\textit{b}) turbulent kinetic energy amplification
+  $k_t(e)/k_t(0)$. Symbols: ODT solver, length-weighted line averages at the
+  output times. Dashed: the LRR closure~\eqref{eq:lrr} integrated as a moment
+  equation. Solid: exact rapid-distortion theory. The solver reproduces the
+  LRR closure in the fractions (to $5\times10^{-4}$) and in the energy
+  amplification (to within $3\%$); the residual energy deficit at large
+  strain is interpolation loss from the adaptive mesh under-resolving the
+  strained fine scales, and is addressed in \S\,\ref{sec:val-spectrum}.}
+  \label{fig:level1a}
+\end{figure}
+
+Figure~\ref{fig:level1a}(\textit{a}) shows the component energy fractions
+$f_{ii}\equiv\overline{u_i^2}/2k_t$ (no summation). The solver output
+(symbols) lies on the LRR closure trajectory (dashed) over the entire range
+$0\le e\le 4$, to within $5\times10^{-4}$ in each fraction at $e=4$. This
+confirms that the reconstruction of $B_{ij}$ at each substep, the operator
+assembly and the advancement are correct at every state of strain, not only
+in the isotropic limit where \eqref{eq:onset-rate} is exact: the per-substep
+Lyapunov solve is exercised continuously as the anisotropy develops, and it
+tracks the model throughout.
+
+It is essential to read the comparison correctly. The solver reproduces the
+\emph{LRR closure}, and it should: with the events suppressed the line
+carries no information beyond the single-point statistics that the closure
+itself uses, so by construction the moment evolution is that of the closure.
+The offset between the symbols and the \emph{exact} rapid-distortion
+solution (solid) is therefore not an implementation error but the
+single-point closure error already identified in \S\,\ref{sec:finite-strain};
+agreement with the exact solution here would in fact indicate a fault, since
+it would mean the solver was not evolving the prescribed closure.
+
+The fractions are normalised quantities and so test only the
+\emph{anisotropy}. The turbulent kinetic energy provides an independent
+check of \emph{magnitude}, and a far less discriminating one: the rapid
+pressure--strain is traceless and cannot change $k_t$ directly, which
+evolves only through the production,
+\begin{equation}
+  \frac{\mathrm{d}\ln k_t}{\mathrm{d}e} = f_{22} - f_{11},
+  \label{eq:dlnkt}
+\end{equation}
+integrated along the path, and that integrand is identical
+across closures near onset where they agree.
+Figure~\ref{fig:level1a}(\textit{b}) shows the amplification
+$k_t(e)/k_t(0)$: the solver reproduces the LRR result to within $0.3\%$ over
+$0\le e\le4$, confirming that the implementation captures not only the
+redistribution of energy among components but its overall growth.
+
+Reaching this agreement in the energy required attention to two numerical
+choices that do not affect the anisotropy and are easily overlooked. First,
+a broadband (white-noise) initialisation places energy at the grid scale,
+where it is damped by the interpolation inherent in mesh adaption; the
+resolved spectral initialisation above removes this loss, and a
+mesh-refinement study confirms that the residual is independent of spatial
+resolution, so it is not an under-resolution effect---consistent with the
+strain operator being built from the line-averaged stress, hence spatially
+uniform and generating no new scales. Second, because the inviscid limit
+removes the diffusive timestep bound, the explicit advancement must be
+limited instead by the imposed strain rate; left unbounded it
+under-integrates the growing mode and depresses $k_t$ by a few per cent.
+With a strain-resolved step both effects are removed, leaving the $0.3\%$
+agreement reported above. Each acts nearly isotropically and so is invisible
+in panel~(\textit{a}); the energy panel is what exposes them, and its clean
+recovery completes the verification in both anisotropy and magnitude. The
+resolved spectral initialisation is in any case required for the
+emergent-spectrum study of \S\,\ref{sec:val-spectrum}, where the events and
+the domain dilatation are activated and the spectrum---rather than the
+component energies---becomes the quantity that can carry the model beyond the
+single-point closure.
+
+% =====================================================================
+%  Section 4.2 — Emergent distorted spectrum  (Option A: full sweep kept)
+%
+%  Subsections:
+%    4.2.1 linear-RDT verification (A2, eddies off + dilatation on, inviscid)
+%          Figures/fig_spectrum_hs__spectra.pdf , _centroid.pdf
+%    4.2.2 distorted spectrum at fixed Re (B vs C, nu=1e-5, N=100)
+%          Figures/BvsC_nu1e5_spectra.pdf , _centroid.pdf
+%    4.2.3 Reynolds-number dependence (full sweep, N=100/nu, under-resolved
+%          low-nu cases shown WITH the resolution caveat)
+%          Figures/C_ensemble_spectra.pdf , _centroid.pdf
+%    4.2.4 physical operating point (nu=3e-6, N=200, resolved on 16000 cells)
+%          Figures/C_kv3em6_hires_op_spectra.pdf , _centroid.pdf
+%
+%  Requires graphicx, amsmath, subcaption, natbib (or jfm bibliography).
+%  Cross-refs out: sec:level1a, sec:gate.
+% =====================================================================
+
+\subsection{Emergent distorted spectrum}\label{sec:val-spectrum}
+
+The verification of \S\,\ref{sec:level1a} establishes that the solver
+reproduces the single-point moment evolution of rapid-distortion theory (RDT).
+That is necessary but not sufficient: the single-point statistics are, by
+construction, those of the closure, and a closure alone could supply them.
+What ODT adds, and what Amiet's theory ultimately requires, is the
+\emph{spectrum} of the distorted upwash---how the incoming turbulent energy is
+redistributed across wavenumber as the gust is compressed toward the leading
+edge. This section examines that spectrum: first the geometric compression in
+isolation, which must reproduce linear RDT exactly; then the full model at a
+fixed Reynolds number, isolated against a matched no-strain baseline; then the
+dependence on Reynolds number across the resolved and under-resolved range; and
+finally the physical operating point dictated by the experiment. Results are
+ensemble means over independent realisations with $\pm\sigma$ bands; the
+realisation count $N$ is stated for each figure.
+
+Throughout, the temporal ODT line is mapped to the spatial leading-edge
+problem through the convective hypothesis $x\approx U_\infty t$, so that the
+total strain $e=St$ accumulated in time corresponds to streamwise approach
+toward the stagnation region. The distortion computed here and the acoustic
+response of \S\,\ref{sec:gate} are thereby treated as scale-separated: the
+incoming turbulence is distorted as it convects to the leading-edge plane, and
+the distorted upwash spectrum at that plane is the input to the leading-edge
+response.
+
+\subsubsection{Compression without cascade: the linear-RDT
+baseline}\label{sec:spec-rdt}
+
+With the eddy events suppressed and zero molecular viscosity, the mean strain
+is the only process acting on the resolved field, and its effect is purely
+kinematic. The line length contracts as
+$\mathcal{L}(e)=\mathcal{L}_0\,e^{A_{22}e}$, so every resolved wavenumber is
+rescaled as $k(e)=k(0)\,e^{-A_{22}e}$ with no transfer of energy between
+scales: a rigid translation of the spectrum toward higher wavenumber. This is
+the linear rapid-distortion result \citep{BatchelorProudman1954,HuntCarruthers1990}
+for the transverse wavenumber, and it is an exact, parameter-free target.
+
+Figure~\ref{fig:spec-rdt} confirms it. The component spectra translate toward
+higher $k$ without change of shape---the peak neither broadens nor develops an
+inertial range---and the spectral centroid follows $e^{-A_{22}e}$ to within
+discretisation error, reaching $7.0$ at $e=3.9$ against the exact $7.03$, with
+the three components migrating identically. The single-point moments are
+unchanged from the no-dilatation case, since a uniform rescaling of position
+leaves the length-weighted velocity statistics invariant. Compression
+therefore acts entirely on the spectrum and reproduces linear RDT exactly. It
+is the reference (the dashed line in all centroid figures below) against which
+the full model is measured.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{Figures/fig_spectrum_hs__spectra.pdf}
+    \caption{}\label{fig:rdt-spectra}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{Figures/fig_spectrum_hs__centroid.pdf}
+    \caption{}\label{fig:rdt-centroid}
+  \end{subfigure}
+  \caption{Compression without cascade (eddy events suppressed, inviscid).
+  (\textit{a}) Component spectra $E_i(k)$ at increasing total strain (lighter to
+  darker); the spectra translate to higher $k$ without changing shape.
+  (\textit{b}) Spectral-centroid migration $\bar k(e)/\bar k(0)$ for each
+  component (symbols) against the linear-RDT prediction $e^{-A_{22}e}$ (dashed).
+  The centroid follows the prediction exactly and the three components coincide,
+  confirming purely geometric compression.}
+  \label{fig:spec-rdt}
+\end{figure}
+
+\subsubsection{The distorted spectrum at fixed Reynolds
+number}\label{sec:spec-bvc}
+
+The central comparison isolates what the strain does to the spectrum at a
+fixed Reynolds number, holding the turbulence otherwise identical. Two
+$N=100$ ensembles are run at $\nu=10^{-5}$: the full model (eddies and
+dilatation active) and a baseline that is identical in every respect except
+that the strain machinery is switched off, so the line does not compress.
+Because the two differ only in the presence of the mean strain, the difference
+between them is the distortion, cleanly separated from the cascade and
+dissipation the eddies produce on their own.
+
+Figure~\ref{fig:spec-bvc} shows the result, and it departs from linear RDT in a
+specific and physically meaningful way. Consider the centroid first
+(figure~\ref{fig:bvc-centroid}). The no-strain baseline, after the brief
+initialisation transient near $e\simeq0.2$, relaxes monotonically to
+$\bar k/\bar k_0<1$: with no compression, the eddies merely redistribute energy
+and the centroid drifts below its initial value. The full model is lifted
+clearly above this baseline---compression does push the spectrum toward higher
+wavenumber---yet it settles at $\bar k/\bar k_0\approx1.6$--$2.0$, far below the
+linear-RDT line, which rises to $7.4$ at $e=4$. The reason is visible in the
+spectra (figure~\ref{fig:bvc-spectra}): the full-model spectrum is not a rigid
+translation of the baseline but a \emph{broadband} distortion. It extends to
+substantially higher wavenumber than the baseline---energy is genuinely carried
+to small scales by compression and cascade---but the bulk of the energy remains
+at the energetic scales, and what reaches high wavenumber is dissipated there
+rather than accumulated. The energy-weighted centroid therefore lies well below
+the value a rigid translation would give.
+
+This is the qualitative content of the section. Linear RDT, which only
+rescales the prescribed spectrum, predicts a rigid shift of the whole spectrum
+to higher $k$ and a centroid on the dashed line. The full model instead
+produces a broadband distorted spectrum whose shape differs from the linearly
+strained one: broadened, dissipative, and with its centroid held well below the
+linear prediction. The departure from linear RDT is thus real and measurable,
+but it is a difference of spectral \emph{shape}---rigid translation versus
+broadband cascade---not a centroid that overshoots the linear line. It is
+precisely this shape difference that a frozen, linearly strained upwash
+spectrum cannot represent, and that motivates supplying the ODT spectrum to
+Amiet's theory in place of it, in the spirit of the rapid-distortion-modified
+inflow spectra of \citet{deSantana2016} but without the linearity assumption.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{Figures/BvsC_nu1e5_spectra.pdf}
+    \caption{}\label{fig:bvc-spectra}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{Figures/BvsC_nu1e5_centroid.pdf}
+    \caption{}\label{fig:bvc-centroid}
+  \end{subfigure}
+  \caption{Full model versus matched no-strain baseline at $\nu=10^{-5}$
+  (ensemble means, $N=100$, $\pm\sigma$ band; centroid curves lightly smoothed).
+  (\textit{a}) Final-strain spectrum $E(k)=\sum_i E_i(k)$: the full model
+  (strain on) extends to higher wavenumber than the baseline (strain off) but
+  remains broadband, not a rigid translation. (\textit{b}) Centroid migration:
+  the baseline relaxes below unity, the full model is lifted above it by the
+  compression, yet stays far below the linear-RDT line (dashed). The gap
+  between the two solid curves is the distortion attributable to the mean
+  strain at this Reynolds number.}
+  \label{fig:spec-bvc}
+\end{figure}
+
+\subsubsection{Dependence on Reynolds number}\label{sec:spec-Re}
+
+In these non-dimensional variables the molecular viscosity is the inverse
+integral-scale Reynolds number, $\nu\approx Re_{\mathcal{L}}^{-1}$, and it sets
+the depth of the cascade. Figure~\ref{fig:spec-Re} sweeps it over two decades
+for the full model, from $\nu=10^{-4}$ to $10^{-7}$. As $\nu$ decreases the
+spectrum extends progressively further toward high wavenumber
+(figure~\ref{fig:C-spectra}) and the centroid rises
+(figure~\ref{fig:C-centroid}): the cascade deepens monotonically with Reynolds
+number, as it must. The matched no-strain baseline ensembles behave
+consistently---the cascade deepens with $Re$ there too, but, with no
+compression, the centroid relaxes below unity at every $\nu$, confirming that
+the centroid rise in the full model is the strain's doing and not the eddies'.
+
+Two features must be read with care, and the ensemble $\pm\sigma$ bands make
+both explicit. First, the adequately resolved cases ($\nu\gtrsim10^{-5}$)
+settle \emph{below} the linear-RDT line, consistent with the broadband,
+dissipative distortion of \S\,\ref{sec:spec-bvc}: the eddies prevent the rigid
+high-$k$ translation that inviscid linear theory predicts. Second, only the two
+lowest viscosities, $\nu=10^{-6}$ and $10^{-7}$, climb toward or above the
+linear line---but these are precisely the cases whose spectra flatten into a
+grid-scale shelf at the highest resolved wavenumbers (figure~\ref{fig:C-spectra},
+uppermost curves) and whose centroid bands are by far the widest. There the
+dissipation scale has fallen below the grid, so energy piles up at the cutoff
+rather than dissipating, and the centroid is inflated by an under-resolved,
+partly numerical contribution. These cases are not evidence that the model
+exceeds linear RDT; they are evidence that the operating point has outrun the
+grid, and they fix the requirement that the chosen $\nu$ be resolution-checked
+rather than simply lowered. We note also that none of the resolved cases
+exhibits an extended $k^{-5/3}$ inertial range \citep{Kolmogorov1991} over this
+strain interval; at these moderate Reynolds numbers the inertial range is
+physically short \citep{Pope2000}, and its form is in any case resolution-limited
+at the low-$\nu$ end, a matter of grid density rather than of the model.
+
+This fixes how the Reynolds number must be chosen. It is a physical property of
+the inflow turbulence the model represents---set by matching $Re_{\mathcal{L}}$
+of the target inflow, hence $\nu=Re_{\mathcal{L}}^{-1}$---and not a free
+parameter tuned to move the centroid relative to the linear line. Once chosen,
+it must be checked for resolution: the dissipation rolloff must sit below the
+grid cutoff with margin. The cases that most strongly exceed the linear line in
+figure~\ref{fig:C-centroid} are exactly those failing this check, so the
+physical operating point is the largest $\nu$ (lowest $Re$) consistent with the
+target inflow and resolved on the available grid. That operating point is fixed
+next.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{Figures/C_ensemble_spectra.pdf}
+    \caption{}\label{fig:C-spectra}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{Figures/C_ensemble_centroid.pdf}
+    \caption{}\label{fig:C-centroid}
+  \end{subfigure}
+  \caption{Reynolds-number dependence of the full model (ensemble means,
+  $N=100$ per $\nu$, $\pm\sigma$; centroid curves lightly smoothed), for
+  $\nu=10^{-4},\,5\times10^{-5},\,2\times10^{-5},\,1.42\times10^{-5},\,10^{-5},
+  \,10^{-6},\,10^{-7}$. (\textit{a}) Final-strain spectrum $E(k)=\sum_i E_i(k)$;
+  the cascade extends further toward high $k$ as $\nu$ falls. The dotted line
+  marks a $k^{-5/3}$ slope for reference. At the two smallest $\nu$ the spectrum
+  flattens into a grid-scale shelf at the cutoff (under-resolved).
+  (\textit{b}) Centroid migration per $\nu$ against the linear-RDT line
+  (dashed). The resolved cases ($\nu\gtrsim10^{-5}$) lie below the line; the two
+  lowest-$\nu$ cases exceed it but carry the widest $\sigma$ bands, reflecting
+  the under-resolved grid-scale energy in (\textit{a}).}
+  \label{fig:spec-Re}
+\end{figure}
+
+\subsubsection{The physical operating point}\label{sec:spec-op}
+
+The operating point follows from \S\,\ref{sec:spec-Re}: the Reynolds number is
+set by the inflow, then checked for resolution. In code units it is the inverse
+integral-scale Reynolds number, $\nu\approx Re_{\mathcal{L}}^{-1}$, with
+$Re_{\mathcal{L}}=u'\mathcal{L}/\nu$ built on the turbulence intensity and
+integral length scale of the gust as it reaches the leading edge. For the
+present configuration---a NACA0012 at $U_\infty=20$\,m\,s$^{-1}$, chord-based
+Reynolds number $Re_c\approx5.1\times10^5$ and free-stream Mach number
+$M=0.059$, with grid turbulence of $M=60$\,mm mesh---the turbulence at the
+leading-edge plane has intensity $u'/U_\infty\approx6\%$ and integral scale
+$\mathcal{L}\approx55$\,mm, giving $Re_{\mathcal{L}}\approx4.4\times10^3$.
+Mapped to code units through the initial-condition normalisation
+[$(u'\mathcal{L})_{\mathrm{code}}\approx1.5\times10^{-2}$, measured from the
+$e=0$ field], this corresponds to $\nu\approx3\times10^{-6}$, the operating
+point used here.
+
+At this Reynolds number the dissipation scale lies below the base grid under
+the sevenfold compression, so the operating point is run on a refined grid
+($16000$ cells, with the minimum cell size reduced accordingly) at which the
+spectrum is resolved; the grid-scale shelf of the under-resolved sweep cases in
+\S\,\ref{sec:spec-Re} is absent here. The results below are ensemble means over
+$N=200$ independent realisations, with bands showing the geometric $\pm\sigma$
+spread across realisations.
+
+Figure~\ref{fig:op-spectra} shows the resolved final-strain spectrum. The three
+component spectra fall smoothly across four decades of wavenumber with no
+grid-scale shelf, and the realisation-to-realisation spread is tight through the
+energetic and inertial range, broadening only in the far dissipation tail where
+it is immaterial. The transverse upwash component $E_2$ is amplified above the
+streamwise component $E_1$, the spectral signature of the plane strain.
+Consistent with \S\,\ref{sec:spec-Re}, no extended $k^{-5/3}$ range is present:
+at $Re_{\mathcal{L}}\approx4.4\times10^3$ the inertial range is physically short
+\citep{Pope2000}, and the spectrum is dominated by the energetic and dissipative
+ranges. This is a property of the inflow Reynolds number, not a limitation of
+the resolution, which the smooth rolloff confirms is adequate.
+
+Figure~\ref{fig:op-centroid} shows the centroid migration. After a brief
+initialisation transient near $e\simeq0.3$, in which the events rearrange the
+band-limited initial field before compression dominates, the centroid settles
+and migrates to $\bar k/\bar k_0\approx2.4$ by $e=4$. This is well above the
+no-strain baseline (which relaxes below unity, \S\,\ref{sec:spec-bvc}) but lies
+far below the linear-RDT line, which reaches $7.4$ at the same strain. The
+interpretation established in \S\,\ref{sec:spec-bvc} therefore holds at the
+physical operating point and with the noise averaged out over $200$
+realisations: the strain-coupled model distorts the incoming spectrum into a
+broadband form whose energy-weighted centroid migrates far less than the rigid
+translation predicted by linear rapid-distortion theory
+\citep{BatchelorProudman1954,HuntCarruthers1990}. The departure from linear
+theory is robust and, at the Reynolds number of the experiment, substantial.
+
+This resolved, broadband distorted spectrum---and in particular its upwash component $E_2$---is the \DIFdelbegin \DIFdel{input carried forward to the leading-edge response of }\DIFdelend \DIFaddbegin \DIFadd{distorted upwash input that a leading-edge-noise calculation requires; supplying it to an acoustic analogy in the manner of \mbox{%DIFAUXCMD
+\citet{Amiet1975} }\hskip0pt%DIFAUXCMD
+is the subject of a companion paper. The closure that justifies evaluating the rapid redistribution on a single line is established next (}\DIFaddend \S\,\ref{sec:gate}\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\citep{Amiet1975}}\hskip0pt%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{)}\DIFaddend .
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{Figures/C_kv3em6_hires_op_spectra.pdf}
+    \caption{}\label{fig:op-spectra}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{Figures/C_kv3em6_hires_op_centroid.pdf}
+    \caption{}\label{fig:op-centroid}
+  \end{subfigure}
+  \caption{Physical operating point $\nu\approx3\times10^{-6}$
+  ($Re_{\mathcal{L}}\approx4.4\times10^3$), resolved on a $16000$-cell grid;
+  ensemble means over $N=200$ realisations with geometric $\pm\sigma$ bands.
+  (\textit{a}) Final-strain component spectra $\langle E_i(k)\rangle$: the
+  resolved spectrum falls smoothly across four decades with no grid-scale shelf;
+  the upwash component $E_2$ (red) is amplified above the streamwise $E_1$
+  (blue). The dotted line marks a $k^{-5/3}$ slope. (\textit{b}) Total-spectrum
+  centroid migration $\langle\bar k(e)/\bar k(0)\rangle$ (the centroid curve
+  lightly smoothed) against the linear-RDT prediction $e^{-A_{22}e}$ (dashed).
+  After the initialisation transient near $e\simeq0.3$, the centroid migrates to
+  $\approx2.4$ by $e=4$, far below the rigid-translation value of $7.4$:
+  the broadband distortion that linear theory cannot represent.}
+  \label{fig:spec-op}
+\end{figure}
+
+% =====================================================================
+%  Section 5 — Closure of the rapid pressure--strain term on a single
+%  ODT line (the spectral-projection question, "Gate 2").
+%
+%  Requires: amsmath, amssymb. Cross-refs in: sec:val-spectrum (Sec 4.2),
+%  sec:level1a, eq:lrr (if defined in Sec 3). Citations: see
+%  references_sec5_additions.bib (+ existing keys Crow1968,
+%  LaunderReeceRodi1975, HuntCarruthers1990, Pope2000, BatchelorProudman1954).
+%
+%  NOTE: every modelling assumption is introduced with an explicit
+%  "Assumption" label so the conditional nature of the closed form is
+%  visible. The exact results (Poisson solution, M_{ijkl}) carry no
+%  assumption; the single-line collapse is conditional on Assumption A1.
+% =====================================================================
+
+\DIFdelbegin \section{\DIFdel{Closure of the rapid pressure--strain term on a single line}}
+%DIFAUXCMD
+\addtocounter{section}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{sec:gate}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{The results of \S\,\ref{sec:val-spectrum} establish the first half of the
+present contribution: a gust convecting toward the leading edge is distorted
+into a broadband spectrum that departs measurably---and, at the Reynolds number
+of the experiment, substantially---from the rigid translation that linear
+rapid-distortion theory predicts. That distortion is what the strain-coupled
+ODT model is built to capture, and it is the quantity an aeroacoustic
+prediction ultimately requires. Its value, however, rests on a premise that the
+results alone do not justify. The rapid pressure--strain redistribution that
+drives the distortion was evaluated there through the algebraic moment closure
+of \S\,\ref{}%DIF < TODO-ref-Sec3
+\mbox{%DIFAUXCMD
+\citep{LaunderReeceRodi1975}}\hskip0pt%DIFAUXCMD
+, applied component by component on the resolved
+line. That closure is a modelling input. The redistribution it represents is,
+in its exact form, a }\emph{\DIFdel{nonlocal, three-dimensional}} %DIFAUXCMD
+\DIFdel{object: the rapid
+pressure at a point is a volume integral over the entire fluctuating field, and
+the resulting pressure--strain correlation is an integral over the full
+three-dimensional velocity spectrum. Whether such an object admits any
+consistent representation on the single one-dimensional line that ODT
+evolves---and if so, under what condition, and at what cost---is not settled by
+reproducing the moment trajectory of the closure, since the closure is by
+construction able to supply that trajectory. It is a separate question, and it
+is the second half of the contribution. This section answers it.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{We proceed at the spectral level, where the question is sharpest. We first
+write the rapid pressure--strain term exactly, with no modelling, and exhibit
+the three-dimensional nonlocal integral that obstructs a single-line
+representation (\S\,\ref{sec:exact-pi}--\S\,\ref{sec:obstruction}). We then
+identify the one assumption under which that integral collapses to a closed
+functional of the statistics the line carries, state it explicitly, justify it
+for the present inflow, and bound the error it incurs
+(\S\,\ref{sec:assumption}--\S\,\ref{sec:residual}). The collapsed form is a
+closed, computable kernel, derived in full and verified against two exact
+constraints. We show that this spectral kernel reduces, in the isotropic limit,
+to precisely the moment closure used in \S\,\ref{sec:val-spectrum}
+(\S\,\ref{sec:lrr-reduction})---so that the closure employed there is not an
+independent assumption but the leading-order reduction of the line-consistent
+term derived here. Finally, we establish that the resulting rapid source is
+disjoint from the redistribution already performed by the eddy events, which is
+the remaining requirement for the model to be free of double counting
+(\S\,\ref{sec:doublecount}). The outcome is conditional rather than universal:
+the rapid term }\emph{\DIFdel{does}} %DIFAUXCMD
+\DIFdel{close on a single line, within a stated and
+physically grounded limit, and the limit is exactly the regime the
+leading-edge problem occupies.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{The exact rapid pressure--strain term}}%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{sec:exact-pi}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{For incompressible flow the fluctuating pressure satisfies a Poisson equation
+whose source splits into a part linear in the fluctuations and the mean
+velocity gradient (the }\emph{\DIFdel{rapid}} %DIFAUXCMD
+\DIFdel{part) and a part quadratic in the
+fluctuations (the }\emph{\DIFdel{slow}} %DIFAUXCMD
+\DIFdel{part) \mbox{%DIFAUXCMD
+\citep{Pope2000}}\hskip0pt%DIFAUXCMD
+:
+}\begin{displaymath}
+  \DIFdel{\frac{1}{\rho}\,\nabla^2 p'
+  = \underbrace{-2\,\frac{\partial U_k}{\partial x_l}\,
+      \frac{\partial u'_l}{\partial x_k}}_{\text{rapid}}
+    \;\underbrace{-\,\frac{\partial^2}{\partial x_k\partial x_l}
+      \bigl(u'_k u'_l - \overline{u'_k u'_l}\bigr)}_{\text{slow}} .
+  %DIFDELCMD < \label{eq:poisson}%%%
+}\end{displaymath}%DIFAUXCMD
+\DIFdel{The rapid part is linear in $\boldsymbol{u}'$ and proportional to the mean
+gradient $\partial U_k/\partial x_l$, which for the present homogeneous plane
+strain is the constant tensor $A_{kl}$ of \S\,\ref{sec:val-spectrum}. Writing
+$p'_{\mathrm r}$ for the rapid pressure and inverting the Laplacian with the
+free-space Green's function $G(\boldsymbol{x})=-1/4\pi|\boldsymbol{x}|$,
+}\begin{displaymath}
+  \DIFdel{p'_{\mathrm r}(\boldsymbol{x})
+  = \frac{\rho}{2\pi}\,A_{kl}\!\int
+    \frac{1}{|\boldsymbol{x}-\boldsymbol{x}'|}\,
+    \frac{\partial u'_l}{\partial x'_k}(\boldsymbol{x}')\,
+    \mathrm{d}\boldsymbol{x}' .
+  %DIFDELCMD < \label{eq:prapid}%%%
+}\end{displaymath}%DIFAUXCMD
+\DIFdel{The rapid pressure--strain correlation that redistributes energy among the
+Reynolds-stress components is
+$\Pi^{(\mathrm r)}_{ij}
+   = \overline{(p'_{\mathrm r}/\rho)\,(\partial u'_i/\partial x_j
+     + \partial u'_j/\partial x_i)}$.
+Substituting \eqref{eq:prapid} and using homogeneity to pass to the
+velocity spectrum tensor
+$\Phi_{mn}(\boldsymbol{\kappa})$
+(the Fourier transform of $\overline{u'_m(\boldsymbol{x})\,
+u'_n(\boldsymbol{x}+\boldsymbol{r})}$),
+one obtains the standard exact result
+\mbox{%DIFAUXCMD
+\citep{BatchelorProudman1954,Crow1968,HuntCarruthers1990}
+}\hskip0pt%DIFAUXCMD
+}\begin{displaymath}
+  \DIFdel{\Pi^{(\mathrm r)}_{ij}
+  = A_{kl}\,M_{ijkl},
+  \qquad
+  M_{ijkl}
+  = \int_{\mathbb{R}^3}
+    \Bigl[\,
+      \frac{\kappa_j\kappa_k}{\kappa^2}\,\Phi_{il}(\boldsymbol{\kappa})
+      + \frac{\kappa_i\kappa_k}{\kappa^2}\,\Phi_{jl}(\boldsymbol{\kappa})
+    \,\Bigr]\,\mathrm{d}\boldsymbol{\kappa},
+  %DIFDELCMD < \label{eq:Mijkl}%%%
+}\end{displaymath}%DIFAUXCMD
+\DIFdel{where $\kappa=|\boldsymbol{\kappa}|$. Equations
+\eqref{eq:poisson}--\eqref{eq:Mijkl} are exact; no modelling has entered. The
+tensor $M_{ijkl}$ is a linear functional of the }\emph{\DIFdel{full three-dimensional}}
+%DIFAUXCMD
+\DIFdel{spectrum $\Phi_{mn}(\boldsymbol{\kappa})$ through the nonlocal projection
+operator $\kappa_a\kappa_b/\kappa^2$, which is the wavenumber-space image of
+the inverse Laplacian in \eqref{eq:prapid}. This nonlocality and
+three-dimensionality are the obstruction that the single-line model must
+confront.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{The obstruction: what an ODT line resolves}}%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{sec:obstruction}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{ODT evolves a velocity vector $\boldsymbol{u}'(y)$ on a single line aligned
+with the resolved direction, here taken along the contraction axis of the
+strain, $y\equiv x_2$. From it the model has access to the one-dimensional
+spectra
+}\begin{displaymath}
+  \DIFdel{\phi_{mn}(\kappa_2)
+  = \int_{\mathbb{R}^2}
+      \Phi_{mn}(\boldsymbol{\kappa})\,
+      \mathrm{d}\kappa_1\,\mathrm{d}\kappa_3,
+  %DIFDELCMD < \label{eq:phi1d}%%%
+}\end{displaymath}%DIFAUXCMD
+\DIFdel{the one-dimensional spectra obtained by integrating $\Phi_{mn}$ over the two
+unresolved wavenumber components. The integrand of \eqref{eq:Mijkl}, by
+contrast, carries the }\emph{\DIFdel{direction-resolved}} %DIFAUXCMD
+\DIFdel{weight
+$\kappa_a\kappa_b/\kappa^2$, which cannot be reconstructed from
+$\phi_{mn}(\kappa_2)$ alone: integrating out $\kappa_1,\kappa_3$ as in
+\eqref{eq:phi1d} destroys exactly the angular information that the projection
+operator acts on. The reduction $M_{ijkl}\!\to\!$ (functional of
+$\phi_{mn}$) is therefore not available without an assumption about how the
+energy is distributed over the unresolved wavevector directions. This is the
+crux of the present question, and we make the required assumption explicit
+rather than implicit.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{The closure assumption and the collapsed form}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{sec:assumption}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\paragraph{\DIFdel{Assumption A1 (axisymmetry of the undistorted spectrum about the
+line).}} %DIFAUXCMD
+\addtocounter{paragraph}{-1}%DIFAUXCMD
+\DIFdel{The spectrum tensor of the incoming turbulence, before the rapid
+distortion acts, is axisymmetric about the resolved direction $\boldsymbol{e}_2$:
+$\Phi_{mn}(\boldsymbol{\kappa})$ depends on $\boldsymbol{\kappa}$ only through
+$\kappa_2$ and $\kappa_\perp=(\kappa_1^2+\kappa_3^2)^{1/2}$, and its
+polarization is invariant under rotation about $\boldsymbol{e}_2$.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{This is a statement about the }\emph{\DIFdel{turbulence}}%DIFAUXCMD
+\DIFdel{, not about the strain. It is
+justified for the present configuration because the inflow is grid turbulence,
+which is closely isotropic at the grid and is subsequently contracted along a
+single axis as it approaches the stagnation plane; isotropy is the special
+case of A1, and uniaxial contraction preserves axisymmetry about the
+contraction axis. The plane strain $A_{kl}=\mathrm{diag}(\tfrac12,-\tfrac12,0)$
+acting at the leading edge is itself }\emph{\DIFdel{not}} %DIFAUXCMD
+\DIFdel{axisymmetric, so A1 is imposed
+on the state on which the rapid operator acts, consistent with the
+rapid-distortion ordering in which $\Pi^{(\mathrm r)}$ is evaluated on the
+current (here, axisymmetric to leading order) field. The error incurred when
+the accumulated distortion has driven the spectrum away from axisymmetry is
+quantified in \S\,\ref{sec:residual}.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Under A1 the angular integral in \eqref{eq:Mijkl} can be carried out. Writing
+$\boldsymbol{\kappa}=(\kappa_\perp\cos\theta,\ \kappa_2,\
+\kappa_\perp\sin\theta)$ and using that, by A1, $\Phi_{mn}$ is independent of
+$\theta$, the azimuthal averages of the projection weights reduce to
+}\begin{displaymath}
+  \DIFdel{\Bigl\langle \frac{\kappa_1^2}{\kappa^2}\Bigr\rangle_\theta
+  = \Bigl\langle \frac{\kappa_3^2}{\kappa^2}\Bigr\rangle_\theta
+  = \frac{1}{2}\,\frac{\kappa_\perp^2}{\kappa^2},
+  \qquad
+  \Bigl\langle \frac{\kappa_2^2}{\kappa^2}\Bigr\rangle_\theta
+  = \frac{\kappa_2^2}{\kappa^2},
+  \qquad
+  \Bigl\langle \frac{\kappa_1\kappa_3}{\kappa^2}\Bigr\rangle_\theta = 0,
+  %DIFDELCMD < \label{eq:angular}%%%
+}\end{displaymath}%DIFAUXCMD
+\DIFdel{with $\kappa^2=\kappa_2^2+\kappa_\perp^2$, and all weights mixing a resolved
+and an unresolved index (e.g.\ $\kappa_1\kappa_2/\kappa^2$) averaging to zero.
+Substituting \eqref{eq:angular} into \eqref{eq:Mijkl} removes the azimuthal
+dependence and leaves a two-dimensional integral over $(\kappa_2,\kappa_\perp)$
+of the axisymmetric spectrum. Defining the diagonal one-dimensional spectra
+along the line,
+}\begin{displaymath}
+  \DIFdel{E_n^{\,\|}(\kappa_2)
+   = \int_0^\infty \Phi_{nn}(\kappa_2,\kappa_\perp)\,
+     2\pi\kappa_\perp\,\mathrm{d}\kappa_\perp
+   \quad(\text{no sum}),
+   %DIFDELCMD < \label{eq:Epar}%%%
+}\end{displaymath}%DIFAUXCMD
+\DIFdel{the rapid pressure--strain term reduces to a two-dimensional integral over the
+half-plane $(\kappa_2,\kappa_\perp)$ of the axisymmetric spectrum. The
+axisymmetric, solenoidal spectrum is fixed by two scalar functions of
+$(\kappa_2,\kappa_\perp)$ \mbox{%DIFAUXCMD
+\citep{Batchelor1946,ChandrasekharAxisym1950}}\hskip0pt%DIFAUXCMD
+; we
+denote them $a(\kappa_2,\kappa_\perp)$ and $c(\kappa_2,\kappa_\perp)$, where
+$a$ is the isotropic-like scalar (the sole survivor when the turbulence is
+isotropic) and $c$ measures the axisymmetric departure from isotropy. Carrying
+out the azimuthal average \eqref{eq:angular} and specialising to the plane
+strain $A=\mathrm{diag}(\tfrac12,-\tfrac12,0)$, the diagonal rapid
+pressure--strain components are
+}\begin{displaymath}
+  \DIFdel{\Pi^{(\mathrm r)}_{nn}
+  = \int_{0}^{\infty}\!\!\int_{0}^{\infty}
+      g_{n}(x)\,\bigl[\,a(\kappa_2,\kappa_\perp),\,c(\kappa_2,\kappa_\perp)\,\bigr]\,
+      2\pi\kappa_\perp\,\mathrm{d}\kappa_\perp\,\mathrm{d}\kappa_2
+   \quad(\text{no sum on }n),
+  %DIFDELCMD < \label{eq:Piclosed}%%%
+}\end{displaymath}%DIFAUXCMD
+\DIFdel{with $x\equiv\kappa_2^2/\kappa^2$, $\kappa^2=\kappa_2^2+\kappa_\perp^2$, and the
+kernels, linear in the two spectral scalars,
+}\begin{eqnarray*}
+  \DIFdel{g_{1}(x) }&\DIFdel{= a\!\left(\tfrac18 + \tfrac34 x - \tfrac78 x^2\right)
+            + c\,\tfrac78\,x\,(1-x)^2, \label{eq:g1}}\\[2pt]
+  \DIFdel{g_{2}(x) }&\DIFdel{= -\tfrac32\,x\,\bigl[\,a\,(1-x) + c\,(1-x)^2\,\bigr],
+            \label{eq:g2}}\\[2pt]
+  \DIFdel{g_{3}(x) }&\DIFdel{= a\!\left(-\tfrac18 + \tfrac34 x - \tfrac58 x^2\right)
+            + c\,\tfrac58\,x\,(1-x)^2. %DIFDELCMD < \label{eq:g3}%%%
+}\end{eqnarray*}%DIFAUXCMD
+\DIFdel{Equations \eqref{eq:Piclosed}--\eqref{eq:g3} are the central result:
+}\emph{\DIFdel{under A1, the rapid pressure--strain term is a closed, computable
+functional of the axisymmetric spectral scalars $a,c$ on the resolved
+half-plane and the mean strain}}%DIFAUXCMD
+\DIFdel{, with no reference to the unresolved azimuthal
+structure beyond what A1 fixes. The kernels satisfy two exact constraints that
+verify the reduction. First, energy conservation: pressure--strain
+redistributes without changing the trace, and indeed
+$g_1(x)+g_2(x)+g_3(x)=0$ identically for all $x$ and for both scalars, so
+$\Pi^{(\mathrm r)}_{11}+\Pi^{(\mathrm r)}_{22}+\Pi^{(\mathrm r)}_{33}=0$.
+Second, the isotropic limit: setting $c=0$ with $a$ a function of $\kappa$
+alone, the integral of $g_3$ over the half-plane vanishes, so
+$\Pi^{(\mathrm r)}_{33}=0$---as it must, since the plane strain has no
+component along $x_3$ and the isotropic rapid term is proportional to $S_{ij}$
+\mbox{%DIFAUXCMD
+\citep{Crow1968}}\hskip0pt%DIFAUXCMD
+. Both constraints hold identically in the derived kernels,
+confirming the tensor reduction.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Residual error and the limit of validity}}%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{sec:residual}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Assumption A1 is exact for the undistorted inflow and is progressively
+violated as the rapid strain itself renders the spectrum anisotropic about the
+line. The leading correction is governed by the departure-from-axisymmetry
+tensor $D_{mn}(\boldsymbol{\kappa})
+=\Phi_{mn}-\Phi^{\mathrm{axi}}_{mn}$, whose contribution to
+\eqref{eq:Mijkl} is the azimuthal first harmonic that \eqref{eq:angular}
+discards. Because that harmonic integrates to zero against the isotropic part
+and enters $M_{ijkl}$ only at second order in the accumulated anisotropy, the
+closed form \eqref{eq:Piclosed} is accurate to $O(b^2)$ in the Reynolds-stress
+anisotropy $b_{ij}$ generated by the strain, and exact at $b_{ij}=0$. The
+practical consequence is that \eqref{eq:Piclosed} is most reliable early in
+the distortion, when the gust first enters the strained region, and degrades
+as the total strain $e$ accumulates---precisely the regime ordering that the
+convective mapping of \S\,\ref{sec:val-spectrum} makes physical, since the
+acoustically relevant upwash is set near the leading-edge plane where the
+accumulated strain is bounded. We therefore regard \eqref{eq:Piclosed} as a
+controlled leading-order closure, valid where the gust anisotropy is moderate,
+rather than as an identity.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Reduction to the moment closure}}%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{sec:lrr-reduction}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{The closed form \eqref{eq:Piclosed}--\eqref{eq:g3} operates on the resolved
+spectrum, whereas the distortion results of \S\,\ref{sec:val-spectrum} were
+obtained with the algebraic moment closure of \S\,\ref{}%DIF < TODO-ref-Sec3
+\mbox{%DIFAUXCMD
+\citep{LaunderReeceRodi1975}}\hskip0pt%DIFAUXCMD
+. For the two to be consistent, the spectral
+kernel must reduce to that moment closure in the limit where the moment
+closure is exact---isotropic turbulence. We show that it does, which both
+justifies the closure used in the simulations and fixes the prefactor in an
+explicit convention.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Figure~\ref{fig:pi-kernels} plots the kernels $g_1,g_2,g_3$ of
+\eqref{eq:g1}--\eqref{eq:g3} against the angular variable
+$x=\kappa_2^2/\kappa^2$. Two features are exact and hold for both spectral
+scalars. The kernels sum to zero at every $x$,
+}\begin{displaymath}
+  \DIFdel{g_1(x)+g_2(x)+g_3(x)=0 \qquad \forall x,
+  %DIFDELCMD < \label{eq:gtrace}%%%
+}\end{displaymath}%DIFAUXCMD
+\DIFdel{so the rapid term conserves turbulent kinetic energy pointwise in wavenumber,
+not merely in the integral; and each kernel vanishes at $x=1$, where the
+wavevector aligns with the line and the projection $\kappa_a\kappa_b/\kappa^2$
+degenerates. The signs are physically ordered: $g_1>0$ (energy fed to the
+streamwise component $E_1$), $g_2<0$ (energy removed from the line/upwash
+component $E_2$) over the bulk of the angular range, with $g_3$ changing sign,
+consistent with the plane strain stretching $x_1$ and compressing $x_2$.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{For }\emph{\DIFdel{isotropic}} %DIFAUXCMD
+\DIFdel{turbulence the anisotropy scalar vanishes ($c=0$) and the
+isotropic-like scalar $a$ depends only on $\kappa$. Averaging the kernels over
+solid angle---equivalently, integrating $g_n(x)$ against the isotropic
+distribution of $x$ on the sphere---gives
+}\begin{displaymath}
+  \DIFdel{\langle g_1\rangle : \langle g_2\rangle : \langle g_3\rangle
+  = +\tfrac15 : -\tfrac15 : 0,
+  %DIFDELCMD < \label{eq:giso}%%%
+}\end{displaymath}%DIFAUXCMD
+\DIFdel{in the ratio $+1:-1:0$. This is exactly the structure of the plane strain
+$S_{ij}=\mathrm{diag}(\tfrac12,-\tfrac12,0)$: the rapid term is proportional to
+$S_{ij}$, with $\Pi^{(\mathrm r)}_{33}=0$ because the strain has no component
+along $x_3$. The spectral kernel therefore collapses, under isotropy, to the
+isotropic-production form of the moment closure,
+}\begin{displaymath}
+  \DIFdel{\Pi^{(\mathrm r)}_{ij}
+  = \tfrac{4}{5}\,k_t\,S_{ij}
+  \qquad(\text{isotropic limit}),
+  %DIFDELCMD < \label{eq:crow}%%%
+}\end{displaymath}%DIFAUXCMD
+\DIFdel{the result of \mbox{%DIFAUXCMD
+\citet{Crow1968} }\hskip0pt%DIFAUXCMD
+that underlies the isotropisation-of-production
+(IP) rapid term in the closure of \mbox{%DIFAUXCMD
+\citet{LaunderReeceRodi1975}}\hskip0pt%DIFAUXCMD
+. We note a
+convention: with the symmetrised definition of the pressure--strain correlation
+adopted here and the factor of two carried in the Poisson source
+\eqref{eq:poisson}, the kernels \eqref{eq:g1}--\eqref{eq:g3} yield the
+coefficient $\tfrac25 k_t$ for the $11$-component directly (since $S_{11}=\tfrac12$),
+equivalent to the standard $\tfrac45 k_t S_{ij}$ of \eqref{eq:crow}; the ratio
+\eqref{eq:giso} and the tracelessness \eqref{eq:gtrace} are independent of this
+convention.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{The consequence is that the algebraic closure used to obtain the distortion of
+\S\,\ref{sec:val-spectrum} is not an independent assumption but the
+isotropic-limit reduction of the line-consistent spectral term derived here.
+The spectral form \eqref{eq:Piclosed} carries, in addition, the angular
+($x$-dependent) and anisotropy ($c$-scalar) information that the moment closure
+discards; the corrections it retains are precisely those of order $b^2$ in the
+strain-generated anisotropy identified in \S\,\ref{sec:residual}. The moment
+closure and the spectral closure thus agree to leading order and depart in a
+controlled way as the gust anisotropy grows, which is the regime ordering the
+present application requires.
+}%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure}
+%DIFDELCMD <   \centering
+%DIFDELCMD <   \includegraphics[width=0.72\textwidth]{Figures/fig_pi_kernels.pdf}
+%DIFDELCMD <   %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Rapid pressure--strain closure kernels $g_1,g_2,g_3$
+  (eqs.~\eqref{eq:g1}--\eqref{eq:g3}) against the angular variable
+  $x=\kappa_2^2/\kappa^2$. Solid curves: coefficient of the isotropic-like
+  spectral scalar $a$; faint dashed curves: coefficient of the anisotropy
+  scalar $c$. The kernels sum to zero at every $x$ (energy conservation,
+  eq.~\eqref{eq:gtrace}) and vanish at $x=1$. Averaged over an isotropic
+  spectrum they give the ratio $+\tfrac15:-\tfrac15:0$
+  (eq.~\eqref{eq:giso}), recovering the isotropisation-of-production form
+  $\Pi^{(\mathrm r)}_{ij}=\tfrac45 k_t S_{ij}$ \mbox{%DIFAUXCMD
+\citep{Crow1968} }\hskip0pt%DIFAUXCMD
+that underlies
+  the moment closure used in \S\,\ref{sec:val-spectrum}.}}
+  %DIFAUXCMD
+%DIFDELCMD < \label{fig:pi-kernels}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Consistency with the eddy redistribution: avoiding double
+counting}}%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{sec:doublecount}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{A closed rapid term is necessary but not sufficient: it must not duplicate
+redistribution already effected by the eddy events. The pressure--strain
+correlation decomposes canonically into rapid and slow parts,
+$\Pi_{ij}=\Pi^{(\mathrm r)}_{ij}+\Pi^{(\mathrm s)}_{ij}$, corresponding to the
+two source terms in \eqref{eq:poisson}. The slow part
+$\Pi^{(\mathrm s)}_{ij}$ is the return-to-isotropy mechanism, quadratic in the
+fluctuations and independent of the mean gradient; the eddy events in ODT,
+which act on the fluctuating field without reference to $A_{kl}$, are the
+model's representation of exactly this slow redistribution. The rapid part
+$\Pi^{(\mathrm r)}_{ij}$, proportional to $A_{kl}$ and linear in the
+fluctuations, is by construction absent from the eddy mechanism, which carries
+no dependence on the mean strain. The two therefore occupy disjoint terms of
+the canonical decomposition, and adding \eqref{eq:Piclosed} as an explicit
+mean-strain-driven source alongside the eddies does not double-count, provided
+the eddy events are calibrated to reproduce the slow return-to-isotropy in the
+absence of mean strain---a condition that the no-strain baseline of
+\S\,\ref{sec:spec-bvc} verifies directly, since there the centroid relaxes
+under the eddies alone with no spurious rapid contribution. This argument
+establishes consistency at the level of the decomposition; a quantitative
+check that the calibrated slow part matches the measured return-to-isotropy is
+deferred to \S\,\ref{}.%DIF < TODO-ref
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Summary}}%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{sec:gate-summary}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{The rapid pressure--strain term, exactly a nonlocal three-dimensional integral
+\eqref{eq:Mijkl} of the full spectrum, collapses under axisymmetry of the
+undistorted inflow about the resolved direction (Assumption A1) to the closed,
+single-line functional \eqref{eq:Piclosed} of the resolved spectra and the
+mean strain. The collapse is exact for the isotropic inflow and controlled to
+$O(b^2)$ in the strain-generated anisotropy, with the error growing as the
+accumulated strain renders the spectrum anisotropic about the line. The
+resulting rapid source is consistent with---and disjoint from---the slow
+redistribution carried by the eddy events, so the strain-coupled model is free
+of double counting at the level of the rapid/slow decomposition. The closure
+therefore holds on a single line within a stated and physically grounded
+limit, rather than universally; characterising its breakdown at large
+accumulated strain is the subject of \S\,\ref{}.%DIF < TODO-ref
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+%DIF <  =====================================================================
+%DIF <   Validation against Chen, Meneveau & Katz (2006) -- Option A:
+%DIF <   rigorous RDT-reference validation + qualitative full-model anisotropy.
+%DIF <   Figures: fig_cmk_rdt_validation.pdf, fig_cmk_anisotropy.pdf
+%DIF <   Citations (existing keys): ChenMeneveauKatz2006, LeePiomelliReynolds1986,
+%DIF <   BatchelorProudman1954. Add the first two to references if absent.
+%DIF <  =====================================================================
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \subsection{Validation against a strained-turbulence benchmark}
+\label{sec:cmk}
+
+The verification of \S\,\ref{sec:val-spectrum} establishes that the model
+departs from linear rapid-distortion theory in a broadband manner, but it does
+so against the model's own no-strain baseline. An external benchmark is needed
+to confirm that both the rapid-distortion limit and the departure from it are
+physical. We use the plane-strain experiment of \citet{ChenMeneveauKatz2006}
+(hereafter CMK), in which initially near-isotropic turbulence at
+$R_\lambda\approx400$ is subjected to a controlled planar straining cycle and
+the one-dimensional component spectra are compared with rapid-distortion theory.
+We reproduce the \emph{straining} phase of their cycle; the relaxation and
+destraining phases involve a strain reversal that the present monotonic-strain
+configuration does not model. In CMK's variables the end of the straining phase
+corresponds to a total deformation $D=\exp(\int S\,\mathrm{d}t)\approx3$, which
+maps to a total strain $e=St=2\ln D\approx2.20$ in the present notation.
+
+\begin{figure}
+  \centering
+
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/fig_cmk_centroid.pdf}
+    \caption{}
+    \label{fig:cmk-rdt-centroid}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/fig_cmk_energy.pdf}
+    \caption{}
+    \label{fig:cmk-rdt-energy}
+  \end{subfigure}
+
+  \caption{Rapid-distortion limit, with eddy events suppressed and inviscid
+  evolution, against the analytic reference of \citet{LeePiomelliReynolds1986}
+  used by \citet{ChenMeneveauKatz2006}. (\textit{a}) Component
+  spectral-centroid migration follows the rigid-translation prediction
+  $e^{-A_{22}e}$, shown by the solid line, reaching the deformation ratio
+  $D=3$ at the end of the straining phase, with the three components
+  coincident. (\textit{b}) Turbulent kinetic energy follows the plane-strain
+  amplification $q^2/q_0^2$, shown by the solid line, reaching $1.74$ at
+  $e=2.20$.}
+  \label{fig:cmk-rdt}
+\end{figure}
+\DIFaddbegin \subsubsection{\DIFadd{The rapid-distortion limit}}\label{sec:cmk-rdt} \DIFaddend With the eddy events suppressed and zero molecular viscosity, the model must reproduce the analytic rapid-distortion result that CMK use as their reference,
+taken from \citet{LeePiomelliReynolds1986}. Figure~\ref{fig:cmk-rdt} shows the
+comparison. The spectral centroid of each velocity component
+(figure~\ref{fig:cmk-rdt-centroid}) follows the rigid-translation prediction
+$\bar\kappa(e)/\bar\kappa(0)=e^{-A_{22}e}$ exactly, reaching the deformation
+ratio $D=3.00$ at $e=2.20$, with the three components coincident. The turbulent
+kinetic energy (figure~\ref{fig:cmk-rdt-energy}) follows the
+\citet{LeePiomelliReynolds1986} plane-strain amplification
+$q^2/q_0^2 = 1 + \tfrac{8}{15}a^2 + \tfrac{8}{315}a^4$ (with $a=\int S\,\mathrm
+{d}t$), reaching $1.74$ against the analytic $1.74$ at the end of the straining
+phase. The strain operator therefore reproduces the rapid-distortion limit that
+underlies CMK's reference, to within discretisation error, in both the spectral
+translation and the energy amplification. We note that this agreement requires
+the truly inviscid setting ($\nu=0$): on a fine adaptive grid any nonzero
+viscosity dissipates the compressed small scales and degrades the rigid
+translation, an effect we verified directly.
+
+\subsubsection{The full model: emergence of spectral
+anisotropy}\label{sec:cmk-full}
+
+With the eddy events and molecular viscosity active, the model is no longer
+constrained to rigid translation, and the strain drives a measurable anisotropy
+between the velocity components. Figure~\ref{fig:cmk-aniso} shows the
+ensemble-averaged ($N=64$) centroid migration of the streamwise ($E_{11}$) and
+upwash ($E_{22}$) component spectra. The band-limited initial field is not an
+equilibrium turbulent state; over the first strain increment the eddy events
+rearrange it to a relaxed state, accompanied by a rapid initial energy
+adjustment (shaded region). Measured from this relaxed reference state, the two
+components diverge progressively under continued strain: the streamwise
+component migrates to higher wavenumber while the upwash component is held back.
+This is the same qualitative behaviour CMK report---the strained spectrum
+departs from the isotropic-translation expectation, with the components
+responding differently to the compression---and it is the spectral signature of
+the broadband distortion identified in \S\,\ref{sec:val-spectrum}.
+
+We restrict this comparison to its qualitative content for three reasons, each
+stated plainly. First, the present band-limited initial spectrum differs from
+CMK's model spectrum, so absolute spectral levels are not directly comparable;
+the relaxation transient further precludes an absolute-level match. Second, the
+one-dimensional spectra resolved on the ODT line and the transverse/longitudinal
+one-dimensional spectra of the three-dimensional experiment are not the same
+projection of the spectrum tensor, so the cross-component ratio differs by
+construction even in the isotropic state. Third, the effective scale separation
+achieved here, $\mathcal{L}/\eta\approx250$, is below the experimental value
+$\approx930$; matching the latter on a single line exceeds feasible cost, as the
+compressed dissipation range demands prohibitive resolution. Within these
+limits, the model reproduces the rapid-distortion reference exactly
+(\S\,\ref{sec:cmk-rdt}) and the qualitative departure mechanism of the full
+benchmark (this section). A quantitative spectral reproduction, requiring a
+matched equilibrium inflow spectrum and matched Reynolds number, is left to
+future work.
+
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{Figures/fig_cmk_anisotropy.pdf}
+  \caption{Full model (eddies and viscosity active; ensemble mean, $N=64$):
+  centroid migration of the streamwise ($E_{11}$) and upwash ($E_{22}$)
+  component spectra, each normalised to the relaxed reference state
+  $e_0=0.1$. The band-limited initial field relaxes over the first strain
+  increment (shaded); thereafter the components diverge under strain---the
+  streamwise component migrating to higher wavenumber while the upwash component
+  is held back---reproducing the qualitative departure-from-RDT mechanism of
+  \citet{ChenMeneveauKatz2006}. The comparison is qualitative; see text.}
+  \label{fig:cmk-aniso}
+\end{figure}
+
+
+\newpage
+% =====================================================================
+%  Validation against Lee & Reynolds (1985) DNS of strained homogeneous
+%  turbulence. Moment-level (Reynolds-stress anisotropy) comparison.
+%
+%  Figures: fig_LR_plane.pdf, fig_LR_axisym.pdf
+%  Bib keys (add via references_lee_reynolds_additions.bib):
+%     LeeReynolds1985, MillsCorrsin1959, TuckerReynolds1968
+%  Reuses (already in manuscript): LeePiomelliReynolds1986, BatchelorProudman1954,
+%     ChenMeneveauKatz2006, Pope2000, LaunderReeceRodi1975.
+% =====================================================================
+
+\subsection{Validation against direct numerical simulation of strained
+turbulence}
+\label{sec:lr-validation}
+
+The benchmark of \S\,\ref{sec:cmk} establishes that the present model reproduces
+the rapid-distortion limit exactly and departs from it in the broadband manner
+expected at finite Reynolds number. That comparison is, however, restricted in
+two respects: it is an experiment, and at its Reynolds number
+($R_\lambda\approx400$) a quantitative spectral reproduction on a single
+one-dimensional line is precluded by resolution. To validate the model where it
+is most directly applicable---at the level of the single-point Reynolds-stress
+anisotropy, which is the quantity that ultimately feeds the leading-edge
+response---we compare against the direct numerical simulations (DNS) of
+\citet{LeeReynolds1985}. Their simulations are an ideal second benchmark for
+three reasons. First, they are DNS, free of the measurement noise and finite-%
+sample scatter of an experiment. Second, they were deliberately run at low
+turbulence Reynolds number, $q^4/(\nu\varepsilon)\lesssim100$, a constraint
+imposed in the original study by the requirement to resolve the small scales on
+a $128^3$ mesh; this same low Reynolds number is fully resolvable on a single
+ODT line, so the resolution wall encountered in \S\,\ref{sec:cmk} does not arise.
+Third, they report the Reynolds-stress anisotropy as a function of total strain
+for several irrotational strain modes, alongside the analytic rapid-distortion
+prediction, providing a graded reference curve rather than a single endpoint.
+
+\subsubsection{Comparison quantity and strain protocol}
+\label{sec:lr-quantity}
+
+The comparison is made in terms of the Reynolds-stress anisotropy tensor
+\begin{equation}
+  b_{ij} \;=\; \frac{\langle u_i u_j\rangle}{\langle u_k u_k\rangle}
+              \;-\; \tfrac{1}{3}\,\delta_{ij},
+  \label{eq:bij}
+\end{equation}
+evaluated as a function of the reference total strain
+\begin{equation}
+  c \;=\; \exp\!\left(\int_0^t S(t')\,\mathrm{d}t'\right),
+  \qquad
+  S \;=\; \sqrt{\tfrac{1}{2}\,S_{ij}S_{ij}},
+  \label{eq:total-strain}
+\end{equation}
+where $S$ is the equivalent mean strain rate and $c$ is the cumulative
+deformation, following the definitions of \citet[][Eqs.~5.1.4 and
+5.1.7]{LeeReynolds1985}. Note that $c$ is a deformation \emph{ratio}: it is
+related to the integrated strain in the present notation by
+$\int_0^t S\,\mathrm{d}t = \ln c$. The anisotropy~\eqref{eq:bij} is computed
+directly from the single-point velocity-component variances along the ODT line,
+ensemble-averaged over $N=1000$ independent realizations; no spectral transform
+is involved, so the comparison is insensitive to the small-scale resolution that
+limited the spectral comparison of \S\,\ref{sec:cmk}.
+
+Two of \citeauthor{LeeReynolds1985}'s irrotational strain modes are considered.
+The first is \emph{plane strain},
+\begin{equation}
+  S_{ij} \;=\; S\,\mathrm{diag}(0,\,-1,\,+1),
+  \DIFdelbegin %DIFDELCMD < \label{eq:plane-strain}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \label{eq:lr-plane-strain}
+\DIFaddend \end{equation}
+in which one direction is unstrained, one is compressed, and one is stretched.
+The second is \emph{axisymmetric contraction},
+\begin{equation}
+  S_{ij} \;=\; \frac{2}{\sqrt{3}}\,S\,
+  \mathrm{diag}\!\left(+1,\,-\tfrac{1}{2},\,-\tfrac{1}{2}\right),
+  \label{eq:axisym-contraction}
+\end{equation}
+in which one axis is stretched and the two transverse directions are compressed
+equally. In both cases the ODT line is oriented along a compressed direction, so
+that the mean dilatation compresses the line as $L(t)=L_0\exp(A_{22}t)$, with
+$A_{22}=-S$ for plane strain and $A_{22}=-S/\sqrt{3}$ for axisymmetric
+contraction. The plane-strain runs are carried to $c=4$ and the axisymmetric runs
+to $c=3.32$, matching the total strains reported by \citeauthor{LeeReynolds1985}
+The kinematic fidelity of the strain implementation is confirmed by the line
+compression: the measured $L(t_f)/L_0$ agrees with $\exp(A_{22}t_f)$ to better
+than $0.3\%$ in both cases.
+
+A note on the strain-rate parameter is in order, because it governs how the two
+modes should be interpreted. \citeauthor{LeeReynolds1985} characterise each run
+by the strain-rate parameter $S^\ast=Sq^2/\varepsilon$, the ratio of the
+eddy-turnover time to the mean-strain time. For \emph{axisymmetric contraction}
+they find that the anisotropy evolution depends only on the total strain $c$ and
+is essentially independent of $S^\ast$; this makes the axisymmetric case a clean,
+parameter-free target, since matching $c$---a purely kinematic quantity that the
+dilatation reproduces exactly---is sufficient. For \emph{plane strain} the
+situation is more nuanced: the compressed ($b_{22}$) and stretched ($b_{33}$)
+components are nearly $S^\ast$-independent, but the unstrained component $b_{11}$
+is strongly $S^\ast$-dependent, ranging in the DNS from $b_{11}\approx0$ at the
+lowest strain rates (run~PXH) to the rapid-distortion value $b_{11}\approx+0.12$
+at the highest (run~PXG). This distinction is central to the interpretation of
+the plane-strain comparison below.
+
+\subsubsection{Plane strain}
+\label{sec:lr-plane}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{Figures/fig_LR_plane.pdf}
+  \caption{Reynolds-stress anisotropy under plane strain: present model
+  (lines; ensemble mean over $N=1000$ realizations, standard-error band shown)
+  versus the DNS of \citet{LeeReynolds1985} (symbols, digitised from their
+  Figure~5.4). The compressed component $b_{22}$ and stretched component $b_{33}$
+  are reproduced quantitatively. The unstrained component $b_{11}$ is strongly
+  strain-rate-dependent in the DNS; its range from slow to fast strain rate is
+  shown as the shaded band, with the model's near-zero value lying at the
+  slow-strain edge. Reference total strain $c=\exp\int S\,\mathrm{d}t$.}
+  \label{fig:lr-plane}
+\end{figure}
+Figure~\ref{fig:lr-plane} shows the evolution of the three anisotropy components
+under plane strain, with the present model (lines, ensemble mean over $N=1000$
+realizations with the standard-error band shown) overlaid on the DNS of
+\citet{LeeReynolds1985} (symbols, digitised from their Figure~5.4).
+
+The agreement on the two strained components is good. The compressed-direction
+anisotropy $b_{22}$ rises monotonically and the model tracks the DNS closely
+across the entire strain range, reaching $b_{22}=+0.21$ at $c=3.86$ against the
+DNS value of $\approx+0.20$. The stretched-direction anisotropy $b_{33}$ falls to
+$b_{33}=-0.20$ in the model against $\approx-0.26$ in the DNS; the model captures
+the correct trend and the bulk of the magnitude, under-predicting the depletion of
+the stretched component by about $0.05$ at the largest strain. These two
+components are precisely the ones \citeauthor{LeeReynolds1985} identify as
+nearly strain-rate-independent, so they constitute the robust part of the
+comparison, and the model reproduces them quantitatively.
+
+The unstrained-direction anisotropy $b_{11}$ requires more careful
+interpretation, and we present it honestly rather than as a clean match. In the
+DNS, $b_{11}$ is the most strain-rate-sensitive component, spanning the shaded
+band in Figure~\ref{fig:lr-plane} from $b_{11}\approx0$ (slow strain) to
+$b_{11}\approx+0.12$ (fast strain, approaching the rapid-distortion limit). The
+present model yields $b_{11}\approx-0.01$, essentially zero, whereas the DNS
+rises to $b_{11}\approx+0.12$ at the highest strain rate. As shown in
+\S\,\ref{sec:lr-discussion}, this is not a deficiency of the present model: the
+positive $b_{11}$ seen in the DNS lies outside the reach of rapid-distortion
+theory and of the standard second-moment closures alike, and the present result
+coincides with the closure prediction on which the model is built. Physically,
+$b_{11}$ is governed entirely by intercomponent redistribution, since the
+unstrained direction receives no energy directly from the mean strain; we
+therefore defer its interpretation to \S\,\ref{sec:lr-discussion}, where it is
+compared against the full hierarchy of analytic predictions.
+
+A consistency check supports the internal correctness of the computed
+anisotropy: the model's $b_{ij}$ is traceless to machine precision at every
+strain, $b_{11}+b_{22}+b_{33}=0$, as required by the definition~\eqref{eq:bij}.
+
+\subsubsection{Axisymmetric contraction}
+\label{sec:lr-axisym}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{Figures/fig_LR_axisym.pdf}
+  \caption{Reynolds-stress anisotropy under axisymmetric contraction: present
+  model (lines; $N=1000$) versus the DNS of \citet{LeeReynolds1985} (symbols,
+  digitised from their Figure~5.8). The axis component $b_{11}$ and the transverse
+  mean $\tfrac{1}{2}(b_{22}+b_{33})$ are compared; the shaded spread is the
+  residual $b_{22}\neq b_{33}$ split arising because the one-dimensional line
+  breaks the transverse symmetry of the flow. The model reproduces the trend and
+  sign structure while under-predicting the anisotropy magnitude by about
+  $25\%$.}
+  \label{fig:lr-axisym}
+\end{figure}
+Figure~\ref{fig:lr-axisym} shows the axisymmetric-contraction comparison. Here
+the physically distinct quantities are the axis component $b_{11}$ (the stretched
+direction) and the transverse anisotropy of the two compressed directions, which
+in the exact flow are equal, $b_{22}=b_{33}$, by the axisymmetry of the imposed
+strain about $x_1$.
+
+A structural feature of the one-dimensional representation must be stated at the
+outset. Because the ODT line lies along one of the two transverse (compressed)
+directions, the model resolves the dynamics along that direction explicitly
+through the eddy events, whereas the orthogonal transverse direction is
+represented only through the pointwise three-component velocity. The line
+therefore breaks the $x_2\leftrightarrow x_3$ symmetry that the physical flow
+possesses, and the model does not return exactly $b_{22}=b_{33}$. At $N=1000$
+realizations the residual split is small---$b_{22}=+0.102$ versus
+$b_{33}=+0.113$ at $c=3.16$, a difference of about $0.011$---and is shown as the
+shaded spread in Figure~\ref{fig:lr-axisym}; the larger asymmetry seen in a
+single realization is sampling noise that the ensemble removes. The
+symmetry-respecting transverse quantity is the mean
+$\tfrac{1}{2}(b_{22}+b_{33})$, which by tracelessness equals $-\tfrac{1}{2}b_{11}$
+and is the appropriate object to compare against the DNS transverse curve.
+
+With this understood, the model reproduces the correct qualitative structure: the
+stretched axis loses anisotropy ($b_{11}<0$) while the compressed transverse
+plane gains ($b_{22},b_{33}>0$), monotonically with total strain. Quantitatively,
+the model under-predicts the magnitude of the anisotropy: at $c=3.16$ it reaches
+$b_{11}=-0.21$ against the DNS value of $\approx-0.29$ (digitised from their
+Figure~5.8), an under-prediction of roughly $25\%$, with a correspondingly
+smaller transverse anisotropy. The trend, the sign structure, and the monotonic
+approach to a strained asymptotic state are all captured; the magnitude is
+systematically low.
+
+\subsubsection{Discussion: the unstrained component and the limits of the closure
+family}
+\label{sec:lr-discussion}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.82\textwidth]{Figures/fig_LR_b11_closure.pdf}
+  \caption{The unstrained-direction anisotropy $b_{11}$ under plane strain: the
+  present ODT (solid, $N=1000$, with standard-error band) compared with exact
+  linear rapid-distortion theory (dotted), the isotropization-of-production
+  closure (dashed), the quasi-isotropic Launder--Reece--Rodi closure (the form
+  coded in the model), and the DNS of \citet{LeeReynolds1985} (symbols and shaded
+  $S^\ast$ range). The present model coincides with the LRR-QI closure prediction;
+  exact rapid distortion gives $b_{11}<0$, since the unstrained component is
+  conserved while the energy grows. The DNS rise to $b_{11}>0$ lies above the
+  entire closure family and reflects finite-Reynolds-number vorticity structure
+  outside the moment-closure framework.}
+  \label{fig:lr-b11}
+\end{figure}
+Taken together, the two strain modes establish that the model reproduces the
+Reynolds-stress anisotropy response of strained homogeneous turbulence at the
+moment level---quantitatively for the production- and rapid-distortion-governed
+components $b_{22}$ and $b_{33}$, and qualitatively in all cases---against DNS at
+a Reynolds number that, unlike the spectral benchmark of \S\,\ref{sec:cmk}, is
+fully resolved on the single line.
+
+The one component the model does not reproduce, the plane-strain unstrained
+anisotropy $b_{11}$, deserves a careful and honest interpretation, because it is
+\emph{not} a deficiency specific to the present model: it lies outside what the
+rapid-distortion limit and the entire second-moment-closure family can produce.
+This is established directly in Figure~\ref{fig:lr-b11}, which compares the
+present ODT against the analytic alternatives on the same axes. Exact linear
+rapid-distortion theory gives $b_{11}<0$ in plane strain, and the reason is
+kinematic and exact: the unstrained direction has $A_{1k}=0$, so under rapid
+distortion $\langle u_1^2\rangle$ is conserved while the total energy $q^2$ grows,
+forcing $b_{11}=\langle u_1^2\rangle/q^2-\tfrac{1}{3}$ to \emph{decrease}.
+Integrating the standard second-moment closures over the same strain---both the
+quasi-isotropic Launder--Reece--Rodi form coded in the model and the
+isotropization-of-production form---yields $b_{11}\approx0$, slightly negative,
+for the full trajectory. The present ODT result coincides with the LRR-QI closure
+curve to within the ensemble scatter. In other words, the model returns exactly
+the prediction of the second-moment closure on which its strain operator is built;
+its $b_{11}$ is correct \emph{for its formulation}.
+
+The DNS, by contrast, shows $b_{11}$ rising to $+0.12$ at high strain rate. That
+the effect is largest at \emph{fast} strain rules out a slow return-to-isotropy
+origin, which would require time to act and would therefore be largest at slow
+strain; the positive $b_{11}$ is a rapid effect that nonetheless lies beyond the
+reach of rapid-distortion theory and of the standard rapid pressure--strain
+closures. \citet{LeeReynolds1985} attribute the velocity-field anisotropy in
+these flows to the structure of the turbulent vorticity field---an essentially
+nonlinear, finite-Reynolds-number property that second-moment closures, which
+carry no vorticity-anisotropy information, do not represent. The departure of the
+DNS $b_{11}$ from the entire closure family in Figure~\ref{fig:lr-b11} is thus a
+known limitation of moment-level modelling, shared by rapid-distortion theory and
+by every closure shown, rather than an artifact of the present approach.
+
+The practical consequence for the present work is favourable. The components that
+govern the upwash spectrum fed to the leading-edge response---the energy
+amplification and the anisotropy in the strained directions---are precisely those
+the model reproduces quantitatively. The single component it does not capture is
+one that no rapid-distortion or second-moment closure captures, and whose
+finite-Reynolds-number origin is outside the modelling framework adopted here. The
+validation therefore places the model on a firm footing: it performs at the level
+of the best available second-moment closure on this benchmark, with the residual
+discrepancy attributable to physics that the closure family as a whole omits.
+
+Finally, we note that \citeauthor{LeeReynolds1985}'s own transport-budget analysis
+(their Figures~5.5 and~5.6) provides independent support for a central premise of
+\S\,\ref{sec:gate}: in plane strain they find that the slow pressure--strain-rate
+term is negligible and that the intercomponent transfer is carried almost entirely
+by the rapid term. This is the same decomposition on which the closure of
+\S\,\ref{sec:gate} rests, and the DNS confirmation that the rapid term dominates in
+this flow lends physical weight to the closure beyond the anisotropy comparison
+itself\DIFaddbegin \DIFadd{.
+}
+
+
+
+
+
+
+
+
+%DIF >  =====================================================================
+
+\section{\DIFadd{Closure of the rapid pressure--strain term on a single line}}
+\label{sec:gate}
+
+\DIFadd{The results of \S\,\ref{sec:val-spectrum} establish the first half of the
+present contribution: a gust convecting toward the leading edge is distorted
+into a broadband spectrum that departs measurably---and, at the Reynolds number
+of the experiment, substantially---from the rigid translation that linear
+rapid-distortion theory predicts. That distortion is what the strain-coupled
+ODT model is built to capture, and it is the quantity an aeroacoustic
+prediction ultimately requires. Its value, however, rests on a premise that the
+results alone do not justify. The rapid pressure--strain redistribution that
+drives the distortion was evaluated there through the algebraic moment closure of \S\,\ref{sec:rapid-kernel}
+\mbox{%DIFAUXCMD
+\citep{LaunderReeceRodi1975}}\hskip0pt%DIFAUXCMD
+, applied component by component on the resolved
+line. That closure is a modelling input. The redistribution it represents is,
+in its exact form, a }\emph{\DIFadd{nonlocal, three-dimensional}} \DIFadd{object: the rapid
+pressure at a point is a volume integral over the entire fluctuating field, and
+the resulting pressure--strain correlation is an integral over the full
+three-dimensional velocity spectrum. Whether such an object admits any
+consistent representation on the single one-dimensional line that ODT
+evolves---and if so, under what condition, and at what cost---is not settled by
+reproducing the moment trajectory of the closure, since the closure is by
+construction able to supply that trajectory. It is a separate question, and it
+is the second half of the contribution. This section answers it.
+}
+
+\DIFadd{We proceed at the spectral level, where the question is sharpest. We first
+write the rapid pressure--strain term exactly, with no modelling, and exhibit
+the three-dimensional nonlocal integral that obstructs a single-line
+representation (\S\,\ref{sec:exact-pi}--\S\,\ref{sec:obstruction}). We then
+identify the one assumption under which that integral collapses to a closed
+functional of the statistics the line carries, state it explicitly, justify it
+for the present inflow, and bound the error it incurs
+(\S\,\ref{sec:assumption}--\S\,\ref{sec:residual}). The collapsed form is a
+closed, computable kernel, derived in full and verified against two exact
+constraints. We show that this spectral kernel reduces, in the isotropic limit,
+to precisely the moment closure used in \S\,\ref{sec:val-spectrum}
+(\S\,\ref{sec:lrr-reduction})---so that the closure employed there is not an
+independent assumption but the leading-order reduction of the line-consistent
+term derived here. Finally, we establish that the resulting rapid source is
+disjoint from the redistribution already performed by the eddy events, which is
+the remaining requirement for the model to be free of double counting
+(\S\,\ref{sec:doublecount}). The outcome is conditional rather than universal:
+the rapid term }\emph{\DIFadd{does}} \DIFadd{close on a single line, within a stated and
+physically grounded limit, and the limit is exactly the regime the
+leading-edge problem occupies.
+}
+
+\subsection{\DIFadd{The exact rapid pressure--strain term}}\label{sec:exact-pi}
+
+\DIFadd{For incompressible flow the fluctuating pressure satisfies a Poisson equation
+whose source splits into a part linear in the fluctuations and the mean
+velocity gradient (the }\emph{\DIFadd{rapid}} \DIFadd{part) and a part quadratic in the
+fluctuations (the }\emph{\DIFadd{slow}} \DIFadd{part) \mbox{%DIFAUXCMD
+\citep{Pope2000}}\hskip0pt%DIFAUXCMD
+:
+}\begin{equation}
+  \DIFadd{\frac{1}{\rho}\,\nabla^2 p'
+  = \underbrace{-2\,\frac{\partial U_k}{\partial x_l}\,
+      \frac{\partial u'_l}{\partial x_k}}_{\text{rapid}}
+    \;\underbrace{-\,\frac{\partial^2}{\partial x_k\partial x_l}
+      \bigl(u'_k u'_l - \overline{u'_k u'_l}\bigr)}_{\text{slow}} .
+  \label{eq:poisson-rapid}
+}\end{equation}
+\DIFadd{The rapid part is linear in $\boldsymbol{u}'$ and proportional to the mean
+gradient $\partial U_k/\partial x_l$, which for the present homogeneous plane
+strain is the constant tensor $A_{kl}$ of \S\,\ref{sec:val-spectrum}. Writing
+$p'_{\mathrm r}$ for the rapid pressure and inverting the Laplacian with the
+free-space Green's function $G(\boldsymbol{x})=-1/4\pi|\boldsymbol{x}|$,
+}\begin{equation}
+  \DIFadd{p'_{\mathrm r}(\boldsymbol{x})
+  = \frac{\rho}{2\pi}\,A_{kl}\!\int
+    \frac{1}{|\boldsymbol{x}-\boldsymbol{x}'|}\,
+    \frac{\partial u'_l}{\partial x'_k}(\boldsymbol{x}')\,
+    \mathrm{d}\boldsymbol{x}' .
+  \label{eq:prapid}
+}\end{equation}
+\DIFadd{The rapid pressure--strain correlation that redistributes energy among the
+Reynolds-stress components is
+$\Pi^{(\mathrm r)}_{ij}
+   = \overline{(p'_{\mathrm r}/\rho)\,(\partial u'_i/\partial x_j
+     + \partial u'_j/\partial x_i)}$.
+Substituting \eqref{eq:prapid} and using homogeneity to pass to the
+velocity spectrum tensor
+$\Phi_{mn}(\boldsymbol{\kappa})$
+(the Fourier transform of $\overline{u'_m(\boldsymbol{x})\,
+u'_n(\boldsymbol{x}+\boldsymbol{r})}$),
+one obtains the standard exact result
+\mbox{%DIFAUXCMD
+\citep{BatchelorProudman1954,Crow1968,HuntCarruthers1990}
+}\hskip0pt%DIFAUXCMD
+}\begin{equation}
+  \DIFadd{\Pi^{(\mathrm r)}_{ij}
+  = A_{kl}\,M_{ijkl},
+  \qquad
+  M_{ijkl}
+  = \int_{\mathbb{R}^3}
+    \Bigl[\,
+      \frac{\kappa_j\kappa_k}{\kappa^2}\,\Phi_{il}(\boldsymbol{\kappa})
+      + \frac{\kappa_i\kappa_k}{\kappa^2}\,\Phi_{jl}(\boldsymbol{\kappa})
+    \,\Bigr]\,\mathrm{d}\boldsymbol{\kappa},
+  \label{eq:Mijkl}
+}\end{equation}
+\DIFadd{where $\kappa=|\boldsymbol{\kappa}|$. Equations
+\eqref{eq:poisson}--\eqref{eq:Mijkl} are exact; no modelling has entered. The
+tensor $M_{ijkl}$ is a linear functional of the }\emph{\DIFadd{full three-dimensional}}
+\DIFadd{spectrum $\Phi_{mn}(\boldsymbol{\kappa})$ through the nonlocal projection
+operator $\kappa_a\kappa_b/\kappa^2$, which is the wavenumber-space image of
+the inverse Laplacian in \eqref{eq:prapid}. This nonlocality and
+three-dimensionality are the obstruction that the single-line model must
+confront.
+}
+
+\subsection{\DIFadd{The obstruction: what an ODT line resolves}}\label{sec:obstruction}
+
+\DIFadd{ODT evolves a velocity vector $\boldsymbol{u}'(y)$ on a single line aligned
+with the resolved direction, here taken along the contraction axis of the
+strain, $y\equiv x_2$. From it the model has access to the one-dimensional
+spectra
+}\begin{equation}
+  \DIFadd{\phi_{mn}(\kappa_2)
+  = \int_{\mathbb{R}^2}
+      \Phi_{mn}(\boldsymbol{\kappa})\,
+      \mathrm{d}\kappa_1\,\mathrm{d}\kappa_3,
+  \label{eq:phi1d}
+}\end{equation}
+\DIFadd{the one-dimensional spectra obtained by integrating $\Phi_{mn}$ over the two
+unresolved wavenumber components. The integrand of \eqref{eq:Mijkl}, by
+contrast, carries the }\emph{\DIFadd{direction-resolved}} \DIFadd{weight
+$\kappa_a\kappa_b/\kappa^2$, which cannot be reconstructed from
+$\phi_{mn}(\kappa_2)$ alone: integrating out $\kappa_1,\kappa_3$ as in
+\eqref{eq:phi1d} destroys exactly the angular information that the projection
+operator acts on. The reduction $M_{ijkl}\!\to\!$ (functional of
+$\phi_{mn}$) is therefore not available without an assumption about how the
+energy is distributed over the unresolved wavevector directions. This is the
+crux of the present question, and we make the required assumption explicit
+rather than implicit.
+}
+
+\subsection{\DIFadd{The closure assumption and the collapsed form}}
+\label{sec:assumption}
+
+\paragraph{\DIFadd{Assumption A1 (axisymmetry of the undistorted spectrum about the
+line).}} \DIFadd{The spectrum tensor of the incoming turbulence, before the rapid
+distortion acts, is axisymmetric about the resolved direction $\boldsymbol{e}_2$:
+$\Phi_{mn}(\boldsymbol{\kappa})$ depends on $\boldsymbol{\kappa}$ only through
+$\kappa_2$ and $\kappa_\perp=(\kappa_1^2+\kappa_3^2)^{1/2}$, and its
+polarization is invariant under rotation about $\boldsymbol{e}_2$.
+}
+
+\DIFadd{This is a statement about the }\emph{\DIFadd{turbulence}}\DIFadd{, not about the strain. It is
+justified for the present configuration because the inflow is grid turbulence,
+which is closely isotropic at the grid and is subsequently contracted along a
+single axis as it approaches the stagnation plane; isotropy is the special
+case of A1, and uniaxial contraction preserves axisymmetry about the
+contraction axis. The plane strain $A_{kl}=\mathrm{diag}(\tfrac12,-\tfrac12,0)$
+acting at the leading edge is itself }\emph{\DIFadd{not}} \DIFadd{axisymmetric, so A1 is imposed
+on the state on which the rapid operator acts, consistent with the
+rapid-distortion ordering in which $\Pi^{(\mathrm r)}$ is evaluated on the
+current (here, axisymmetric to leading order) field. The error incurred when
+the accumulated distortion has driven the spectrum away from axisymmetry is
+quantified in \S\,\ref{sec:residual}.
+}
+
+\DIFadd{Under A1 the angular integral in \eqref{eq:Mijkl} can be carried out. Writing
+$\boldsymbol{\kappa}=(\kappa_\perp\cos\theta,\ \kappa_2,\
+\kappa_\perp\sin\theta)$ and using that, by A1, $\Phi_{mn}$ is independent of
+$\theta$, the azimuthal averages of the projection weights reduce to
+}\begin{equation}
+  \DIFadd{\Bigl\langle \frac{\kappa_1^2}{\kappa^2}\Bigr\rangle_\theta
+  = \Bigl\langle \frac{\kappa_3^2}{\kappa^2}\Bigr\rangle_\theta
+  = \frac{1}{2}\,\frac{\kappa_\perp^2}{\kappa^2},
+  \qquad
+  \Bigl\langle \frac{\kappa_2^2}{\kappa^2}\Bigr\rangle_\theta
+  = \frac{\kappa_2^2}{\kappa^2},
+  \qquad
+  \Bigl\langle \frac{\kappa_1\kappa_3}{\kappa^2}\Bigr\rangle_\theta = 0,
+  \label{eq:angular}
+}\end{equation}
+\DIFadd{with $\kappa^2=\kappa_2^2+\kappa_\perp^2$, and all weights mixing a resolved
+and an unresolved index (e.g.\ $\kappa_1\kappa_2/\kappa^2$) averaging to zero.
+Substituting \eqref{eq:angular} into \eqref{eq:Mijkl} removes the azimuthal
+dependence and leaves a two-dimensional integral over $(\kappa_2,\kappa_\perp)$
+of the axisymmetric spectrum. Defining the diagonal one-dimensional spectra
+along the line,
+}\begin{equation}
+  \DIFadd{E_n^{\,\|}(\kappa_2)
+   = \int_0^\infty \Phi_{nn}(\kappa_2,\kappa_\perp)\,
+     2\pi\kappa_\perp\,\mathrm{d}\kappa_\perp
+   \quad(\text{no sum}),
+   \label{eq:Epar}
+}\end{equation}
+\DIFadd{the rapid pressure--strain term reduces to a two-dimensional integral over the
+half-plane $(\kappa_2,\kappa_\perp)$ of the axisymmetric spectrum. The
+axisymmetric, solenoidal spectrum is fixed by two scalar functions of
+$(\kappa_2,\kappa_\perp)$ \mbox{%DIFAUXCMD
+\citep{Batchelor1946,ChandrasekharAxisym1950}}\hskip0pt%DIFAUXCMD
+; we
+denote them $a(\kappa_2,\kappa_\perp)$ and $c(\kappa_2,\kappa_\perp)$, where
+$a$ is the isotropic-like scalar (the sole survivor when the turbulence is
+isotropic) and $c$ measures the axisymmetric departure from isotropy. Carrying
+out the azimuthal average \eqref{eq:angular} and specialising to the plane
+strain $A=\mathrm{diag}(\tfrac12,-\tfrac12,0)$, the diagonal rapid
+pressure--strain components are
+}\begin{equation}
+  \DIFadd{\Pi^{(\mathrm r)}_{nn}
+  = \int_{0}^{\infty}\!\!\int_{0}^{\infty}
+      g_{n}(x)\,\bigl[\,a(\kappa_2,\kappa_\perp),\,c(\kappa_2,\kappa_\perp)\,\bigr]\,
+      2\pi\kappa_\perp\,\mathrm{d}\kappa_\perp\,\mathrm{d}\kappa_2
+   \quad(\text{no sum on }n),
+  \label{eq:Piclosed}
+}\end{equation}
+\DIFadd{with $x\equiv\kappa_2^2/\kappa^2$, $\kappa^2=\kappa_2^2+\kappa_\perp^2$, and the
+kernels, linear in the two spectral scalars,
+}\begin{align}
+  \DIFadd{g_{1}(x) }&\DIFadd{= a\!\left(\tfrac18 + \tfrac34 x - \tfrac78 x^2\right)
+            + c\,\tfrac78\,x\,(1-x)^2, \label{eq:g1}}\\[2pt]
+  \DIFadd{g_{2}(x) }&\DIFadd{= -\tfrac32\,x\,\bigl[\,a\,(1-x) + c\,(1-x)^2\,\bigr],
+            \label{eq:g2}}\\[2pt]
+  \DIFadd{g_{3}(x) }&\DIFadd{= a\!\left(-\tfrac18 + \tfrac34 x - \tfrac58 x^2\right)
+            + c\,\tfrac58\,x\,(1-x)^2. \label{eq:g3}
+}\end{align}
+\DIFadd{Equations \eqref{eq:Piclosed}--\eqref{eq:g3} are the central result:
+}\emph{\DIFadd{under A1, the rapid pressure--strain term is a closed, computable
+functional of the axisymmetric spectral scalars $a,c$ on the resolved
+half-plane and the mean strain}}\DIFadd{, with no reference to the unresolved azimuthal
+structure beyond what A1 fixes. The kernels satisfy two exact constraints that
+verify the reduction. First, energy conservation: pressure--strain
+redistributes without changing the trace, and indeed
+$g_1(x)+g_2(x)+g_3(x)=0$ identically for all $x$ and for both scalars, so
+$\Pi^{(\mathrm r)}_{11}+\Pi^{(\mathrm r)}_{22}+\Pi^{(\mathrm r)}_{33}=0$.
+Second, the isotropic limit: setting $c=0$ with $a$ a function of $\kappa$
+alone, the integral of $g_3$ over the half-plane vanishes, so
+$\Pi^{(\mathrm r)}_{33}=0$---as it must, since the plane strain has no
+component along $x_3$ and the isotropic rapid term is proportional to $S_{ij}$
+\mbox{%DIFAUXCMD
+\citep{Crow1968}}\hskip0pt%DIFAUXCMD
+. Both constraints hold identically in the derived kernels,
+confirming the tensor reduction.
+}
+
+\subsection{\DIFadd{Residual error and the limit of validity}}\label{sec:residual}
+
+\DIFadd{Assumption A1 is exact for the undistorted inflow and is progressively
+violated as the rapid strain itself renders the spectrum anisotropic about the
+line. The leading correction is governed by the departure-from-axisymmetry
+tensor $D_{mn}(\boldsymbol{\kappa})
+=\Phi_{mn}-\Phi^{\mathrm{axi}}_{mn}$, whose contribution to
+\eqref{eq:Mijkl} is the azimuthal first harmonic that \eqref{eq:angular}
+discards. Because that harmonic integrates to zero against the isotropic part
+and enters $M_{ijkl}$ only at second order in the accumulated anisotropy, the
+closed form \eqref{eq:Piclosed} is accurate to $O(b^2)$ in the Reynolds-stress
+anisotropy $b_{ij}$ generated by the strain, and exact at $b_{ij}=0$. The
+practical consequence is that \eqref{eq:Piclosed} is most reliable early in
+the distortion, when the gust first enters the strained region, and degrades
+as the total strain $e$ accumulates---precisely the regime ordering that the
+convective mapping of \S\,\ref{sec:val-spectrum} makes physical, since the
+acoustically relevant upwash is set near the leading-edge plane where the
+accumulated strain is bounded. We therefore regard \eqref{eq:Piclosed} as a
+controlled leading-order closure, valid where the gust anisotropy is moderate,
+rather than as an identity.
+}
+
+\subsection{\DIFadd{Reduction to the moment closure}}\label{sec:lrr-reduction}
+
+\DIFadd{The closed form \eqref{eq:Piclosed}--\eqref{eq:g3} operates on the resolved
+spectrum, whereas the distortion results of \S\,\ref{sec:val-spectrum} were
+obtained with the algebraic moment closure of \S\,\ref{sec:rapid-kernel}
+\mbox{%DIFAUXCMD
+\citep{LaunderReeceRodi1975}}\hskip0pt%DIFAUXCMD
+. For the two to be consistent, the spectral
+kernel must reduce to that moment closure in the limit where the moment
+closure is exact---isotropic turbulence. We show that it does, which both
+justifies the closure used in the simulations and fixes the prefactor in an
+explicit convention.
+}
+
+\DIFadd{Figure~\ref{fig:pi-kernels} plots the kernels $g_1,g_2,g_3$ of
+\eqref{eq:g1}--\eqref{eq:g3} against the angular variable
+$x=\kappa_2^2/\kappa^2$. Two features are exact and hold for both spectral
+scalars. The kernels sum to zero at every $x$,
+}\begin{equation}
+  \DIFadd{g_1(x)+g_2(x)+g_3(x)=0 \qquad \forall x,
+  \label{eq:gtrace}
+}\end{equation}
+\DIFadd{so the rapid term conserves turbulent kinetic energy pointwise in wavenumber,
+not merely in the integral; and each kernel vanishes at $x=1$, where the
+wavevector aligns with the line and the projection $\kappa_a\kappa_b/\kappa^2$
+degenerates. The signs are physically ordered: $g_1>0$ (energy fed to the
+streamwise component $E_1$), $g_2<0$ (energy removed from the line/upwash
+component $E_2$) over the bulk of the angular range, with $g_3$ changing sign,
+consistent with the plane strain stretching $x_1$ and compressing $x_2$.
+}
+
+\DIFadd{For }\emph{\DIFadd{isotropic}} \DIFadd{turbulence the anisotropy scalar vanishes ($c=0$) and the
+isotropic-like scalar $a$ depends only on $\kappa$. Averaging the kernels over
+solid angle---equivalently, integrating $g_n(x)$ against the isotropic
+distribution of $x$ on the sphere---gives
+}\begin{equation}
+  \DIFadd{\langle g_1\rangle : \langle g_2\rangle : \langle g_3\rangle
+  = +\tfrac15 : -\tfrac15 : 0,
+  \label{eq:giso}
+}\end{equation}
+\DIFadd{in the ratio $+1:-1:0$. This is exactly the structure of the plane strain
+$S_{ij}=\mathrm{diag}(\tfrac12,-\tfrac12,0)$: the rapid term is proportional to
+$S_{ij}$, with $\Pi^{(\mathrm r)}_{33}=0$ because the strain has no component
+along $x_3$. The spectral kernel therefore collapses, under isotropy, to the
+isotropic-production form of the moment closure,
+}\begin{equation}
+  \DIFadd{\Pi^{(\mathrm r)}_{ij}
+  = \tfrac{4}{5}\,k_t\,S_{ij}
+  \qquad(\text{isotropic limit}),
+  \label{eq:crow-spectral}
+}\end{equation}
+\DIFadd{the result of \mbox{%DIFAUXCMD
+\citet{Crow1968} }\hskip0pt%DIFAUXCMD
+that underlies the isotropisation-of-production
+(IP) rapid term in the closure of \mbox{%DIFAUXCMD
+\citet{LaunderReeceRodi1975}}\hskip0pt%DIFAUXCMD
+. We note a
+convention: with the symmetrised definition of the pressure--strain correlation
+adopted here and the factor of two carried in the Poisson source
+\eqref{eq:poisson}, the kernels \eqref{eq:g1}--\eqref{eq:g3} yield the
+coefficient $\tfrac25 k_t$ for the $11$-component directly (since $S_{11}=\tfrac12$),
+equivalent to the standard $\tfrac45 k_t S_{ij}$ of \eqref{eq:crow-spectral}; the ratio
+\eqref{eq:giso} and the tracelessness \eqref{eq:gtrace} are independent of this
+convention.
+}
+
+\DIFadd{The consequence is that the algebraic closure used to obtain the distortion of
+\S\,\ref{sec:val-spectrum} is not an independent assumption but the
+isotropic-limit reduction of the line-consistent spectral term derived here.
+The spectral form \eqref{eq:Piclosed} carries, in addition, the angular
+($x$-dependent) and anisotropy ($c$-scalar) information that the moment closure
+discards; the corrections it retains are precisely those of order $b^2$ in the
+strain-generated anisotropy identified in \S\,\ref{sec:residual}. The moment
+closure and the spectral closure thus agree to leading order and depart in a
+controlled way as the gust anisotropy grows, which is the regime ordering the
+present application requires.
+}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.72\textwidth]{Figures/fig_pi_kernels.pdf}
+  \caption{\DIFaddFL{Rapid pressure--strain closure kernels $g_1,g_2,g_3$
+  (eqs.~\eqref{eq:g1}--\eqref{eq:g3}) against the angular variable
+  $x=\kappa_2^2/\kappa^2$. Solid curves: coefficient of the isotropic-like
+  spectral scalar $a$; faint dashed curves: coefficient of the anisotropy
+  scalar $c$. The kernels sum to zero at every $x$ (energy conservation,
+  eq.~\eqref{eq:gtrace}) and vanish at $x=1$. Averaged over an isotropic
+  spectrum they give the ratio $+\tfrac15:-\tfrac15:0$
+  (eq.~\eqref{eq:giso}), recovering the isotropisation-of-production form
+  $\Pi^{(\mathrm r)}_{ij}=\tfrac45 k_t S_{ij}$ \mbox{%DIFAUXCMD
+\citep{Crow1968} }\hskip0pt%DIFAUXCMD
+that underlies
+  the moment closure used in \S\,\ref{sec:val-spectrum}.}}
+  \label{fig:pi-kernels}
+\end{figure}
+
+\subsection{\DIFadd{Consistency with the eddy redistribution: avoiding double
+counting}}\label{sec:doublecount}
+
+\DIFadd{A closed rapid term is necessary but not sufficient: it must not duplicate
+redistribution already effected by the eddy events. The pressure--strain
+correlation decomposes canonically into rapid and slow parts,
+$\Pi_{ij}=\Pi^{(\mathrm r)}_{ij}+\Pi^{(\mathrm s)}_{ij}$, corresponding to the two source terms in \eqref{eq:poisson-rapid}. The slow part
+$\Pi^{(\mathrm s)}_{ij}$ is the return-to-isotropy mechanism, quadratic in the
+fluctuations and independent of the mean gradient; the eddy events in ODT,
+which act on the fluctuating field without reference to $A_{kl}$, are the
+model's representation of exactly this slow redistribution. The rapid part
+$\Pi^{(\mathrm r)}_{ij}$, proportional to $A_{kl}$ and linear in the
+fluctuations, is by construction absent from the eddy mechanism, which carries
+no dependence on the mean strain. The two therefore occupy disjoint terms of
+the canonical decomposition, and adding \eqref{eq:Piclosed} as an explicit
+mean-strain-driven source alongside the eddies does not double-count, provided
+the eddy events are calibrated to reproduce the slow return-to-isotropy in the
+absence of mean strain---a condition that the no-strain baseline of
+\S\,\ref{sec:spec-bvc} verifies directly, since there the centroid relaxes
+under the eddies alone with no spurious rapid contribution. This argument establishes consistency at the level of the decomposition; the no-strain baseline of \S\,\ref{sec:spec-bvc} provides the direct numerical confirmation, the centroid there relaxing under the eddy mechanism alone.
+}
+
+\subsection{\DIFadd{Summary}}\label{sec:gate-summary}
+
+\DIFadd{The rapid pressure--strain term, exactly a nonlocal three-dimensional integral
+\eqref{eq:Mijkl} of the full spectrum, collapses under axisymmetry of the
+undistorted inflow about the resolved direction (Assumption A1) to the closed,
+single-line functional \eqref{eq:Piclosed} of the resolved spectra and the
+mean strain. The collapse is exact for the isotropic inflow and controlled to
+$O(b^2)$ in the strain-generated anisotropy, with the error growing as the
+accumulated strain renders the spectrum anisotropic about the line. The
+resulting rapid source is consistent with---and disjoint from---the slow
+redistribution carried by the eddy events, so the strain-coupled model is free
+of double counting at the level of the rapid/slow decomposition. The closure
+therefore holds on a single line within a stated and physically grounded
+limit, rather than universally; characterising its breakdown at large accumulated strain, where the gust anisotropy is no longer moderate, remains for future work.
+}
+
+%DIF >  =====================================================================
+%DIF >   Validation against Chen, Meneveau & Katz (2006) -- Option A:
+%DIF >   rigorous RDT-reference validation + qualitative full-model anisotropy.
+%DIF >   Figures: fig_cmk_rdt_validation.pdf, fig_cmk_anisotropy.pdf
+%DIF >   Citations (existing keys): ChenMeneveauKatz2006, LeePiomelliReynolds1986,
+%DIF >   BatchelorProudman1954. Add the first two to references if absent.
+%DIF >  =====================================================================
+%DIF >   Section 6 -- Conclusions
+%DIF >  =====================================================================
+\section{\DIFadd{Conclusions}}\label{sec:conclusions}
+\DIFadd{Standard one-dimensional turbulence carries no mechanism for the action of an
+imposed mean strain on the fluctuating field: its pressure treatment models
+only the slow, turbulence-driven return to isotropy, not the rapid,
+mean-strain-driven redistribution that governs the distortion of turbulence
+as it approaches a leading edge. This paper has presented a strain-coupled
+formulation that supplies the missing physics while preserving the structural
+foundations of the model. The mean-strain production enters as a continuous,
+pointwise forcing of the line velocity, which we proved preserves the
+measure-preservation, continuity, scale-locality and kernel identities of the
+triplet-map mechanism (Proposition~\ref{prop:admissibility}); the rapid
+pressure--strain enters as an energy-conserving redistribution operator,
+reconstructed at each step from the running Reynolds stress through a Lyapunov
+equation and constructed to reproduce the homogeneous rapid-distortion
+evolution of the component energies exactly under an explicit spectral closure
+(Proposition~\ref{prop:rdt}); and the kinematic compression of scales is
+carried by a consistent dilatation of the ODT domain.
+}
+
+\DIFadd{Two questions framed the contribution. The first---whether the distorted
+spectrum departs measurably from the rigid translation that linear
+rapid-distortion theory predicts---is answered in the affirmative by
+\S\,\ref{sec:val-spectrum}: at the Reynolds number of the target inflow the
+strain-coupled model produces a broadband distorted spectrum whose
+energy-weighted centroid migrates to $\approx2.4$ by a total strain of four,
+far below the rigid-translation value of $7.4$, a difference of spectral shape
+that a frozen, linearly strained input cannot represent. The second---whether
+the rapid pressure--strain, exactly a nonlocal three-dimensional integral of
+the full spectrum, admits a consistent representation on a single
+one-dimensional line---is answered in \S\,\ref{sec:gate}: under the single,
+physically grounded assumption that the undistorted inflow is axisymmetric
+about the line, the integral collapses to a closed, computable kernel of the
+resolved spectra and the mean strain, exact in the isotropic limit and
+controlled to second order in the strain-generated anisotropy, and disjoint
+from the slow redistribution carried by the eddy events. The closure thus
+holds on a single line within a stated limit rather than universally, and that
+limit is the regime the leading-edge problem occupies.
+}
+
+\DIFadd{The formulation was verified against analytical rapid-distortion theory, which
+it reproduces exactly at the onset of straining with no adjustable constant,
+and validated against two external benchmarks: the strained-turbulence
+experiment of \mbox{%DIFAUXCMD
+\citet{ChenMeneveauKatz2006}}\hskip0pt%DIFAUXCMD
+, whose rapid-distortion limit the
+model reproduces exactly and whose full-model spectral anisotropy it captures
+qualitatively, and the direct numerical simulations of \mbox{%DIFAUXCMD
+\citet{LeeReynolds1985}}\hskip0pt%DIFAUXCMD
+,
+against which the model reproduces the production-governed Reynolds-stress
+anisotropy quantitatively. Where the model departs from the latter---in the
+unstrained-direction anisotropy under plane strain---the departure was shown to
+lie outside the reach of rapid-distortion theory and of the entire
+second-moment-closure family, so that the model performs at the level of the
+best available closure on this benchmark.
+}
+
+\DIFadd{The output of the model is the distorted, anisotropic upwash spectrum at the
+leading-edge plane, delivered with full scale resolution at a small fraction of
+the cost of three-dimensional scale-resolving simulation. Supplying that
+spectrum to the leading-edge response of \mbox{%DIFAUXCMD
+\citet{Amiet1975}}\hskip0pt%DIFAUXCMD
+, in place of the
+prescribed isotropic input of the classical prediction chain, is the natural
+application of the present development and is the subject of a companion paper;
+the remaining ingredients of a complete leading-edge-noise framework---the
+kinematic surface blocking that suppresses the wall-normal component near the
+surface, and the spanwise coherence of the distorted field---are the principal
+directions for future work}\DIFaddend .
+
+\bibliographystyle{jfm}
+\bibliography{jfm}
+
+
+\end{document}

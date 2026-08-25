@@ -92,7 +92,13 @@ void domaincase_odt_homogeneousStrain::init(domain *p_domn){
         }
     }
 
-    //------------------- remove mean, then whiten to R = (2/3) I
+    //------------------- remove mean, then whiten SYMMETRICALLY to R = (2/3) I
+    //  y = C^{-1/2} x treats the three components identically. The previous
+    //  ordered Cholesky whitening (u kept pure, v corrected against u, w
+    //  against both) imprinted a component-ordered spectral bias that the
+    //  eddy dynamics amplified to b_33 ~ +0.015 in nominal HIT (1024-rlz
+    //  null-test ensembles + order-reversal attribution, 2026-08-25); the
+    //  symmetric root removes the ordering by construction.
 
     double mu=0, mv=0, mw=0;
     for(int i=0;i<N;i++){ mu+=u[i]; mv+=v[i]; mw+=w[i]; }
@@ -106,18 +112,35 @@ void domaincase_odt_homogeneousStrain::init(domain *p_domn){
     }
     for(int a=0;a<3;a++) for(int b=0;b<3;b++) C[a][b]/=N;
 
-    // lower Cholesky of C
-    double L00=std::sqrt(C[0][0]);
-    double L10=C[1][0]/L00, L11=std::sqrt(C[1][1]-L10*L10);
-    double L20=C[2][0]/L00, L21=(C[2][1]-L20*L10)/L11,
-           L22=std::sqrt(C[2][2]-L20*L20-L21*L21);
+    // Jacobi eigen-decomposition C = Q diag(lam) Q^T (3x3 symmetric)
+    double A[3][3], Q[3][3]={{1,0,0},{0,1,0},{0,0,1}};
+    for(int a=0;a<3;a++) for(int b=0;b<3;b++) A[a][b]=C[a][b];
+    for(int sweep=0; sweep<60; sweep++){
+        int p=0, q=1; double mx=std::abs(A[0][1]);
+        if(std::abs(A[0][2])>mx){ mx=std::abs(A[0][2]); p=0; q=2; }
+        if(std::abs(A[1][2])>mx){ mx=std::abs(A[1][2]); p=1; q=2; }
+        if(mx < 1.0e-15) break;
+        double phi = 0.5*std::atan2(2.0*A[p][q], A[q][q]-A[p][p]);
+        double c = std::cos(phi), sn = std::sin(phi);
+        for(int k=0;k<3;k++){ double akp=A[k][p], akq=A[k][q];
+            A[k][p]=c*akp-sn*akq; A[k][q]=sn*akp+c*akq; }
+        for(int k=0;k<3;k++){ double apk=A[p][k], aqk=A[q][k];
+            A[p][k]=c*apk-sn*aqk; A[q][k]=sn*apk+c*aqk; }
+        for(int k=0;k<3;k++){ double qkp=Q[k][p], qkq=Q[k][q];
+            Q[k][p]=c*qkp-sn*qkq; Q[k][q]=sn*qkp+c*qkq; }
+    }
+    // W = Q diag(1/sqrt(lam)) Q^T  (symmetric inverse square root)
+    double W[3][3];
+    for(int a=0;a<3;a++) for(int b=0;b<3;b++){
+        W[a][b]=0.0;
+        for(int k=0;k<3;k++) W[a][b] += Q[a][k]*Q[b][k]/std::sqrt(A[k][k]);
+    }
     double s=std::sqrt(2.0/3.0);                 // target component std (k_t = 1)
     for(int i=0;i<N;i++){
         double x0=u[i], x1=v[i], x2=w[i];
-        double y0=x0/L00;
-        double y1=(x1-L10*y0)/L11;
-        double y2=(x2-L20*y0-L21*y1)/L22;
-        u[i]=s*y0; v[i]=s*y1; w[i]=s*y2;
+        u[i]=s*(W[0][0]*x0 + W[0][1]*x1 + W[0][2]*x2);
+        v[i]=s*(W[1][0]*x0 + W[1][1]*x1 + W[1][2]*x2);
+        w[i]=s*(W[2][0]*x0 + W[2][1]*x1 + W[2][2]*x2);
     }
 }
 

@@ -1,0 +1,332 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.7cm]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{enumitem}
+
+\newcommand{\kk}{\bm{\kappa}}
+\newcommand{\kperp}{\kappa_\perp}
+\newcommand{\Pir}[1]{\Pi^{(\mathrm r)}_{#1}}
+\newcommand{\dd}{\mathrm{d}}
+
+\title{\vspace{-1.2em}What does a line of sight through solenoidal turbulence
+determine?\\[0.3em]
+\large A constrained estimator for transverse-plane structure from on-line
+data, and a DNS protocol to quantify the residual indeterminacy}
+\author{Sparsh Sharma (DLR Braunschweig)\\[0.2em]
+\normalsize Working note for discussion with Alan Kerstein --- \today}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-2em}
+
+\paragraph{Purpose.} This note makes concrete the reframing proposed in our
+exchange: instead of asking whether ODT can close the rapid pressure--strain
+term on a line, first ask \emph{what constraints line-of-sight (LOS) data from
+solenoidal Navier--Stokes turbulence impose on flow structure in the
+transverse plane}. The answer below has three parts: (i) an exact statement of
+what the line determines and what it cannot (the null space), under the same
+axisymmetry assumption A1 used in the manuscript; (ii) a computable
+\emph{estimator} --- a pair of sharp bounds $[\Pi^-,\Pi^+]$ on the rapid
+pressure--strain components, obtained by extremizing over all spectra
+consistent with the line data, solenoidality, and realizability; and (iii) a
+DNS protocol that measures the width of that bound in the strained regime we
+care about ($Sk/\varepsilon\approx 0.8$), including the HIT false-positive
+test you suggested. Throughout, notation follows the manuscript
+(JFM-2026-1781): line along $\bm e_2$, $\kperp=(\kappa_1^2+\kappa_3^2)^{1/2}$,
+$\kappa^2 = \kappa_2^2+\kperp^2$, angular variable $x\equiv\kappa_2^2/\kappa^2$.
+
+\section{Setup: the data a line carries}\label{sec:setup}
+
+Let $\Phi_{mn}(\kk)$ be the spectrum tensor of statistically homogeneous
+turbulence: Hermitian, positive semi-definite at each $\kk$, and solenoidal,
+$\kappa_m\Phi_{mn}(\kk)=0$, hence of rank $\le 2$ on the plane normal to
+$\kk$. A single line of sight along $\bm e_2$ carries, in the ensemble, the
+two-point correlations of all three velocity components along that line ---
+equivalently the nine (six independent) one-dimensional spectra
+\begin{equation}
+  \phi_{mn}(\kappa_2)
+  \;=\; \int_{\mathbb{R}^2}\Phi_{mn}(\kk)\,\dd\kappa_1\,\dd\kappa_3 ,
+  \qquad m,n\in\{1,2,3\}.
+  \label{eq:losdata}
+\end{equation}
+This is the complete second-order content of LOS data; nothing else at second
+order is measurable from the line. The question is what
+\eqref{eq:losdata} pins down about $\Phi_{mn}$ off the line --- in particular
+about the functional
+\begin{equation}
+  \Pir{nn} \;=\; \int_0^\infty\!\!\int_0^\infty
+  g_n(x)\bigl[a(\kappa_2,\kperp),\,c(\kappa_2,\kperp)\bigr]\,
+  2\pi\kperp\,\dd\kperp\,\dd\kappa_2
+  \qquad(\text{no sum}),
+  \label{eq:target}
+\end{equation}
+the collapsed rapid pressure--strain term of manuscript \S5, with the kernels
+$g_1,g_2,g_3$ of eqs.~(5.8)--(5.10) there.
+
+\section{The forward map under A1, and two free consistency tests}
+\label{sec:forward}
+
+Adopt A1 (axisymmetry about $\bm e_2$, mirror-symmetric, helicity-free). The
+solenoidal axisymmetric spectrum tensor is then fixed by two scalars
+\cite{Batchelor1946,Chandrasekhar1950,Lindborg1995}:
+\begin{equation}
+  \Phi_{mn}(\kk)
+  = a(\kappa_2,\kperp)\,P_{mn}(\kk)
+  + c(\kappa_2,\kperp)\,\xi_m\xi_n ,
+  \qquad
+  P_{mn}=\delta_{mn}-\frac{\kappa_m\kappa_n}{\kappa^2},
+  \quad
+  \bm\xi = \bm e_2 - \mu\,\frac{\kk}{\kappa},
+  \quad \mu=\frac{\kappa_2}{\kappa},
+  \label{eq:twoscalar}
+\end{equation}
+with $\kappa_m\xi_m=0$ and $|\bm\xi|^2 = 1-\mu^2 = 1-x$ built in, so
+solenoidality is exact by construction. Positive semi-definiteness of the
+$2\times2$ polarization matrix gives the pointwise \emph{realizability cone}
+\begin{equation}
+  a(\kappa_2,\kperp)\;\ge\;0,
+  \qquad
+  a(\kappa_2,\kperp) + (1-x)\,c(\kappa_2,\kperp)\;\ge\;0 .
+  \label{eq:realizability}
+\end{equation}
+
+Insert \eqref{eq:twoscalar} into \eqref{eq:losdata} and carry out the
+azimuthal average at fixed $(\kappa_2,\kperp)$, using
+$\langle\kappa_1^2\rangle_\theta=\langle\kappa_3^2\rangle_\theta
+=\tfrac12\kperp^2$: the diagonal weights are
+$\langle P_{11}\rangle_\theta=\langle P_{33}\rangle_\theta=\tfrac12(1+x)$,
+$P_{22}=1-x$, $\langle\xi_1^2\rangle_\theta=\langle\xi_3^2\rangle_\theta
+=\tfrac12 x(1-x)$, $\xi_2^2=(1-x)^2$, and every mixed weight averages to
+zero. Hence the \textbf{forward map} from the two scalars to the line data:
+\begin{align}
+  \phi_{11}(\kappa_2)=\phi_{33}(\kappa_2)
+  &= 2\pi\!\int_0^\infty\!
+     \Bigl[\,a\,\tfrac{1+x}{2} \;+\; c\,\tfrac{x(1-x)}{2}\,\Bigr]
+     \kperp\,\dd\kperp ,
+  \label{eq:fwd11}\\
+  \phi_{22}(\kappa_2)
+  &= 2\pi\!\int_0^\infty\!
+     \Bigl[\,a\,(1-x) \;+\; c\,(1-x)^{2}\,\Bigr]
+     \kperp\,\dd\kperp ,
+  \label{eq:fwd22}\\
+  \phi_{mn}(\kappa_2) &= 0 \qquad (m\ne n).
+  \label{eq:fwdcross}
+\end{align}
+(The $\phi_{22}$ bracket is the same combination that appears in the
+manuscript's $g_2$ kernel --- the conventions mesh, as they must.)
+
+Equations \eqref{eq:fwd11}--\eqref{eq:fwdcross} already deliver two
+\emph{on-line, assumption-testing} identities at zero cost:
+\begin{enumerate}[label=(T\arabic*),leftmargin=2.4em]
+\item $\phi_{11}(\kappa_2)=\phi_{33}(\kappa_2)$ at every $\kappa_2$. Any
+  measured splitting of the two transverse line spectra is a direct,
+  wavenumber-resolved violation of A1 --- a diagnostic the line itself
+  provides, no DNS needed.
+\item $\phi_{mn}(\kappa_2)=0$ for $m\ne n$. Nonzero measured cross spectra
+  likewise falsify A1 (or mirror symmetry) scale by scale.
+\end{enumerate}
+Under plane strain the true state is \emph{not} axisymmetric, so (T1)--(T2)
+turn the A1 error from an assumption into a measurement.
+
+\section{Constraint counting: why the isotropic intuition fails, exactly}
+\label{sec:counting}
+
+The isotropic case explains why a line ``feels'' more informative than it is.
+There $c=0$ and $a=a(\kappa)$: \emph{one unknown function of one variable},
+while the line supplies two measured functions of $\kappa_2$. The map is then
+over-determined --- $\phi_{22}$ (the longitudinal spectrum along the line)
+determines $a(\kappa)$ by the classical Abel-type inversion, and the
+transverse spectrum is slaved to it by the familiar derivative relation. The
+line determines everything, with one consistency check to spare.
+
+Under A1 the bookkeeping reverses: \emph{two unknown functions of two
+variables} $(a,c)(\kappa_2,\kperp)$ against \emph{two measured functions of
+one variable} \eqref{eq:fwd11}--\eqref{eq:fwd22}. At each fixed $\kappa_2$ the
+data supply exactly two numbers --- two weighted $\kperp$-integrals --- about
+two unknown functions of $\kperp$. The null space is infinite-dimensional:
+any perturbation $(\delta a,\delta c)(\kperp)$ annihilating both weighted
+integrals at that $\kappa_2$, while keeping \eqref{eq:realizability}, is
+invisible to the line. This is the precise content of your ``solenoidality
+links the LOS to the transverse plane but only weakly constrains it'': the
+link is the representation \eqref{eq:twoscalar} (solenoidality removed one of
+the three would-be scalars), and the weakness is the two-numbers-per-$\kappa_2$
+budget. Referee 3's objection --- that $(5.7)$ still contains
+$a(\kappa_2,\kperp)$, $c(\kappa_2,\kperp)$ --- is this null space, stated
+qualitatively.
+
+The right question is therefore not ``can the line determine $(a,c)$''
+(it cannot) but \emph{how much does the null space move the one functional we
+need}, eq.~\eqref{eq:target}. That is answerable, and sharply.
+
+\section{The estimator: sharp bounds by linear programming}
+\label{sec:estimator}
+
+Both the data constraints \eqref{eq:fwd11}--\eqref{eq:fwd22} and the target
+\eqref{eq:target} are \emph{linear} in $(a,c)$, and the realizability
+conditions \eqref{eq:realizability} are linear inequalities. Moreover
+everything decomposes over $\kappa_2$: writing
+$\Pir{nn}=\int_0^\infty \pi_n(\kappa_2)\,\dd\kappa_2$ with
+\begin{equation}
+  \pi_n(\kappa_2)
+  = 2\pi\!\int_0^\infty g_n(x)\bigl[a,c\bigr]\,\kperp\,\dd\kperp ,
+\end{equation}
+the extremization over all spectra consistent with the line data is a family
+of \emph{independent infinite-dimensional linear programs, one per}
+$\kappa_2$:
+\begin{equation}
+\boxed{\;
+  \pi_n^{\pm}(\kappa_2)
+  = \max/\min_{(a,c)(\kperp)}\;
+    2\pi\!\int_0^\infty g_n(x)[a,c]\,\kperp\,\dd\kperp
+  \quad\text{s.t.}\quad
+  \text{\eqref{eq:fwd11}--\eqref{eq:fwd22} hold, \eqref{eq:realizability}
+  pointwise.}
+\;}
+\label{eq:LP}
+\end{equation}
+Then $\Pi^{\pm}_{nn}=\int \pi_n^{\pm}\,\dd\kappa_2$, and the
+\textbf{kinematic indeterminacy} of the rapid term given LOS data is the
+width
+\begin{equation}
+  \mathcal{I}_n \;=\;
+  \frac{\Pi^{+}_{nn}-\Pi^{-}_{nn}}{2\,k_t\,S}\,,
+\end{equation}
+normalized by the natural rapid-term scale $k_t S$ (so that
+$\mathcal{I}_n$ is comparable across strains; recall the isotropic value is
+$\Pir{11}=\tfrac25 k_t$ per unit $S_{11}=\tfrac12$).
+
+Three remarks make this practical and honest:
+\begin{enumerate}[leftmargin=2em]
+\item \emph{Computation is trivial.} Discretize $\kperp$ on a log grid
+  ($\sim10^2$ points); \eqref{eq:LP} becomes a linear program with
+  $2\times10^2$ variables, two equality constraints, and the cone
+  \eqref{eq:realizability} --- solvable per $\kappa_2$ in milliseconds
+  (\texttt{scipy.optimize.linprog}). No search, no fitting, no local minima:
+  the bounds are \emph{global and sharp} by LP duality.
+\item \emph{The extremals are informative caricatures, and smoothing alone
+  does not tame them.} LP extremals concentrate on few-point supports in
+  $\kperp$ (bang--bang spectra), so the raw bound is conservative; but a
+  log-Lipschitz cap $|\dd\ln(a,c)/\dd\ln\kperp|\le\lambda$ --- implemented,
+  and exact for geometric growth --- narrows the isotropic-calibration width
+  by $<5\%$ even at the tightest vK-feasible $\lambda=4$: a log-Lipschitz
+  spectrum can still vary like $\kperp^{\pm4}$, so the angular reweighting
+  that drives the indeterminacy survives smoothing. The binding side
+  information is instead \emph{polarization}: the pointwise cap
+  $|c|\le\gamma\,a$ (linear; $\gamma=0$ is isotropic polarization) cuts the
+  isotropic-calibration widths by $55$--$70\%$
+  ($\mathcal I_{11}\!: 0.77\!\to\!0.34$, $\mathcal I_{22}\!: 1.28\!\to\!0.58$,
+  $\mathcal I_{33}\!: 0.86\!\to\!0.24$; combined with $\lambda=4$:
+  $0.29$, $0.50$, $0.21$). The residual freedom is the angular localization
+  of $a$ itself; the next rung on the hierarchy is therefore cross-$\kappa_2$
+  structure (e.g.\ $a$ close to a function of the modulus $\kappa$), which
+  couples the per-$\kappa_2$ programs and is where the DNS should adjudicate.
+  The parametric point estimate (the stretched--von-K\'arm\'an family) must
+  land \emph{inside} whichever bound is in force --- a built-in sanity check
+  on the family.
+\item \emph{Duality gives interpretable certificates.} The dual variables of
+  \eqref{eq:LP} identify which linear combinations of the line data control
+  $\pi_n$, i.e.\ \emph{which measurable on-line features carry the rapid-term
+  information}. That is worth reporting in its own right.
+\end{enumerate}
+
+The proposed resolution of the referee's objection is then no longer ``trust
+A1'' but: \emph{the rapid term is determined by LOS data up to the quantified
+interval $[\Pi^-,\Pi^+]$; here is its width in the regime of interest.} If the
+width is small, the single-line closure is effectively closed; if it is large
+at $Sk/\varepsilon\approx0.8$, that is the paper's honest boundary --- either
+way the claim becomes falsifiable.
+
+\section{DNS protocol, including the HIT null test}
+\label{sec:protocol}
+
+The bound is kinematic; whether it is \emph{narrow} is a property of real
+turbulence. Two datasets, one purpose each:
+
+\begin{enumerate}[leftmargin=2em]
+\item \textbf{HIT box (null test --- your suggestion).} Forced isotropic DNS
+  (or a public database snapshot). Draw an ensemble of LOS along $x_2$;
+  compute $\phi_{mn}(\kappa_2)$; run the estimator. Required outcomes:
+  (i) tests (T1)--(T2) pass to statistical tolerance; (ii) the inferred
+  anisotropy content is zero within noise --- i.e.\ the machinery reports
+  \emph{no false-positive strain signal on nominal HIT}; (iii) the bounds
+  $[\pi^-,\pi^+]$ bracket the exact isotropic value
+  $\Pir{ij}=\tfrac45 k_t S_{ij}$ evaluated for a \emph{nominal} strain, and
+  their width calibrates the smoothness cap in stage (b). The same test
+  applied to \emph{ODT} HIT states checks whether ODT itself generates a
+  spurious strain signature.
+\item \textbf{Plane-strain DNS at $Sk/\varepsilon$ up to $\approx1$}
+  (Lee--Reynolds-type configuration, rerun at modern resolution; to be run on
+  CARO). From the full field compute, independently:
+  (i) the \emph{exact} $\Pir{ij}=A_{kl}M_{ijkl}$ by direct spectral
+  integration --- the external benchmark the referees asked for;
+  (ii) the exact azimuthal average of $\Phi_{mn}$, hence the true
+  $(a,c)$ \emph{and} the discarded azimuthal harmonics $D_{mn}$
+  --- the direct, wavenumber-resolved measurement of the A1 error that
+  manuscript \S5.4 could only bound as $O(b^2)$;
+  (iii) the LOS-ensemble line data and the estimator bounds.
+  The decisive figure is then: exact $\Pir{nn}$ versus $[\Pi^-_{nn},\Pi^+_{nn}]$
+  versus the family point estimate, as functions of accumulated strain
+  $e=\smallint S\,\dd t$. This one dataset simultaneously answers
+  Referee~1.1 (independent spectral benchmark), Referee~3.1 (the correct
+  projected-spectrum RDT reference, obtained by evolving the same initial
+  field under exact RDT and projecting), and Referee~3.2 (the closure bound).
+\item \textbf{Only then, ODT.} Process ODT ensembles of the strained line
+  \emph{identically} to the DNS LOS --- your ansatz: assume ODT states obey
+  3-D continuity and extract whatever transverse-plane information is
+  thereby accessible. The comparison ODT-vs-DNS is then conducted through the
+  same estimator, so ODT's irreducible deficiency (no solenoidal constraint)
+  appears as a measured discrepancy in the line data and the bounds, not as an
+  article of faith.
+\end{enumerate}
+
+\paragraph{Statistical practicalities.} Line ensembles from a $N^3$ box give
+$N^2$ (correlated) LOS per snapshot; convergence of $\phi_{mn}$ and of the
+bound endpoints should be reported with jackknife errors over decorrelated
+snapshots. Finite-window bias on $\phi_{mn}$ at small $\kappa_2$ propagates
+linearly into \eqref{eq:LP} and can be carried as interval data (the LP
+accepts inequality-band constraints in place of equalities with no change of
+machinery).
+
+\section{Status of the pieces}
+\begin{itemize}[leftmargin=2em]
+\item The forward map \eqref{eq:fwd11}--\eqref{eq:fwdcross}, cone
+  \eqref{eq:realizability}, and LP \eqref{eq:LP} are \emph{implemented}
+  (\texttt{post/closure\_bound/} in the ODT-RDT repository, scipy/HiGHS),
+  with the slope and polarization side-conditions, data-band option, and a
+  21-test suite pinning the isotropic limit: kernel tracelessness and
+  angular averages $(+\tfrac15,-\tfrac15,0)$, the classical
+  longitudinal--transverse derivative relation on the forward map, the exact
+  $\Pir{ij}=\tfrac45 k_t S_{ij}$, and pointwise bracketing of the truth by
+  the LP bounds under every constraint combination. The raw isotropic
+  indeterminacy is large ($\mathcal I_n\approx0.8$--$1.3$): line data,
+  solenoidality and realizability alone leave the rapid term uncertain at
+  the level of its own magnitude, even at zero strain. This is the
+  quantitative content of ``weakly constrains'' --- and the reason the
+  polarization/structure rungs of the hierarchy, adjudicated by DNS, carry
+  the real weight.
+\item The kernels $g_n$ and all conventions are those already derived in
+  manuscript \S5; nothing in this note modifies the model --- it wraps the
+  model's central object in a falsifiable bound.
+\item Open choices, flagged for discussion: the smoothness side-condition in
+  stage (b) (TV cap vs.\ log-Lipschitz vs.\ monotone tail); whether to
+  extremize component-wise or jointly with the trace-free constraint
+  $\sum_n\pi_n=0$ imposed (the $g_n$ already sum to zero pointwise, so the
+  raw bounds respect it automatically); and the target resolution/forcing for
+  the plane-strain DNS.
+\end{itemize}
+
+\begin{thebibliography}{9}\small
+\bibitem[Batchelor(1946)]{Batchelor1946}
+Batchelor, G.~K. 1946 The theory of axisymmetric turbulence.
+\emph{Proc. R. Soc. Lond.} A \textbf{186}, 480--502.
+\bibitem[Chandrasekhar(1950)]{Chandrasekhar1950}
+Chandrasekhar, S. 1950 The theory of axisymmetric turbulence.
+\emph{Phil. Trans. R. Soc. Lond.} A \textbf{242}, 557--577.
+\bibitem[Lindborg(1995)]{Lindborg1995}
+Lindborg, E. 1995 Kinematics of homogeneous axisymmetric turbulence.
+\emph{J. Fluid Mech.} \textbf{302}, 179--201.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,43 @@
+# ---- ODT / LEN build artifacts ----
+build/
+*.o
+*.x
+odt.x
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+# ---- Simulation output (keep OFF git; lives on CARO/CARA) ----
+data/
+runtime/
+*.dat
+*.dmp
+*.npy
+*.npz
+*.h5
+*.hdf5
+post/**/*.png
+post/**/*.pdf
+
+# ---- Python ----
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# ---- Big papers stay tracked deliberately? No — keep PDFs out of git by default.
+#      If you want the 6 PDFs versioned, delete the next line.
+papers/*.pdf
+
+# ---- Secrets / cluster config never in git ----
+.env
+*_secrets*
+ssh_config.local
