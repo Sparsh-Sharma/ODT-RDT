@@ -57,13 +57,23 @@ def main():
     ap.add_argument("--decay-turnovers", type=float, default=1.5)
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--out", type=str, required=True)
+    ap.add_argument("--adir", type=float, nargs=3,
+                    default=[0.5, -0.5, 0.0],
+                    help="strain direction cosines (traceless); "
+                         "plane strain (default) or e.g. 0.25 -0.5 0.25 "
+                         "for axisymmetric contraction about the line")
+    ap.add_argument("--tag", type=str, default="",
+                    help="extra tag for output filenames")
     args = ap.parse_args()
 
     os.makedirs(args.out, exist_ok=True)
     tag = f"r{args.ratio:g}_s{args.seed:04d}"
+    if args.tag:
+        tag = args.tag + "_" + tag
     t_wall0 = time.time()
 
-    box = StrainBox(n=args.n, nu=args.nu, smag=0.0, seed=args.seed)
+    box = StrainBox(n=args.n, nu=args.nu, smag=0.0, seed=args.seed,
+                    a_dir=tuple(args.adir))
     box.init_isotropic(vk_spectrum(1.0, args.kp), kt_target=1.5)
     urms0 = np.sqrt(2.0 * box.kinetic_energy() / 3.0)
     t_pre = args.decay_turnovers / (args.kp * urms0)
