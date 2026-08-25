@@ -10,24 +10,9 @@ right-hand side and time stepper, so agreement is a real validation.
 import numpy as np
 import pytest
 
-from strainbox import StrainBox, vk_spectrum
+from strainbox import StrainBox, cauchy_rdt, vk_spectrum
 
 A_PLANE = (0.5, -0.5, 0.0)
-
-
-def cauchy_rdt(box, e):
-    """Exact RDT field at accumulated strain e from box's CURRENT field,
-    assuming the current state is at e0 = box.e (used with e0 = 0)."""
-    k0 = box.k0
-    uh0 = box.uh
-    om0 = 1j * np.cross(k0, uh0, axis=0)
-    a = np.asarray(box.a_dir)
-    om = om0 * np.exp(a * e)[:, None, None, None]
-    k = box.k_phys(e)
-    k2 = (k ** 2).sum(axis=0)
-    k2[0, 0, 0] = 1.0
-    # om = i k x u and k.u = 0  =>  k x om = -i k^2 u  =>  u = i (k x om)/k^2
-    return 1j * np.cross(k, om, axis=0) / k2[None, ...]
 
 
 def b_diag(box):

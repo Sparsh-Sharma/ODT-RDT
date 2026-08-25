@@ -34,9 +34,28 @@ sum_k |u^|^2 (with rfft weights) = <u_i u_i>/... see energy().
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass, field
 
 import numpy as np
+
+try:
+    from scipy import fft as _sfft
+
+    _WORKERS = int(os.environ.get("STRAINBOX_WORKERS", os.cpu_count() or 1))
+
+    def rfftn(a):
+        return _sfft.rfftn(a, axes=(0, 1, 2), workers=_WORKERS)
+
+    def irfftn(a, n):
+        return _sfft.irfftn(a, s=(n, n, n), axes=(0, 1, 2),
+                            workers=_WORKERS)
+except ImportError:                                    # pragma: no cover
+    def rfftn(a):
+        return np.fft.rfftn(a, axes=(0, 1, 2))
+
+    def irfftn(a, n):
+        return np.fft.irfftn(a, s=(n, n, n), axes=(0, 1, 2))
 
 
 @dataclass
@@ -113,7 +132,7 @@ class StrainBox:
         uh *= self.mask[None, ...]
         # enforce Hermitian symmetry via round-trip
         for c in range(3):
-            uh[c] = np.fft.rfftn(np.fft.irfftn(uh[c], s=(self.n,) * 3, axes=(0, 1, 2)))
+            uh[c] = rfftn(irfftn(uh[c], self.n))
         self.uh = self.project(uh, k)
         if kt_target is not None:
             self.uh *= np.sqrt(kt_target / self.kinetic_energy())
@@ -156,14 +175,14 @@ class StrainBox:
         rhs = -au + 2.0 * k * kau[None, ...]
         if not self.linear_only:
             n = self.n
-            u = np.array([np.fft.irfftn(uh[c], s=(n,) * 3, axes=(0, 1, 2)) for c in range(3)])
+            u = np.array([irfftn(uh[c], n) for c in range(3)])
             nl = np.zeros_like(uh)
             for i in range(3):
                 s = np.zeros((n,) * 3)
                 for j in range(3):
-                    dui = np.fft.irfftn(1j * k[j] * uh[i], s=(n,) * 3, axes=(0, 1, 2))
+                    dui = irfftn(1j * k[j] * uh[i], n)
                     s += u[j] * dui
-                nl[i] = np.fft.rfftn(s)
+                nl[i] = rfftn(s)
             if self.dealias:
                 nl *= self.mask[None, ...]
             rhs -= nl
@@ -194,7 +213,7 @@ class StrainBox:
     # ------------------------------------------------------------------ #
     def cfl_dt(self, cfl=0.5):
         n = self.n
-        u = np.array([np.fft.irfftn(self.uh[c], s=(n,) * 3, axes=(0, 1, 2))
+        u = np.array([irfftn(self.uh[c], n)
                       for c in range(3)])
         k = self.k_phys()
         kmax = np.array([np.abs(k[c]).max() for c in range(3)])
@@ -202,6 +221,26 @@ class StrainBox:
         adv = (umax * kmax).sum()
         rate = adv + (self.nu * (kmax ** 2).sum()) + abs(self.smag)
         return cfl / max(rate, 1e-12)
+
+
+def cauchy_rdt(box, e, uh0=None):
+    """Exact (closed-form) linear-RDT field at accumulated strain e, evolved
+    from uh0 (default: box's current field, assumed to be at e = 0 so that
+    labels k0 coincide with physical wavevectors).
+
+    Cauchy solution for irrotational strain: in the deforming frame the
+    vorticity components amplify as omega^_i(t) = exp(a_i e) omega^_i(0) at
+    fixed mode label; u^ = i (k x omega^)/k^2 recovers the velocity.
+    """
+    uh0 = box.uh if uh0 is None else uh0
+    k0 = box.k0
+    om0 = 1j * np.cross(k0, uh0, axis=0)
+    a = np.asarray(box.a_dir)
+    om = om0 * np.exp(a * e)[:, None, None, None]
+    k = box.k_phys(e)
+    k2 = (k ** 2).sum(axis=0)
+    k2[0, 0, 0] = 1.0
+    return 1j * np.cross(k, om, axis=0) / k2[None, ...]
 
 
 def vk_spectrum(amplitude=1.0, kp=4.0):
