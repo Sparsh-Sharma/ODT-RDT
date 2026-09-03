@@ -243,9 +243,7 @@ versus rigid'' distinction conflates the two; the departure from rigid
 translation that the manuscript attributes to the eddy cascade is, in
 exact linear theory, already present. The three-way comparison --- ODT,
 exact projected RDT, DNS --- on the same bands is the figure that replaces
-Figs.~4--10's narrative; the data for it (the $S=2$ ODT ensembles of the
-allocation campaign, the companions, the DNS) are all in hand and it is
-the first open item below.
+Figs.~4--10's narrative; it follows below (Fig.~\ref{fig:threeway}).
 
 \paragraph{The splitting's scale dependence is nonlinear
 (Fig.~\ref{fig:rdt}, right).} Exact RDT deepens the transverse splitting
@@ -269,6 +267,50 @@ measured deficit, not by completeness.
 ratio of the projected spectra to a rigid translation. Right: transverse
 splitting versus wavenumber, exact RDT against DNS at $\Ske=0.8$.}
 \label{fig:rdt}
+\end{figure}
+
+\paragraph{The three-way comparison (Fig.~\ref{fig:threeway}).} On common
+bands of $\kappa_2(e)/\kappa_c(0)$ the strain-induced change of the
+spectral component anisotropy,
+$\Delta b_{nn}(\kappa_2)=\phi_{nn}/\Sigma\phi-\tfrac13$ at $e$ minus the
+same quantity of the system's own $e=0$ state with each mode mapped to its
+strained wavenumber, cancels both viscous decay (component-blind) and the
+longitudinal--transverse structure of the isotropic line spectra
+($b_{22}(\kappa_2,0)$ runs from $+0.11$ to $-0.20$ across the resolved
+range in the box, and is zero in ODT, whose line is component-symmetric).
+At $e=1$:
+\begin{center}\small
+\begin{tabular}{lccccccc}
+\toprule
+$\Delta b_{22}(\kappa_2)$, $\kappa_2/\kappa_c$: & 0.5--0.75 & 0.75--1.2 & 1.2--1.9 & 1.9--3 & 3--4.8 & 4.8--7.6 & 7.6--12\\
+\midrule
+exact RDT (projected) & $+0.146$ & $+0.008$ & $-0.020$ & $-0.041$ & $-0.050$ & $-0.054$ & $-0.056$\\
+DNS, $\Ske=0.8$       & $+0.032$ & $-0.033$ & $-0.029$ & $-0.032$ & $-0.036$ & $-0.040$ & $-0.046$\\
+ODT, isotropic kernel & $+0.100$ & $+0.101$ & $+0.114$ & $+0.111$ & $+0.127$ & $+0.099$ & $+0.147$\\
+ODT, eddy types       & $+0.121$ & $+0.112$ & $+0.111$ & $+0.132$ & $+0.139$ & $+0.150$ & $+0.181$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Rapid distortion puts the upwash anisotropy at the energy-containing
+scales and \emph{removes} it from the small scales (aligned modes,
+$x\to1$, are amplified least); the DNS has the same shape, weaker at the
+large scales. ODT distributes its moment-level $b_{22}$ uniformly over
+every wavenumber --- the signature of a $\kappa$-uniform rapid operator on
+a uniformly dilated line, now measured against both references. The same
+holds for $\Delta b_{33}$ (RDT up to $+0.22$ at high $\kappa_2$, DNS
+$+0.02$--$0.12$, ODT zero) and for the splitting. For the leading-edge
+application this is the operative deficiency: the upwash spectrum's
+high-wavenumber anisotropy, which the Amiet response weights, has the wrong
+sign in ODT. Bands at $\kappa_2/\kappa_c<0.75$ rest on a few modes of a
+$128^3$ box (4 seeds) and are indicative only.
+
+\begin{figure}[h!]\centering
+\includegraphics[width=\textwidth]{../post/closure_bound/strained/fig_threeway.pdf}
+\caption{Three-way comparison at $\Ske=0.8$: strain-induced anisotropy of
+the line spectra relative to each system's own $e=0$ state, ODT ($S=2$
+ensembles, 1024 realizations) against exact projected RDT and DNS
+($128^3$, 4 seeds); $e=1$ solid, $e=0.5$ dashed.}
+\label{fig:threeway}
 \end{figure}
 
 \section{Component ordering under plane strain}\label{sec:order}
@@ -346,9 +388,8 @@ DNS as the external benchmark (Ref.~1.1, 2) and Sagaut \& Cambon 2018
 \section{Open items}
 
 \begin{enumerate}[leftmargin=2em,itemsep=2pt]
-\item \emph{Three-way projected-spectrum comparison} at $\Ske=0.8$, $e\le1$:
-  ODT ($S=2$ ensembles), exact RDT (companions), DNS, on common bands ---
-  the replacement figure. Data in hand; half a day.
+\item \emph{Three-way comparison}: done (Fig.~\ref{fig:threeway}); to be
+  redone on the resolved box when available, and extended to $\Ske=16$.
 \item \emph{Resolution}: $128^3$ with $\kappa_{\max}\eta=0.76$ at $e=1$ is
   a pilot. A resolved run needs the restructured $256^3$ recipe (shared
   precursor checkpoint, seeds as a job array, $e\le0.5$); the pilot's
