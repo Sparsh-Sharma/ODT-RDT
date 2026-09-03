@@ -156,7 +156,8 @@ def main():
         ax.tick_params(labelsize=8.5)
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", color="0.93", lw=0.6)
-    axs[0].legend(fontsize=7, frameon=False, loc="lower left")
+    h, l = axs[0].get_legend_handles_labels()
+    fig.legend(h, l, fontsize=8, frameon=False, ncol=3, loc="lower center", bbox_to_anchor=(0.5, -0.12))
     fig.suptitle(r"Plane strain at $Sk/\varepsilon=0.8$: strain-induced anisotropy of the line spectra, "
                  "each relative to its own $e{=}0$ state -- ODT against exact projected RDT and DNS",
                  fontsize=10.5, y=1.02)
