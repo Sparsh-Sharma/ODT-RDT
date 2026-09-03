@@ -1,0 +1,231 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,bm,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{enumitem}
+
+\newcommand{\Pir}[1]{\Pi^{(\mathrm r)}_{#1}}
+\newcommand{\Pis}[1]{\Pi^{(\mathrm s)}_{#1}}
+\newcommand{\kt}{k_t}
+\newcommand{\Qs}{Q^{*}}
+
+\title{\vspace{-1.2em}Where the mean strain enters an ODT eddy:\\
+rapid versus slow, and what each allocation route predicts}
+\author{Sparsh Sharma (DLR Braunschweig)\\[0.2em]
+\normalsize Derivation note preceding implementation --- \today}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-2em}
+
+\paragraph{Purpose.} Alan's two references offer ODT-native routes to
+anisotropy: the available-energy allocation of Kerstein (Fluids 2022,
+\S6.2) and Wunsch's three eddy types (Fistler et al.\ 2020). Before
+implementing either, this note asks the prior question: \emph{which part of
+the pressure--strain can live inside the eddy event at all?} The answer is
+derived at the moment level, checked against the DNS already in hand, and
+turns out to draw a sharp line --- rapid part continuous and strain-rate
+proportional, slow part eddy-allocated --- that fixes where each route acts
+and what it can be expected to change.
+
+\section{The two mechanisms as they stand in the code}
+
+\paragraph{Kernel allocation (\texttt{eddy.cc}, \texttt{set\_kernel\_coefficients}).}
+With the kernel norm $S=\tfrac12(A^2{+}1)\rho_{KK}-A\rho_{JK}$ and the
+kernel-projected component velocities $P_i$, the code forms the
+component-$i$ \emph{available energy} $Q_i=P_i^2/4S$ (exactly the $Q_i$ of
+Fluids \S6.2) and sets
+\begin{equation}
+  c_i=\frac{1}{2S}\Bigl[-P_i+\operatorname{sgn}(P_i)\,X_i\Bigr],\qquad
+  X_i^2=(1-\alpha)P_i^2+\tfrac{\alpha}{2}\bigl(P_j^2+P_k^2\bigr).
+\end{equation}
+The kernel energy change is $\Delta E_i=Sc_i^2+P_ic_i=(X_i^2-P_i^2)/4S$,
+hence
+\begin{equation}
+  \Delta E_i=-\alpha Q_i+\tfrac{\alpha}{2}(Q_j+Q_k),\qquad
+  \Qs_i\equiv Q_i+\Delta E_i=\frac{X_i^2}{4S},
+  \label{eq:alloc}
+\end{equation}
+which is Fluids \S6.2's allocation with memory parameter
+$\chi=1-\tfrac32\alpha$. The runs use $\alpha=2/3$, i.e.\ $\chi=0$: the
+no-memory equipartition $\Qs_i=Q/3$. The structural point for
+implementation: \emph{any} allocation rule $\Qs_i$ (with $\sum_i\Qs_i=Q$
+and $\Qs_i\ge0$) enters by the single substitution $X_i^2=4S\,\Qs_i$.
+
+\paragraph{Rapid operator (\texttt{domain.cc}, \texttt{updateStrainOperator}).}
+Once per explicit substep the code forms the line Reynolds stress $R$, the
+production $P=-(AR+RA^{\mathsf T})$, the rapid pressure--strain $\Pir{}$ by
+IP or LRR-QI, solves the Lyapunov equation $BR+RB=\Pir{}$ for symmetric
+$B$, and applies $\dot u_i=(-A+B)_{ij}u_j$ pointwise on the line. By
+construction $\mathrm d\langle u_iu_j\rangle/\mathrm dt$ from $B$ equals
+$\Pir{ij}$ exactly. Two properties matter below: it acts
+\emph{continuously in time at a rate $\propto S$}, independent of eddy
+occurrence; and it is a \emph{wavenumber-independent} linear map.
+
+\section{Moment-level content of the two mechanisms}
+
+Ensemble-averaged over eddies of size $l$ at rate $\lambda(l)$, the kernel
+projection samples the component variance, $\langle Q_i\rangle\propto
+R_{ii}$ (Kerstein et al.\ 2001), so \eqref{eq:alloc} gives
+\begin{equation}
+  \left.\frac{\mathrm dR_{ii}}{\mathrm dt}\right|_{\rm eddy}
+  =\omega_e\Bigl[-\alpha R_{ii}+\tfrac{\alpha}{2}(R_{jj}+R_{kk})\Bigr]
+  =-\tfrac32\alpha\,\omega_e\bigl(R_{ii}-\tfrac23\kt\bigr),
+  \label{eq:rotta}
+\end{equation}
+with $\omega_e$ the effective eddy frequency. The isotropic kernel is a
+Rotta return-to-isotropy, $\Pis{ii}$, with $C_R\propto\alpha$ and rate set
+by eddy activity, component-symmetric. It carries \emph{no} term
+proportional to $S_{ij}$: it is the slow part of the canonical
+decomposition $\Pi=\Pir{}+\Pis{}$, and nothing else. The rapid operator
+supplies $\Pir{}$ and nothing else. The manuscript's ``no double
+counting'' (\S5.6) is therefore not an argument but a construction: the
+two mechanisms occupy the two terms by design.
+
+\section{The rapid-limit discriminator}
+
+Suppose instead the rapid term were represented \emph{inside} the eddy
+event --- through a strain-biased allocation (Route C below) or through
+eddy types (Route D). Its ensemble rate is then $\omega_e$, not $S$. In the
+rapid limit $S\gg\omega_e$ the eddies are frozen: at $Sk/\varepsilon=16$
+the DNS accumulates $e=1$ in $1/16$ of an eddy turnover. Any
+eddy-mediated pressure--strain then contributes nothing, and the model
+reduces to pure production. For plane strain from isotropy,
+$P_{22}=-2A_{22}R_{22}=\tfrac23\kt S$, so
+\begin{equation}
+  \left.\frac{\mathrm db_{22}}{\mathrm de}\right|_{0}
+  =\frac{1}{3}\ \ (\text{production only}),\qquad
+  \frac{2}{15}\ \ (\text{with }\Pir{22}=-\tfrac35P_{22}\text{, Crow/IP}).
+\end{equation}
+The exact linear (RDT) slope is $2/15$: the rapid pressure cuts the initial
+anisotropy growth by a factor $2.5$. Table~\ref{tab:l0} integrates the
+moment equations to $e=1$ and sets them against the DNS and the
+closed-form RDT companion from the pilot.
+
+\begin{table}[h!]
+\centering\small
+\begin{tabular}{lccc|ccc|c}
+\toprule
+ & \multicolumn{3}{c|}{$b_{22}$} & \multicolumn{3}{c|}{$b_{11},\,b_{22},\,b_{33}$ at $e=1$} & slope \\
+ & $e{=}0.25$ & $0.5$ & $1$ & $b_{11}$ & $b_{22}$ & $b_{33}$ & $\mathrm db_{22}/\mathrm de|_0$\\
+\midrule
+production only            & $+0.086$ & $+0.173$ & $+0.332$ & $-0.243$ & $+0.332$ & $-0.089$ & $0.333$\\
+IP ($C_2{=}3/5$)           & $+0.034$ & $+0.068$ & $+0.132$ & $-0.116$ & $+0.132$ & $-0.016$ & $0.133$\\
+LRR-QI                     & $+0.033$ & $+0.066$ & $+0.125$ & $-0.120$ & $+0.125$ & $-0.005$ & $0.133$\\
+\midrule
+RDT exact (Cauchy)         & $+0.038$ & $+0.071$ & $+0.123$ & --- & $+0.123$ & --- & $0.133$\\
+DNS, $Sk/\varepsilon{=}16$ & $+0.038$ & $+0.070$ & $+0.124$ & --- & $+0.124$ & --- & $\approx0.15$\\
+DNS, $Sk/\varepsilon{=}0.8$& $+0.036$ & $+0.064$ & $+0.125$ & $-0.129$ & $+0.139$ & $-0.010$ & \\
+\bottomrule
+\end{tabular}
+\caption{Moment-level plane strain ($A=S\,\mathrm{diag}(\tfrac12,-\tfrac12,0)$)
+from isotropy: Level-0 integrations versus the pilot DNS and its RDT
+companion. A model with no strain-rate-proportional rapid term overshoots
+$b_{22}$ by a factor $2.7$ at $e=1$; LRR reproduces DNS/RDT to $\sim2\%$.}
+\label{tab:l0}
+\end{table}
+
+\paragraph{Conclusion 1.} \emph{The rapid pressure--strain cannot be
+represented by eddy-event allocation --- by either route --- because it is
+not eddy-mediated physically}: it is the instantaneous Poisson response of
+the pressure to the mean gradient, linear in $A$, and it acts at rate
+$\propto S$ whether or not an eddy occurs. The DNS at $Sk/\varepsilon=16$
+rules the alternative out by a factor $2.7$. The continuous operator
+$\dot u=(-A+B)u$ already in the code is the correct home; it stays.
+Kerstein's \S6.2 allocation and Wunsch's eddy types govern the \emph{slow}
+term \eqref{eq:rotta}, which is where direction-dependence belongs. This is
+the precise answer to ``which points remain relevant'': the architecture of
+the rapid term survives on physical grounds; the isotropic $\alpha$-kernel
+is what the references replace.
+
+\section{Routes C and D in the slow term}
+
+Both are one-line substitutions for $\Qs_i$ in \eqref{eq:alloc}.
+
+\paragraph{Route C --- strain-biased allocation (\S6.2 generalized).}
+\begin{equation}
+  \Qs_i=\frac{Q}{3}+\chi\Bigl(Q_i-\frac{Q}{3}\Bigr)+\beta\,\hat A_{ii}\,Q,
+  \qquad \hat A=\frac{A}{\|A\|_F},\ \ \operatorname{tr}\hat A=0.
+  \label{eq:routeC}
+\end{equation}
+Conservation is automatic (both correction terms are traceless);
+realizability $\Qs_i\ge0$ bounds $|\beta|\le(1/3-\ldots)/\max_i|\hat A_{ii}|$,
+i.e.\ $\beta\le0.47$ for plane strain at $\chi=0$ (clip otherwise).
+Moment level: adds $2\beta\,\omega_e\kt\hat S_{ii}$ to \eqref{eq:rotta} ---
+a term of the \emph{form} of the rapid pressure--strain but at rate
+$\omega_e$. Per Conclusion~1 it must not be used to emulate $\Pir{}$; its
+legitimate role is a strain-orientation bias of the \emph{slow} return.
+
+\paragraph{Route D --- eddy types (Fistler et al.\ 2020).}
+Sample an omitted component $m$ with probability $p_m$; exchange only
+within the pair $(j,k)$:
+\begin{equation}
+  \Qs_j=(1-\alpha_2)Q_j+\alpha_2Q_k,\quad
+  \Qs_k=(1-\alpha_2)Q_k+\alpha_2Q_j,\quad
+  \Qs_m=Q_m\ \ (\Rightarrow c_m=0).
+  \label{eq:routeD}
+\end{equation}
+Moment level: a pairwise Rotta with type weights,
+$\mathrm dR_{jj}/\mathrm dt|_{\rm eddy}=\omega_e\alpha_2\sum_{m\ne j}p_m(R_{kk}-R_{jj})$,
+which breaks the $u\leftrightarrow w$ symmetry of \eqref{eq:rotta}
+whenever $p_1\ne p_3$. (Fistler et al.\ additionally evaluate the eddy
+time scale from the two participating components; a first implementation
+keeps $\tau$ unchanged and notes the difference.)
+
+\paragraph{Where the routes actually differ from the present model.}
+Table~\ref{tab:l0} shows that at the \emph{moment} level the present
+architecture (continuous LRR $+$ isotropic $\alpha$) already reproduces
+the DNS $b_{ij}$ to $\sim2\%$ under plane strain --- including the
+$u\leftrightarrow w$ ordering, because production distinguishes all three
+components ($P_{11}<0$, $P_{22}>0$, $P_{33}=0$) and LRR feeds $w$ through
+$-\tfrac23\operatorname{tr}(bS)$: at $e=1$ it gives
+$\Pir{33}=0.58\,\kt S\,(b_{22}-b_{11})=0.143\,\kt S$ against the DNS
+$0.142\,\kt S$ at $Sk/\varepsilon=0.8$ (but only half the DNS value
+$0.269$ at $Sk/\varepsilon=16$ --- the rapid-limit deficiency Referee~1
+flagged for the plane-strain component ordering lives here, in LRR's
+$b$-dependent term, not in the eddies). So the slow-term routes are not
+needed to fix the Reynolds stresses. \emph{Their payoff is spectral.} The
+rapid operator is a wavenumber-independent map: it rescales component
+amplitudes uniformly across scales, so by itself it produces a
+$\kappa_2$-\emph{rigid} splitting $\phi_{11}/\phi_{33}$. The DNS splitting
+($\phi_{11}/\phi_{33}-1\to-0.46$ at $e=1$) is scale-dependent --- the
+same distortion the manuscript calls ``broadband versus rigid
+translation'', and the object of Referee~3's objection. The only
+scale-local anisotropic mechanism available on the line is the kernel,
+which acts at eddy scale $l$ with allocation $\Qs_i(l)$. A
+direction-dependent slow allocation is therefore the mechanism that can
+make the splitting $\kappa_2$-dependent; the isotropic $\alpha$-kernel
+cannot.
+
+\section{Implementation and the three discriminating tests}
+
+\begin{enumerate}[leftmargin=2em]
+\item In \texttt{set\_kernel\_coefficients}: compute $Q_i$, $Q$; form
+  $\Qs_i$ by mode \texttt{ISO} (existing, \eqref{eq:alloc}),
+  \texttt{CHI} (\eqref{eq:routeC}; parameters $\chi,\beta$), or
+  \texttt{TYPES} (\eqref{eq:routeD}; parameters $\alpha_2$, $p_m$); clip
+  $\Qs_i\ge0$ and renormalize $\sum\Qs_i=Q$; set $X_i=\sqrt{4S\Qs_i}$.
+  Everything else --- $c_i$, $b_i=-Ac_i$, the continuous rapid operator ---
+  is untouched.
+\item \textbf{Test 1 (rapid limit).} $Sk/\varepsilon=16$, all modes: the
+  initial slope $\mathrm db_{22}/\mathrm de$ must be $2/15$ and $b_{22}(1)$
+  within a few percent of $0.123$ for every mode, confirming the slow
+  allocation does not contaminate the rapid response.
+\item \textbf{Test 2 (moment level, slow strain).} $Sk/\varepsilon=0.8$:
+  $b_{ij}(e)$ against Table~\ref{tab:l0}; modes should differ only mildly.
+\item \textbf{Test 3 (spectral --- the decisive one).} $Sk/\varepsilon=0.8$,
+  $e=1$: the line spectra $\phi_{11}(\kappa_2),\phi_{33}(\kappa_2)$ and the
+  splitting versus the DNS. \texttt{ISO} is predicted rigid;
+  \texttt{CHI}/\texttt{TYPES} scale-dependent. Whichever tracks the DNS
+  splitting is the model; the same spectra feed the LOS estimator, closing
+  the loop with Half~A.
+\end{enumerate}
+
+\paragraph{A consistency refinement (not needed now).} In \S6.2's
+$H=Q+S_E$ accounting, the work done by the rapid operator over the eddy
+duration is an $S_E$-type input; folding it into $H$ would make the
+per-eddy energy budget exact rather than split between substeps and
+events. It changes nothing at the moment level above.
+
+\end{document}
