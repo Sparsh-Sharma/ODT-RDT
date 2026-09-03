@@ -39,9 +39,16 @@ def load(case):
     return np.load(f) if os.path.exists(f) else None
 
 
+def good_rlz(lines):
+    """Realizations without a dump at this checkpoint are NaN-padded by the
+    extractor (4-5 of 1024 at S=8); drop them."""
+    return lines[~np.isnan(lines).any(axis=(1, 2))]
+
+
 def b_of_dump(lines):
     """Component anisotropy with jackknife SE from a (R, N, 3) line set,
     fluctuations about the line mean, interior segment."""
+    lines = good_rlz(lines)
     n = lines.shape[1]
     i0 = int(n * (1 - SEG_FRAC) / 2)
     seg = lines[:, i0:n - i0, :].astype(np.float64)
@@ -61,6 +68,7 @@ def b_of_dump(lines):
 def line_spectra(lines, ldump, all_components=False):
     """Windowed two-sided phi_11, phi_33 (per-rlz mean) vs physical k2.
     With all_components=True also returns phi_22."""
+    lines = good_rlz(lines)
     n = lines.shape[1]
     i0 = int(n * (1 - SEG_FRAC) / 2)
     seg = lines[:, i0:n - i0, :].astype(np.float64)
