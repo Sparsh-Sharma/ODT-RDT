@@ -96,30 +96,42 @@ def main():
             print(f"{mode:8s} " + "  ".join(row) + f"   slope0={slope:.3f}")
 
     # ---------------- Test 3: spectral splitting at S=0.5, e=1 ----------------
-    print("\n===== Test 3 (spectral, S=0.5, e=1): phi_11/phi_33 - 1 in log-k2 bands")
+    # Wavenumber convention: ODT and DNS are different nondimensional systems
+    # (ODT IC peak at 8 waves per unit line, DNS IC peak at kp=4 per 2*pi box).
+    # Both are compared on x = kappa_2(e) / kappa_p0, each normalized by its
+    # OWN initial peak; both dilate by exp(e/2) so the strain shift is
+    # directly comparable. ODT: kn = waves per unit length -> kn/8.
+    # DNS: kappa2 stored in integer box units -> kappa2/4.
+    print("\n===== Test 3 (spectral, S=0.5, e=1): phi_11/phi_33 - 1 in bands of k2/kp0")
+    bands = np.geomspace(0.15, 8.0, 9)
+    results = {}
     dns = sorted(glob.glob(os.path.join(DNS_DIR, "chk_r0.8_s*_e1.npz")))
     if dns:
         ph = np.mean([np.load(f, allow_pickle=True)["phi_line"] for f in dns], axis=0)
         k2d = np.load(dns[0], allow_pickle=True)["kappa2"]
         use = (k2d > 0) & (k2d <= 0.85 * 42 * np.exp(0.5))
-        print(f"DNS (Sk/eps=0.8, e=1) integrated splitting: "
-              f"{ph[0][use].sum()/ph[2][use].sum()-1:+.3f}")
-    bands = np.geomspace(1, 60, 7)
-    results = {}
+        xd = k2d / 4.0
+        vals = []
+        for a, b in zip(bands[:-1], bands[1:]):
+            sel = (xd >= a) & (xd < b) & use
+            vals.append(ph[0][sel].sum() / ph[2][sel].sum() - 1 if sel.any() else np.nan)
+        results["DNS"] = np.array(vals)
+        print(f"{'DNS':8s} " + " ".join(f"{v:+.3f}" for v in vals)
+              + f"   integrated={ph[0][use].sum()/ph[2][use].sum()-1:+.3f}")
     for mode in MODES:
         d = load(f"S05_{mode}")
         if d is None:
             continue
         k, (p11, _), (p33, _) = line_spectra(d["lines"][-1], d["Ldump"][-1])
-        kn = k / (2 * np.pi)                        # waves per unit length
+        x = k / (2 * np.pi) / 8.0                   # kappa_2 / kappa_p0
         vals = []
         for a, b in zip(bands[:-1], bands[1:]):
-            sel = (kn >= a) & (kn < b)
+            sel = (x >= a) & (x < b)
             vals.append(p11[sel].sum() / p33[sel].sum() - 1 if sel.any() else np.nan)
         results[mode] = np.array(vals)
         print(f"{mode:8s} " + " ".join(f"{v:+.3f}" for v in vals)
-              + f"   integrated={p11[kn>0].sum()/p33[kn>0].sum()-1:+.3f}")
-    print("bands (waves/L): " + " ".join(f"[{a:.0f},{b:.0f})" for a, b in zip(bands[:-1], bands[1:])))
+              + f"   integrated={p11[x>0].sum()/p33[x>0].sum()-1:+.3f}")
+    print("bands (k2/kp0): " + " ".join(f"[{a:.2f},{b:.2f})" for a, b in zip(bands[:-1], bands[1:])))
     np.savez(os.path.join(HERE, "alloc_tests_results.npz"), bands=bands,
              **{f"split_{m}": v for m, v in results.items()})
 
