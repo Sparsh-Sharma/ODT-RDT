@@ -457,6 +457,12 @@ void domain::updateStrainOperator() {
     for(int a=0;a<3;a++) for(int b=0;b<3;b++) R[a][b] /= Lsum;
     double kt = 0.5*(R[0][0]+R[1][1]+R[2][2]);
 
+    // --- precursor: before tStrainOn the line evolves as unstrained ODT ---
+    if(mimx->time < pram->tStrainOn) {
+        for(int i=0;i<3;i++) for(int j=0;j<3;j++) pram->Acal[i][j] = 0.0;
+        return;
+    }
+
     // --- mean strain S and rotation W from pram->Astrain ---
     double A[3][3], S[3][3], W[3][3];
     for(int i=0;i<3;i++) for(int j=0;j<3;j++) A[i][j]=pram->Astrain[i][j];
@@ -512,6 +518,7 @@ void domain::updateStrainOperator() {
 void domain::applyStrainDilatation(const double dt) {
 
     if(!pram->Lstrain || !pram->Ldilatation) return;
+    if(mimx->time < pram->tStrainOn) return;          // precursor: no dilatation before strain onset
 
     const double A22 = pram->Astrain[1][1];           // d(ln L)/dt
     const double f   = std::exp(A22 * dt);             // affine scale factor

@@ -108,6 +108,7 @@ param::param(inputoutput *p_io) {
     specKpWaves    = io->params["specKpWaves"]    ? io->params["specKpWaves"].as<double>()    : 8.0;
     specNmodes     = io->params["specNmodes"]     ? io->params["specNmodes"].as<int>()         : 64;
     strainCFL      = io->params["strainCFL"]      ? io->params["strainCFL"].as<double>()      : 0.01;
+    tStrainOn      = io->params["tStrainOn"]      ? io->params["tStrainOn"].as<double>()      : 0.0;
 
     //--------------------- kernel energy allocation (slow term); tau is unchanged in all modes
 

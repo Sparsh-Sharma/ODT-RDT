@@ -544,6 +544,7 @@ void eddy::set_kernel_coefficients() {
             for(int a=0; a<3; a++) for(int b=0; b<3; b++)
                 nrm += domn->pram->Astrain[a][b]*domn->pram->Astrain[a][b];
             nrm = sqrt(nrm);
+            if(domn->solv->time < domn->pram->tStrainOn) nrm = 0.0;   // precursor: no strain bias before onset
             for(i=0; i<3; i++) {
                 double Ahat = (nrm > 0.0) ? domn->pram->Astrain[i][i]/nrm : 0.0;
                 Qs.at(i) = Qtot/3.0 + chi*(Q.at(i) - Qtot/3.0) + beta*Ahat*Qtot;
