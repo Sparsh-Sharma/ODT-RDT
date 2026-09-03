@@ -119,7 +119,8 @@ def main():
                 b22.append(b[1])
                 row.append(f"({b[0]:+.3f},{b[1]:+.3f},{b[2]:+.3f})")
             slope = (b22[1] - b22[0]) / 0.25
-            print(f"{mode:8s} " + "  ".join(row) + f"   slope0={slope:.3f}")
+            print(f"{mode:8s} " + "  ".join(row)
+                  + f"   slope0={slope:.3f}  db22(1)={b22[-1] - b22[0]:+.4f}")
 
     # ---------------- Test 3: spectral splitting at S=0.5, e=1 ----------------
     # Wavenumber convention: ODT and DNS are different nondimensional systems

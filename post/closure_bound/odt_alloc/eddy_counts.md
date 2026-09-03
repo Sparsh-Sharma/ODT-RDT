@@ -45,3 +45,19 @@ after t=0.1.
 2. S chosen from the measured post-burst eddy rate so that S*tau_eddy
    matches the DNS Sk/eps = 0.8 (roughly S ~ 0.25 on this IC, to be
    re-measured after the precursor), giving O(2-3) eddy turnovers within e=1.
+
+# Precursor campaign, S=2 cases (2026-09-03, tStrainOn = 0.4, job 4429881)
+
+Accepted eddies per realization before onset and in each strain quarter
+(t = 0.4 + e/2), mean post-onset eddy size (fraction of the line).
+
+| case       | pre-onset | e∈[0,.25) | [.25,.5) | [.5,.75) | [.75,1] | total e≤1 | size |
+|------------|----------:|----------:|---------:|---------:|--------:|----------:|-----:|
+| S2_ISO     | 129.3 | 3.07 | 1.82 | 1.14 | 0.77 | 6.81 | 0.089 |
+| S2_CHI     | 129.2 | 3.15 | 1.76 | 1.12 | 0.73 | 6.77 | 0.089 |
+| S2_TYPESeq | 128.5 | 3.09 | 1.72 | 1.06 | 0.76 | 6.62 | 0.090 |
+| S2_TYPESw  | 128.4 | 3.12 | 1.70 | 1.11 | 0.73 | 6.65 | 0.089 |
+
+~6.7 relaxed eddies of size 0.09 L per line inside e≤1 (~0.6 line coverages),
+as designed from the pilot; the burst (129 eddies) is entirely before onset.
+Onset state at 1024 rlz: b = (-0.005, +0.003, +0.002) +- 0.003, i.e. isotropic.
