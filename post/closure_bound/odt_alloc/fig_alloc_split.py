@@ -15,8 +15,8 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from alloc_tests import (DNS_DIR, ECHK, MODES, SEG_FRAC, b_of_dump,  # noqa: E402
-                         line_spectra, load)
+from alloc_tests import (DNS_DIR, ECHK, MODES, b_of_dump,  # noqa: E402
+                         centroid, line_spectra, load)
 
 COL = {"ISO": "#2a78d6", "CHI": "#eb6834", "TYPESeq": "#1baf7a",
        "TYPESw": "#eda100"}
@@ -52,17 +52,22 @@ axl.set_title("Test 1: rapid limit ($S{=}8$) -- modes must coincide",
 axl.legend(fontsize=7.5, frameon=False, loc="upper left")
 
 # ---- right: Test 3 ----
-# Both systems on x = kappa_2(e)/kappa_p0, each normalized by its OWN initial
-# peak (ODT: 8 waves per unit line; DNS: kp=4 in integer box units). Both
-# dilate by exp(e/2), so the strain shift is directly comparable.
-edges = np.geomspace(0.15, 8.0, 13)
-dns = sorted(glob.glob(os.path.join(DNS_DIR, "chk_r0.8_s*_e1.npz")))
-if dns:
-    ph = np.mean([np.load(f, allow_pickle=True)["phi_line"] for f in dns],
+# Both systems on x = kappa_2(e)/kappa_c(0): the e=0 centroid of each
+# system's own total line spectrum (a 3-D peak is unavailable for ODT, and a
+# 1-D projection peaks below the 3-D kp). Both dilate by exp(e/2).
+edges = np.geomspace(0.3, 12.0, 13)
+dns1 = sorted(glob.glob(os.path.join(DNS_DIR, "chk_r0.8_s*_e1.npz")))
+dns0 = sorted(glob.glob(os.path.join(DNS_DIR, "chk_r0.8_s*_e0.npz")))
+if dns1 and dns0:
+    ph = np.mean([np.load(f, allow_pickle=True)["phi_line"] for f in dns1],
                  axis=0)
-    k2d = np.load(dns[0], allow_pickle=True)["kappa2"]
+    ph0 = np.mean([np.load(f, allow_pickle=True)["phi_line"] for f in dns0],
+                  axis=0)
+    k2d = np.load(dns1[0], allow_pickle=True)["kappa2"]
+    kref_d = centroid(np.load(dns0[0], allow_pickle=True)["kappa2"],
+                      ph0.sum(axis=0))
     use = (k2d > 0) & (k2d <= 0.85 * 42 * np.exp(0.5))
-    xd = k2d / 4.0
+    xd = k2d / kref_d
     xc, yv = [], []
     for a, b in zip(edges[:-1], edges[1:]):
         sel = (xd >= a) & (xd < b) & use
@@ -74,8 +79,11 @@ for mode in MODES:
     d = load(f"S05_{mode}")
     if d is None:
         continue
+    k0, (q11, _), (q22, _), (q33, _) = line_spectra(
+        d["lines"][0], d["Ldump"][0], all_components=True)
+    kref = centroid(k0, q11 + q22 + q33)
     k, (p11, _), (p33, _) = line_spectra(d["lines"][-1], d["Ldump"][-1])
-    x = k / (2 * np.pi) / 8.0
+    x = k / kref
     xc, yv = [], []
     for a, b in zip(edges[:-1], edges[1:]):
         sel = (x >= a) & (x < b)
@@ -86,7 +94,8 @@ for mode in MODES:
              label=LBL[mode])
 axr.axhline(0, color="0.75", lw=0.8, ls=":")
 axr.set_xscale("log")
-axr.set_xlabel(r"$\kappa_2(e)/\kappa_{p0}$", fontsize=9.5)
+axr.set_xlabel(r"$\kappa_2(e)/\kappa_c(0)$  (e=0 centroid of each system)",
+               fontsize=9.5)
 axr.set_ylabel(r"$\phi_{11}/\phi_{33}-1$", fontsize=9.5)
 axr.set_title("Test 3: transverse splitting at $S{=}0.5$, $e{=}1$",
               fontsize=10)

@@ -58,8 +58,9 @@ def b_of_dump(lines):
     return b, se
 
 
-def line_spectra(lines, ldump):
-    """Windowed two-sided phi_11, phi_33 (per-rlz mean) vs physical k2."""
+def line_spectra(lines, ldump, all_components=False):
+    """Windowed two-sided phi_11, phi_33 (per-rlz mean) vs physical k2.
+    With all_components=True also returns phi_22."""
     n = lines.shape[1]
     i0 = int(n * (1 - SEG_FRAC) / 2)
     seg = lines[:, i0:n - i0, :].astype(np.float64)
@@ -73,7 +74,18 @@ def line_spectra(lines, ldump):
     p11 = (np.abs(f[:, :, 0]) ** 2) / dk
     p33 = (np.abs(f[:, :, 2]) ** 2) / dk
     k = np.arange(f.shape[1]) * dk
+    if all_components:
+        p22 = (np.abs(f[:, :, 1]) ** 2) / dk
+        return k, jackknife(p11), jackknife(p22), jackknife(p33)
     return k, jackknife(p11), jackknife(p33)
+
+
+def centroid(k, p):
+    """Energy-weighted spectral centroid over k>0 (the manuscript's own
+    migration diagnostic); the common e=0 reference wavenumber for
+    comparing ODT and DNS, whose absolute wavenumber units differ."""
+    m = k > 0
+    return float((k[m] * p[m]).sum() / p[m].sum())
 
 
 def main():
@@ -97,41 +109,52 @@ def main():
 
     # ---------------- Test 3: spectral splitting at S=0.5, e=1 ----------------
     # Wavenumber convention: ODT and DNS are different nondimensional systems
-    # (ODT IC peak at 8 waves per unit line, DNS IC peak at kp=4 per 2*pi box).
-    # Both are compared on x = kappa_2(e) / kappa_p0, each normalized by its
-    # OWN initial peak; both dilate by exp(e/2) so the strain shift is
-    # directly comparable. ODT: kn = waves per unit length -> kn/8.
-    # DNS: kappa2 stored in integer box units -> kappa2/4.
-    print("\n===== Test 3 (spectral, S=0.5, e=1): phi_11/phi_33 - 1 in bands of k2/kp0")
-    bands = np.geomspace(0.15, 8.0, 9)
+    # (ODT IC built as a 1-D sum peaking at 8 waves per unit line; DNS IC a
+    # 3-D shell spectrum with kp=4 per 2*pi box, whose 1-D line projection
+    # peaks near 2). A 3-D peak is not available for ODT, so both are
+    # normalized by the SAME measured 1-D quantity: the e=0 centroid of the
+    # total line spectrum, x = kappa_2(e)/kappa_c(0). Both dilate by
+    # exp(e/2), so the strain-induced shift is directly comparable.
+    print("\n===== Test 3 (spectral, S=0.5, e=1): phi_11/phi_33 - 1 in bands of "
+          "k2/k_c(0)")
+    bands = np.geomspace(0.3, 12.0, 9)
     results = {}
-    dns = sorted(glob.glob(os.path.join(DNS_DIR, "chk_r0.8_s*_e1.npz")))
-    if dns:
-        ph = np.mean([np.load(f, allow_pickle=True)["phi_line"] for f in dns], axis=0)
-        k2d = np.load(dns[0], allow_pickle=True)["kappa2"]
+    dns1 = sorted(glob.glob(os.path.join(DNS_DIR, "chk_r0.8_s*_e1.npz")))
+    dns0 = sorted(glob.glob(os.path.join(DNS_DIR, "chk_r0.8_s*_e0.npz")))
+    if dns1 and dns0:
+        ph = np.mean([np.load(f, allow_pickle=True)["phi_line"] for f in dns1], axis=0)
+        ph0 = np.mean([np.load(f, allow_pickle=True)["phi_line"] for f in dns0], axis=0)
+        k2d = np.load(dns1[0], allow_pickle=True)["kappa2"]
+        k2d0 = np.load(dns0[0], allow_pickle=True)["kappa2"]
+        kref_d = centroid(k2d0, ph0.sum(axis=0))
         use = (k2d > 0) & (k2d <= 0.85 * 42 * np.exp(0.5))
-        xd = k2d / 4.0
+        xd = k2d / kref_d
         vals = []
         for a, b in zip(bands[:-1], bands[1:]):
             sel = (xd >= a) & (xd < b) & use
             vals.append(ph[0][sel].sum() / ph[2][sel].sum() - 1 if sel.any() else np.nan)
         results["DNS"] = np.array(vals)
+        print(f"DNS k_c(0) = {kref_d:.3f} (integer box units)")
         print(f"{'DNS':8s} " + " ".join(f"{v:+.3f}" for v in vals)
               + f"   integrated={ph[0][use].sum()/ph[2][use].sum()-1:+.3f}")
     for mode in MODES:
         d = load(f"S05_{mode}")
         if d is None:
             continue
+        k0, (q11, _), (q22, _), (q33, _) = line_spectra(
+            d["lines"][0], d["Ldump"][0], all_components=True)
+        kref = centroid(k0, q11 + q22 + q33)
         k, (p11, _), (p33, _) = line_spectra(d["lines"][-1], d["Ldump"][-1])
-        x = k / (2 * np.pi) / 8.0                   # kappa_2 / kappa_p0
+        x = k / kref
         vals = []
         for a, b in zip(bands[:-1], bands[1:]):
             sel = (x >= a) & (x < b)
             vals.append(p11[sel].sum() / p33[sel].sum() - 1 if sel.any() else np.nan)
         results[mode] = np.array(vals)
         print(f"{mode:8s} " + " ".join(f"{v:+.3f}" for v in vals)
-              + f"   integrated={p11[x>0].sum()/p33[x>0].sum()-1:+.3f}")
-    print("bands (k2/kp0): " + " ".join(f"[{a:.2f},{b:.2f})" for a, b in zip(bands[:-1], bands[1:])))
+              + f"   integrated={p11[x>0].sum()/p33[x>0].sum()-1:+.3f}"
+              + f"   k_c(0)={kref/(2*np.pi):.2f} waves/L")
+    print("bands (k2/k_c(0)): " + " ".join(f"[{a:.2f},{b:.2f})" for a, b in zip(bands[:-1], bands[1:])))
     np.savez(os.path.join(HERE, "alloc_tests_results.npz"), bands=bands,
              **{f"split_{m}": v for m, v in results.items()})
 
