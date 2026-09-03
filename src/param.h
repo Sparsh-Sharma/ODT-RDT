@@ -129,6 +129,14 @@ class param {
         int                     specNmodes;     ///< spectral-IC number of Fourier modes
         double                  strainCFL;      ///< max total-strain increment per step, de = S dt
 
+        //----------------- kernel energy allocation (slow term; see notes/allocation_derivation)
+
+        string                  allocMode;      ///< "ISO" (Kerstein 2001, A_param) | "CHI" (Fluids 2022 Sec 6.2, strain-biased) | "TYPES" (Fistler et al. 2020 eddy types)
+        double                  allocChi;       ///< CHI: memory parameter chi (0 = no-memory equipartition; chi = 1 - 3 A_param/2 recovers ISO)
+        double                  allocBeta;      ///< CHI: strain-bias amplitude beta, traceless in Ahat_ii = A_ii/||A||_F; realizability-clipped
+        double                  allocAlpha2;    ///< TYPES: pairwise transfer fraction (0.5 = pair equipartition)
+        vector<double>          allocTypeProbs; ///< TYPES: sampling probabilities of the OMITTED component (3, normalized)
+
     //////////////////// MEMBER FUNCTIONS /////////////////
 
     private:

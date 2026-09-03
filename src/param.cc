@@ -109,6 +109,23 @@ param::param(inputoutput *p_io) {
     specNmodes     = io->params["specNmodes"]     ? io->params["specNmodes"].as<int>()         : 64;
     strainCFL      = io->params["strainCFL"]      ? io->params["strainCFL"].as<double>()      : 0.01;
 
+    //--------------------- kernel energy allocation (slow term); tau is unchanged in all modes
+
+    allocMode      = io->params["allocMode"]      ? io->params["allocMode"].as<string>()      : "ISO";
+    allocChi       = io->params["allocChi"]       ? io->params["allocChi"].as<double>()       : 0.0;
+    allocBeta      = io->params["allocBeta"]      ? io->params["allocBeta"].as<double>()      : 0.0;
+    allocAlpha2    = io->params["allocAlpha2"]    ? io->params["allocAlpha2"].as<double>()    : 0.5;
+    allocTypeProbs = vector<double>(3, 1.0/3.0);
+    if(io->params["allocTypeProbs"]) {
+        allocTypeProbs = io->params["allocTypeProbs"].as<vector<double>>();
+        double sp = allocTypeProbs[0] + allocTypeProbs[1] + allocTypeProbs[2];
+        for(int i=0; i<3; i++) allocTypeProbs[i] /= sp;
+    }
+    if(allocMode != "ISO" && allocMode != "CHI" && allocMode != "TYPES") {
+        cout << endl << "ERROR: allocMode must be ISO, CHI or TYPES; got " << allocMode << endl;
+        exit(0);
+    }
+
     // Radiation variables ---------------------
 
     Lrad         = io->params["Lrad"]             ? io->params["Lrad"].as<bool>()               : false;

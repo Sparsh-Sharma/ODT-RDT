@@ -505,16 +505,71 @@ void eddy::set_kernel_coefficients() {
     }
 
     //////////// Compute Kernel Coefficients
+    //
+    //  The post-kernel component available energy Q*_i enters through the sqrt
+    //  argument X_i^2 = 4 S Q*_i; with c_i = (-P_i + sgn(P_i) X_i)/(2S) the kernel
+    //  energy change is exactly Delta E_i = Q*_i - Q_i (Q_i = P_i^2/4S above), so
+    //  any allocation rule is a single substitution here. Modes (param allocMode):
+    //    ISO   : Q*_i = (1-a) Q_i + a/2 (Q_j + Q_k), a = A_param   [Kerstein et al. 2001;
+    //            Fluids 2022 Sec 6.2 with chi = 1 - 3a/2]  -- original code, kept verbatim
+    //    CHI   : Q*_i = Q/3 + chi (Q_i - Q/3) + beta Ahat_ii Q      [Fluids 2022 Sec 6.2,
+    //            strain-biased; both corrections traceless -> energy conserved]
+    //    TYPES : omit component m ~ p_m; pair exchange Q*_j = (1-a2) Q_j + a2 Q_k,
+    //            Q*_m = Q_m (so c_m = 0)                          [Fistler et al. 2020]
+    //  The eddy time scale tau is unchanged in all modes. The rapid pressure-strain
+    //  is NOT allocated here (it is the continuous operator in domain.cc); see
+    //  notes/allocation_derivation for why it cannot be.
 
-    cCoef.at(0) = 0.5/S * (-P.at(0) + (P.at(0)>0 ? 1.0 : -1.0)
-                 * sqrt( (1-domn->pram->A_param)*P.at(0)*P.at(0)
-                         + 0.5*domn->pram->A_param*(P.at(1)*P.at(1)+P.at(2)*P.at(2)) ));
-    cCoef.at(1) = 0.5/S * (-P.at(1) + (P.at(1)>0 ? 1.0 : -1.0)
-                 * sqrt( (1-domn->pram->A_param)*P.at(1)*P.at(1)
-                         + 0.5*domn->pram->A_param*(P.at(0)*P.at(0)+P.at(2)*P.at(2)) ));
-    cCoef.at(2) = 0.5/S * (-P.at(2) + (P.at(2)>0 ? 1.0 : -1.0)
-                 * sqrt( (1-domn->pram->A_param)*P.at(2)*P.at(2)
-                         + 0.5*domn->pram->A_param*(P.at(0)*P.at(0)+P.at(1)*P.at(1)) ));
+    const string &amode = domn->pram->allocMode;
+
+    if(amode == "ISO") {
+        cCoef.at(0) = 0.5/S * (-P.at(0) + (P.at(0)>0 ? 1.0 : -1.0)
+                     * sqrt( (1-domn->pram->A_param)*P.at(0)*P.at(0)
+                             + 0.5*domn->pram->A_param*(P.at(1)*P.at(1)+P.at(2)*P.at(2)) ));
+        cCoef.at(1) = 0.5/S * (-P.at(1) + (P.at(1)>0 ? 1.0 : -1.0)
+                     * sqrt( (1-domn->pram->A_param)*P.at(1)*P.at(1)
+                             + 0.5*domn->pram->A_param*(P.at(0)*P.at(0)+P.at(2)*P.at(2)) ));
+        cCoef.at(2) = 0.5/S * (-P.at(2) + (P.at(2)>0 ? 1.0 : -1.0)
+                     * sqrt( (1-domn->pram->A_param)*P.at(2)*P.at(2)
+                             + 0.5*domn->pram->A_param*(P.at(0)*P.at(0)+P.at(1)*P.at(1)) ));
+    }
+    else {
+        vector<double> Qs(3);
+        double Qtot = Q.at(0) + Q.at(1) + Q.at(2);
+
+        if(amode == "CHI") {
+            double chi  = domn->pram->allocChi;
+            double beta = domn->pram->allocBeta;
+            double nrm  = 0.0;
+            for(int a=0; a<3; a++) for(int b=0; b<3; b++)
+                nrm += domn->pram->Astrain[a][b]*domn->pram->Astrain[a][b];
+            nrm = sqrt(nrm);
+            for(i=0; i<3; i++) {
+                double Ahat = (nrm > 0.0) ? domn->pram->Astrain[i][i]/nrm : 0.0;
+                Qs.at(i) = Qtot/3.0 + chi*(Q.at(i) - Qtot/3.0) + beta*Ahat*Qtot;
+            }
+        }
+        else {                                   // TYPES
+            double r = domn->rand->getRand();
+            const vector<double> &p = domn->pram->allocTypeProbs;
+            int m = (r < p[0]) ? 0 : (r < p[0]+p[1]) ? 1 : 2;   // omitted component
+            int j = (m+1)%3, k = (m+2)%3;
+            double a2 = domn->pram->allocAlpha2;
+            Qs = Q;
+            Qs.at(j) = (1.0-a2)*Q.at(j) + a2*Q.at(k);
+            Qs.at(k) = (1.0-a2)*Q.at(k) + a2*Q.at(j);
+        }
+
+        // realizability (Q*_i >= 0) and energy conservation (sum Q*_i = Q)
+        double sPos = 0.0;
+        for(i=0; i<3; i++) { if(Qs.at(i) < 0.0) Qs.at(i) = 0.0; sPos += Qs.at(i); }
+        if(sPos > 0.0 && Qtot > 0.0) for(i=0; i<3; i++) Qs.at(i) *= Qtot/sPos;
+
+        for(i=0; i<3; i++) {
+            double X = sqrt(4.0*S*Qs.at(i));
+            cCoef.at(i) = 0.5/S * (-P.at(i) + (P.at(i)>0 ? 1.0 : -1.0) * X);
+        }
+    }
 
     for(i=0; i<3; i++)
         bCoef.at(i) = -A*cCoef.at(i);

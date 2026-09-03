@@ -14,10 +14,11 @@ import re
 
 import numpy as np
 
-WS = "/gpfs/caro/scratch/ws/shar_sp-AssamTea/odt_nullhit"
+WS = os.environ.get("ODT_WS", "/gpfs/caro/scratch/ws/shar_sp-AssamTea/odt_nullhit")
 CASE = os.environ.get("ODT_CASE", "nullHIT")
 N_UNIFORM = 2048
-L = 1.0
+L = 1.0   # nominal; with Ldilatation the line shrinks, so the actual extent is
+          # read from each dump and stored per (dump, realization) in 'Ldump'
 
 
 def read_dump(path):
@@ -45,9 +46,8 @@ def main():
     dump_ids = sorted(int(os.path.basename(p).split("_")[1].split(".")[0])
                       for p in glob.glob(os.path.join(rlz_dirs[0],
                                                       "dmp_*.dat")))
-    yg = (np.arange(N_UNIFORM) + 0.5) / N_UNIFORM * L - L / 2.0
-
     lines = np.empty((len(dump_ids), n_rlz, N_UNIFORM, 3), dtype=np.float32)
+    ldump = np.full((len(dump_ids), n_rlz), np.nan)
     times = np.zeros(len(dump_ids))
     n_bad = 0
     for r, rdir in enumerate(rlz_dirs):
@@ -60,13 +60,19 @@ def main():
                 n_bad += 1
                 continue
             times[di] = t
+            # actual line extent at this dump (shrinks under dilatation):
+            # cell centres span the domain minus half a cell at each end
+            dxe = 0.5 * ((pos[1] - pos[0]) + (pos[-1] - pos[-2]))
+            lo, hi = pos[0] - 0.5 * (pos[1] - pos[0]), pos[-1] + 0.5 * (pos[-1] - pos[-2])
+            ldump[di, r] = hi - lo
+            yg = lo + (np.arange(N_UNIFORM) + 0.5) / N_UNIFORM * (hi - lo)
             for c in range(3):
                 lines[di, r, :, c] = np.interp(yg, pos, uvw[:, c])
         if (r + 1) % 32 == 0:
             print("realization %d/%d" % (r + 1, n_rlz), flush=True)
 
     out = os.path.join(WS, "%s_ensemble.npz" % CASE.lower())
-    np.savez_compressed(out, lines=lines, times=times, L=L,
+    np.savez_compressed(out, lines=lines, times=times, L=L, Ldump=ldump,
                         n_bad=n_bad, case=CASE)
     print("saved", out, lines.shape, "bad reads:", n_bad)
 
