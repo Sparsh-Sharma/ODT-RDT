@@ -30,6 +30,12 @@ from null_test import jackknife  # noqa: E402
 
 MODES = ("ISO", "CHI", "TYPESeq", "TYPESw")
 ECHK = np.array([0.0, 0.25, 0.5, 0.75, 1.0])
+# case-name prefixes of the rapid and slow ensembles; the 2026-09-03 campaign
+# without precursor was S8/S05, the precursor campaign (tStrainOn=0.4) is
+# S40/S2. OUT suffixes the result files.
+RAPID = os.environ.get("ALLOC_RAPID", "S8")
+SLOW = os.environ.get("ALLOC_SLOW", "S05")
+OUT = os.environ.get("ALLOC_OUT", "")
 SEG_FRAC = 0.8
 DNS_DIR = os.path.join(HERE, os.pardir, "strained", "n128")
 
@@ -98,7 +104,7 @@ def centroid(k, p):
 
 def main():
     # ---------------- Test 1 + 2: moment level ----------------
-    for tag, label in (("S8", "Test 1 (rapid, S=8)"), ("S05", "Test 2 (slow, S=0.5)")):
+    for tag, label in ((RAPID, f"Test 1 (rapid, {RAPID})"), (SLOW, f"Test 2 (slow, {SLOW})")):
         print(f"\n===== {label}: b_ij(e) per mode  [target rapid: slope 2/15=0.133, b22(1)~0.123]")
         print(f"{'mode':8s} " + "  ".join(f"e={e:<4}" + " " * 22 for e in ECHK))
         for mode in MODES:
@@ -123,7 +129,7 @@ def main():
     # normalized by the SAME measured 1-D quantity: the e=0 centroid of the
     # total line spectrum, x = kappa_2(e)/kappa_c(0). Both dilate by
     # exp(e/2), so the strain-induced shift is directly comparable.
-    print("\n===== Test 3 (spectral, S=0.5, e=1): phi_11/phi_33 - 1 in bands of "
+    print(f"\n===== Test 3 (spectral, {SLOW}, e=1): phi_11/phi_33 - 1 in bands of "
           "k2/k_c(0)")
     bands = np.geomspace(0.3, 12.0, 9)
     results = {}
@@ -146,7 +152,7 @@ def main():
         print(f"{'DNS':8s} " + " ".join(f"{v:+.3f}" for v in vals)
               + f"   integrated={ph[0][use].sum()/ph[2][use].sum()-1:+.3f}")
     for mode in MODES:
-        d = load(f"S05_{mode}")
+        d = load(f"{SLOW}_{mode}")
         if d is None:
             continue
         k0, (q11, _), (q22, _), (q33, _) = line_spectra(
@@ -163,7 +169,7 @@ def main():
               + f"   integrated={p11[x>0].sum()/p33[x>0].sum()-1:+.3f}"
               + f"   k_c(0)={kref/(2*np.pi):.2f} waves/L")
     print("bands (k2/k_c(0)): " + " ".join(f"[{a:.2f},{b:.2f})" for a, b in zip(bands[:-1], bands[1:])))
-    np.savez(os.path.join(HERE, "alloc_tests_results.npz"), bands=bands,
+    np.savez(os.path.join(HERE, f"alloc_tests_results{OUT}.npz"), bands=bands,
              **{f"split_{m}": v for m, v in results.items()})
 
 

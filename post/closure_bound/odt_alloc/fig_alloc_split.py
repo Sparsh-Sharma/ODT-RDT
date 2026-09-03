@@ -15,8 +15,8 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from alloc_tests import (DNS_DIR, ECHK, MODES, b_of_dump,  # noqa: E402
-                         centroid, line_spectra, load)
+from alloc_tests import (DNS_DIR, ECHK, MODES, OUT, RAPID, SLOW,  # noqa: E402
+                         b_of_dump, centroid, line_spectra, load)
 
 COL = {"ISO": "#2a78d6", "CHI": "#eb6834", "TYPESeq": "#1baf7a",
        "TYPESw": "#eda100"}
@@ -31,7 +31,7 @@ fig, (axl, axr) = plt.subplots(1, 2, figsize=(10.2, 3.8))
 
 # ---- left: Test 1 ----
 for mode in MODES:
-    d = load(f"S8_{mode}")
+    d = load(f"{RAPID}_{mode}")
     if d is None:
         continue
     b22, se = [], []
@@ -41,19 +41,18 @@ for mode in MODES:
         se.append(s[1])
     axl.errorbar(ECHK, b22, yerr=se, color=COL[mode], marker=MRK[mode],
                  ms=4.5, lw=1.5, capsize=2, label=LBL[mode])
-d = load("S05_ISO")
+d = load(f"{SLOW}_ISO")
 if d is not None:
     b22 = [b_of_dump(d["lines"][di])[0][1] for di in range(len(ECHK))]
     axl.plot(ECHK, b22, "--", color=COL["ISO"], lw=1.0, alpha=0.7,
-             label="ISO at $S{=}0.5$ (same curve)")
+             label=f"ISO at slow rate ({SLOW})")
 axl.plot(list(RDT_B22), list(RDT_B22.values()), "k--", lw=1.2,
          label="RDT exact (Cauchy)")
 axl.plot(ECHK, ECHK / 3.0, ":", color="0.5", lw=1.0,
          label="production only (slope 1/3)")
 axl.set_xlabel(r"accumulated strain $e$", fontsize=9.5)
 axl.set_ylabel(r"$b_{22}$", fontsize=9.5)
-axl.set_title("Test 1: rapid limit ($S{=}8$) -- ISO/TYPES coincide, CHI does not",
-              fontsize=10)
+axl.set_title(f"Test 1: rapid limit ({RAPID})", fontsize=10)
 axl.legend(fontsize=7.5, frameon=False, loc="upper left")
 
 # ---- right: Test 3 ----
@@ -81,7 +80,7 @@ if dns1 and dns0:
             yv.append(ph[0][sel].sum() / ph[2][sel].sum() - 1)
     axr.plot(xc, yv, "k-", lw=2.2, label=r"DNS $128^3$ ($Sk/\varepsilon{=}0.8$)")
 for mode in MODES:
-    d = load(f"S05_{mode}")
+    d = load(f"{SLOW}_{mode}")
     if d is None:
         continue
     k0, (q11, _), (q22, _), (q33, _) = line_spectra(
@@ -102,7 +101,7 @@ axr.set_xscale("log")
 axr.set_xlabel(r"$\kappa_2(e)/\kappa_c(0)$  (e=0 centroid of each system)",
                fontsize=9.5)
 axr.set_ylabel(r"$\phi_{11}/\phi_{33}-1$", fontsize=9.5)
-axr.set_title("Test 3: transverse splitting at $S{=}0.5$, $e{=}1$",
+axr.set_title(f"Test 3: transverse splitting at slow rate ({SLOW}), $e{{=}}1$",
               fontsize=10)
 axr.legend(fontsize=7.5, frameon=False, loc="upper left")
 
@@ -110,11 +109,11 @@ for ax in (axl, axr):
     ax.tick_params(labelsize=8.5)
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="y", color="0.93", lw=0.6, zorder=0)
-fig.suptitle("Kernel energy allocation: every mode's splitting is $\\kappa$-rigid "
-             "(DNS is not); CHI only rescales it and leaks into the rapid limit",
-             fontsize=10.5, y=1.02)
+fig.suptitle(os.environ.get("ALLOC_TITLE",
+             "Kernel energy allocation: rapid limit per mode (left); "
+             "spectral splitting vs DNS (right)"), fontsize=10.5, y=1.02)
 fig.tight_layout()
 for ext in ("pdf", "png"):
-    fig.savefig(os.path.join(HERE, "fig_alloc_tests." + ext),
+    fig.savefig(os.path.join(HERE, f"fig_alloc_tests{OUT}." + ext),
                 bbox_inches="tight", dpi=180)
-print("saved fig_alloc_tests.pdf/.png")
+print(f"saved fig_alloc_tests{OUT}.pdf/.png")
