@@ -61,3 +61,22 @@ Accepted eddies per realization before onset and in each strain quarter
 ~6.7 relaxed eddies of size 0.09 L per line inside e≤1 (~0.6 line coverages),
 as designed from the pilot; the burst (129 eddies) is entirely before onset.
 Onset state at 1024 rlz: b = (-0.005, +0.003, +0.002) +- 0.003, i.e. isotropic.
+
+# Precursor campaign, S=40 cases (rapid, Sk/eps = 16)
+
+| case        | pre-onset | post-onset (t>=0.4) | max | realizations lost |
+|-------------|----------:|--------------------:|----:|------------------:|
+| S40_ISO     | 129.2 | 0.72 | 5 | 2 |
+| S40_CHI     | 129.3 | 0.68 | 5 | 9 |
+| S40_TYPESeq | 128.4 | 0.69 | 4 | 2 |
+| S40_TYPESw  | 128.6 | 0.67 | 7 | 7 |
+
+Under one eddy per line inside e<=1: a true rapid limit. Test 1 result: every
+mode reproduces RDT (slope 0.129-0.133 vs 2/15, b22(1)-b22(0) = 0.120-0.124
+vs 0.123), CHI included -- its S=2 deviation is the per-eddy beta bias.
+
+Lost realizations (NaN-padded by the extractor, masked by good_rlz): they
+abort in domain::domainPositionToIndex with an eddy position of about +-4 L,
+far outside the line, only at S=40 (none at S=2). Robustness bug of the
+line dilatation at very high strain rate; 0.2-0.9% of realizations, no
+effect on the ensemble statistics. Open item.
