@@ -125,3 +125,17 @@ def test_end_to_end_dump_driver(tmp_path):
 
 if __name__ == "__main__":
     raise SystemExit(pytest.main([__file__, "-v"]))
+
+
+# ----------------------------------------------------------------------
+# 6. ref="equal": component-equal spectra are exactly isotropic (A = 1).
+# ----------------------------------------------------------------------
+def test_equal_reference():
+    k2 = af.default_k2_grid(Params(1, 0, KE, KE), half=12, n=60)
+    E1, E2 = _iso_spectra(k2)
+    an = sa.anisotropy_function(k2, E1, E1, E1, ref="equal")
+    assert np.allclose(an["A"], 1.0)
+    an2 = sa.anisotropy_function(k2, E1, 2.0 * E1, E1, ref="equal")
+    assert np.allclose(an2["A"], 2.0)      # rho_iso = 1: A is the raw ratio
+    with pytest.raises(ValueError):
+        sa.anisotropy_function(k2, E1, E2, E1, ref="bogus")

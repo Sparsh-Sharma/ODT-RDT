@@ -97,15 +97,32 @@ def fit_isotropic(k2, Eperp, half=_HALF, n=_N):
 # ----------------------------------------------------------------------
 # Scale-resolved anisotropy and its decay rate
 # ----------------------------------------------------------------------
-def anisotropy_function(k2, E1, E2, E3, L_iso=None):
-    """A(k2) = rho / rho_iso.  Returns a dict with A, rho, rho_iso, L_iso."""
+def anisotropy_function(k2, E1, E2, E3, L_iso=None, ref="vK"):
+    """A(k2) = rho / rho_iso.  Returns a dict with A, rho, rho_iso, L_iso.
+
+    ref="vK"    : rho_iso from an isotropic von Karman 3-D field's line
+                  spectra (2 at low k -> 3/4 at high k).  Use when comparing
+                  against real turbulence (DNS/experiment/family fits).
+    ref="equal" : rho_iso = 1, i.e. component equality of the line spectra.
+                  This is the ODT-internal isotropy fixed point: the spectral
+                  IC gives all three components identical 1-D spectra
+                  (domaincase_odt_homogeneousStrain.cc, "independent phases
+                  -> isotropy") and the LRR/IP kernel relaxes toward
+                  component equality.  Use for the Test-3 diagnostic.
+    """
     k2 = np.asarray(k2, float)
     rho = component_ratio(E1, E2, E3)
     A0_iso = None
-    if L_iso is None:
-        Eperp = 0.5 * (np.asarray(E1, float) + np.asarray(E3, float))
-        A0_iso, L_iso = fit_isotropic(k2, Eperp)
-    rho_iso = iso_reference_ratio(k2, L_iso)
+    if ref == "equal":
+        rho_iso = np.ones_like(rho)
+        L_iso = np.nan
+    elif ref == "vK":
+        if L_iso is None:
+            Eperp = 0.5 * (np.asarray(E1, float) + np.asarray(E3, float))
+            A0_iso, L_iso = fit_isotropic(k2, Eperp)
+        rho_iso = iso_reference_ratio(k2, L_iso)
+    else:
+        raise ValueError(f"unknown ref {ref!r}")
     return {"k2": k2, "A": rho / rho_iso, "rho": rho, "rho_iso": rho_iso,
             "L_iso": L_iso, "A0_iso": A0_iso}
 
@@ -148,14 +165,17 @@ def decay_per_octave(k2, A, kband=None, floor=1e-3):
 # ----------------------------------------------------------------------
 def scale_anisotropy(root, strain=None, smag=1.0, Nu=2048, nbin=48,
                      kmin=None, kmax=None, kband=None, L_iso=None,
-                     floor=1e-3):
+                     floor=1e-3, ensemble=False, ref="vK"):
     """Full diagnostic on a run: read the dump at (nearest) `strain`, band-limit
     and log-bin the component spectra, form A(k2), and fit its decay rate.
+    With ensemble=True the spectra are first averaged over all realization
+    directories (data_00000, data_00001, ...) at that strain.
 
     Returns a dict: k2, E1, E2, E3, rho, rho_iso, A, L_iso, decay (DecayRate),
     plus the dump metadata (e, t, L, file).
     """
-    d = odt_io.load_fit_target(root, strain=strain, smag=smag, Nu=Nu)
+    loader = odt_io.ensemble_fit_target if ensemble else odt_io.load_fit_target
+    d = loader(root, strain=strain, smag=smag, Nu=Nu)
     k2, E1, E2, E3 = d["k2"], d["E1"], d["E2"], d["E3"]
     sel = np.ones_like(k2, dtype=bool)
     if kmin is not None:
@@ -166,10 +186,11 @@ def scale_anisotropy(root, strain=None, smag=1.0, Nu=2048, nbin=48,
     if nbin is not None:
         k2, (E1, E2, E3) = odt_io.log_bin(k2, [E1, E2, E3], nbin)
 
-    an = anisotropy_function(k2, E1, E2, E3, L_iso=L_iso)
+    an = anisotropy_function(k2, E1, E2, E3, L_iso=L_iso, ref=ref)
     decay = decay_per_octave(k2, an["A"], kband=kband, floor=floor)
     out = {"k2": k2, "E1": E1, "E2": E2, "E3": E3, "decay": decay,
-           "e": d["e"], "t": d["t"], "L": d["L"], "file": d["file"]}
+           "e": d["e"], "t": d["t"], "L": d["L"], "file": d["file"],
+           "nrlz": d.get("nrlz", 1)}
     out.update(an)
     return out
 
@@ -179,7 +200,9 @@ def report(res):
     dc = res["decay"]
     lines = [
         f"dump {res['file']}  (e = {res['e']:.4g}, domain L = {res['L']:.4g})",
-        f"isotropic reference scale L_iso = {res['L_iso']:.5g}",
+        (f"isotropic reference scale L_iso = {res['L_iso']:.5g}"
+         if np.isfinite(res['L_iso']) else
+         "reference: component equality (rho_iso = 1)"),
         f"|A-1| slope = {dc.slope:+.3f} per octave over "
         f"k2 in [{dc.kband[0]:.3g}, {dc.kband[1]:.3g}]  ({dc.npts} pts)",
         f"anisotropy factor per octave      : {dc.factor_per_octave:.3f}",

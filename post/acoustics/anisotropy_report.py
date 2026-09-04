@@ -35,6 +35,10 @@ NBIN     = 48                     # log-bins for the spectra (None = no binning)
 KBAND    = None                   # (kmin, kmax) for the decay fit;
                                   # None -> auto (2*L_iso, 50*L_iso) per snapshot
 FLOOR    = 1e-2                   # |A-1| below this is treated as isotropic
+REF      = "equal"                # "equal": ODT-internal isotropy (rho_iso=1);
+                                  # "vK": von Karman 3-D kinematic reference
+KMAX     = None                   # high-k cut (None = no cut); e.g. mesh floor
+ENSEMBLE = True                   # average over all data_0000* realizations
 # ======================================================================
 
 
@@ -42,9 +46,14 @@ def analyze(root):
     rows = []
     for e in STRAINS:
         res = sa.scale_anisotropy(root, strain=e, smag=SMAG, Nu=NUNIFORM,
-                                  nbin=NBIN, kband=KBAND, floor=FLOOR)
-        if KBAND is None:                       # auto band from the fitted scale
-            band = (2.0 * res["L_iso"], 50.0 * res["L_iso"])
+                                  nbin=NBIN, kband=KBAND, floor=FLOOR,
+                                  kmax=KMAX, ref=REF, ensemble=ENSEMBLE)
+        if KBAND is None:                       # auto band from the data range
+            import numpy as _np
+            if _np.isfinite(res["L_iso"]):
+                band = (2.0 * res["L_iso"], 50.0 * res["L_iso"])
+            else:
+                band = (2.0 * res["k2"].min(), 0.7 * res["k2"].max())
             res["decay"] = decay_per_octave(res["k2"], res["A"],
                                             kband=band, floor=FLOOR)
         rows.append(res)
@@ -54,11 +63,11 @@ def analyze(root):
 
 
 def summary_table(rows):
-    print(f"{'e':>6} {'L_iso':>9} {'slope/oct':>10} {'per octave':>11} "
+    print(f"{'e':>6} {'nrlz':>5} {'slope/oct':>10} {'per octave':>11} "
           f"{'per map':>9} {'npts':>5}")
     for r in rows:
         d = r["decay"]
-        print(f"{r['e']:6.2f} {r['L_iso']:9.4g} {d.slope:10.3f} "
+        print(f"{r['e']:6.2f} {r.get('nrlz', 1):5d} {d.slope:10.3f} "
               f"{d.factor_per_octave:11.3f} {d.factor_per_map:9.3f} {d.npts:5d}")
     print("\nper map = multiplicative anisotropy change accompanying one "
           "triplet-map-sized (3x)\nscale compression; ~1.0 means anisotropy "

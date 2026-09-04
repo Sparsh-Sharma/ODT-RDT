@@ -176,6 +176,55 @@ def log_bin(k, values, nbin):
     return (kb, outs[0]) if single else (kb, outs)
 
 
+def ensemble_fit_target(root, strain=None, smag=1.0, Nu=2048):
+    """Like load_fit_target, but averages the component spectra over ALL
+    realization directories (data_00000, data_00001, ...) under `root`,
+    picking in each the dump nearest the target strain.
+
+    The dilatation history is deterministic, so all realizations share the
+    same domain length and hence the same FFT wavenumber grid at a given
+    time; spectra are averaged pointwise.  Returns the load_fit_target dict
+    plus 'nrlz'.
+    """
+    files = find_dumps(root)
+    if not files:
+        raise FileNotFoundError(f"no dumps found under {root!r}")
+    groups = {}
+    for fn in files:
+        groups.setdefault(os.path.dirname(fn), []).append(fn)
+
+    acc, k2ref, meta, nrlz = None, None, None, 0
+    for _, fns in sorted(groups.items()):
+        recs = []
+        for fn in fns:
+            t, posf, u, v, w = read_dump(fn)
+            if t is None or posf.size == 0:
+                continue
+            recs.append((t, fn, posf, u, v, w))
+        if not recs:
+            continue
+        recs.sort(key=lambda r: r[0])
+        pick = recs[-1] if strain is None else min(
+            recs, key=lambda r: abs(smag * r[0] - strain))
+        t, fn, posf, u, v, w = pick
+        k2, E1, E2, E3 = component_spectra(posf, u, v, w, Nu=Nu)
+        if acc is None:
+            k2ref = k2
+            acc = [np.zeros_like(E1) for _ in range(3)]
+            meta = {"e": smag * t, "t": t, "L": -2.0 * posf[0], "file": fn}
+        elif not np.allclose(k2, k2ref, rtol=1e-6):
+            # differing domain length (shouldn't happen): interpolate in log k
+            E1, E2, E3 = (np.interp(np.log(k2ref), np.log(k2), E)
+                          for E in (E1, E2, E3))
+        for a, E in zip(acc, (E1, E2, E3)):
+            a += E
+        nrlz += 1
+    out = {"k2": k2ref, "E1": acc[0] / nrlz, "E2": acc[1] / nrlz,
+           "E3": acc[2] / nrlz, "nrlz": nrlz}
+    out.update(meta)
+    return out
+
+
 def target_for_fit(root, strain=None, smag=1.0, Nu=2048,
                    kmin=None, kmax=None, nbin=None):
     """Convenience wrapper returning (k2, E_perp, E2) ready for
