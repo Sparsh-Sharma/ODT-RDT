@@ -87,7 +87,49 @@ toward 1 while A_low and u2^2/2kt are essentially unchanged — the gate
 isotropizes fine scales without killing the large-scale strain response.
 CIs overlap at 64 rlz, hence:
 
-## 4. IMMEDIATE TASK — 1024-realization campaign on CARO
+## 4a. CARO campaign DONE 2026-09-04 — RESULT REVERSAL
+
+The 1024-rlz campaign ran (jobs 4431486/7, ~50 min, all COMPLETED; caro build
+used the existing `~/anaconda3/envs/odt`, no micromamba needed; gate confirmed
+active — runtime files report ~45% rejections).  **The 64-rlz verification in
+section 3 did not survive.**
+
+**Statistics lesson:** per-realization band energies are heavy-tailed (single
+realizations carry 100–2000x the median band energy; `diag_outliers.py`).  The
+ratio-of-ensemble-means A in `compare_optionA.py` does not converge even at
+1024 rlz — one realization (`data_00022`, a normal completed run, i.e. genuine
+ODT intermittency under strain, not a crash) alone pushed baseline A_high at
+e=3.9 from ~1.75 to 0.77.  The 64-rlz numbers on both sides were tail noise.
+
+**Robust result** (`dump_bands.py` -> `bands_*.npz` -> `robust_optionA.py`,
+median-of-ratios + paired same-seed contrasts, committed as
+`optionA_robust_table.txt`):
+
+| e | baseline T = A_high/A_low | option A (fac 0.9) T | paired dlog10 A_high |
+|---|---|---|---|
+| 1.0 | 1.09 [1.01,1.16] | 1.02 [0.98,1.09] | -0.010 [-0.036,+0.010] |
+| 2.0 | 1.00 [0.91,1.11] | 0.96 [0.90,1.03] | -0.006 [-0.035,+0.032] |
+| 3.0 | 0.91 [0.80,1.06] | 0.97 [0.86,1.10] | -0.012 [-0.055,+0.043] |
+| 3.9 | 0.62 [0.55,0.74] | 0.66 [0.58,0.80] | -0.005 [-0.067,+0.056] |
+
+- **Alan's diagnosis CONFIRMED at 16x statistics**: baseline transmission ~1.0
+  through e = 2–3 (imbalance reaches the small scales undiminished).
+- **Option A at fac 0.9 has NO detectable effect**: every paired CI straddles
+  zero (sensitivity ~+-15% on A_high — the claimed 0.96->0.54 would have been
+  a -0.25 dex signal, far outside); A_low, A_high, u2^2/2kt all unchanged,
+  despite the gate rejecting ~45% of accepted eddies.
+- Open question: threshold too weak, or metric decoupled from A(k)?  Hence:
+
+**fac sweep submitted 2026-09-04** (jobs 4431835/6/7): cases
+`homogeneousStrain2A80/70/50` (fac 0.8/0.7/0.5), 1024 rlz each, same seeds.
+Analysis: `dump_bands.py data/<case>` on caro, scp the npz, then
+`robust_optionA.py bands_homogeneousStrain2.npz bands_<case>.npz`.
+Caveat for fac->0: rejecting almost everything kills the cascade itself (no
+small-scale energy at all); the question is whether an intermediate fac
+reduces transmission while keeping the high band alive — track the rejection
+fraction (printed at the end of each `runtime_NNNNN` file) alongside A.
+
+## 4b. ORIGINAL TASK (completed) — 1024-realization campaign on CARO
 
 Sparsh wants 1024 realizations per case on CARO (DLR HPC; ssh works from the
 WSL environment).  Everything is staged in `run/caro/` (see its README.md):
@@ -107,18 +149,35 @@ Afterward: finalize the reply to Alan (draft below) with the 1024-run numbers,
 and optionally sweep anisoRejectFac (0.95/0.8/0.7) — new input decks are a
 copy of homogeneousStrain2A with one line changed.
 
-## 5. Draft reply to Alan (update numbers after CARO, then send)
+## 5. Draft reply to Alan — REWRITTEN after the 1024-rlz reversal
+   (hold until the fac sweep lands; do NOT send the old 0.96->0.54 numbers)
 
-> Your scale-reduction argument prompted us to measure the competition
-> directly... [full draft in the cloud-session transcript; key content:
-> diagnostic definition; A_low grows to ~2.8 by e~4; transmission ~1 at e=2,
-> ~0.5 by e~4 => per-map reduction ~0.8-1.0 vs the map's exact 3x compression;
-> u2^2/2kt = 0.535 vs LRR 0.6006 so the deficiency is scale-local; Option A
-> implemented as he proposed, threshold acts like a tunable return-to-isotropy
-> coefficient — verification shows transmission at e=2 dropping 0.96 -> 0.54
-> at fac=0.9 with ~48% rejections and unchanged one-point statistics;
-> Option B testable in the same harness; the A(k) metric is model-agnostic,
-> so a flow-HiPS comparison with Marten can go on the same plot.]
+Key content for the new draft:
+- Diagnostic and campaign: A(k2)=E2/Eperp vs the model's own fixed point A=1;
+  1024 paired-seed realizations per case on DLR CARO.
+- His diagnosis holds with 16x statistics: median downscale transmission
+  A_high/A_low = 1.09/1.00/0.91/0.62 at e = 1/2/3/3.9 — the component
+  imbalance crosses ~1.7 triplet-map generations essentially undiminished
+  until e ~ 4.  Per-3x-scale-step reduction ~0.8-1.0, as he estimated.
+- Honest correction: our earlier 64-realization verification of Option A was
+  an artifact of heavy-tailed band statistics (single realizations at 100-2000x
+  the median band energy; ratio-of-means non-convergent).  With robust
+  estimators and paired seeds, **fac = 0.9 produces no detectable change in
+  A(k), transmission, or u2^2/2kt (sensitivity ~15%), despite rejecting ~45%
+  of accepted eddies** — the surviving eddy population reproduces the same
+  spectral anisotropy budget.  Interesting in itself: the gate as formulated
+  (eddy-region energy-fraction metric, threshold on the post-kernel state)
+  self-selects eddies whose kernels were already going to do the relaxing.
+- fac sweep 0.8/0.7/0.5 running (same harness, same seeds) — numbers to
+  follow; limiting behavior fac->0 = no cascade, so the question is whether
+  any intermediate fac buys transmission reduction without starving the high
+  band.
+- Option B (unequal triplet-map images) testable in the same harness; the
+  A(k) metric is model-agnostic, so a flow-HiPS comparison with Marten can go
+  on the same plot.
+- The intermittency finding is worth a sentence on its own: rare single-eddy
+  events dominate ensemble-mean fine-scale spectra under strain — relevant to
+  how any anisotropy-transmission claim (ODT or HiPS) should be measured.
 
 ## 6. House rules
 
