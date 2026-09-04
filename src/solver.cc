@@ -158,10 +158,14 @@ void solver::calculateSolution() {
 
     //-------------------------------------------------------------------------
 
-    if(domn->pram->LanisoReject)
+    if(domn->pram->LanisoReject) {
         *domn->io->ostrm << endl << "# Option A aniso gate: rejected " << nAnisoRej
                          << " of " << nAnisoCand << " accepted candidates ("
-                         << (nAnisoCand>0 ? 100.0*nAnisoRej/nAnisoCand : 0.0) << "%)" << endl;
+                         << (nAnisoCand>0 ? 100.0*nAnisoRej/nAnisoCand : 0.0) << "%)";
+        if(domn->pram->anisoRejectLmax > 0.0)
+            *domn->io->ostrm << " [gated: eddySize <= " << domn->pram->anisoRejectLmax << "]";
+        *domn->io->ostrm << endl;
+    }
 
     domn->io->writeDataFile("odt_end.dat", time);
 }
@@ -339,7 +343,9 @@ bool solver::sampleEddyAndImplementIfAccepted() {
         if(!testLES_thirds())  // large eddy supression test
             return false;
 
-        if(domn->pram->LanisoReject) {           // Option A: anisotropy-gated acceptance
+        if(domn->pram->LanisoReject &&           // Option A: anisotropy-gated acceptance;
+           (domn->pram->anisoRejectLmax <= 0.0 ||  // A-S: gate only sub-Lmax eddies
+            domn->ed->eddySize <= domn->pram->anisoRejectLmax)) {
             nAnisoCand++;
             if(!domn->ed->anisoReductionOK(domn->pram->anisoRejectFac)) {
                 nAnisoRej++;
