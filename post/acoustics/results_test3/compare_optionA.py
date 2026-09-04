@@ -20,6 +20,8 @@ import sys
 
 import numpy as np
 
+trapezoid = getattr(np, "trapezoid", np.trapz)  # numpy<2.0 fallback
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import odt_io                                          # noqa: E402
 import scale_anisotropy as sa                          # noqa: E402
@@ -43,7 +45,7 @@ def band_means(root, e):
         for b in (BAND_LO, BAND_HI):
             m = (k2 >= b[0]) & (k2 <= b[1])
             row += [np.mean(E2[m]), np.mean(Ep[m])]
-        R = [np.trapezoid(t[c], k2) for c in ("E1", "E2", "E3")]
+        R = [trapezoid(t[c], k2) for c in ("E1", "E2", "E3")]
         row.append(R[1] / sum(R))
         rows.append(row)
     return np.array(rows)
