@@ -41,7 +41,9 @@ class solver {
         double         PaSum;          ///< sum of Pa of eddies
         int            nPaSum;         ///< number going into PaSum
         int            neddies;        ///< number of eddies accepted
-        double         PaSumC;         ///< sum of Pa of eddies
+        double         PaSumC;
+        long           nAnisoCand=0;    ///< Option A: eddies reaching the aniso gate
+        long           nAnisoRej=0;     ///< Option A: eddies rejected by the gate         ///< sum of Pa of eddies
         int            nPaSumC;        ///< number going into PaSum
 
     //////////////////// MEMBER FUNCTIONS /////////////////

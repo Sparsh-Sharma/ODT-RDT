@@ -122,6 +122,8 @@ class param {
         bool                    Lstrain;        ///< apply mean-strain operator A_ij u_j
         bool                    Ldilatation;    ///< apply mean-strain line dilatation dL/L = A_22 dt
         bool                    LnoEddies;      ///< suppress eddy events (Level 1a)
+        bool                    LanisoReject;   ///< Option A: reject accepted eddies whose kernels do not reduce eddy-region component anisotropy enough
+        double                  anisoRejectFac; ///< Option A threshold: require a_after <= fac * a_before
         string                  strainClosure;  ///< "IP" or "LRR"
         vector<vector<double>>  Astrain;        ///< imposed mean velocity gradient A_ij (3x3)
         vector<vector<double>>  Acal;           ///< combined op -A_ij + B_ij (updated per substep)

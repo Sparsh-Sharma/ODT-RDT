@@ -662,3 +662,75 @@ double eddy::eddyFavreAvgVelocity(const vector<double> &dxc) {
     return ufavg/ravg;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////
+/** Option A (anisotropy-gated eddy acceptance; Kerstein 2026-09 suggestion).
+ *
+ *  Evaluate, WITHOUT modifying the domain, whether this (already sampled,
+ *  probability-accepted) eddy's velocity kernels reduce the component
+ *  anisotropy of the eddy region by at least the multiplicative factor `fac`:
+ *  accept iff a_after <= fac * a_before, where a is the norm of the deviation
+ *  of the component kinetic-energy fractions from 1/3,
+ *
+ *      a = sqrt( sum_i (E_i/sum_j E_j - 1/3)^2 ).
+ *
+ *  Everything is computed analytically on the trip-mapped eddy copy (eddl):
+ *  the map is measure preserving, so the pre-kernel component energies equal
+ *  the pre-eddy ones, and the kernel update u_i += c_i K + b_i |K| gives
+ *
+ *      E_i_after = E_i + c_i uRhoK_i + b_i uRhoJ_i
+ *                      + 0.5 (c_i^2 + b_i^2) rhoKK + c_i b_i rhoJK.
+ *
+ *  Eddy regions that are already nearly isotropic (a_before < eps) pass
+ *  unconditionally, so the gate only filters eddies that could act on a
+ *  meaningful imbalance.  Called from solver::sampleEddyAndImplementIfAccepted
+ *  after the acceptance-probability dice roll, before the domain is modified.
+ *
+ *  @param fac \input multiplicative anisotropy-reduction threshold (<= 1).
+ *  @return true if the eddy passes the gate (should be implemented).
+ */
+bool eddy::anisoReductionOK(const double fac) {
+
+    const double eps = 0.02;         // a_before below this: nothing to relax
+
+    set_kernel_coefficients();       // fills dxc, K (if needed), cCoef, bCoef
+
+    double rhoKK=0, rhoJK=0;
+    vector<double> uRhoK(3,0.0), uRhoJ(3,0.0), Ebef(3,0.0);
+
+    for(int i=0; i<eddl->ngrd; i++) {
+        double intRhoKi = K.at(i)*eddl->rho->d.at(i)*dxc.at(i);
+        double intRhoJi = abs(intRhoKi);
+        double wt       = domn->pram->Lspatial ? eddl->uvel->d.at(i) : 1.0;
+        double ui[3] = {eddl->uvel->d.at(i), eddl->vvel->d.at(i), eddl->wvel->d.at(i)};
+        rhoKK += wt * K.at(i)*intRhoKi;
+        rhoJK += wt * K.at(i)*intRhoJi;
+        for(int c=0; c<3; c++) {
+            uRhoK.at(c) += wt * intRhoKi*ui[c];
+            uRhoJ.at(c) += wt * intRhoJi*ui[c];
+            Ebef.at(c)  += wt * 0.5*eddl->rho->d.at(i)*ui[c]*ui[c]*dxc.at(i);
+        }
+    }
+
+    vector<double> Eaft(3);
+    for(int c=0; c<3; c++)
+        Eaft.at(c) = Ebef.at(c) + cCoef.at(c)*uRhoK.at(c) + bCoef.at(c)*uRhoJ.at(c)
+                   + 0.5*(cCoef.at(c)*cCoef.at(c) + bCoef.at(c)*bCoef.at(c))*rhoKK
+                   + cCoef.at(c)*bCoef.at(c)*rhoJK;
+
+    auto aniso = [](const vector<double> &E) {
+        double Et = E.at(0)+E.at(1)+E.at(2);
+        if(Et <= 0.0) return 0.0;
+        double a = 0.0;
+        for(int c=0; c<3; c++) {
+            double d = E.at(c)/Et - 1.0/3.0;
+            a += d*d;
+        }
+        return sqrt(a);
+    };
+
+    double aBef = aniso(Ebef);
+    if(aBef < eps)
+        return true;
+    return aniso(Eaft) <= fac * aBef;
+}

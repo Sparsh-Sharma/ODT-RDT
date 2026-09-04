@@ -158,6 +158,11 @@ void solver::calculateSolution() {
 
     //-------------------------------------------------------------------------
 
+    if(domn->pram->LanisoReject)
+        *domn->io->ostrm << endl << "# Option A aniso gate: rejected " << nAnisoRej
+                         << " of " << nAnisoCand << " accepted candidates ("
+                         << (nAnisoCand>0 ? 100.0*nAnisoRej/nAnisoCand : 0.0) << "%)" << endl;
+
     domn->io->writeDataFile("odt_end.dat", time);
 }
 
@@ -333,6 +338,14 @@ bool solver::sampleEddyAndImplementIfAccepted() {
 
         if(!testLES_thirds())  // large eddy supression test
             return false;
+
+        if(domn->pram->LanisoReject) {           // Option A: anisotropy-gated acceptance
+            nAnisoCand++;
+            if(!domn->ed->anisoReductionOK(domn->pram->anisoRejectFac)) {
+                nAnisoRej++;
+                return false;
+            }
+        }
 
         if(domn->ed->LperiodicEddy) {
             *domn->io->ostrm << endl << "#   periodic eddy ";

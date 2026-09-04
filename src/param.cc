@@ -98,6 +98,8 @@ param::param(inputoutput *p_io) {
     Lstrain        = io->params["Lstrain"]        ? io->params["Lstrain"].as<bool>()          : false;
     Ldilatation    = io->params["Ldilatation"]    ? io->params["Ldilatation"].as<bool>()      : false;
     LnoEddies      = io->params["LnoEddies"]      ? io->params["LnoEddies"].as<bool>()        : false;
+    LanisoReject   = io->params["LanisoReject"]   ? io->params["LanisoReject"].as<bool>()     : false;
+    anisoRejectFac = io->params["anisoRejectFac"] ? io->params["anisoRejectFac"].as<double>() : 0.9;
     strainClosure  = io->params["strainClosure"]  ? io->params["strainClosure"].as<string>()  : "LRR";
     Astrain = vector<vector<double>>(3, vector<double>(3, 0.0));
     Acal    = vector<vector<double>>(3, vector<double>(3, 0.0));
