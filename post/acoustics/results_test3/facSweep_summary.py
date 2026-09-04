@@ -12,7 +12,9 @@ CASES = [("baseline", "bands_homogeneousStrain2.npz", None, "k"),
          ("fac 0.9", "bands_homogeneousStrain2A.npz", 45, "C0"),
          ("fac 0.8", "bands_homogeneousStrain2A80.npz", 66, "C2"),
          ("fac 0.7", "bands_homogeneousStrain2A70.npz", 83, "C1"),
-         ("fac 0.5", "bands_homogeneousStrain2A50.npz", 98, "C3")]
+         ("fac 0.5", "bands_homogeneousStrain2A50.npz", 98, "C3"),
+         ("S 0.9", "bands_homogeneousStrain2AS90.npz", 42, "C4"),   # scale-conditioned, l*=0.05
+         ("S 0.5", "bands_homogeneousStrain2AS50.npz", 97, "C5")]   # rej% of gated (sub-l*) candidates
 NBOOT = 4000
 
 
