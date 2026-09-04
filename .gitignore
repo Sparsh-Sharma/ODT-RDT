@@ -1,3 +1,5 @@
 data/**
 *~
 *.pyc
+build_cloud/
+run/odt.x
