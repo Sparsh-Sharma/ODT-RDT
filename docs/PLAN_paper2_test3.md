@@ -120,14 +120,35 @@ median-of-ratios + paired same-seed contrasts, committed as
   despite the gate rejecting ~45% of accepted eddies.
 - Open question: threshold too weak, or metric decoupled from A(k)?  Hence:
 
-**fac sweep submitted 2026-09-04** (jobs 4431835/6/7): cases
-`homogeneousStrain2A80/70/50` (fac 0.8/0.7/0.5), 1024 rlz each, same seeds.
-Analysis: `dump_bands.py data/<case>` on caro, scp the npz, then
-`robust_optionA.py bands_homogeneousStrain2.npz bands_<case>.npz`.
-Caveat for fac->0: rejecting almost everything kills the cascade itself (no
-small-scale energy at all); the question is whether an intermediate fac
-reduces transmission while keeping the high band alive — track the rejection
-fraction (printed at the end of each `runtime_NNNNN` file) alongside A.
+**fac sweep DONE 2026-09-04** (`facSweep_summary.py`, `facSweep_table.txt`,
+`fig_facSweep.*`; 1024 rlz each, paired seeds; run with the node-packed
+launcher `slrm_test3_node.sh` — full case in ~3 min on 8 nodes):
+
+| fac | rejection | verdict |
+|---|---|---|
+| 0.9 | ~45% | indistinguishable from baseline (all bands, all e) |
+| 0.8 | ~66% | indistinguishable from baseline |
+| 0.7 | ~83% | indistinguishable from baseline |
+| 0.5 | ~98% (~17 eddies/rlz) | A_low RISES (1.38→1.74 at e=1*), A_high rises at e≥2*, u2^2/2kt → no-eddy limit |
+
+**Conclusion: the Option-A gate as formulated is scale-blind.**  Its
+accept/reject decision barely correlates with an eddy's effect on the
+spectral distribution of anisotropy; it acts as a bulk eddy-rate throttle.
+At mild thresholds the surviving population reproduces the baseline
+anisotropy budget exactly; at fac 0.5 the model simply drifts toward the
+eddy-free (pure-LRR) limit — large-scale anisotropy grows and the fine
+scales are not preferentially isotropized.  Transmission falls at fac 0.5
+only because A_low rose, not because A_high dropped.  Mechanism note: as fac
+drops, the accepted-candidate count RISES (279→884 per rlz) — rejected
+eddies leave the field unmixed, so candidates keep firing; the gate cannot
+starve itself into scale selectivity.
+
+Natural next variants (not yet implemented): (i) **scale-conditioned gate** —
+apply the rejection only to eddies smaller than a cutoff l*, directly
+targeting transmission while leaving the energy-containing range alone;
+(ii) Alan's **Option B** (unequal triplet-map images, middle-heavy);
+(iii) a kernel-side change: make the pressure-scrambling amplitude per eddy
+scale-dependent instead of gating whole eddies.
 
 ## 4b. ORIGINAL TASK (completed) — 1024-realization campaign on CARO
 
@@ -168,10 +189,20 @@ Key content for the new draft:
   spectral anisotropy budget.  Interesting in itself: the gate as formulated
   (eddy-region energy-fraction metric, threshold on the post-kernel state)
   self-selects eddies whose kernels were already going to do the relaxing.
-- fac sweep 0.8/0.7/0.5 running (same harness, same seeds) — numbers to
-  follow; limiting behavior fac->0 = no cascade, so the question is whether
-  any intermediate fac buys transmission reduction without starving the high
-  band.
+- Threshold sweep verdict (fac 0.9/0.8/0.7/0.5 = 45/66/83/98% rejection,
+  1024 paired-seed rlz each): the gate is scale-blind.  0.9-0.7 are
+  statistically indistinguishable from baseline in both bands; at 0.5 the
+  model drifts toward the eddy-free limit (A_low up, u2^2/2kt toward 0.6006)
+  without preferential fine-scale isotropization.  Interpretation: rejecting
+  whole eddies modulates the rate, not the scale distribution, of
+  kernel-mediated relaxation — and the unrelaxed field keeps generating
+  candidates (accepted-candidate count rises 279->884 as fac drops), so the
+  surviving population still executes the same cascade.
+- Proposed refinement to put to Alan: condition the gate on eddy SIZE (reject
+  only sub-l* eddies failing the anisotropy criterion), or make the kernel
+  amplitude scale-dependent — both directly target the transmission without
+  throttling the energy-containing range.  Option B (unequal images) remains
+  open in the same harness.
 - Option B (unequal triplet-map images) testable in the same harness; the
   A(k) metric is model-agnostic, so a flow-HiPS comparison with Marten can go
   on the same plot.
