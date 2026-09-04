@@ -143,12 +143,29 @@ drops, the accepted-candidate count RISES (279→884 per rlz) — rejected
 eddies leave the field unmixed, so candidates keep firing; the gate cannot
 starve itself into scale selectivity.
 
-Natural next variants (not yet implemented): (i) **scale-conditioned gate** —
-apply the rejection only to eddies smaller than a cutoff l*, directly
-targeting transmission while leaving the energy-containing range alone;
-(ii) Alan's **Option B** (unequal triplet-map images, middle-heavy);
-(iii) a kernel-side change: make the pressure-scrambling amplitude per eddy
-scale-dependent instead of gating whole eddies.
+**Scale-conditioned gate (Option A-S) DONE 2026-09-04** (commit d94b3ae:
+param `anisoRejectLmax`, default 0 = bit-identical regression PASSED against
+the campaign data; decks `homogeneousStrain2AS50/90`, l* = 0.05 between the
+diagnostic bands; 1024 rlz each, jobs 4433518/9, ~2 min wall):
+
+- fac 0.9 on sub-l* eddies (42% of gated candidates rejected): null except
+  one marginal point (A_high at e=1: -6%, paired CI [-12%,-1%]).
+- fac 0.5 on sub-l* eddies (97% rejected): A_low, A_high, transmission,
+  u2^2/2kt ALL statistically unchanged.
+- **Decisive extra check: high-band ENERGY is also unchanged** (paired
+  median within +-25%) despite removing ~97% of small-eddy events.
+
+**Mechanistic conclusion (the real Test-3 answer): the k2 300-800 band is
+populated directly by LARGE-eddy triplet maps** — IC peak k2 ~ 50, two map
+generations x3 each -> ~450 — so neither the delivery nor the relaxation of
+fine-scale anisotropy runs through small eddies at this Reynolds number.
+Acceptance gating of any population cannot fix transmission; the lever is
+the per-map action of large eddies:
+(i) Alan's **Option B** (unequal triplet-map images, middle-heavy) changes
+the compression ratio per map — the direct knob;
+(ii) a **scale-dependent kernel within the eddy** (kernel amplitude varying
+with sub-eddy scale — the spectral analogue of the paper's g_n(x) idea; note
+the allocation study already found every kernel mode kappa-rigid).
 
 ## 4b. ORIGINAL TASK (completed) — 1024-realization campaign on CARO
 
@@ -170,8 +187,8 @@ Afterward: finalize the reply to Alan (draft below) with the 1024-run numbers,
 and optionally sweep anisoRejectFac (0.95/0.8/0.7) — new input decks are a
 copy of homogeneousStrain2A with one line changed.
 
-## 5. Draft reply to Alan — REWRITTEN after the 1024-rlz reversal
-   (hold until the fac sweep lands; do NOT send the old 0.96->0.54 numbers)
+## 5. Draft reply to Alan — READY TO SEND (all campaigns in, arc complete;
+   do NOT send the old 0.96->0.54 numbers)
 
 Key content for the new draft:
 - Diagnostic and campaign: A(k2)=E2/Eperp vs the model's own fixed point A=1;
@@ -198,11 +215,26 @@ Key content for the new draft:
   kernel-mediated relaxation — and the unrelaxed field keeps generating
   candidates (accepted-candidate count rises 279->884 as fac drops), so the
   surviving population still executes the same cascade.
-- Proposed refinement to put to Alan: condition the gate on eddy SIZE (reject
-  only sub-l* eddies failing the anisotropy criterion), or make the kernel
-  amplitude scale-dependent — both directly target the transmission without
-  throttling the energy-containing range.  Option B (unequal images) remains
-  open in the same harness.
+- Scale-conditioned variant (our follow-up, tested): gating ONLY sub-l*
+  eddies (l* = 0.05, between the bands) at 42% and even 97% rejection leaves
+  fine-scale anisotropy AND fine-scale energy unchanged — the high band is
+  populated directly by large-eddy maps (k2 ~ 50 -> x3 -> x3 -> ~450), so no
+  acceptance-gating scheme can control transmission at this Re.  This
+  sharpens his original argument: the per-map 3x compression is the whole
+  story, and the counteracting relaxation must live INSIDE the large-eddy
+  event.
+- Therefore Option B (unequal images -> weaker compression per map) is now
+  the motivated next test, or a sub-eddy scale-dependent kernel amplitude;
+  both testable in the same 3-minute harness.  Ask Alan: for Option B, which
+  image-size split does he want first, and does he expect the direction to
+  differ between the middle-copy and outer-copy imbalance?
+- The A(k) metric is model-agnostic — flow-HiPS comparison with Marten goes
+  on the same plot.
+- Intermittency caveat worth one sentence: rare single realizations carry
+  100-2000x the median band energy, so ensemble-MEAN spectral ratios are
+  non-convergent even at 1024 realizations; all quoted numbers are medians
+  with bootstrap CIs (this constrains how any ODT/HiPS transmission claim
+  should be measured).
 - Option B (unequal triplet-map images) testable in the same harness; the
   A(k) metric is model-agnostic, so a flow-HiPS comparison with Marten can go
   on the same plot.
