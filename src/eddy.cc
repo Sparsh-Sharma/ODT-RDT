@@ -151,7 +151,13 @@ void eddy::tripMap(domain *line, const int iS, int iE, const double C, const boo
         fracVmidl = fracVleft;
         fracVrght = fracVleft;
     }
-    
+
+    if(domn->pram->mapMidFrac != 1.0/3.0) {   // Option B (Kerstein): unequal images, middle
+        fracVmidl = domn->pram->mapMidFrac;   //   broadened (weaker compression + flip),
+        fracVleft = 0.5*(1.0 - fracVmidl);    //   symmetric outers; planar only (checked in
+        fracVrght = fracVleft;                //   param.cc); kernel adapts via fillKernel()
+    }
+
     //---------
 
     pos0 = line->pos->d;            // for filling kernel

@@ -101,6 +101,7 @@ param::param(inputoutput *p_io) {
     LanisoReject   = io->params["LanisoReject"]   ? io->params["LanisoReject"].as<bool>()     : false;
     anisoRejectFac = io->params["anisoRejectFac"] ? io->params["anisoRejectFac"].as<double>() : 0.9;
     anisoRejectLmax = io->params["anisoRejectLmax"] ? io->params["anisoRejectLmax"].as<double>() : 0.0;
+    mapMidFrac      = io->params["mapMidFrac"]      ? io->params["mapMidFrac"].as<double>()      : 1.0/3.0;
     strainClosure  = io->params["strainClosure"]  ? io->params["strainClosure"].as<string>()  : "LRR";
     Astrain = vector<vector<double>>(3, vector<double>(3, 0.0));
     Acal    = vector<vector<double>>(3, vector<double>(3, 0.0));
@@ -171,6 +172,16 @@ param::param(inputoutput *p_io) {
 
     if(LdoDL && Lsolver=="STRANG")
         cout << endl << "ERROR: STRANG solver is not set up with Darrieus Landau instability LdoDL" << endl;
+
+    if(mapMidFrac != 1.0/3.0 && (cCoord != 1 || LplanarTau)) {
+        cout << endl << "ERROR: mapMidFrac != 1/3 (unequal triplet-map images) requires planar cCoord=1 "
+             << "and the displacement-based kernel (LplanarTau=false)." << endl;
+        exit(0);
+    }
+    if(mapMidFrac <= 0.0 || mapMidFrac >= 1.0) {
+        cout << endl << "ERROR: mapMidFrac must be in (0,1)." << endl;
+        exit(0);
+    }
 
 }
 
