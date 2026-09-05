@@ -293,11 +293,34 @@ aborts.  `spectra_gateA_S1.npz` (median, Nu=8192) committed.
   [3dk, 300]: stable at ALL strains, cost 1.36-1.82, ke grows 12 -> 40 with
   e exactly as lab-frame dilatation demands.  Residual ~30% rms = the eddy
   contribution at Sk/eps ~ 0.4 (slow strain — expected).
-- NEXT: (i) rapid-strain campaign (same precursor, larger S so the LE-noise-
-  relevant rapid regime is matched; RDT-vK should tighten there); (ii) Gate
-  B built directly on the exact RDT Phi_ww(kx,ky) — no h ansatz anywhere;
-  (iii) E1/E3 still 0.55 by e=2: the RDT family predicts a specific
-  non-axisymmetric split — compare before extending anything.
+**STALE-BINARY CORRECTION (2026-09-05 afternoon): the first gateA_S1/S20
+campaigns ran a pre-tStrainOn odt.x** (the pilot script pulled but never
+rebuilt) — strain + dilatation from t=0, so every number above from those
+ensembles is superseded (incl. the "prolate relaxed state": that was e=0.4
+data).  LESSON: any caro script that pulls a code change MUST rebuild and
+re-verify before campaigning.  Clean reruns (jobs 4434552/3, precursor
+verified posf0 = -0.5 at t=0.4), committed 2b11a33:
+
+- **S1 (Sk/eps~0.4), 1024/1024**: RDT-vK fits e=0 cost 0.66 (relaxed state
+  ~isotropic vK, ke 7.4; axisym fit E1/E3 = 1.002 confirms isotropy) rising
+  to 1.74 at e=2 (rms ~13% -> ~21%).
+- **S20 (Sk/eps~8), 626/1024** — the rapid-dilatation domainPositionToIndex
+  abort takes 39% even at e<=2 (fix task queued; survivors differ at e=0:
+  ke 6.2 vs 7.4 = quantified survivor bias, rapid numbers provisional).
+  Fits: cost 0.58 -> 2.42 (rms ~25% at e=2).
+- **KEY RESULT: the ODT-vs-exact-RDT spectral distance GROWS with Sk/eps**
+  (~21% slow vs ~25% rapid at e=2) — opposite the naive rapid-limit
+  expectation, exactly as the kappa-uniform rapid operator + rigid
+  dilatation kinematics (sec 4.2 / Referee 3.1) predict.  First
+  scale-resolved measurement of that deficiency; feeds the JFM revision
+  directly.
+- Axisym family on clean data: e>=1 still degenerate — structural
+  conclusion stands; h(mu)-from-RDT and the RDT-vK family remain the
+  working Gate-A machinery.
+- NEXT: (i) fix the dilatation abort, rerun S20 full-ensemble; (ii) Gate B
+  directly on exact RDT Phi_ww(kx,ky); (iii) compare the RDT-predicted
+  E1/E3 split against the measured one before any non-axisymmetric
+  extension.
 
 ## 5. Reply history: first reply SENT 2026-09-04 (email_alan_test3_reply.html).
    Option-B reply drafted 2026-09-05 (email_alan_optionB_reply.html).
