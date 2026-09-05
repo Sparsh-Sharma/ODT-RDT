@@ -231,6 +231,38 @@ imply the symmetric-outer family cannot reduce transmission at any f?
 Asymmetric outers, or an eddy-type MIXTURE (mostly f=2/3 plus occasional
 classic maps) as the next variant?
 
+## 4d. Gate-A refit attempt on the 1024-rlz ensembles (2026-09-05) + mixture map
+
+**Mixture map STAGED, not run** (commit 3156130): `mapMidFracProb` (default 1
+= pure map; extra RNG draw only when a mixture is configured, so every
+existing case stays bit-identical — double regression PASSED on baseline and
+2B).  Per-candidate `curMidFrac` sampled in sampleEddySize, used by both
+tripMaps and the LES-thirds test eddy.  Ready for Alan's answer.
+
+**Gate-A refit on Test-3 data: NEGATIVE, and diagnostic.**  New machinery:
+`dump_spectra.py` (per-k2 median + mean ensemble spectra; heavy-tail-safe)
+and `gateA_fit_1024.py` (fit + Gate-B Delta-SPL, both baselines).  Verdict
+(`gateA_fit_table.txt`, `fig_gateA_1024.png`): the vK-stretch family
+DEGENERATES on the Test-3 ensembles — L2 -> ~0 (fit collapses to a bare
+-5/3 power law), cost 45-86 in log space, Lperp/L2 in the hundreds; the
+spectra are a band-limited bump + steep viscous roll-off with NO inertial
+range (deck was built as a scale diagnostic, kvisc 1e-4, 8-wave IC).  Also
+E1/E3 = 0.32-0.68 at e>=2: the axisymmetry assumption of the family is
+badly violated by the u<->w splitting.  Do NOT use Test-3 ensembles as
+Gate-A targets.
+
+**Production case in progress:** cherry-picked tStrainOn from master
+(04b66f5, partial pick of 5831da0 — allocation machinery NOT brought over);
+deck `input/gateA_S1` (precursor to t=0.4, S=1, dumps e=0,0.5,1,1.5,2).
+Viscosity findings: kvisc 1.44e-6 STALLS the eddy sampler (5e7 trials for
+1e3 eddies, dtSmean ~4e-11, t=0.04 in 15 min); 1e-5 runs at ~2.6 h per
+realization (24e6 trials by t=0.076) — feasible node-packed as ONE ~3 h
+wave (raise the launcher walltime), IF the post-precursor spectrum is
+fittable.  The CMK deck (caro, untracked, kvisc 1.44e-6) uses the SAME
+sampler tuning (Pmax .4, Pav .02, Lp .015, Z 450; dxmin 5e-4, dxmax 1e-2) —
+paper-1 runs were simply slow.  Pilot realization running; decision gate =
+fit quality at the e=0 dump.
+
 ## 5. Reply history: first reply SENT 2026-09-04 (email_alan_test3_reply.html).
    Option-B reply drafted 2026-09-05 (email_alan_optionB_reply.html).
    Original first-reply content notes below (historical):
