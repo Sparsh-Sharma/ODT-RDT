@@ -1390,17 +1390,25 @@ wall-normal component near the surface, belong to the inhomogeneous
 stagnation-flow treatment of the companion paper and are not required for the
 homogeneous distortion studied here.
 
-\subsubsection{Compression without cascade: the linear-RDT
-baseline}\label{sec:spec-rdt}
+\subsubsection{Compression without cascade: the model's kinematic
+reference}\label{sec:spec-rdt}
 
 With the eddy events suppressed and zero molecular viscosity, the mean strain
-is the only process acting on the resolved field, and its effect is purely
-kinematic. The line length contracts as
+is the only process acting on the resolved field, and its effect on the line
+is purely kinematic. The line length contracts as
 $\mathcal{L}(e)=\mathcal{L}_0\,e^{A_{22}e}$, so every resolved wavenumber is
-rescaled as $k(e)=k(0)\,e^{-A_{22}e}$ with no transfer of energy between
-scales: a rigid translation of the spectrum toward higher wavenumber. This is
-the linear rapid-distortion result \citep{BatchelorProudman1954,HuntCarruthers1990}
-for the transverse wavenumber, and it is an exact, parameter-free target.
+rescaled as $k(e)=k(0)\,e^{-A_{22}e}$---the wavevector kinematics it shares
+with rapid-distortion theory \citep{BatchelorProudman1954,HuntCarruthers1990}%
+---while the continuous redistribution operator of
+\S\,\ref{sec:rapid-kernel} acts uniformly on every resolved wavenumber. The
+combination transfers no energy between scales: a rigid translation of the
+line spectrum toward higher wavenumber. We emphasise at the outset that this
+rigid translation is a property of the strain-coupled \emph{line}---uniform
+dilatation composed with a wavenumber-uniform operator---and not of linear
+distortion theory itself; the correct linear reference for the projected
+spectrum is constructed in \S\,\ref{sec:spec-linref} below. As a check on the
+implementation, however, the rigid translation is an exact, parameter-free
+target.
 
 Figure~\ref{fig:spec-rdt} confirms it. The component spectra translate toward
 higher $k$ without change of shape---the peak neither broadens nor develops an
@@ -1409,9 +1417,61 @@ discretisation error, reaching $7.0$ at $e=3.9$ against the exact $7.03$, with
 the three components migrating identically. The single-point moments are
 unchanged from the no-dilatation case, since a uniform rescaling of position
 leaves the length-weighted velocity statistics invariant. Compression
-therefore acts entirely on the spectrum and reproduces linear RDT exactly. It
-is the reference (the dashed line in all centroid figures below) against which
-the full model is measured.
+therefore acts entirely on the spectrum and reproduces the model's kinematic
+prediction exactly. It is the kinematic reference (the dashed line in all
+centroid figures below) against which the full model is measured.
+
+\subsubsection{The linear reference for the projected spectrum: exact
+RDT}\label{sec:spec-linref}
+
+The rigid translation above must not be mistaken for the prediction of
+linear rapid-distortion theory for the quantity the line actually carries.
+In the full linear theory the amplitude of each Fourier mode evolves at a
+rate that depends on the orientation of its three-dimensional wavevector
+(equation~\ref{eq:rdt}); the one-dimensional component spectra are
+projections---integrals over the transverse wavenumber plane---and there is
+no reason for a projection of orientation-dependent amplification to
+translate rigidly. Whether it does is a question of calculation, and the
+answer is that it does not. Using the closed-form Cauchy solution of the
+linear problem applied to isotropic initial fields and projected onto a
+line (the exact-RDT companion calculations described in
+\S\,\ref{sec:box-dns}), we define the shape ratio
+$R_{nn}(\kappa_2)$ as the projected component spectrum at strain $e$,
+normalised by its integral, divided by the rigidly translated initial
+spectrum normalised likewise; $R_{nn}\equiv1$ at every $\kappa_2$ if and
+only if the translation is rigid. At $e=1$ under plane strain the upwash
+ratio $R_{22}$ falls monotonically from $1.60$ at half the initial spectral
+centroid to $0.38$ at twelve times it: exact linear theory redistributes
+the projected upwash spectrum toward low wavenumber by a factor of four
+across the resolved range, because modes aligned with the line
+($\kappa\to\kappa_2$) are amplified least. The transverse components are
+affected more weakly ($R_{11}$ from $1.27$ to $0.75$; $R_{33}$ within ten
+per cent of unity), so the projected anisotropy of linear theory is itself
+scale-dependent. Figure~\ref{fig:rdt-projection} shows the ratios.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_rdt_projection.pdf}
+  \caption{Exact linear theory does not translate the projected spectra
+  rigidly. Left: shape ratio $R_{nn}(\kappa_2)$ of the exactly distorted,
+  line-projected component spectra to a rigid translation, at $e=1$ under
+  plane strain (closed-form Cauchy solution, isotropic initial fields, four
+  realisations). Right: the transverse splitting
+  $\phi_{11}/\phi_{33}-1$ versus wavenumber in exact linear theory and in
+  the strained-box DNS of \S\,\ref{sec:box-dns}.}
+  \label{fig:rdt-projection}
+\end{figure}
+
+Two consequences run through the remainder of the paper. First, the
+comparison of the full model against the rigid translation
+(\S\,\ref{sec:spec-bvc}) measures the departure of the model from its own
+kinematics; the departure of the \emph{flow} from linear theory must be
+measured against the exact projected reference, and the two differ already
+at the linear level. Second, the model's rigid spectral kinematics is
+itself a structural approximation---linear theory deepens the projected
+anisotropy with wavenumber, which a wavenumber-uniform operator cannot
+represent---and \S\,\ref{sec:threeway} quantifies the resulting deficiency
+against both the exact reference and DNS.
 
 \begin{figure}
   \centering
@@ -1427,9 +1487,9 @@ the full model is measured.
   (\textit{a}) Component spectra $E_i(k)$ at increasing total strain (lighter to
   darker); the spectra translate to higher $k$ without changing shape.
   (\textit{b}) Spectral-centroid migration $\bar k(e)/\bar k(0)$ for each
-  component (symbols) against the linear-RDT prediction $e^{-A_{22}e}$ (dashed).
+  component (symbols) against the kinematic prediction $e^{-A_{22}e}$ (dashed).
   The centroid follows the prediction exactly and the three components coincide,
-  confirming purely geometric compression.}
+  confirming purely geometric compression of the line.}
   \label{fig:spec-rdt}
 \end{figure}
 
@@ -1445,35 +1505,39 @@ Because the two differ only in the presence of the mean strain, the difference
 between them is the distortion, cleanly separated from the cascade and
 dissipation the eddies produce on their own.
 
-Figure~\ref{fig:spec-bvc} shows the result, and it departs from linear RDT in a
-specific and physically meaningful way. Consider the centroid first
-(figure~\ref{fig:bvc-centroid}). The no-strain baseline, after the brief
+Figure~\ref{fig:spec-bvc} shows the result, and it departs from the kinematic
+reference in a specific and physically meaningful way. Consider the centroid
+first (figure~\ref{fig:bvc-centroid}). The no-strain baseline, after the brief
 initialisation transient near $e\simeq0.2$, relaxes monotonically to
 $\bar k/\bar k_0<1$: with no compression, the eddies merely redistribute energy
 and the centroid drifts below its initial value. The full model is lifted
 clearly above this baseline---compression does push the spectrum toward higher
 wavenumber---yet it settles at $\bar k/\bar k_0\approx1.6$--$2.0$, far below the
-linear-RDT line, which rises to $7.4$ at $e=4$. The reason is visible in the
-spectra (figure~\ref{fig:bvc-spectra}): the full-model spectrum is not a rigid
-translation of the baseline but a \emph{broadband} distortion. It extends to
-substantially higher wavenumber than the baseline---energy is genuinely carried
-to small scales by compression and cascade---but the bulk of the energy remains
-at the energetic scales, and what reaches high wavenumber is dissipated there
-rather than accumulated. The energy-weighted centroid therefore lies well below
-the value a rigid translation would give.
+rigid-translation line, which rises to $7.4$ at $e=4$. The reason is visible in
+the spectra (figure~\ref{fig:bvc-spectra}): the full-model spectrum is not a
+rigid translation of the baseline but a \emph{broadband} distortion. It extends
+to substantially higher wavenumber than the baseline---energy is genuinely
+carried to small scales by compression and cascade---but the bulk of the energy
+remains at the energetic scales, and what reaches high wavenumber is dissipated
+there rather than accumulated. The energy-weighted centroid therefore lies well
+below the value a rigid translation would give.
 
-This is the qualitative content of the section. Linear RDT, which only
-rescales the prescribed spectrum, predicts a rigid shift of the whole spectrum
-to higher $k$ and a centroid on the dashed line. The full model instead
-produces a broadband distorted spectrum whose shape differs from the linearly
-strained one: broadened, dissipative, and with its centroid held well below the
-linear prediction. The departure from linear RDT is thus real and measurable,
-but it is a difference of spectral \emph{shape}---rigid translation versus
-broadband cascade---not a centroid that overshoots the linear line. It is
-precisely this shape difference that a frozen, linearly strained upwash
-spectrum cannot represent, and that motivates supplying the ODT spectrum to
-Amiet's theory in place of it, in the spirit of the rapid-distortion-modified
-inflow spectra of \citet{deSantana2016} but without the linearity assumption.
+Two distinct effects are mixed in this departure, and \S\,\ref{sec:spec-linref}
+requires that they be separated. The first is the eddy cascade and
+dissipation, which the strain-on/strain-off construction isolates cleanly at
+the level of the model. The second is that exact linear theory itself, once
+projected onto the line, is already broadband
+(figure~\ref{fig:rdt-projection}): part of what a rigid-translation reference
+attributes to nonlinearity is present in the linear physics. The
+strain-on/strain-off comparison therefore measures what the mean strain does
+\emph{within the model}; the decisive question---how the model's distorted
+spectrum stands against exact linear theory and against DNS on the same
+footing---is answered by the three-way comparison of \S\,\ref{sec:threeway}.
+What survives either way is the qualitative point that a frozen, rigidly
+strained upwash spectrum misrepresents the distorted inflow, which motivates
+supplying a distorted spectrum to Amiet's theory in place of it, in the
+spirit of the rapid-distortion-modified inflow spectra of
+\citet{deSantana2016} but without the frozen-shape assumption.
 
 \begin{figure}
   \centering
@@ -1491,7 +1555,7 @@ inflow spectra of \citet{deSantana2016} but without the linearity assumption.
   (strain on) extends to higher wavenumber than the baseline (strain off) but
   remains broadband, not a rigid translation. (\textit{b}) Centroid migration:
   the baseline relaxes below unity, the full model is lifted above it by the
-  compression, yet stays far below the linear-RDT line (dashed). The gap
+  compression, yet stays far below the rigid-translation line (dashed). The gap
   between the two solid curves is the distortion attributable to the mean
   strain at this Reynolds number.}
   \label{fig:spec-bvc}
@@ -2168,6 +2232,142 @@ by the rapid term. This is the same decomposition on which the closure of
 \S\,\ref{sec:gate} rests, and the DNS confirmation that the rapid term dominates in
 this flow lends physical weight to the closure beyond the anisotropy comparison
 itself.
+
+\subsection{Validation against a strained-box DNS with an exact-RDT
+companion}\label{sec:box-dns}
+
+The comparisons above validate the model at the Reynolds-stress level. The
+referent quantity for the leading-edge application, however, is spectral,
+and the objection that the emergent-spectrum results of
+\S\,\ref{sec:val-spectrum} compare the model only with itself must be met
+with an independent spectral benchmark under the same strain. To that end
+we performed direct numerical simulations of plane-strained homogeneous
+turbulence in a deforming-frame (Rogallo-type) pseudo-spectral formulation:
+a $128^3$ box, decaying isotropic precursor, then plane strain
+$A=S\,\mathrm{diag}(\tfrac12,-\tfrac12,0)$ applied at strain-rate
+parameters $Sk_t/\varepsilon\in\{0.8,16\}$ at onset, carried to total
+strain $e=1$, four independent realisations
+($\kappa_{\max}\eta\approx0.76$ at $e=1$: a pilot resolution, so
+small-scale statements below are qualitative). Alongside every DNS
+realisation runs an \emph{exact-RDT companion}: the same initial field
+evolved under the closed-form Cauchy solution of the linearised equations
+and projected onto lines identically to the DNS and to ODT. The companion
+is what \S\,\ref{sec:spec-linref} used to construct the linear reference;
+here it completes a three-way comparison in which model, linear theory and
+DNS are reduced to the same one-dimensional observables. On the ODT side
+the ensembles use an unstrained precursor: the line is evolved as ordinary
+ODT until the initialisation transient has relaxed and the eddy population
+is statistically active, and the strain is switched on only then, so that
+the strained evolution starts from a physically conditioned state rather
+than from the synthetic initial condition. All ODT statistics in this
+subsection are medians over $1024$ realisations per case with bootstrap
+confidence intervals; median statistics are used because the strained band
+energies are strongly intermittent across realisations, and ensemble means
+of spectral ratios are dominated by rare events at any practical sample
+size.
+
+\subsubsection{Three-way spectral anisotropy: ODT, exact RDT,
+DNS}\label{sec:threeway}
+
+The comparison quantity is the strain-induced change of the spectral
+component anisotropy,
+$\Delta b_{nn}(\kappa_2)=\phi_{nn}/\sum_m\phi_{mm}-\tfrac13$ at strain $e$,
+minus the same quantity evaluated in the system's own unstrained state with
+each mode mapped to its strained wavenumber. Referencing each system to its
+own $e=0$ state cancels viscous decay, which is component-blind, and the
+longitudinal--transverse structure of the isotropic line spectra, which
+differs between a three-dimensional box and the component-symmetric ODT
+line. Figure~\ref{fig:threeway} and table~\ref{tab:threeway} give the
+result at $e=1$, $Sk_t/\varepsilon=0.8$, on common bands of
+$\kappa_2(e)/\kappa_c(0)$ with $\kappa_c$ the initial spectral centroid.
+
+\begin{table}
+  \centering\small
+  \begin{tabular}{lccccccc}
+  $\Delta b_{22}(\kappa_2)$, band $\kappa_2/\kappa_c$: & 0.5--0.75 & 0.75--1.2 & 1.2--1.9 & 1.9--3 & 3--4.8 & 4.8--7.6 & 7.6--12\\[2pt]
+  exact projected RDT & $+0.146$ & $+0.008$ & $-0.020$ & $-0.041$ & $-0.050$ & $-0.054$ & $-0.056$\\
+  DNS                 & $+0.032$ & $-0.033$ & $-0.029$ & $-0.032$ & $-0.036$ & $-0.040$ & $-0.046$\\
+  strain-coupled ODT  & $+0.100$ & $+0.101$ & $+0.114$ & $+0.111$ & $+0.127$ & $+0.099$ & $+0.147$\\
+  \end{tabular}
+  \caption{Strain-induced upwash anisotropy per wavenumber band at $e=1$,
+  $Sk_t/\varepsilon=0.8$, each system referenced to its own unstrained
+  state. Bands below $0.75\,\kappa_c$ rest on a few box modes and are
+  indicative only.}
+  \label{tab:threeway}
+\end{table}
+
+The structure of the table is the finding. Exact linear theory concentrates
+the strain-induced upwash anisotropy at the energy-containing scales and
+\emph{removes} it from the small scales, because modes aligned with the
+line are amplified least; the DNS shows the same shape, weakened at the
+large scales by the nonlinear return. The strain-coupled ODT distributes
+its moment-level anisotropy essentially uniformly over wavenumber---the
+signature, anticipated in \S\,\ref{sec:spec-linref}, of a
+wavenumber-uniform redistribution operator acting on a uniformly dilated
+line. The integrated anisotropy is nevertheless correct (the model tracks
+the closure at the moment level, \S\,\ref{sec:lr-plane}), so the deficiency
+is one of allocation across scales, not of amount. For the leading-edge
+application the operative consequence is that the high-wavenumber
+anisotropy of the upwash spectrum, which the Amiet response weights, has
+the wrong sign in the present model; the closure element that must carry
+the correction---a wavenumber-dependent rapid operator in place of the
+uniform one---is exactly the spectral kernel formulation of
+\S\,\ref{sec:gate}, whose exercise is thereby motivated by a measured
+deficit rather than by completeness.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_threeway.pdf}
+  \caption{Three-way comparison at $Sk_t/\varepsilon=0.8$: strain-induced
+  anisotropy of the line spectra relative to each system's own unstrained
+  state; strain-coupled ODT ($1024$ realisations) against exact projected
+  RDT and DNS ($128^3$, four realisations); $e=1$ solid, $e=0.5$ dashed.}
+  \label{fig:threeway}
+\end{figure}
+
+\subsubsection{Distance from linear theory as a function of strain
+rapidity}\label{sec:envelope}
+
+The three-way comparison resolves the anisotropy by wavenumber at one
+strain-rate parameter. A complementary scalar measure tracks the
+\emph{whole} spectral shape across strain and strain rapidity: at each
+total strain the median ODT component line spectra are fitted, jointly in
+the upwash and transverse components, by the exactly distorted spectrum of
+linear theory---the closed-form Cauchy distortion of an isotropic von
+K\'arm\'an field, projected onto the line, with only the pre-distortion
+amplitude and energy wavenumber free. The root-mean-square log-residual of
+that two-parameter fit is a scale-resolved distance between the model's
+strained spectra and exact linear theory. Figure~\ref{fig:rdt-distance}
+shows it for precursor-conditioned ensembles at $Sk_t/\varepsilon\approx0.4$
+and $\approx8$ at onset ($1024$ realisations each, identical precursor
+state: the two fits coincide at $e=0$ at thirteen per cent, the residual
+shape mismatch of a relaxed ODT line against the von K\'arm\'an form).
+
+The distance grows with strain in both cases, but \emph{faster at rapid
+strain}: to approximately $22$ per cent at $e=2$ for
+$Sk_t/\varepsilon\approx0.4$ against approximately $24$ per cent,
+saturating early, at $Sk_t/\varepsilon\approx8$, with the separation
+established already by $e=0.5$. If the model's rapid response were
+spectrally faithful, the rapid curve is the one that should approach zero:
+eddy events are subdominant there by construction. That the deviation is
+largest precisely where the eddies matter least localises the deficiency in
+the rapid kinematics themselves---the wavenumber-uniform operator and the
+rigid dilatation---and not in the eddy or relaxation statistics, in
+quantitative agreement with the three-way comparison. This measured
+validity envelope accompanies the model into any application: predictions
+inherit a spectral-shape uncertainty of order the plotted distance at the
+operating point's strain and rapidity.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.62\textwidth]{Figures/fig_rdt_distance.pdf}
+  \caption{Scale-resolved distance between the strained ODT line spectra
+  and exact linear theory: rms log-residual of the two-parameter
+  exact-RDT-distorted von K\'arm\'an fit, against total strain, for slow
+  and rapid onset strain-rate parameters (medians over $1024$
+  realisations; identical precursor state at $e=0$).}
+  \label{fig:rdt-distance}
+\end{figure}
 
 \section{Closure of the rapid pressure--strain term on a single line}
 \label{sec:gate}

@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Main_submission_V2.aux
+The style file: jfm.bst
+Database file #1: jfm.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--there's a number but no volume in MillsCorrsin1959
+You've used 42 entries,
+            3068 wiz_defined-function locations,
+            976 strings with 12399 characters,
+and the built_in function-call counts, 21070 in all, are:
+= -- 1969
+> -- 790
+< -- 35
++ -- 332
+- -- 264
+* -- 2184
+:= -- 3514
+add.period$ -- 86
+call.type$ -- 42
+change.case$ -- 299
+chr.to.int$ -- 48
+cite$ -- 43
+duplicate$ -- 1127
+empty$ -- 1766
+format.name$ -- 336
+if$ -- 4158
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 42
+newline$ -- 131
+num.names$ -- 168
+pop$ -- 272
+preamble$ -- 1
+purify$ -- 256
+quote$ -- 0
+skip$ -- 518
+stack$ -- 0
+substring$ -- 1278
+swap$ -- 382
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 369
+warning$ -- 1
+while$ -- 189
+width$ -- 0
+write$ -- 466
+(There was 1 warning)

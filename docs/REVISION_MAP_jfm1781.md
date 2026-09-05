@@ -169,7 +169,15 @@ Manuscript (master):
   files every variant under DoNotUse/, leaving `Main_submission_V2.tex`;
   extracted to `manuscript/` (tracked).
 - M1. Corrections (a)–(g) from the section5 note, folded in.
-- M2. §4.2 rewrite around the three-way figure + envelope (O1, O2).
+- M2. RESEARCH CORE DONE 2026-09-05 (abstract/conclusions deliberately
+  deferred per Sparsh): §4.2.1 relabelled to the model's kinematic
+  reference + new §"linear reference for the projected spectrum" (exact
+  projected RDT, fig_rdt_projection); §4.2.2 reframed (two-effects
+  separation); NEW subsection sec:box-dns before §5: strained-box DNS +
+  exact-RDT companions protocol, three-way table+figure (sec:threeway),
+  RDT-distance envelope (sec:envelope, fig_rdt_distance). Compiles clean,
+  45 pp. REMAINING in M2 scope: abstract + conclusions still carry the
+  rigid-translation claim (lines ~68, ~2570-era) — do together with M4.
 - M3. §5 rewrite to the six claims (O3, O4, O5); appendix move (R3.3).
 - M4. §2 compression + SC2018 + intro repair (O7, O8, O9).
 - M5. [Option C] LE section from Gate machinery (O6) — written last.
@@ -196,9 +204,10 @@ Decisions (Sparsh):
 snapshot: ~21k words (≈41 pp equivalent — unchanged from the rejected
 42 pp), 15 figures, 1 table. State against the map:
 
-- ALREADY IN V2: the strained-DNS validation section (plane strain +
-  axisymmetric contraction, Reynolds-stress level — added right after the
-  DNS ran); the Poisson factor-2 appears carried in the §5 source terms
+- ALREADY IN V2: a "Validation against DNS" section that is the LEE &
+  REYNOLDS 1985 comparison (b_ij level) — NOT our strained-box DNS, which
+  was absent entirely (audit correction 2026-09-05); the Poisson factor-2
+  appears carried in the §5 source terms
   (line ~2480 — VERIFY against the note's erratum before trusting);
   Sagaut & Cambon cited once.
 - NOT IN V2 (everything from the 25-Aug-onward rebuild): the
