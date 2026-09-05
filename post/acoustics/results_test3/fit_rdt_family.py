@@ -34,6 +34,7 @@ NBIN = 40
 KMAX = float(os.environ.get("KMAX", 600.0))
 KMIN_FAC = float(os.environ.get("KMIN_FAC", 3.0))
 E_OFF = float(os.environ.get("E_OFF", 0.4))
+SMAG = float(os.environ.get("SMAG", 1.0))    # e = SMAG * (dump time - E_OFF)
 NKP = 200
 NPHI = 96
 
@@ -79,7 +80,7 @@ def fit_one(k2b, Epb, E2b, e):
 
 def main():
     d = np.load(NPZ)
-    strains = d["strains"] - E_OFF
+    strains = SMAG * (d["strains"] - E_OFF)
     lines = [f"RDT-distorted vK fits, median spectra, {int(d['nrlz'])} rlz "
              f"({os.path.basename(NPZ)}); band [3dk,{KMAX:.0f}], {NBIN} bins",
              "", f"{'e':>5} {'ke':>9} {'A0':>11} {'cost':>9}"]
