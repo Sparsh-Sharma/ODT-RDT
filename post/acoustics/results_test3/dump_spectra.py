@@ -25,6 +25,15 @@ import odt_io                                          # noqa: E402
 STRAINS = [0.0, 1.0, 2.0, 3.0, 3.9]
 NU = 2048
 
+# Override for cases whose dumps sit at other times (e.g. gateA_S1: precursor
+# to t=0.4, dumps at t = e + 0.4):  DUMP_TIMES="0.4,0.9,1.4,1.9,2.4".
+# load_fit_target matches on t (smag=1), so pass TIMES; "strains" in the npz
+# then records these times — subtract the precursor offset downstream.
+if os.environ.get("DUMP_TIMES"):
+    STRAINS = [float(x) for x in os.environ["DUMP_TIMES"].split(",")]
+if os.environ.get("DUMP_NU"):
+    NU = int(os.environ["DUMP_NU"])
+
 for root in sys.argv[1:]:
     dirs = sorted(glob.glob(os.path.join(root, "data", "data_*")))
     n = len(dirs)
