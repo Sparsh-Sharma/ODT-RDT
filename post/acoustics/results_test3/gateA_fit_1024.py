@@ -28,6 +28,8 @@ sys.path.insert(0, os.path.join(HERE, ".."))
 import odt_io                                          # noqa: E402
 import fit_family as ff                                # noqa: E402
 import gateB_delta_spl as gb                           # noqa: E402
+import axisym_family as af_mod                         # noqa: E402
+import rdt_kernel                                      # noqa: E402
 from axisym_family import ke_from_length               # noqa: E402
 
 NPZ = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
@@ -41,6 +43,7 @@ KMIN_FAC = float(os.environ.get("KMIN_FAC", 3.0))
 E_OFF = float(os.environ.get("E_OFF", 0.0))   # dump times = e + E_OFF
 C0B = float(os.environ.get("C0B", 2.0))       # |c0| bound for the fit
 TAG = os.environ.get("TAG", "1024")
+USE_RDT_H = os.environ.get("USE_RDT_H", "") == "1"   # RDT-derived h(mu) per strain (e=0 keeps the stub)
 
 
 def fit_one(k2, Eperp, E2, kmin):
@@ -66,6 +69,8 @@ def main():
         E1, E2, E3 = d[f"med_E1_e{j}"], d[f"med_E2_e{j}"], d[f"med_E3_e{j}"]
         Eperp = 0.5 * (E1 + E3)
         kmin = KMIN_FAC * k2[0]
+        af_mod.set_h_kernel(rdt_kernel.kernel_for_e(e) if USE_RDT_H and e > 0
+                            else None)
         res, k2b, Epb, E2b = fit_one(k2, Eperp, E2, kmin)
         p = res.params
         m = (k2 >= kmin) & (k2 <= KMAX)
@@ -87,10 +92,14 @@ def main():
         hdr += f"  tot e={e:<4.1f} shp e={e:<4.1f}"
     lines.append(hdr)
     curves = {}
+    af_mod.set_h_kernel(None)
+    ki = np.array([gb.noise_kernel(k, p_iso) for k in kx])
     for j, e in enumerate(strains[1:], start=1):
         p = fits[j]
-        tot = np.array([10*np.log10(gb.noise_kernel(k, p) /
-                                    gb.noise_kernel(k, p_iso)) for k in kx])
+        af_mod.set_h_kernel(rdt_kernel.kernel_for_e(e) if USE_RDT_H and e > 0
+                            else None)
+        tot = np.array([10*np.log10(gb.noise_kernel(k, p) / ki[i])
+                        for i, k in enumerate(kx)])
         p_m = gb.matched_isotropic(p, mode="perp")
         shp = np.array([10*np.log10(gb.noise_kernel(k, p) /
                                     gb.noise_kernel(k, p_m)) for k in kx])
@@ -113,6 +122,8 @@ def main():
     fig, axs = plt.subplots(1, 3, figsize=(13.5, 4.0))
     cols = plt.cm.viridis(np.linspace(0, 0.9, len(strains)))
     for j, (e, p, (k2b, Epb, E2b)) in enumerate(zip(strains, fits, targets)):
+        af_mod.set_h_kernel(rdt_kernel.kernel_for_e(e) if USE_RDT_H and e > 0
+                            else None)
         E1m, E2m = ff.line_spectra(p, k2b)
         axs[0].loglog(k2b, E2b, "o", ms=2.5, color=cols[j])
         axs[0].loglog(k2b, E2m, "-", lw=1.1, color=cols[j],

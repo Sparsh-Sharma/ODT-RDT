@@ -160,13 +160,25 @@ def _h_mu(mu):
     return 0.5 * (3.0 * mu * mu - 1.0)
 
 
+# Active angular kernel.  Default = the P2 stub above; swap in a derived
+# kernel (e.g. rdt_kernel.kernel_for_e(e)) with set_h_kernel and restore
+# with set_h_kernel(None).  The kernel must be even in mu and vectorized.
+H_KERNEL = _h_mu
+
+
+def set_h_kernel(h=None):
+    """Install h(mu) as the family's angular kernel (None -> P2 stub)."""
+    global H_KERNEL
+    H_KERNEL = _h_mu if h is None else h
+
+
 def C_scalar(k2, kperp, p):
     """Anisotropy scalar C(k2, kperp) = c0 * A(k2, kperp) * h(mu)."""
     k2 = np.asarray(k2, dtype=float)
     kperp = np.asarray(kperp, dtype=float)
     kap = np.hypot(k2, kperp)
     mu = np.divide(k2, kap, out=np.zeros_like(kap), where=kap > 0.0)
-    return p.c0 * A_scalar(k2, kperp, p) * _h_mu(mu)
+    return p.c0 * A_scalar(k2, kperp, p) * H_KERNEL(mu)
 
 
 # ----------------------------------------------------------------------
