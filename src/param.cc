@@ -102,6 +102,7 @@ param::param(inputoutput *p_io) {
     anisoRejectFac = io->params["anisoRejectFac"] ? io->params["anisoRejectFac"].as<double>() : 0.9;
     anisoRejectLmax = io->params["anisoRejectLmax"] ? io->params["anisoRejectLmax"].as<double>() : 0.0;
     mapMidFrac      = io->params["mapMidFrac"]      ? io->params["mapMidFrac"].as<double>()      : 1.0/3.0;
+    mapMidFracProb  = io->params["mapMidFracProb"]  ? io->params["mapMidFracProb"].as<double>()  : 1.0;
     strainClosure  = io->params["strainClosure"]  ? io->params["strainClosure"].as<string>()  : "LRR";
     Astrain = vector<vector<double>>(3, vector<double>(3, 0.0));
     Acal    = vector<vector<double>>(3, vector<double>(3, 0.0));
@@ -180,6 +181,10 @@ param::param(inputoutput *p_io) {
     }
     if(mapMidFrac <= 0.0 || mapMidFrac >= 1.0) {
         cout << endl << "ERROR: mapMidFrac must be in (0,1)." << endl;
+        exit(0);
+    }
+    if(mapMidFracProb <= 0.0 || mapMidFracProb > 1.0) {
+        cout << endl << "ERROR: mapMidFracProb must be in (0,1]." << endl;
         exit(0);
     }
 

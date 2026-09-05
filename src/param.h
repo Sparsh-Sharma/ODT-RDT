@@ -126,6 +126,7 @@ class param {
         double                  anisoRejectFac; ///< Option A threshold: require a_after <= fac * a_before
         double                  anisoRejectLmax;///< Option A-S: gate only eddies with eddySize <= this (0 = gate all eddies)
         double                  mapMidFrac;     ///< Option B: middle triplet-map image volume fraction (default 1/3 = classic map; outers get (1-f)/2 each; planar only)
+        double                  mapMidFracProb; ///< Option B mixture: probability a candidate eddy uses mapMidFrac (else classic 1/3); default 1 = pure map, no extra RNG draw
         string                  strainClosure;  ///< "IP" or "LRR"
         vector<vector<double>>  Astrain;        ///< imposed mean velocity gradient A_ij (3x3)
         vector<vector<double>>  Acal;           ///< combined op -A_ij + B_ij (updated per substep)

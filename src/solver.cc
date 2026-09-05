@@ -462,6 +462,7 @@ bool solver::testLES_thirds() {
 
     ed3->eddySize = domn->ed->eddySize/3.0;
     ed3->LperiodicEddy = false;
+    ed3->curMidFrac = domn->ed->curMidFrac;   // keep the candidate's map choice
 
     double leftThird = domn->ed->leftEdge;
     double rightThird = leftThird + domn->ed->eddySize/3.0;

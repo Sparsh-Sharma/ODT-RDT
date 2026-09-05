@@ -29,6 +29,7 @@ void eddy::init(domain *p_domn, domain *p_eddl) {
     bCoef = vector<double> (3,0.0);
 
     LperiodicEddy = false;
+    curMidFrac    = domn->pram->mapMidFrac;
 
     cca = vector<double>(7);
     ccb = vector<double>(5);
@@ -71,6 +72,14 @@ void eddy::init(domain *p_domn, domain *p_eddl) {
 void eddy::sampleEddySize() {
 
     eddySize = esdp1 / log( domn->rand->getRand() * esdp2 + esdp3 );
+
+    // Option B mixture: per-candidate map choice.  Draw ONLY when a mixture is
+    // actually configured, so all pure-map cases keep their RNG stream (and
+    // thus stay bit-identical).
+    curMidFrac = domn->pram->mapMidFrac;
+    if(curMidFrac != 1.0/3.0 && domn->pram->mapMidFracProb < 1.0)
+        if(domn->rand->getRand() >= domn->pram->mapMidFracProb)
+            curMidFrac = 1.0/3.0;                 // classic map for this eddy
 
 }
 
@@ -152,11 +161,11 @@ void eddy::tripMap(domain *line, const int iS, int iE, const double C, const boo
         fracVrght = fracVleft;
     }
 
-    if(domn->pram->mapMidFrac != 1.0/3.0) {   // Option B (Kerstein): unequal images, middle
-        fracVmidl = domn->pram->mapMidFrac;   //   broadened (weaker compression + flip),
+    if(curMidFrac != 1.0/3.0) {               // Option B (Kerstein): unequal images, middle
+        fracVmidl = curMidFrac;               //   broadened (weaker compression + flip),
         fracVleft = 0.5*(1.0 - fracVmidl);    //   symmetric outers; planar only (checked in
-        fracVrght = fracVleft;                //   param.cc); kernel adapts via fillKernel()
-    }
+        fracVrght = fracVleft;                //   param.cc); kernel adapts via fillKernel().
+    }                                         //   curMidFrac is per-candidate (mixture-ready).
 
     //---------
 

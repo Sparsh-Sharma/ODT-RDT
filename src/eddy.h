@@ -33,6 +33,7 @@ class eddy {
         double              invTauEddy;         ///< inverse eddy timescale
         double              Pa;                 ///< eddy acceptance probability
         bool                LperiodicEddy;      ///< a wrap-around eddy
+        double              curMidFrac;         ///< this candidate's middle-image volume fraction (Option B / mixture)
         vector<double>      cCoef;              ///< coefficient of K kernel
         vector<double>      bCoef;              ///< coefficient of J kernel
         vector<double>      K;                  ///< eddy kernel K
