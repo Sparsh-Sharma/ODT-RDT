@@ -260,8 +260,31 @@ realization (24e6 trials by t=0.076) — feasible node-packed as ONE ~3 h
 wave (raise the launcher walltime), IF the post-precursor spectrum is
 fittable.  The CMK deck (caro, untracked, kvisc 1.44e-6) uses the SAME
 sampler tuning (Pmax .4, Pav .02, Lp .015, Z 450; dxmin 5e-4, dxmax 1e-2) —
-paper-1 runs were simply slow.  Pilot realization running; decision gate =
-fit quality at the e=0 dump.
+paper-1 runs were simply slow.
+
+**RESOLVED same day: the stall is only the early transient** — the kvisc=1e-5
+pilot completed the FULL run (precursor + e=0..2) in 14 min; the campaign
+(job 4434326, walltime raised to 2:30) delivered 1024 rlz in ~35 min, 0
+aborts.  `spectra_gateA_S1.npz` (median, Nu=8192) committed.
+
+**Gate-A verdict on the production ensemble (`gateA_fit_table_gateA_S1.txt`,
+`fig_gateA_gateA_S1.png`; driver now takes argv npz + E_OFF/KMAX/C0B/TAG):**
+- e=0 (post-precursor): GOOD fit (cost 0.41): A0=5.3e-3, c0=-1.60, L2=11.0,
+  Lperp=17.3 -> **the relaxed ODT line state is a mildly prolate vK-stretch
+  (Lperp/L2 = 1.58), not isotropic** — quantified for the first time.
+- e=0.5: excellent fit (cost 0.09); Gate-B: total dSPL -0.9..-3.3 dB
+  (energy decay dominates), shape-only +0.9..+6.8 dB at low K_x.
+- **e >= 1: the family DEGENERATES** (L2 -> 0, A0 -> 1e10, c0 slams the
+  bound; widening |c0| to 8 only relocates the degeneracy).  The P2-Legendre
+  h(mu) stub + rank-1 C-tensor is now DEMONSTRABLY insufficient for strained
+  spectra — upgraded from "unverified stub" to data-blocked.  Consistent
+  with the sec-4.2 finding (exact RDT does not rigidly translate spectra).
+- NEXT (design decision, not a run): replace h(mu) — candidates: paper-1
+  g-kernels (source still unreachable in this repo), or derive the angular
+  structure from the exact Cauchy-RDT companion machinery (master branch,
+  post/closure_bound/strained/rdt_projection.py) which already computes the
+  exact strained Phi_ij projections; also E1/E3 reaches 0.55 by e=2, so a
+  non-axisymmetric extension may be forced anyway.
 
 ## 5. Reply history: first reply SENT 2026-09-04 (email_alan_test3_reply.html).
    Option-B reply drafted 2026-09-05 (email_alan_optionB_reply.html).
