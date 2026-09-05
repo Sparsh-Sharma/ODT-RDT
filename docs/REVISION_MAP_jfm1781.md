@@ -110,16 +110,35 @@ with an application built on the same model — must be framed as
 strain-history mapping to a real stagnation flow (second half of R1.4)
 still deferred — must be scoped explicitly as frozen-strain ΔSPL.
 
-**Third element either way:** the Kerstein thread (transmission, map
-variants, mixture) is maturing toward its own co-authored paper with Alan
-(and possibly Marten/HiPS). Do NOT spend it inside the resubmission beyond
-the one-paragraph model-limits discussion; keep it whole.
+**Third element — REVISED after Sparsh's 2026-09-05 call: Alan's thread
+belongs to PAPER 1, not a side paper.** Alan was engaged six days after the
+rejection, for the rejection; his material (Test-3 diagnosis, Option A/B
+designs, allocation framework) is the "sensitivity to the known
+deficiency" that R1.2/R1.3 demand. Plan of record:
+- Fold the Kerstein arc into the revision COMPRESSED: one transmission
+  figure + one interventions-and-verdicts table + the constructive
+  endpoint (the per-map scale kinematics is the deficiency; the
+  kappa-dependent kernel of eq. 5.7 is what must supply it). NOT the full
+  null-result chronicle — R2's length objection stands.
+- If the mixture (or a later variant) fixes transmission, the arc upgrades
+  from "measured deficiency" to "deficiency -> fix" — worth waiting a few
+  weeks for, not longer. Write the revision so a fix upgrades a paragraph,
+  never restructures the paper (no schedule coupling to the fix-hunt).
+- AUTHORSHIP: invite Alan onto the revised paper 1 — his call and
+  Sparsh's; raise it in the active thread when his next reply / the
+  mixture verdict lands. He may prefer acknowledgment; ask, don't assume.
+- Knock-on: with Alan aboard, paper 1 is unambiguously a modeling paper —
+  this tilts D1 toward Option S (LE section detaches to paper 2:
+  P1 = Sharma + Kerstein model/closure/limits; P2 = Sharma Amiet
+  application). A separate Kerstein methods paper (e.g. HiPS with Marten)
+  becomes a CONTINGENCY for material that outgrows the revision, not the
+  default.
 
-**Coauthor recommendation:** Option C, with a hard length budget (≤32 pp)
-and the LE section written LAST — if it doesn't fit or doesn't hold, it
-detaches cleanly and we ship Option S with paper 2 already half-written.
-Decision holder: Sparsh (venue decision too). Alan's next reply may inform
-the third-element split.
+**Coauthor recommendation (revised):** plan for Alan-in-paper-1 with the
+compressed arc; hold Option C's LE section as the detachable extra it
+always was (write it last; if the paper is P1+Alan, it detaches to P2).
+Hard length budget ≤32 pp either way. Decision holders: Sparsh (D1, D2,
+authorship invitation timing); Alan (acceptance).
 
 ## 5. Proposed outline (Option C; Option S = drop §7)
 
