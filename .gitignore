@@ -18,3 +18,10 @@ notes/*.pdf
 /PhysRevFluids.5.124303.pdf
 /fluids-07-00076-v2.pdf
 notes/email_*.html
+manuscript/*.aux
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.fls
+manuscript/*.log
+manuscript/*.fdb_latexmk
+manuscript/build.log
