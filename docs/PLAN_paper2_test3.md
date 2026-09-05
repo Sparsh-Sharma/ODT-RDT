@@ -317,10 +317,21 @@ verified posf0 = -0.5 at t=0.4), committed 2b11a33:
 - Axisym family on clean data: e>=1 still degenerate — structural
   conclusion stands; h(mu)-from-RDT and the RDT-vK family remain the
   working Gate-A machinery.
-- NEXT: (i) fix the dilatation abort, rerun S20 full-ensemble; (ii) Gate B
-  directly on exact RDT Phi_ww(kx,ky); (iii) compare the RDT-predicted
-  E1/E3 split against the measured one before any non-axisymmetric
-  extension.
+**ABORT FIXED + FINAL ENSEMBLES (2026-09-05, f096f78/f705077):** root cause
+= solver's post-eddy diffusionCatchUpIfNeeded shrinks posf (dilatation every
+substep) BEFORE adaptEddyRegionOfMesh re-indexes the stored eddy edges; fix
+= applyStrainDilatation now maps ed->leftEdge/rightEdge/eddySize with the
+same affine transform as the grid (exact; unstrained runs bit-identical —
+verified: precursor dump bit-identical, previously failing shifts complete).
+NOTE: pre-fix strained campaigns are not bit-reproducible (adapted region
+now correct).  Fixed-binary recampaigns: S20 1024/1024 (abort rate 39% -> 0),
+S1 1023/1024 (one straggler cancelled).  Survivor bias gone (S20 e=0 fit ==
+S1 e=0 fit).  FINAL numbers, monotone in Sk/eps at every strain:
+rms ODT-vs-exact-RDT distance ~13% at onset -> ~22% (Sk/eps~0.4) vs ~24%
+(Sk/eps~8) at e=2; separation already clear at e=1 (cost 1.28 vs 1.93).
+- NEXT: (i) Gate B directly on exact RDT Phi_ww(kx,ky); (ii) compare the
+  RDT-predicted E1/E3 split against the measured one before any
+  non-axisymmetric extension.
 
 ## 5. Reply history: first reply SENT 2026-09-04 (email_alan_test3_reply.html).
    Option-B reply drafted 2026-09-05 (email_alan_optionB_reply.html).
