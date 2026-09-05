@@ -1,0 +1,8 @@
+RDT-distorted vK fits, median spectra, 626 rlz (spectra_gateA_S20.npz); band [3dk,300], 40 bins
+
+    e        ke          A0      cost
+  0.0     6.213  5.0633e-04     0.577
+  0.5     8.293  1.7349e-04     1.088
+  1.0    12.420  4.0151e-05     1.764
+  1.5    17.895  1.0800e-05     2.131
+  2.0    27.297  2.4451e-06     2.424
