@@ -35,6 +35,7 @@ KMAX = float(os.environ.get("KMAX", 600.0))
 KMIN_FAC = float(os.environ.get("KMIN_FAC", 3.0))
 E_OFF = float(os.environ.get("E_OFF", 0.4))
 SMAG = float(os.environ.get("SMAG", 1.0))    # e = SMAG * (dump time - E_OFF)
+TAG = ("_" + os.environ["TAG"]) if os.environ.get("TAG") else ""
 NKP = 200
 NPHI = 96
 
@@ -96,7 +97,7 @@ def main():
         lines.append(f"{e:5.1f} {ke:9.3f} {A0:11.4e} {cost:9.3f}")
     txt = "\n".join(lines)
     print(txt)
-    open(os.path.join(HERE, "rdt_family_fit_table.txt"), "w").write(txt + "\n")
+    open(os.path.join(HERE, f"rdt_family_fit_table{TAG}.txt"), "w").write(txt + "\n")
 
     import matplotlib
     matplotlib.use("Agg")
@@ -119,8 +120,8 @@ def main():
                  fontsize=11)
     fig.tight_layout()
     for ext in ("png", "pdf"):
-        fig.savefig(os.path.join(HERE, f"fig_rdt_family.{ext}"), dpi=200)
-    print("saved fig_rdt_family.png/.pdf")
+        fig.savefig(os.path.join(HERE, f"fig_rdt_family{TAG}.{ext}"), dpi=200)
+    print(f"saved fig_rdt_family{TAG}.png/.pdf")
 
 
 if __name__ == "__main__":
