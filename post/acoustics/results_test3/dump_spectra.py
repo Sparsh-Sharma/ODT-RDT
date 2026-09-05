@@ -34,8 +34,15 @@ if os.environ.get("DUMP_TIMES"):
 if os.environ.get("DUMP_NU"):
     NU = int(os.environ["DUMP_NU"])
 
+REQUIRE_END = os.environ.get("DUMP_REQUIRE_END", "") == "1"
+
 for root in sys.argv[1:]:
     dirs = sorted(glob.glob(os.path.join(root, "data", "data_*")))
+    if REQUIRE_END:   # drop realizations that died mid-run (e.g. the high-S
+        n0 = len(dirs)  # domainPositionToIndex abort): their dump sets are
+        dirs = [d for d in dirs               # incomplete and find_dumps
+                if os.path.isfile(os.path.join(d, "odt_end.dat"))]  # would
+        print(f"{root}: {n0 - len(dirs)} incomplete realizations dropped")
     n = len(dirs)
     out = {"strains": np.array(STRAINS), "nrlz": n}
     for j, e in enumerate(STRAINS):
