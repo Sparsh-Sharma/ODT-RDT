@@ -30,23 +30,31 @@ import fit_family as ff                                # noqa: E402
 import gateB_delta_spl as gb                           # noqa: E402
 from axisym_family import ke_from_length               # noqa: E402
 
-NPZ = os.path.join(HERE, "spectra_homogeneousStrain2.npz")
+NPZ = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
+    HERE, "spectra_homogeneousStrain2.npz")
 NBIN = 40
-KMAX = 1200.0
+# The vK family has NO viscous cutoff: the fit band must end at the end of
+# the inertial range, well above the dissipation knee (else L2 chases the
+# roll-off to 0).  Override per dataset via KMAX/KMIN_FAC env.
+KMAX = float(os.environ.get("KMAX", 1200.0))
+KMIN_FAC = float(os.environ.get("KMIN_FAC", 3.0))
+E_OFF = float(os.environ.get("E_OFF", 0.0))   # dump times = e + E_OFF
+C0B = float(os.environ.get("C0B", 2.0))       # |c0| bound for the fit
+TAG = os.environ.get("TAG", "1024")
 
 
 def fit_one(k2, Eperp, E2, kmin):
     sel = (k2 >= kmin) & (k2 <= KMAX)
     k2b, (Epb, E2b) = odt_io.log_bin(k2[sel], [Eperp[sel], E2[sel]], NBIN)
-    res = ff.fit_family(k2b, Epb, E2b)
+    res = ff.fit_family(k2b, Epb, E2b, c0_bounds=(-C0B, C0B))
     return res, k2b, Epb, E2b
 
 
 def main():
     d = np.load(NPZ)
-    strains = d["strains"]
+    strains = d["strains"] - E_OFF
     lines = [f"Gate A refit, median ensemble spectra, {int(d['nrlz'])} rlz "
-             f"(homogeneousStrain2)",
+             f"({os.path.basename(NPZ)})",
              f"band: k2 in [3*dk, {KMAX:.0f}], log-binned to {NBIN} pts; "
              f"h(mu)=P2 stub, rank-1 C-tensor",
              "",
@@ -57,7 +65,7 @@ def main():
         k2 = d[f"k2_e{j}"]
         E1, E2, E3 = d[f"med_E1_e{j}"], d[f"med_E2_e{j}"], d[f"med_E3_e{j}"]
         Eperp = 0.5 * (E1 + E3)
-        kmin = 3.0 * k2[0]
+        kmin = KMIN_FAC * k2[0]
         res, k2b, Epb, E2b = fit_one(k2, Eperp, E2, kmin)
         p = res.params
         m = (k2 >= kmin) & (k2 <= KMAX)
@@ -95,7 +103,7 @@ def main():
 
     txt = "\n".join(lines)
     print(txt)
-    open(os.path.join(HERE, "gateA_fit_table.txt"), "w").write(txt + "\n")
+    open(os.path.join(HERE, f"gateA_fit_table_{TAG}.txt"), "w").write(txt + "\n")
 
     # ---- figure ----
     import matplotlib
@@ -129,8 +137,8 @@ def main():
                  fontsize=11)
     fig.tight_layout()
     for ext in ("png", "pdf"):
-        fig.savefig(os.path.join(HERE, f"fig_gateA_1024.{ext}"), dpi=200)
-    print("saved fig_gateA_1024.png/.pdf")
+        fig.savefig(os.path.join(HERE, f"fig_gateA_{TAG}.{ext}"), dpi=200)
+    print(f"saved fig_gateA_{TAG}.png/.pdf")
 
 
 if __name__ == "__main__":
