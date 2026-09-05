@@ -533,4 +533,14 @@ void domain::applyStrainDilatation(const double dt) {
     pram->Lmin  *= f;
     pram->Lmax  *= f;
     pram->Lp    *= f;
+
+    // carry the stored eddy edges with the grid: solver's post-eddy
+    // diffusionCatchUpIfNeeded advances through here (possibly many substeps)
+    // BEFORE meshManager::adaptEddyRegionOfMesh re-indexes ed->leftEdge/
+    // rightEdge; unscaled edges end up outside the shrunken domain and abort
+    // domainPositionToIndex (rate grew from <1% at S=40, e-large to 39% at
+    // S=20, e<=2). Scaling them with the same affine map keeps them exact.
+    ed->leftEdge  = xc + (ed->leftEdge  - xc)*f;
+    ed->rightEdge = xc + (ed->rightEdge - xc)*f;
+    ed->eddySize *= f;
 }

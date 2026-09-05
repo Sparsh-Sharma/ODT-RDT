@@ -30,6 +30,9 @@ void eddy::init(domain *p_domn, domain *p_eddl) {
 
     LperiodicEddy = false;
     curMidFrac    = domn->pram->mapMidFrac;
+    eddySize      = 0.0;               // defined before first sampling: these
+    leftEdge      = 0.0;               //   are rescaled by applyStrainDilatation
+    rightEdge     = 0.0;               //   and must not be uninitialized
 
     cca = vector<double>(7);
     ccb = vector<double>(5);
