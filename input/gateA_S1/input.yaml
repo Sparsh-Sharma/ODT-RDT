@@ -12,7 +12,7 @@ params:
     domainLength:  1.0
     ngrd0:         4000           #  many points: the line average is the ensemble
     rho0:          1.0
-    kvisc0:        1.44e-6          #  paper-1 value: develop an inertial range
+    kvisc0:        1.0e-5           #  10x below Test-3: inertial band without stalling the eddy sampler (1.44e-6 collapses dtSmean)
     dPdx:          0.0
     pres:          101325.0
     chemMechFile:  not_used.yaml
