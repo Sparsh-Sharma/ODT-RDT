@@ -133,6 +133,7 @@ class param {
         double                  specKpWaves;    ///< spectral-IC peak: wavelengths per domain
         int                     specNmodes;     ///< spectral-IC number of Fourier modes
         double                  strainCFL;      ///< max total-strain increment per step, de = S dt
+        double                  tStrainOn;      ///< strain onset time: before it the run is an unstrained ODT precursor (Acal = 0, no dilatation, no strain bias in CHI); default 0
 
     //////////////////// MEMBER FUNCTIONS /////////////////
 
