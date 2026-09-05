@@ -187,8 +187,53 @@ Afterward: finalize the reply to Alan (draft below) with the 1024-run numbers,
 and optionally sweep anisoRejectFac (0.95/0.8/0.7) — new input decks are a
 copy of homogeneousStrain2A with one line changed.
 
-## 5. Draft reply to Alan — READY TO SEND (all campaigns in, arc complete;
-   do NOT send the old 0.96->0.54 numbers)
+## 4c. Option B DONE 2026-09-05 (Alan's reply gave the spec)
+
+Alan (2026-09-05 morning): broaden the MIDDLE image — it carries the spatial
+flip (vortical idealization) and has a looser bound on attainable compression
+reduction than the outers; sizes (1/6, 2/3, 1/6); keep the kernel unchanged;
+outer-image boosts risk unphysical intermittency.  He also asked whether a
+HiPS formulation with our results exists (it does not — clarify in reply).
+
+Implementation (commit a7cfd6e): param `mapMidFrac` (default 1/3 =
+bit-identical, regression PASSED); tripMap image volume fractions become
+((1-f)/2, f, (1-f)/2); planar-only (guarded); displacement-based fillKernel()
+and all tau/coefficient integrals adapt automatically.  Decks
+`homogeneousStrain2B` (f=2/3) and `homogeneousStrain2B50` (f=1/2), 1024 rlz
+each (jobs 4434227/4434245, ~2 min each, node-packed launcher).
+
+**Results (`fig_optionB.png`, medians, e=3.9 unless noted):**
+- **f=2/3 is the first intervention that moves anything** — at the one-point
+  and energy-containing level: A_low 2.85 -> 2.50 (paired contrasts starred),
+  u2^2/2kt 0.583 -> 0.559 (every e).  More kernel events per scale decade
+  where the middle cascade dominates: Alan's mechanism, working as intended.
+- **Fine scales unchanged; transmission NOT reduced** (0.62 -> 0.79 at
+  e=3.9, because A_low improved while A_high did not): at his fractions ONE
+  outer image maps the k2~50 energy peak straight into the 300-800 band
+  (6 x 50 = 300) — the outer channel he called subdominant is a single-step
+  feeder of unrelaxed fluid into the measurement band.
+- Both bands DRAIN energy x1.4-2 (faster route to dissipation via outers).
+- Intermittency (his stated worry, confirmed moderately): realizations above
+  10x median high-band energy triple (13 -> 40 at e=3.9), but the largest
+  single excursions are milder (max 10^2.2 vs 10^3.3) — thicker shoulder,
+  tamer extremes.
+- f=1/2 relaxes back to baseline except one starred A_high reduction at e=3
+  (-14% paired) — the family interpolates smoothly, no sweet spot apparent.
+- Structural reading: fractions sum to 1, so slowing the middle necessarily
+  speeds the outers; in transmission the two nearly cancel, at one-point
+  level the middle-slowing wins.
+- 64-rlz "hint" (his suggestion): checked — the pseudo-success draw was
+  distinguished only by absent rare high-band bursts (mean-of-ratios tail
+  artifact), not a dynamical sub-ensemble worth conditioning on.
+
+Open questions FOR Alan (in the reply): does the tighter-bound argument
+imply the symmetric-outer family cannot reduce transmission at any f?
+Asymmetric outers, or an eddy-type MIXTURE (mostly f=2/3 plus occasional
+classic maps) as the next variant?
+
+## 5. Reply history: first reply SENT 2026-09-04 (email_alan_test3_reply.html).
+   Option-B reply drafted 2026-09-05 (email_alan_optionB_reply.html).
+   Original first-reply content notes below (historical):
 
 Key content for the new draft:
 - Diagnostic and campaign: A(k2)=E2/Eperp vs the model's own fixed point A=1;
