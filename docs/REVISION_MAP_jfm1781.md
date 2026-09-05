@@ -165,9 +165,9 @@ authorship invitation timing); Alan (acceptance).
 ## 6. Task list (ordered)
 
 Manuscript (master):
-- M0. Audit `Main_submission_V2.tex` against this map — what of the
-  restructure already exists, what is stale. Extract to a clean working
-  tree (the zip also holds abandoned/patch variants — pick ONE lineage).
+- M0. DONE 2026-09-05 — see section 8. Lineage settled: the 25-Aug zip
+  files every variant under DoNotUse/, leaving `Main_submission_V2.tex`;
+  extracted to `manuscript/` (tracked).
 - M1. Corrections (a)–(g) from the section5 note, folded in.
 - M2. §4.2 rewrite around the three-way figure + envelope (O1, O2).
 - M3. §5 rewrite to the six claims (O3, O4, O5); appendix move (R3.3).
@@ -189,6 +189,42 @@ Decisions (Sparsh):
 - D1. Combine vs split (after M0 + a look at the length budget).
 - D2. Venue.
 - D3. The Kerstein-paper split (after Alan's reply).
+
+## 7a. M0 audit findings (2026-09-05)
+
+`manuscript/Main_submission_V2.tex` is a ~23–25 Aug post-rejection
+snapshot: ~21k words (≈41 pp equivalent — unchanged from the rejected
+42 pp), 15 figures, 1 table. State against the map:
+
+- ALREADY IN V2: the strained-DNS validation section (plane strain +
+  axisymmetric contraction, Reynolds-stress level — added right after the
+  DNS ran); the Poisson factor-2 appears carried in the §5 source terms
+  (line ~2480 — VERIFY against the note's erratum before trusting);
+  Sagaut & Cambon cited once.
+- NOT IN V2 (everything from the 25-Aug-onward rebuild): the
+  rigid-translation claim still frames the ABSTRACT (l. 68), §4.2
+  (l. 1401–1492) and the CONCLUSIONS (l. 2570) — correction (a) is the
+  single biggest outstanding content change, since Ref 3.1 and our own
+  rdt_projection show that claim is wrong; no three-way comparison
+  (correction d); no LOS-estimator/bounds reframing of §5 (O3); no
+  A1-measurement / control-experiment content; no allocation verdict; no
+  jackknife/realization-count reporting (f); no IC-whitening statement
+  (e); no dos Santos/Ribeiro/Piccolo (O8); Lee & Reynolds still appears
+  ~20 times (R2 asked why — demote now the DNS exists); length untouched
+  (O7); none of this week's assets (RDT distance, transmission arc).
+- Consequence for the writing order: M2 (§4.2 + abstract + conclusions
+  around the correct linear reference) and M3 (§5 rebuild to the six
+  claims) are the heavy lifts; M1's corrections partially reduce to them.
+  The DNS section in V2 is salvageable but must be rewritten from b_ij
+  level to the spectral/three-way level.
+
+## 7b. Authorship — SETTLED
+
+Alan Kerstein has CONFIRMED coauthorship (Sparsh, 2026-09-05). Paper 1 =
+Sharma & Kerstein: the rejected manuscript's spine + the Kerstein arc
+(compressed, per section 4). The paper remains open-ended by design —
+ongoing research (mixture verdict, C1–C4) feeds it; structure must absorb
+new results as paragraph upgrades only.
 
 ## 7. Where things live
 

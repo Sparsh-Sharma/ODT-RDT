@@ -1,0 +1,185 @@
+% !TeX program = pdflatex
+% DLR-style cover letter for Journal of Fluid Mechanics submission.
+% Compile with: pdflatex jfm_cover_letter.tex
+%
+% Put dlr_logo.png in the same folder as this .tex file.
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,left=25mm,right=25mm,top=22mm,bottom=22mm]{geometry}
+\usepackage{graphicx}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{xcolor}
+\usepackage{helvet}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{microtype}
+
+\renewcommand{\familydefault}{\sfdefault}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setstretch{1.02}
+
+% -----------------------------------------------------------------------------
+% Editable letter data
+% -----------------------------------------------------------------------------
+\newcommand{\Institute}{Institut für Aerodynamik und Strömungstechnik}
+\newcommand{\DLRAddress}{Lilienthalplatz 7, 38108 Braunschweig}
+
+\newcommand{\Recipient}{%
+The Editor\\
+Journal of Fluid Mechanics\\
+Cambridge University Press%
+}
+
+\newcommand{\ContactPerson}{Dr. Sparsh Sharma}
+\newcommand{\Phone}{0531 295--1530}
+\newcommand{\Email}{sparsh.sharma@dlr.de}
+\newcommand{\LetterDate}{2 July 2026}
+
+\newcommand{\Subject}{Submission of an original manuscript to the Journal of Fluid Mechanics}
+
+% Use your final manuscript title here.
+\newcommand{\ManuscriptTitle}{Strain-coupled one-dimensional turbulence for rapid distortion}
+
+\newcommand{\ClosingName}{Dr. Sparsh Sharma}
+
+% Logo file
+\newcommand{\LogoFile}{dlrlogo.png}
+
+% Optional: insert scanned signature image here if you have one.
+% Leave blank if not available.
+\newcommand{\SignatureImage}{} % e.g. signature.png
+
+% -----------------------------------------------------------------------------
+% Small helpers
+% -----------------------------------------------------------------------------
+\newcommand{\SmallGrey}[1]{\textcolor{black!55}{\scriptsize #1}}
+\newcommand{\ContactLabel}[1]{\textcolor{black!55}{\scriptsize #1}}
+
+\begin{document}
+
+% -----------------------------------------------------------------------------
+% Header
+% -----------------------------------------------------------------------------
+\begin{textblock*}{95mm}(25mm,28mm)
+  {\small \Institute}
+\end{textblock*}
+
+\begin{textblock*}{75mm}(126mm,20mm)
+  \raggedleft
+  \includegraphics[width=58mm]{\LogoFile}
+\end{textblock*}
+
+% -----------------------------------------------------------------------------
+% Recipient address block and contact block
+% -----------------------------------------------------------------------------
+\begin{textblock*}{86mm}(25mm,66mm)
+  {\scriptsize
+  DLR e. V.\hspace{3mm} \Institute\\[-0.2mm]
+  \hspace*{21mm}\DLRAddress}
+  \vspace{7mm}
+
+  {\normalsize \Recipient}
+\end{textblock*}
+
+\begin{textblock*}{65mm}(126mm,66mm)
+  \raggedleft
+  \begin{tabular}{@{}r@{\hspace{7mm}}l@{}}
+    \ContactLabel{Reference}       & \\
+    \ContactLabel{Manuscript type} & JFM Papers \\
+    \\[-1mm]
+    \ContactLabel{Contact person}  & \ContactPerson \\
+    \\[-1mm]
+    \ContactLabel{Telephone}       & \Phone \\
+    \\[-1mm]
+    \ContactLabel{E-mail}          & \Email \\
+    \\[2mm]
+                                    & \LetterDate
+  \end{tabular}
+\end{textblock*}
+
+% -----------------------------------------------------------------------------
+% Body
+% -----------------------------------------------------------------------------
+\vspace*{118mm}
+
+{\bfseries \Subject}
+
+\vspace{11mm}
+
+Dear Editor,
+
+\vspace{5mm}
+
+I am pleased to submit the manuscript entitled
+``\ManuscriptTitle'' for consideration as a regular article in the
+\textit{Journal of Fluid Mechanics}.
+
+The manuscript develops a strain-coupled formulation of one-dimensional
+turbulence for flows undergoing rapid distortion by an imposed mean strain.
+The central objective is to extend ODT beyond its standard unstrained form
+by incorporating the production, rapid pressure--strain redistribution and
+kinematic wavenumber compression associated with homogeneous mean strain,
+while preserving the structural ingredients of the model. The formulation is
+verified against rapid-distortion theory and is intended as a reduced-order,
+scale-resolved route to predicting distorted anisotropic turbulence spectra,
+with leading-edge-noise applications as the motivating context.
+
+We believe the manuscript is suitable for JFM because it addresses a
+fundamental modelling problem in turbulence: how rapid mean-strain
+distortion, pressure--strain redistribution and nonlinear cascade dynamics
+can be represented consistently in a reduced-order framework. The paper
+therefore combines analytical model construction, verification against
+rapid-distortion limits, and comparison with canonical strained-turbulence
+data.
+
+The manuscript is original, has not been published previously, and is not
+under consideration elsewhere. All authors have approved the submission. To
+the best of my knowledge, there are no conflicts of interest that would
+affect the review of this work.
+
+\vspace{5mm}
+
+Thank you for considering our manuscript for publication in the
+\textit{Journal of Fluid Mechanics}.
+
+\vspace{10mm}
+
+Yours sincerely,
+
+\vspace{13mm}
+
+% Signature placeholder. If you have a signature image, set \SignatureImage above.
+\if\relax\detokenize\expandafter{\SignatureImage}\relax
+  \vspace{8mm}
+\else
+  \includegraphics[height=15mm]{\SignatureImage}\\[-1mm]
+\fi
+
+\ClosingName
+
+% -----------------------------------------------------------------------------
+% Footer
+% -----------------------------------------------------------------------------
+\begin{textblock*}{65mm}(25mm,260mm)
+  \scriptsize
+  Deutsches Zentrum für Luft- und Raumfahrt e.\,V.\\
+  Institut für Aerodynamik und Strömungstechnik\\
+  Lilienthalplatz 7\\
+  38108 Braunschweig
+\end{textblock*}
+
+% \begin{textblock*}{55mm}(139mm,260mm)
+%   \scriptsize
+%   Lilienthalplatz 7\\
+%   38108 Braunschweig\\
+%   Telefon 0531 295--0\\
+%   Internet DLR.de
+% \end{textblock*}
+
+\end{document}

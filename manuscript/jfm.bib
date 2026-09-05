@@ -1,0 +1,664 @@
+% =====================================================================
+%  references.bib  --  strain-coupled / RDT-consistent ODT (JFM)
+%
+%  All entries below have been bibliographically verified against the
+%  primary source or the publisher record, EXCEPT for the few fields
+%  marked "TODO" (an article number / DOI I could not confirm without
+%  fabricating it). Please confirm those before submission.
+%
+%  Use with: \bibliographystyle{jfm}  \bibliography{references}
+% =====================================================================
+
+% ----------------------------- ODT lineage ---------------------------
+
+@article{Kerstein1991,
+  author  = {Kerstein, Alan R.},
+  title   = {Linear-eddy modelling of turbulent transport. {Part} 6.
+             {Microstructure} of diffusive scalar mixing fields},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {231},
+  pages   = {361--394},
+  year    = {1991}
+}
+
+@article{Kerstein1999,
+  author  = {Kerstein, Alan R.},
+  title   = {One-dimensional turbulence: model formulation and application
+             to homogeneous turbulence, shear flows, and buoyant
+             stratified flows},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {392},
+  pages   = {277--334},
+  year    = {1999},
+  doi     = {10.1017/S0022112099005376}
+}
+
+@article{Kerstein2001,
+  author  = {Kerstein, Alan R. and Ashurst, William T. and Wunsch, Scott
+             and Nilsen, Vebjorn},
+  title   = {One-dimensional turbulence: vector formulation and
+             application to free shear flows},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {447},
+  pages   = {85--109},
+  year    = {2001},
+  doi     = {10.1017/S0022112001005778}
+}
+
+@article{WunschKerstein2001,
+  author  = {Wunsch, Scott and Kerstein, Alan R.},
+  title   = {A model for layer formation in stably stratified turbulence},
+  journal = {Physics of Fluids},
+  volume  = {13},
+  number  = {3},
+  pages   = {702--712},
+  year    = {2001}
+}
+
+@article{AshurstKerstein2005,
+  author  = {Ashurst, William T. and Kerstein, Alan R.},
+  title   = {One-dimensional turbulence: variable-density formulation and
+             application to mixing layers},
+  journal = {Physics of Fluids},
+  volume  = {17},
+  number  = {2},
+  pages   = {025107},
+  year    = {2005},
+  doi     = {10.1063/1.1847413}
+}
+
+@article{SchmidtKerstein2010,
+  author  = {Schmidt, Rodney C. and Kerstein, Alan R. and McDermott, Randall},
+  title   = {{ODTLES}: A multi-scale model for {3D} turbulent flow based on
+             one-dimensional turbulence modeling},
+  journal = {Computer Methods in Applied Mechanics and Engineering},
+  volume  = {199},
+  number  = {9--12},
+  pages   = {865--880},
+  year    = {2010}
+}
+
+@article{Lignell2013,
+  author  = {Lignell, David O. and Kerstein, Alan R. and Sun, Guangyuan
+             and Monson, Elizabeth I.},
+  title   = {Mesh adaption for efficient multiscale implementation of
+             one-dimensional turbulence},
+  journal = {Theoretical and Computational Fluid Dynamics},
+  volume  = {27},
+  number  = {3},
+  pages   = {273--295},
+  year    = {2013},
+  doi     = {10.1007/s00162-012-0267-9}
+}
+
+@article{Lignell2018,
+  author  = {Lignell, David O. and Lansinger, Victoria B. and
+             Medina M{\'e}ndez, Juan A. and Klein, Marten and
+             Kerstein, Alan R. and Schmidt, Heiko and Fistler, Marco and
+             Oevermann, Michael},
+  title   = {One-dimensional turbulence modeling for cylindrical and
+             spherical flows: model formulation and application},
+  journal = {Theoretical and Computational Fluid Dynamics},
+  volume  = {32},
+  number  = {4},
+  pages   = {495--520},
+  year    = {2018},
+  doi     = {10.1007/s00162-018-0465-1}
+}
+
+@article{StephensLignell2021,
+  author  = {Stephens, Victoria B. and Lignell, David O.},
+  title   = {One-dimensional turbulence ({ODT}): Computationally efficient
+             modeling and simulation of turbulent flows},
+  journal = {SoftwareX},
+  volume  = {13},
+  pages   = {100641},
+  year    = {2021},
+  doi     = {10.1016/j.softx.2020.100641}
+}
+
+@article{SharmaKleinSchmidt2022,
+  author  = {Sharma, Sparsh and Klein, Marten and Schmidt, Heiko},
+  title   = {Features of far-downstream asymptotic velocity fluctuations in
+             a round jet: A one-dimensional turbulence study},
+  journal = {Physics of Fluids},
+  volume  = {34},
+  number  = {8},
+  pages   = {085131}, 
+  year    = {2022}
+}
+
+@article{MedinaMendez2023,
+  author  = {Medina M{\'e}ndez, Juan A. and Sharma, Sparsh and
+             Schmidt, Heiko and Klein, Marten},
+  title   = {Toward the use of a reduced-order and stochastic turbulence
+             model for assessment of far-field sound radiation: Low {Mach}
+             number jet flows},
+  journal = {Proceedings in Applied Mathematics and Mechanics},
+  volume  = {23},
+  number  = {3},
+  pages   = {e202300186},
+  year    = {2023},
+  doi     = {10.1002/pamm.202300186}
+}
+
+% --------------------- Leading-edge / airfoil noise ------------------
+
+@article{Sears1941,
+  author  = {Sears, William R.},
+  title   = {Some aspects of non-stationary airfoil theory and its
+             practical application},
+  journal = {Journal of the Aeronautical Sciences},
+  volume  = {8},
+  number  = {3},
+  pages   = {104--108},
+  year    = {1941},
+  doi     = {10.2514/8.10655}
+}
+
+@article{Curle1955,
+  author  = {Curle, N.},
+  title   = {The influence of solid boundaries upon aerodynamic sound},
+  journal = {Proceedings of the Royal Society of London. Series A},
+  volume  = {231},
+  number  = {1187},
+  pages   = {505--514},
+  year    = {1955},
+  doi     = {10.1098/rspa.1955.0191}
+}
+
+@article{FfowcsWilliams1969,
+  author  = {Ffowcs Williams, J. E. and Hawkings, D. L.},
+  title   = {Sound generation by turbulence and surfaces in arbitrary
+             motion},
+  journal = {Philosophical Transactions of the Royal Society of London.
+             Series A},
+  volume  = {264},
+  number  = {1151},
+  pages   = {321--342},
+  year    = {1969},
+  doi     = {10.1098/rsta.1969.0031}
+}
+
+@article{Amiet1975,
+  author  = {Amiet, R. K.},
+  title   = {Acoustic radiation from an airfoil in a turbulent stream},
+  journal = {Journal of Sound and Vibration},
+  volume  = {41},
+  number  = {4},
+  pages   = {407--420},
+  year    = {1975},
+  doi     = {10.1016/S0022-460X(75)80105-2}
+}
+
+@article{PatersonAmiet1977,
+  author  = {Paterson, R. W. and Amiet, R. K.},
+  title   = {Noise and surface pressure response of an airfoil to incident
+             turbulence},
+  journal = {Journal of Aircraft},
+  volume  = {14},
+  number  = {8},
+  pages   = {729--736},
+  year    = {1977},
+  doi     = {10.2514/3.58845}
+}
+
+@article{vonKarman1948,
+  author  = {von K{\'a}rm{\'a}n, Theodore},
+  title   = {Progress in the statistical theory of turbulence},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume  = {34},
+  number  = {11},
+  pages   = {530--539},
+  year    = {1948},
+  doi     = {10.1073/pnas.34.11.530}
+}
+
+@article{RogerMoreau2010,
+  author  = {Roger, Michel and Moreau, St{\'e}phane},
+  title   = {Extensions and limitations of analytical airfoil broadband
+             noise models},
+  journal = {International Journal of Aeroacoustics},
+  volume  = {9},
+  number  = {3},
+  pages   = {273--305},
+  year    = {2010}
+}
+
+@article{deSantana2016,
+  author  = {de Santana, Leandro D. and Christophe, Julien and
+             Schram, Christophe F. and Desmet, Wim},
+  title   = {A rapid distortion theory modified turbulence spectra for
+             semi-analytical airfoil noise prediction},
+  journal = {Journal of Sound and Vibration},
+  volume  = {383},
+  pages   = {349--363},
+  year    = {2016},
+  doi     = {10.1016/j.jsv.2016.07.026}
+}
+
+@article{KimHaeri2015,
+  author  = {Kim, Jae Wook and Haeri, Sina},
+  title   = {An advanced synthetic eddy method for the computation of
+             aerofoil--turbulence interaction noise},
+  journal = {Journal of Computational Physics},
+  volume  = {287},
+  pages   = {1--17},
+  year    = {2015},
+  doi     = {10.1016/j.jcp.2015.01.039}
+}
+
+% --------------------- Rapid distortion theory -----------------------
+
+@article{BatchelorProudman1954,
+  author  = {Batchelor, G. K. and Proudman, Ian},
+  title   = {The effect of rapid distortion of a fluid in turbulent
+             motion},
+  journal = {The Quarterly Journal of Mechanics and Applied Mathematics},
+  volume  = {7},
+  number  = {1},
+  pages   = {83--103},
+  year    = {1954},
+  doi     = {10.1093/qjmam/7.1.83}
+}
+
+@article{Hunt1973,
+  author  = {Hunt, J. C. R.},
+  title   = {A theory of turbulent flow round two-dimensional bluff
+             bodies},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {61},
+  number  = {4},
+  pages   = {625--706},
+  year    = {1973},
+  doi     = {10.1017/S0022112073000893}
+}
+
+@article{GoldsteinAtassi1976,
+  author  = {Goldstein, M. E. and Atassi, H.},
+  title   = {A complete second-order theory for the unsteady flow about an
+             airfoil due to a periodic gust},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {74},
+  number  = {4},
+  pages   = {741--765},
+  year    = {1976}
+}
+
+@article{Goldstein1978,
+  author  = {Goldstein, M. E.},
+  title   = {Unsteady vortical and entropic distortions of potential flows
+             round arbitrary obstacles},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {89},
+  number  = {3},
+  pages   = {433--468},
+  year    = {1978}
+}
+
+@article{HuntGraham1978,
+  author  = {Hunt, J. C. R. and Graham, J. M. R.},
+  title   = {Free-stream turbulence near plane boundaries},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {84},
+  number  = {2},
+  pages   = {209--235},
+  year    = {1978},
+  doi     = {10.1017/S0022112078000130}
+}
+
+@article{HuntCarruthers1990,
+  author  = {Hunt, J. C. R. and Carruthers, D. J.},
+  title   = {Rapid distortion theory and the `problems' of turbulence},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {212},
+  pages   = {497--532},
+  year    = {1990}
+}
+
+@article{GoldsteinAfsarLeib2013,
+  author  = {Goldstein, M. E. and Afsar, M. Z. and Leib, S. J.},
+  title   = {Non-homogeneous rapid distortion theory on transversely
+             sheared mean flows},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {736},
+  pages   = {532--569},
+  year    = {2013}
+}
+
+@book{Pope2000,
+  author    = {Pope, Stephen B.},
+  title     = {Turbulent Flows},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {2000}
+}
+
+% --------------- Pressure--strain closure (added for Sec. 3) ---------
+
+@article{Crow1968,
+  author  = {Crow, S. C.},
+  title   = {Viscoelastic properties of fine-grained incompressible
+             turbulence},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {33},
+  number  = {1},
+  pages   = {1--20},
+  year    = {1968}
+}
+
+@article{LaunderReeceRodi1975,
+  author  = {Launder, B. E. and Reece, G. J. and Rodi, W.},
+  title   = {Progress in the development of a Reynolds-stress turbulence
+             closure},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {68},
+  number  = {3},
+  pages   = {537--566},
+  year    = {1975}
+}
+
+% --- k^-5/3 inertial range (Sec. 4.2.1, 4.2.3) ---
+
+ 
+% Optional alternative to the above: the widely-cited English reprint.
+@article{Kolmogorov1991,
+  author  = {Kolmogorov, A. N.},
+  title   = {The local structure of turbulence in incompressible viscous
+             fluid for very large {Reynolds} numbers},
+  journal = {Proceedings of the Royal Society of London. Series A},
+  volume  = {434},
+  number  = {1890},
+  pages   = {9--13},
+  year    = {1991},
+  doi     = {10.1098/rspa.1991.0075}
+}
+ 
+% --- decaying grid turbulence (OPTIONAL: only if Sec. 4.2.3 cites the
+%     decay of TI from grid to leading edge) ---
+@article{ComteBellotCorrsin1966,
+  author  = {Comte-Bellot, Genevi{\`e}ve and Corrsin, Stanley},
+  title   = {The use of a contraction to improve the isotropy of
+             grid-generated turbulence},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {25},
+  number  = {4},
+  pages   = {657--682},
+  year    = {1966},
+  doi     = {10.1017/S0022112066000338}
+}
+% =====================================================================
+%  references_sec5_additions.bib
+%  NEW entries for Section 5 (rapid pressure--strain closure). Existing keys
+%  already in references.bib are reused, NOT duplicated:
+%     BatchelorProudman1954, Crow1968, HuntCarruthers1990, Pope2000,
+%     LaunderReeceRodi1975.
+%
+%  VERIFICATION: core details of these classics are standard and given here;
+%  fields marked % VERIFY are the transcription-prone ones (pages, volume) --
+%  confirm against the source or a DOI lookup before submission. I have NOT
+%  invented DOIs; where I am not certain of one I have omitted the field rather
+%  than guess.
+% =====================================================================
+
+% --- Axisymmetric turbulence: the spectral structure underlying Assumption A1
+@article{Batchelor1946,
+  author  = {Batchelor, G. K.},
+  title   = {The theory of axisymmetric turbulence},
+  journal = {Proceedings of the Royal Society of London. Series A},
+  volume  = {186},
+  number  = {1007},
+  year    = {1946},
+  doi     = {10.1098/rspa.1946.0060}
+}
+
+@article{ChandrasekharAxisym1950,
+  author  = {Chandrasekhar, S.},
+  title   = {The theory of axisymmetric turbulence},
+  journal = {Philosophical Transactions of the Royal Society of London. Series A},
+  volume  = {242},
+  number  = {855},
+  year    = {1950},
+  doi     = {10.1098/rsta.1950.0010}
+}
+
+% --- Rapid distortion of the spectrum tensor (the M_{ijkl} integral lineage).
+%     Batchelor & Proudman (1954) is already in references.bib and is the
+%     primary citation; this is the canonical textbook treatment of the
+%     spectral RDT equations and the rapid pressure-strain integral.
+@book{TownsendBook1976,
+  author    = {Townsend, A. A.},
+  title     = {The Structure of Turbulent Shear Flow},
+  edition   = {2nd},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {1976}
+}
+
+% --- Rapid pressure-strain modelling at moment level (the IP/SSG lineage that
+%     Eq.~(closed form) reduces to under further moment assumptions). LRR is
+%     already in references.bib; SSG is added as the standard quasi-linear
+%     reference for the rapid term's algebraic form.
+@article{SpezialeSarkarGatski1991,
+  author  = {Speziale, C. G. and Sarkar, S. and Gatski, T. B.},
+  title   = {Modelling the pressure--strain correlation of turbulence:
+             an invariant dynamical systems approach},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {227},
+  pages   = {245--272},
+  year    = {1991},
+  doi     = {10.1017/S0022112091000101}
+}
+
+% --- Rapid distortion theory of homogeneously strained turbulence: the
+%     spectral evolution framework that Sec.~5 specialises. (Batchelor &
+%     Proudman 1954 and Hunt & Carruthers 1990 already in references.bib.)
+@article{SavillRDT1987,
+  author  = {Savill, A. M.},
+  title   = {Recent developments in rapid-distortion theory},
+  journal = {Annual Review of Fluid Mechanics},
+  volume  = {19},
+  year    = {1987},
+  doi     = {10.1146/annurev.fl.19.010187.002531}
+}
+% =====================================================================
+%  references_sec5_additions.bib
+%  NEW entries for Section 5 (rapid pressure--strain closure). Existing keys
+%  already in references.bib are reused, NOT duplicated:
+%     BatchelorProudman1954, Crow1968, HuntCarruthers1990, Pope2000,
+%     LaunderReeceRodi1975.
+%
+%  VERIFICATION: core details of these classics are standard and given here;
+%  fields marked % VERIFY are the transcription-prone ones (pages, volume) --
+%  confirm against the source or a DOI lookup before submission. I have NOT
+%  invented DOIs; where I am not certain of one I have omitted the field rather
+%  than guess.
+% =====================================================================
+
+% --- Rapid distortion of the spectrum tensor (the M_{ijkl} integral lineage).
+%     Batchelor & Proudman (1954) is already in references.bib and is the
+%     primary citation; this is the canonical textbook treatment of the
+%     spectral RDT equations and the rapid pressure-strain integral.
+@book{TownsendBook1976,
+  author    = {Townsend, A. A.},
+  title     = {The Structure of Turbulent Shear Flow},
+  edition   = {2nd},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {1976}
+}
+
+% --- Rapid pressure-strain modelling at moment level (the IP/SSG lineage that
+%     Eq.~(closed form) reduces to under further moment assumptions). LRR is
+%     already in references.bib; SSG is added as the standard quasi-linear
+%     reference for the rapid term's algebraic form.
+@article{SpezialeSarkarGatski1991,
+  author  = {Speziale, C. G. and Sarkar, S. and Gatski, T. B.},
+  title   = {Modelling the pressure--strain correlation of turbulence:
+             an invariant dynamical systems approach},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {227},
+  pages   = {245--272},
+  year    = {1991},
+  doi     = {10.1017/S0022112091000101}
+}
+
+% --- Rapid distortion theory of homogeneously strained turbulence: the
+%     spectral evolution framework that Sec.~5 specialises. (Batchelor &
+%     Proudman 1954 and Hunt & Carruthers 1990 already in references.bib.)
+@article{SavillRDT1987,
+  author  = {Savill, A. M.},
+  title   = {Recent developments in rapid-distortion theory},
+  journal = {Annual Review of Fluid Mechanics},
+  volume  = {19},
+  year    = {1987},
+  doi     = {10.1146/annurev.fl.19.010187.002531}
+}
+@article{ChenMeneveauKatz2006,
+  author  = {Chen, Jun and Meneveau, Charles and Katz, Joseph},
+  title   = {Scale interactions of turbulence subjected to a
+             straining--relaxation--destraining cycle},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {562},
+  pages   = {123--150},
+  year    = {2006},
+  doi     = {10.1017/S0022112006000905}
+}
+ 
+@article{LeePiomelliReynolds1986,
+  author  = {Lee, Moon J. and Piomelli, Ugo and Reynolds, William C.},
+  title   = {Useful formulas in the rapid distortion theory of homogeneous
+             turbulence},
+  journal = {Physics of Fluids},
+  volume  = {29},
+  number  = {10},
+  pages   = {3471--3474},
+  year    = {1986},
+  doi     = {10.1063/1.865813}
+}
+% New entries for the Lee & Reynolds validation section.
+% LeePiomelliReynolds1986, BatchelorProudman1954, ChenMeneveauKatz2006,
+% Pope2000, LaunderReeceRodi1975 are assumed already present -- reuse those keys.
+% % VERIFY page ranges / report number before submission.
+
+@techreport{LeeReynolds1985,
+  author      = {Lee, Moon J. and Reynolds, William C.},
+  title       = {Numerical Experiments on the Structure of Homogeneous
+                 Turbulence},
+  institution = {Thermosciences Division, Department of Mechanical Engineering,
+                 Stanford University},
+  number      = {TF-24},
+  year        = {1985},
+  address     = {Stanford, California},
+  note        = {Prepared under NASA Grant NCC-2-15}
+}
+
+@article{MillsCorrsin1959,
+  author  = {Mills, R. R. and Corrsin, S.},
+  title   = {Effect of contraction on turbulence and temperature fluctuations
+             generated by a warm grid},
+  journal = {NASA Memo},
+  number  = {5-5-59W},
+  year    = {1959}
+}
+
+@article{TuckerReynolds1968,
+  author  = {Tucker, H. J. and Reynolds, A. J.},
+  title   = {The distortion of turbulence by irrotational plane strain},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {32},
+  number  = {4},
+  pages   = {657--673},
+  year    = {1968},
+  doi     = {10.1017/S0022112068000947}
+}
+% =====================================================================
+%  New citations introduced by the generalised introduction.
+%  Add these to jfm.bib (or your main .bib).
+%
+%  IMPORTANT — VERIFY BEFORE SUBMISSION:
+%  These are real, well-known works, but the exact volume / page / year /
+%  publisher fields below must be checked against the actual source. Fields
+%  I am NOT fully certain of are marked  % VERIFY.  Do not submit on trust.
+%
+%  Already built earlier (do NOT duplicate if present):
+%     LeeReynolds1985, MillsCorrsin1959, TuckerReynolds1968
+%     -> see references_lee_reynolds_additions.bib
+% =====================================================================
+
+% Townsend's monograph — the standard reference for the structure of
+% strained/sheared turbulence and rapid distortion. Two editions exist
+% (1956 and 1976); cite the one you actually consulted.
+@book{TownsendBook,
+  author    = {Townsend, A. A.},
+  title     = {The Structure of Turbulent Shear Flow},
+  edition   = {2nd},                    
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {1976}                     
+}
+
+% Ribner — linear analysis of turbulence amplification through a shock
+% (the canonical shock/turbulence rapid-distortion reference). Ribner
+% published this as NACA reports; the standard citation is the NACA
+% Report 1233 (1955) consolidating TN 2864 (1953) and TN 3255.
+@techreport{Ribner1953,
+  author      = {Ribner, H. S.},
+  title       = {Convection of a Pattern of Vorticity Through a Shock Wave},
+  institution = {National Advisory Committee for Aeronautics (NACA)},
+  number      = {Report 1164},             
+  year        = {1954}                    
+}
+
+% Britter, Hunt & Mumford — distortion of turbulence by flow over/around
+% bluff obstacles (the obstacle/terrain RDT application).
+@article{Britter1981,
+  author  = {Britter, R. E. and Hunt, J. C. R. and Mumford, J. C.},
+  title   = {The distortion of turbulence by a circular cylinder},
+  journal = {Journal of Fluid Mechanics},
+  volume  = {92},                         
+  pages   = {269--301},                  
+  year    = {1979}                         
+}
+
+% Sagaut & Cambon — modern monograph on homogeneous turbulence including
+% rapid distortion theory; good general RDT reference.
+@book{Sagaut2008,
+  author    = {Sagaut, P. and Cambon, C.},
+  title     = {Homogeneous Turbulence Dynamics},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {2008}                     
+}
+
+% =====================================================================
+%  Final additions: AI-tool declaration citation + corrected intro refs.
+%  Add to jfm.bib. Replaces the flagged LiveseyBook / Britter entries.
+% =====================================================================
+
+% --- AI tool used for grammar checking (declared per CUP policy) ---
+@misc{swissai2025apertus,
+  author       = {{Swiss AI Initiative}},
+  title        = {Apertus-8B-Instruct-2509},
+  year         = {2025},
+  howpublished = {Hosted on Blablador by J\"ulich Supercomputing Centre,
+                  Helmholtz Association},
+  url          = {https://huggingface.co/swiss-ai/Apertus-8B-Instruct-2509},
+  note         = {Large language model. Accessed: 2026-07-02}
+}
+
+
+
+
+% --- Shock/turbulence amplification: replace the flagged LiveseyBook ---
+% LiveseyBook did NOT support the shock-amplification claim (Livesey is a
+% contractions reference, not shock). The in-text \citep for the shock clause
+% should cite Ribner1953 alone, OR pair it with a genuine shock-turbulence
+% reference below. Use one of:
+@article{Ribner1954,
+  author  = {Ribner, H. S.},
+  title   = {Shock--turbulence interaction and the generation of noise},
+  journal = {NACA Report},
+  number  = {1233},
+  year    = {1954}
+}

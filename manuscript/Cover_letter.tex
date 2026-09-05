@@ -1,0 +1,176 @@
+% !TeX program = pdflatex
+% DLR-style cover letter for JFM submission.
+% Compile with: pdflatex jfm_cover_letter.tex
+%
+% Put dlr_logo.png in the same folder as this .tex file.
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,left=25mm,right=25mm,top=22mm,bottom=22mm]{geometry}
+\usepackage{graphicx}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{xcolor}
+\usepackage{helvet}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\renewcommand{\familydefault}{\sfdefault}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setstretch{1.02}
+
+% -----------------------------------------------------------------------------
+% Editable letter data
+% -----------------------------------------------------------------------------
+\newcommand{\Institute}{Institut für Aerodynamik und Strömungstechnik}
+\newcommand{\DLRAddress}{Lilienthalplatz 7, 38108 Braunschweig}
+
+\newcommand{\Recipient}{%
+The Editor\\
+Journal of Fluid Mechanics\\
+Cambridge University Press%
+}
+
+\newcommand{\ContactPerson}{Dr. Sparsh Sharma}
+\newcommand{\Phone}{0531 295--1530}
+\newcommand{\Email}{sparsh.sharma@dlr.de}
+\newcommand{\LetterDate}{2 July 2026}
+
+\newcommand{\Subject}{Submission of an original manuscript to the Journal of Fluid Mechanics}
+
+\newcommand{\ManuscriptTitle}{Strain-coupled one-dimensional turbulence for rapid distortion}
+
+\newcommand{\ClosingName}{Dr. Sparsh Sharma}
+
+% Logo file
+\newcommand{\LogoFile}{dlrlogo.png}
+
+% -----------------------------------------------------------------------------
+% Small helpers
+% -----------------------------------------------------------------------------
+\newcommand{\ContactLabel}[1]{\textcolor{black!55}{\scriptsize #1}}
+
+\begin{document}
+
+% -----------------------------------------------------------------------------
+% Header
+% -----------------------------------------------------------------------------
+\begin{textblock*}{95mm}(25mm,28mm)
+  {\small \Institute}
+\end{textblock*}
+
+\begin{textblock*}{75mm}(126mm,20mm)
+  \raggedleft
+  \includegraphics[width=58mm]{\LogoFile}
+\end{textblock*}
+
+% -----------------------------------------------------------------------------
+% Recipient address block and contact block
+% -----------------------------------------------------------------------------
+\begin{textblock*}{86mm}(25mm,66mm)
+  {\scriptsize
+  DLR e.\,V.\hspace{3mm} \Institute\\[-0.2mm]
+  \hspace*{21mm}\DLRAddress}
+  \vspace{7mm}
+
+  {\normalsize \Recipient}
+\end{textblock*}
+
+\begin{textblock*}{65mm}(126mm,66mm)
+  \raggedleft
+  \begin{tabular}{@{}r@{\hspace{7mm}}l@{}}
+    \ContactLabel{Reference}       & \\
+    \ContactLabel{Manuscript type} & Regular article \\
+    \\[-1mm]
+    \ContactLabel{Contact person}  & \ContactPerson \\
+    \\[-1mm]
+    \ContactLabel{Telephone}       & \Phone \\
+    \\[-1mm]
+    \ContactLabel{E-mail}          & \Email \\
+    \\[2mm]
+                                    & \LetterDate
+  \end{tabular}
+\end{textblock*}
+
+% -----------------------------------------------------------------------------
+% Body
+% -----------------------------------------------------------------------------
+\vspace*{118mm}
+
+{\bfseries \Subject}
+
+\vspace{11mm}
+
+Dear Editor,
+
+\vspace{5mm}
+
+I am pleased to submit the manuscript entitled
+``\ManuscriptTitle'' for consideration as a regular article in the
+\textit{Journal of Fluid Mechanics}.
+
+\vspace{5mm}
+
+The paper addresses a basic problem in turbulence dynamics: how a turbulent field is changed by mean strain when rapid distortion, pressure-mediated intercomponent transfer, nonlinear eddy relaxation and spectral compression all act over comparable times. This regime is common in contractions, stagnation regions and turbulence approaching lifting surfaces, but it is poorly served by the usual modelling choices. Direct simulation resolves the process but is too expensive for systematic parametric use; rapid-distortion theory gives the linear limit but cannot represent nonlinear relaxation; and Reynolds-stress closures retain the component energetics but have already integrated out the spectrum. The manuscript asks whether one-dimensional turbulence can be made to fill this gap. 
+
+\vspace{5mm}
+
+The central difficulty is not merely to add a strain term to ODT. In rapid distortion, the pressure response is a nonlocal three-dimensional projection in wavenumber space, whereas ODT evolves only a single resolved line. The paper therefore treats this incompatibility as the modelling problem itself. The formulation separates the pressure--strain interaction into its rapid and slow parts: the existing ODT eddy mechanism continues to represent the slow, turbulence-driven redistribution and cascade, while the missing mean-strain physics is supplied by a continuous production term, an energy-conserving rapid pressure--strain operator, and a dilatation of the ODT domain that carries the kinematic compression of scales. The production term is shown to preserve the structural invariants of the triplet-map mechanism, and the rapid operator is constructed through a Lyapunov equation so that the component-energy evolution matches homogeneous rapid-distortion theory under the stated closure. 
+
+\vspace{5mm}
+
+The main fluid-mechanical result is that, in the intermediate regime $\chi=Sk_t/\varepsilon=O(1)$, the distorted spectrum is not the rigidly translated spectrum predicted by linear rapid-distortion theory. The strain pushes energy toward smaller scales, but the ODT eddy dynamics and dissipation reshape the spectrum at the same time, producing a broadband distorted spectrum whose energy-containing scales are held back relative to the linear prediction. This is the part of the physics that a prescribed or linearly strained inflow spectrum cannot represent, and it is the reason the formulation is useful for the leading-edge-noise problem that motivates the work. The acoustic coupling is not attempted in the present paper; the submitted manuscript is instead focused on the fluid-mechanical distortion problem and on establishing the model that supplies the distorted upwash spectrum. 
+
+\vspace{5mm}
+
+A second contribution is the closure argument. The paper derives the exact rapid pressure--strain term as a nonlocal three-dimensional spectral integral and then shows that, under the physically stated assumption of axisymmetry of the undistorted turbulence about the ODT line, this term collapses to a closed single-line functional. This result is deliberately conditional rather than universal: the manuscript states the assumption, the range of validity and the connection to the algebraic moment closure used in the computations. This is, in my view, an essential part of the paper, because it explains why the proposed one-dimensional representation is not simply an empirical modification of ODT. 
+\vspace{5mm}
+
+The formulation is tested at several levels. It reproduces the rapid-distortion onset rate exactly, with no adjustable constant; the implementation is checked by suppressing eddy events and viscosity and comparing the line evolution with the closed moment equations; the purely kinematic compression limit reproduces the rigid spectral translation of RDT; and the full model is compared with the strained-turbulence experiment of Chen, Meneveau \& Katz and with the direct numerical simulations of Lee \& Reynolds. The Lee--Reynolds comparison is used as a moment-level validation of the Reynolds-stress anisotropy under canonical plane strain and axisymmetric contraction, while the Chen--Meneveau--Katz case tests the departure from the rapid-distortion spectral picture. The manuscript also states the limitations of the comparisons, in particular where a single-line or single-point closure cannot reproduce finite-Reynolds-number three-dimensional effects. 
+
+\vspace{5mm}
+
+We believe the manuscript is appropriate for JFM because it presents fully developed original research with a clear fluid-mechanical question, a derived model formulation, analytical verification, numerical implementation tests and comparison with canonical strained-turbulence data. The contribution is not only a new reduced-order model, but a clarification of how rapid distortion, pressure--strain closure, nonlinear eddy relaxation and spectral evolution can be combined in a scale-resolved one-dimensional framework. 
+
+\vspace{5mm}
+
+The manuscript is original, has not been published previously, and is not under consideration elsewhere. The author has approved the submission and takes responsibility for the content of the manuscript. A declaration of the use of AI tools is included in the manuscript in accordance with Cambridge University Press guidance. To the best of my knowledge, there are no conflicts of interest that would affect the review of this work. 
+
+\vspace{5mm}
+
+Thank you for considering this manuscript for publication in the
+\textit{Journal of Fluid Mechanics}.
+
+\vspace{10mm}
+
+Yours sincerely,
+
+\vspace{18mm}
+
+\ClosingName\\
+German Aerospace Center (DLR)\\
+\Institute\\
+Lilienthalplatz 7\\
+38108 Braunschweig, Germany\\
+\href{mailto:\Email}{\Email}
+
+% -----------------------------------------------------------------------------
+% Footer
+% -----------------------------------------------------------------------------
+\begin{textblock*}{65mm}(25mm,260mm)
+  \scriptsize
+  Deutsches Zentrum für Luft- und Raumfahrt e.\,V.\\
+  Institut für Aerodynamik und Strömungstechnik\\
+  Lilienthalplatz 7\\
+  38108 Braunschweig
+\end{textblock*}
+
+
+
+\end{document}
