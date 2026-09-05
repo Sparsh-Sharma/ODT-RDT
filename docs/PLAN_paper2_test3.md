@@ -279,12 +279,25 @@ aborts.  `spectra_gateA_S1.npz` (median, Nu=8192) committed.
   h(mu) stub + rank-1 C-tensor is now DEMONSTRABLY insufficient for strained
   spectra — upgraded from "unverified stub" to data-blocked.  Consistent
   with the sec-4.2 finding (exact RDT does not rigidly translate spectra).
-- NEXT (design decision, not a run): replace h(mu) — candidates: paper-1
-  g-kernels (source still unreachable in this repo), or derive the angular
-  structure from the exact Cauchy-RDT companion machinery (master branch,
-  post/closure_bound/strained/rdt_projection.py) which already computes the
-  exact strained Phi_ij projections; also E1/E3 reaches 0.55 by e=2, so a
-  non-axisymmetric extension may be forced anyway.
+- **h(mu) DERIVED FROM EXACT RDT 2026-09-05** (`post/acoustics/rdt_kernel.py`,
+  commit 87f3fce): plane-strain Cauchy-RDT tensor, ring-averaged about e2,
+  inverted through the family's two ring equations.  h_RDT(mu;e) is NEARLY
+  FLAT and positive (0.6-1.0) — the P2 stub has the WRONG SIGN for
+  mu^2 < 1/3; amplitude C/A ~ e^{2e} (1.3 -> 44 by e=2); kappa-collapse in
+  the inertial band; isotropy limit exact.  `axisym_family.set_h_kernel`
+  hook added (default untouched, 61 tests green).
+- Swapping h alone does NOT fix the axisym fits — exact RDT also violates
+  the single-argument A-ansatz (fits stay degenerate with h_RDT installed).
+- **Gate-A v2 WORKS** (`fit_rdt_family.py`): drop the ansatz, fit the exact
+  RDT-DISTORTED vK (2 params/strain: A0, ke) to the line spectra.  Band
+  [3dk, 300]: stable at ALL strains, cost 1.36-1.82, ke grows 12 -> 40 with
+  e exactly as lab-frame dilatation demands.  Residual ~30% rms = the eddy
+  contribution at Sk/eps ~ 0.4 (slow strain — expected).
+- NEXT: (i) rapid-strain campaign (same precursor, larger S so the LE-noise-
+  relevant rapid regime is matched; RDT-vK should tighten there); (ii) Gate
+  B built directly on the exact RDT Phi_ww(kx,ky) — no h ansatz anywhere;
+  (iii) E1/E3 still 0.55 by e=2: the RDT family predicts a specific
+  non-axisymmetric split — compare before extending anything.
 
 ## 5. Reply history: first reply SENT 2026-09-04 (email_alan_test3_reply.html).
    Option-B reply drafted 2026-09-05 (email_alan_optionB_reply.html).
