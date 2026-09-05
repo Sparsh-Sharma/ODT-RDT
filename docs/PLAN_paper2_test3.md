@@ -333,8 +333,17 @@ rms ODT-vs-exact-RDT distance ~13% at onset -> ~22% (Sk/eps~0.4) vs ~24%
   RDT-predicted E1/E3 split against the measured one before any
   non-axisymmetric extension.
 
-## 5. Reply history: first reply SENT 2026-09-04 (email_alan_test3_reply.html).
-   Option-B reply drafted 2026-09-05 (email_alan_optionB_reply.html).
+## 5. Reply history:
+   - 2026-09-04: first reply SENT (email_alan_test3_reply.html).
+   - 2026-09-05 morning: Option-B reply SENT — the MORNING draft of
+     email_alan_optionB_reply.html, i.e. WITH the provisional RDT paragraph
+     (~30% residual, "rapid should shrink toward zero").  The repo file was
+     later updated with final numbers and no longer matches the sent text.
+   - 2026-09-05 afternoon: rapid-strain FOLLOW-UP drafted
+     (email_alan_rapid_followup.html): corrects the ~30% (stale-binary
+     precursor) to ~13%, reports the dilatation-bug fix, and delivers the
+     reversed result — the ODT-vs-RDT distance GROWS with Sk/eps
+     (fig_rdt_distance).  Ready to send.
    Original first-reply content notes below (historical):
 
 Key content for the new draft:
