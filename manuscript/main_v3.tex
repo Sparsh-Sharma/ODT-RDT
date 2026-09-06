@@ -822,7 +822,7 @@ line's component-energy evolution must coincide with the closed moment
 equation across the whole strain range, not merely at onset.
 
 Figure~\ref{fig:level1a} shows that it does: the solver output lies on
-the LRR trajectory over $0\le e\le4$ to within $5\times10^{-4}$ in each
+the LRR trajectory over $0\le e\le4$ to within $10^{-4}$ in each
 component fraction, so the per-substep stress reconstruction, Lyapunov
 solve and operator assembly are correct at every state of anisotropy.
 The comparison must be read correctly: the solver reproduces the
@@ -844,24 +844,14 @@ isotropically, so the energy panel is what exposes them.
 
 \begin{figure}[!t]
   \centering
-  \begin{minipage}[t]{0.49\textwidth}
-    \centering
-    \vspace{0pt}
-    \includegraphics[width=\linewidth]{Figures/fig_level1a_trajectory.pdf}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{0.49\textwidth}
-    \centering
-    \vspace{0pt}
-    \includegraphics[width=\linewidth]{Figures/fig_level1a_trajectory_kt.pdf}
-  \end{minipage}
+  \includegraphics[width=\textwidth]{Figures/fig_level1a.pdf}
   \caption{Verification of the strain-coupled implementation under plane
   strain, eddy events suppressed and zero molecular diffusion.
   (\textit{a}) Component energy fractions; (\textit{b}) kinetic-energy
   amplification $k_t(e)/k_t(0)$. Symbols: solver, length-weighted line
   averages. Dashed: the LRR closure integrated as a moment equation.
   Solid: exact rapid-distortion theory. The solver reproduces the
-  closure to $5\times10^{-4}$ in the fractions and $0.3\%$ in the
+  closure to $10^{-4}$ in the fractions and $0.3\%$ in the
   energy; the offset from the exact solution is the closure error of
   \S\,\ref{sec:finite-strain}, as it must be.}
   \label{fig:level1a}
@@ -938,16 +928,27 @@ which the symmetry-respecting mean $\tfrac12(b_{22}+b_{33})$ removes.
 
 The one component the model does not reproduce, the plane-strain
 unstrained anisotropy $b_{11}$, is not a deficiency specific to the
-model, and figure~\ref{fig:lr-b11} establishes this directly. Exact
-linear rapid distortion gives $b_{11}<0$ kinematically---with
-$A_{1k}=0$ the unstrained energy is conserved while the total
-grows---and the standard closures give $b_{11}\approx0$; the present
-model coincides with the LRR prediction on which its operator is built,
-so its $b_{11}$ is correct \emph{for its formulation}. The DNS rise to
-$+0.12$ at fast strain is a finite-Reynolds-number, vorticity-mediated
-correction to the linearisation itself, outside the reach of linear
-theory and of the entire second-moment family alike; that it is largest
-at \emph{fast} strain rules out a slow return-to-isotropy origin.
+model, and figure~\ref{fig:lr-b11} locates it exactly. Exact linear
+rapid distortion, evaluated by the wavevector-ensemble integration of
+\S\,\ref{sec:finite-strain}, gives $b_{11}$ \emph{rising} to $+0.114$
+at $c=4$: although $A_{1k}=0$, the rapid pressure--strain feeds the
+neutral direction---the same orientation-carried redistribution as the
+spanwise growth in \S\,\ref{sec:finite-strain}. (A tempting kinematic
+argument, that $\langle u_1^2\rangle$ is conserved because the
+component is unstrained, holds for production but not for the rapid
+term, and gives the wrong sign; an earlier version of this comparison
+used it.) The fast-strain DNS therefore \emph{tracks exact RDT}, as
+\citeauthor{LeeReynolds1985} themselves observed, while both
+single-point closures give $b_{11}\approx0$, slightly negative: the
+closure family misses the neutral-direction feed, which is carried by
+the orientation distribution that single-point models discard---the
+same deficiency measured spectrally, and localised in the closure's
+$b$-dependent term, in \S\,\ref{sec:order}. The present model
+coincides with the closure on which its operator is built, so its
+near-zero $b_{11}$ is correct for its formulation and matches the DNS
+at slow strain rate, where the nonlinear scrambling erases the
+neutral-direction feed; at fast strain it inherits the closure
+family's known limitation rather than any line-specific artefact.
 The components that govern the upwash spectrum fed to the leading-edge
 response are precisely those the model reproduces quantitatively.
 Finally, \citeauthor{LeeReynolds1985}'s own transport-budget analysis
@@ -960,12 +961,13 @@ decomposition on which \S\,\ref{sec:gate} rests.
   \includegraphics[width=0.82\textwidth]{Figures/fig_LR_b11_closure.pdf}
   \caption{The unstrained-direction anisotropy $b_{11}$ under plane
   strain: present model (solid, $1000$ realisations, standard-error
-  band) against exact linear rapid distortion (dotted), the IP and
-  LRR-QI closures, and the DNS of \citet{LeeReynolds1985} (symbols and
-  shaded $S^{*}$ range). The model coincides with the closure it is
-  built on; the DNS rise to $b_{11}>0$ lies above the entire closure
-  family and reflects finite-Reynolds-number vorticity structure outside
-  the moment-closure framework.}
+  band) against exact linear rapid distortion (dotted,
+  wavevector-ensemble integration), the IP and LRR-QI closures, and the
+  DNS of \citet{LeeReynolds1985} (symbols and shaded $S^{*}$ range).
+  The fast-strain DNS tracks exact RDT, whose rapid pressure--strain
+  feeds the neutral direction; the single-point closures---and the
+  model built on them---miss this orientation-carried redistribution,
+  the deficiency measured and localised in \S\,\ref{sec:order}.}
   \label{fig:lr-b11}
 \end{figure}
 
@@ -1003,9 +1005,10 @@ target.
 
 Figure~\ref{fig:spec-rdt} confirms it. The component spectra translate toward
 higher $k$ without change of shape---the peak neither broadens nor develops an
-inertial range---and the spectral centroid follows $e^{-A_{22}e}$ to within
-discretisation error, reaching $7.0$ at $e=3.9$ against the exact $7.03$, with
-the three components migrating identically. The single-point moments are
+inertial range---and the spectral centroid follows
+$\mathrm{e}^{-A_{22}e}$, reaching $7.03$ at $e=3.9$ against the exact
+$7.03$, with the three components migrating identically; the domain
+length follows $\mathrm{e}^{A_{22}e}$ to four digits. The single-point moments are
 unchanged from the no-dilatation case, since a uniform rescaling of position
 leaves the length-weighted velocity statistics invariant. Compression
 therefore acts entirely on the spectrum and reproduces the model's kinematic
@@ -1066,21 +1069,16 @@ against both the exact reference and DNS.
 
 \begin{figure}
   \centering
-  \begin{subfigure}[t]{0.48\textwidth}\centering
-    \includegraphics[width=\linewidth]{Figures/fig_spectrum_hs__spectra.pdf}
-    \caption{}\label{fig:rdt-spectra}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.48\textwidth}\centering
-    \includegraphics[width=\linewidth]{Figures/fig_spectrum_hs__centroid.pdf}
-    \caption{}\label{fig:rdt-centroid}
-  \end{subfigure}
+  \includegraphics[width=\textwidth]{Figures/fig_spec_kinematic.pdf}
   \caption{Compression without cascade (eddy events suppressed, inviscid).
-  (\textit{a}) Component spectra $E_i(k)$ at increasing total strain (lighter to
-  darker); the spectra translate to higher $k$ without changing shape.
-  (\textit{b}) Spectral-centroid migration $\bar k(e)/\bar k(0)$ for each
-  component (symbols) against the kinematic prediction $e^{-A_{22}e}$ (dashed).
-  The centroid follows the prediction exactly and the three components coincide,
-  confirming purely geometric compression of the line.}
+  (\textit{a}) Component line spectra $E_i(\kappa_2)$ at total strains
+  $e=0,1,2,3,3.9$ (lighter to darker); the spectra translate to higher
+  wavenumber without changing shape.
+  (\textit{b}) Spectral-centroid migration $\bar\kappa(e)/\bar\kappa(0)$
+  for each component (symbols) against the kinematic prediction
+  $\mathrm{e}^{-A_{22}e}$ (dashed). The centroid follows the prediction
+  and the three components coincide, confirming purely geometric
+  compression of the line.}
   \label{fig:spec-rdt}
 \end{figure}
 

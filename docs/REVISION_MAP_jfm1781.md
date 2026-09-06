@@ -264,6 +264,42 @@ Manuscript (master):
   then), fig_LR_plane/axisym/b11_closure (need the N=1000 ensembles +
   digitised L&R points; digitised data not found in repo),
   fig_spectrum_hs__* (as before).
+- FIGURE REGENERATION DONE 2026-09-07 (all 7 legacy figures now canon;
+  Alan's hierarchical-reply email SENT by Sparsh 2026-09-07):
+  * Deck corruption fixed: input/homogeneousStrain/input.yaml and
+    run/runOneRlz.sh carried committed merge-conflict markers SINCE THE
+    SUBMITTED TAG (4462f93) — the level1a deck could never have parsed.
+  * Old WSL distro (all run data + N=1000 L&R ensembles + digitised
+    points) is GONE (replaced by fresh Ubuntu-24.04).
+  * level1a + hsA2 RERUN on caro login node (cases lvl1afig/hsA2fig,
+    LEN binary, decks scp'd; dumps in scratchpad figdata).  Fresh
+    verification: fractions within 7e-5 of LRR (text now "10^-4",
+    tighter than V2's 5e-4), kt 0.32% ("0.3%" confirmed); kinematic
+    figure: L/L0 = exp(A22 e) to 4 digits, all 3 centroids 7.03 vs
+    exact 7.03 (text updated from "7.0").  New canon figures:
+    fig_level1a.pdf (single 2-panel), fig_spec_kinematic.pdf (replaces
+    fig_spectrum_hs__* pair, which are git-rm'd along with
+    fig_level1a_trajectory*).  Scripts:
+    post/closure_bound/verification/{fig_level1a,fig_spec_kinematic}.py.
+  * L&R figures rebuilt from data EXTRACTED from the archived vector
+    PDFs (lr_extract.py; axis-calibrated; IP/LRR curves cross-check
+    against fresh recomputation to <1e-4 — calibration exact).  ODT
+    curves/bands + DNS points = archived data (provenance noted in
+    script); analytic curves recomputed.  fig_lr_paper.py.
+  * SCIENTIFIC CORRECTION (2026-09-07, found because regeneration
+    forced recomputation): V2's fig_LR_b11_closure "exact RDT" curve
+    was WRONG — built from the kinematic-conservation fallacy (A_1k=0
+    => R_11 conserved => b11<0).  Exact RDT (wavevector-ensemble,
+    cross-checked against our own sec:finite-strain neutral-component
+    result at matched deformation) gives b11 RISING to +0.114 at c=4 —
+    the fast-S* DNS TRACKS exact RDT (as L&R themselves said); the
+    closures (b11~0) miss the neutral-direction feed = the same
+    orientation deficiency measured in sec:order.  V2's "finite-Re
+    vorticity structure outside the framework" explanation is dead;
+    v3 sec:lr-validation paragraph + fig:lr-b11 caption rewritten
+    (with an explicit sentence retiring the wrong argument).  This
+    STRENGTHENS the paper: the b11 gap is now unified with Referee
+    1.3/sec:order instead of being an unexplained anomaly.
 - M4. §2 compression + SC2018 + intro repair (O7, O8, O9).
 - M5. [Option C] LE section from Gate machinery (O6) — written last.
 - M6. Cover letter: objection→change map; cite JFM-2026-1781; venue memo.

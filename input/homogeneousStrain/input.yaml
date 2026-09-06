@@ -38,11 +38,7 @@ params:
     #----------------------------------------------------------------------------------
     Lsolver:       EXPLICIT
     #----------------------------------------------------------------------------------
-<<<<<<<< HEAD:input/homogeneousStrain/input.yaml
-    bcType:        WALL
-========
     bcType:        WALL           #  PERIODIC rejected by mesher; BC unused (eddies off, inviscid, pointwise strain)
->>>>>>>> 84119c7eb5e13b41eb3ea2beddfc5692c7836a2b:input_homogeneousStrain.yaml
     cCoord:        1
     Lrestart:      false
     #----------------------------------------------------------------------------------
