@@ -368,6 +368,24 @@ Manuscript (master):
   fresh-vs-archived ISO cross-check).  Labelling decision (variant vs
   "the model") stays with Alan's pending reply — presented in paper 1
   as the scale-local-relaxation variant.
+  DONE 2026-09-08 (all 4 campaigns 1024/1024, zero bad reads):
+  * Sk/eps=0.8: baseline flat (+0.07..+0.10 across bands); KS variant
+    TILTS toward the DNS — fine-band +0.076 -> +0.024 vs DNS -0.046,
+    roughly HALF the misallocation removed; allocation now decreases
+    with wavenumber (right shape).
+  * Sk/eps=16: DNS LIES ON exact RDT (rapid limit realised in the
+    benchmark — new validation of the DNS+companion chain, and
+    consistent with the corrected b11 story); baseline maximally wrong
+    there; KS variant moves it only marginally within e<=1 — the
+    resupply saturation restated on the benchmark axes.  C1 DISCHARGED.
+  * CONSISTENCY FIX: archived S2_ISO (pre-dilatation-fix binary)
+    disagreed with the fresh same-binary baseline in the tail-sensitive
+    finest band (+0.147 -> +0.076); threeway.npz ODT rows REFRESHED
+    from fw_S2I (refresh_threeway.py; archived copy kept as
+    threeway_archived.npz), tab:threeway ODT row updated, TYPESw curve
+    dropped from fig_threeway (different binary, unreferenced).
+  * In the paper: fig:fourway + capstone paragraphs in
+    sec:limits-endpoint; abstract's final sentence extended.  40 pp.
 - M4. §2 compression + SC2018 + intro repair (O7, O8, O9).
 - M5. [Option C] LE section from Gate machinery (O6) — written last.
 - M6. Cover letter: objection→change map; cite JFM-2026-1781; venue memo.
