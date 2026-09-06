@@ -737,6 +737,9 @@ void eddy::applyConcurrentRelax(domain *line, const int N) {
         int i1 = line->domainPositionToIndex(y0 + l, false, 41);
         if(i1 - i0 + 1 < 3) continue;      // too few cells to act on
         applyKernelOnRange(line, i0, i1);
+        if(domn->pram->nSubKernelLevels > 0)   // stacked variant (2026-09-07):
+            applySubscaleKernels(line, i0, i1, //   the delocalised events also
+                domn->pram->nSubKernelLevels); //   run the sub-scale hierarchy
     }
 }
 
