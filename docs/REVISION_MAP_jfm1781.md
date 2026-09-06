@@ -300,6 +300,26 @@ Manuscript (master):
     (with an explicit sentence retiring the wrong argument).  This
     STRENGTHENS the paper: the b11 gap is now unified with Referee
     1.3/sec:order instead of being an unexplained anomaly.
+- M-spectrum. IN PROGRESS 2026-09-07: sec:spec-bvc transplanted
+  (near-verbatim, reframed version); spec-Re + spec-op COMPRESSED to one
+  operating-point subsubsection (eq:eps-budget kept — chi quoted from
+  budget; fig_chi and fig_peak DROPPED, their content now one sentence
+  each); CMK compressed (~1.5 pp: rapid limit + qualitative full-model
+  + the three stated limits; hand-off to box-dns rewritten as the
+  projection-matched quantitative benchmark).  ALL ensembles RERUN on
+  caro (old data lost with the WSL distro): homogeneousStrainB5 (nu
+  1e-5, strain on, 128 rlz), B5off (strain off baseline, 128), OP (nu
+  3e-6, 16000 cells, dxmin 5e-5, 256 rlz) — decks committed in input/;
+  jobs 4435510-13; postprocessor post/closure_bound/spectrum/
+  ens_spectra.py (also run on caro; npz fetched).  fig_cmk_rdt DONE
+  from the hsA2fig rerun: centroid 3.004 vs D=3.00; kt 1.716 (run) =
+  1.719 (LRR closure, as it must) vs 1.692 exact — V2's "1.74 vs
+  analytic 1.74" was sloppy, v3 states run-vs-exact honestly with the
+  2% closure residual attributed.  fig_cmk_aniso now derived from the
+  B5 ensemble (V2's separate N=64 ensemble had no surviving deck).
+  PENDING: B5/B5off/OP npz -> fig_spec_bvc, fig_spec_op, fig_cmk_aniso
+  + verify the quoted numbers (centroid plateaus, chi~0.8) against the
+  fresh ensembles.
 - M4. §2 compression + SC2018 + intro repair (O7, O8, O9).
 - M5. [Option C] LE section from Gate machinery (O6) — written last.
 - M6. Cover letter: objection→change map; cite JFM-2026-1781; venue memo.
