@@ -375,6 +375,33 @@ PAPER-1 RELEVANCE: this belongs in the compressed Kerstein arc as the
 intervention that finally moves fine scales, strengthening the
 "scale-local relaxation is the missing ingredient" endpoint.
 
+## 4f. Concurrent relaxation (Alan 2026-09-07) — delocalisation does not beat the fade
+
+Alan's reply to the hierarchical email: sample N eddy-size intervals,
+randomly situated (overlaps allowed), after each eddy, and isotropize each
+with the same kernel procedure; start N=1.  Implemented same day (43f84ac):
+`nConcurrentRelax` (default 0 bit-identical — regression vs stored campaign
+dump PASSED on the fresh build), reusing applyKernelOnRange; RNG drawn only
+when on.  Campaigns CR1/CR3, 1024 paired-seed rlz each (jobs 4435551/2,
+~4 min wall; cr1/cr3_robust_table.txt, newbands/):
+- **N=1: NULL everywhere** — every paired CI straddles zero, both bands,
+  all strains ("no harm, no good" again, like sub-kernel level 1).
+- **N=3: significant at e=1 in BOTH bands** (lo -0.032*, hi -0.024*;
+  A_low 1.43->1.34, A_high 1.43->1.35) but the effect is broad-band and
+  strongest at the ENERGY-CONTAINING scales — as the scale arithmetic
+  demands, since the sampled intervals carry the accepted-eddy size
+  distribution and full-interval isotropization acts at that scale (the
+  K1 lesson replayed).  The deep-strain fade PERSISTS: e=3 hi +0.017,
+  e=3.9 hi +0.041 (both ns).
+- **Verdict: delocalising the relaxation at the eddy rate does not fix
+  the e>~3 fade either.**  Combined ledger: depth (K3), dosage (K2I3),
+  and now event-location/multiplicity (CR3, ~4x the per-eddy relaxation
+  events) all fail at deep strain — the resupply argument strengthens.
+- Natural next variant (not yet run): concurrent + depth — apply the
+  adaptive-depth hierarchy (KS) INSIDE each sampled interval, so the
+  delocalised events also reach the measured band; and/or scale N with
+  strain.  Worth putting to Alan with the CR data.
+
 ## 5. Reply history:
    - 2026-09-04: first reply SENT (email_alan_test3_reply.html).
    - 2026-09-05 morning: Option-B reply SENT — the MORNING draft of
