@@ -333,6 +333,35 @@ rms ODT-vs-exact-RDT distance ~13% at onset -> ~22% (Sk/eps~0.4) vs ~24%
   RDT-predicted E1/E3 split against the measured one before any
   non-axisymmetric extension.
 
+## 4e. Hierarchical kernel isotropization (Alan 2026-09-06) — FIRST WIN
+
+Alan's reply to Option B: accelerate small-scale isotropization instead —
+after each eddy's kernels, apply the same kernel procedure to the 3 map
+images, then 9, 27 ("soon overkill"; suggested one level first).
+Implemented same day (152952e): `nSubKernelLevels` (0-3, default 0
+bit-identical — regression vs fixed-binary gateA_S1 PASSED), sub-kernels =
+triplet-map displacement shape on the sub-interval, ISO coefficients from
+its own integrals, exact momentum/energy conservation, no map, no RNG.
+Campaigns: same-binary baseline rerun + K1/K2/K3, 1024 rlz each
+(fig_klevels, newbands/).  VERDICT:
+- Level 1 (his first step): null within CIs ("no harm, little good").
+- Level 2: FIRST statistically significant fine-scale isotropization of
+  the program — both bands starred at e=1 (A_high 1.43 -> 1.27).
+- Level 3: stars at e=1 AND e=3 (A_high paired -0.057*) — first deep-strain
+  effect; matches scale arithmetic (l/3 above the measured band, l/9-l/27
+  reach it).
+- Gains fade by e~4 (level-3 ordering nominally reverses, ns): once-per-
+  eddy sub-relaxation vs continuous resupply.
+- Budgets clean (band energies few %, u2/2kt + tails unchanged); pre-strain
+  fine-scale floor lifted 0.83 -> 0.95 (immediate cleanup).
+- Baseline rerun also confirms the dilatation fix left Test-3 statistics
+  unchanged (medians within ~5%).
+Reply drafted: notes/email_alan_hierarchical_reply.html (questions back:
+iterate within event vs depth tied to eddy size — both one-line changes).
+PAPER-1 RELEVANCE: this belongs in the compressed Kerstein arc as the
+intervention that finally moves fine scales, strengthening the
+"scale-local relaxation is the missing ingredient" endpoint.
+
 ## 5. Reply history:
    - 2026-09-04: first reply SENT (email_alan_test3_reply.html).
    - 2026-09-05 morning: Option-B reply SENT — the MORNING draft of
