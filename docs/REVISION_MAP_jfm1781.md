@@ -226,6 +226,22 @@ Manuscript (master):
   fig_spectrum_hs__spectra/centroid (no in-repo generator — claude.ai
   era; regenerate from run data or rebuild the script) and every V2
   figure that later transplants pull in — restyle at transplant time.
+- M-formulation. DONE 2026-09-06: sec:formulation transplanted into v3 —
+  V2's Background folded to ONE review subsection (sec:odt-review, "a
+  clear review of the JFM 2001 paper" per R2; five subsubsections
+  dropped, equations kept: event/triplet/kernel/redistribution/ci +
+  rate in prose); sec:rapid-slow trimmed (eq:solenoidal display -> one
+  sentence); strain-forcing/rapid-kernel/domain-strain/summary at ~80%
+  with Propositions 1-2 DEMOTED to consistency-check prose (R1 minor).
+  §5's duplicate Poisson display removed — sec:exact-pi now recalls
+  eq:poisson from §2.  New cross-link: closure-problem subsection points
+  forward to sec:gate; line-realisation scope paragraph points to the
+  measured wavenumber-blindness (sec:threeway).  v3 now 25 pp; dangling
+  refs remaining: sec:spec-bvc, sec:lr-plane (verification + spectrum
+  transplants).  Figure-style note: adopted the SoundPower jfm_rapids
+  canon in figstyle_jfm (STIX 8pt, boxed axes, inward ticks, no grid,
+  italic panel labels) + paper-wide colour palette — all 7 current v3
+  figures regenerated.
 - M4. §2 compression + SC2018 + intro repair (O7, O8, O9).
 - M5. [Option C] LE section from Gate machinery (O6) — written last.
 - M6. Cover letter: objection→change map; cite JFM-2026-1781; venue memo.

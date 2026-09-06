@@ -122,16 +122,495 @@ the scales of the imbalance.
 % =========================================================================
 \section{Strain-coupled one-dimensional turbulence}\label{sec:formulation}
 % =========================================================================
-%% TRANSPLANT: V2 sec:formulation (strain forcing + admissibility,
-%%   sec:rapid-kernel operator, sec:domain-strain, sec:summary) — ~80%,
-%%   trimmed.  R1 praised this part; keep the derivations.
-%% FOLD IN: the essentials of V2 sec:odt (background) compressed to ONE
-%%   review subsection with citations (R2: "a clear review of the JFM 2001
-%%   paper would be better" — do exactly that); drop V2 sec:odt-standard's
-%%   five subsubsections.
-%% DEMOTE: Propositions 1-2 presented as consistency checks (R1 minor).
+%% TRANSPLANTED 2026-09-06 from V2 (sec:odt compressed to one review
+%%   subsection per R2; sec:rapid-slow trimmed; sec:formulation ~80%;
+%%   Propositions 1-2 demoted to consistency checks per R1 minor).
 
-\emph{[M-formulation: transplant per markers.]}
+The linear rapid-distortion equations, recalled below, contain two
+distinct ingredients: an evolution of the Fourier \emph{amplitudes},
+comprising production and the solenoidal pressure projection, and an
+evolution of the \emph{wavevectors} that carries the kinematic straining
+of scales. The pressure part of the amplitude equation requires the full
+three-dimensional wavevector and is therefore not directly representable
+on a one-dimensional line; that incompatibility organises this section.
+The distortion physics is split according to its structure and each part
+assigned to the mechanism that can carry it faithfully: the production,
+which is local in physical space, is imposed as a continuous forcing of
+the line velocity (\S\,\ref{sec:strain-forcing}); the rapid
+pressure--strain, which is not, is supplied as a continuous,
+energy-conserving redistribution operator constructed to reproduce the
+homogeneous rapid-distortion evolution of the component energies under an
+explicit spectral closure (\S\,\ref{sec:rapid-kernel}); and the wavevector
+kinematics are recovered by a consistent straining of the domain
+(\S\,\ref{sec:domain-strain}). The slow, turbulence-driven
+pressure--strain and the inertial cascade remain the discrete eddy events
+of the standard model, reviewed first.
+
+Throughout, $A_{ij}=\partial U_i/\partial x_j$ denotes the imposed mean
+velocity gradient, taken uniform across the line at each instant; the
+medium is incompressible, $A_{ii}=0$. The line carries the fluctuation
+field $u_i(y,t)$ about this mean; $R_{ij}\equiv\overline{u_iu_j}$ is the
+Reynolds-stress tensor, the overline denoting the average over the
+statistically homogeneous directions (equivalently, the ensemble of
+independent realisations), and $k_t\equiv\tfrac12R_{ii}$ the turbulent
+kinetic energy. In the homogeneous configurations used to establish and
+test the formulation the spatial line average and the ensemble average
+coincide.
+
+\subsection{The standard model}\label{sec:odt-review}
+
+This subsection reviews the one-dimensional turbulence model of
+\citet{Kerstein1999} in the vector-valued formulation of
+\citet{Kerstein2001}, in the notation used throughout; nothing in it is
+original. The model evolves a three-component velocity field $u_i(y,t)$,
+$i=1,2,3$, on a one-dimensional domain whose coordinate $y$ is identified
+with the direction $x_2$. The fields represent individual realisations;
+ensemble statistics are accumulated over many independent simulations.
+Two interleaved mechanisms advance the state: between events the fields
+obey ordinary one-dimensional diffusion,
+$(\partial_t-\nu\,\partial_y^2)\,u_i=0$, with kinematic viscosity $\nu$;
+and a stochastic sequence of instantaneous \emph{eddy events} represents
+the effect of individual turbulent overturns.
+
+Because a continuum rotational motion cannot be represented on a line, an
+eddy event is an instantaneous, measure-preserving rearrangement of the
+profiles together with an additive velocity change,
+\begin{equation}
+  u_i(y)\;\longrightarrow\;u_i\!\big(f(y)\big)+c_i\,K(y),
+  \label{eq:event}
+\end{equation}
+where $f$ is the \emph{triplet map} \citep{Kerstein1991,Kerstein1999},
+defined on an interval $[y_0,y_0+l]$ of size $l$ by
+\begin{equation}
+  f(y)=y_0+
+  \begin{cases}
+    3(y-y_0), & y_0\le y\le y_0+\tfrac{1}{3}l,\\[2pt]
+    2l-3(y-y_0), & y_0+\tfrac{1}{3}l\le y\le y_0+\tfrac{2}{3}l,\\[2pt]
+    3(y-y_0)-2l, & y_0+\tfrac{2}{3}l\le y\le y_0+l,\\[2pt]
+    y-y_0, & \text{otherwise,}
+  \end{cases}
+  \label{eq:triplet}
+\end{equation}
+written through its inverse, so that fluid at $f(y)$ is placed at $y$: the
+map compresses the interval to one third of its length, inserts three
+copies, reverses the central copy, and leaves the exterior unchanged. It
+is \emph{measure preserving} (the non-local analogue of a divergence-free
+rearrangement), \emph{continuous}, and \emph{scale local} (it changes
+gradients by at most an order-unity factor) \citep{Kerstein2001}---the
+three invariants whose preservation under an imposed mean strain is
+established in \S\,\ref{sec:strain-forcing}. The additive term is built
+from the \emph{kernel}
+\begin{equation}
+  K(y)\equiv y-f(y),
+  \qquad
+  \int K(y)\,\mathrm{d}y = 0,
+  \qquad
+  \int K^2(y)\,\mathrm{d}y = \tfrac{4}{27}\,l^{3},
+  \label{eq:kernel-identities}
+\end{equation}
+non-zero only within the eddy interval; the first identity guarantees
+that the additive change conserves the momentum of each component, and
+the second fixes the energetics of the redistribution.
+
+The kernel term is the model surrogate for the pressure-mediated
+redistribution of energy among velocity components
+\citep{WunschKerstein2001,Kerstein2001}. Requiring that an event
+redistribute kinetic energy among components while conserving the total,
+with a rule invariant under permutation of the component indices, gives
+\begin{equation}
+  \Delta E_i = \alpha\sum_j T_{ij}\,Q_j,
+  \qquad
+  \mathsf{T}=\frac{1}{2}
+  \begin{pmatrix}
+    -2 & 1 & 1\\ 1 & -2 & 1\\ 1 & 1 & -2
+  \end{pmatrix},
+  \qquad
+  Q_i\equiv\tfrac{27}{8}\,\rho_0\, l\, u_{i,K}^2,
+  \label{eq:redistribution}
+\end{equation}
+where $u_{i,K}\equiv l^{-2}\!\int u_i(f(y))\,K(y)\,\mathrm{d}y$, $Q_i$ is
+the available kinetic energy of component $i$ within the eddy, $\rho_0$
+the constant density, and $\alpha\in[0,1]$ the parameter setting the
+fraction of extractable energy transferred towards isotropy. Solving the
+per-component energy balance for the amplitudes yields
+\begin{equation}
+  c_i = \frac{27}{4l}\left[-u_{i,K}
+        +\operatorname{sgn}(u_{i,K})
+        \sqrt{u_{i,K}^2+\alpha\sum_j T_{ij}\,u_{j,K}^2}\,\right],
+  \label{eq:ci}
+\end{equation}
+real for $0\le\alpha\le1$. The transfer matrix $\mathsf{T}$ equalises the
+component energies: the construction is a model of the
+return-to-isotropy (\emph{slow}) part of the pressure--strain
+interaction, a correspondence made precise in \S\,\ref{sec:rapid-slow}.
+The standard model contains no counterpart of the rapid,
+mean-strain-driven part.
+
+The event sequence is a Poisson process whose rate reflects the
+instantaneous flow state: each candidate eddy $(y_0,l)$ is assigned a
+time scale $\tau$ through
+$(l/\tau)^2\sim u_{2,K}^2+\alpha\sum_jT_{2j}u_{j,K}^2-Z\,\nu^2/l^2$,
+the last term a viscous penalty with order-unity parameter $Z$, and the
+event-rate density is $\lambda(y_0,l;t)=C/\!\left(l^2\tau\right)$ with
+rate constant $C$; candidates with negative discriminant are forbidden.
+The inertial-range cascade and the $k^{-5/3}$ spectrum are
+\emph{outcomes} of repeated sampling from this rate, not inputs
+\citep{Kerstein1999}; $C$, $Z$ and a large-eddy suppression parameter are
+the only tunable constants \citep{StephensLignell2021}. Finally, one
+diagnostic caveat of \citet{Kerstein2001} is respected throughout:
+because the line velocity does not itself advect fluid, off-diagonal
+products of line velocity components are not momentum fluxes; diagonal
+component spectra and variances are read from the fields, whereas shear
+stresses are read from eddy-induced transport.
+
+\subsection{Rapid and slow pressure--strain, and linear rapid
+distortion}\label{sec:rapid-slow}
+
+The Reynolds-stress transport equation for a fluctuating field about a
+mean with constant gradient $A_{ij}$ reads, in homogeneous turbulence,
+\begin{equation}
+  \frac{\mathrm{d}R_{ij}}{\mathrm{d}t}
+  = \mathcal{P}_{ij} + \Pi_{ij} - \varepsilon_{ij},
+  \qquad
+  \mathcal{P}_{ij}=-A_{ik}R_{kj}-A_{jk}R_{ki},
+  \quad
+  \Pi_{ij}=\Big\langle \tfrac{p'}{\rho}
+            \big(\partial_j u_i'+\partial_i u_j'\big)\Big\rangle,
+  \label{eq:rstransport}
+\end{equation}
+with $\varepsilon_{ij}$ the dissipation tensor \citep{Pope2000}. Taking
+the divergence of the fluctuating momentum equation gives the pressure as
+the solution of a Poisson equation whose source splits into a part linear
+in the mean gradient and a part quadratic in the fluctuations,
+\begin{equation}
+  \frac{1}{\rho}\nabla^2 p'
+  = \underbrace{-2\,A_{lm}\,\partial_l u_m'}_{\text{rapid}}
+    \;-\;
+    \underbrace{\partial_l\partial_m\!\left(u_l' u_m'
+     -\langle u_l' u_m'\rangle\right)}_{\text{slow}} ,
+  \label{eq:poisson}
+\end{equation}
+and the pressure--strain correlation inherits the decomposition
+$\Pi_{ij}=\Pi^{(\mathrm r)}_{ij}+\Pi^{(\mathrm s)}_{ij}$ into a
+\emph{rapid} part driven by the mean strain and a \emph{slow} part driven
+by the turbulence alone. The slow part relaxes the Reynolds stress
+towards isotropy---the mechanism that the kernel
+\eqref{eq:redistribution}--\eqref{eq:ci} reproduces in model form. The
+rapid part is linear in $A_{lm}$ and is determined by the velocity
+spectrum tensor $\Phi_{ij}(\boldsymbol{\kappa})$; the standard model
+represents neither $\mathcal{P}_{ij}$ nor $\Pi^{(\mathrm r)}_{ij}$.
+
+When the total strain accumulates in a time short compared with the eddy
+turnover time, the response is computed exactly by linear theory
+\citep{BatchelorProudman1954,Hunt1973,HuntCarruthers1990}. Writing the
+fluctuation as Fourier modes that follow the mean flow, each mode of
+time-dependent wavevector $\boldsymbol{\kappa}(t)$ and amplitude
+$\hat{u}_i$ evolves, in the inviscid rapid limit, according to
+\begin{equation}
+  \frac{\mathrm{d}\kappa_i}{\mathrm{d}t}=-A_{ji}\,\kappa_j,
+  \qquad
+  \frac{\mathrm{d}\hat{u}_i}{\mathrm{d}t}
+  =\left(\frac{2\,\kappa_i \kappa_m}{\kappa^2}-\delta_{im}\right)
+   A_{mn}\,\hat{u}_n .
+  \label{eq:rdt}
+\end{equation}
+The bracketed operator combines the production $-A_{im}\hat u_m$ with the
+rapid pressure response, the solenoidal projection
+$P_{ij}=\delta_{ij}-\kappa_i\kappa_j/\kappa^2$ applied to the strained
+field; the factor of two is fixed by continuity, since only that
+coefficient makes $\mathrm{d}(\kappa_i\hat u_i)/\mathrm{d}t$ vanish under
+\eqref{eq:rdt}. Two features are central to what follows. First, the
+pressure response is \emph{non-local} and intrinsically
+\emph{three-dimensional}: it requires all of
+$\kappa_1,\kappa_2,\kappa_3$, whereas a single line resolves only the
+wavenumber along its own coordinate, so \eqref{eq:rdt} cannot be
+evaluated on the line as written. Second, the rapid/slow decomposition
+furnishes the organising principle of the formulation: the slow part is
+already carried by the kernel, and it remains to supply the production
+and a rapid redistribution consistent with \eqref{eq:rdt}, expressed in
+quantities available on the line.
+
+\subsection{The strain-coupled line equation and its structural
+admissibility}\label{sec:strain-forcing}
+
+The production term of the fluctuation momentum equation, $-A_{ij}u_j$,
+is a pointwise linear combination of the local velocity components and is
+therefore exactly representable on the line. Between eddy events the
+molecular evolution is replaced by
+\begin{equation}
+  \partial_t u_i
+  = \nu\,\partial_y^2 u_i \;-\; A_{ij}\,u_j \;+\; B_{ij}\,u_j,
+  \label{eq:cont-evolution}
+\end{equation}
+in which $-A_{ij}u_j$ is the production and $B_{ij}u_j$ is the rapid
+pressure--strain operator constructed in \S\,\ref{sec:rapid-kernel}; the
+eddy events \eqref{eq:event}--\eqref{eq:ci} are retained without
+modification, and the advancement is split between the continuous phase
+\eqref{eq:cont-evolution} and the discrete event sequence.
+
+The forcing must not violate the structural properties on which the
+model rests, and it does not; we record the argument as a consistency
+check. The measure preservation, scale locality and kernel identities
+\eqref{eq:kernel-identities} are geometric properties of the map $f$ and
+kernel $K$ on a fixed domain, and the operator splitting applies the
+discrete event exactly as in the standard model, so they hold verbatim.
+Continuity of the fields is preserved because, for a mean gradient
+uniform along the line, the operator
+$\mathcal{A}_{ij}\equiv-A_{ij}+B_{ij}$ acts pointwise and the solution of
+the non-diffusive part of \eqref{eq:cont-evolution} over a sub-step is
+\begin{equation}
+  u_i(y,t)=\big[\exp\!\textstyle\int_{t_0}^{t}
+           \mathcal{A}\,\mathrm{d}t'\big]_{ij}\,u_j(y,t_0),
+  \label{eq:matrixexp}
+\end{equation}
+a $y$-independent matrix, which maps continuous profiles to continuous
+profiles while the molecular term is smoothing. The forcing displaces no
+fluid along $y$, so the Lebesgue measure of the domain is untouched; the
+deliberate straining of the domain is a separate operation
+(\S\,\ref{sec:domain-strain}).
+
+The energetic role of the forcing is exact. At fixed domain length the
+production term evolves the Reynolds stress as
+\begin{equation}
+  \left.\frac{\mathrm{d}R_{ij}}{\mathrm{d}t}\right|_{\text{prod}}
+  = -A_{ik}R_{kj}-A_{jk}R_{ki}
+  \;\equiv\; \mathcal{P}_{ij},
+  \label{eq:production-rate}
+\end{equation}
+exactly the Reynolds-stress production tensor of \eqref{eq:rstransport}:
+the term carries no model assumption. The kinetic-energy budget of the
+formulation thus separates into an exact production by the mean strain,
+energy-conserving redistribution (the kernels), and dissipation by
+molecular diffusion---the structure of the exact transport equation. The
+forcing adds the one term the standard model lacks without disturbing the
+terms it already represents.
+
+\subsection{The rapid redistribution operator}\label{sec:rapid-kernel}
+
+Were the continuous evolution to consist of production and diffusion only
+($B_{ij}=0$), the line would reproduce
+$\mathrm{d}R_{ij}/\mathrm{d}t=\mathcal{P}_{ij}$, whereas the exact
+inviscid rapid-distortion balance is
+$\mathrm{d}R_{ij}/\mathrm{d}t=\mathcal{P}_{ij}+\Pi^{(\mathrm r)}_{ij}$.
+The omission is not small: for turbulence isotropic at the onset of
+straining the classical result derived below gives
+$\Pi^{(\mathrm r)}_{ij}=-\tfrac35\mathcal{P}_{ij}$, so production acting
+alone overstates the initial distortion rate by a factor of $\tfrac52$;
+under sustained strain it also lets a component energy grow without the
+bound that incompressibility imposes. Representing
+$\Pi^{(\mathrm r)}_{ij}$ is essential, not optional.
+
+\subsubsection{The exact rapid pressure--strain and the closure problem}
+\label{sec:closure-problem}
+
+The exact rapid term follows from the amplitude equation. Writing
+\eqref{eq:rdt} as $\mathrm{d}\hat u_i/\mathrm{d}t=M_{in}\hat u_n$ with
+$M_{in}=-A_{in}+2(\kappa_i\kappa_m/\kappa^2)A_{mn}$, and noting that the
+incompressible wavevector dynamics preserve the measure
+$\mathrm{d}\boldsymbol{\kappa}$ (their phase-space divergence is
+$-A_{ii}=0$), the spectrum tensor
+$\Phi_{ij}=\langle\hat u_i^{*}\hat u_j\rangle$ yields
+\begin{equation}
+  \frac{\mathrm{d}R_{ij}}{\mathrm{d}t}
+  = \int\!\big(M_{in}\Phi_{nj}+M_{jn}\Phi_{in}\big)\,
+    \mathrm{d}\boldsymbol{\kappa}
+  = \mathcal{P}_{ij} + \Pi^{(\mathrm r)}_{ij},
+  \label{eq:dRdt-rdt}
+\end{equation}
+in which the production separates from the pressure contribution,
+\begin{equation}
+  \Pi^{(\mathrm r)}_{ij}
+  = 2A_{mn}\big(\mathcal{R}_{ijmn}+\mathcal{R}_{jimn}\big),
+  \qquad
+  \mathcal{R}_{ijmn} \equiv
+  \int \frac{\kappa_i \kappa_m}{\kappa^2}\,
+  \Phi_{nj}(\boldsymbol{\kappa})\,\mathrm{d}\boldsymbol{\kappa}.
+  \label{eq:exact-rps}
+\end{equation}
+The tensor is traceless---by solenoidality $\kappa_n\Phi_{nj}=0$, the
+trace integrand contains $\kappa_i\Phi_{ni}=0$---so the rapid term
+redistributes energy among components without changing the total, in
+keeping with the energy-conserving character of the kernel mechanism.
+Equation \eqref{eq:exact-rps} also exposes the central difficulty: the
+rapid term is a functional of the spectrum tensor through the
+orientation-weighted integral $\mathcal{R}_{ijmn}$, not of the
+single-point Reynolds stress---the classical closure problem of the rapid
+pressure--strain, common to every single-point model
+\citep{Crow1968,LaunderReeceRodi1975,Pope2000} and intrinsic to the
+physics. A line carries $R_{ij}$ and its own one-dimensional spectra, but
+not the distribution of energy over wavevector \emph{orientation} that
+$\mathcal{R}_{ijmn}$ requires; a spectral-tensor closure is therefore
+unavoidable, and we make it explicit. (What a line's data \emph{do}
+determine about this integral, and how sharply, is the analytical
+question taken up in \S\,\ref{sec:gate}.)
+
+\subsubsection{Baseline isotropic closure}\label{sec:iso-closure}
+
+The minimal closure takes the spectrum tensor instantaneously isotropic,
+$\Phi_{nj}=\frac{E(\kappa)}{4\pi\kappa^2}
+\big(\delta_{nj}-\kappa_n\kappa_j/\kappa^2\big)$ with
+$\int E\,\mathrm{d}\kappa=k_t$. With the angular averages
+$\overline{e_ie_m}=\tfrac13\delta_{im}$ and
+$\overline{e_ie_me_ne_j}=\tfrac1{15}(\delta_{im}\delta_{nj}
++\delta_{in}\delta_{mj}+\delta_{ij}\delta_{mn})$ for
+$e_i=\kappa_i/\kappa$,
+\begin{equation}
+  \mathcal{R}_{ijmn}^{\,\mathrm{iso}}
+  = k_t\Big[\tfrac{4}{15}\delta_{im}\delta_{nj}
+    -\tfrac1{15}\big(\delta_{in}\delta_{mj}
+    +\delta_{ij}\delta_{mn}\big)\Big],
+  \label{eq:iso-closure}
+\end{equation}
+and substitution into \eqref{eq:exact-rps} gives, with
+$S_{ij}=\tfrac12(A_{ij}+A_{ji})$ and $A_{nn}=0$,
+\begin{equation}
+  \Pi^{(\mathrm r),\mathrm{iso}}_{ij}
+  = \tfrac{4}{5}\,k_t\,S_{ij}
+  \;=\; -\tfrac{3}{5}\,\mathcal{P}_{ij}
+  \quad\text{(isotropic $R_{ij}$)},
+  \label{eq:crow}
+\end{equation}
+the exact response of initially isotropic turbulence to a weak rapid
+strain \citep{Crow1968} and the content of the
+isotropisation-of-production model with $C_2=\tfrac35$
+\citep{Pope2000}---obtained here, with no adjustable constant, as the
+isotropic limit of \eqref{eq:exact-rps}. For anisotropic turbulence
+$\mathcal{R}_{ijmn}$ must be modelled as a tensor function of $R_{ij}$;
+the general representation linear in the anisotropy is that of
+\citet{LaunderReeceRodi1975}, to which the construction reduces in form.
+We adopt \eqref{eq:iso-closure} as the baseline and assess the
+anisotropic correction in \S\,\ref{sec:verification}.
+
+\subsubsection{Realisation on the line}\label{sec:line-realisation}
+
+Given the closed rapid term---symmetric and traceless---we require a
+pointwise operator $B_{ij}$ whose action on the line reproduces it.
+Demanding that the operator evolve the Reynolds stress by exactly
+$\Pi^{(\mathrm r)}_{ij}$,
+\begin{equation}
+  \big(\mathsf{B}\mathsf{R}+\mathsf{R}\mathsf{B}\big)_{ij}
+  = \Pi^{(\mathrm r)}_{ij},
+  \label{eq:lyapunov}
+\end{equation}
+a continuous Lyapunov equation with, for positive-definite
+$\mathsf{R}$, a unique symmetric solution $\mathsf{B}$. The solution
+conserves kinetic energy automatically---contracting \eqref{eq:lyapunov}
+gives $2B_{ij}R_{ij}=\Pi^{(\mathrm r)}_{ii}=0$, so the rate of working of
+the operator on the line vanishes. In the isotropic case
+$\mathsf{R}=\tfrac23k_t\mathsf{I}$ it reduces to the closed form
+\begin{equation}
+  B_{ij} = \tfrac{3}{5}\,S_{ij},
+  \qquad
+  \mathcal{A}_{ij} = -A_{ij} + \tfrac{3}{5}\,S_{ij}.
+  \label{eq:iso-B}
+\end{equation}
+$B_{ij}$ is evaluated from the running Reynolds stress and applied
+continuously, paced by the mean strain, exactly as the production is.
+This is deliberate: the rapid pressure--strain is by construction the
+part of the redistribution driven by the mean gradient and therefore acts
+at the strain rate, in contrast to the slow redistribution that the eddy
+kernel supplies at the eddy rate. Strain-driven effects (production and
+rapid pressure--strain) are continuous and enter through
+$\mathcal{A}_{ij}$; turbulence-driven effects (the inertial cascade and
+the slow return to isotropy) remain the discrete events.
+
+The sense in which the formulation is rapid-distortion consistent can now
+be stated precisely, again as a consistency check rather than a theorem.
+By \eqref{eq:production-rate} the production term contributes
+$\mathcal{P}_{ij}$ to $\mathrm{d}R_{ij}/\mathrm{d}t$ and by construction
+\eqref{eq:lyapunov} the operator contributes $\Pi^{(\mathrm r)}_{ij}$;
+their sum is the exact balance \eqref{eq:dRdt-rdt} for the prescribed
+closure, with no adjustable constant, recovering \eqref{eq:crow} at the
+onset of distortion of isotropic turbulence. The scope of the statement
+must be drawn as carefully as the result: the consistency holds at the
+level of the \emph{component energies} and is \emph{conditional on the
+spectral closure}; the isotropic closure is exact only at onset, and its
+accuracy for anisotropic states is that of the
+isotropisation-of-production approximation it reproduces. The
+\emph{spectral} distribution of the distorted energy is not enforced by
+\eqref{eq:cont-evolution}: the operator acts uniformly on every resolved
+wavenumber, and the distribution of energy across scales emerges from
+its interaction with diffusion, the cascade and the domain straining. It
+is therefore a genuine prediction, tested in
+\S\S\,\ref{sec:verification}--\ref{sec:val-spectrum}---where the
+uniform, wavenumber-blind action of $B_{ij}$ is also identified as the
+model's measured spectral deficiency (\S\,\ref{sec:threeway}).
+
+\subsection{Wavevector kinematics by domain straining}
+\label{sec:domain-strain}
+
+The second ingredient of \eqref{eq:rdt}, the wavevector evolution, carries
+the kinematic compression and stretching of scales and is independent of
+the amplitude evolution: in the method-of-characteristics reading of
+linear theory, the wavevectors are the characteristics along which the
+amplitudes evolve. On the line the relevant wavenumber is $\kappa_2$. We
+restrict attention to a line aligned with a principal axis of the mean
+strain, so that $A_{12}=A_{32}=0$ and a material element of the line
+remains a coordinate line---as holds for the irrotational mean flow of a
+stagnation region. Then
+$\mathrm{d}\kappa_2/\mathrm{d}t=-A_{22}\,\kappa_2$, and since a material
+element of length $\ell$ stretches as $\dot\ell/\ell=A_{22}$ while
+wavenumbers scale as $1/\ell$, a uniform dilatation of the domain
+reproduces the wavevector kinematics exactly:
+\begin{equation}
+  \frac{1}{L}\frac{\mathrm{d}L}{\mathrm{d}t}=A_{22},
+  \qquad\Longrightarrow\qquad
+  \kappa_2(t)=\kappa_2(t_0)\,
+  \exp\!\Big(\!-\!\int_{t_0}^{t}A_{22}\,\mathrm{d}t'\Big),
+  \label{eq:dilatation}
+\end{equation}
+with $L$ the domain length, implemented within the Lagrangian
+adaptive-mesh advancement of the model \citep{Lignell2013} by imposing
+the mean-flow stretching on the mesh.
+
+This step is not redundant with the amplitude operator. The Reynolds
+stress is an intensive second moment and is invariant under the uniform
+dilatation: the dilatation relabels the scales that carry the energy
+without changing the component energies, while $\mathcal{A}_{ij}$ changes
+the component energies without relabelling scales. The two operations are
+the physical-space counterparts of the characteristic motion and the
+amplitude evolution in \eqref{eq:rdt}, and together they account for the
+mean straining without double counting. Two limitations are inherent to
+representing a three-dimensional kinematics on one axis: the transverse
+wavenumbers also strain but are not represented, their effect being
+subsumed in the spectral closure, which already supplies the orientation
+information the line lacks; and a rotational mean flow, or a line not
+aligned with a principal axis, tilts the material line out of the
+coordinate direction and lies outside the formulation.
+
+\subsection{Summary of the formulation}\label{sec:summary}
+
+The strain-coupled model advances the line field over a sub-step by
+composing (a) a \emph{continuous strain--diffusion phase on a dilating
+domain}---integrate
+$\partial_t u_i=\nu\partial_y^2u_i+\mathcal{A}_{ij}u_j$ with
+$\mathcal{A}_{ij}=-A_{ij}+B_{ij}$, the production exact and $B_{ij}$
+given by \eqref{eq:lyapunov} from the running Reynolds stress and the
+spectral closure (baseline \eqref{eq:iso-B}), while dilating the domain
+by \eqref{eq:dilatation}---and (b) \emph{discrete eddy events} sampled
+from the standard rate distribution: the triplet map and the slow kernel,
+unchanged. Step (a) carries the mean-strain physics; step (b) carries the
+turbulence-driven physics; standard ODT is recovered exactly when
+$A_{ij}=0$.
+
+The relative importance of the two steps is governed by the ratio of the
+mean strain rate $S\equiv(2S_{ij}S_{ij})^{1/2}$ to the turbulence
+relaxation rate,
+\begin{equation}
+  \chi \equiv \frac{S\,k_t}{\varepsilon}.
+  \label{eq:chi}
+\end{equation}
+For $\chi\gg1$ the distortion accumulates faster than the turbulence can
+respond, the eddy events are negligible over the distortion time, and the
+formulation reduces to the rapid-distortion limit of step (a), exact for
+the component energies under the closure. For $\chi\ll1$ the turbulence
+relaxes between increments of strain and the slow kernel dominates. The
+stagnation region of a leading edge is the intermediate regime
+$\chi=O(1)$, in which neither limit is uniformly valid and both
+mechanisms contribute; the fidelity of the formulation across this range,
+and of the emergent distorted spectrum, are assessed against
+rapid-distortion solutions and scale-resolving data in
+\S\S\,\ref{sec:verification}--\ref{sec:val-spectrum}.
 
 % =========================================================================
 \section{Verification against rapid-distortion theory}\label{sec:verification}
@@ -444,21 +923,13 @@ redistribution close the argument
 
 \subsection{The exact rapid pressure--strain term}\label{sec:exact-pi}
 
-For incompressible flow the fluctuating pressure satisfies a Poisson equation
-whose source splits into a part linear in the fluctuations and the mean
-velocity gradient (the \emph{rapid} part) and a part quadratic in the
-fluctuations (the \emph{slow} part) \citep{Pope2000}:
-\begin{equation}
-  \frac{1}{\rho}\,\nabla^2 p'
-  = \underbrace{-2\,\frac{\partial U_k}{\partial x_l}\,
-      \frac{\partial u'_l}{\partial x_k}}_{\text{rapid}}
-    \;\underbrace{-\,\frac{\partial^2}{\partial x_k\partial x_l}
-      \bigl(u'_k u'_l - \overline{u'_k u'_l}\bigr)}_{\text{slow}} .
-  \label{eq:poisson-rapid}
-\end{equation}
-The rapid part is linear in $\boldsymbol{u}'$ and proportional to the mean
-gradient $\partial U_k/\partial x_l$, which for the present homogeneous plane
-strain is the constant tensor $A_{kl}$ of \S\,\ref{sec:val-spectrum}. Writing
+The starting point is the Poisson equation \eqref{eq:poisson} for the
+fluctuating pressure, whose source splits into a part linear in the
+fluctuations and the mean velocity gradient (the \emph{rapid} part) and a
+part quadratic in the fluctuations (the \emph{slow} part)
+\citep{Pope2000}. The rapid part is linear in $\boldsymbol{u}'$ and
+proportional to the mean gradient, which for the present homogeneous
+plane strain is the constant tensor $A_{kl}$. Writing
 $p'_{\mathrm r}$ for the rapid pressure and inverting the Laplacian with the
 free-space Green's function $G(\boldsymbol{x})=-1/4\pi|\boldsymbol{x}|$,
 \begin{equation}
@@ -494,7 +965,7 @@ one obtains the standard exact result
   \label{eq:Mijkl}
 \end{equation}
 where $\kappa=|\boldsymbol{\kappa}|$. Equations
-\eqref{eq:poisson-rapid}--\eqref{eq:Mijkl} are exact; no modelling has entered. The
+\eqref{eq:poisson}--\eqref{eq:Mijkl} are exact; no modelling has entered. The
 tensor $M_{ijkl}$ is a linear functional of the \emph{full three-dimensional}
 spectrum $\Phi_{mn}(\boldsymbol{\kappa})$ through the nonlocal projection
 operator $\kappa_a\kappa_b/\kappa^2$, which is the wavenumber-space image of
@@ -825,7 +1296,7 @@ the result of \citet{Crow1968} that underlies the isotropisation-of-production
 (IP) rapid term in the closure of \citet{LaunderReeceRodi1975}. We note a
 convention: with the symmetrised definition of the pressure--strain correlation
 adopted here and the factor of two carried in the Poisson source
-\eqref{eq:poisson-rapid}, the kernels \eqref{eq:g1}--\eqref{eq:g3} yield the
+\eqref{eq:poisson}, the kernels \eqref{eq:g1}--\eqref{eq:g3} yield the
 coefficient $\tfrac25 k_t$ for the $11$-component directly (since $S_{11}=\tfrac12$),
 equivalent to the standard $\tfrac45 k_t S_{ij}$ of \eqref{eq:crow-spectral}; the ratio
 \eqref{eq:giso} and the tracelessness \eqref{eq:gtrace} are independent of this
@@ -865,7 +1336,7 @@ counting}\label{sec:doublecount}
 A closed rapid term is necessary but not sufficient: it must not duplicate
 redistribution already effected by the eddy events. The pressure--strain
 correlation decomposes canonically into rapid and slow parts,
-$\Pi_{ij}=\Pi^{(\mathrm r)}_{ij}+\Pi^{(\mathrm s)}_{ij}$, corresponding to the two source terms in \eqref{eq:poisson-rapid}. The slow part
+$\Pi_{ij}=\Pi^{(\mathrm r)}_{ij}+\Pi^{(\mathrm s)}_{ij}$, corresponding to the two source terms in \eqref{eq:poisson}. The slow part
 $\Pi^{(\mathrm s)}_{ij}$ is the return-to-isotropy mechanism, quadratic in the
 fluctuations and independent of the mean gradient; the eddy events in ODT,
 which act on the fluctuating field without reference to $A_{kl}$, are the
