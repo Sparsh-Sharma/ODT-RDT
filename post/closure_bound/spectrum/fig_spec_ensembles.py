@@ -24,15 +24,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
 from figstyle_jfm import COL, FULL, panel, plt, save  # noqa: E402
 
-E0 = 0.5    # relaxed-state reference strain for normalisations
-
-
 def load(tag):
     return np.load(os.path.join(HERE, f"{tag}_ens.npz"))
-
-
-def jref(d, e):
-    return int(np.argmin(np.abs(d["t"] - e)))
 
 
 def fig_bvc(on, off):
@@ -53,27 +46,24 @@ def fig_bvc(on, off):
            label="rigid translation")
     for d, col, lab in ((on, COL["odt"], "strain on"),
                         (off, "0.35", "strain off")):
-        j0 = jref(d, E0)
-        r = d["cent_gmean"] / d["cent_gmean"][j0]
+        r = d["cent_gmean"] / d["cent_gmean"][0]
         gs = d["cent_gsd"]
         b.plot(d["t"], r, color=col, lw=1.1, label=lab)
         b.fill_between(d["t"], r / gs, r * gs, color=col, alpha=0.2,
                        lw=0)
     b.axhline(1.0, color="0.7", lw=0.5, ls=":")
     b.set_xlabel(r"total strain $e$")
-    b.set_ylabel(r"$\bar\kappa(e)/\bar\kappa(e_0)$")
+    b.set_ylabel(r"$\bar\kappa(e)/\bar\kappa(0)$")
     b.set_yscale("log")
     b.legend(loc="upper left")
     panel(a, "a", x=0.88)
     panel(b, "b", x=0.88, y=0.15)
     fig.tight_layout(pad=0.4)
     save(fig, os.path.join(HERE, "fig_spec_bvc"))
-    j0 = jref(on, E0)
-    print("bvc: strain-on centroid ratio at e=4:",
-          f"{on['cent_gmean'][-1] / on['cent_gmean'][j0]:.2f}")
-    j0 = jref(off, E0)
-    print("bvc: strain-off centroid ratio at e=4:",
-          f"{off['cent_gmean'][-1] / off['cent_gmean'][j0]:.2f}")
+    print("bvc: strain-on centroid ratio at e=3.9 (vs t=0):",
+          f"{on['cent_gmean'][-1] / on['cent_gmean'][0]:.2f}")
+    print("bvc: strain-off centroid ratio at e=3.9 (vs t=0):",
+          f"{off['cent_gmean'][-1] / off['cent_gmean'][0]:.2f}")
 
 
 def fig_op(op):
@@ -98,25 +88,24 @@ def fig_op(op):
     ee = np.linspace(0, 4, 100)
     b.plot(ee, np.exp(0.5 * ee), "k--", lw=0.9,
            label="rigid translation")
-    j0 = jref(op, E0)
-    r = op["cent_gmean"] / op["cent_gmean"][j0]
+    r = op["cent_gmean"] / op["cent_gmean"][0]
     b.plot(op["t"], r, color=COL["odt"], lw=1.1, label="ODT centroid")
     b.fill_between(op["t"], r / op["cent_gsd"], r * op["cent_gsd"],
                    color=COL["odt"], alpha=0.2, lw=0)
-    rp = op["peak_gmean"] / op["peak_gmean"][j0]
+    rp = op["peak_gmean"] / op["peak_gmean"][0]
     b.plot(op["t"], rp, color=COL["phi11"], lw=0.9, ls=(0, (4, 2)),
            label="spectral peak")
     b.set_xlabel(r"total strain $e$")
-    b.set_ylabel(r"migration from $e_0=0.5$")
+    b.set_ylabel(r"migration from $e=0$")
     b.set_yscale("log")
     b.legend(loc="upper left")
     panel(a, "a", x=0.88)
     panel(b, "b", x=0.88, y=0.15)
     fig.tight_layout(pad=0.4)
     save(fig, os.path.join(HERE, "fig_spec_op"))
-    print("op: centroid ratio at e=4:", f"{r[-1]:.2f}",
+    print("op: centroid ratio at e=3.9:", f"{r[-1]:.2f}",
           " peak ratio:", f"{rp[-1]:.2f}",
-          " rigid:", f"{np.exp(0.5 * (op['t'][-1] - E0)):.2f}")
+          " rigid:", f"{np.exp(0.5 * op['t'][-1]):.2f}")
     # chi from the energy budget:  P = 0.5*(R22 - R11) for A=diag(.5,-.5,0)
     kt, t = op["kt_mean"], op["t"]
     P = 0.5 * (op["R22_mean"] - op["R11_mean"])
@@ -133,35 +122,42 @@ def fig_op(op):
     print("op: chi (gradient) median:", f"{np.median(chig[m]):.2f}")
 
 
-def fig_aniso(on):
+def fig_aniso(on, off):
+    """Strain-induced migration per component: centroid of the strained
+    ensemble over the matched no-strain baseline (the on/off logic of
+    sec:spec-bvc applied per component), against the rigid law."""
     fig, ax = plt.subplots(figsize=(0.62 * FULL, 2.3))
-    j0 = jref(on, E0)
+    t = on["t"]
+    ee = np.linspace(0, 2.2, 50)
+    ax.plot(ee, np.exp(0.5 * ee), "k--", lw=0.9,
+            label="rigid translation")
     for key, col, lab in (("c1", COL["phi11"],
                            r"streamwise $\bar\kappa_1$"),
                           ("c2", COL["phi22"],
                            r"upwash $\bar\kappa_2$")):
-        r = on[key + "_gmean"] / on[key + "_gmean"][j0]
-        ax.plot(on["t"], r, color=col, lw=1.1, label=lab)
-        ax.fill_between(on["t"], r / on[key + "_gsd"],
-                        r * on[key + "_gsd"], color=col, alpha=0.2,
-                        lw=0)
-    ax.axvspan(0, E0, color="0.92", zorder=0)
+        r = on[key + "_gmean"] / off[key + "_gmean"]
+        gs = np.sqrt(on[key + "_gsd"] * off[key + "_gsd"])
+        ax.plot(t, r, color=col, lw=1.1, label=lab)
+        ax.fill_between(t, r / gs, r * gs, color=col, alpha=0.2, lw=0)
     ax.axhline(1.0, color="0.7", lw=0.5, ls=":")
+    ax.set_xlim(0, 2.2)
+    ax.set_ylim(0.9, 3.2)
     ax.set_xlabel(r"total strain $e$")
-    ax.set_ylabel(r"$\bar\kappa_i(e)/\bar\kappa_i(e_0)$")
+    ax.set_ylabel(r"$\bar\kappa_i^{\rm on}/\bar\kappa_i^{\rm off}$")
     ax.legend(loc="upper left")
     fig.tight_layout(pad=0.4)
     save(fig, os.path.join(HERE, "fig_cmk_aniso"))
-    print("aniso: c1, c2 ratio at e=2.2:",
-          f"{np.interp(2.2, on['t'], on['c1_gmean'] / on['c1_gmean'][j0]):.2f}",
-          f"{np.interp(2.2, on['t'], on['c2_gmean'] / on['c2_gmean'][j0]):.2f}")
+    for key in ("c1", "c2"):
+        r = on[key + "_gmean"] / off[key + "_gmean"]
+        print(f"aniso: {key} on/off at e=2.2:",
+              f"{np.interp(2.2, t, r):.2f}")
 
 
 if __name__ == "__main__":
     on = load("B5")
     off = load("B5off")
     fig_bvc(on, off)
-    fig_aniso(on)
+    fig_aniso(on, off)
     try:
         op = load("OP")
     except FileNotFoundError:

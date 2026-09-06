@@ -1082,22 +1082,243 @@ against both the exact reference and DNS.
   \label{fig:spec-rdt}
 \end{figure}
 
-%% TRANSPLANT: V2 sec:spec-bvc (the REFRAMED version, post-M2) — verbatim.
-%% TRANSPLANT: V2 sec:cmk (rapid-distortion limit + emergent anisotropy)
-%%   — compressed to ~1.5 pp; drop sec:spec-Re and sec:spec-op details to
-%%   an appendix table (operating point derivation referenced, not
-%%   re-derived).
+%% TRANSPLANTED 2026-09-07: sec:spec-bvc (reframed post-M2 version,
+%%   near-verbatim) + sec:spec-Re/spec-op COMPRESSED to one operating-
+%%   point subsubsection + sec:cmk compressed.  ALL underlying ensembles
+%%   RERUN on caro (B5/B5off nu=1e-5 x128, OP nu=3e-6 16000 cells x256;
+%%   the old WSL data are gone) and all figures rebuilt in the canon;
+%%   numbers below are from the fresh ensembles.
 
-\emph{[M-spectrum: transplant sec:spec-bvc + compressed CMK here.]}
+\subsubsection{The distorted spectrum: strain on against strain
+off}\label{sec:spec-bvc}
+
+The central model-internal comparison isolates what the strain does to
+the spectrum at fixed Reynolds number, holding the turbulence otherwise
+identical. Two ensembles of $128$ realisations are run at $\nu=10^{-5}$:
+the full model (eddies and dilatation active) and a baseline identical
+in every respect except that the strain machinery is switched off, so
+the line does not compress. Because the two differ only in the presence
+of the mean strain, the difference between them is the distortion,
+cleanly separated from the cascade and dissipation the eddies produce on
+their own.
+
+Figure~\ref{fig:spec-bvc} shows the result, and it departs from the
+kinematic reference in a specific and physically meaningful way.
+Consider the centroid first. The no-strain baseline, after the brief
+initialisation transient, relaxes monotonically to
+$\bar\kappa/\bar\kappa_0<1$: with no compression, the eddies merely
+redistribute energy and the centroid drifts below its initial value. The
+full model is lifted clearly above this baseline---compression does push
+the spectrum toward higher wavenumber---yet it settles at
+$\bar\kappa/\bar\kappa_0\approx1.6$--$2.1$, far below the
+rigid-translation line, which rises to $7.4$ at $e=4$. The reason is
+visible in the spectra: the full-model spectrum is not a rigid
+translation of the baseline but a \emph{broadband} distortion. It
+extends to substantially higher wavenumber than the baseline---energy is
+genuinely carried to small scales by compression and cascade---but the
+bulk of the energy remains at the energetic scales, and what reaches
+high wavenumber is dissipated there rather than accumulated.
+
+Two distinct effects are mixed in this departure, and
+\S\,\ref{sec:spec-linref} requires that they be separated. The first is
+the eddy cascade and dissipation, which the strain-on/strain-off
+construction isolates cleanly at the level of the model. The second is
+that exact linear theory itself, once projected onto the line, is
+already broadband (figure~\ref{fig:rdt-projection}): part of what a
+rigid-translation reference attributes to nonlinearity is present in the
+linear physics. The strain-on/strain-off comparison therefore measures
+what the mean strain does \emph{within the model}; how the model's
+distorted spectrum stands against exact linear theory and against DNS on
+the same footing is answered by the three-way comparison of
+\S\,\ref{sec:threeway}. What survives either way is the qualitative
+point that a frozen, rigidly strained upwash spectrum misrepresents the
+distorted inflow, which motivates supplying a distorted spectrum to
+Amiet's theory in place of it, in the spirit of the
+rapid-distortion-modified inflow spectra of \citet{deSantana2016} but
+without the frozen-shape assumption.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_spec_bvc.pdf}
+  \caption{Full model against the matched no-strain baseline at
+  $\nu=10^{-5}$ (ensemble means over $128$ realisations, geometric
+  $\pm\sigma$ bands). (\textit{a}) Final-strain total spectrum
+  $E(\kappa_2)$: the full model (strain on) extends to higher wavenumber
+  than the baseline (strain off) but remains broadband, not a rigid
+  translation. (\textit{b}) Centroid migration: the baseline relaxes
+  below unity, the full model is lifted above it by the compression, yet
+  stays far below the rigid-translation line (dashed). The gap between
+  the two solid curves is the distortion attributable to the mean strain
+  at this Reynolds number.}
+  \label{fig:spec-bvc}
+\end{figure}
+
+\subsubsection{The physical operating point}\label{sec:spec-op}
+
+The molecular viscosity is, in these units, the inverse integral-scale
+Reynolds number, and it is a physical property of the represented
+inflow, not a tunable parameter: a sweep over
+$\nu=10^{-4}$--$10^{-7}$ shows the cascade deepening monotonically, with
+the resolved cases settling below the linear-RDT centroid line while the
+lowest viscosities climb toward it only by piling energy into an
+under-resolved grid-scale shelf. The operating point is therefore the
+viscosity matching the target inflow, resolution-checked. For the
+reference configuration---a NACA0012 at $U_\infty=20$\,m\,s$^{-1}$ in
+grid turbulence with intensity $u'/U_\infty\approx6\%$ and integral
+scale $\mathcal{L}\approx55$\,mm at the leading-edge plane---the
+integral-scale Reynolds number is
+$Re_{\mathcal{L}}\approx4.4\times10^3$, which maps through the
+initial-condition normalisation to $\nu\approx3\times10^{-6}$, run on a
+refined grid ($16000$ cells) on which the dissipation rolloff is
+resolved with margin; the ensemble comprises $200$ realisations.
+
+Figure~\ref{fig:spec-op} shows the result. The component spectra fall
+smoothly across four decades with no grid-scale shelf, the upwash
+component $E_2$ amplified above the streamwise $E_1$---the spectral
+signature of the plane strain---and no extended $k^{-5/3}$ range, as
+expected physically at this Reynolds number
+\citep{Kolmogorov1991,Pope2000}. The centroid settles after the
+initialisation transient and migrates to $\approx2.4$ by $e=4$, far
+below the rigid-translation value of $7.4$: the broadband, dissipative
+distortion of \S\,\ref{sec:spec-bvc} at the physical operating point. The regime is
+quantified with an estimator-free dissipation: because the eddy events
+conserve energy and the production is exact, molecular dissipation is
+the only sink, so it is fixed by the resolved energy budget
+\begin{equation}
+  \varepsilon = \mathcal{P} - \frac{\mathrm{d}k_t}{\mathrm{d}t}
+              = -A_{ij}R_{ij} - \frac{\mathrm{d}k_t}{\mathrm{d}t},
+  \label{eq:eps-budget}
+\end{equation}
+every term available on the line. By this budget the strain-rate
+parameter settles at $\chi=Sk_t/\varepsilon\approx0.8$ over the strained
+trajectory, corroborated within a few tens of per cent by the direct
+gradient estimate $\langle2\nu(\partial u_i/\partial y)^2\rangle$: the
+operating point sits at $\chi=O(1)$, the regime the leading-edge
+stagnation flow occupies, where neither the rapid-distortion nor the
+near-equilibrium limit applies and where beating linear theory is
+meaningful. The spectral \emph{peak} corroborates the regime reading
+independently of the dissipation estimator: the energy-containing
+wavenumber itself migrates far less than the rigid law, so the eddy
+relaxation holds back the energy-containing range, not merely the
+dissipation tail---linear theory misplaces the energy-containing
+wavenumber, not only the spectral shape at high $\kappa$. The cost is
+the practical justification of the approach: the operating-point
+ensemble completes in a few hundred core-hours, roughly two orders of
+magnitude below a strained DNS ensemble at comparable Reynolds number,
+which is what makes parametric sweeps over inflow condition feasible.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_spec_op.pdf}
+  \caption{The physical operating point ($\nu\approx3\times10^{-6}$,
+  $Re_{\mathcal{L}}\approx4.4\times10^3$, $16000$ cells; ensemble over
+  $200$ realisations, geometric $\pm\sigma$).
+  (\textit{a}) Final-strain component spectra: smooth rolloff with no
+  grid-scale shelf; the upwash $E_2$ amplified above the streamwise
+  $E_1$; dotted reference slope $\kappa^{-5/3}$.
+  (\textit{b}) Total-spectrum centroid migration against the
+  rigid-translation law (dashed): the broadband distortion that linear
+  theory cannot represent, at the operating point and with the noise
+  averaged out.}
+  \label{fig:spec-op}
+\end{figure}
+
+\subsection{Validation against the strained-turbulence experiment of
+Chen, Meneveau \& Katz}\label{sec:cmk}
+
+The strain-on/strain-off comparison is model-internal; an external
+benchmark must confirm that both the rapid-distortion limit and the
+departure from it are physical. We use the plane-strain experiment of
+\citet{ChenMeneveauKatz2006} (CMK), in which initially near-isotropic
+turbulence at $R_\lambda\approx400$ is subjected to a controlled planar
+straining cycle and the one-dimensional component spectra are compared
+with rapid-distortion theory. We reproduce the \emph{straining} phase of
+their cycle (the destraining phases involve a strain reversal outside
+the present monotonic configuration); its end corresponds to a total
+deformation $D=\exp(\tfrac12\!\int S\,\mathrm{d}t)\approx3$, i.e.
+$e\approx2.20$ in the present notation.
+
+In the rapid-distortion limit (eddy events suppressed, inviscid) the
+model must reproduce the analytic reference of
+\citet{LeePiomelliReynolds1986} that CMK use.
+Figure~\ref{fig:cmk-rdt} shows that it does: the component spectral
+centroids follow the rigid-translation law, reaching the deformation
+ratio $3.00$ at $e=2.20$ with the components coincident, and the
+kinetic energy reaches $1.72$ against the exact rapid-distortion
+amplification $1.69$---the residual being the moment closure's, not the
+implementation's (\S\,\ref{sec:level1a}), since with the events
+suppressed the solver evolves the closure trajectory ($1.72$) exactly.
+The truly inviscid setting is required: any nonzero viscosity
+dissipates the compressed small scales and degrades the rigid
+translation, an effect we verified directly.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_cmk_rdt.pdf}
+  \caption{Rapid-distortion limit (eddy events suppressed, inviscid)
+  against the analytic reference of \citet{LeePiomelliReynolds1986}
+  used by \citet{ChenMeneveauKatz2006}. (\textit{a}) Component
+  spectral-centroid migration follows the rigid-translation law,
+  reaching the deformation ratio $D=3$ at the end of the straining
+  phase. (\textit{b}) Kinetic-energy amplification: the solver follows
+  the closure trajectory, within $2\%$ of the exact rapid-distortion
+  value at $e=2.20$.}
+  \label{fig:cmk-rdt}
+\end{figure}
+
+With the eddy events and viscosity active the model is no longer
+constrained to rigid translation, and the strain drives a measurable
+anisotropy between the components. Figure~\ref{fig:cmk-aniso} shows the
+strain-induced migration of the streamwise and upwash component
+centroids, each measured against the matched no-strain baseline (the
+per-component form of the strain-on/strain-off construction, which
+cancels the initialisation transient and the eddies' own relaxation):
+the components diverge progressively under continued strain---the
+streamwise migration reaching $1.9$ at the end of the straining phase
+against $1.5$ for the upwash, both far below the rigid value
+$3$---so the upwash component is held back most. This is the qualitative behaviour CMK
+report---the strained spectrum departs from the isotropic-translation
+expectation with the components responding differently---and it is the
+spectral signature of the broadband distortion of
+\S\,\ref{sec:spec-bvc}. The comparison is restricted to its qualitative
+content, for three reasons stated plainly: the band-limited initial
+spectrum differs from CMK's, so absolute levels are not comparable; the
+line-resolved one-dimensional spectra and the experiment's
+transverse/longitudinal projections are not the same projection of the
+spectrum tensor; and the scale separation achieved here
+($\mathcal{L}/\eta\approx250$) is below the experimental $\approx930$,
+whose compressed dissipation range exceeds feasible line resolution.
+Within these limits the model reproduces the rapid-distortion reference
+and the qualitative departure mechanism of the benchmark; the
+quantitative spectral assessment is carried out against the strained-box
+DNS below, where the projection and the initial spectrum are matched by
+construction.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.62\textwidth]{Figures/fig_cmk_aniso.pdf}
+  \caption{Full model (eddies and viscosity active; ensembles over
+  $128$ realisations at $\nu=10^{-5}$): strain-induced migration of the
+  streamwise and upwash component centroids, each as the ratio of the
+  strained ensemble to the matched no-strain baseline, against the
+  rigid-translation law (dashed). The components diverge under
+  strain---the upwash held back most---reproducing the qualitative
+  departure-from-RDT mechanism of \citet{ChenMeneveauKatz2006}. The
+  comparison is qualitative; see text.}
+  \label{fig:cmk-aniso}
+\end{figure}
 
 \subsection{Validation against a strained-box DNS with an exact-RDT
 companion}\label{sec:box-dns}
 
-The comparisons above validate the model at the Reynolds-stress level. The
-referent quantity for the leading-edge application, however, is spectral,
-and the objection that the emergent-spectrum results of
-\S\,\ref{sec:val-spectrum} compare the model only with itself must be met
-with an independent spectral benchmark under the same strain. To that end
+The comparisons above are either model-internal
+(\S\,\ref{sec:spec-bvc}) or, where external, qualitative by construction
+(\S\,\ref{sec:cmk}) or at the Reynolds-stress level
+(\S\,\ref{sec:lr-validation}). The referent quantity for the
+leading-edge application is spectral, and the objection that the
+emergent-spectrum results compare the model only with itself must be met
+with an independent, projection-matched spectral benchmark under the
+same strain. To that end
 we performed direct numerical simulations of plane-strained homogeneous
 turbulence in a deforming-frame (Rogallo-type) pseudo-spectral formulation:
 a $128^3$ box, decaying isotropic precursor, then plane strain

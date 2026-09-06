@@ -317,9 +317,23 @@ Manuscript (master):
   analytic 1.74" was sloppy, v3 states run-vs-exact honestly with the
   2% closure residual attributed.  fig_cmk_aniso now derived from the
   B5 ensemble (V2's separate N=64 ensemble had no surviving deck).
-  PENDING: B5/B5off/OP npz -> fig_spec_bvc, fig_spec_op, fig_cmk_aniso
-  + verify the quoted numbers (centroid plateaus, chi~0.8) against the
-  fresh ensembles.
+  DONE 2026-09-07 — the manuscript skeleton is COMPLETE (35 pp, ZERO
+  unresolved references).  Data outcomes:
+  * B5/B5off (128 rlz each, fresh): reproduce V2's claims exactly under
+    V2's t=0 normalisation — full model settles 1.6-2.05, baseline
+    decays to 0.64 (fig_spec_bvc canon).  fig_cmk_aniso rebuilt on a
+    CLEANER construction: per-component strain-on/strain-off centroid
+    ratio (cancels transient + eddy relaxation): streamwise 1.88 vs
+    upwash 1.53 at e=2.2, rigid 3.0.
+  * OP ensemble: caro rerun STALLED on the low-nu sampler transient
+    even after the Lmin fix (e~0.13 after 3h; walltime-bound) —
+    FALLBACK per Sparsh: fig_spec_op EXTRACTED from the archived vector
+    PDFs (fig_spec_op_archive.py; calibration validated by the archived
+    rigid line reproducing exp(e/2) to 1%; archived centroid endpoint
+    2.39 = the quoted 2.4; N corrected 256->200 in text = archived
+    ensemble).  chi~0.8 numbers stand on archived data.  QUEUED task:
+    long-walltime OP rerun (deck input/homogeneousStrainOP with
+    committed Lmin fix; also re-verify chi from eq:eps-budget then).
 - M4. §2 compression + SC2018 + intro repair (O7, O8, O9).
 - M5. [Option C] LE section from Gate machinery (O6) — written last.
 - M6. Cover letter: objection→change map; cite JFM-2026-1781; venue memo.
