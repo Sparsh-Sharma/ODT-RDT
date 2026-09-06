@@ -1577,7 +1577,7 @@ line).} The spectrum tensor of the incoming turbulence, before the rapid
 distortion acts, is axisymmetric about the resolved direction $\boldsymbol{e}_2$:
 $\Phi_{mn}(\boldsymbol{\kappa})$ depends on $\boldsymbol{\kappa}$ only through
 $\kappa_2$ and $\kappa_\perp=(\kappa_1^2+\kappa_3^2)^{1/2}$, and its
-polarization is invariant under rotation about $\boldsymbol{e}_2$.
+polarisation is invariant under rotation about $\boldsymbol{e}_2$.
 
 This is a statement about the \emph{turbulence}, not about the strain. It is
 justified for the present configuration because the inflow is grid turbulence,
@@ -2058,7 +2058,19 @@ the measurement band.
   best of the family: gains without the deep-strain overshoot\\[4pt]
   $2$ levels iterated $3\times$ per event &
   strongest at $e=1$ ($1.29$); overshoots at deep strain &
-  per-event amplitude is not the limiter\\
+  per-event amplitude is not the limiter\\[4pt]
+  concurrent relaxation: $N$ same-size intervals, randomly placed
+  ($N=1$, $3$) &
+  $N=1$ null; $N=3$ significant in both bands at $e=1$, strongest at
+  the energy-containing scales; fade persists &
+  the sampled intervals act at eddy scale; delocalising the events
+  alone is not the lever\\[4pt]
+  concurrent $+$ depth ($N=3$, adaptive hierarchy in each interval) &
+  strongest early effect of the family ($\mathcal A_{\rm hi}$
+  $1.43\to1.26$); low band significant even at $e=3.9$; fine scales
+  overshoot depth-only at deep strain &
+  dosage helps early and at large scales, and harms deep-strain fine
+  scales wherever it is applied\\
   \end{tabular}
   \caption{The intervention family on the transmission diagnostic
   ($1024$ paired-seed realisations per case; effects quoted as median
@@ -2096,28 +2108,47 @@ fine-scale floor moves toward component equality immediately
   (\textit{c}) transmission $\mathcal A_{\rm hi}/\mathcal A_{\rm lo}$,
   (\textit{d}) upwash energy fraction, against total strain: standard
   ODT, hierarchical sub-scale kernels at fixed depth ($1$--$3$ levels),
-  depth tied to eddy size, and the per-event iterated variant. Medians
-  over $1024$ paired-seed realisations, $95\%$ bootstrap intervals.}
+  depth tied to eddy size, the per-event iterated variant, concurrent
+  relaxation ($N=3$ randomly placed same-size intervals per event), and
+  the stacked variant (concurrent intervals each running the adaptive
+  hierarchy). Medians over $1024$ paired-seed realisations, $95\%$
+  bootstrap intervals.}
   \label{fig:klevels}
 \end{figure}
 
-Two further variants separate the candidate explanations for the one
+Four further variants separate the candidate explanations for the one
 remaining limitation, the fading of the gains beyond $e\approx3$. Tying
 the recursion depth to the eddy size (subdividing while the sub-interval
 remains above a near-dissipative floor, so that large eddies do
-proportionally more sub-scale work) is the best member of the family:
-both bands significant at $e=1$, the effect retaining its sign through
-$e=3$, and no reversal at the deepest strain. Iterating the two-level
-pass three times within each event answers the amplitude hypothesis in
-the negative: it is the strongest early isotropiser but overshoots at
-deep strain. Depth that reaches the measured scales therefore matters;
-per-event dosage does not; and the deep-strain fade is universal across
-the family however the relaxation is administered. The remaining suspect
-is structural: relaxation is locked to eddy events while the strain
-resupplies the imbalance continuously, and at these total strains the
-event rate cannot keep pace. Whether that saturation is a model artefact
-or the physical statement that sustained rapid distortion outruns any
-cascade-mediated return to isotropy is not decided by these experiments.
+proportionally more sub-scale work) gives the gains of depth with no
+reversal at the deepest strain: both bands significant at $e=1$ and the
+effect retaining its sign through $e=3$. Iterating the two-level pass
+three times within each event answers the amplitude hypothesis in the
+negative: it is a stronger early isotropiser but overshoots at deep
+strain. Delocalising the relaxation---after each eddy, applying the
+kernel isotropisation in $N$ randomly placed intervals of the same size,
+overlaps allowed---tests whether the \emph{location} of the events is
+the limiter: $N=1$ is null, and $N=3$ is significant in both bands at
+$e=1$ but acts mainly at the energy-containing scales, since the sampled
+intervals inherit the eddy-size distribution and full-interval
+isotropisation acts at that scale. Stacking the two ideas---the adaptive
+hierarchy inside each sampled interval---is the strongest early
+isotropiser of the family ($\mathcal A_{\rm hi}$ from $1.43$ to $1.26$
+at $e=1$) and delivers the only significant deep-strain effect, in the
+energy-containing band at $e=3.9$; yet at the fine scales and deep
+strain it overshoots the depth-only variant significantly. The ledger
+is then complete: depth sets \emph{where} the relaxation acts and is
+necessary; dosage and delocalisation raise the early gains in
+proportion to the total relaxation delivered; and no combination
+tested---more depth, more dosage, more events, other
+locations---prevents the fine-scale fade beyond $e\approx3$. The
+deep-strain fine scales are resupply-limited, not
+implementation-limited: relaxation acts at the event rate while the
+strain resupplies the imbalance continuously, and at these total
+strains no per-event scheme keeps pace. Whether that saturation is a
+model artefact or the physical statement that sustained rapid
+distortion outruns any cascade-mediated return to isotropy is not
+decided by these experiments.
 
 \subsection{The measured missing ingredient}\label{sec:limits-endpoint}
 
@@ -2198,7 +2229,7 @@ solenoidality is exact by construction, which is how the third would-be
 scalar of a general axisymmetric tensor is eliminated. For a unit vector
 $\boldsymbol{v}$ normal to $\boldsymbol{\kappa}$,
 $\Phi_{mn}v_mv_n = a + c\,(\boldsymbol{\xi}\cdot\boldsymbol{v})^2$, so the
-two eigenvalues of the polarization matrix on that plane are $a$ (attained
+two eigenvalues of the polarisation matrix on that plane are $a$ (attained
 for $\boldsymbol{v}\perp\boldsymbol{\xi}$) and $a+(1-x)\,c$ (for
 $\boldsymbol{v}\parallel\boldsymbol{\xi}$). Positive semi-definiteness is
 therefore the pointwise \emph{realisability cone}
@@ -2366,11 +2397,73 @@ each $\pi_n$; finite-window bias on $\phi_{mn}$ at small $\kappa_2$
 propagates linearly and can be carried as interval data in place of the
 equalities with no change of machinery.
 
-\section{Numerical parameters and initialisation}\label{app:numerics}
-%% TRANSPLANT: V2 implementation details judged supplementary (R1 minor);
-%%   the symmetric C^{-1/2} IC whitening statement (correction e);
-%%   realization counts and jackknife policy (correction f).
-\emph{[Appendix B: numerics + IC whitening + statistics policy.]}
+\section{Numerical parameters, initial conditions and statistics}
+\label{app:numerics}
+%% WRITTEN 2026-09-08 (corrections e and f of the section-5 note; V2
+%%   implementation details compressed per R1 minor).
+
+\subsection{ODT configurations}
+
+All line ensembles share the solver settings of the standard model
+\citep{StephensLignell2021}: eddy-rate constant $C=7$, viscous-penalty
+parameter $Z=450$, kernel parameter $\alpha=2/3$, adaptive mesh with
+$\mathrm{d}x\in[2\times10^{-4},2\times10^{-2}]$ on a unit domain
+($4000$ initial cells), explicit advancement with diffusive CFL $0.5$
+and a strain-resolved bound of $10^{-2}$ on the total-strain increment
+per step (\S\,\ref{sec:level1a}). The initial condition is the resolved
+spectral field of \S\,\ref{sec:level1a}: a band-limited isotropic
+superposition of $64$ Fourier modes peaked at eight wavelengths per
+domain, which places no energy at the grid scale. Strained production
+ensembles use an unstrained precursor: the line evolves as standard ODT
+until the eddy population is statistically active and the initialisation
+transient has relaxed, and the strain is switched on only then
+(\S\,\ref{sec:box-dns}). The molecular viscosity is set per study:
+$10^{-4}$ for the transmission diagnostic of \S\,\ref{sec:limits}
+(a scale diagnostic, resolved with wide margin), $10^{-5}$ for the
+strain-on/off ensembles of \S\,\ref{sec:spec-bvc}, and
+$3\times10^{-6}$ on a $16000$-cell grid at the operating point of
+\S\,\ref{sec:spec-op}.
+
+\subsection{Strained-box DNS and exact-RDT companions}
+
+The benchmark of \S\,\ref{sec:box-dns} is a pseudo-spectral $128^3$
+simulation in a Rogallo deforming frame: a decaying isotropic precursor,
+then plane strain $A=S\,\mathrm{diag}(\tfrac12,-\tfrac12,0)$ at
+$Sk_t/\varepsilon\in\{0.8,16\}$ at onset, carried to $e=1$ over four
+independent realisations, with $\kappa_{\max}\eta\approx0.76$ at
+$e=1$---a pilot resolution, so small-scale statements are qualitative.
+Every realisation has an exact-RDT companion: the same initial field
+evolved under the closed-form Cauchy solution of the linearised
+equations and projected onto lines identically. The initial Fourier
+fields are whitened by the \emph{symmetric} inverse square root
+$C^{-1/2}$ of the sample covariance, so the initial anisotropy vanishes
+per realisation. This detail is load-bearing: an ordered-Cholesky
+whitening used initially left a bias $b_{33}=+0.0148\pm0.0046$,
+detected by the nominal-turbulence null test (strain machinery active,
+$A=0$) and traced by a reversal experiment to the ordering; with the
+symmetric form all $|b_{ii}|\le0.005$ and the on-line falsifier T1
+exceeds its confidence band at the chance rate. The estimator pipeline
+of \S\,\ref{sec:bounds} passes the same null battery on JHTDB isotropic
+turbulence ($1024^3$, $128$ lines): T1 exceedances at the chance rate,
+cross-spectral coherences $\sim10^{-2}$, the longitudinal--transverse
+derivative relation to $4\%$, and the LP bounds bracketing the exact
+isotropic value at every constraint level.
+
+\subsection{Statistics policy}
+
+Spectral band quantities of the strained line are strongly intermittent
+across realisations---single realisations carry $10^2$--$10^3$ times
+the median band energy---so ensemble means of band ratios do not
+converge at any practical sample size. All ODT spectral statistics are
+therefore medians over realisations with $95\%$ bootstrap confidence
+intervals of the median, and every intervention in
+\S\,\ref{sec:limits} is assessed by the median of \emph{paired}
+same-seed contrasts, quoted significant only when the bootstrap
+interval excludes zero. Ensemble sizes: $1024$ realisations for the
+transmission diagnostic and the distance envelope, $128$--$200$ for the
+spectrum ensembles of \S\,\ref{sec:val-spectrum}, and four seeds for
+the DNS and its companions, whose derived quantities carry jackknife
+errors over realisations.
 
 \bibliographystyle{jfm}
 \bibliography{jfm}

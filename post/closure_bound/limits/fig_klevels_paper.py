@@ -12,7 +12,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
-from figstyle_jfm import FULL, VARIANTS, panel, plt, save  # noqa: E402
+from figstyle_jfm import FULL, RED, VARIANTS, panel, plt, save  # noqa: E402
 
 NB = os.path.join(HERE, "newbands")
 CASES = [
@@ -25,6 +25,9 @@ CASES = [
      VARIANTS[4], "v"),
     ("2 levels, iterated 3x", "bands_homogeneousStrain2K2I3.npz",
      VARIANTS[5], "P"),
+    ("concurrent, $N{=}3$", "bands_homogeneousStrain2CR3.npz",
+     "#d66ba0", "X"),
+    ("concurrent + depth", "bands_homogeneousStrain2CRS.npz", RED, "*"),
 ]
 NBOOT = 2000
 
@@ -62,9 +65,9 @@ def main():
             ax.set_xlabel("total strain $e$")
         panel(ax, "abcd"[j])
     h, lab = axs[0].get_legend_handles_labels()
-    fig.legend(h, lab, ncol=3, loc="lower center",
+    fig.legend(h, lab, ncol=4, loc="lower center",
                bbox_to_anchor=(0.5, -0.10), handlelength=1.6,
-               columnspacing=1.2, labelspacing=0.3)
+               columnspacing=1.0, labelspacing=0.3)
     fig.tight_layout(pad=0.4)
     save(fig, os.path.join(HERE, "fig_klevels"))
 
