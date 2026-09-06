@@ -384,8 +384,11 @@ bool solver::sampleEddyAndImplementIfAccepted() {
 
             domn->mesher->enforceDomainSize();     // chop the domain
         }
-        else
-            domn->ed->applyVelocityKernels(domn, iStart, iEnd);   
+        else {
+            domn->ed->applyVelocityKernels(domn, iStart, iEnd);
+            if(domn->pram->nSubKernelLevels > 0)     // hierarchical isotropization (Kerstein)
+                domn->ed->applySubscaleKernels(domn, iStart, iEnd, domn->pram->nSubKernelLevels);
+        }
 
         return true;
     }

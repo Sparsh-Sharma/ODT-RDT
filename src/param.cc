@@ -103,6 +103,7 @@ param::param(inputoutput *p_io) {
     anisoRejectLmax = io->params["anisoRejectLmax"] ? io->params["anisoRejectLmax"].as<double>() : 0.0;
     mapMidFrac      = io->params["mapMidFrac"]      ? io->params["mapMidFrac"].as<double>()      : 1.0/3.0;
     mapMidFracProb  = io->params["mapMidFracProb"]  ? io->params["mapMidFracProb"].as<double>()  : 1.0;
+    nSubKernelLevels = io->params["nSubKernelLevels"] ? io->params["nSubKernelLevels"].as<int>()   : 0;
     strainClosure  = io->params["strainClosure"]  ? io->params["strainClosure"].as<string>()  : "LRR";
     Astrain = vector<vector<double>>(3, vector<double>(3, 0.0));
     Acal    = vector<vector<double>>(3, vector<double>(3, 0.0));
@@ -186,6 +187,14 @@ param::param(inputoutput *p_io) {
     }
     if(mapMidFracProb <= 0.0 || mapMidFracProb > 1.0) {
         cout << endl << "ERROR: mapMidFracProb must be in (0,1]." << endl;
+        exit(0);
+    }
+    if(nSubKernelLevels < 0 || nSubKernelLevels > 3) {
+        cout << endl << "ERROR: nSubKernelLevels must be in [0,3]." << endl;
+        exit(0);
+    }
+    if(nSubKernelLevels > 0 && (cCoord != 1 || Lspatial)) {
+        cout << endl << "ERROR: nSubKernelLevels > 0 requires planar (cCoord=1), temporal (Lspatial=false)." << endl;
         exit(0);
     }
 

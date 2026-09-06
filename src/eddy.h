@@ -55,6 +55,8 @@ class eddy {
         bool   eddyTau(const double Z_value, const double C);
         void   computeEddyAcceptanceProb(const double dtSample);
         void   applyVelocityKernels(domain *line, const int iS, const int iE);
+        void   applySubscaleKernels(domain *line, const int iS, const int iE, const int nlevels);
+        void   applyKernelOnRange(domain *line, const int i0, const int i1);
         bool   anisoReductionOK(const double fac);
 
     private:

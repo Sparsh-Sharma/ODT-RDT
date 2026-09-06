@@ -601,6 +601,110 @@ void eddy::applyVelocityKernels(domain *line, const int iS, const int iE) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+/** Hierarchical kernel application (Kerstein suggestion, 2026-09-06):
+ *  accelerate small-scale isotropization by following the eddy's kernel
+ *  event with the SAME energy-equalising kernel procedure applied to each
+ *  of the three (equal-size) map images, and optionally recursing one more
+ *  level into each image's thirds (9 sub-regions), etc.  No triplet map is
+ *  applied at the sub-levels and no random numbers are drawn: each
+ *  sub-application is a deterministic, conservative redistribution of
+ *  component energies within its sub-interval.  Planar, temporal only
+ *  (guarded in param.cc).  Called from the solver on the domain line after
+ *  the accepted eddy's map and kernels have been applied.
+ *
+ *  @param line    \inout the domain line
+ *  @param iS,iE   \input cell range of the (post-map) eddy region
+ *  @param nlevels \input remaining recursion depth (1 = the three images)
+ */
+void eddy::applySubscaleKernels(domain *line, const int iS, const int iE,
+                                const int nlevels) {
+
+    if(nlevels <= 0) return;
+
+    //--- split [iS,iE] into three contiguous images by cell-centre thirds
+
+    double a  = line->posf->d.at(iS);
+    double b  = line->posf->d.at(iE+1);
+    double t1 = a + (b-a)/3.0;
+    double t2 = a + 2.0*(b-a)/3.0;
+
+    int j1 = iS;                                 // last cell of image 1
+    while(j1 < iE && line->pos->d.at(j1+1) < t1) j1++;
+    int j2 = j1;                                 // last cell of image 2
+    while(j2 < iE && line->pos->d.at(j2+1) < t2) j2++;
+
+    int lo[3] = {iS,   j1+1, j2+1};
+    int hi[3] = {j1,   j2,   iE  };
+
+    for(int m=0; m<3; m++) {
+        if(hi[m] - lo[m] + 1 < 3) continue;      // too few cells to act on
+        applyKernelOnRange(line, lo[m], hi[m]);
+        if(nlevels > 1)
+            applySubscaleKernels(line, lo[m], hi[m], nlevels-1);
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/** One energy-equalising kernel application on line cells [i0,i1] (planar,
+ *  temporal): the triplet-map displacement kernel of the sub-interval is
+ *  used as the kernel SHAPE (no map is applied), with the standard ISO
+ *  coefficients computed from the sub-interval's own integrals.  With
+ *  b_i = -A c_i each momentum component and the total kinetic energy are
+ *  conserved exactly, as in the parent kernel event.
+ */
+void eddy::applyKernelOnRange(domain *line, const int i0, const int i1) {
+
+    double a = line->posf->d.at(i0);
+    double b = line->posf->d.at(i1+1);
+    double L = b - a;
+    if(L <= 0.0) return;
+
+    int n = i1 - i0 + 1;
+    vector<double> Ksub(n), dxcs(n);
+
+    for(int i=0; i<n; i++) {
+        double yr = line->pos->d.at(i0+i) - a;   // triplet-map displacement
+        if     (yr <= L/3.0)      Ksub[i] = -2.0*yr;               //  kernel of
+        else if(yr <= 2.0*L/3.0)  Ksub[i] = 4.0*yr - 2.0*L;        //  the sub-
+        else                      Ksub[i] = 2.0*(L - yr);          //  interval
+        dxcs[i] = line->posf->d.at(i0+i+1) - line->posf->d.at(i0+i);
+    }
+
+    double rhoK=0.0, rhoJ=0.0, rhoKK=0.0, rhoJK=0.0;
+    vector<double> uRhoK(3,0.0), uRhoJ(3,0.0);
+    for(int i=0; i<n; i++) {
+        double irk = Ksub[i]*line->rho->d.at(i0+i)*dxcs[i];
+        double irj = abs(irk);
+        rhoK  += irk;           rhoJ  += irj;
+        rhoKK += Ksub[i]*irk;   rhoJK += Ksub[i]*irj;
+        double ui[3] = {line->uvel->d.at(i0+i),
+                        line->vvel->d.at(i0+i),
+                        line->wvel->d.at(i0+i)};
+        for(int c=0; c<3; c++) { uRhoK[c] += irk*ui[c]; uRhoJ[c] += irj*ui[c]; }
+    }
+    if(rhoJ <= 0.0) return;
+    double Asub = rhoK/rhoJ;
+    double Ssub = 0.5*(Asub*Asub+1.0)*rhoKK - Asub*rhoJK;
+    if(Ssub <= 0.0) return;
+
+    double P[3], cc[3];
+    for(int m=0; m<3; m++) P[m] = uRhoK[m] - Asub*uRhoJ[m];
+    const double al = domn->pram->A_param;
+    for(int m=0; m<3; m++) {
+        int p = (m+1)%3, q = (m+2)%3;
+        cc[m] = 0.5/Ssub * (-P[m] + (P[m]>0 ? 1.0 : -1.0)
+                * sqrt( (1.0-al)*P[m]*P[m] + 0.5*al*(P[p]*P[p]+P[q]*P[q]) ));
+    }
+
+    for(int i=0; i<n; i++) {
+        double Kv = Ksub[i], Jv = abs(Ksub[i]);
+        line->uvel->d.at(i0+i) += cc[0]*Kv - Asub*cc[0]*Jv;
+        line->vvel->d.at(i0+i) += cc[1]*Kv - Asub*cc[1]*Jv;
+        line->wvel->d.at(i0+i) += cc[2]*Kv - Asub*cc[2]*Jv;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 /** Fill velocity kernel K (used also for \fun{J=|K|})
  *  this applies the planar analytic definition
  */
