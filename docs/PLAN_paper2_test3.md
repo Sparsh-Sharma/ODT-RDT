@@ -437,6 +437,38 @@ WHERE, nothing tested fixes WHEN faster than the strain resupplies.
 Pareto view: KS remains the best no-harm default; CRS is the best
 moderate-strain isotropizer if e <= 2-3 is the regime of interest.
 
+### 4f addendum 2 — Kerstein's extrapolation question ANSWERED (2026-09-08)
+
+Alan (reply to stacked-results mail): 0.8 is the application case, 16
+cautionary — does the trend extrapolate to a hypothetical 0.4?  Also:
+(i) conservation argument — relaxation needs an interval; decoupling
+from events lacks an intrinsic space-time intensity unless built from
+e.g. inertial-range scaling ("might be worth a try"); (ii) is adaptive
+depth alone good enough to advance the sequel's state of the art?
+
+ANSWER (fw_S1I/S1K, S=1 = Sk/eps~0.4, 1024 rlz each, jobs 4435702/3;
+fourway.npz r0.4 rows; fig_fourway3 = 3-panel 0.4|0.8|16):
+- YES, monotone: KS-variant db22 mid-to-fine bands drop from
+  [.054,.037,.040,.037,.024] (0.8) to [.041,.030,.025,.022,.027] (0.4)
+  — ~20-30% closer to the reference across bands 4-7; baseline also
+  drops mildly (nonlinear return does more per unit strain).  Gentle,
+  consistent with the RDT-distance envelope's slope; the
+  bounded-at-zero limit of isotropisation still caps the fine scales
+  (DNS-like target slightly negative).  NO DNS exists at 0.4 (boxes
+  are 0.8/16) — stated on the figure; a 4-seed 128^3 run at 0.4 is a
+  bounded add-on if wanted.
+- Proposed reply content for (i): an INDEPENDENT Poisson stream of
+  relaxation-only events, interval sizes/rates from eddy-turnover
+  scaling (rate density ~ l^-2 tau_l^-1, tau_l ~ l^{2/3} eps^{-1/3}),
+  each event the conservative kernel pass — interval-based (his
+  constraint satisfied), timing decoupled from eddies (the untested
+  axis; direct probe of resupply-limited).  ~1 day to implement.
+- For (ii): yes with the bound stated — sequel SOTA is a PRESCRIBED
+  spectrum; baseline strain-coupled ODT already evolves one; KS halves
+  the fine-scale misallocation at the application chi~0.8 in the
+  Amiet-weighted band, no-harm default; residual absolute band-b error
+  ~0.05 vs ~0.15+shape for frozen inputs.
+
 ## 5. Reply history:
    - 2026-09-04: first reply SENT (email_alan_test3_reply.html).
    - 2026-09-05 morning: Option-B reply SENT — the MORNING draft of
