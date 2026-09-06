@@ -711,6 +711,36 @@ void eddy::applyKernelOnRange(domain *line, const int i0, const int i1) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+/** Concurrent relaxation (Kerstein suggestion, 2026-09-07): after each
+ *  accepted eddy's map and kernels (and any sub-scale passes), sample N
+ *  intervals of the SAME size as the eddy, randomly situated on the domain
+ *  with overlaps allowed, and perform the same energy-equalising kernel
+ *  isotropization in each (no map).  This decouples the relaxation events
+ *  from the eddy locations so that, under sustained strain, relaxation is
+ *  no longer locked to where an eddy happened to fire.  RNG draws happen
+ *  only when N > 0, so the default is bit-identical to the standard model.
+ *
+ *  @param line \inout the domain line
+ *  @param N    \input number of sampled intervals per eddy event
+ */
+void eddy::applyConcurrentRelax(domain *line, const int N) {
+
+    double a  = line->posf->d.at(0);
+    double b  = line->posf->d.at(line->ngrd);
+    double Ld = b - a;
+    double l  = eddySize;                  // size of the accepted eddy
+    if(l <= 0.0 || l >= Ld) return;
+
+    for(int m=0; m<N; m++) {
+        double y0 = a + domn->rand->getRand() * (Ld - l);
+        int i0 = line->domainPositionToIndex(y0,     true,  40);
+        int i1 = line->domainPositionToIndex(y0 + l, false, 41);
+        if(i1 - i0 + 1 < 3) continue;      // too few cells to act on
+        applyKernelOnRange(line, i0, i1);
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 /** Fill velocity kernel K (used also for \fun{J=|K|})
  *  this applies the planar analytic definition
  */

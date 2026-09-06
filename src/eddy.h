@@ -57,6 +57,7 @@ class eddy {
         void   applyVelocityKernels(domain *line, const int iS, const int iE);
         void   applySubscaleKernels(domain *line, const int iS, const int iE, const int nlevels);
         void   applyKernelOnRange(domain *line, const int i0, const int i1);
+        void   applyConcurrentRelax(domain *line, const int N);
         bool   anisoReductionOK(const double fac);
 
     private:

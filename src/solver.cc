@@ -389,6 +389,8 @@ bool solver::sampleEddyAndImplementIfAccepted() {
             for(int it=0; it<domn->pram->subKernelIters; it++)   // hierarchical isotropization (Kerstein)
                 if(domn->pram->nSubKernelLevels > 0)
                     domn->ed->applySubscaleKernels(domn, iStart, iEnd, domn->pram->nSubKernelLevels);
+            if(domn->pram->nConcurrentRelax > 0)                 // concurrent relaxation (Kerstein)
+                domn->ed->applyConcurrentRelax(domn, domn->pram->nConcurrentRelax);
         }
 
         return true;
