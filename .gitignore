@@ -25,3 +25,4 @@ manuscript/*.fls
 manuscript/*.log
 manuscript/*.fdb_latexmk
 manuscript/build.log
+manuscript/buildv3.log

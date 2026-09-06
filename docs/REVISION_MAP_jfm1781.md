@@ -165,6 +165,15 @@ authorship invitation timing); Alan (acceptance).
 ## 6. Task list (ordered)
 
 Manuscript (master):
+- V3 SCAFFOLD DONE 2026-09-06: writing now happens in `manuscript/main_v3.tex`
+  (fresh skeleton per section-5 outline, Sharma & Kerstein, provisional
+  abstract limited to the six claims + envelope + hierarchical-kernel
+  endpoint; every section carries TRANSPLANT markers naming its V2/notes
+  sources; the two final-form M2 blocks — kinematic reference +
+  exact-projected-RDT linear reference, and the strained-box DNS/three-way/
+  envelope subsection — are already transplanted; compiles clean, 6 pp).
+  `Main_submission_V2.tex` is FROZEN as the quarry — no further edits there.
+  Remaining M-tasks execute inside main_v3.tex.
 - M0. DONE 2026-09-05 — see section 8. Lineage settled: the 25-Aug zip
   files every variant under DoNotUse/, leaving `Main_submission_V2.tex`;
   extracted to `manuscript/` (tracked).
