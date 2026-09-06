@@ -106,18 +106,144 @@ the scales of the imbalance.
 % =========================================================================
 \section{Introduction}\label{sec:intro}
 % =========================================================================
-%% TRANSPLANT: V2 sec:intro — ~30%: the LE-noise motivation paragraph and
-%%   the ODT lineage paragraph survive in compressed form.
-%% REWRITE: novelty statement (R1 minor: do not overstate distortion-
-%%   before-LE novelty; cite dos Santos et al., Ribeiro et al., Piccolo
-%%   et al.).  Adopt Sagaut & Cambon 2018 ch.8 as the RDT reference spine
-%%   (R2); prune sound-radiation and shock-turbulence citations (R2).
-%% NEW: one paragraph stating the paper's arc: formulation -> correct
-%%   linear reference -> independent benchmark -> what a line determines
-%%   (bounds, measured A1) -> measured limits -> scale-local relaxation.
-%% BIB: add SagautCambon2018, dosSantos, Ribeiro, Piccolo keys to jfm.bib.
+%% REWRITTEN 2026-09-08 (M4): V2 motivation compressed ~60%; novelty
+%%   statement honest (dosSantos2023/Ribeiro2023/Piccolo2024 cited per
+%%   R1); Sagaut & Cambon 2018 as the RDT spine (R2); new arc paragraph.
 
-\emph{[M4: introduction rewrite — see markers above.]}
+The distortion of turbulence by a mean velocity gradient is among the
+most basic problems of turbulence dynamics. When a turbulent flow is
+strained---accelerated through a contraction, deflected around a bluff
+body, compressed towards a stagnation region---the mean deformation
+reorganises the fluctuating field: it amplifies some velocity components
+and suppresses others, redistributes energy among them through the
+fluctuating pressure, and rescales the spectral content of the motion.
+When the strain accumulates in a time short compared with the eddy
+turnover time, the nonlinear interactions cannot keep pace and the
+response is governed, to leading order, by the linear dynamics of rapid
+distortion, first analysed by \citet{BatchelorProudman1954} and
+\citet{TownsendBook1976}, developed for flow around obstacles by
+\citet{Hunt1973} and \citet{HuntGraham1978}, and given its modern
+systematic form by \citet{HuntCarruthers1990} and
+\citet{SagautCambon2018}. The turbulence that emerges from a strained
+region differs from the turbulence that entered it---in intensity,
+anisotropy and spectral shape---and that difference is often the
+quantity of practical interest, from grid turbulence in wind-tunnel
+contractions \citep{MillsCorrsin1959,TuckerReynolds1968,LeeReynolds1985}
+to the distortion of oncoming turbulence approaching a lifting surface
+\citep{HuntGraham1978,GoldsteinAtassi1976}.
+
+Capturing this distortion at a cost compatible with parametric study is
+difficult. Scale-resolving simulation represents it directly but
+precludes broad sweeps over intensity, length-scale ratio and Reynolds
+number; linear rapid-distortion theory (RDT) is exact in the rapid limit
+but neglects, by construction, the inter-scale transfer and the slow
+return to isotropy that act over any finite strain duration
+\citep{SagautCambon2018}; second-moment closures restore the nonlinear
+relaxation but discard the spectral information that the distortion
+redistributes \citep{LaunderReeceRodi1975,Pope2000}. Between these sits
+a gap: a reduced-order model that \emph{evolves} strained turbulence
+with full scale resolution, retaining the rapid distortion and the
+nonlinear relaxation together, at negligible cost.
+
+A concrete and demanding instance, and the application motivating this
+work, is turbulence--aerofoil interaction noise. The prevailing
+prediction framework \citep{Amiet1975,PatersonAmiet1977,RogerMoreau2010}
+obtains the radiated spectrum as a linear functional of the upwash
+velocity spectrum of the incoming turbulence---but the spectrum it
+consumes is prescribed, not computed, usually as an isotropic
+von~K\'arm\'an form \citep{vonKarman1948}, whereas the turbulence
+actually reaching the leading edge is strained turbulence. The
+importance of this pre-impact distortion for the prediction is by now
+well established: measurements and scale-resolved simulations show the
+near-edge spectrum systematically altered
+\citep{dosSantos2023,Ribeiro2023,Piccolo2024}, and corrected predictions
+have been obtained by prescribing RDT-transformed inflow spectra
+\citep{deSantana2016,dosSantos2023} or by sampling the spectrum close to
+the edge \citep{Piccolo2024}. What these corrections share is that the
+distorted spectrum is imposed---from linear theory, or from a
+measurement that a prediction tool does not have. Synthetic-turbulence
+generators \citep{KimHaeri2015} share the limitation by construction:
+they reproduce a prescribed spectrum rather than evolving one. A model
+that \emph{predicts} the distorted spectrum, including the nonlinear
+relaxation that linear transforms omit, is the missing element, and the
+distortion problem---not the acoustic stage---is the subject of this
+paper.
+
+Map-based stochastic one-dimensional models offer the route. The
+one-dimensional turbulence (ODT) model
+\citep{Kerstein1999,Kerstein2001}, built on the triplet map of the
+linear-eddy model \citep{Kerstein1991}, evolves a three-component
+velocity field along a notional line, resolving the full range of length
+scales while representing turbulent advection as a stochastic sequence
+of mapping events; a kernel mechanism redistributes energy among
+components, emulating pressure scrambling
+\citep{WunschKerstein2001,Kerstein2001}. Generalised to variable density
+\citep{AshurstKerstein2005}, adaptive meshes \citep{Lignell2013,
+StephensLignell2021} and cylindrical geometry \citep{Lignell2018},
+embedded as a subgrid closure \citep{SchmidtKerstein2010}, and coupled
+to acoustic analogies for jet noise
+\citep{SharmaKleinSchmidt2022,MedinaMendez2023}, ODT is an accurate and
+inexpensive generator of scale-resolved turbulence statistics---exactly
+what a model of strained turbulence must deliver. But standard ODT
+cannot represent distortion by a mean strain: its pressure treatment
+models only the slow, turbulence-driven return to isotropy, and the
+apparent remedy---importing the RDT amplitude equation, whose pressure
+response is the solenoidal projection in three-dimensional wavenumber
+space---is unavailable on a line that resolves only the wavenumber along
+its own coordinate. Reconciling the inherently three-dimensional,
+non-local pressure physics of rapid distortion with the one-dimensional,
+local structure of ODT is the central modelling problem addressed here.
+
+The paper makes five contributions, each stated so as to be falsifiable.
+First, a strain-coupled formulation of ODT (\S\,\ref{sec:formulation}):
+production enters as an exact continuous forcing, the rapid
+pressure--strain as an energy-conserving redistribution operator built
+from an explicit spectral closure, and the wavevector kinematics as a
+dilatation of the domain; the construction preserves the model's
+structural invariants and reproduces the rapid-distortion evolution of
+the component energies, under the stated closure, with no adjustable
+constant (\S\,\ref{sec:verification}). Second, the correct linear
+reference for what the model actually predicts: exact RDT, projected
+onto a line, is \emph{broadband}---it does not translate the projected
+spectra rigidly---so the reference against which any line model must be
+judged differs from the model's own rigid kinematics already at the
+linear level (\S\,\ref{sec:spec-linref}). Third, an independent spectral
+benchmark: a strained-box direct numerical simulation with exact-RDT
+companion calculations, reduced to the same one-dimensional observables,
+yielding a three-way comparison that localises the model's remaining
+deficiency in its wavenumber-uniform rapid kinematics and a
+distance-from-linear-theory envelope as a function of strain rapidity
+(\S\,\ref{sec:box-dns}). Fourth, an answer to the question of principle
+--- what can a single line say about the rapid pressure--strain term,
+which is exactly a non-local three-dimensional object? --- in a form
+deliberately more modest than a closure claim: the obstruction is stated
+exactly, sharp bounds on the rapid term are derived from line data
+alone, and the axisymmetry hypothesis under which the term collapses is
+not assumed but \emph{measured}, exact for axisymmetric distortion and
+with a quantified error under plane strain (\S\,\ref{sec:gate}). Fifth,
+the measured limits of the model and the mechanism that moves them:
+a transmission diagnostic shows the strain-induced anisotropy crossing
+two map generations undiminished, a controlled family of interventions
+falsifies acceptance gating and map reweighting as remedies, and
+hierarchical application of the energy-redistributing kernel to eddy
+sub-scales---scale-local relaxation---is shown to supply the missing
+ingredient where it reaches the scales of the imbalance, with its own
+deep-strain limit measured and stated (\S\,\ref{sec:limits}).
+Throughout, the posture is the same: where the model is right we show
+against what, and where it is wrong we measure by how much and locate
+why.
+
+The paper is organised as follows. Section~\ref{sec:formulation}
+reviews standard ODT and derives the strain-coupled formulation.
+Section~\ref{sec:verification} verifies it against exact
+rapid-distortion solutions and validates it at the moment level against
+the DNS of \citet{LeeReynolds1985}. Section~\ref{sec:val-spectrum}
+constructs the linear reference, examines the emergent distorted
+spectrum and its operating point, and carries out the strained-box
+DNS benchmark. Section~\ref{sec:gate} treats the single-line closure
+question. Section~\ref{sec:limits} measures the model's limits and
+establishes scale-local relaxation as the constructive direction.
+Section~\ref{sec:conclusions} concludes.
 
 % =========================================================================
 \section{Strain-coupled one-dimensional turbulence}\label{sec:formulation}
@@ -2183,10 +2309,75 @@ mechanisms, outrun sustained resupply at deep strain.
 % =========================================================================
 \section{Conclusions}\label{sec:conclusions}
 % =========================================================================
-%% REWRITE LAST (with abstract).  Must not claim rigid translation as the
-%%   linear prediction (old V2 conclusions do).  Claims = abstract's list.
+%% WRITTEN 2026-09-08 (M4).  Claims mirror the abstract; no
+%%   rigid-translation-as-linear-prediction claim.
 
-\emph{[M4: conclusions rewrite.]}
+We have presented a strain-coupled formulation of one-dimensional
+turbulence and, around it, a systematic account of what a single line of
+turbulence can and cannot say about rapid distortion. The formulation
+splits the distortion physics by structure: production enters as an
+exact continuous forcing, the rapid pressure--strain as an
+energy-conserving operator built from an explicit spectral closure, and
+the wavevector kinematics as a dilatation of the domain, while the eddy
+events of the standard model continue to carry the cascade and the slow
+return to isotropy. The construction preserves the model's structural
+invariants, reproduces the constant-free rapid-distortion onset rate
+identically, and is verified in the solver to the level of the closure
+it evolves ($10^{-4}$ in the component fractions); at the moment level
+it reproduces the strained components of the \citet{LeeReynolds1985}
+DNS quantitatively, with the one exception---the neutral-direction
+anisotropy---traced to the orientation information that every
+single-point closure discards, not to the line.
+
+Three findings shape how such a model must be judged. First, the
+correct linear reference for line-projected spectra is broadband: exact
+rapid-distortion theory, projected onto a line, redistributes the
+projected upwash spectrum by a factor of four across the resolved range
+at $e=1$, so a rigid spectral translation---the model's own
+kinematics---is not the linear prediction, and comparisons built on it
+conflate a structural approximation with nonlinear physics. Second,
+against a strained-box DNS with exact-RDT companions reduced to the
+same observables, the strain-coupled model carries the correct
+integrated anisotropy but allocates it uniformly over wavenumber, where
+linear theory and DNS concentrate it at the energy-containing scales;
+the deficiency is localised in the wavenumber-uniform rapid operator
+and grows with strain rapidity, a measured validity envelope that
+accompanies the model into any application. Third, the single-line
+closure question admits an exact, falsifiable answer in place of a
+closure claim: line data bound the rapid term sharply, the bounds are
+honest up to $e\approx0.25$--$0.5$ under plane strain and at all
+computed strains under axisymmetric distortion, and the axisymmetry
+hypothesis is measured rather than assumed---its plane-strain violation
+grows with accumulated strain and rapidity while the acoustically
+relevant upwash amplification remains robust to it.
+
+The measured limits point to a specific missing ingredient, and the
+paper's final contribution is to identify and supply it. The
+strain-induced fine-scale anisotropy is delivered directly by
+large-eddy maps, which is why no acceptance-gating or map-reweighting
+scheme can control it; what does move it is relaxation applied at the
+scale of the imbalance---the model's own energy-equalising kernel,
+applied hierarchically to eddy sub-scales. The intervention family
+maps the mechanism's envelope precisely: depth that reaches the
+measured scales is necessary and sufficient at moderate strain, added
+dosage and delocalised application raise the early gains in proportion,
+and no combination prevents the fine-scale fade beyond $e\approx3$,
+which is resupply-limited rather than implementation-limited. At the
+formulation level the continuous analogue of this correction is the
+wavenumber- and angle-dependent spectral kernel derived in
+\S\,\ref{sec:gate}; exercising it in place of the wavenumber-uniform
+closure is the natural next step, now motivated by a measured deficit.
+
+For the application that motivated the work, the model delivers what
+the prediction chain lacks: a distorted, anisotropic, scale-resolved
+upwash spectrum, evolved rather than prescribed, at two orders of
+magnitude below the cost of a strained DNS ensemble. Supplying it to
+the acoustic stage---together with the surface blocking and spanwise
+coherence a complete leading-edge prediction requires---is deliberately
+left to a companion study, on the model's measured terms: predictions
+inherit a spectral-shape uncertainty of order the distance envelope at
+the operating point's strain and rapidity, stated here rather than
+discovered later.
 
 % =========================================================================
 \appendix
