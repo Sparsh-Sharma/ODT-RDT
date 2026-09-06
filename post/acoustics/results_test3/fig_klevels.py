@@ -12,7 +12,9 @@ NB = os.path.join(HERE, "newbands")
 CASES = [("standard ODT", "bands_homogeneousStrain2.npz", "k", "o"),
          ("level 1 (3 images)", "bands_homogeneousStrain2K1.npz", "C0", "s"),
          ("level 2 (+9)", "bands_homogeneousStrain2K2.npz", "C2", "^"),
-         ("level 3 (+27)", "bands_homogeneousStrain2K3.npz", "C3", "d")]
+         ("level 3 (+27)", "bands_homogeneousStrain2K3.npz", "C3", "d"),
+         ("adaptive depth ($\ell_{min}$=0.005)", "bands_homogeneousStrain2KS.npz", "C4", "v"),
+         ("level 2, iterated 3x", "bands_homogeneousStrain2K2I3.npz", "C5", "P")]
 NBOOT = 2000
 
 

@@ -356,6 +356,19 @@ Campaigns: same-binary baseline rerun + K1/K2/K3, 1024 rlz each
   fine-scale floor lifted 0.83 -> 0.95 (immediate cleanup).
 - Baseline rerun also confirms the dilatation fix left Test-3 statistics
   unchanged (medians within ~5%).
+VARIANTS RUN PROACTIVELY 2026-09-06 (3ce7f36, before Alan's answer — his
+reply now adjudicates with data in hand):
+- KS (adaptive depth, subKernelLmin=0.005, cap 6): PARETO-BEST — both
+  bands starred at e=1 (A_high -9%), negative-signed through e=3, and NO
+  late-strain reversal (A_high(3.9) 1.67 vs baseline 1.63).
+- K2I3 (level 2, iterated 3x/event): iteration does NOT fix the fade —
+  strongest early effect (A_high 1.29 at e=1, -0.046*) but overshoots at
+  deep strain (2.14 vs 1.94 at e=3; +0.052 marginal at 3.9).  The
+  deep-strain limiter is NOT per-event relaxation amplitude.
+- Family-wide: scale-reaching depth matters, iteration does not; the e>~3
+  fade is universal — per-event scale-local relaxation saturates against
+  sustained resupply however dosed.  fig_klevels now carries all six
+  cases.  K1-regression bit-identical (new params default off).
 Reply drafted: notes/email_alan_hierarchical_reply.html (questions back:
 iterate within event vs depth tied to eddy size — both one-line changes).
 PAPER-1 RELEVANCE: this belongs in the compressed Kerstein arc as the
