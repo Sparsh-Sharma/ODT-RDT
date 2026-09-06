@@ -11,11 +11,13 @@ A1 assumes away differs.
 
 import glob
 import os
+import sys
 
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import numpy as np
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                ".."))
+from figstyle_jfm import FULL, plt, save, strip  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ECHECKS = ("0", "0.25", "0.5", "0.75", "1")
@@ -57,41 +59,33 @@ def series(subdir, prefix):
 m2_p, sp_p, b_p = series("n128", "")
 m2_a, sp_a, b_a = series("n128axi", "axi_")
 
-fig, (axl, axr) = plt.subplots(1, 2, figsize=(9.4, 3.7))
+fig, (axl, axr) = plt.subplots(1, 2, figsize=(FULL, 2.2))
 
-axl.axhline(0.133, color="0.7", lw=0.8, ls=":", zorder=0)
-axl.text(0.02, 0.138, "isotropic floor", fontsize=7.5, color="0.5")
-axl.plot(EVAL, m2_p, "o-", color=C_PLANE, lw=1.8, ms=5,
-         label="plane strain  (A1 broken)")
-axl.plot(EVAL, m2_a, "s-", color=C_AXI, lw=1.8, ms=5,
-         label="axisymmetric  (A1 exact)")
-axl.set_ylabel(r"azimuthal $m{=}2$ residue of $\Phi_{22}$", fontsize=9.5)
-axl.set_title("Direct A1-violation measure", fontsize=10)
-axl.legend(fontsize=8.5, frameon=False, loc="upper left")
+axl.axhline(0.133, color="0.7", lw=0.6, ls=":", zorder=0)
+axl.text(0.02, 0.138, "isotropic floor", fontsize=8, color="0.5")
+axl.plot(EVAL, m2_p, "o-", color=C_PLANE,
+         label="plane strain (A1 broken)")
+axl.plot(EVAL, m2_a, "s-", color=C_AXI,
+         label="axisymmetric (A1 exact)")
+axl.set_ylabel(r"azimuthal $m{=}2$ residue of $\Phi_{22}$")
+axl.legend(loc="upper left", handlelength=1.6, labelspacing=0.25)
 
-axr.axhline(0.0, color="0.7", lw=0.8, ls=":", zorder=0)
-axr.plot(EVAL, sp_p, "o-", color=C_PLANE, lw=1.8, ms=5,
+axr.axhline(0.0, color="0.7", lw=0.6, ls=":", zorder=0)
+axr.plot(EVAL, sp_p, "o-", color=C_PLANE,
          label=r"plane: $\phi_{11}/\phi_{33}{-}1$")
-axr.plot(EVAL, sp_a, "s-", color=C_AXI, lw=1.8, ms=5,
+axr.plot(EVAL, sp_a, "s-", color=C_AXI,
          label=r"axisym: $\phi_{11}/\phi_{33}{-}1$")
-axr.plot(EVAL, b_p, "^--", color=C_B22, lw=1.5, ms=5,
-         label=r"$b_{22}$ (upwash) -- both geometries")
-axr.plot(EVAL, b_a, "^:", color=C_B22, lw=1.5, ms=4, alpha=0.7)
-axr.set_ylabel("transverse splitting  /  upwash anisotropy", fontsize=9.5)
-axr.set_title("On-line falsifier + the robust quantity", fontsize=10)
-axr.legend(fontsize=8, frameon=False, loc="lower left")
+axr.plot(EVAL, b_p, "^--", color=C_B22, lw=0.9,
+         label=r"$b_{22}$ (upwash), both geometries")
+axr.plot(EVAL, b_a, "^:", color=C_B22, lw=0.9, ms=3, alpha=0.7)
+axr.set_ylabel("transverse splitting / upwash anisotropy")
+axr.legend(loc="lower left", handlelength=1.6, labelspacing=0.25)
 
-for ax in (axl, axr):
-    ax.set_xlabel(r"accumulated strain $e = \int S\,dt$", fontsize=9.5)
-    ax.tick_params(labelsize=8.5)
-    ax.spines[["top", "right"]].set_visible(False)
-    ax.grid(axis="y", color="0.93", lw=0.6, zorder=0)
+for j, ax in enumerate((axl, axr)):
+    ax.set_xlabel(r"accumulated strain $e = \int S\,dt$")
+    strip(ax)
+    ax.text(0.97, 0.97, "(" + "ab"[j] + ")",
+            transform=ax.transAxes, va="top", ha="right")
 
-fig.suptitle(r"The single-line (A1) closure error is a strain-geometry "
-             r"effect, not an estimator error  ($Sk/\varepsilon=16$, "
-             r"$128^3$, 4 seeds)", fontsize=10.5, y=1.02)
-fig.tight_layout()
-for ext in ("pdf", "png"):
-    fig.savefig(os.path.join(HERE, "fig_a1_control." + ext),
-                bbox_inches="tight", dpi=180)
-print("saved fig_a1_control.pdf/.png")
+fig.tight_layout(pad=0.4)
+save(fig, os.path.join(HERE, "fig_a1_control"))

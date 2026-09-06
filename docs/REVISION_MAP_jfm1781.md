@@ -187,8 +187,7 @@ Manuscript (master):
   RDT-distance envelope (sec:envelope, fig_rdt_distance). Compiles clean,
   45 pp. REMAINING in M2 scope: abstract + conclusions still carry the
   rigid-translation claim (lines ~68, ~2570-era) — do together with M4.
-- M3. DONE 2026-09-06 (research core; Appendix A derivation still to
-  transplant from the LOS note): sec:gate rebuilt in main_v3.tex — new
+- M3. DONE 2026-09-06 (research core): sec:gate rebuilt in main_v3.tex — new
   intro (no closure claim), exact term + obstruction transplanted, the
   "closed computable functional" claim replaced by the collapsed-form
   status paragraph + NEW sec:bounds (LP bounds, indeterminacy table,
@@ -197,6 +196,36 @@ Manuscript (master):
   fig_a1_control), NEW sec:order (Referee 1.3 measured and localised),
   lrr-reduction transplanted with measured-discards paragraph,
   doublecount + measured-disjointness paragraph, six-claims summary.
+- M3b. DONE 2026-09-06: Appendix A written (app:forward, eqs. A1–A9) —
+  two-scalar representation + realisability cone, forward map + T1/T2,
+  kernel derivation (g_2 worked, g_1/g_3 stated; ALL THREE re-verified
+  symbolically vs A_kl·M_nnkl with sympy — the §7a "VERIFY factor 2" item
+  is CLOSED: eq. (5.3)-lineage conventions are consistent, no missing
+  factor), LP formulation + indeterminacy + side conditions.  Lindborg1995
+  added to jfm.bib.  Also fixed 3 CR-corrupted \ref{} bytes in
+  sec:lrr-reduction and 2 dangling \eqref{eq:poisson} -> eq:poisson-rapid.
+- M-limits. DONE 2026-09-06: sec:limits written (transmission diagnostic
+  sec:transmission, interventions table tab:interventions, fig:klevels,
+  endpoint sec:limits-endpoint tying scale-local relaxation to
+  eq:Piclosed as the κ-dependent-operator home).  Covers the FULL 6-case
+  arc incl. KS (depth tied to eddy size, best of family) and K2I3
+  (iteration falsifies per-event-amplitude hypothesis); deep-strain fade
+  stated as universal and left honestly undecided (artefact vs physics).
+  v3 now 18 pp, compiles clean; remaining undefined refs are only the
+  placeholder sections (sec:rapid-kernel, eq:rdt, sec:spec-bvc,
+  sec:lr-plane).
+- FIGURE STYLE (Sparsh 2026-09-06, standing rule): every plot in the
+  paper must match JFM typography — same font family and PRINTED size as
+  the body text.  Implemented: post/closure_bound/figstyle_jfm.py (Times/
+  STIX, 9 pt base, build at true \textwidth = 32 pc = 5.31 in, never
+  scale down).  Regenerated in-style: fig_klevels (new,
+  post/closure_bound/limits/), fig_rdt_distance (ported from
+  LEN_Extension tables), fig_pi_kernels (new analytic generator),
+  fig_threeway + fig_rdt_projection (new plot-only scripts from npz),
+  fig_a1_control (restyled in place).  STILL NON-COMPLIANT:
+  fig_spectrum_hs__spectra/centroid (no in-repo generator — claude.ai
+  era; regenerate from run data or rebuild the script) and every V2
+  figure that later transplants pull in — restyle at transplant time.
 - M4. §2 compression + SC2018 + intro repair (O7, O8, O9).
 - M5. [Option C] LE section from Gate machinery (O6) — written last.
 - M6. Cover letter: objection→change map; cite JFM-2026-1781; venue memo.
@@ -226,7 +255,8 @@ snapshot: ~21k words (≈41 pp equivalent — unchanged from the rejected
   REYNOLDS 1985 comparison (b_ij level) — NOT our strained-box DNS, which
   was absent entirely (audit correction 2026-09-05); the Poisson factor-2
   appears carried in the §5 source terms
-  (line ~2480 — VERIFY against the note's erratum before trusting);
+  (line ~2480 — VERIFIED 2026-09-06 via symbolic check of g_n against
+  A_kl·M_nnkl: conventions consistent, see M3b);
   Sagaut & Cambon cited once.
 - NOT IN V2 (everything from the 25-Aug-onward rebuild): the
   rigid-translation claim still frames the ABSTRACT (l. 68), §4.2

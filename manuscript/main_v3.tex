@@ -494,7 +494,7 @@ one obtains the standard exact result
   \label{eq:Mijkl}
 \end{equation}
 where $\kappa=|\boldsymbol{\kappa}|$. Equations
-\eqref{eq:poisson}--\eqref{eq:Mijkl} are exact; no modelling has entered. The
+\eqref{eq:poisson-rapid}--\eqref{eq:Mijkl} are exact; no modelling has entered. The
 tensor $M_{ijkl}$ is a linear functional of the \emph{full three-dimensional}
 spectrum $\Phi_{mn}(\boldsymbol{\kappa})$ through the nonlocal projection
 operator $\kappa_a\kappa_b/\kappa^2$, which is the wavenumber-space image of
@@ -825,7 +825,7 @@ the result of \citet{Crow1968} that underlies the isotropisation-of-production
 (IP) rapid term in the closure of \citet{LaunderReeceRodi1975}. We note a
 convention: with the symmetrised definition of the pressure--strain correlation
 adopted here and the factor of two carried in the Poisson source
-\eqref{eq:poisson}, the kernels \eqref{eq:g1}--\eqref{eq:g3} yield the
+\eqref{eq:poisson-rapid}, the kernels \eqref{eq:g1}--\eqref{eq:g3} yield the
 coefficient $\tfrac25 k_t$ for the $11$-component directly (since $S_{11}=\tfrac12$),
 equivalent to the standard $\tfrac45 k_t S_{ij}$ of \eqref{eq:crow-spectral}; the ratio
 \eqref{eq:giso} and the tracelessness \eqref{eq:gtrace} are independent of this
@@ -838,10 +838,10 @@ The spectral form \eqref{eq:Piclosed} carries, in addition, the angular
 ($x$-dependent) and anisotropy ($c$-scalar) information that the moment closure
 discards---and both discards are now measured: the wavenumber dependence
 of the linear response in the three-way comparison of
-\S\,ef{sec:threeway}, and the component ordering in
-\S\,ef{sec:order}. The moment closure and the collapsed form thus
+\S\,\ref{sec:threeway}, and the component ordering in
+\S\,\ref{sec:order}. The moment closure and the collapsed form thus
 agree to leading order, and the terms in which they depart are exactly
-the measured deficiencies of \S\,ef{sec:val-spectrum}.
+the measured deficiencies of \S\,\ref{sec:val-spectrum}.
 
 \begin{figure}
   \centering
@@ -925,23 +925,185 @@ terms by construction, and now by measurement.
 % =========================================================================
 \section{Measured limits, and scale-local relaxation}\label{sec:limits}
 % =========================================================================
-%% NEW SECTION (the compressed Kerstein arc + envelope interpretation):
-%%   - the distance-from-linear-theory envelope (already shown in
-%%     sec:envelope) interpreted as the model's validity statement;
-%%   - the transmission diagnostic in ONE figure + ONE interventions table
-%%     (Options A/A-S/B null; hierarchical kernels levels 1-3: the first
-%%     significant fine-scale isotropization, effective where the
-%%     sub-scales reach the imbalance, fading under sustained resupply)
-%%     [sources: LEN_Extension results_test3: fig_klevels, klevels_table,
-%%      facSweep_table, optionA_robust_table; plan doc 4a-4e];
-%%   - endpoint: scale-local relaxation is the measured missing
-%%     ingredient; the kappa-dependent kernel of sec:gate is the
-%%     formulation-level home (exercising eq. 5.7 = map task C3).
-%% KEEP TO ~2.5 pp: one figure, one table, no null-result chronicle.
+%% WRITTEN 2026-09-06 (the compressed Kerstein arc, all six cases).
+%%   Sources: LEN_Extension results_test3 (fig_klevels, klevels_table,
+%%   facSweep_table, optionA_robust_table), plan doc 4a-4e; figure
+%%   regenerated for the manuscript in post/closure_bound/limits/.
 
-\emph{[M-limits: compressed Kerstein arc — write after Alan's next reply
-settles the iterate-vs-depth question, or with current results if the
-manuscript moves first.]}
+The envelope of \S\,\ref{sec:envelope} localises the model's spectral
+deficiency in its wavenumber-uniform rapid kinematics: the strain-induced
+anisotropy is allocated uniformly across scales where linear theory and
+DNS concentrate it at the energy-containing range and remove it from the
+fine scales. This section asks the constructive question: which mechanism
+available to the model can supply the missing scale dependence? We answer
+it experimentally, by a scale-resolved diagnostic and a controlled family
+of interventions in the eddy mechanism, each tested at $1024$
+realisations with seeds paired to a common baseline, and each either
+falsified or confirmed by the same measurement. The outcome is a single
+measured statement: what is missing is \emph{scale-local relaxation}, and
+supplying it---at the scales of the imbalance---is both necessary and, at
+moderate strain, sufficient to move the fine-scale anisotropy.
+
+\subsection{A transmission diagnostic}\label{sec:transmission}
+
+The configuration is a scale-diagnostic variant of the strained line: unit
+strain rate (so $e=t$), an initial spectrum peaked at a wavenumber
+$\kappa_p$ resolved by more than a decade of smaller scales, and two
+measurement bands, $\kappa_2\in[0.6,2]\,\kappa_p$ (the energy-containing
+band) and $[6,16]\,\kappa_p$ (roughly two triplet-map generations below
+it, since each map compresses by a factor of three). On each band the
+component imbalance is
+$\mathcal A_b = E^{\|}_2(b)/\tfrac12[E^{\|}_1(b)+E^{\|}_3(b)]$, the
+band-integrated upwash energy over the transverse mean; all statistics are
+medians over realisations with bootstrap confidence intervals, for the
+intermittency reason given in \S\,\ref{sec:box-dns}. The model's eddy and
+kernel mechanisms are component-symmetric, so $\mathcal A=1$ is their
+fixed point; the strain drives $\mathcal A$ up at the scales where it
+deposits anisotropy, and the ratio
+$\mathcal A_{\rm hi}/\mathcal A_{\rm lo}$ measures how much of the
+large-scale imbalance survives transmission down the cascade.
+
+The baseline (figure~\ref{fig:klevels}, black) exhibits the deficiency of
+\S\,\ref{sec:threeway} in transmission form:
+$\mathcal A_{\rm hi}/\mathcal A_{\rm lo}$ stays near unity out to $e=3$
+($1.02$, $0.95$, $0.89$ at $e=1,2,3$)---the anisotropy injected at the
+energy-containing scales crosses two map generations essentially
+undiminished---and drops only at the deepest strain. The mechanism is
+direct: the high band is populated by the maps of \emph{large} eddies
+(one generation takes $\kappa_p$ to $3\kappa_p$, a second to $9\kappa_p$,
+inside the band), so fine-scale anisotropy is delivered by large-eddy
+events, not by a chain of small ones.
+
+\subsection{Interventions: what fails and what works}\label{sec:interventions}
+
+Table~\ref{tab:interventions} summarises the intervention family. Two
+families fail for instructive reasons. Acceptance gating---rejecting
+accepted eddies whose post-event state remains anisotropic, at thresholds
+spanning $45$ to $98$ per cent rejection---is scale-blind: at mild
+thresholds the surviving eddy population reproduces the baseline
+anisotropy budget in every band (the gate self-selects eddies whose
+kernels were already going to do the relaxing, and the unrelaxed field
+keeps generating candidates), while at the harshest threshold the model
+merely drifts toward its eddy-free limit. Restricting the gate to
+sub-band-scale eddies sharpens the negative result into the mechanism
+statement above: removing up to $97$ per cent of small-eddy events leaves
+both the fine-scale anisotropy \emph{and} the fine-scale energy
+unchanged, so no acceptance-gating scheme can control transmission at
+this Reynolds number. Reweighting the triplet-map images (a middle image
+of relative size $\tfrac23$, which halves the compression of the
+map's dominant central channel) moves one-point and energy-containing
+statistics---$\mathcal A_{\rm lo}$ falls significantly and the upwash
+energy fraction with it---but not the fine scales: with the image
+fractions summing to one, slowing the middle channel necessarily speeds
+the outer ones, and one outer image maps the energy peak directly into
+the measurement band.
+
+\begin{table}
+  \centering\small
+  \begin{tabular}{p{0.34\textwidth}p{0.26\textwidth}p{0.32\textwidth}}
+  intervention (knob) & fine-scale effect & reading\\[2pt]
+  acceptance gate on post-event anisotropy ($45$--$98\%$ rejection) &
+  null at all thresholds; harshest drifts to eddy-free limit &
+  gate is scale-blind: modulates eddy rate, not the scale allocation\\[4pt]
+  gate on sub-band eddies only ($42\%$, $97\%$ rejection) &
+  null, including band \emph{energy} &
+  fine scales are fed by large-eddy maps directly\\[4pt]
+  unequal map images (middle $\tfrac23$) &
+  null (one-point statistics move: $\mathcal A_{\rm lo}$ $2.85\to2.50$ at
+  $e=3.9$) &
+  outer images feed the band in one step; channels trade off\\[4pt]
+  sub-scale kernels, $1$ level ($\ell/3$) &
+  null within CIs &
+  $\ell/3$ sits above the measured band\\[4pt]
+  sub-scale kernels, $2$ levels ($\ell/9$) &
+  $\mathcal A_{\rm hi}$: $1.43\to1.27$ at $e=1$ (significant, both bands) &
+  first significant fine-scale isotropisation\\[4pt]
+  sub-scale kernels, $3$ levels ($\ell/27$) &
+  significant at $e=1$ \emph{and} $e=3$ ($-12\%$ paired) &
+  deepest levels reach the band\\[4pt]
+  depth tied to eddy size &
+  significant in both bands at $e=1$; no late-strain reversal &
+  best of the family: gains without the deep-strain overshoot\\[4pt]
+  $2$ levels iterated $3\times$ per event &
+  strongest at $e=1$ ($1.29$); overshoots at deep strain &
+  per-event amplitude is not the limiter\\
+  \end{tabular}
+  \caption{The intervention family on the transmission diagnostic
+  ($1024$ paired-seed realisations per case; effects quoted as median
+  paired same-seed contrasts, ``significant'' meaning the $95\%$
+  bootstrap interval excludes zero).}
+  \label{tab:interventions}
+\end{table}
+
+What works is relaxation applied \emph{at the scale of the imbalance}.
+After each accepted eddy's map and kernels, the same energy-equalising
+kernel procedure (\S\,\ref{sec:formulation}) is applied to each of the
+three map images---the sub-interval's own triplet-map displacement shape
+as the kernel, coefficients from the sub-interval's own integrals, so
+that each sub-application conserves the momentum components and the total
+kinetic energy exactly, with no map applied and no random numbers
+drawn---and then recursively to $9$ and $27$ sub-regions. One level
+($\ell/3$ for an eddy of size $\ell$) is null: for the large eddies that
+feed the band, $\ell/3$ still sits above it. Two levels produce the first
+statistically significant fine-scale isotropisation of the family
+($\mathcal A_{\rm hi}$ from $1.43$ to $1.27$ at $e=1$, both bands'
+paired contrasts individually significant), and three levels extend the
+effect to deep strain: the levels that work, $\ell/9$ and $\ell/27$, are
+exactly the first that reach the measured band. The bookkeeping is clean
+throughout---band energies move by a few per cent, the upwash energy
+fraction and the intermittency tails are unchanged---and the pre-strain
+fine-scale floor moves toward component equality immediately
+($\mathcal A_{\rm hi}$ from $0.83$ to $0.95$ at $e=0$).
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_klevels.pdf}
+  \caption{Scale-local relaxation on the transmission diagnostic:
+  (\textit{a}) energy-containing-band imbalance $\mathcal A_{\rm lo}$,
+  (\textit{b}) fine-scale-band imbalance $\mathcal A_{\rm hi}$,
+  (\textit{c}) transmission $\mathcal A_{\rm hi}/\mathcal A_{\rm lo}$,
+  (\textit{d}) upwash energy fraction, against total strain: standard
+  ODT, hierarchical sub-scale kernels at fixed depth ($1$--$3$ levels),
+  depth tied to eddy size, and the per-event iterated variant. Medians
+  over $1024$ paired-seed realisations, $95\%$ bootstrap intervals.}
+  \label{fig:klevels}
+\end{figure}
+
+Two further variants separate the candidate explanations for the one
+remaining limitation, the fading of the gains beyond $e\approx3$. Tying
+the recursion depth to the eddy size (subdividing while the sub-interval
+remains above a near-dissipative floor, so that large eddies do
+proportionally more sub-scale work) is the best member of the family:
+both bands significant at $e=1$, the effect retaining its sign through
+$e=3$, and no reversal at the deepest strain. Iterating the two-level
+pass three times within each event answers the amplitude hypothesis in
+the negative: it is the strongest early isotropiser but overshoots at
+deep strain. Depth that reaches the measured scales therefore matters;
+per-event dosage does not; and the deep-strain fade is universal across
+the family however the relaxation is administered. The remaining suspect
+is structural: relaxation is locked to eddy events while the strain
+resupplies the imbalance continuously, and at these total strains the
+event rate cannot keep pace. Whether that saturation is a model artefact
+or the physical statement that sustained rapid distortion outruns any
+cascade-mediated return to isotropy is not decided by these experiments.
+
+\subsection{The measured missing ingredient}\label{sec:limits-endpoint}
+
+The arc closes the loop opened by the three-way comparison. The
+deficiency measured there---anisotropy allocated uniformly over
+wavenumber---is confirmed here in transmission form, is unfixable by
+gating or map reweighting, and is corrected, at moderate strain, by
+exactly one ingredient: relaxation applied at the scale of the imbalance.
+At the formulation level this ingredient has a natural continuous home:
+the spectral kernel form \eqref{eq:Piclosed}--\eqref{eq:g3} is
+precisely a wavenumber- and angle-dependent rapid operator, and replacing
+the wavenumber-uniform moment closure of \S\,\ref{sec:formulation} by a
+discretisation of it is the formulation-level analogue of the sub-scale
+kernels' event-level correction. The present results bound what such an
+upgrade can and cannot deliver: it can re-allocate the rapid
+redistribution across scales (the measured deficit of
+\S\,\ref{sec:threeway}), and it cannot, any more than the event-level
+mechanisms, outrun sustained resupply at deep strain.
 
 % =========================================================================
 \section{Consequence for leading-edge noise}\label{sec:le}
@@ -966,9 +1128,211 @@ manuscript moves first.]}
 % =========================================================================
 \appendix
 \section{The forward map and the bound kernels}\label{app:forward}
-%% TRANSPLANT: los_estimator note sec 2 (derivation of (5.8)-(5.10) —
-%%   Referee 3.3's "underived" fixed by deriving them here).
-\emph{[Appendix A: transplant from notes/los\_estimator\_note.tex.]}
+%% TRANSPLANTED 2026-09-06 from notes/los_estimator_note.tex (secs 2-4),
+%%   adapted to manuscript notation; kernels re-verified symbolically
+%%   against A_kl M_nnkl (sympy, 2026-09-06).
+
+This appendix derives the three ingredients that \S\,\ref{sec:gate} uses:
+the two-scalar representation of the axisymmetric solenoidal spectrum with
+its realisability cone, the forward map from the two scalars to the line
+spectra (with the falsifiers T1--T2), and the closure kernels
+\eqref{eq:g1}--\eqref{eq:g3}, together with the linear programs that turn
+these linear relations into the sharp bounds of \S\,\ref{sec:bounds}.
+
+\subsection{The axisymmetric representation and realisability}
+\label{app:twoscalar}
+
+The spectrum tensor of statistically homogeneous turbulence is Hermitian,
+positive semi-definite at each $\boldsymbol{\kappa}$, and solenoidal,
+$\kappa_m\Phi_{mn}(\boldsymbol{\kappa})=0$; it therefore has rank at most
+two, supported on the plane normal to $\boldsymbol{\kappa}$. Under A1
+(axisymmetry about $\boldsymbol{e}_2$, mirror-symmetric, helicity-free) it
+is fixed by two scalar functions of $(\kappa_2,\kappa_\perp)$
+\citep{Batchelor1946,ChandrasekharAxisym1950,Lindborg1995}:
+\begin{equation}
+  \Phi_{mn}(\boldsymbol{\kappa})
+  = a(\kappa_2,\kappa_\perp)\,P_{mn}(\boldsymbol{\kappa})
+  + c(\kappa_2,\kappa_\perp)\,\xi_m\xi_n,
+  \qquad
+  \boldsymbol{\xi} = \boldsymbol{e}_2 - \mu\,
+  \frac{\boldsymbol{\kappa}}{\kappa},
+  \quad \mu=\frac{\kappa_2}{\kappa},
+  \label{eq:twoscalar}
+\end{equation}
+with $P_{mn}=\delta_{mn}-\kappa_m\kappa_n/\kappa^2$ the solenoidal
+projector, so that $\kappa_m\xi_m=0$ and
+$|\boldsymbol{\xi}|^2=1-\mu^2=1-x$ with $x=\kappa_2^2/\kappa^2$:
+solenoidality is exact by construction, which is how the third would-be
+scalar of a general axisymmetric tensor is eliminated. For a unit vector
+$\boldsymbol{v}$ normal to $\boldsymbol{\kappa}$,
+$\Phi_{mn}v_mv_n = a + c\,(\boldsymbol{\xi}\cdot\boldsymbol{v})^2$, so the
+two eigenvalues of the polarization matrix on that plane are $a$ (attained
+for $\boldsymbol{v}\perp\boldsymbol{\xi}$) and $a+(1-x)\,c$ (for
+$\boldsymbol{v}\parallel\boldsymbol{\xi}$). Positive semi-definiteness is
+therefore the pointwise \emph{realisability cone}
+\begin{equation}
+  a(\kappa_2,\kappa_\perp)\ \ge\ 0,
+  \qquad
+  a(\kappa_2,\kappa_\perp) + (1-x)\,c(\kappa_2,\kappa_\perp)\ \ge\ 0 ,
+  \label{eq:cone}
+\end{equation}
+quoted in \S\,\ref{sec:bounds}. Isotropy is the special case $c=0$ with
+$a$ a function of $\kappa$ alone.
+
+\subsection{The forward map to the line spectra}\label{app:fwdmap}
+
+Writing
+$\boldsymbol{\kappa}=(\kappa_\perp\cos\theta,\ \kappa_2,\
+\kappa_\perp\sin\theta)$, the azimuthal moments at fixed
+$(\kappa_2,\kappa_\perp)$ are
+$\langle\kappa_1^2\rangle_\theta=\langle\kappa_3^2\rangle_\theta
+=\tfrac12\kappa_\perp^2$,
+$\langle\kappa_1^4\rangle_\theta=\langle\kappa_3^4\rangle_\theta
+=\tfrac38\kappa_\perp^4$,
+$\langle\kappa_1^2\kappa_3^2\rangle_\theta=\tfrac18\kappa_\perp^4$, and
+every odd moment vanishes. Applied to \eqref{eq:twoscalar} the diagonal
+weights average to
+\begin{equation}
+  \langle P_{11}\rangle_\theta=\langle P_{33}\rangle_\theta
+  =\tfrac12(1+x), \quad
+  P_{22}=1-x, \quad
+  \langle \xi_1^2\rangle_\theta=\langle \xi_3^2\rangle_\theta
+  =\tfrac12 x(1-x), \quad
+  \xi_2^2=(1-x)^2 ,
+  \label{eq:azweights}
+\end{equation}
+and every mixed weight to zero. Substituting into the definition
+\eqref{eq:phi1d} of the line spectra,
+$\phi_{mn}(\kappa_2)=\int_0^\infty\langle\Phi_{mn}\rangle_\theta\,
+2\pi\kappa_\perp\,\mathrm{d}\kappa_\perp$, gives the \textbf{forward map}
+from the two scalars to the data a line carries:
+\begin{align}
+  \phi_{11}(\kappa_2)=\phi_{33}(\kappa_2)
+  &= 2\pi\!\int_0^\infty\!
+     \Bigl[\,a\,\tfrac{1+x}{2} + c\,\tfrac{x(1-x)}{2}\,\Bigr]
+     \kappa_\perp\,\mathrm{d}\kappa_\perp ,
+  \label{eq:fwd11}\\
+  \phi_{22}(\kappa_2)
+  &= 2\pi\!\int_0^\infty\!
+     \Bigl[\,a\,(1-x) + c\,(1-x)^{2}\,\Bigr]
+     \kappa_\perp\,\mathrm{d}\kappa_\perp ,
+  \label{eq:fwd22}\\
+  \phi_{mn}(\kappa_2) &= 0 \qquad (m\ne n).
+  \label{eq:fwdcross}
+\end{align}
+Equations \eqref{eq:fwd11}--\eqref{eq:fwdcross} contain the two free
+falsifiers quoted in \S\,\ref{sec:bounds}: under A1 the two transverse
+line spectra coincide at every resolved wavenumber (T1), and the
+cross-spectra vanish (T2); both are properties the line itself reports,
+scale by scale, with no reference to unresolved data. The
+$\phi_{22}$ bracket is the same combination of $a$ and $c$ that appears in
+the kernel $g_2$ below---the conventions mesh, as they must, because
+$\phi_{22}$ and the $22$-component of the rapid term weight the spectrum
+through the same projection geometry.
+
+They also explain why the isotropic intuition about line data fails under
+A1. For isotropic turbulence ($c=0$, $a=a(\kappa)$) the map is
+over-determined: one unknown function of one variable against two measured
+functions, with $\phi_{22}$ determining $a$ by the classical Abel-type
+inversion and the transverse spectrum slaved to it by the derivative
+relation. Under A1 the bookkeeping reverses: \emph{two unknown functions
+of two variables} against two measured functions of one variable. At each
+fixed $\kappa_2$ the data supply exactly two numbers---the two weighted
+$\kappa_\perp$-integrals \eqref{eq:fwd11}--\eqref{eq:fwd22}---about two
+unknown functions of $\kappa_\perp$; any perturbation
+$(\delta a,\delta c)(\kappa_\perp)$ annihilating both integrals while
+respecting \eqref{eq:cone} is invisible to the line. This
+infinite-dimensional null space is the quantitative content of the
+obstruction of \S\,\ref{sec:obstruction} after the axisymmetric collapse.
+
+\subsection{Derivation of the closure kernels}\label{app:kernels}
+
+For the diagonal components the exact result \eqref{eq:Mijkl} reads
+\begin{equation}
+  \Pi^{(\mathrm r)}_{nn}
+  = 2\,A_{kl}\int_{\mathbb{R}^3}
+    \frac{\kappa_n\kappa_k}{\kappa^2}\,
+    \Phi_{nl}(\boldsymbol{\kappa})\,\mathrm{d}\boldsymbol{\kappa}
+  \qquad(\text{no sum on }n).
+  \label{eq:pinn-exact}
+\end{equation}
+Substituting \eqref{eq:twoscalar}, carrying out the azimuthal average with
+the moments above, and specialising to
+$A=\mathrm{diag}(\tfrac12,-\tfrac12,0)$ reduces each component to a
+$2\pi\kappa_\perp$-weighted integral over the half-plane of a polynomial
+combination in $x$, linear in $(a,c)$---the kernels
+\eqref{eq:g1}--\eqref{eq:g3} of the main text. The upwash component
+illustrates the mechanics: only $k=l=1$ and $k=l=2$ contribute, with
+azimuthal averages
+$\langle\kappa_1\Phi_{21}\rangle_\theta
+=-\tfrac12\kappa_\perp^2\,\kappa_2\,[\,a+(1-x)\,c\,]/\kappa^2$
+and
+$\langle\Phi_{22}\rangle_\theta=(1-x)[\,a+(1-x)\,c\,]$, so that both enter
+through the same bracket and
+\begin{equation}
+  \bigl\langle\text{integrand of \eqref{eq:pinn-exact}}\bigr\rangle_\theta
+  \Big|_{n=2}
+  = 2\Bigl[-\tfrac12\cdot\tfrac{x(1-x)}{2}
+           -\tfrac12\,x(1-x)\Bigr]\bigl[a+(1-x)c\bigr]
+  = -\tfrac32\,x\,(1-x)\bigl[a+(1-x)c\bigr],
+  \label{eq:g2derive}
+\end{equation}
+which is $g_2(x)$. The transverse components involve in addition the
+fourth moments of \eqref{eq:azweights}'s underlying table and yield
+$g_1$ and $g_3$; the full reduction has been verified symbolically against
+\eqref{eq:pinn-exact}. Three identities check the algebra:
+$g_1+g_2+g_3=0$ at every $x$ for both scalars (pointwise energy
+conservation); each kernel vanishes at $x=1$, where the wavevector aligns
+with the line and the projection degenerates; and averaging over the
+isotropic angular measure $\mathrm{d}\mu$ on $[0,1]$ gives
+$\langle g_1\rangle:\langle g_2\rangle:\langle g_3\rangle
+=+\tfrac15:-\tfrac15:0$, reproducing
+$\Pi^{(\mathrm r)}_{ij}=\tfrac45 k_tS_{ij}$ \citep{Crow1968} as in
+\S\,\ref{sec:lrr-reduction}.
+
+\subsection{The bounds as linear programs}\label{app:lp}
+
+The target \eqref{eq:Piclosed}, the data constraints
+\eqref{eq:fwd11}--\eqref{eq:fwd22}, and the cone \eqref{eq:cone} are all
+linear in $(a,c)$, and everything decomposes over the resolved wavenumber:
+writing $\Pi^{(\mathrm r)}_{nn}=\int_0^\infty
+\pi_n(\kappa_2)\,\mathrm{d}\kappa_2$ with
+$\pi_n=2\pi\int_0^\infty g_n(x)[a,c]\,\kappa_\perp\,\mathrm{d}\kappa_\perp$,
+the extremisation over all spectra consistent with the line data is a
+family of \emph{independent} infinite-dimensional linear programs, one per
+$\kappa_2$:
+\begin{equation}
+  \pi_n^{\pm}(\kappa_2)
+  = \max/\min_{(a,c)(\kappa_\perp)}\;
+    2\pi\!\int_0^\infty g_n(x)\,[a,c]\,\kappa_\perp\,\mathrm{d}\kappa_\perp
+  \quad\text{s.t.}\quad
+  \text{\eqref{eq:fwd11}--\eqref{eq:fwd22} hold, \eqref{eq:cone}
+  pointwise},
+  \label{eq:LP}
+\end{equation}
+whence $\Pi^{\pm}_{nn}=\int\pi_n^{\pm}\,\mathrm{d}\kappa_2$ and the
+indeterminacy $\mathcal I_n=(\Pi^{+}_{nn}-\Pi^{-}_{nn})/2k_tS$ of
+\S\,\ref{sec:bounds}, normalised by the natural rapid-term scale so that
+$\mathcal I_n$ is comparable across strains (the isotropic value is
+$\Pi^{(\mathrm r)}_{11}=\tfrac25 k_t$ per unit $S_{11}=\tfrac12$).
+Discretised on a logarithmic $\kappa_\perp$ grid of order $10^2$ points,
+\eqref{eq:LP} is a linear program with two equality constraints and the
+cone, solved per $\kappa_2$ in milliseconds; the bounds are global and
+sharp by LP duality---no fitting and no local minima. The side conditions
+of \S\,\ref{sec:bounds} enter as further linear constraints: the
+log-Lipschitz slope cap
+$|\mathrm{d}\ln(a,c)/\mathrm{d}\ln\kappa_\perp|\le\lambda$ and the
+polarisation cap $|c|\le\gamma a$. The LP extremals concentrate on
+few-point supports in $\kappa_\perp$ (bang--bang spectra), which is why
+the raw bounds are conservative and why smoothness alone barely narrows
+them: a log-Lipschitz spectrum can still vary like
+$\kappa_\perp^{\pm\lambda}$, so the angular reweighting that drives the
+indeterminacy survives smoothing, while the polarisation cap attacks it
+directly. The dual variables of \eqref{eq:LP} certify, per resolved
+wavenumber, which linear combinations of the measured line spectra control
+each $\pi_n$; finite-window bias on $\phi_{mn}$ at small $\kappa_2$
+propagates linearly and can be carried as interval data in place of the
+equalities with no change of machinery.
 
 \section{Numerical parameters and initialisation}\label{app:numerics}
 %% TRANSPLANT: V2 implementation details judged supplementary (R1 minor);
