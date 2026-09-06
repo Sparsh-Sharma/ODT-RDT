@@ -613,19 +613,361 @@ rapid-distortion solutions and scale-resolving data in
 \S\S\,\ref{sec:verification}--\ref{sec:val-spectrum}.
 
 % =========================================================================
-\section{Verification against rapid-distortion theory}\label{sec:verification}
+\section{Verification, and moment-level validation}\label{sec:verification}
 % =========================================================================
-%% TRANSPLANT: V2 sec:verification (canonical strains, sec:onset,
-%%   sec:finite-strain, upwash necessity, sec:level1a) — ~60%, figures
-%%   consolidated; the onset check and Level-1a verification carry the
-%%   "implementation is exact" burden in fewer pages.
-%% ALSO: Lee & Reynolds moment-level comparison lands HERE, compressed
-%%   (V2 sec:lr-validation minus its long S*-parameter discussion; the
-%%   b11 finite-Re discussion survives as one paragraph).  R2 asked why
-%%   L&R 1985 at all: answer in one sentence (resolvable Re on a line;
-%%   graded reference curves) and lean on the in-house DNS for spectra.
+%% TRANSPLANTED 2026-09-06 from V2 (~60%): canonical strains + onset
+%%   merged; components figures consolidated to one 2-panel canon figure
+%%   (fig_rdt_components, regenerated + numbers re-verified by
+%%   post/closure_bound/verification/fig_rdt_moments.py — axial LRR at
+%%   e=4 corrected 0.064 -> 0.063); upwash necessity folded into
+%%   finite-strain; level1a compressed (caption's stale "3%" fixed to
+%%   the text's 0.3%); L&R compressed, S* discussion cut to one
+%%   paragraph, b11 to one paragraph + figure.
 
-\emph{[M-verification: transplant per markers.]}
+We separate two questions. \emph{Verification} asks whether the
+formulation and its implementation reproduce a known exact solution in
+the regime where one exists---the rapid-distortion limit, tested
+analytically and in the solver below. \emph{Validation} asks whether the
+model reproduces the behaviour of real strained turbulence outside that
+limit; the spectral validation, against the strained-box DNS with its
+exact-RDT companion, is the subject of \S\,\ref{sec:val-spectrum}, and
+this section closes with the moment-level validation against the
+strained-turbulence DNS of \citet{LeeReynolds1985}.
+
+\subsection{Canonical strains and the exact onset rate}\label{sec:onset}
+
+Two irrotational homogeneous strains admit exact rapid-distortion
+solutions and isolate the physics of interest. \emph{Plane strain},
+\begin{equation}
+  \mathsf{A}=\operatorname{diag}(a,-a,0),\qquad a>0,
+  \label{eq:plane-strain}
+\end{equation}
+is the strain of a two-dimensional stagnation region: with $x_1$
+tangential to the surface, $x_2$ normal to it and $x_3$ spanwise, the
+component compressed by the strain is the wall-normal (upwash) component
+$u_2$, whose amplification is the pre-impact distortion relevant to
+leading-edge noise. \emph{Axisymmetric strain},
+\begin{equation}
+  \mathsf{A}=\operatorname{diag}(-\tfrac12\gamma,-\tfrac12\gamma,\gamma),
+  \qquad \gamma>0,
+  \label{eq:axi-strain}
+\end{equation}
+is the strain of a contraction or a three-dimensional stagnation flow and
+provides an independent test in which two components are amplified and
+one suppressed. For both, $\mathsf{A}$ is symmetric, so the
+principal-axis alignment assumed in \S\,\ref{sec:domain-strain} holds;
+the line is taken along $x_2$.
+
+For turbulence isotropic at the onset of straining the continuous
+evolution \eqref{eq:cont-evolution} gives, by
+\eqref{eq:production-rate} and \eqref{eq:crow},
+\begin{equation}
+  \left.\frac{\mathrm{d}R_{ij}}{\mathrm{d}t}\right|_{0}
+  = \mathcal{P}_{ij}+\Pi^{(\mathrm r),\mathrm{iso}}_{ij}
+  = \tfrac{2}{5}\,\mathcal{P}_{ij}
+  = -\tfrac{8}{15}\,k_t\,S_{ij},
+  \label{eq:onset-rate}
+\end{equation}
+the exact rapid-distortion rate for initially isotropic turbulence, with
+no adjustable constant. This is the sharpest verification available: a
+closed-form prediction the model must satisfy identically, not
+approximately. Evaluated for the two canonical strains it gives the
+component rates of table~\ref{tab:onset}; for plane strain the predicted
+upwash growth rate $+\tfrac{8}{15}k_ta$ is to be compared with the
+$\tfrac43k_ta$ that production alone would give---the factor-$\tfrac52$
+overstatement anticipated in \S\,\ref{sec:rapid-kernel}. A model that
+passes \eqref{eq:onset-rate} for both strains has its production and
+rapid terms verified jointly; failure would indicate an error in the
+operator $\mathcal{A}_{ij}$ or its implementation, isolated from any
+closure or cascade effect.
+
+\begin{table}
+  \begin{center}
+  \def~{\hphantom{0}}
+  \begin{tabular}{lccc}
+    \hline
+    & $\mathrm{d}R_{11}/\mathrm{d}t|_0$
+    & $\mathrm{d}R_{22}/\mathrm{d}t|_0$
+    & $\mathrm{d}R_{33}/\mathrm{d}t|_0$ \\[3pt]
+    \hline
+    Plane strain \eqref{eq:plane-strain}
+      & $-\tfrac{8}{15}k_t a$ & $+\tfrac{8}{15}k_t a$ & $0$ \\[3pt]
+    Axisymmetric \eqref{eq:axi-strain}
+      & $+\tfrac{4}{15}k_t\gamma$ & $+\tfrac{4}{15}k_t\gamma$
+      & $-\tfrac{8}{15}k_t\gamma$ \\[3pt]
+    \hline
+  \end{tabular}
+  \caption{Exact onset rates of the component energies from
+  \eqref{eq:onset-rate} for initially isotropic turbulence. The
+  component compressed by the strain is amplified; the stretched
+  component is suppressed.}
+  \label{tab:onset}
+  \end{center}
+\end{table}
+
+\subsection{Finite total strain, and the necessity of the rapid term}
+\label{sec:finite-strain}
+
+Beyond onset the turbulence becomes anisotropic and the rapid term
+\eqref{eq:exact-rps} ceases to be a function of the Reynolds stress
+alone, so the verification becomes a test of the spectral closure rather
+than of the construction. We integrate the model moment equation along
+each canonical strain with two closures: the baseline isotropic closure
+\eqref{eq:iso-closure} (equivalently, isotropisation of production with
+$C_2=3/5$; IP) and the quasi-isotropic model of
+\citet{LaunderReeceRodi1975} (LRR),
+\begin{equation}
+  \Pi^{(\mathrm r)}_{ij} = C_2\,k_t S_{ij}
+  + C_3\,k_t\big(b_{ik}S_{jk}+b_{jk}S_{ik}
+  -\tfrac{2}{3}b_{mn}S_{mn}\delta_{ij}\big)
+  + C_4\,k_t\big(b_{ik}W_{jk}+b_{jk}W_{ik}\big),
+  \label{eq:lrr}
+\end{equation}
+with anisotropy $b_{ij}=R_{ij}/2k_t-\tfrac13\delta_{ij}$, mean rotation
+$W_{ij}=\tfrac12(A_{ij}-A_{ji})$ (zero for the irrotational strains
+considered), and $C_2=4/5$, $C_3=7/4$, $C_4=131/100$; the value
+$C_2=4/5$ is fixed by requiring that \eqref{eq:lrr} reduce at isotropy to
+the exact $\tfrac45k_tS_{ij}$ of \eqref{eq:crow}, so LRR shares the
+constant-free onset slope. The benchmark is the exact rapid-distortion
+solution, obtained by integrating the spectral equations \eqref{eq:rdt}
+over a Gauss--Legendre ensemble of initial wavevector directions on the
+unit sphere: for initially isotropic turbulence the modal dynamics depend
+only on direction, so the Reynolds stress is the spherical average of the
+evolved modal covariance. This integration is independent of the moment
+models and reproduces the onset slope \eqref{eq:onset-rate} to within
+$10^{-16}$, verifying the rapid-distortion machinery itself.
+
+Figure~\ref{fig:rdt-components} reports the component-energy fractions
+against total strain. Three observations follow. First, at onset all
+curves for each component are tangent---the constant-free identity
+\eqref{eq:onset-rate} is satisfied---and through $e\lesssim1$ the
+closures are nearly indistinguishable from the exact solution. Second,
+as anisotropy accumulates the closures depart, LRR uniformly less than
+IP: for axisymmetric strain at $e=4$ the lateral fraction is $0.498$
+(exact), $0.468$ (LRR), $0.450$ (IP), and the axial fraction $0.003$,
+$0.063$, $0.100$. This gap is the spectral-closure error in
+isolation---the eddy events are inactive in the rapid limit---and it
+bounds the accuracy attainable from any single rapid operator. Third,
+and most important to state plainly, for plane strain both closures miss
+a \emph{qualitative} feature: in the exact solution the neutral spanwise
+component grows monotonically, overtakes the upwash near $e\approx3.3$,
+and is the largest component by $e=4$
+($\overline{u_3^2}/2k_t=0.51$ against $0.47$), whereas both closures
+predict it to decay. This redistribution into the neutral direction is
+governed by the orientation distribution of the spectral tensor and
+cannot be recovered from single-point quantities; it is the moment-level
+signature of precisely the transverse-wavenumber information a single
+line does not carry. Section~\ref{sec:order} returns to it with the
+strained-box DNS in hand and localises the deficiency in the closure's
+$b$-dependent term.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_rdt_components.pdf}
+  \caption{Component energy fractions against total strain for initially
+  isotropic turbulence under (\textit{a}) plane strain and (\textit{b})
+  axisymmetric strain, normalised to $S=1$: exact rapid-distortion
+  theory (wavevector-ensemble integration of \eqref{eq:rdt}) against the
+  model moment equation with the LRR closure \eqref{eq:lrr} and the IP
+  closure \eqref{eq:iso-closure}. For axisymmetric strain the two
+  lateral components coincide and only
+  $\overline{u_1^2}=\overline{u_2^2}$ (lateral) and $\overline{u_3^2}$
+  (axial) are shown. All closures share the exact onset slope; LRR
+  tracks the exact solution more closely at finite strain.}
+  \label{fig:rdt-components}
+\end{figure}
+
+The upwash component, whose spectrum is the input to the leading-edge
+response, makes the case for the rapid term quantitative
+(figure~\ref{fig:rdt-upwash}). Production acting alone drives the upwash
+fraction from $1/3$ to $0.98$ by $e=4$---almost the entire kinetic
+energy forced into one component, an essentially non-realisable
+state---and overstates the initial amplification rate by the factor
+$\tfrac52$. The rapid term removes three fifths of this at onset and
+keeps the fraction physical: the exact solution peaks at $0.49$ near
+$e\approx2.4$ and then relaxes as energy passes to the spanwise
+component. Both closures reproduce the amplification itself---the effect
+that the frozen, isotropic input of classical leading-edge-noise
+prediction omits---while overpredicting it at large strain (LRR $0.60$,
+IP $0.65$ at $e=4$, against the exact $0.47$). The rapid
+pressure--strain is therefore not a refinement but a necessity, and the
+accuracy of the method for a given configuration is controlled by the
+total strain accumulated along the stagnation streamline.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.62\textwidth]{Figures/fig_upwash_amplification.pdf}
+  \caption{Upwash energy fraction under plane strain for initially
+  isotropic turbulence: exact rapid-distortion theory, the model with
+  the LRR and IP closures, and production alone ($B_{ij}=0$). Production
+  without the rapid term overstates the onset amplification rate by
+  $\tfrac52$ and forces almost all the energy into the upwash component;
+  the rapid term restores the physical, bounded amplification.}
+  \label{fig:rdt-upwash}
+\end{figure}
+
+\subsection{Verification of the implementation}\label{sec:level1a}
+
+The preceding checks verify the \emph{formulation}. They do not test the
+\emph{implementation}, in which the operator is not prescribed but
+reconstructed at every substep: the line Reynolds stress is formed from
+the resolved field, the closure supplies $\Pi^{(\mathrm r)}_{ij}$, the
+Lyapunov equation \eqref{eq:lyapunov} is solved for $B_{ij}$, and
+$\mathcal{A}_{ij}=-A_{ij}+B_{ij}$ is applied pointwise. To isolate this
+chain the solver is run in the rapid-distortion limit---plane strain,
+eddy events suppressed, zero molecular diffusion---from a statistically
+isotropic resolved initial field, and the component energies are
+evaluated as length-weighted line averages. With the events inactive the
+line's component-energy evolution must coincide with the closed moment
+equation across the whole strain range, not merely at onset.
+
+Figure~\ref{fig:level1a} shows that it does: the solver output lies on
+the LRR trajectory over $0\le e\le4$ to within $5\times10^{-4}$ in each
+component fraction, so the per-substep stress reconstruction, Lyapunov
+solve and operator assembly are correct at every state of anisotropy.
+The comparison must be read correctly: the solver reproduces the
+\emph{closure}, and it should---with the events suppressed the line
+carries no information beyond the single-point statistics the closure
+itself uses. The offset from the exact solution is the single-point
+closure error of \S\,\ref{sec:finite-strain}, not an implementation
+error; agreement with the exact solution here would indicate a fault.
+The fractions test only the anisotropy; the kinetic energy, which the
+traceless rapid term cannot change directly and which grows through the
+production integral
+$\mathrm{d}\ln k_t/\mathrm{d}e=f_{22}-f_{11}$, provides the independent
+magnitude check, and the solver reproduces the LRR amplification to
+within $0.3\%$. Reaching that figure required a resolved spectral
+initialisation (a white-noise start places energy at the grid scale,
+where mesh-adaption interpolation damps it) and a strain-resolved
+timestep bound in the inviscid limit; both effects act nearly
+isotropically, so the energy panel is what exposes them.
+
+\begin{figure}[!t]
+  \centering
+  \begin{minipage}[t]{0.49\textwidth}
+    \centering
+    \vspace{0pt}
+    \includegraphics[width=\linewidth]{Figures/fig_level1a_trajectory.pdf}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.49\textwidth}
+    \centering
+    \vspace{0pt}
+    \includegraphics[width=\linewidth]{Figures/fig_level1a_trajectory_kt.pdf}
+  \end{minipage}
+  \caption{Verification of the strain-coupled implementation under plane
+  strain, eddy events suppressed and zero molecular diffusion.
+  (\textit{a}) Component energy fractions; (\textit{b}) kinetic-energy
+  amplification $k_t(e)/k_t(0)$. Symbols: solver, length-weighted line
+  averages. Dashed: the LRR closure integrated as a moment equation.
+  Solid: exact rapid-distortion theory. The solver reproduces the
+  closure to $5\times10^{-4}$ in the fractions and $0.3\%$ in the
+  energy; the offset from the exact solution is the closure error of
+  \S\,\ref{sec:finite-strain}, as it must be.}
+  \label{fig:level1a}
+\end{figure}
+
+\subsection{Moment-level validation against the strained-turbulence DNS
+of Lee \& Reynolds}\label{sec:lr-validation}\label{sec:lr-plane}
+
+The DNS of \citet{LeeReynolds1985} is retained as a benchmark for one
+specific reason: it was deliberately run at a turbulence Reynolds number
+low enough ($q^4/\nu\varepsilon\lesssim100$) to be fully resolvable on a
+single line, and it reports the Reynolds-stress anisotropy against total
+strain for several irrotational strain modes alongside the analytic
+rapid-distortion prediction---a graded, moment-level reference that the
+spectral benchmarks of \S\,\ref{sec:val-spectrum} do not provide. The
+comparison quantity is the anisotropy $b_{ij}$ against the deformation
+ratio $c=\exp\int S\,\mathrm{d}t$ (so $\ln c$ is the total strain $e$ of
+the present notation), computed from the single-point component
+variances along the line, ensemble-averaged over $1000$ realisations;
+no spectral transform is involved. Two of their strain modes are run:
+plane strain and axisymmetric contraction, the line along a compressed
+direction in each case, to the total strains of the DNS ($c=4$ and
+$3.32$); the measured line compression agrees with
+$\exp(A_{22}t_f)$ to better than $0.3\%$, confirming the kinematic
+fidelity of the dilatation. One parameter distinction matters for
+interpretation: \citeauthor{LeeReynolds1985} characterise each run by
+$S^{*}=Sq^2/\varepsilon=2\chi$, and find the axisymmetric anisotropy
+essentially independent of $S^{*}$---a clean, parameter-free
+target---whereas in plane strain the unstrained component $b_{11}$ is
+strongly $S^{*}$-dependent, spanning $b_{11}\approx0$ (slow) to
+$+0.12$ (rapid) in the DNS.
+
+Under plane strain (figure~\ref{fig:lr-plane-fig}) the model reproduces the
+two strained components quantitatively across the whole range:
+$b_{22}=+0.21$ at $c=3.86$ against $\approx+0.20$ in the DNS, and
+$b_{33}=-0.20$ against $\approx-0.26$, capturing the trend and the bulk
+of the magnitude. These are exactly the components the DNS identifies as
+strain-rate-independent, so they constitute the robust part of the
+comparison. Under axisymmetric contraction
+(figure~\ref{fig:lr-axisym}) the model reproduces the sign structure and
+the monotonic approach to a strained state while under-predicting the
+anisotropy magnitude by roughly $25\%$ ($b_{11}=-0.21$ against
+$\approx-0.29$ at $c=3.16$); the dominant contribution is the
+spectral-closure gap isolated in \S\,\ref{sec:finite-strain}, common to
+the whole second-moment family, with a small additional artefact
+specific to the line: lying along one of the two equivalent transverse
+directions, it breaks the $x_2\leftrightarrow x_3$ symmetry and returns
+a residual split $b_{22}=+0.102$ against $b_{33}=+0.113$ at $c=3.16$,
+which the symmetry-respecting mean $\tfrac12(b_{22}+b_{33})$ removes.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{Figures/fig_LR_plane.pdf}
+  \caption{Reynolds-stress anisotropy under plane strain: present model
+  (lines; ensemble mean over $1000$ realisations, standard-error band)
+  against the DNS of \citet{LeeReynolds1985} (symbols, digitised from
+  their figure~5.4). The strained components $b_{22}$ and $b_{33}$ are
+  reproduced quantitatively; the unstrained $b_{11}$ is
+  strain-rate-dependent in the DNS (shaded band), with the model's
+  near-zero value at the slow-strain edge.}
+  \label{fig:lr-plane-fig}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{Figures/fig_LR_axisym.pdf}
+  \caption{Anisotropy under axisymmetric contraction: present model
+  (lines; $1000$ realisations) against \citet{LeeReynolds1985}
+  (symbols, digitised from their figure~5.8). The shaded spread is the
+  residual $b_{22}\neq b_{33}$ split from the line's breaking of the
+  transverse symmetry.}
+  \label{fig:lr-axisym}
+\end{figure}
+
+The one component the model does not reproduce, the plane-strain
+unstrained anisotropy $b_{11}$, is not a deficiency specific to the
+model, and figure~\ref{fig:lr-b11} establishes this directly. Exact
+linear rapid distortion gives $b_{11}<0$ kinematically---with
+$A_{1k}=0$ the unstrained energy is conserved while the total
+grows---and the standard closures give $b_{11}\approx0$; the present
+model coincides with the LRR prediction on which its operator is built,
+so its $b_{11}$ is correct \emph{for its formulation}. The DNS rise to
+$+0.12$ at fast strain is a finite-Reynolds-number, vorticity-mediated
+correction to the linearisation itself, outside the reach of linear
+theory and of the entire second-moment family alike; that it is largest
+at \emph{fast} strain rules out a slow return-to-isotropy origin.
+The components that govern the upwash spectrum fed to the leading-edge
+response are precisely those the model reproduces quantitatively.
+Finally, \citeauthor{LeeReynolds1985}'s own transport-budget analysis
+finds that in plane strain the intercomponent transfer is carried almost
+entirely by the rapid term---independent support for the rapid/slow
+decomposition on which \S\,\ref{sec:gate} rests.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.82\textwidth]{Figures/fig_LR_b11_closure.pdf}
+  \caption{The unstrained-direction anisotropy $b_{11}$ under plane
+  strain: present model (solid, $1000$ realisations, standard-error
+  band) against exact linear rapid distortion (dotted), the IP and
+  LRR-QI closures, and the DNS of \citet{LeeReynolds1985} (symbols and
+  shaded $S^{*}$ range). The model coincides with the closure it is
+  built on; the DNS rise to $b_{11}>0$ lies above the entire closure
+  family and reflects finite-Reynolds-number vorticity structure outside
+  the moment-closure framework.}
+  \label{fig:lr-b11}
+\end{figure}
 
 % =========================================================================
 \section{The linear reference and the distorted spectrum}\label{sec:val-spectrum}

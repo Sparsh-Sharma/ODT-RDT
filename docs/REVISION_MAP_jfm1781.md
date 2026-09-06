@@ -242,6 +242,28 @@ Manuscript (master):
   canon in figstyle_jfm (STIX 8pt, boxed axes, inward ticks, no grid,
   italic panel labels) + paper-wide colour palette — all 7 current v3
   figures regenerated.
+- M-verification. DONE 2026-09-06: sec:verification transplanted (~60%)
+  as "Verification, and moment-level validation" — canonical strains +
+  onset merged (tab:onset kept); finite-strain with upwash necessity
+  folded in (fig_rdt_components = NEW consolidated 2-panel canon figure,
+  fig_upwash_amplification regenerated in canon; BOTH from
+  post/closure_bound/verification/fig_rdt_moments.py, which re-verified
+  every quoted number independently: onset slope to 1e-16, overtaking at
+  e=3.34, u3 0.51 vs u2 0.47 at e=4, upwash peak 0.49 @ e=2.4, LRR
+  0.60/IP 0.65/prod 0.98; ONE CORRECTION: axial LRR at e=4 is 0.063,
+  V2 said 0.064); level1a compressed, stale caption "3%" fixed to the
+  text's 0.3%; L&R compressed to one subsection (labels
+  sec:lr-validation + sec:lr-plane both anchor it), R2's "why L&R"
+  answered in one sentence (resolvable Re on a line; graded moment-level
+  reference), S* discussion cut to one interpretive point, b11 one
+  paragraph + fig_LR_b11 kept as the honesty exhibit; forward link
+  finite-strain overtaking -> sec:order (now measured).  v3 31 pp; the
+  ONLY dangling ref left is sec:spec-bvc (spectrum transplant).
+  PENDING FIGURE RESTYLES (no generator/data locally): fig_level1a_*
+  (needs a rerun of the level-1a case — also re-verify 5e-4 / 0.3%
+  then), fig_LR_plane/axisym/b11_closure (need the N=1000 ensembles +
+  digitised L&R points; digitised data not found in repo),
+  fig_spectrum_hs__* (as before).
 - M4. §2 compression + SC2018 + intro repair (O7, O8, O9).
 - M5. [Option C] LE section from Gate machinery (O6) — written last.
 - M6. Cover letter: objection→change map; cite JFM-2026-1781; venue memo.
