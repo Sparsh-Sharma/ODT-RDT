@@ -334,6 +334,40 @@ Manuscript (master):
     ensemble).  chi~0.8 numbers stand on archived data.  QUEUED task:
     long-walltime OP rerun (deck input/homogeneousStrainOP with
     committed Lmin fix; also re-verify chi from eq:eps-budget then).
+- SEC-6 UPDATE + APP-B + BRITISH DONE 2026-09-08: interventions table
+  gains the concurrent (N=1/3) and stacked rows; fig_klevels now 8
+  cases (CR3 + CRS added — Sparsh: "the concurrent thingy has a plot
+  not just a table"); variants paragraph rewritten to the complete
+  ledger + "resupply-limited, not implementation-limited"; Appendix B
+  written (ODT configs, DNS + symmetric-C^{-1/2} whitening story, JHTDB
+  nulls, statistics policy); British-English sweep (polarisation/
+  realisation fixed; rest was already -ise).
+- M4 (writing) LARGELY DONE 2026-09-08: introduction REWRITTEN (honest
+  novelty: dosSantos2023/Ribeiro2023/Piccolo2024 + deSantana2016 cited
+  as the prescribe-vs-evolve distinction per R1; SagautCambon2018 spine
+  per R2; five-contribution arc paragraph; roadmap); conclusions
+  WRITTEN (no rigid-translation claim; mirrors abstract); bib keys
+  added and verified via publisher listings (SagautCambon2018,
+  dosSantos2023 JASA 153(3):1811, Ribeiro2023 PoF 35:115112,
+  Piccolo2024 PoF 36:125183); duplicate TownsendBook1976 in jfm.bib
+  removed (broke bibtex).  REMAINING in M4: abstract final polish,
+  LENGTH PASS (39 pp vs <=32 target — needs Sparsh's cut decisions),
+  D1 (sec:le placeholder still in).
+- FOUR-WAY CAPSTONE (Sparsh 2026-09-08: "I need a comparison of ODT
+  standard, DNS, and my and Alan's ODT" — both models in the paper,
+  head-to-head for the referees): Delta b_22(kappa_2) at e=1 on the
+  threeway axes, four curves (exact RDT / DNS / strain-coupled ODT /
+  ODT + adaptive-depth scale-local relaxation), BOTH Sk/eps = 0.8 (S=2
+  protocol) and 16 (S=40 — this also discharges C1).  Literal
+  standard ODT (no strain coupling) is a null under this protocol —
+  its role is played by the strain-off baseline of sec:spec-bvc, cited
+  not plotted.  Campaigns fw_S2I/S2K/S40I/S40K (fresh same-binary ISO
+  baselines + KS variants, 1024 rlz, gateA_S1 precursor protocol,
+  decks committed on LEN_Extension; jobs 4435645-48) RUNNING;
+  analysis ready in post/closure_bound/strained/fourway.py (includes
+  fresh-vs-archived ISO cross-check).  Labelling decision (variant vs
+  "the model") stays with Alan's pending reply — presented in paper 1
+  as the scale-local-relaxation variant.
 - M4. §2 compression + SC2018 + intro repair (O7, O8, O9).
 - M5. [Option C] LE section from Gate machinery (O6) — written last.
 - M6. Cover letter: objection→change map; cite JFM-2026-1781; venue memo.
