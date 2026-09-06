@@ -308,24 +308,14 @@ profiles together with an additive velocity change,
   u_i(y)\;\longrightarrow\;u_i\!\big(f(y)\big)+c_i\,K(y),
   \label{eq:event}
 \end{equation}
-where $f$ is the \emph{triplet map} \citep{Kerstein1991,Kerstein1999},
-defined on an interval $[y_0,y_0+l]$ of size $l$ by
-\begin{equation}
-  f(y)=y_0+
-  \begin{cases}
-    3(y-y_0), & y_0\le y\le y_0+\tfrac{1}{3}l,\\[2pt]
-    2l-3(y-y_0), & y_0+\tfrac{1}{3}l\le y\le y_0+\tfrac{2}{3}l,\\[2pt]
-    3(y-y_0)-2l, & y_0+\tfrac{2}{3}l\le y\le y_0+l,\\[2pt]
-    y-y_0, & \text{otherwise,}
-  \end{cases}
-  \label{eq:triplet}
-\end{equation}
-written through its inverse, so that fluid at $f(y)$ is placed at $y$: the
-map compresses the interval to one third of its length, inserts three
-copies, reverses the central copy, and leaves the exterior unchanged. It
-is \emph{measure preserving} (the non-local analogue of a divergence-free
-rearrangement), \emph{continuous}, and \emph{scale local} (it changes
-gradients by at most an order-unity factor) \citep{Kerstein2001}---the
+where $f$ is the \emph{triplet map}
+\citep{Kerstein1991,Kerstein1999}: on an interval $[y_0,y_0+l]$ of size
+$l$ it compresses the profile to one third of its length, inserts three
+copies, reverses the central copy, and leaves the exterior unchanged.
+It is \emph{measure preserving} (the non-local analogue of a
+divergence-free rearrangement), \emph{continuous}, and \emph{scale
+local} (it changes gradients by at most an order-unity factor)
+\citep{Kerstein2001}---the
 three invariants whose preservation under an imposed mean strain is
 established in \S\,\ref{sec:strain-forcing}. The additive term is built
 from the \emph{kernel}
@@ -800,39 +790,18 @@ evolution \eqref{eq:cont-evolution} gives, by
 the exact rapid-distortion rate for initially isotropic turbulence, with
 no adjustable constant. This is the sharpest verification available: a
 closed-form prediction the model must satisfy identically, not
-approximately. Evaluated for the two canonical strains it gives the
-component rates of table~\ref{tab:onset}; for plane strain the predicted
-upwash growth rate $+\tfrac{8}{15}k_ta$ is to be compared with the
-$\tfrac43k_ta$ that production alone would give---the factor-$\tfrac52$
-overstatement anticipated in \S\,\ref{sec:rapid-kernel}. A model that
-passes \eqref{eq:onset-rate} for both strains has its production and
-rapid terms verified jointly; failure would indicate an error in the
-operator $\mathcal{A}_{ij}$ or its implementation, isolated from any
-closure or cascade effect.
-
-\begin{table}
-  \begin{center}
-  \def~{\hphantom{0}}
-  \begin{tabular}{lccc}
-    \hline
-    & $\mathrm{d}R_{11}/\mathrm{d}t|_0$
-    & $\mathrm{d}R_{22}/\mathrm{d}t|_0$
-    & $\mathrm{d}R_{33}/\mathrm{d}t|_0$ \\[3pt]
-    \hline
-    Plane strain \eqref{eq:plane-strain}
-      & $-\tfrac{8}{15}k_t a$ & $+\tfrac{8}{15}k_t a$ & $0$ \\[3pt]
-    Axisymmetric \eqref{eq:axi-strain}
-      & $+\tfrac{4}{15}k_t\gamma$ & $+\tfrac{4}{15}k_t\gamma$
-      & $-\tfrac{8}{15}k_t\gamma$ \\[3pt]
-    \hline
-  \end{tabular}
-  \caption{Exact onset rates of the component energies from
-  \eqref{eq:onset-rate} for initially isotropic turbulence. The
-  component compressed by the strain is amplified; the stretched
-  component is suppressed.}
-  \label{tab:onset}
-  \end{center}
-\end{table}
+approximately. Evaluated for the two canonical strains it gives, under
+plane strain, onset rates $\mp\tfrac{8}{15}k_ta$ for the stretched and
+compressed components with the neutral component unchanged, and, under
+axisymmetric strain, $+\tfrac{4}{15}k_t\gamma$ for each lateral
+component against $-\tfrac{8}{15}k_t\gamma$ for the axis. For plane
+strain the predicted upwash growth rate $+\tfrac{8}{15}k_ta$ is to be
+compared with the $\tfrac43k_ta$ that production alone would give---the
+factor-$\tfrac52$ overstatement anticipated in
+\S\,\ref{sec:rapid-kernel}. A model that passes \eqref{eq:onset-rate}
+for both strains has its production and rapid terms verified jointly;
+failure would indicate an error in the operator $\mathcal{A}_{ij}$ or
+its implementation, isolated from any closure or cascade effect.
 
 \subsection{Finite total strain, and the necessity of the rapid term}
 \label{sec:finite-strain}
@@ -1019,17 +988,15 @@ $b_{22}=+0.21$ at $c=3.86$ against $\approx+0.20$ in the DNS, and
 $b_{33}=-0.20$ against $\approx-0.26$, capturing the trend and the bulk
 of the magnitude. These are exactly the components the DNS identifies as
 strain-rate-independent, so they constitute the robust part of the
-comparison. Under axisymmetric contraction
-(figure~\ref{fig:lr-axisym}) the model reproduces the sign structure and
-the monotonic approach to a strained state while under-predicting the
-anisotropy magnitude by roughly $25\%$ ($b_{11}=-0.21$ against
-$\approx-0.29$ at $c=3.16$); the dominant contribution is the
-spectral-closure gap isolated in \S\,\ref{sec:finite-strain}, common to
-the whole second-moment family, with a small additional artefact
-specific to the line: lying along one of the two equivalent transverse
-directions, it breaks the $x_2\leftrightarrow x_3$ symmetry and returns
-a residual split $b_{22}=+0.102$ against $b_{33}=+0.113$ at $c=3.16$,
-which the symmetry-respecting mean $\tfrac12(b_{22}+b_{33})$ removes.
+comparison. Under axisymmetric contraction the model reproduces the
+sign structure and the monotonic approach to a strained state while
+under-predicting the anisotropy magnitude by roughly $25\%$
+($b_{11}=-0.21$ against $\approx-0.29$ at $c=3.16$), dominated by the
+spectral-closure gap isolated in \S\,\ref{sec:finite-strain} and common
+to the whole second-moment family; the line adds only a small artefact,
+breaking the transverse symmetry with a residual split
+$b_{22}=+0.102$ against $b_{33}=+0.113$ that the symmetry-respecting
+mean $\tfrac12(b_{22}+b_{33})$ removes.
 
 \begin{figure}
   \centering
@@ -1042,17 +1009,6 @@ which the symmetry-respecting mean $\tfrac12(b_{22}+b_{33})$ removes.
   strain-rate-dependent in the DNS (shaded band), with the model's
   near-zero value at the slow-strain edge.}
   \label{fig:lr-plane-fig}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{Figures/fig_LR_axisym.pdf}
-  \caption{Anisotropy under axisymmetric contraction: present model
-  (lines; $1000$ realisations) against \citet{LeeReynolds1985}
-  (symbols, digitised from their figure~5.8). The shaded spread is the
-  residual $b_{22}\neq b_{33}$ split from the line's breaking of the
-  transverse symmetry.}
-  \label{fig:lr-axisym}
 \end{figure}
 
 The one component the model does not reproduce, the plane-strain
@@ -2337,19 +2293,6 @@ continuous wavenumber-dependent operator identified above.
   \label{fig:fourway}
 \end{figure}
 
-% =========================================================================
-\section{Consequence for leading-edge noise}\label{sec:le}
-% =========================================================================
-%% DETACHABLE (Option C only; write LAST; if length or coherence fails,
-%%   this section moves to paper 2 and the introduction's claim shrinks
-%%   accordingly).  Sources: LEN_Extension post/acoustics — RDT-vK family
-%%   fits (fit_rdt_family), exact Phi_ww(Kx,Ky) from rdt_kernel, Amiet
-%%   Delta-SPL chain (gateB_delta_spl); frozen-strain scoping stated
-%%   explicitly (R1.4 second half deferred honestly).
-
-\emph{[M5: detachable LE section — decision D1.]}
-
-% =========================================================================
 \section{Conclusions}\label{sec:conclusions}
 % =========================================================================
 %% WRITTEN 2026-09-08 (M4).  Claims mirror the abstract; no

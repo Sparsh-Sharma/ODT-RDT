@@ -400,6 +400,18 @@ Compute (cheap now; all on caro):
 - C4. [Option C] ΔSPL(e, Sk/ε) from the fitted RDT-vK family — the Gate-B
   run on exact Φ_ww.
 
+LENGTH PASS DONE 2026-09-08 (authorised): eq:triplet display -> prose;
+tab:onset inlined; fig_LR_axisym dropped (numbers carried in text,
+paragraph tightened); D1 DECIDED = OPTION S (sec:le placeholder deleted;
+the companion-study sentence in the conclusions carries the acoustic
+stage).  Result: 39 pp.  The <=32 target is NOT reachable without
+structural sacrifice of load-bearing sections (candidates if forced:
+sec:order or sec:doublecount compression, CMK to one figure, level1a
+figure to single panel) — flagged for Sparsh; recommendation is to
+argue content-per-page in the cover letter instead (39 draft-class pp
+now carry DNS benchmark + bounds + measured A1 + the Kerstein arc +
+four-way, vs the rejected 42 pp without any of it).
+
 Decisions (Sparsh):
 - D1. Combine vs split (after M0 + a look at the length budget).
 - D2. Venue.
