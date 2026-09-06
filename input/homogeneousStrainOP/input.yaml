@@ -57,6 +57,11 @@ params:
     tdfac:         1.0
     sLastDA:       100
     Lp:            0.015
+    Lmin:          0.0006         #  pin the physical minimum eddy size: the default
+                                  #  (dxmin*eddyMinCells = 1.5e-4 on this refined grid)
+                                  #  floods the sampler with viscous-forbidden tiny
+                                  #  candidates at nu=3e-6 (Pa ~ 1e-6) and stalls it;
+                                  #  0.0006 matches the 4000-cell cases' minimum.
     Lmax:          0.333333333
     #----------------------------------------------------------------------------------
     modDump:       1000000
