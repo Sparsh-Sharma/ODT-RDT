@@ -402,6 +402,41 @@ when on.  Campaigns CR1/CR3, 1024 paired-seed rlz each (jobs 4435551/2,
   delocalised events also reach the measured band; and/or scale N with
   strain.  Worth putting to Alan with the CR data.
 
+### 4f addendum — STACKED variant CRS (2026-09-07, job 4435572)
+
+CRS = N=3 concurrent intervals, each running the KS adaptive-depth
+hierarchy inside it (code 9d3ae24: sampled intervals get
+applySubscaleKernels when nSubKernelLevels>0; no deck combined both
+before, so default + all prior cases bit-identical — regression PASSED).
+1024 rlz, crs_robust_table.txt + crs_vs_ks_table.txt, newbands/.
+
+vs BASELINE:
+- e=1: STRONGEST early isotropization of the entire program — both
+  bands strongly starred (lo -0.048*, hi -0.060*; A_high 1.43->1.26,
+  A_low 1.43->1.29; pre-strain floor 0.83->0.97).
+- e=3.9: FIRST starred deep-strain LOW-band effect of the program
+  (lo -0.027*); high band ns positive (+0.042) — the fine-scale fade
+  persists.
+
+vs KS (the sharp comparison — what does delocalised multiplicity add
+once depth is present):
+- e=1: hi -0.022* (CRS beats KS early at fine scales);
+- e=3.9: lo -0.026* (CRS beats KS at energy-containing scales even at
+  the deepest strain) BUT hi +0.083* — CRS is SIGNIFICANTLY WORSE than
+  KS at fine scales at deep strain: the K2I3 overshoot signature
+  returns with dosage, wherever it is applied.
+
+READING: the stack behaves like "KS + more dosage".  Early gains scale
+with total relaxation delivered (CRS > K2I3 > KS > K2), and the
+energy-containing scales keep benefiting to e=4; but the deep-strain
+FINE scales cannot absorb extra per-event relaxation regardless of
+location — dosage harm is scale-selective and universal (K2I3 and CRS
+agree).  Within this family the fine-scale deep-strain limit now looks
+genuinely resupply-limited, not implementation-limited: depth fixes
+WHERE, nothing tested fixes WHEN faster than the strain resupplies.
+Pareto view: KS remains the best no-harm default; CRS is the best
+moderate-strain isotropizer if e <= 2-3 is the regime of interest.
+
 ## 5. Reply history:
    - 2026-09-04: first reply SENT (email_alan_test3_reply.html).
    - 2026-09-05 morning: Option-B reply SENT — the MORNING draft of
