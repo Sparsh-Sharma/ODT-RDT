@@ -1,0 +1,6 @@
+Hierarchical kernel levels, medians [95% CI], 1024 rlz each
+                case         A_low(1)        A_high(1)        A_high(3)           T(3.9)  u2/2kt(3.9)
+        standard ODT             1.43             1.43             1.94             0.60        0.579
+  level 1 (3 images)             1.36             1.38             1.78             0.62        0.581
+        level 2 (+9)             1.36             1.27             1.84             0.69        0.584
+       level 3 (+27)             1.41             1.31             2.02             0.77        0.579
