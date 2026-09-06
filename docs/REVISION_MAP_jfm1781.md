@@ -187,7 +187,16 @@ Manuscript (master):
   RDT-distance envelope (sec:envelope, fig_rdt_distance). Compiles clean,
   45 pp. REMAINING in M2 scope: abstract + conclusions still carry the
   rigid-translation claim (lines ~68, ~2570-era) — do together with M4.
-- M3. §5 rewrite to the six claims (O3, O4, O5); appendix move (R3.3).
+- M3. DONE 2026-09-06 (research core; Appendix A derivation still to
+  transplant from the LOS note): sec:gate rebuilt in main_v3.tex — new
+  intro (no closure claim), exact term + obstruction transplanted, the
+  "closed computable functional" claim replaced by the collapsed-form
+  status paragraph + NEW sec:bounds (LP bounds, indeterminacy table,
+  T1/T2), NEW sec:a1meas (A1 measured: residue/polarisation table, O(b^2)
+  superseded by measurement, bound-validity, A1 control experiment +
+  fig_a1_control), NEW sec:order (Referee 1.3 measured and localised),
+  lrr-reduction transplanted with measured-discards paragraph,
+  doublecount + measured-disjointness paragraph, six-claims summary.
 - M4. §2 compression + SC2018 + intro repair (O7, O8, O9).
 - M5. [Option C] LE section from Gate machinery (O6) — written last.
 - M6. Cover letter: objection→change map; cite JFM-2026-1781; venue memo.

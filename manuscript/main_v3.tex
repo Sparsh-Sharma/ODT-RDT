@@ -409,26 +409,518 @@ operating point's strain and rapidity.
 
 % =========================================================================
 \section{Closure of the rapid pressure--strain term on a single line}\label{sec:gate}
-% =========================================================================
-%% THE SPINE.  Rebuild to the six claims of notes/section5_results_note:
-%%   1. exact term (Poisson factor 2 — verify V2 eq. 5.3 carries it) +
-%%      the obstruction stated exactly        [V2 sec:exact-pi,
-%%      sec:obstruction survive ~80%]
-%%   2. A1 collapse; A1 exact for axisymmetric distortion, MEASURED under
-%%      plane strain (m=2 residue table)      [NEW text from note sec 3-4]
-%%   3. LOS estimator: sharp bounds from line data; indeterminacy table;
-%%      falsifiers T1/T2                      [NEW from los_estimator note;
-%%      forward map + kernels -> Appendix A]
-%%   4. reduction to the moment closure; discards kappa-dependence +
-%%      ordering                              [V2 sec:lrr-reduction ~70% +
-%%      note sec:order for Referee 1.3]
-%%   5. rapid/slow disjointness: A=0 null + rapid-limit allocation test
-%%                                            [V2 sec:doublecount + note
-%%      sec:alloc, compressed]
-%%   6. b22(e) linear to e=1, geometry-robust [note sec:dns "control"]
-%% Define A1 formally at first use (R3.3).
 
-\emph{[M3: the Section-5 rebuild — the largest single writing task.]}
+The results of \S\,\ref{sec:val-spectrum} establish what the strain-coupled
+model produces and where it stands against exact linear theory and DNS. The
+rapid pressure--strain redistribution that drives that evolution was
+evaluated throughout by the algebraic moment closure of
+\S\,\ref{sec:formulation} \citep{LaunderReeceRodi1975}, applied component by
+component on the resolved line. That closure is a modelling input, and the
+redistribution it represents is, in its exact form, a \emph{nonlocal,
+three-dimensional} object: the rapid pressure at a point is a volume
+integral over the entire fluctuating field, and the pressure--strain
+correlation is an integral over the full three-dimensional spectrum. What a
+single one-dimensional line of turbulence can say about such an object is
+the analytical question of this paper, and this section answers it in a
+form that is deliberately more modest, and more defensible, than a closure
+claim: we state exactly what obstructs a single-line representation, we
+derive sharp bounds on the rapid term from line data alone, we
+\emph{measure} rather than assume the axisymmetry hypothesis under which
+the term collapses, and we identify---by measurement---which physical
+content the moment closure discards.
+
+The section proceeds as follows. The exact term and the obstruction are
+stated first (\S\,\ref{sec:exact-pi}--\S\,\ref{sec:obstruction}); the
+axisymmetric collapse follows, together with the statement of what it does
+\emph{not} deliver (\S\,\ref{sec:assumption}); the bounds that line data do
+deliver, with their falsifiers, come next (\S\,\ref{sec:bounds}); the
+axisymmetry assumption is then measured directly in the strained-box DNS,
+including a control experiment that isolates its failure mode
+(\S\,\ref{sec:a1meas}); the component-ordering deficiency raised by the
+exact solution is measured and localised (\S\,\ref{sec:order}); the
+reduction to the moment closure and the disjointness from the eddy
+redistribution close the argument
+(\S\,\ref{sec:lrr-reduction}--\S\,\ref{sec:doublecount}).
+
+\subsection{The exact rapid pressure--strain term}\label{sec:exact-pi}
+
+For incompressible flow the fluctuating pressure satisfies a Poisson equation
+whose source splits into a part linear in the fluctuations and the mean
+velocity gradient (the \emph{rapid} part) and a part quadratic in the
+fluctuations (the \emph{slow} part) \citep{Pope2000}:
+\begin{equation}
+  \frac{1}{\rho}\,\nabla^2 p'
+  = \underbrace{-2\,\frac{\partial U_k}{\partial x_l}\,
+      \frac{\partial u'_l}{\partial x_k}}_{\text{rapid}}
+    \;\underbrace{-\,\frac{\partial^2}{\partial x_k\partial x_l}
+      \bigl(u'_k u'_l - \overline{u'_k u'_l}\bigr)}_{\text{slow}} .
+  \label{eq:poisson-rapid}
+\end{equation}
+The rapid part is linear in $\boldsymbol{u}'$ and proportional to the mean
+gradient $\partial U_k/\partial x_l$, which for the present homogeneous plane
+strain is the constant tensor $A_{kl}$ of \S\,\ref{sec:val-spectrum}. Writing
+$p'_{\mathrm r}$ for the rapid pressure and inverting the Laplacian with the
+free-space Green's function $G(\boldsymbol{x})=-1/4\pi|\boldsymbol{x}|$,
+\begin{equation}
+  p'_{\mathrm r}(\boldsymbol{x})
+  = \frac{\rho}{2\pi}\,A_{kl}\!\int
+    \frac{1}{|\boldsymbol{x}-\boldsymbol{x}'|}\,
+    \frac{\partial u'_l}{\partial x'_k}(\boldsymbol{x}')\,
+    \mathrm{d}\boldsymbol{x}' .
+  \label{eq:prapid}
+\end{equation}
+The rapid pressure--strain correlation that redistributes energy among the
+Reynolds-stress components is
+$\Pi^{(\mathrm r)}_{ij}
+   = \overline{(p'_{\mathrm r}/\rho)\,(\partial u'_i/\partial x_j
+     + \partial u'_j/\partial x_i)}$.
+Substituting \eqref{eq:prapid} and using homogeneity to pass to the
+velocity spectrum tensor
+$\Phi_{mn}(\boldsymbol{\kappa})$
+(the Fourier transform of $\overline{u'_m(\boldsymbol{x})\,
+u'_n(\boldsymbol{x}+\boldsymbol{r})}$),
+one obtains the standard exact result
+\citep{BatchelorProudman1954,Crow1968,HuntCarruthers1990}
+\begin{equation}
+  \Pi^{(\mathrm r)}_{ij}
+  = A_{kl}\,M_{ijkl},
+  \qquad
+  M_{ijkl}
+  = \int_{\mathbb{R}^3}
+    \Bigl[\,
+      \frac{\kappa_j\kappa_k}{\kappa^2}\,\Phi_{il}(\boldsymbol{\kappa})
+      + \frac{\kappa_i\kappa_k}{\kappa^2}\,\Phi_{jl}(\boldsymbol{\kappa})
+    \,\Bigr]\,\mathrm{d}\boldsymbol{\kappa},
+  \label{eq:Mijkl}
+\end{equation}
+where $\kappa=|\boldsymbol{\kappa}|$. Equations
+\eqref{eq:poisson}--\eqref{eq:Mijkl} are exact; no modelling has entered. The
+tensor $M_{ijkl}$ is a linear functional of the \emph{full three-dimensional}
+spectrum $\Phi_{mn}(\boldsymbol{\kappa})$ through the nonlocal projection
+operator $\kappa_a\kappa_b/\kappa^2$, which is the wavenumber-space image of
+the inverse Laplacian in \eqref{eq:prapid}. This nonlocality and
+three-dimensionality are the obstruction that the single-line model must
+confront.
+
+\subsection{The obstruction: what an ODT line resolves}\label{sec:obstruction}
+
+ODT evolves a velocity vector $\boldsymbol{u}'(y)$ on a single line aligned
+with the resolved direction, here taken along the contraction axis of the
+strain, $y\equiv x_2$. From it the model has access to the one-dimensional
+spectra
+\begin{equation}
+  \phi_{mn}(\kappa_2)
+  = \int_{\mathbb{R}^2}
+      \Phi_{mn}(\boldsymbol{\kappa})\,
+      \mathrm{d}\kappa_1\,\mathrm{d}\kappa_3,
+  \label{eq:phi1d}
+\end{equation}
+the one-dimensional spectra obtained by integrating $\Phi_{mn}$ over the two
+unresolved wavenumber components. The integrand of \eqref{eq:Mijkl}, by
+contrast, carries the \emph{direction-resolved} weight
+$\kappa_a\kappa_b/\kappa^2$, which cannot be reconstructed from
+$\phi_{mn}(\kappa_2)$ alone: integrating out $\kappa_1,\kappa_3$ as in
+\eqref{eq:phi1d} destroys exactly the angular information that the projection
+operator acts on. The reduction $M_{ijkl}\!\to\!$ (functional of
+$\phi_{mn}$) is therefore not available without an assumption about how the
+energy is distributed over the unresolved wavevector directions. This is the
+crux of the present question, and we make the required assumption explicit
+rather than implicit.
+
+The obstruction just stated does not disappear under any symmetry
+assumption short of full isotropy. As \S\,\ref{sec:assumption} shows,
+axisymmetry about the line reduces the unknown spectrum to two scalar
+functions of $(\kappa_2,\kappa_\perp)$---but the line data are two weighted
+$\kappa_\perp$-integrals of those functions per resolved wavenumber, so the
+map from what the line carries to what the rapid term requires retains an
+infinite-dimensional null space. Stating this null space exactly, and
+extracting what survives it, is the correct formulation of the single-line
+question.
+
+\subsection{The closure assumption and the collapsed form}
+\label{sec:assumption}
+
+\paragraph{Assumption A1 (axisymmetry of the undistorted spectrum about the
+line).} The spectrum tensor of the incoming turbulence, before the rapid
+distortion acts, is axisymmetric about the resolved direction $\boldsymbol{e}_2$:
+$\Phi_{mn}(\boldsymbol{\kappa})$ depends on $\boldsymbol{\kappa}$ only through
+$\kappa_2$ and $\kappa_\perp=(\kappa_1^2+\kappa_3^2)^{1/2}$, and its
+polarization is invariant under rotation about $\boldsymbol{e}_2$.
+
+This is a statement about the \emph{turbulence}, not about the strain. It is
+justified for the present configuration because the inflow is grid turbulence,
+which is closely isotropic at the grid and is subsequently contracted along a
+single axis as it approaches the stagnation plane; isotropy is the special
+case of A1, and uniaxial contraction preserves axisymmetry about the
+contraction axis. The plane strain $A_{kl}=\mathrm{diag}(\tfrac12,-\tfrac12,0)$
+acting at the leading edge is itself \emph{not} axisymmetric, so A1 is imposed
+on the state on which the rapid operator acts, consistent with the
+rapid-distortion ordering in which $\Pi^{(\mathrm r)}$ is evaluated on the
+current (here, axisymmetric to leading order) field. The error incurred when
+the accumulated distortion has driven the spectrum away from axisymmetry is
+quantified in \S\,\ref{sec:a1meas}.
+
+Under A1 the angular integral in \eqref{eq:Mijkl} can be carried out. Writing
+$\boldsymbol{\kappa}=(\kappa_\perp\cos\theta,\ \kappa_2,\
+\kappa_\perp\sin\theta)$ and using that, by A1, $\Phi_{mn}$ is independent of
+$\theta$, the azimuthal averages of the projection weights reduce to
+\begin{equation}
+  \Bigl\langle \frac{\kappa_1^2}{\kappa^2}\Bigr\rangle_\theta
+  = \Bigl\langle \frac{\kappa_3^2}{\kappa^2}\Bigr\rangle_\theta
+  = \frac{1}{2}\,\frac{\kappa_\perp^2}{\kappa^2},
+  \qquad
+  \Bigl\langle \frac{\kappa_2^2}{\kappa^2}\Bigr\rangle_\theta
+  = \frac{\kappa_2^2}{\kappa^2},
+  \qquad
+  \Bigl\langle \frac{\kappa_1\kappa_3}{\kappa^2}\Bigr\rangle_\theta = 0,
+  \label{eq:angular}
+\end{equation}
+with $\kappa^2=\kappa_2^2+\kappa_\perp^2$, and all weights mixing a resolved
+and an unresolved index (e.g.\ $\kappa_1\kappa_2/\kappa^2$) averaging to zero.
+Substituting \eqref{eq:angular} into \eqref{eq:Mijkl} removes the azimuthal
+dependence and leaves a two-dimensional integral over $(\kappa_2,\kappa_\perp)$
+of the axisymmetric spectrum. Defining the diagonal one-dimensional spectra
+along the line,
+\begin{equation}
+  E_n^{\,\|}(\kappa_2)
+   = \int_0^\infty \Phi_{nn}(\kappa_2,\kappa_\perp)\,
+     2\pi\kappa_\perp\,\mathrm{d}\kappa_\perp
+   \quad(\text{no sum}),
+   \label{eq:Epar}
+\end{equation}
+the rapid pressure--strain term reduces to a two-dimensional integral over the
+half-plane $(\kappa_2,\kappa_\perp)$ of the axisymmetric spectrum. The
+axisymmetric, solenoidal spectrum is fixed by two scalar functions of
+$(\kappa_2,\kappa_\perp)$ \citep{Batchelor1946,ChandrasekharAxisym1950}; we
+denote them $a(\kappa_2,\kappa_\perp)$ and $c(\kappa_2,\kappa_\perp)$, where
+$a$ is the isotropic-like scalar (the sole survivor when the turbulence is
+isotropic) and $c$ measures the axisymmetric departure from isotropy. Carrying
+out the azimuthal average \eqref{eq:angular} and specialising to the plane
+strain $A=\mathrm{diag}(\tfrac12,-\tfrac12,0)$, the diagonal rapid
+pressure--strain components are
+\begin{equation}
+  \Pi^{(\mathrm r)}_{nn}
+  = \int_{0}^{\infty}\!\!\int_{0}^{\infty}
+      g_{n}(x)\,\bigl[\,a(\kappa_2,\kappa_\perp),\,c(\kappa_2,\kappa_\perp)\,\bigr]\,
+      2\pi\kappa_\perp\,\mathrm{d}\kappa_\perp\,\mathrm{d}\kappa_2
+   \quad(\text{no sum on }n),
+  \label{eq:Piclosed}
+\end{equation}
+with $x\equiv\kappa_2^2/\kappa^2$, $\kappa^2=\kappa_2^2+\kappa_\perp^2$, and the
+kernels, linear in the two spectral scalars,
+\begin{align}
+  g_{1}(x) &= a\!\left(\tfrac18 + \tfrac34 x - \tfrac78 x^2\right)
+            + c\,\tfrac78\,x\,(1-x)^2, \label{eq:g1}\\[2pt]
+  g_{2}(x) &= -\tfrac32\,x\,\bigl[\,a\,(1-x) + c\,(1-x)^2\,\bigr],
+            \label{eq:g2}\\[2pt]
+  g_{3}(x) &= a\!\left(-\tfrac18 + \tfrac34 x - \tfrac58 x^2\right)
+            + c\,\tfrac58\,x\,(1-x)^2. \label{eq:g3}
+\end{align}
+Equations \eqref{eq:Piclosed}--\eqref{eq:g3} constitute the axisymmetric collapse:
+\emph{under A1, the rapid pressure--strain term is a
+functional of the axisymmetric spectral scalars $a,c$ on the resolved
+half-plane and the mean strain}, with no reference to the unresolved azimuthal
+structure beyond what A1 fixes. The kernels satisfy two exact constraints that
+verify the reduction. First, energy conservation: pressure--strain
+redistributes without changing the trace, and indeed
+$g_1(x)+g_2(x)+g_3(x)=0$ identically for all $x$ and for both scalars, so
+$\Pi^{(\mathrm r)}_{11}+\Pi^{(\mathrm r)}_{22}+\Pi^{(\mathrm r)}_{33}=0$.
+Second, the isotropic limit: setting $c=0$ with $a$ a function of $\kappa$
+alone, the integral of $g_3$ over the half-plane vanishes, so
+$\Pi^{(\mathrm r)}_{33}=0$---as it must, since the plane strain has no
+component along $x_3$ and the isotropic rapid term is proportional to $S_{ij}$
+\citep{Crow1968}. Both constraints hold identically in the derived kernels,
+confirming the tensor reduction.
+
+The status of \eqref{eq:Piclosed}--\eqref{eq:g3} must be stated precisely,
+because it is here that the closure question is decided. Under A1 the rapid
+term is a linear functional of the two axisymmetric scalars
+$a(\kappa_2,\kappa_\perp)$ and $c(\kappa_2,\kappa_\perp)$ on the resolved
+half-plane---a \emph{two-dimensional} representation, not yet a single-line
+closure, since the line determines only the $\kappa_\perp$-integrals
+\eqref{eq:Epar} of fixed combinations of $a$ and $c$ and not the functions
+themselves. Equations \eqref{eq:Piclosed}--\eqref{eq:g3} are therefore the
+\emph{collapsed form} on which any single-line statement must be built; the
+single-line content itself---what the line data pin down, and how
+sharply---is established next.
+
+\subsection{What line data determine: sharp bounds on the rapid term}
+\label{sec:bounds}
+
+Under A1 the solenoidal spectrum tensor takes the two-scalar form
+$\Phi_{mn}=a\,P_{mn}+c\,\xi_m\xi_n$, with $P_{mn}$ the solenoidal projector
+and $\xi_m$ the projected axis direction; realisability is the pair of
+pointwise conditions $a\ge0$ and $a+(1-x)\,c\ge0$ with
+$x=\kappa_2^2/\kappa^2$. The line carries $\phi_{11}(\kappa_2)
+=\phi_{33}(\kappa_2)$ and $\phi_{22}(\kappa_2)$: per resolved wavenumber,
+two weighted $\kappa_\perp$-integrals of the two unknown functions. The
+rapid term \eqref{eq:Piclosed} is linear in $(a,c)$, so its extreme values
+over everything consistent with the line data, solenoidality and
+realisability are obtained from a family of linear programs, one per
+$\kappa_2$, yielding sharp bounds
+$[\Pi^{-}_{nn},\,\Pi^{+}_{nn}]$ and a kinematic indeterminacy
+$\mathcal I_n=(\Pi^{+}_{nn}-\Pi^{-}_{nn})/2k_tS$ that quantifies exactly
+how much the null space costs. The forward map from $(a,c)$ to the line
+spectra and the derivation of the bound kernels are given in
+Appendix~\ref{app:forward}.
+
+Calibrated on an isotropic von K\'arm\'an spectrum (with a verification
+suite pinning tracelessness, the isotropic angular averages
+$+\tfrac15:-\tfrac15:0$, the longitudinal--transverse relation, and the
+exact $\tfrac45 k_t S_{ij}$), the indeterminacy is
+\begin{center}\small
+\begin{tabular}{lccc}
+constraint level & $\mathcal I_{11}$ & $\mathcal I_{22}$ & $\mathcal I_{33}$\\[1pt]
+line data $+$ solenoidality $+$ realisability & 0.77 & 1.28 & 0.86\\
+$+$ log-Lipschitz slope cap ($\lambda=4$) & \multicolumn{3}{c}{$<5\%$ narrower}\\
+$+$ polarisation cap $|c|\le\gamma a$, $\gamma=0$ & 0.34 & 0.58 & 0.24\\
+\end{tabular}
+\end{center}
+Two features of this table matter. Smoothness assumptions buy almost
+nothing: the null space is not a roughness artefact. The polarisation cap
+is the lever---but \S\,\ref{sec:a1meas} shows that under strain the
+effective polarisation reaches order one, so the honest bound in the
+strained regime is the uncapped one.
+
+The representation also supplies two \emph{free falsifiers} that the line
+itself reports: under A1, $\phi_{11}(\kappa_2)=\phi_{33}(\kappa_2)$ at
+every wavenumber (T1) and the velocity cross-spectra vanish (T2). Any
+measured transverse splitting is a wavenumber-resolved violation of A1;
+rather than assuming the hypothesis, the line monitors it.
+
+\subsection{The axisymmetry hypothesis, measured}\label{sec:a1meas}
+
+A1 is exact for the isotropic inflow and is degraded by the plane strain
+itself. Rather than estimating this error perturbatively, we measure it in
+the strained-box DNS of \S\,\ref{sec:box-dns}, where the full spectrum is
+available: the exact azimuthal decomposition of $\Phi_{22}$ yields the true
+scalars $(a,c)$, the discarded $m=2$ azimuthal residue (the direct
+A1-violation measure, with isotropic sampling floor $0.133$ in this box),
+and the effective polarisation $\gamma_{\rm eff}=|c|/a$.
+
+\begin{table}
+  \centering\small
+  \begin{tabular}{c|cccc|cccc}
+  & \multicolumn{4}{c|}{$Sk_t/\varepsilon=0.8$} & \multicolumn{4}{c}{$Sk_t/\varepsilon=16$}\\
+  $e$ & $b_{22}$ & $\gamma_{\rm eff}$ & $m{=}2$ & $\tfrac{\phi_{11}}{\phi_{33}}{-}1$
+      & $b_{22}$ & $\gamma_{\rm eff}$ & $m{=}2$ & $\tfrac{\phi_{11}}{\phi_{33}}{-}1$\\[1pt]
+  0    & 0.003 & 0.10 & 0.133 & $+0.06$ & 0.003 & 0.10 & 0.133 & $+0.06$\\
+  0.5  & 0.064 & 0.79 & 0.166 & $-0.20$ & 0.070 & 1.28 & 0.247 & $-0.21$\\
+  1    & 0.125 & 1.44 & 0.189 & $-0.32$ & 0.124 & 4.22 & 0.396 & $-0.46$\\
+  \end{tabular}
+  \caption{A1 measured under plane strain ($128^3$ DNS, four realisations):
+  upwash anisotropy, effective polarisation, azimuthal $m=2$ residue of
+  $\Phi_{22}$ (isotropic floor $0.133$), and the on-line falsifier T1.}
+  \label{tab:a1meas}
+\end{table}
+
+Three conclusions follow (table~\ref{tab:a1meas}). First, the A1 error is
+\emph{not} perturbatively small in the accumulated anisotropy: the residue
+grows from its floor to $0.19$ at $Sk_t/\varepsilon=0.8$ and to $0.40$ at
+$16$ by $e=1$---larger at rapid strain, because at moderate strain rate the
+nonlinear dynamics restore axisymmetry as fast as the strain destroys it.
+An $O(b^2)$ error estimate, which the symmetric structure of the discarded
+harmonic suggests, is superseded by this measurement. Second, the
+polarisation cap that narrows the isotropic bounds is illegitimate under
+strain: $\gamma_{\rm eff}$ passes unity by $e\simeq0.5$. Third,
+correspondingly, the uncapped bound brackets the exact rapid term
+(evaluated by direct integration in the DNS) up to $e\approx0.25$--$0.5$
+and fails beyond, and the failure is A1's, not the estimator's.
+
+The decisive evidence for that attribution is a control experiment: the
+same box under \emph{axisymmetric contraction} with matched $A_{22}$, for
+which A1 is exact by symmetry. There the $m=2$ residue stays at the
+sampling floor and the transverse splitting at zero at every strain up to
+$e=1$ even at $Sk_t/\varepsilon=16$, while under plane strain both grow
+(figure~\ref{fig:a1control}). The single-line closure is therefore
+\emph{exact for axisymmetric distortion}; its plane-strain error is a
+strain-geometry property, now quantified, rather than a defect of the line
+representation. For the applications this maps cleanly: a rounded,
+three-dimensional stagnation region imposes an axisymmetric strain (closure
+exact); a two-dimensional leading edge imposes plane strain (closure
+carries the measured correction). The acoustically relevant amplification
+$b_{22}(e)$, finally, is indistinguishable between the two geometries
+($0.124$ against $0.117$ at $e=1$, $Sk_t/\varepsilon=16$): the quantity the
+leading-edge response consumes is robust to precisely the geometry that A1
+is sensitive to.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_a1_control.pdf}
+  \caption{The A1 control experiment at $Sk_t/\varepsilon=16$ ($128^3$,
+  four realisations): axisymmetric contraction (A1 exact by symmetry)
+  against plane strain at matched $A_{22}$. Left: azimuthal $m=2$ residue
+  of $\Phi_{22}$. Right: transverse splitting and $b_{22}$.}
+  \label{fig:a1control}
+\end{figure}
+
+\subsection{Component ordering under plane strain}\label{sec:order}
+
+The exact solution of the rapid problem under plane strain has the neutral
+spanwise component eventually overtaking the upwash; algebraic closures
+predict the opposite. The exact rapid term evaluated in the DNS settles the
+matter: at $e=1$, $\Pi^{(\mathrm r)}_{33}/k_tS = 0.14$ at
+$Sk_t/\varepsilon=0.8$ and $0.27$ at $16$, exceeding
+$\Pi^{(\mathrm r)}_{11}=0.23$ in the rapid case---the overtaking is real
+and sets in at rapid strain. LRR-QI, whose spanwise component is carried by
+its $b$-dependent term, matches at $Sk_t/\varepsilon=0.8$
+($\Pi^{(\mathrm r)}_{33}=0.143\,k_tS$) but delivers half the exact value at
+$16$; IP gives zero identically. The deficiency thus lives in the moment
+closure's $b$-term, not in the line model: the ODT moment-level $b_{ij}$
+follows the closure to $\sim2\%$, and its $b_{33}$ stays within $0.006$ of
+zero in every run. In the spectral representation the ordering is carried
+by the $c$-scalar through the kernels
+\eqref{eq:g1}--\eqref{eq:g3}; the moment reduction discards it. This
+answers, by measurement, where the known component-ordering error enters
+and what it would take to remove it.
+
+\subsection{Reduction to the moment closure}\label{sec:lrr-reduction}
+
+The closed form \eqref{eq:Piclosed}--\eqref{eq:g3} operates on the resolved
+spectrum, whereas the distortion results of \S\,\ref{sec:val-spectrum} were
+obtained with the algebraic moment closure of \S\,\ref{sec:rapid-kernel}
+\citep{LaunderReeceRodi1975}. For the two to be consistent, the spectral
+kernel must reduce to that moment closure in the limit where the moment
+closure is exact---isotropic turbulence. We show that it does, which both
+justifies the closure used in the simulations and fixes the prefactor in an
+explicit convention.
+
+Figure~\ref{fig:pi-kernels} plots the kernels $g_1,g_2,g_3$ of
+\eqref{eq:g1}--\eqref{eq:g3} against the angular variable
+$x=\kappa_2^2/\kappa^2$. Two features are exact and hold for both spectral
+scalars. The kernels sum to zero at every $x$,
+\begin{equation}
+  g_1(x)+g_2(x)+g_3(x)=0 \qquad \forall x,
+  \label{eq:gtrace}
+\end{equation}
+so the rapid term conserves turbulent kinetic energy pointwise in wavenumber,
+not merely in the integral; and each kernel vanishes at $x=1$, where the
+wavevector aligns with the line and the projection $\kappa_a\kappa_b/\kappa^2$
+degenerates. The signs are physically ordered: $g_1>0$ (energy fed to the
+streamwise component $E_1$), $g_2<0$ (energy removed from the line/upwash
+component $E_2$) over the bulk of the angular range, with $g_3$ changing sign,
+consistent with the plane strain stretching $x_1$ and compressing $x_2$.
+
+For \emph{isotropic} turbulence the anisotropy scalar vanishes ($c=0$) and the
+isotropic-like scalar $a$ depends only on $\kappa$. Averaging the kernels over
+solid angle---equivalently, integrating $g_n(x)$ against the isotropic
+distribution of $x$ on the sphere---gives
+\begin{equation}
+  \langle g_1\rangle : \langle g_2\rangle : \langle g_3\rangle
+  = +\tfrac15 : -\tfrac15 : 0,
+  \label{eq:giso}
+\end{equation}
+in the ratio $+1:-1:0$. This is exactly the structure of the plane strain
+$S_{ij}=\mathrm{diag}(\tfrac12,-\tfrac12,0)$: the rapid term is proportional to
+$S_{ij}$, with $\Pi^{(\mathrm r)}_{33}=0$ because the strain has no component
+along $x_3$. The spectral kernel therefore collapses, under isotropy, to the
+isotropic-production form of the moment closure,
+\begin{equation}
+  \Pi^{(\mathrm r)}_{ij}
+  = \tfrac{4}{5}\,k_t\,S_{ij}
+  \qquad(\text{isotropic limit}),
+  \label{eq:crow-spectral}
+\end{equation}
+the result of \citet{Crow1968} that underlies the isotropisation-of-production
+(IP) rapid term in the closure of \citet{LaunderReeceRodi1975}. We note a
+convention: with the symmetrised definition of the pressure--strain correlation
+adopted here and the factor of two carried in the Poisson source
+\eqref{eq:poisson}, the kernels \eqref{eq:g1}--\eqref{eq:g3} yield the
+coefficient $\tfrac25 k_t$ for the $11$-component directly (since $S_{11}=\tfrac12$),
+equivalent to the standard $\tfrac45 k_t S_{ij}$ of \eqref{eq:crow-spectral}; the ratio
+\eqref{eq:giso} and the tracelessness \eqref{eq:gtrace} are independent of this
+convention.
+
+The consequence is that the algebraic closure used to obtain the distortion of
+\S\,\ref{sec:val-spectrum} is not an independent assumption but the
+isotropic-limit reduction of the line-consistent spectral term derived here.
+The spectral form \eqref{eq:Piclosed} carries, in addition, the angular
+($x$-dependent) and anisotropy ($c$-scalar) information that the moment closure
+discards---and both discards are now measured: the wavenumber dependence
+of the linear response in the three-way comparison of
+\S\,ef{sec:threeway}, and the component ordering in
+\S\,ef{sec:order}. The moment closure and the collapsed form thus
+agree to leading order, and the terms in which they depart are exactly
+the measured deficiencies of \S\,ef{sec:val-spectrum}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.72\textwidth]{Figures/fig_pi_kernels.pdf}
+  \caption{Rapid pressure--strain closure kernels $g_1,g_2,g_3$
+  (eqs.~\eqref{eq:g1}--\eqref{eq:g3}) against the angular variable
+  $x=\kappa_2^2/\kappa^2$. Solid curves: coefficient of the isotropic-like
+  spectral scalar $a$; faint dashed curves: coefficient of the anisotropy
+  scalar $c$. The kernels sum to zero at every $x$ (energy conservation,
+  eq.~\eqref{eq:gtrace}) and vanish at $x=1$. Averaged over an isotropic
+  spectrum they give the ratio $+\tfrac15:-\tfrac15:0$
+  (eq.~\eqref{eq:giso}), recovering the isotropisation-of-production form
+  $\Pi^{(\mathrm r)}_{ij}=\tfrac45 k_t S_{ij}$ \citep{Crow1968} that underlies
+  the moment closure used in \S\,\ref{sec:val-spectrum}.}
+  \label{fig:pi-kernels}
+\end{figure}
+
+\subsection{Consistency with the eddy redistribution: avoiding double
+counting}\label{sec:doublecount}
+
+A closed rapid term is necessary but not sufficient: it must not duplicate
+redistribution already effected by the eddy events. The pressure--strain
+correlation decomposes canonically into rapid and slow parts,
+$\Pi_{ij}=\Pi^{(\mathrm r)}_{ij}+\Pi^{(\mathrm s)}_{ij}$, corresponding to the two source terms in \eqref{eq:poisson-rapid}. The slow part
+$\Pi^{(\mathrm s)}_{ij}$ is the return-to-isotropy mechanism, quadratic in the
+fluctuations and independent of the mean gradient; the eddy events in ODT,
+which act on the fluctuating field without reference to $A_{kl}$, are the
+model's representation of exactly this slow redistribution. The rapid part
+$\Pi^{(\mathrm r)}_{ij}$, proportional to $A_{kl}$ and linear in the
+fluctuations, is by construction absent from the eddy mechanism, which carries
+no dependence on the mean strain. The two therefore occupy disjoint terms of
+the canonical decomposition, and adding \eqref{eq:Piclosed} as an explicit
+mean-strain-driven source alongside the eddies does not double-count, provided
+the eddy events are calibrated to reproduce the slow return-to-isotropy in the
+absence of mean strain---a condition that the no-strain baseline of
+\S\,\ref{sec:spec-bvc} verifies directly, since there the centroid relaxes
+under the eddies alone with no spurious rapid contribution. This argument establishes consistency at the level of the decomposition; the no-strain baseline of \S\,\ref{sec:spec-bvc} provides the direct numerical confirmation, the centroid there relaxing under the eddy mechanism alone.
+
+The disjointness argument is now also a measured statement, from both
+sides. With the strain switched off the eddy events generate no spurious
+strain-like signal (the nominal-turbulence null of
+Appendix~\ref{app:numerics}). Conversely, in the rapid limit
+($Sk_t/\varepsilon=16$, under one eddy per line in $e\le1$) every
+kernel-energy allocation rule tested---the isotropic kernel, a
+strain-biased generalisation, and discrete eddy types---reproduces the
+exact rapid-distortion evolution of $b_{22}(e)$ to $\pm0.003$: the rapid
+term cannot be reached from inside the eddy events, and the continuous
+operator carries it alone. Rapid and slow redistribution occupy disjoint
+terms by construction, and now by measurement.
+
+\subsection{Summary: what the single-line treatment establishes}
+\label{sec:gate-summary}
+
+\begin{enumerate}
+\item The rapid term is exactly $A_{kl}M_{ijkl}$; its single-line
+  representation is obstructed by an azimuthal null space that is stated
+  exactly and survives the axisymmetric collapse at the level of the two
+  spectral scalars.
+\item Under A1 the term collapses to the kernel form
+  \eqref{eq:Piclosed}--\eqref{eq:g3}; A1 is exact for axisymmetric
+  distortion and is \emph{measured} under plane strain, where its violation
+  grows with accumulated strain and with strain rapidity
+  (table~\ref{tab:a1meas}).
+\item Independently of A1's validity, line data bound the rapid term
+  sharply; the bound is honest---and verified to bracket the exact
+  term---up to $e\approx0.25$--$0.5$ under plane strain, and at all
+  computed strains under axisymmetric distortion.
+\item The moment closure used in the simulations is the isotropic reduction
+  of the collapsed form (verified, including the exact
+  $\tfrac45k_tS_{ij}$); what it discards is the wavenumber dependence of
+  the linear response and the component ordering, both measured in
+  \S\,\ref{sec:val-spectrum} and \S\,\ref{sec:order}.
+\item Rapid and slow redistribution are disjoint: verified by the
+  strain-off null and by the rapid-limit invariance of every kernel-energy
+  allocation rule.
+\item The acoustically relevant upwash amplification $b_{22}(e)$ is linear
+  to $e=1$ and robust to the strain geometry that controls A1's validity.
+\end{enumerate}
+
 
 % =========================================================================
 \section{Measured limits, and scale-local relaxation}\label{sec:limits}
