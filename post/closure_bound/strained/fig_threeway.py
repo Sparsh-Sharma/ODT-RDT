@@ -12,13 +12,15 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
-from figstyle_jfm import FULL, plt, save, strip  # noqa: E402
+from figstyle_jfm import COL as PAL  # noqa: E402
+from figstyle_jfm import FULL, GOLD, panel, plt, save  # noqa: E402
 
 D = np.load(os.path.join(HERE, "threeway.npz"), allow_pickle=True)
 EDGES = D["edges"]
 XC = np.sqrt(EDGES[:-1] * EDGES[1:])
 
-COL = {"RDT": "#8e44ad", "DNS": "k", "ISO": "#2a78d6", "TYPESw": "#eda100"}
+COL = {"RDT": PAL["rdt"], "DNS": PAL["dns"], "ISO": PAL["odt"],
+       "TYPESw": GOLD}
 LBL = {"RDT": "exact linear RDT, projected",
        "DNS": r"DNS $128^3$",
        "ISO": r"ODT, isotropic kernel",
@@ -54,14 +56,11 @@ def main():
         ax.set_xscale("log")
         ax.set_xlabel(r"$\kappa_2(e)/\kappa_c(0)$")
         ax.set_ylabel(yl)
-        strip(ax)
     for j, ax in enumerate(axs):
-        ax.text(0.03, 0.97, "(" + "abc"[j] + ")",
-                transform=ax.transAxes, va="top")
+        panel(ax, "abc"[j])
     h, lab = axs[0].get_legend_handles_labels()
     fig.legend(h, lab, ncol=3, loc="lower center",
-               bbox_to_anchor=(0.5, -0.16), handlelength=1.6,
-               columnspacing=1.0)
+               bbox_to_anchor=(0.5, -0.16), columnspacing=1.0)
     fig.tight_layout(pad=0.4)
     save(fig, os.path.join(HERE, "fig_threeway"))
 

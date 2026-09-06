@@ -12,7 +12,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
-from figstyle_jfm import FULL, plt, save, strip  # noqa: E402
+from figstyle_jfm import COL, FULL, plt, save  # noqa: E402
 
 N_RES = 80.0
 
@@ -31,8 +31,10 @@ def read_costs(tag):
 def main():
     fig, ax = plt.subplots(figsize=(0.62 * FULL, 2.3))
     for tag, lab, col, mk in (
-            ("S1", r"$Sk_t/\varepsilon \approx 0.4$ (slow)", "#2a78d6", "o"),
-            ("S20", r"$Sk_t/\varepsilon \approx 8$ (rapid)", "#eb6834", "s")):
+            ("S1", r"$Sk_t/\varepsilon \approx 0.4$ (slow)", COL["slow"],
+             "o"),
+            ("S20", r"$Sk_t/\varepsilon \approx 8$ (rapid)", COL["rapid"],
+             "s")):
         es, costs = read_costs(tag)
         rms = 100.0 * np.sqrt(2.0 * costs / N_RES)
         ax.plot(es, rms, mk + "-", color=col, label=lab)
@@ -40,7 +42,6 @@ def main():
     ax.set_xlabel("total strain $e$")
     ax.set_ylabel("rms log-residual of exact-RDT fit [%]")
     ax.legend(loc="lower right")
-    strip(ax)
     fig.tight_layout(pad=0.4)
     save(fig, os.path.join(HERE, "fig_rdt_distance"))
 

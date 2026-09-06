@@ -12,12 +12,12 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from figstyle_jfm import FULL, plt, save, strip  # noqa: E402
+from figstyle_jfm import COL, FULL, plt, save  # noqa: E402
 
 x = np.linspace(0.0, 1.0, 400)
-GA = {r"$g_1$": (0.125 + 0.75 * x - 0.875 * x**2, "#eb6834"),
-      r"$g_2$": (-1.5 * x * (1 - x), "#2a78d6"),
-      r"$g_3$": (-0.125 + 0.75 * x - 0.625 * x**2, "#1baf7a")}
+GA = {r"$g_1$": (0.125 + 0.75 * x - 0.875 * x**2, COL["phi11"]),
+      r"$g_2$": (-1.5 * x * (1 - x), COL["phi22"]),
+      r"$g_3$": (-0.125 + 0.75 * x - 0.625 * x**2, COL["phi33"])}
 GC = {r"$g_1$": 0.875 * x * (1 - x)**2,
       r"$g_2$": -1.5 * x * (1 - x)**2,
       r"$g_3$": 0.625 * x * (1 - x)**2}
@@ -32,9 +32,7 @@ def main():
     ax.axhline(0, color="0.6", lw=0.6, ls=":")
     ax.set_xlabel(r"$x=\kappa_2^2/\kappa^2$")
     ax.set_ylabel(r"kernel value")
-    ax.legend(ncol=2, loc="lower left", handlelength=1.8,
-              labelspacing=0.25, columnspacing=1.0)
-    strip(ax)
+    ax.legend(ncol=2, loc="lower left", columnspacing=1.0)
     fig.tight_layout(pad=0.4)
     save(fig, os.path.join(HERE, "fig_pi_kernels"))
 

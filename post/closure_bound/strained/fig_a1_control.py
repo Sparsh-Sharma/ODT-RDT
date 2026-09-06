@@ -17,7 +17,7 @@ import numpy as np
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 ".."))
-from figstyle_jfm import FULL, plt, save, strip  # noqa: E402
+from figstyle_jfm import COL, FULL, panel, plt, save  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ECHECKS = ("0", "0.25", "0.5", "0.75", "1")
@@ -25,7 +25,7 @@ EVAL = [float(e) for e in ECHECKS]
 KMAX_FRAC = 0.85
 RATIO = "16"
 
-C_PLANE, C_AXI, C_B22 = "#eb6834", "#2a78d6", "#1baf7a"
+C_PLANE, C_AXI, C_B22 = COL["plane"], COL["axi"], COL["b22"]
 
 
 def group(subdir, prefix, e):
@@ -68,7 +68,7 @@ axl.plot(EVAL, m2_p, "o-", color=C_PLANE,
 axl.plot(EVAL, m2_a, "s-", color=C_AXI,
          label="axisymmetric (A1 exact)")
 axl.set_ylabel(r"azimuthal $m{=}2$ residue of $\Phi_{22}$")
-axl.legend(loc="upper left", handlelength=1.6, labelspacing=0.25)
+axl.legend(loc="upper left")
 
 axr.axhline(0.0, color="0.7", lw=0.6, ls=":", zorder=0)
 axr.plot(EVAL, sp_p, "o-", color=C_PLANE,
@@ -79,13 +79,11 @@ axr.plot(EVAL, b_p, "^--", color=C_B22, lw=0.9,
          label=r"$b_{22}$ (upwash), both geometries")
 axr.plot(EVAL, b_a, "^:", color=C_B22, lw=0.9, ms=3, alpha=0.7)
 axr.set_ylabel("transverse splitting / upwash anisotropy")
-axr.legend(loc="lower left", handlelength=1.6, labelspacing=0.25)
+axr.legend(loc="lower left")
 
 for j, ax in enumerate((axl, axr)):
     ax.set_xlabel(r"accumulated strain $e = \int S\,dt$")
-    strip(ax)
-    ax.text(0.97, 0.97, "(" + "ab"[j] + ")",
-            transform=ax.transAxes, va="top", ha="right")
+    panel(ax, "ab"[j], x=0.9)
 
 fig.tight_layout(pad=0.4)
 save(fig, os.path.join(HERE, "fig_a1_control"))

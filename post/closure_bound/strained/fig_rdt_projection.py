@@ -12,7 +12,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
-from figstyle_jfm import FULL, plt, save, strip  # noqa: E402
+from figstyle_jfm import COL, FULL, panel, plt, save  # noqa: E402
 
 D = np.load(os.path.join(HERE, "rdt_projection.npz"), allow_pickle=True)
 EDGES = D["edges"]
@@ -21,8 +21,8 @@ XC = np.sqrt(EDGES[:-1] * EDGES[1:])
 
 def main():
     fig, (a, b) = plt.subplots(1, 2, figsize=(FULL, 2.2))
-    for name, col in (("phi22", "#2a78d6"), ("phi11", "#eb6834"),
-                      ("phi33", "#1baf7a")):
+    for name in ("phi22", "phi11", "phi33"):
+        col = COL[name]
         a.plot(XC, D[f"R_{name}_e1"], "o-", color=col,
                label=r"$\phi_{%s}$, $e{=}1$" % name[3:])
         a.plot(XC, D[f"R_{name}_e0.5"], "o--", color=col, ms=2.4,
@@ -32,24 +32,22 @@ def main():
     a.set_xscale("log")
     a.set_xlabel(r"$\kappa_2(e)/\kappa_c(0)$")
     a.set_ylabel(r"shape ratio $R_{nn}$")
-    a.legend(ncol=2, handlelength=1.5, labelspacing=0.25,
-             columnspacing=0.8, loc="upper right")
-    b.plot(XC, D["split_dns_e1"], "k-", lw=1.4,
+    a.legend(ncol=2, columnspacing=0.8, loc="upper right")
+    b.plot(XC, D["split_dns_e1"], "-", color=COL["dns"], lw=1.4,
            label=r"DNS, $e{=}1$")
-    b.plot(XC, D["split_rdt_e1"], "-", color="#8e44ad", lw=1.3,
+    b.plot(XC, D["split_rdt_e1"], "-", color=COL["rdt"], lw=1.3,
            label="exact RDT, $e{=}1$")
-    b.plot(XC, D["split_dns_e0.5"], "k--", lw=0.8, label=r"DNS, $e{=}0.5$")
-    b.plot(XC, D["split_rdt_e0.5"], "--", color="#8e44ad", lw=0.8,
+    b.plot(XC, D["split_dns_e0.5"], "--", color=COL["dns"], lw=0.8,
+           label=r"DNS, $e{=}0.5$")
+    b.plot(XC, D["split_rdt_e0.5"], "--", color=COL["rdt"], lw=0.8,
            label="exact RDT, $e{=}0.5$")
     b.axhline(0, color="0.75", lw=0.6, ls=":")
     b.set_xscale("log")
     b.set_xlabel(r"$\kappa_2(e)/\kappa_c(0)$")
     b.set_ylabel(r"$\phi_{11}/\phi_{33}-1$")
-    b.legend(loc="lower left", handlelength=1.6, labelspacing=0.25)
+    b.legend(loc="lower left")
     for j, ax in enumerate((a, b)):
-        strip(ax)
-        ax.text(0.03, 0.03, "(" + "ab"[j] + ")",
-                transform=ax.transAxes, va="bottom")
+        panel(ax, "ab"[j], y=0.08)
     fig.tight_layout(pad=0.4)
     save(fig, os.path.join(HERE, "fig_rdt_projection"))
 

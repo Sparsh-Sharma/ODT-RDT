@@ -12,18 +12,19 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
-from figstyle_jfm import FULL, plt, save, strip  # noqa: E402
+from figstyle_jfm import FULL, VARIANTS, panel, plt, save  # noqa: E402
 
 NB = os.path.join(HERE, "newbands")
 CASES = [
-    ("standard ODT", "bands_homogeneousStrain2.npz", "k", "o"),
-    ("1 level (thirds)", "bands_homogeneousStrain2K1.npz", "#2a78d6", "s"),
-    ("2 levels", "bands_homogeneousStrain2K2.npz", "#1baf7a", "^"),
-    ("3 levels", "bands_homogeneousStrain2K3.npz", "#eb6834", "d"),
+    ("standard ODT", "bands_homogeneousStrain2.npz", VARIANTS[0], "o"),
+    ("1 level (thirds)", "bands_homogeneousStrain2K1.npz", VARIANTS[1],
+     "s"),
+    ("2 levels", "bands_homogeneousStrain2K2.npz", VARIANTS[2], "^"),
+    ("3 levels", "bands_homogeneousStrain2K3.npz", VARIANTS[3], "d"),
     ("depth tied to eddy size", "bands_homogeneousStrain2KS.npz",
-     "#8e44ad", "v"),
+     VARIANTS[4], "v"),
     ("2 levels, iterated 3x", "bands_homogeneousStrain2K2I3.npz",
-     "#b8860b", "P"),
+     VARIANTS[5], "P"),
 ]
 NBOOT = 2000
 
@@ -57,11 +58,9 @@ def main():
             ax.set_ylabel(ylab)
     axs[2].axhline(1.0, color="k", lw=0.6, ls=":")
     for j, ax in enumerate(axs):
-        strip(ax)
         if j >= 2:
             ax.set_xlabel("total strain $e$")
-        ax.text(0.03, 0.97, "(" + "abcd"[j] + ")",
-                transform=ax.transAxes, va="top")
+        panel(ax, "abcd"[j])
     h, lab = axs[0].get_legend_handles_labels()
     fig.legend(h, lab, ncol=3, loc="lower center",
                bbox_to_anchor=(0.5, -0.10), handlelength=1.6,
