@@ -104,6 +104,8 @@ param::param(inputoutput *p_io) {
     mapMidFrac      = io->params["mapMidFrac"]      ? io->params["mapMidFrac"].as<double>()      : 1.0/3.0;
     mapMidFracProb  = io->params["mapMidFracProb"]  ? io->params["mapMidFracProb"].as<double>()  : 1.0;
     nSubKernelLevels = io->params["nSubKernelLevels"] ? io->params["nSubKernelLevels"].as<int>()   : 0;
+    subKernelLmin    = io->params["subKernelLmin"]    ? io->params["subKernelLmin"].as<double>()   : 0.0;
+    subKernelIters   = io->params["subKernelIters"]   ? io->params["subKernelIters"].as<int>()     : 1;
     strainClosure  = io->params["strainClosure"]  ? io->params["strainClosure"].as<string>()  : "LRR";
     Astrain = vector<vector<double>>(3, vector<double>(3, 0.0));
     Acal    = vector<vector<double>>(3, vector<double>(3, 0.0));
@@ -189,8 +191,16 @@ param::param(inputoutput *p_io) {
         cout << endl << "ERROR: mapMidFracProb must be in (0,1]." << endl;
         exit(0);
     }
-    if(nSubKernelLevels < 0 || nSubKernelLevels > 3) {
-        cout << endl << "ERROR: nSubKernelLevels must be in [0,3]." << endl;
+    if(nSubKernelLevels < 0 || nSubKernelLevels > 6) {
+        cout << endl << "ERROR: nSubKernelLevels must be in [0,6]." << endl;
+        exit(0);
+    }
+    if(subKernelLmin < 0.0) {
+        cout << endl << "ERROR: subKernelLmin must be >= 0." << endl;
+        exit(0);
+    }
+    if(subKernelIters < 1 || subKernelIters > 10) {
+        cout << endl << "ERROR: subKernelIters must be in [1,10]." << endl;
         exit(0);
     }
     if(nSubKernelLevels > 0 && (cCoord != 1 || Lspatial)) {

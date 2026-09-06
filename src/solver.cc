@@ -386,8 +386,9 @@ bool solver::sampleEddyAndImplementIfAccepted() {
         }
         else {
             domn->ed->applyVelocityKernels(domn, iStart, iEnd);
-            if(domn->pram->nSubKernelLevels > 0)     // hierarchical isotropization (Kerstein)
-                domn->ed->applySubscaleKernels(domn, iStart, iEnd, domn->pram->nSubKernelLevels);
+            for(int it=0; it<domn->pram->subKernelIters; it++)   // hierarchical isotropization (Kerstein)
+                if(domn->pram->nSubKernelLevels > 0)
+                    domn->ed->applySubscaleKernels(domn, iStart, iEnd, domn->pram->nSubKernelLevels);
         }
 
         return true;

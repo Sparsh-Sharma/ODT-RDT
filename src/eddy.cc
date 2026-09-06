@@ -639,7 +639,13 @@ void eddy::applySubscaleKernels(domain *line, const int iS, const int iE,
     for(int m=0; m<3; m++) {
         if(hi[m] - lo[m] + 1 < 3) continue;      // too few cells to act on
         applyKernelOnRange(line, lo[m], hi[m]);
-        if(nlevels > 1)
+        bool Lrecurse = nlevels > 1;
+        if(Lrecurse && domn->pram->subKernelLmin > 0.0) {   // adaptive depth:
+            double Lm = line->posf->d.at(hi[m]+1)           //   descend only
+                      - line->posf->d.at(lo[m]);            //   while children
+            Lrecurse = (Lm/3.0 >= domn->pram->subKernelLmin);  // stay resolvable
+        }
+        if(Lrecurse)
             applySubscaleKernels(line, lo[m], hi[m], nlevels-1);
     }
 }

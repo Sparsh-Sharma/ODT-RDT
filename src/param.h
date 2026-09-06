@@ -128,6 +128,8 @@ class param {
         double                  mapMidFrac;     ///< Option B: middle triplet-map image volume fraction (default 1/3 = classic map; outers get (1-f)/2 each; planar only)
         double                  mapMidFracProb; ///< Option B mixture: probability a candidate eddy uses mapMidFrac (else classic 1/3); default 1 = pure map, no extra RNG draw
         int                     nSubKernelLevels;///< hierarchical isotropization (Kerstein): after each eddy's kernels, apply the same kernel procedure to the 3 map images (1), then their thirds (2), ...; default 0 = off
+        double                  subKernelLmin;  ///< adaptive depth: recurse only while child sub-intervals stay >= this length (0 = fixed depth); use with nSubKernelLevels as a hard cap
+        int                     subKernelIters; ///< repeat the whole hierarchical pass this many times per eddy event (default 1)
         string                  strainClosure;  ///< "IP" or "LRR"
         vector<vector<double>>  Astrain;        ///< imposed mean velocity gradient A_ij (3x3)
         vector<vector<double>>  Acal;           ///< combined op -A_ij + B_ij (updated per substep)
