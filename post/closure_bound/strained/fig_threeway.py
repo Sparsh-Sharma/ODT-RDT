@@ -40,7 +40,7 @@ def main():
               (axs[1], "db11", r"$\Delta b_{11},\ \Delta b_{33}$"),
               (axs[2], "split", r"$\phi_{11}/\phi_{33}-1$"))
     for ax, name, yl in panels:
-        for s in ("RDT", "DNS", "ISO", "TYPESw"):
+        for s in ("RDT", "DNS", "ISO"):
             ax.plot(XC, q(s, 1.0, name), "-", color=COL[s], lw=LW[s],
                     alpha=AL[s], marker=MK[s], ms=2.6,
                     label=(LBL[s] + ", $e{=}1$") if ax is axs[0] else None)

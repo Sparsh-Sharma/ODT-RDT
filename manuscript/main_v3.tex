@@ -96,7 +96,10 @@ kinematics, quantified by a distance-from-linear-theory envelope as a
 function of strain rapidity. Hierarchical application of the model's
 energy-redistributing kernel to eddy sub-scales is shown to supply the
 measured missing ingredient---scale-local relaxation---where it reaches
-the scales of the imbalance.
+the scales of the imbalance: in a four-way comparison against the DNS
+and exact linear theory on the benchmark observable, it moves the
+model's spectral allocation of anisotropy towards the DNS at moderate
+strain rapidity, with its rapid-strain saturation measured and stated.
 \end{abstract}
 
 \begin{keywords}
@@ -1491,7 +1494,7 @@ $\kappa_2(e)/\kappa_c(0)$ with $\kappa_c$ the initial spectral centroid.
   $\Delta b_{22}(\kappa_2)$, band $\kappa_2/\kappa_c$: & 0.5--0.75 & 0.75--1.2 & 1.2--1.9 & 1.9--3 & 3--4.8 & 4.8--7.6 & 7.6--12\\[2pt]
   exact projected RDT & $+0.146$ & $+0.008$ & $-0.020$ & $-0.041$ & $-0.050$ & $-0.054$ & $-0.056$\\
   DNS                 & $+0.032$ & $-0.033$ & $-0.029$ & $-0.032$ & $-0.036$ & $-0.040$ & $-0.046$\\
-  strain-coupled ODT  & $+0.100$ & $+0.101$ & $+0.114$ & $+0.111$ & $+0.127$ & $+0.099$ & $+0.147$\\
+  strain-coupled ODT  & $+0.103$ & $+0.103$ & $+0.096$ & $+0.073$ & $+0.075$ & $+0.079$ & $+0.076$\\
   \end{tabular}
   \caption{Strain-induced upwash anisotropy per wavenumber band at $e=1$,
   $Sk_t/\varepsilon=0.8$, each system referenced to its own unstrained
@@ -2293,6 +2296,46 @@ upgrade can and cannot deliver: it can re-allocate the rapid
 redistribution across scales (the measured deficit of
 \S\,\ref{sec:threeway}), and it cannot, any more than the event-level
 mechanisms, outrun sustained resupply at deep strain.
+
+The head-to-head that summarises the paper is
+figure~\ref{fig:fourway}: the strain-induced upwash anisotropy per
+wavenumber band---the observable on which \S\,\ref{sec:threeway}
+established the benchmark---for exact linear theory, the DNS, the
+strain-coupled model, and the model with the adaptive-depth sub-scale
+kernels active, at both strain-rate parameters, from same-binary
+ensembles under the identical precursor protocol. Three statements can
+be read directly from the shared axes. First, at $Sk_t/\varepsilon=16$
+the DNS lies on the exact-RDT curve: the rapid limit is realised in the
+benchmark itself, and the deficiency of the baseline model---its
+uniform allocation of a correct integrated anisotropy---is starkest
+precisely where the eddies matter least. Second, at
+$Sk_t/\varepsilon=0.8$ scale-local relaxation tilts the model's
+allocation towards the DNS: the anisotropy now decreases with
+wavenumber, and the fine-band excess over the DNS is roughly halved
+(from $+0.076$ against the DNS value $-0.046$ to $+0.024$). Third, at
+$Sk_t/\varepsilon=16$ the same mechanism moves the allocation only
+marginally within $e\le1$: at rapid strain the relaxation events cannot
+keep pace with the resupply---the transmission finding of this section
+restated on the benchmark axes. What the eddy-level correction achieves
+and where it saturates are thereby exhibited on the same axes as the
+deficiency it addresses; closing the remaining gap is the burden of the
+continuous wavenumber-dependent operator identified above.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_fourway.pdf}
+  \caption{The four-way comparison on the benchmark observable of
+  \S\,\ref{sec:threeway}: strain-induced upwash anisotropy per
+  wavenumber band at $e=1$, for exact linear RDT, DNS, the
+  strain-coupled model, and the model with adaptive-depth scale-local
+  relaxation, at (\textit{a}) $Sk_t/\varepsilon=0.8$ and (\textit{b})
+  $16$ (ODT: $1024$ realisations per case, same binary and precursor
+  protocol; DNS and companions as in \S\,\ref{sec:box-dns}). At rapid
+  strain the DNS realises the exact-RDT allocation; scale-local
+  relaxation moves the model towards the DNS at moderate rapidity and
+  only marginally at rapid strain.}
+  \label{fig:fourway}
+\end{figure}
 
 % =========================================================================
 \section{Consequence for leading-edge noise}\label{sec:le}
