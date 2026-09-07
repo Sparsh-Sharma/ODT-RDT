@@ -2360,6 +2360,118 @@ to the wavenumber-dependent operator identified above.
   \label{fig:fourway}
 \end{figure}
 
+% =========================================================================
+\section{Consequence for leading-edge noise}\label{sec:lenoise}
+% =========================================================================
+%% PART III (written 2026-09-09, per the one-paper decision): the
+%%   Gate-B reduction on the clean ensembles; machinery in
+%%   post/closure_bound/lenoise/ (rdt_kernel validated against the
+%%   Level-0 integrator to <1% in R22 growth).
+
+The application that motivates the model can now be served with its
+output. In the leading-edge-noise theory of \citet{Amiet1975} the
+far-field pressure spectral density of a large-aspect-ratio aerofoil
+factorises as a product of the flow and observer geometry, the aerofoil
+response $|\mathcal L|^2(K_x)$, the upwash wavenumber spectrum
+$\Phi_{ww}(K_x,0)$ and the spanwise correlation length
+$\ell_y(K_x)=\pi\,\Phi_{ww}(K_x,0)/\!\int\Phi_{ww}(K_x,K_y)\,
+\mathrm{d}K_y$, with $K_x$ the streamwise and $K_y$ the spanwise
+wavenumber. For a \emph{change of inflow spectrum} at fixed aerofoil,
+flow and observer, everything except the turbulence kernel
+\begin{equation}
+  \mathcal K(K_x)
+  \;=\;
+  \pi\,\frac{\Phi_{ww}(K_x,0)^2}{\int\Phi_{ww}(K_x,K_y)\,\mathrm{d}K_y}
+  \label{eq:knoise}
+\end{equation}
+cancels exactly, so the change of radiated level is
+$\Delta\mathrm{SPL}(K_x)=10\log_{10}
+[\mathcal K^{\rm distorted}/\mathcal K^{\rm frozen}]$, independent of
+the aerofoil geometry and response. This is the sharpest question the
+distortion model can be asked without importing an acoustic solver:
+by how much does the prediction change when the inflow spectrum is the
+\emph{computed, distorted} one instead of the frozen upstream spectrum
+that standard practice prescribes?
+
+The distorted input is taken from the model's own strained ensembles in
+the representation already fitted in \S\,\ref{sec:envelope}: the
+exact-RDT-distorted von K\'arm\'an family, two parameters
+$(A_0,\kappa_e)$ per strain, fitted to the median line spectra of the
+$1024$-realisation ensembles at $Sk_t/\varepsilon\approx0.4$ and
+$\approx8$. The line data pin the resolved-wavenumber structure; the
+transverse structure that \eqref{eq:knoise} requires is supplied by the
+representation---this is \S\,\ref{sec:gate}'s statement about line
+knowledge, operating in the application---and the representation's rms
+residual, $13$--$24\%$ over the strain range (the distance envelope of
+figure~\ref{fig:rdt-distance}), is the corresponding uncertainty
+carried by the result. The two-dimensional spectrum follows by direct
+integration of the distorted components,
+$\Phi_{ww}(K_x,K_y;e)=A_0\!\int\!\Phi^{\rm RDT}_{22}
+(K_x,\kappa_2,K_y;e)\,\mathrm{d}\kappa_2$, with the machinery verified
+against the wavevector-ensemble integrator of
+\S\,\ref{sec:finite-strain} (upwash-variance growth reproduced to
+under $1\%$). The frozen baseline is the same inflow's relaxed $e=0$
+state carried undistorted. The level and shape contributions are
+separated: the kernel scales linearly with the upwash variance, so
+dividing it out isolates the spectral reallocation, and the variance
+ratio itself is taken from the measured line spectra rather than from
+the fit.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_lenoise.pdf}
+  \caption{Change of the Amiet leading-edge-noise kernel when the
+  frozen inflow spectrum is replaced by the computed distorted one,
+  against reduced streamwise wavenumber, at total strains
+  $e=0.5$--$2$: (\textit{a}) $Sk_t/\varepsilon\approx0.4$,
+  (\textit{b}) $\approx8$. Solid: spectral reallocation at matched
+  upwash variance (shape only); dotted: total, including the measured
+  variance change ($-3.5$ to $-7.3$\,dB at the slow rate, where decay
+  dominates the transit; $+0.5$ to $+1.9$\,dB at the rapid rate, where
+  the upwash amplification survives). Geometry, aerofoil response and
+  observer position cancel identically in this ratio.}
+  \label{fig:lenoise}
+\end{figure}
+
+Figure~\ref{fig:lenoise} shows the result, and its sign and structure
+are the finding. At matched upwash variance the distorted spectrum is a
+substantially \emph{weaker} leading-edge source than the frozen one at
+every resolved reduced frequency: $\approx-5$\,dB at
+$K_x\approx\kappa_e(0)$ for $e=0.5$, deepening to $-20$\,dB and beyond
+by $e=2$, and increasingly severe towards low $K_x$. The mechanism is
+the orientation physics of \S\,\ref{sec:gate} acting on the noise
+kernel: \eqref{eq:knoise} weights the spanwise-coherent upwash content
+$\Phi_{ww}(K_x,0)$, which lives on wavevectors aligned with the
+line---exactly the orientations whose upwash is smallest by
+solenoidality and whose pre-images retreat into the vanishing
+low-wavenumber tail of the initial spectrum as the distortion
+proceeds. The distortion, in short, drains the very content the
+aerofoil responds to. The total change adds the variance term: at the
+rapid rate the surviving upwash amplification offsets a small part of
+the reallocation; at the slow rate viscous decay over the longer
+transit deepens it.
+
+The scope of this statement is set out as carefully as its content.
+It concerns the \emph{free} distortion by the mean strain: the
+surface-blocking effect, which measurements and simulations show
+\emph{enhancing} the near-edge upwash at low frequency
+\citep{HuntGraham1978,dosSantos2023,Piccolo2024}, is a distinct and
+partially compensating mechanism outside the present line model, and
+the strain history along individual streamlines is replaced by the
+canonical constant-rate distortion. What the calculation establishes
+is therefore not a noise prediction but the magnitude and sign of the
+term that frozen-spectrum practice omits: order $5$--$20$\,dB at the
+energy-containing reduced frequencies for total strains of
+$0.5$--$2$---far too large to neglect, and of the opposite sign to the
+blocking correction with which it must ultimately be combined. A
+complete prediction---blocking, strain history, spanwise coherence and
+absolute levels---requires the acoustic stage proper, for which the
+present model supplies the missing input at negligible cost, with its
+uncertainty quantified by the envelope of \S\,\ref{sec:envelope} and
+its fidelity improved by the mechanism of \S\,\ref{sec:limits}
+precisely in the wavenumbers the response weights.
+
+% =========================================================================
 \section{Conclusions}\label{sec:conclusions}
 % =========================================================================
 %% WRITTEN 2026-09-08 (M4).  Claims mirror the abstract; no
