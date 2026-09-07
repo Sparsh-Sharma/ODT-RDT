@@ -758,6 +758,11 @@ void eddy::applyConcurrentRelax(domain *line, const int N) {
 void eddy::applyRelaxEvent(domain *line) {
 
     double l = esdp1 / log( domn->rand->getRand() * esdp2 + esdp3 );
+    if(domn->pram->relaxLmax > 0.0) {          // size-capped stream: restrict
+        for(int t=0; t<20 && l > domn->pram->relaxLmax; t++)   // to sub-band
+            l = esdp1 / log( domn->rand->getRand() * esdp2 + esdp3 );
+        if(l > domn->pram->relaxLmax) return;
+    }
     double a  = line->posf->d.at(0);
     double b  = line->posf->d.at(line->ngrd);
     double Ld = b - a;

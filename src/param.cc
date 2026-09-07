@@ -109,6 +109,7 @@ param::param(inputoutput *p_io) {
     nConcurrentRelax = io->params["nConcurrentRelax"] ? io->params["nConcurrentRelax"].as<int>()   : 0;
     relaxRate        = io->params["relaxRate"]        ? io->params["relaxRate"].as<double>()       : 0.0;
     relaxDepth       = io->params["relaxDepth"]       ? io->params["relaxDepth"].as<int>()         : 0;
+    relaxLmax        = io->params["relaxLmax"]        ? io->params["relaxLmax"].as<double>()       : 0.0;
     strainClosure  = io->params["strainClosure"]  ? io->params["strainClosure"].as<string>()  : "LRR";
     Astrain = vector<vector<double>>(3, vector<double>(3, 0.0));
     Acal    = vector<vector<double>>(3, vector<double>(3, 0.0));
@@ -220,6 +221,10 @@ param::param(inputoutput *p_io) {
     }
     if(relaxRate < 0.0) {
         cout << endl << "ERROR: relaxRate must be >= 0." << endl;
+        exit(0);
+    }
+    if(relaxLmax < 0.0) {
+        cout << endl << "ERROR: relaxLmax must be >= 0." << endl;
         exit(0);
     }
     if(relaxDepth < 0 || relaxDepth > 6) {
