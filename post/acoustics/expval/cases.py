@@ -74,7 +74,12 @@ def narayanan15():
         obs=(0.0, 0.0, 1.2), t_over_c=None, fit_tag="S20",
         e_ctr=e_ctr, e_lo=e_lo, e_hi=e_hi,
         csv=os.path.join(EXP, "Narayanan2015_fig4_baseline60.csv"),
-        band=[500.0, 8000.0], slc_db=0.0)
+        # band starts at 3 kHz: below that the measured fig-4 curve sits
+        # 5-14 dB above the paper's OWN Amiet prediction (digitised:
+        # Narayanan2015_fig4_amiet60.csv, which matches our chain to
+        # 0.1-3 dB) - the facility contamination their text attributes
+        # to jet noise and the grid vortex-shedding tone.
+        band=[3000.0, 9000.0], slc_db=0.0)
 
 
 CASES = {

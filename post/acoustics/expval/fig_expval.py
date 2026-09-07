@@ -50,7 +50,9 @@ def run_case(key, ax=None):
         b = c["band"]
         sel = (fexp >= b[0]) & (fexp <= b[1])
         err = np.interp(fexp[sel], f, spl) - spl_exp[sel]
-        metrics[m] = (float(err.mean()), float(np.sqrt((err ** 2).mean())))
+        metrics[m] = (float(err.mean()),
+                      float(np.sqrt((err ** 2).mean())),
+                      float(err.std()))
     if ax is not None:
         b = c["band"]
         inb = (fexp >= b[0]) & (fexp <= b[1])
@@ -94,9 +96,9 @@ def main():
         save(fig, os.path.join(HERE, f"fig_expval_{k}"))
         plt.close(fig)
         lines.append(f"== {CASES[k]['name']}  band {CASES[k]['band']}")
-        for m, (bias, rms) in met.items():
+        for m, (bias, rms, shape) in met.items():
             lines.append(f"   {m:9s} bias {bias:+6.2f} dB   rms "
-                         f"{rms:5.2f} dB")
+                         f"{rms:5.2f} dB   shape {shape:5.2f} dB")
     txt = "\n".join(lines)
     open(os.path.join(HERE, "metrics_expval.txt"), "w").write(txt + "\n")
     print(txt)

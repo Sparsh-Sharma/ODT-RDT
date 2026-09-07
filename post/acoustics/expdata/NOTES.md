@@ -99,3 +99,35 @@ bin near 10 kHz). Observer angle for this figure is NOT STATED in the paper (CAS
 
 Uncertainty: raster 7.2 px/dB with ~2-3 px lines -> ±0.4 dB; add ±0.3 dB for the binned
 median of narrow-band oscillations; overall ~±0.5-0.7 dB (background dashed similar).
+
+### 3b. Narayanan2015 Fig 4 — Amiet prediction (red DASHED), added 2026-09-07
+
+Same raster and calibration as section 3. The red mask splits cleanly by connected
+components: solid measured = the single biggest component; the Amiet dashes = the
+remaining isolated blobs (~31-44 px each). Per-column dash centres taken directly;
+columns with dash runs spread > 6 px, blobs < 4 px, or dash centre within 4 px of the
+solid trace dropped as ambiguous (in practice none triggered below the cutoff).
+
+Cutoff: beyond image x ~590-600 (f ~4.5 kHz) the dashed curve merges into the thick
+solid measured band (verified in a raw-pixel zoom — from ~4.5 to ~9 kHz there is only
+one extra-thick red band, dashed and solid indistinguishable), and the only detached
+red fragments beyond that (x >= 682, f ~9-10 kHz) sit inside the spiky multi-curve
+tangle -> all dropped. Extraction therefore stops at the last clean dash (~4.4 kHz).
+
+Output:
+- Narayanan2015_fig4_amiet60.csv: 54 pts, 106 Hz - 4.2 kHz (55 log bins; med in-bin
+  range 0.56 dB, max 1.11 dB — the dashed curve is smooth).
+
+Check overlay: Narayanan2015_fig4_amiet_check.png (baseline=blue, background=lime,
+Amiet=black dots); verified at zoom that black dots ride the dashes only, including
+through the 2.5-4.5 kHz approach to the measured curve.
+
+Offset (Amiet dashed minus measured solid): -5.2 dB @ 1 kHz, -5.0 dB @ 2 kHz;
+at 5 kHz the dashed is merged with the measured curve in the raster (offset ~0 within
+the ~±0.7 dB line width; at the last resolvable dash, 4.2-4.4 kHz, offset ~ -0.9 dB).
+
+Uncertainty: ~±0.5 dB (±0.4 dB line centre + small binning term; no narrow-band
+wiggle on this smooth prediction curve). Scripts n15_extract.py (solid/background) and
+n15_amiet.py (this curve) now copied into this directory, along with the source
+raster n15_p13_img0.png (embedded image xref 106 of PDF p.13; the scripts' SCR path
+constant points at the original session scratchpad — repoint it here to re-run).

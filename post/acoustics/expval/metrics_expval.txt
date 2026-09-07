@@ -1,32 +1,4 @@
-== Paterson-Amiet 1976, NACA0012, U=40 m/s  band [250, 1400]
-   vk        bias  +5.70 dB   rms  5.73 dB
-   liepmann  bias  +6.00 dB   rms  6.04 dB
-   odt_std   bias  +5.35 dB   rms  5.39 dB
-== Paterson-Amiet 1976, NACA0012, U=60 m/s  band [250, 1500]
-   vk        bias  +1.80 dB   rms  2.07 dB
-   liepmann  bias  +2.19 dB   rms  2.38 dB
-   odt_std   bias  +1.42 dB   rms  1.74 dB
-== Paterson-Amiet 1976, NACA0012, U=90 m/s  band [250, 2100]
-   vk        bias  +5.12 dB   rms  5.81 dB
-   liepmann  bias  +5.38 dB   rms  6.05 dB
-   odt_std   bias  +4.70 dB   rms  5.46 dB
-== Bampanis 2022 (ECL), flat plate, U=19 m/s  band [500.0, 8000.0]
-   vk        bias  +1.52 dB   rms  3.07 dB
-   liepmann  bias  +1.30 dB   rms  2.52 dB
-   odt_std   bias  +1.33 dB   rms  2.90 dB
-== Bampanis 2022 (ECL), flat plate, U=27 m/s  band [500.0, 8000.0]
-   vk        bias  -0.24 dB   rms  1.14 dB
-   liepmann  bias  +0.11 dB   rms  1.20 dB
-   odt_std   bias  -0.40 dB   rms  1.17 dB
-== Bampanis 2022 (ECL), flat plate, U=32 m/s  band [500.0, 8000.0]
-   vk        bias  +0.28 dB   rms  1.46 dB
-   liepmann  bias  +0.32 dB   rms  1.32 dB
-   odt_std   bias  +0.12 dB   rms  1.44 dB
-== Bampanis 2019 (ECL), flat plate, U=32 m/s  band [500.0, 8000.0]
-   vk        bias  +0.08 dB   rms  1.39 dB
-   liepmann  bias  +0.12 dB   rms  1.27 dB
-   odt_std   bias  -0.08 dB   rms  1.38 dB
-== Narayanan 2015 (ISVR), flat plate, U=60 m/s  band [500.0, 8000.0]
-   vk        bias  -5.08 dB   rms  6.19 dB
-   liepmann  bias  -5.48 dB   rms  7.10 dB
-   odt_std   bias  -5.25 dB   rms  6.35 dB
+== Narayanan 2015 (ISVR), flat plate, U=60 m/s  band [3000.0, 9000.0]
+   vk        bias  -1.74 dB   rms  2.00 dB
+   liepmann  bias  -1.25 dB   rms  1.56 dB
+   odt_std   bias  -1.86 dB   rms  2.11 dB
