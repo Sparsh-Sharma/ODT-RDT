@@ -464,11 +464,31 @@ TASK LIST (supersedes the old M-ordering):
       (<~1.8 kHz). Committed dbd722f.]
 - U3. Create ESM (supplementary.tex): move CMK + level1a detail +
       full family figure; cite from main.
+      [DONE 2026-09-09, commit 7754263: supplementary.tex (5 pp,
+      JFM class, S-numbering) holds S1 = CMK validation (both
+      figures) and S2 = full intervention family (table + 4-panel
+      figure); main keeps a compact CMK summary + the prose ledger.
+      level1a detail NOT moved — already compressed in the length
+      pass, remainder is load-bearing.]
 - U4. Trim pass: standard-ODT review to ~half via citations; abstract
       + intro + conclusions updated to the three-part claim; cover
       letter argues the one-paper reconstruction.
+      [DONE 2026-09-09, commits 98f30ec + cf26b70: abstract now ends
+      with the clock/five-way + the 5-20 dB Part III claim; intro =
+      six contributions + explicit three-part roadmap + ESM pointer;
+      conclusions paras 4-5 rewritten (fade removed by the clock,
+      allocation bound stated; companion-study deferral replaced by
+      the in-paper Part III result); one-paper working title
+      installed in main + ESM (Sparsh to confirm); sec:odt-review
+      event-rate paragraph -> citations; Cover_letter.tex rebuilt in
+      the DLR template — JFM-2026-1781 cited, same-AE (Sarkar)
+      request, objection-by-objection discharge, one-paper
+      rationale, Kerstein as co-author.]
 - U5. Length target: main text as short as honesty allows (~40 pp
       draft-class); ESM carries the rest.
+      [STATUS 2026-09-09: main 41 pp + ESM 5 pp (was 42 pp rejected,
+      39 pp before Part III). Close enough; only trim further if
+      Sparsh wants.]
 
 Decisions (Sparsh):
 - D1. Combine vs split (after M0 + a look at the length budget).
