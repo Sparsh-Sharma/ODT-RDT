@@ -47,9 +47,10 @@
 \lefttitle{Sharma and Kerstein}
 \righttitle{Journal of Fluid Mechanics}
 
-%% TODO(title): working title; alternatives in docs/REVISION_MAP section 5.
-\title{Strain-coupled one-dimensional turbulence: a single-line closure for
-the rapid pressure--strain and its measured limits}
+%% TODO(title): one-paper working title (map, DECISION 2026-09-08);
+%%   Sparsh to confirm before submission.
+\title{Strain-coupled one-dimensional turbulence for leading-edge noise:
+closure, measured limits and the scale-local relaxation mechanism}
 
 \author{Sparsh Sharma\aff{1} \and Alan R. Kerstein\aff{2}}
 
@@ -94,12 +95,22 @@ than a rigid spectral translation, and a three-way comparison localises
 the model's remaining deficiency in its wavenumber-uniform rapid
 kinematics, quantified by a distance-from-linear-theory envelope as a
 function of strain rapidity. Hierarchical application of the model's
-energy-redistributing kernel to eddy sub-scales is shown to supply the
+energy-redistributing kernel to eddy sub-scales supplies the
 measured missing ingredient---scale-local relaxation---where it reaches
-the scales of the imbalance: in a four-way comparison against the DNS
-and exact linear theory on the benchmark observable, it moves the
+the scales of the imbalance, and decoupling the relaxation from the
+eddy clock removes its deep-strain fade while a size cap preserves the
+one-point physics: in a five-way comparison against the DNS and exact
+linear theory on the benchmark observable, the mechanism moves the
 model's spectral allocation of anisotropy towards the DNS at moderate
 strain rapidity, with its rapid-strain saturation measured and stated.
+The output is then carried to the motivating application: supplied to
+Amiet's leading-edge-noise theory in place of the frozen von K\'arm\'an
+inflow of standard practice, the computed distorted spectrum lowers the
+predicted radiated level by $5$--$20$\,dB at the energy-containing
+frequencies for total strains $0.5$--$2$, in a geometry-free kernel
+ratio and in an assembled absolute prediction alike---the magnitude and
+sign of the term that frozen-spectrum practice omits, opposite to the
+surface-blocking correction with which it must be combined.
 \end{abstract}
 
 \begin{keywords}
@@ -197,7 +208,7 @@ its own coordinate. Reconciling the inherently three-dimensional,
 non-local pressure physics of rapid distortion with the one-dimensional,
 local structure of ODT is the central modelling problem addressed here.
 
-The paper makes five contributions, each stated so as to be falsifiable.
+The paper makes six contributions, each stated so as to be falsifiable.
 First, a strain-coupled formulation of ODT (\S\,\ref{sec:formulation}):
 production enters as an exact continuous forcing, the rapid
 pressure--strain as an energy-conserving redistribution operator built
@@ -227,26 +238,40 @@ with a quantified error under plane strain (\S\,\ref{sec:gate}). Fifth,
 the measured limits of the model and the mechanism that moves them:
 a transmission diagnostic shows the strain-induced anisotropy crossing
 two map generations undiminished, a controlled family of interventions
-falsifies acceptance gating and map reweighting as remedies, and
+falsifies acceptance gating and map reweighting as remedies,
 hierarchical application of the energy-redistributing kernel to eddy
 sub-scales---scale-local relaxation---is shown to supply the missing
-ingredient where it reaches the scales of the imbalance, with its own
-deep-strain limit measured and stated (\S\,\ref{sec:limits}).
+ingredient where it reaches the scales of the imbalance, and the
+mechanism's own deep-strain fade is traced to its event-locked timing
+and removed by an independent, size-capped relaxation clock, leaving a
+single measured allocation bound (\S\,\ref{sec:limits}). Sixth, the
+consequence for the motivating application (\S\,\ref{sec:lenoise}):
+the computed distorted spectrum is supplied to Amiet's
+leading-edge-noise theory in place of the frozen inflow of standard
+practice, both as a geometry-free kernel ratio and as an assembled
+absolute prediction at the reference operating point, quantifying the
+$5$--$20$\,dB term that prescribed-spectrum practice omits.
 Throughout, the posture is the same: where the model is right we show
 against what, and where it is wrong we measure by how much and locate
 why.
 
-The paper is organised as follows. Section~\ref{sec:formulation}
-reviews standard ODT and derives the strain-coupled formulation.
-Section~\ref{sec:verification} verifies it against exact
-rapid-distortion solutions and validates it at the moment level against
-the DNS of \citet{LeeReynolds1985}. Section~\ref{sec:val-spectrum}
-constructs the linear reference, examines the emergent distorted
-spectrum and its operating point, and carries out the strained-box
-DNS benchmark. Section~\ref{sec:gate} treats the single-line closure
-question. Section~\ref{sec:limits} measures the model's limits and
-establishes scale-local relaxation as the constructive direction.
-Section~\ref{sec:conclusions} concludes.
+The paper falls into three parts. The first is the model and what a
+line can know: \S\,\ref{sec:formulation} reviews standard ODT and
+derives the strain-coupled formulation; \S\,\ref{sec:verification}
+verifies it against exact rapid-distortion solutions and validates it
+at the moment level against the DNS of \citet{LeeReynolds1985};
+\S\,\ref{sec:val-spectrum} constructs the linear reference, examines
+the emergent distorted spectrum and its operating point, and carries
+out the strained-box DNS benchmark; \S\,\ref{sec:gate} treats the
+single-line closure question. The second part,
+\S\,\ref{sec:limits}, measures the model's limits and establishes
+scale-local relaxation---timed by its own clock---as the mechanism
+that moves them. The third part, \S\,\ref{sec:lenoise}, carries the
+computed distortion to the leading-edge-noise input.
+Section~\ref{sec:conclusions} concludes. Supplementary material
+contains the validation against the strained-turbulence experiment of
+\citet{ChenMeneveauKatz2006} and the complete intervention family
+behind the mechanism ledger.
 
 % =========================================================================
 \section{Strain-coupled one-dimensional turbulence}\label{sec:formulation}
@@ -365,17 +390,13 @@ interaction, a correspondence made precise in \S\,\ref{sec:rapid-slow}.
 The standard model contains no counterpart of the rapid,
 mean-strain-driven part.
 
-The event sequence is a Poisson process whose rate reflects the
-instantaneous flow state: each candidate eddy $(y_0,l)$ is assigned a
-time scale $\tau$ through
-$(l/\tau)^2\sim u_{2,K}^2+\alpha\sum_jT_{2j}u_{j,K}^2-Z\,\nu^2/l^2$,
-the last term a viscous penalty with order-unity parameter $Z$, and the
-event-rate density is $\lambda(y_0,l;t)=C/\!\left(l^2\tau\right)$ with
-rate constant $C$; candidates with negative discriminant are forbidden.
-The inertial-range cascade and the $k^{-5/3}$ spectrum are
-\emph{outcomes} of repeated sampling from this rate, not inputs
-\citep{Kerstein1999}; $C$, $Z$ and a large-eddy suppression parameter are
-the only tunable constants \citep{StephensLignell2021}. Finally, one
+The event sequence is a Poisson process whose rate density
+$\lambda(y_0,l;t)$ is set by the instantaneous flow state through the
+standard eddy time-scale construction, with a rate constant, a viscous
+cutoff and a large-eddy suppression parameter as the only tunable
+constants \citep{Kerstein1999,StephensLignell2021}; the inertial-range
+cascade and the $k^{-5/3}$ spectrum are \emph{outcomes} of repeated
+sampling from this rate, not inputs \citep{Kerstein1999}. Finally, one
 diagnostic caveat of \citet{Kerstein2001} is respected throughout:
 because the line velocity does not itself advect fluid, off-diagonal
 products of line velocity components are not momentum fluxes; diagonal
@@ -2428,33 +2449,44 @@ hypothesis is measured rather than assumed---its plane-strain violation
 grows with accumulated strain and rapidity while the acoustically
 relevant upwash amplification remains robust to it.
 
-The measured limits point to a specific missing ingredient, and the
-paper's final contribution is to identify and supply it. The
-strain-induced fine-scale anisotropy is delivered directly by
-large-eddy maps, which is why no acceptance-gating or map-reweighting
-scheme can control it; what does move it is relaxation applied at the
-scale of the imbalance---the model's own energy-equalising kernel,
-applied hierarchically to eddy sub-scales. The intervention family
-maps the mechanism's envelope precisely: depth that reaches the
-measured scales is necessary and sufficient at moderate strain, added
-dosage and delocalised application raise the early gains in proportion,
-and no combination prevents the fine-scale fade beyond $e\approx3$,
-which is resupply-limited rather than implementation-limited. At the
-formulation level the continuous analogue of this correction is the
+The measured limits point to a specific missing ingredient, which the
+paper identifies and supplies. The strain-induced fine-scale
+anisotropy is delivered directly by large-eddy maps, which is why no
+acceptance-gating or map-reweighting scheme can control it; what does
+move it is relaxation applied at the scale of the imbalance---the
+model's own energy-equalising kernel, applied hierarchically to eddy
+sub-scales. The intervention family maps the mechanism's envelope
+precisely: depth that reaches the measured scales is necessary and
+sufficient at moderate strain; dosage and delocalised application
+raise the early gains in proportion; and the fine-scale fade beyond
+$e\approx3$, common to every scheme locked to the eddy clock, is
+removed by giving the relaxation its own clock---an independent stream
+of relaxation events whose size cap preserves the one-point
+physics. What remains is not timing but allocation: isotropisation is
+bounded at component equality and cannot reach the fine-scale sign
+reversal the DNS exhibits, so the remaining step is the
 wavenumber- and angle-dependent spectral kernel derived in
 \S\,\ref{sec:gate}; exercising it in place of the wavenumber-uniform
-closure is the natural next step, now motivated by a measured deficit.
+closure is the natural continuation, now motivated by a measured
+deficit and pointed at a measured target.
 
 For the application that motivated the work, the model delivers what
 the prediction chain lacks: a distorted, anisotropic, scale-resolved
 upwash spectrum, evolved rather than prescribed, at two orders of
-magnitude below the cost of a strained DNS ensemble. Supplying it to
-the acoustic stage---together with the surface blocking and spanwise
-coherence a complete leading-edge prediction requires---is deliberately
-left to a companion study, on the model's measured terms: predictions
-inherit a spectral-shape uncertainty of order the distance envelope at
-the operating point's strain and rapidity, stated here rather than
-discovered later.
+magnitude below the cost of a strained DNS ensemble---and
+\S\,\ref{sec:lenoise} carries it through Amiet's theory to the
+radiated level. Relative to the frozen-spectrum input of standard
+practice the computed distortion is a weaker leading-edge source at
+every resolved frequency---by $5$--$20$\,dB at the energy-containing
+scales for total strains $0.5$--$2$, in the geometry-free kernel ratio
+and in the assembled absolute prediction at the reference
+configuration alike---because the distortion drains exactly the
+spanwise-coherent upwash content the aerofoil responds to. The omitted
+term is far too large to neglect and opposite in sign to the
+surface-blocking correction with which a complete prediction must
+combine it; predictions inherit a spectral-shape uncertainty of order
+the distance envelope at the operating point's strain and rapidity,
+stated here rather than discovered later.
 
 % =========================================================================
 \appendix
