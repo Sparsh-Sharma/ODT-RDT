@@ -533,6 +533,27 @@ satisfied exactly per event and his decoupling instinct is vindicated.
 Open refinements: cap placement (0.02?), rate scaling with strain,
 and the four-way Delta-b22 allocation check for RCS (not yet run).
 
+### 4g addendum 3 — RCS on the ALLOCATION axes (five-way, 2026-09-08)
+
+fw_S1R/S2R/S40R (fw protocol + capped clock, rate 300 = strained-phase
+eddy rate, Lmax 0.05; 1024 rlz each, jobs 4436118-20; fourway.npz
+r*_ODTR rows; fig_fourway5).  Delta-b22 at e=1:
+- 0.4/0.8: capped clock COMPARABLE to adaptive depth — better in the
+  mid bands (e.g. 0.8: +0.038/+0.035 vs KS +0.054/+0.037), slightly
+  weaker at the finest band (0.8: +0.041 vs KS +0.024).  Prediction
+  "stronger than depth" only partially borne out AT e=1 — expected in
+  hindsight: the clock's decisive advantage is at DEEP strain (e>=2-3),
+  which the fw protocol (e<=1, set by the DNS horizon) does not reach;
+  at e<=1 the eddy-locked variants have not yet faded.
+- 16: both variants ~ baseline (clock fires ~7 events in the 0.025-long
+  strained phase) — rapidity limit is physical time, as predicted.
+- No negative branch anywhere — the bounded-at-zero limit of
+  isotropisation stands; crossing to the DNS-negative fine scales still
+  requires the kappa-dependent rapid operator (C3).
+NEXT (sequel): extend the allocation protocol to e=2-3 with the RDT
+reference (computable at any e; DNS reference ends at e=1) to exhibit
+the clock's deep-strain allocation advantage on the same axes.
+
 ## 5. Reply history:
    - 2026-09-04: first reply SENT (email_alan_test3_reply.html).
    - 2026-09-05 morning: Option-B reply SENT — the MORNING draft of
