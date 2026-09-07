@@ -502,6 +502,37 @@ RC4 (280), 1024 rlz each (jobs 4435836/7; rc1/rc4_robust_table.txt).
   and the moment trajectory untouched.  This is the actual candidate
   mechanism: clock timing + scale selectivity.
 
+### 4g addendum — SIZE-CAPPED CLOCK (RCS): THE CANDIDATE MECHANISM
+
+RCS1/RCS4 = relaxRate 70/280 with relaxLmax = 0.05 (sub-band intervals
+only), 1024 rlz each (jobs 4435862/3 released after a caro
+"user env retrieval failed" hold; rcs1/rcs4_robust_table.txt).
+
+**RCS1 (dose-matched, capped) — the sweet spot:**
+- Fine scales: significant at EVERY strain with NO fade (hi -0.021*/
+  -0.096*/-0.149*/-0.075* at e=1/2/3/3.9; A_hi held 1.30-1.44 vs
+  baseline 1.63-1.94).  The first clean-bookkeeping variant that holds
+  the fine scales at deep strain.
+- One-point/large scales: essentially untouched in the application
+  regime (u2^2/2kt 0.422 vs 0.420 at e=1; 0.477 vs 0.501 at e=2);
+  modest deficit only at deep strain (0.514 vs 0.579 at e=3.9; the
+  uncapped clock: 0.414).  A_lo mildly reduced late (-0.042* at 3.9)
+  — the 0.05 cap still brushes the low band's small end.
+- RCS4 (4x): stronger everywhere (hi -0.102*..-0.176*, all starred, no
+  fade) at the cost of a larger one-point deficit (0.477 at e=3.9) —
+  the trade-off is dose-tunable.
+
+**COMBINED VERDICT of the clock thread:** event-locked timing WAS the
+deep-strain limiter (RC breaks the fade), scale-blindness was the cost
+(RC crushes one-point physics), and the size cap resolves it: the
+size-capped, dose-matched independent relaxation clock (RCS1) holds
+the fine scales at all strains while leaving the validated moment
+trajectory essentially intact in the application regime.  This is the
+candidate mechanism for the sequel; Alan's conservation constraint is
+satisfied exactly per event and his decoupling instinct is vindicated.
+Open refinements: cap placement (0.02?), rate scaling with strain,
+and the four-way Delta-b22 allocation check for RCS (not yet run).
+
 ## 5. Reply history:
    - 2026-09-04: first reply SENT (email_alan_test3_reply.html).
    - 2026-09-05 morning: Option-B reply SENT — the MORNING draft of
