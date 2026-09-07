@@ -2382,6 +2382,70 @@ resolved band ($f\lesssim1.8$\,kHz at this operating point), the
 spanwise-coherence drain of figure~\ref{fig:lenoise} now carried
 through geometry, aerofoil response and radiation to the observer.
 
+%% U6 (2026-09-09): experimental four-way validation; machinery in
+%%   post/acoustics/{expdata,expval}; ensembles gateA_S{1,20}_RCS1.
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_expval_paper.pdf}
+  \caption{Absolute far-field predictions against published
+  measurements, all four inflow spectra through the identical
+  non-compact response \citep{Amiet1975,RogerMoreau2010}: frozen
+  von K\'arm\'an (dashed), frozen Liepmann (dotted), the computed
+  standard-model spectrum (blue) and the computed clock-relaxed
+  spectrum (red), each entered at the case's effective free-distortion
+  strain. (\textit{a,b}) NACA0012 of \citet{PatersonAmiet1976}
+  ($c=0.23$\,m, $u'_w/U\approx4$--$5\%$, $\Lambda_f\approx30$\,mm,
+  observer $2.25$\,m overhead; Gershfeld thickness admittance applied
+  identically to all four chains); (\textit{c}) ECL flat plate of
+  \citet{Bampanis2022} ($c=0.10$\,m, $3$\,mm thick, $Tu=4.5\%$,
+  $\Lambda=9$\,mm, $\Theta=90^\circ$, $R=1.25$\,m); (\textit{d}) ISVR
+  flat plate of \citet{Narayanan2015} ($c=0.15$\,m, $Tu=2.5\%$,
+  $\Lambda=6$\,mm, $R=1.2$\,m). Black measured symbols lie in each
+  case's stated comparison band (grey outside: background flags,
+  facility contamination, thickness-breakdown frequency); spectra
+  digitised from the published figures with per-figure calibration
+  checks.}
+  \label{fig:expval}
+\end{figure}
+
+The chain is then confronted with measurement.
+Figure~\ref{fig:expval} shows four published leading-edge-noise
+experiments with fully documented inflow turbulence---the NACA0012 of
+\citet{PatersonAmiet1976} at $40$--$90$\,m\,s$^{-1}$ (higher speeds
+excluded only by their Mach number), and the flat plates of
+\citet{Bampanis2022} and \citet{Narayanan2015}---each with four
+predictions computed through the identical response: the frozen
+von K\'arm\'an and Liepmann inflows of standard practice, and the
+model's computed spectra, standard and clock-relaxed, evaluated at the
+effective free-distortion strain accumulated along the potential-flow
+stagnation streamline down to the eddy scale ($e_{\rm eff}=0.09$--$0.16$
+for the NACA0012; below $0.05$ for the thin plates). Three statements
+result. First, the assembled chain is quantitatively right where the
+experiment is cleanest: on the flat-plate cases every formulation sits
+within $1$--$2$\,dB rms of the measured spectra with the
+non-compactness interference lobes reproduced---the fidelity
+\citet{Bampanis2022} report for their own implementation---so the
+comparison discriminates inflow physics, not implementation. Second,
+the computed distortion behaves causally: for the thin plates the
+effective strain is negligible and the model correctly predicts
+\emph{no} correction to the frozen spectrum, while for the NACA0012 it
+lowers the prediction towards the data at every speed
+(bias $+5.7\!\to\!+5.3$\,dB at $40$\,m\,s$^{-1}$,
+$+1.8\!\to\!+1.4$\,dB at $60$, $+5.1\!\to\!+4.7$\,dB at $90$), by the
+modest amount its geometric effective strain implies. Third, the
+standard and clock-relaxed models are indistinguishable in the far
+field at these laboratory strains (differences below $0.05$\,dB): the
+mechanism's radiated-level effect grows with strain
+(figure~\ref{fig:amiet-abs}), and at $e_{\rm eff}\lesssim0.2$ its
+measurable virtue is spectral fidelity---the clock-relaxed ensembles
+fit the exact-RDT-distorted family with residual costs two to four
+times below the standard model's at both rapidities---rather than
+level. The residual NACA0012 overprediction is the finite-thickness
+effect \citet{PatersonAmiet1976} themselves identified (breakdown near
+$U/f t_A\approx1$) and \citet{Gershfeld2004} modelled, of a piece with
+the blocking mechanism excluded from the present scope; it is
+unchanged in rank by any choice of inflow spectrum.
+
 The scope of this statement is set out as carefully as its content.
 It concerns the \emph{free} distortion by the mean strain: the
 surface-blocking effect, which measurements and simulations show
