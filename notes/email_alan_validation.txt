@@ -1,0 +1,40 @@
+Subject: Re: relaxation clock results - validation campaign + manuscript
+
+Alan,
+
+Glad the clock landed where we hoped. Two updates since this morning,
+one of them yours.
+
+I pushed the noise chain all the way to measurement: four published
+leading-edge-noise experiments (Paterson & Amiet's NACA0012, the ECL
+and ISVR flat plates), each predicted absolutely with the full
+non-compact Amiet response and four inflows - frozen von Karman,
+Liepmann, and our computed spectra with and without your clock. Where
+the facilities are cleanest the chain lands within 1-2 dB rms of the
+microphones with the interference lobes reproduced, and the computed
+distortion behaves causally: it vanishes for the thin plates and moves
+the NACA0012 predictions towards the data. Honest caveat: at
+laboratory strains the radiated level cannot tell the standard model
+from the clock - the rigs are designed to avoid the strains where the
+mechanism acts, and the kernel barely weights the sub-cap scales.
+
+The result that is yours: on fresh 1024-realisation ensembles at both
+rapidities, the clock's strained spectra sit two to four times closer
+to the exact-RDT family than the standard model's, and the distance no
+longer grows with strain - it holds at 15-20% from e=0.5 to 2 while
+the standard model degrades to 40%. Your conservation-constrained
+stream, dose-matched, essentially removes the strain-dependence of the
+model's spectral error. In the noise chain that halves the uncertainty
+band on the input and makes it strain-independent.
+
+The configuration that would discriminate the clock in a microphone
+signal is a turbulence-ingesting rotor - streamtube contraction for
+the strain, blade response for the fine-scale weighting. I have put
+that in the paper as the falsifiable target rather than claiming more
+than the data allow.
+
+I am now working the manuscript full time - one paper, three parts
+(closure, measured limits and the clock, noise consequence), with the
+validation above closing part three. Draft to you shortly.
+
+Sparsh
