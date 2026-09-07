@@ -454,6 +454,14 @@ TASK LIST (supersedes the old M-ordering):
       with the kappa-operator as the remaining allocation step).
 - U2. Recompute the Gate-B Delta-SPL chain on the CLEAN ensembles
       (spectra_gateA_S1/S20 npz, committed) and write Part III.
+      [DONE 2026-09-09; EXTENDED 2026-09-09: absolute-SPL figure
+      fig_amiet_abs added (Sparsh directive) — full Amiet chain
+      (compact dipole + exact Sears, len_vsdb-audited form) at the
+      sec:spec-op configuration; frozen vK baseline = e=0 member
+      exactly; unit bridge validated against analytic vK (ratio
+      0.79-1.14, inside fit residual) and Liepmann; distorted inflow
+      lowers SPL by 5/9/14 dB at e=0.5/1/2 across the resolved band
+      (<~1.8 kHz). Committed dbd722f.]
 - U3. Create ESM (supplementary.tex): move CMK + level1a detail +
       full family figure; cite from main.
 - U4. Trim pass: standard-ODT review to ~half via citations; abstract

@@ -1,8 +1,9 @@
 % !TeX program = pdflatex
-% DLR-style cover letter for JFM submission.
-% Compile with: pdflatex jfm_cover_letter.tex
+% DLR-style cover letter for JFM resubmission (JFM-2026-1781 referenced).
+% Body rewritten 2026-09-09 (task U4/M6): objection-by-objection discharge
+% + one-paper rationale.  Template/header unchanged from the July letter.
 %
-% Put dlr_logo.png in the same folder as this .tex file.
+% Put dlrlogo.png in the same folder as this .tex file.
 
 \documentclass[11pt,a4paper]{article}
 
@@ -40,11 +41,14 @@ Cambridge University Press%
 \newcommand{\ContactPerson}{Dr. Sparsh Sharma}
 \newcommand{\Phone}{0531 295--1530}
 \newcommand{\Email}{sparsh.sharma@dlr.de}
-\newcommand{\LetterDate}{2 July 2026}
+\newcommand{\LetterDate}{\today}
 
-\newcommand{\Subject}{Submission of an original manuscript to the Journal of Fluid Mechanics}
+\newcommand{\Subject}{Submission of a reconstructed manuscript
+(ref.\ JFM-2026-1781) to the Journal of Fluid Mechanics}
 
-\newcommand{\ManuscriptTitle}{Strain-coupled one-dimensional turbulence for rapid distortion}
+\newcommand{\ManuscriptTitle}{Strain-coupled one-dimensional turbulence
+for leading-edge noise: closure, measured limits and the scale-local
+relaxation mechanism}
 
 \newcommand{\ClosingName}{Dr. Sparsh Sharma}
 
@@ -85,7 +89,7 @@ Cambridge University Press%
 \begin{textblock*}{65mm}(126mm,66mm)
   \raggedleft
   \begin{tabular}{@{}r@{\hspace{7mm}}l@{}}
-    \ContactLabel{Reference}       & \\
+    \ContactLabel{Reference}       & JFM-2026-1781 \\
     \ContactLabel{Manuscript type} & Regular article \\
     \\[-1mm]
     \ContactLabel{Contact person}  & \ContactPerson \\
@@ -111,36 +115,124 @@ Dear Editor,
 
 \vspace{5mm}
 
-I am pleased to submit the manuscript entitled
-``\ManuscriptTitle'' for consideration as a regular article in the
-\textit{Journal of Fluid Mechanics}.
+We are pleased to submit the manuscript entitled
+``\ManuscriptTitle'' by Sparsh Sharma and Alan R.\ Kerstein for
+consideration as a regular article in the \textit{Journal of Fluid
+Mechanics}.
 
 \vspace{5mm}
 
-The paper addresses a basic problem in turbulence dynamics: how a turbulent field is changed by mean strain when rapid distortion, pressure-mediated intercomponent transfer, nonlinear eddy relaxation and spectral compression all act over comparable times. This regime is common in contractions, stagnation regions and turbulence approaching lifting surfaces, but it is poorly served by the usual modelling choices. Direct simulation resolves the process but is too expensive for systematic parametric use; rapid-distortion theory gives the linear limit but cannot represent nonlinear relaxation; and Reynolds-stress closures retain the component energetics but have already integrated out the spectrum. The manuscript asks whether one-dimensional turbulence can be made to fill this gap. 
+This manuscript draws on material from JFM-2026-1781, which was
+declined on 18 August 2026, and per the instruction in that decision we
+cite the number here and request that the submission be handled by the
+same associate editor, Professor Sutanu Sarkar. We are not resubmitting
+that paper. The present manuscript is a reconstruction around what the
+referees identified as its strongest element---the single-line closure
+analysis, which two referees independently singled out and one
+explicitly suggested rebuilding the study around---and it contains a
+body of work that did not exist at the original submission: an
+independent DNS benchmark, a corrected linear reference, a measured
+closure assumption, a new relaxation mechanism developed with the
+model's originator (now a co-author), and the application carried
+through to radiated levels. We summarise below how each of the
+referees' objections has been discharged, because we took every one of
+them as a work order rather than a disagreement.
 
 \vspace{5mm}
 
-The central difficulty is not merely to add a strain term to ODT. In rapid distortion, the pressure response is a nonlocal three-dimensional projection in wavenumber space, whereas ODT evolves only a single resolved line. The paper therefore treats this incompatibility as the modelling problem itself. The formulation separates the pressure--strain interaction into its rapid and slow parts: the existing ODT eddy mechanism continues to represent the slow, turbulence-driven redistribution and cascade, while the missing mean-strain physics is supplied by a continuous production term, an energy-conserving rapid pressure--strain operator, and a dilatation of the ODT domain that carries the kinematic compression of scales. The production term is shown to preserve the structural invariants of the triplet-map mechanism, and the rapid operator is constructed through a Lyapunov equation so that the component-energy evolution matches homogeneous rapid-distortion theory under the stated closure. 
+\textbf{Validation against the model itself (Refs.\ 1.1, 2, 3).} The
+central spectral results are now benchmarked against a strained-box
+direct numerical simulation with exact rapid-distortion companion
+calculations, all reduced to the same one-dimensional observables, so
+that model, DNS and exact linear theory meet in a three-way (and, for
+the relaxation mechanism, five-way) comparison on a single benchmark
+observable. The strain-on/strain-off construction survives only as an
+internal diagnostic; every headline claim now has an external referent.
 
 \vspace{5mm}
 
-The main fluid-mechanical result is that, in the intermediate regime $\chi=Sk_t/\varepsilon=O(1)$, the distorted spectrum is not the rigidly translated spectrum predicted by linear rapid-distortion theory. The strain pushes energy toward smaller scales, but the ODT eddy dynamics and dissipation reshape the spectrum at the same time, producing a broadband distorted spectrum whose energy-containing scales are held back relative to the linear prediction. This is the part of the physics that a prescribed or linearly strained inflow spectrum cannot represent, and it is the reason the formulation is useful for the leading-edge-noise problem that motivates the work. The acoustic coupling is not attempted in the present paper; the submitted manuscript is instead focused on the fluid-mechanical distortion problem and on establishing the model that supplies the distorted upwash spectrum. 
+\textbf{The rigid-translation ``linear reference'' (Ref.\ 3.1).} The
+referee was right, and the point is now a result of the paper rather
+than an error in it: we compute exact rapid-distortion theory projected
+onto the line and show that the projected spectra are redistributed
+broadband---by a factor of four across the resolved range at unit total
+strain---so the correct linear reference differs from rigid translation
+already at the linear level. Every comparison in the paper is built on
+the corrected reference, and the earlier claim is withdrawn.
 
 \vspace{5mm}
 
-A second contribution is the closure argument. The paper derives the exact rapid pressure--strain term as a nonlocal three-dimensional spectral integral and then shows that, under the physically stated assumption of axisymmetry of the undistorted turbulence about the ODT line, this term collapses to a closed single-line functional. This result is deliberately conditional rather than universal: the manuscript states the assumption, the range of validity and the connection to the algebraic moment closure used in the computations. This is, in my view, an essential part of the paper, because it explains why the proposed one-dimensional representation is not simply an empirical modification of ODT. 
+\textbf{The single-line closure ``not closed'', and not exercised
+(Refs.\ 3.2, 1.2).} The closure analysis is rebuilt in exactly the
+modest form the objection demands: the obstruction to a single-line
+closure is stated exactly, sharp bounds on the rapid term are derived
+from line data alone (the previously underived relations now derived in
+an appendix), and the axisymmetry hypothesis---undefined in the
+original submission---is defined and \emph{measured} rather than
+assumed: exact for axisymmetric distortion, with its plane-strain
+violation quantified as a function of accumulated strain. This
+machinery is used throughout the paper (the validity envelope, the
+deficiency localisation, the uncertainty carried into the application);
+the full wavenumber-dependent kernel it defines is identified, on
+measured grounds, as the remaining step, and we say so plainly rather
+than claiming it.
+
 \vspace{5mm}
 
-The formulation is tested at several levels. It reproduces the rapid-distortion onset rate exactly, with no adjustable constant; the implementation is checked by suppressing eddy events and viscosity and comparing the line evolution with the closed moment equations; the purely kinematic compression limit reproduces the rigid spectral translation of RDT; and the full model is compared with the strained-turbulence experiment of Chen, Meneveau \& Katz and with the direct numerical simulations of Lee \& Reynolds. The Lee--Reynolds comparison is used as a moment-level validation of the Reynolds-stress anisotropy under canonical plane strain and axisymmetric contraction, while the Chen--Meneveau--Katz case tests the departure from the rapid-distortion spectral picture. The manuscript also states the limitations of the comparisons, in particular where a single-line or single-point closure cannot reproduce finite-Reynolds-number three-dimensional effects. 
+\textbf{The plane-strain behaviour of the closure (Ref.\ 1.3).} The
+moment-level validation against Lee \& Reynolds has been recomputed
+from the exact solutions (correcting, in the process, an error in our
+own earlier exact curve), and the one qualitative failure---the
+neutral-direction anisotropy---is traced to the orientation information
+that every single-point closure discards, with its consequence for the
+spectral results assessed through the measured axisymmetry violation
+rather than left unexamined.
 
 \vspace{5mm}
 
-We believe the manuscript is appropriate for JFM because it presents fully developed original research with a clear fluid-mechanical question, a derived model formulation, analytical verification, numerical implementation tests and comparison with canonical strained-turbulence data. The contribution is not only a new reduced-order model, but a clarification of how rapid distortion, pressure--strain closure, nonlinear eddy relaxation and spectral evolution can be combined in a scale-resolved one-dimensional framework. 
+\textbf{The application not carried through (Refs.\ 1.4, 2).} The
+manuscript now contains the mapping the referees asked for: the model's
+line spectra enter Amiet's theory through a fitted two-parameter
+distorted-spectrum representation whose residual is the quoted
+uncertainty, yielding both a geometry-free change-of-kernel result and
+an assembled absolute sound-pressure-level prediction at the reference
+operating configuration. The computed distortion lowers the predicted
+level by 5--20\,dB relative to the frozen von K\'arm\'an input of
+standard practice---a term too large to neglect, and of opposite sign
+to the surface-blocking correction, which we state as the scope
+boundary.
 
 \vspace{5mm}
 
-The manuscript is original, has not been published previously, and is not under consideration elsewhere. The author has approved the submission and takes responsibility for the content of the manuscript. A declaration of the use of AI tools is included in the manuscript in accordance with Cambridge University Press guidance. To the best of my knowledge, there are no conflicts of interest that would affect the review of this work. 
+\textbf{Presentation (Refs.\ 2, 3.3).} The manuscript was rewritten
+from a fresh skeleton, not edited: established material is separated
+from new (the model review is explicitly marked as containing nothing
+original and compressed to citations), Sagaut \& Cambon is adopted as
+the rapid-distortion spine, the leading-edge distortion literature the
+referees named (dos Santos, Ribeiro, Piccolo) is engaged, and the main
+text is shorter than the rejected version while carrying substantially
+more content; the validation against Chen, Meneveau \& Katz and the
+complete intervention family are provided as supplementary material.
+
+\vspace{5mm}
+
+One structural decision deserves a sentence. The new results---the
+closure analysis, the mechanism study and the noise consequence---could
+have been split into separate papers; we judged that separated they
+would each lose the evidential chain that gives them force. They are
+therefore presented as one paper in three parts, with the supplementary
+material absorbing what the arc does not need.
+
+\vspace{5mm}
+
+The manuscript is original, has not been published previously, and is
+not under consideration elsewhere. Both authors have approved the
+submission and take responsibility for the content of the manuscript. A
+declaration of the use of AI tools is included in the manuscript in
+accordance with Cambridge University Press guidance. To the best of our
+knowledge, there are no conflicts of interest that would affect the
+review of this work. We are of course content for the original referees
+to see how their objections were used.
 
 \vspace{5mm}
 
@@ -153,7 +245,7 @@ Yours sincerely,
 
 \vspace{18mm}
 
-\ClosingName\\
+\ClosingName, on behalf of the authors\\
 German Aerospace Center (DLR)\\
 \Institute\\
 Lilienthalplatz 7\\
@@ -170,7 +262,5 @@ Lilienthalplatz 7\\
   Lilienthalplatz 7\\
   38108 Braunschweig
 \end{textblock*}
-
-
 
 \end{document}
