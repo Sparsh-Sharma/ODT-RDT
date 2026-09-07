@@ -412,6 +412,56 @@ argue content-per-page in the cover letter instead (39 draft-class pp
 now carry DNS benchmark + bounds + measured A1 + the Kerstein arc +
 four-way, vs the rejected 42 pp without any of it).
 
+## DECISION 2026-09-08 (Sparsh, per editor guidance): ONE PAPER, THREE PARTS
+
+The three-paper split (model / mechanism / LE application) is DEAD:
+"independently these papers will lose credibility" (editor).  Everything
+becomes ONE paper with three major parts + electronic supplementary
+material (ESM).  Published material is trimmed to citations.
+
+NEW ARCHITECTURE (working):
+  Part I  — The model and what a line can know (existing sections 2-5,
+            trimmed: standard-ODT review compressed to citations;
+            CMK subsection -> ESM; level1a numerical-choices detail ->
+            ESM; L&R kept condensed).
+  Part II — Measured limits and the relaxation mechanism (existing
+            section 6 EXTENDED with the relaxation-clock results
+            (RC/RCS, currently only in the LEN plan doc) and the
+            FIVE-way figure replacing the four-way; full 8-case family
+            figure + intervention table detail -> ESM if length
+            demands, keeping the ledger + five-way in main).
+  Part III — Consequence for leading-edge noise (NEW section; the old
+            Option-C content, now mandatory): the model's distorted
+            upwash spectrum supplied to Amiet's response — Delta-SPL
+            relative to the frozen von-Karman input, at the measured
+            operating point, scoped honestly (frozen strain, no
+            blocking/coherence: R1.4 second half stated as deferred,
+            with the distance envelope as the uncertainty statement).
+            MACHINERY EXISTS on LEN_Extension: rdt_kernel Phi_ww,
+            RDT-vK family fits (fit_rdt_family), Gate-B Delta-SPL
+            chain (gateB scripts) + committed clean spectra npz.
+  ESM     — CMK validation; level1a numerics detail; full intervention
+            family figure/table; anything else the length pass demands.
+
+WORKING TITLE (new, to revisit): "Strain-coupled one-dimensional
+turbulence for leading-edge noise: closure, measured limits, and the
+scale-local relaxation mechanism".
+
+TASK LIST (supersedes the old M-ordering):
+- U1. Integrate the relaxation clock into Part II (results from
+      rc/rcs tables; five-way figure into the paper; endpoint text
+      updated: resupply-limited -> cured by the independent clock,
+      with the kappa-operator as the remaining allocation step).
+- U2. Recompute the Gate-B Delta-SPL chain on the CLEAN ensembles
+      (spectra_gateA_S1/S20 npz, committed) and write Part III.
+- U3. Create ESM (supplementary.tex): move CMK + level1a detail +
+      full family figure; cite from main.
+- U4. Trim pass: standard-ODT review to ~half via citations; abstract
+      + intro + conclusions updated to the three-part claim; cover
+      letter argues the one-paper reconstruction.
+- U5. Length target: main text as short as honesty allows (~40 pp
+      draft-class); ESM carries the rest.
+
 Decisions (Sparsh):
 - D1. Combine vs split (after M0 + a look at the length budget).
 - D2. Venue.
