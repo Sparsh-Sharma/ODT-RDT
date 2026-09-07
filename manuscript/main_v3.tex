@@ -2451,6 +2451,46 @@ rapid rate the surviving upwash amplification offsets a small part of
 the reallocation; at the slow rate viscous decay over the longer
 transit deepens it.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{Figures/fig_amiet_abs.pdf}
+  \caption{The assembled absolute prediction at the reference
+  configuration of \S\,\ref{sec:spec-op}: far-field sound pressure
+  level from the compact lift-dipole form of \citet{Amiet1975} with
+  the exact Sears response, for a flat plate of chord $0.39$\,m
+  ($Re_c\approx5\times10^5$) and span $0.8$\,m at
+  $U_\infty=20$\,m\,s$^{-1}$, $u'/U_\infty=6\%$,
+  $\mathcal{L}=55$\,mm, observer $1$\,m overhead. Dashed: the frozen
+  von K\'arm\'an inflow of standard practice (the $e=0$ member of the
+  fitted representation, which is exactly the isotropic von K\'arm\'an
+  spectrum); grey dotted: the frozen Liepmann spectrum at the same
+  $(u',\mathcal{L})$, an independent analytic cross-check of the
+  physical-unit bridge. Solid: the same chain with the computed
+  distorted inflow at total strains $e=0.5$, $1$ and $2$
+  ($Sk_t/\varepsilon\approx0.4$), level and shape both included.}
+  \label{fig:amiet-abs}
+\end{figure}
+
+Figure~\ref{fig:amiet-abs} places the kernel result in the quantity
+practice actually reports: the absolute far-field spectrum of the
+reference configuration of \S\,\ref{sec:spec-op}, assembled from the
+compact lift-dipole form of Amiet's theory with the exact Sears
+response. The spectra enter in physical units through two matching
+conditions only---the integral scale fixes the length unit through the
+von K\'arm\'an relation $\kappa_e=0.7468/\mathcal{L}$ and the upwash
+variance at $e=0$ fixes the amplitude---so the frozen baseline
+\emph{is} the standard Amiet--von K\'arm\'an prediction, not a
+recalibration of it: the $e=0$ member of the representation is the
+isotropic von K\'arm\'an spectrum itself, and it reproduces the
+analytic one-dimensional form to within the quoted fit residual
+(ratio $0.79$--$1.14$ across $100$\,Hz--$1$\,kHz), with the Liepmann
+spectrum shown as an independent check of the unit bridge. Against
+this baseline the computed distortion lowers the predicted level by
+$5$\,dB at $e=0.5$, $9$\,dB at $e=1$ and $14$\,dB at $e=2$ across the
+resolved band ($f\lesssim1.8$\,kHz at this operating point), the
+spanwise-coherence drain of figure~\ref{fig:lenoise} now carried
+through geometry, aerofoil response and radiation to the observer.
+
 The scope of this statement is set out as carefully as its content.
 It concerns the \emph{free} distortion by the mean strain: the
 surface-blocking effect, which measurements and simulations show
@@ -2463,10 +2503,12 @@ is therefore not a noise prediction but the magnitude and sign of the
 term that frozen-spectrum practice omits: order $5$--$20$\,dB at the
 energy-containing reduced frequencies for total strains of
 $0.5$--$2$---far too large to neglect, and of the opposite sign to the
-blocking correction with which it must ultimately be combined. A
-complete prediction---blocking, strain history, spanwise coherence and
-absolute levels---requires the acoustic stage proper, for which the
-present model supplies the missing input at negligible cost, with its
+blocking correction with which it must ultimately be combined.
+Figure~\ref{fig:amiet-abs} shows that the chain from model output to
+absolute far-field level is complete and cheap; what remains for a
+predictive comparison against measurement is the blocking correction
+and the streamline strain history, for which the present model
+supplies the distorted-inflow input at negligible cost, with its
 uncertainty quantified by the envelope of \S\,\ref{sec:envelope} and
 its fidelity improved by the mechanism of \S\,\ref{sec:limits}
 precisely in the wavenumbers the response weights.
