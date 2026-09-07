@@ -250,7 +250,9 @@ the computed distorted spectrum is supplied to Amiet's
 leading-edge-noise theory in place of the frozen inflow of standard
 practice, both as a geometry-free kernel ratio and as an assembled
 absolute prediction at the reference operating point, quantifying the
-$5$--$20$\,dB term that prescribed-spectrum practice omits.
+$5$--$20$\,dB term that prescribed-spectrum practice omits; the
+assembled chain is confronted with four published experiments, which
+it reproduces to $1$--$2$\,dB rms where the facilities are cleanest.
 Throughout, the posture is the same: where the model is right we show
 against what, and where it is wrong we measure by how much and locate
 why.
@@ -2404,7 +2406,9 @@ through geometry, aerofoil response and radiation to the observer.
   case's stated comparison band (grey outside: background flags,
   facility contamination, thickness-breakdown frequency); spectra
   digitised from the published figures with per-figure calibration
-  checks.}
+  checks ($\pm0.5$\,dB). The effective strain is a geometric estimate
+  (potential-flow stagnation-line accumulation truncated at the eddy
+  scale); the shaded band spans truncation at $\Lambda/4$--$\Lambda$.}
   \label{fig:expval}
 \end{figure}
 
@@ -2432,19 +2436,63 @@ effective strain is negligible and the model correctly predicts
 lowers the prediction towards the data at every speed
 (bias $+5.7\!\to\!+5.3$\,dB at $40$\,m\,s$^{-1}$,
 $+1.8\!\to\!+1.4$\,dB at $60$, $+5.1\!\to\!+4.7$\,dB at $90$), by the
-modest amount its geometric effective strain implies. Third, the
+modest amount its geometric effective strain implies; the shift
+between predictions is exact, since the digitisation uncertainty
+($\pm0.5$\,dB) is common to all four. Third, the
 standard and clock-relaxed models are indistinguishable in the far
-field at these laboratory strains (differences below $0.05$\,dB): the
-mechanism's radiated-level effect grows with strain
-(figure~\ref{fig:amiet-abs}), and at $e_{\rm eff}\lesssim0.2$ its
-measurable virtue is spectral fidelity---the clock-relaxed ensembles
-fit the exact-RDT-distorted family with residual costs two to four
-times below the standard model's at both rapidities---rather than
-level. The residual NACA0012 overprediction is the finite-thickness
-effect \citet{PatersonAmiet1976} themselves identified (breakdown near
-$U/f t_A\approx1$) and \citet{Gershfeld2004} modelled, of a piece with
-the blocking mechanism excluded from the present scope; it is
-unchanged in rank by any choice of inflow spectrum.
+field at these laboratory strains (differences below $0.05$\,dB),
+and this is stated as a limit of the test, not of the mechanism:
+laboratory rigs are designed to minimise inflow distortion, so no
+published far-field measurement samples the strains at which the
+relaxation mechanism acts. The residual NACA0012 overprediction is
+the finite-thickness effect \citet{PatersonAmiet1976} themselves
+identified (breakdown near $U/f t_A\approx1$) and
+\citet{Gershfeld2004} modelled, of a piece with the blocking mechanism
+excluded from the present scope; it is unchanged in rank by any choice
+of inflow spectrum.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_amiet_rapid.pdf}
+  \caption{Computed against prescribed inflow at application strains,
+  judged by the linear reference: absolute SPL at the reference
+  configuration for the rapid family ($Sk_t/\varepsilon\approx8$) at
+  (\textit{a}) $e=1$ and (\textit{b}) $e=2$. Purple: exact (inviscid)
+  RDT of the model's relaxed initial state---the reference the
+  strained-box DNS of \S\,\ref{sec:box-dns} validates at rapid
+  rates---with level set by the kernel's exact upwash amplification
+  (reproducing the moment-level value to $0.7\%$). Dashed: the frozen
+  von K\'arm\'an inflow of standard practice. Blue/red: the standard
+  and clock-relaxed computed inflows (fitted representations, measured
+  ensemble levels), each shaded by its measured spectral rms distance
+  from the RDT family mapped to decibels.}
+  \label{fig:amiet-rapid}
+\end{figure}
+
+Where the mechanism does reach the prediction is shown in
+figure~\ref{fig:amiet-rapid}, and the claim is worded exactly as the
+evidence permits. At total strains of $1$--$2$ the frozen-spectrum
+error against the linear reference grows from $+1.3$ to $+3.6$\,dB,
+while both computed inflows track the reference within
+$1$--$2.5$\,dB---a residual that contains the physical relaxation at
+finite rapidity as well as the model deficiency measured in
+\S\,\ref{sec:envelope}---so an evolved inflow beats a prescribed one
+at precisely the strains where the correction matters, whichever
+variant of the model evolves it. Between the two variants the
+radiated \emph{level} does not discriminate: the clock acts below its
+size cap, where the noise kernel carries little weight, and its gain
+appears instead in the uncertainty the input carries into the
+prediction---the clock-relaxed ensembles lie closer to the
+exact-RDT-distorted family by a factor of two to four in rms at both
+rapidities, and, unlike the standard model's, their distance does not
+grow with strain (supplementary material, \S\,S3), which halves the
+shaded band of figure~\ref{fig:amiet-rapid} and makes it
+strain-independent. A far-field discrimination of the mechanism
+requires a configuration whose acoustic response samples the sub-cap
+scales at accumulated strains of order unity---turbulence-ingesting
+rotors, where the streamtube contraction supplies the strain and the
+blade response the fine-scale weighting---and is left as the
+falsifiable target of the application study.
 
 The scope of this statement is set out as carefully as its content.
 It concerns the \emph{free} distortion by the mean strain: the
@@ -2539,13 +2587,19 @@ the prediction chain lacks: a distorted, anisotropic, scale-resolved
 upwash spectrum, evolved rather than prescribed, at two orders of
 magnitude below the cost of a strained DNS ensemble---and
 \S\,\ref{sec:lenoise} carries it through Amiet's theory to the
-radiated level. Relative to the frozen-spectrum input of standard
-practice the computed distortion is a weaker leading-edge source at
-every resolved frequency---by $5$--$20$\,dB at the energy-containing
-scales for total strains $0.5$--$2$, in the geometry-free kernel ratio
-and in the assembled absolute prediction at the reference
-configuration alike---because the distortion drains exactly the
-spanwise-coherent upwash content the aerofoil responds to. The omitted
+radiated level. The assembled chain reproduces four published far-field experiments to
+$1$--$2$\,dB rms where the facilities are cleanest, with the computed
+correction causal---vanishing for thin plates, lowering the
+prediction towards the data for the NACA0012---and, against the linear
+reference at application strains, an evolved inflow beats the frozen
+one by a margin that grows with strain. Relative to the
+frozen-spectrum input of standard practice the computed distortion is
+a weaker leading-edge source at every resolved frequency---by
+$5$--$20$\,dB at the energy-containing scales for total strains
+$0.5$--$2$, in the geometry-free kernel ratio and in the assembled
+absolute prediction at the reference configuration alike---because the
+distortion drains exactly the spanwise-coherent upwash content the
+aerofoil responds to. The omitted
 term is far too large to neglect and opposite in sign to the
 surface-blocking correction with which a complete prediction must
 combine it; predictions inherit a spectral-shape uncertainty of order
