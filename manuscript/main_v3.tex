@@ -1310,88 +1310,31 @@ which is what makes parametric sweeps over inflow condition feasible.
 
 \subsection{Validation against the strained-turbulence experiment of
 Chen, Meneveau \& Katz}\label{sec:cmk}
+%% MOVED TO ESM (task U3, 2026-09-09): full text + fig_cmk_rdt +
+%%   fig_cmk_aniso now in supplementary.tex \S S1; this is the summary.
 
 The strain-on/strain-off comparison is model-internal; an external
-benchmark must confirm that both the rapid-distortion limit and the
-departure from it are physical. We use the plane-strain experiment of
-\citet{ChenMeneveauKatz2006} (CMK), in which initially near-isotropic
-turbulence at $R_\lambda\approx400$ is subjected to a controlled planar
-straining cycle and the one-dimensional component spectra are compared
-with rapid-distortion theory. We reproduce the \emph{straining} phase of
-their cycle (the destraining phases involve a strain reversal outside
-the present monotonic configuration); its end corresponds to a total
-deformation $D=\exp(\tfrac12\!\int S\,\mathrm{d}t)\approx3$, i.e.
-$e\approx2.20$ in the present notation.
-
-In the rapid-distortion limit (eddy events suppressed, inviscid) the
-model must reproduce the analytic reference of
-\citet{LeePiomelliReynolds1986} that CMK use.
-Figure~\ref{fig:cmk-rdt} shows that it does: the component spectral
-centroids follow the rigid-translation law, reaching the deformation
-ratio $3.00$ at $e=2.20$ with the components coincident, and the
-kinetic energy reaches $1.72$ against the exact rapid-distortion
-amplification $1.69$---the residual being the moment closure's, not the
-implementation's (\S\,\ref{sec:level1a}), since with the events
-suppressed the solver evolves the closure trajectory ($1.72$) exactly.
-The truly inviscid setting is required: any nonzero viscosity
-dissipates the compressed small scales and degrades the rigid
-translation, an effect we verified directly.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{Figures/fig_cmk_rdt.pdf}
-  \caption{Rapid-distortion limit (eddy events suppressed, inviscid)
-  against the analytic reference of \citet{LeePiomelliReynolds1986}
-  used by \citet{ChenMeneveauKatz2006}. (\textit{a}) Component
-  spectral-centroid migration follows the rigid-translation law,
-  reaching the deformation ratio $D=3$ at the end of the straining
-  phase. (\textit{b}) Kinetic-energy amplification: the solver follows
-  the closure trajectory, within $2\%$ of the exact rapid-distortion
-  value at $e=2.20$.}
-  \label{fig:cmk-rdt}
-\end{figure}
-
-With the eddy events and viscosity active the model is no longer
-constrained to rigid translation, and the strain drives a measurable
-anisotropy between the components. Figure~\ref{fig:cmk-aniso} shows the
-strain-induced migration of the streamwise and upwash component
-centroids, each measured against the matched no-strain baseline (the
-per-component form of the strain-on/strain-off construction, which
-cancels the initialisation transient and the eddies' own relaxation):
-the components diverge progressively under continued strain---the
-streamwise migration reaching $1.9$ at the end of the straining phase
-against $1.5$ for the upwash, both far below the rigid value
-$3$---so the upwash component is held back most. This is the qualitative behaviour CMK
-report---the strained spectrum departs from the isotropic-translation
-expectation with the components responding differently---and it is the
-spectral signature of the broadband distortion of
-\S\,\ref{sec:spec-bvc}. The comparison is restricted to its qualitative
-content, for three reasons stated plainly: the band-limited initial
-spectrum differs from CMK's, so absolute levels are not comparable; the
-line-resolved one-dimensional spectra and the experiment's
-transverse/longitudinal projections are not the same projection of the
-spectrum tensor; and the scale separation achieved here
-($\mathcal{L}/\eta\approx250$) is below the experimental $\approx930$,
-whose compressed dissipation range exceeds feasible line resolution.
-Within these limits the model reproduces the rapid-distortion reference
-and the qualitative departure mechanism of the benchmark; the
-quantitative spectral assessment is carried out against the strained-box
-DNS below, where the projection and the initial spectrum are matched by
-construction.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.62\textwidth]{Figures/fig_cmk_aniso.pdf}
-  \caption{Full model (eddies and viscosity active; ensembles over
-  $128$ realisations at $\nu=10^{-5}$): strain-induced migration of the
-  streamwise and upwash component centroids, each as the ratio of the
-  strained ensemble to the matched no-strain baseline, against the
-  rigid-translation law (dashed). The components diverge under
-  strain---the upwash held back most---reproducing the qualitative
-  departure-from-RDT mechanism of \citet{ChenMeneveauKatz2006}. The
-  comparison is qualitative; see text.}
-  \label{fig:cmk-aniso}
-\end{figure}
+benchmark at laboratory Reynolds number is provided by the plane-strain
+experiment of \citet{ChenMeneveauKatz2006} (CMK), whose straining phase
+(total deformation $D\approx3$, $e\approx2.20$ in the present notation)
+we reproduce. In the rapid-distortion limit (eddy events suppressed,
+inviscid) the model follows the analytic reference of
+\citet{LeePiomelliReynolds1986} that CMK use---component centroids on
+the rigid-translation law with deformation ratio $3.00$ at $e=2.20$,
+kinetic-energy amplification $1.72$ against the exact $1.69$, the
+residual being the moment closure's, not the implementation's
+(\S\,\ref{sec:level1a}). With eddies and viscosity active the component
+centroids diverge under strain---streamwise migration $1.9$ against
+$1.5$ for the upwash at the end of the straining phase, both far below
+the rigid value $3$, the upwash held back most---which is the
+qualitative departure-from-RDT behaviour CMK report and the spectral
+signature of the broadband distortion of \S\,\ref{sec:spec-bvc}. The
+comparison is qualitative by construction (initial spectrum, spectral
+projection and scale separation all differ from the experiment's); the
+full account, with both figures and the stated limits, is given in the
+supplementary material (\S\,S1), and the quantitative spectral
+assessment is carried out against the strained-box DNS below, where
+projection and initial spectrum are matched by construction.
 
 \subsection{Validation against a strained-box DNS with an exact-RDT
 companion}\label{sec:box-dns}
@@ -2080,7 +2023,8 @@ deposits anisotropy, and the ratio
 $\mathcal A_{\rm hi}/\mathcal A_{\rm lo}$ measures how much of the
 large-scale imbalance survives transmission down the cascade.
 
-The baseline (figure~\ref{fig:klevels}, black) exhibits the deficiency of
+The baseline (supplementary material, figure~S3, black; also the black
+curve of figure~\ref{fig:clock}) exhibits the deficiency of
 \S\,\ref{sec:threeway} in transmission form:
 $\mathcal A_{\rm hi}/\mathcal A_{\rm lo}$ stays near unity out to $e=3$
 ($1.02$, $0.95$, $0.89$ at $e=1,2,3$)---the anisotropy injected at the
@@ -2093,7 +2037,12 @@ events, not by a chain of small ones.
 
 \subsection{Interventions: what fails and what works}\label{sec:interventions}
 
-Table~\ref{tab:interventions} summarises the intervention family. Two
+The complete intervention family---each case's knob, measured
+fine-scale effect and reading, with the four-panel diagnostic figure
+for the eddy-locked variants---is tabulated in the supplementary
+material (\S\,S2, table~S1 and figure~S3); the ledger it establishes
+is set out here, with the two decisive figures (the relaxation clock
+and the five-way benchmark) retained below. Two
 families fail for instructive reasons. Acceptance gating---rejecting
 accepted eddies whose post-event state remains anisotropic, at thresholds
 spanning $45$ to $98$ per cent rejection---is scale-blind: at mild
@@ -2115,68 +2064,6 @@ fractions summing to one, slowing the middle channel necessarily speeds
 the outer ones, and one outer image maps the energy peak directly into
 the measurement band.
 
-\begin{table}
-  \centering\small
-  \begin{tabular}{p{0.34\textwidth}p{0.26\textwidth}p{0.32\textwidth}}
-  intervention (knob) & fine-scale effect & reading\\[2pt]
-  acceptance gate on post-event anisotropy ($45$--$98\%$ rejection) &
-  null at all thresholds; harshest drifts to eddy-free limit &
-  gate is scale-blind: modulates eddy rate, not the scale allocation\\[4pt]
-  gate on sub-band eddies only ($42\%$, $97\%$ rejection) &
-  null, including band \emph{energy} &
-  fine scales are fed by large-eddy maps directly\\[4pt]
-  unequal map images (middle $\tfrac23$) &
-  null (one-point statistics move: $\mathcal A_{\rm lo}$ $2.85\to2.50$ at
-  $e=3.9$) &
-  outer images feed the band in one step; channels trade off\\[4pt]
-  sub-scale kernels, $1$ level ($\ell/3$) &
-  null within CIs &
-  $\ell/3$ sits above the measured band\\[4pt]
-  sub-scale kernels, $2$ levels ($\ell/9$) &
-  $\mathcal A_{\rm hi}$: $1.43\to1.27$ at $e=1$ (significant, both bands) &
-  first significant fine-scale isotropisation\\[4pt]
-  sub-scale kernels, $3$ levels ($\ell/27$) &
-  significant at $e=1$ \emph{and} $e=3$ ($-12\%$ paired) &
-  deepest levels reach the band\\[4pt]
-  depth tied to eddy size &
-  significant in both bands at $e=1$; no late-strain reversal &
-  best of the family: gains without the deep-strain overshoot\\[4pt]
-  $2$ levels iterated $3\times$ per event &
-  strongest at $e=1$ ($1.29$); overshoots at deep strain &
-  per-event amplitude is not the limiter\\[4pt]
-  concurrent relaxation: $N$ same-size intervals, randomly placed
-  ($N=1$, $3$) &
-  $N=1$ null; $N=3$ significant in both bands at $e=1$, strongest at
-  the energy-containing scales; fade persists &
-  the sampled intervals act at eddy scale; delocalising the events
-  alone is not the lever\\[4pt]
-  concurrent $+$ depth ($N=3$, adaptive hierarchy in each interval) &
-  strongest early effect of the eddy-locked family ($\mathcal A_{\rm
-  hi}$ $1.43\to1.26$); low band significant even at $e=3.9$; fine
-  scales overshoot depth-only at deep strain &
-  dosage helps early and at large scales, and harms deep-strain fine
-  scales wherever it is applied\\[4pt]
-  independent relaxation clock, uncapped (rate matched to the eddy
-  rate) &
-  significant in both bands at \emph{every} strain, growing with
-  strain---the fade broken---but the one-point anisotropy is
-  suppressed ($u_2^2/2k_t$ $0.58\to0.41$ at $e=3.9$) &
-  event-locked timing was the deep-strain limiter; a scale-blind
-  stream fights the strain itself\\[4pt]
-  independent clock, size-capped ($\ell\le\ell^{*}$, adaptive depth
-  inside) &
-  fine scales significant at every strain with no fade
-  ($\mathcal A_{\rm hi}$ held at $1.30$--$1.44$); one-point trajectory
-  intact for $e\lesssim2$, mildly reduced beyond &
-  timing $+$ scale selectivity: the working form of the mechanism\\
-  \end{tabular}
-  \caption{The intervention family on the transmission diagnostic
-  ($1024$ paired-seed realisations per case; effects quoted as median
-  paired same-seed contrasts, ``significant'' meaning the $95\%$
-  bootstrap interval excludes zero).}
-  \label{tab:interventions}
-\end{table}
-
 What works is relaxation applied \emph{at the scale of the imbalance}.
 After each accepted eddy's map and kernels, the same energy-equalising
 kernel procedure (\S\,\ref{sec:formulation}) is applied to each of the
@@ -2196,23 +2083,6 @@ throughout---band energies move by a few per cent, the upwash energy
 fraction and the intermittency tails are unchanged---and the pre-strain
 fine-scale floor moves toward component equality immediately
 ($\mathcal A_{\rm hi}$ from $0.83$ to $0.95$ at $e=0$).
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{Figures/fig_klevels.pdf}
-  \caption{Scale-local relaxation on the transmission diagnostic:
-  (\textit{a}) energy-containing-band imbalance $\mathcal A_{\rm lo}$,
-  (\textit{b}) fine-scale-band imbalance $\mathcal A_{\rm hi}$,
-  (\textit{c}) transmission $\mathcal A_{\rm hi}/\mathcal A_{\rm lo}$,
-  (\textit{d}) upwash energy fraction, against total strain: standard
-  ODT, hierarchical sub-scale kernels at fixed depth ($1$--$3$ levels),
-  depth tied to eddy size, the per-event iterated variant, concurrent
-  relaxation ($N=3$ randomly placed same-size intervals per event), and
-  the stacked variant (concurrent intervals each running the adaptive
-  hierarchy). Medians over $1024$ paired-seed realisations, $95\%$
-  bootstrap intervals.}
-  \label{fig:klevels}
-\end{figure}
 
 Four further variants separate the candidate explanations for the one
 remaining limitation, the fading of the gains beyond $e\approx3$. Tying
