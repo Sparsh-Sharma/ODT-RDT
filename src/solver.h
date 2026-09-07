@@ -44,6 +44,8 @@ class solver {
         double         PaSumC;
         long           nAnisoCand=0;    ///< Option A: eddies reaching the aniso gate
         long           nAnisoRej=0;     ///< Option A: eddies rejected by the gate         ///< sum of Pa of eddies
+        double         nextRelaxTime=0; ///< relaxation clock (Kerstein 2026-09-08): next independent relaxation event
+        long           nRelaxEv=0;      ///< relaxation clock: events performed
         int            nPaSumC;        ///< number going into PaSum
 
     //////////////////// MEMBER FUNCTIONS /////////////////

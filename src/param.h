@@ -131,6 +131,8 @@ class param {
         double                  subKernelLmin;  ///< adaptive depth: recurse only while child sub-intervals stay >= this length (0 = fixed depth); use with nSubKernelLevels as a hard cap
         int                     subKernelIters; ///< repeat the whole hierarchical pass this many times per eddy event (default 1)
         int                     nConcurrentRelax;///< concurrent relaxation (Kerstein 2026-09-07): after each eddy, apply the kernel isotropization in N intervals of the SAME size, randomly placed on the domain (overlaps allowed); default 0 = off
+        double                  relaxRate;      ///< relaxation clock (Kerstein 2026-09-08): INDEPENDENT Poisson stream of relaxation-only events at this rate per unit time, interval sizes from the eddy-size distribution; default 0 = off
+        int                     relaxDepth;     ///< relaxation clock: run the sub-scale hierarchy to this depth inside each clock event (with subKernelLmin as adaptive floor); 0 = bare interval pass
         string                  strainClosure;  ///< "IP" or "LRR"
         vector<vector<double>>  Astrain;        ///< imposed mean velocity gradient A_ij (3x3)
         vector<vector<double>>  Acal;           ///< combined op -A_ij + B_ij (updated per substep)

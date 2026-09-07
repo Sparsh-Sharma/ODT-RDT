@@ -744,6 +744,36 @@ void eddy::applyConcurrentRelax(domain *line, const int N) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+/** Relaxation clock (Kerstein suggestion, 2026-09-08): one relaxation-only
+ *  event of the INDEPENDENT Poisson stream.  The interval size is drawn
+ *  from the model's own eddy-size distribution (the inertial-range measure
+ *  the eddy sampler uses), the position uniformly; the event is the same
+ *  conservative kernel isotropization as in an eddy, optionally with the
+ *  adaptive-depth hierarchy inside it (relaxDepth, floor subKernelLmin).
+ *  Interval-based, so momentum and kinetic energy are conserved exactly
+ *  per event; timing is decoupled from the eddy events entirely.  RNG
+ *  draws happen only when the stream is active (relaxRate > 0), so the
+ *  default is bit-identical to the standard model.
+ */
+void eddy::applyRelaxEvent(domain *line) {
+
+    double l = esdp1 / log( domn->rand->getRand() * esdp2 + esdp3 );
+    double a  = line->posf->d.at(0);
+    double b  = line->posf->d.at(line->ngrd);
+    double Ld = b - a;
+    if(l <= 0.0 || l >= Ld) return;
+
+    double y0 = a + domn->rand->getRand() * (Ld - l);
+    int i0 = line->domainPositionToIndex(y0,     true,  42);
+    int i1 = line->domainPositionToIndex(y0 + l, false, 43);
+    if(i1 - i0 + 1 < 3) return;
+
+    applyKernelOnRange(line, i0, i1);
+    if(domn->pram->relaxDepth > 0)
+        applySubscaleKernels(line, i0, i1, domn->pram->relaxDepth);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 /** Fill velocity kernel K (used also for \fun{J=|K|})
  *  this applies the planar analytic definition
  */

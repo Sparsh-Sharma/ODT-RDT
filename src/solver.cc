@@ -95,6 +95,10 @@ void solver::calculateSolution() {
 
     //-------------------------------------------------------------------------
 
+    if(domn->pram->relaxRate > 0.0)          // relaxation clock: arm the stream
+        nextRelaxTime = time - log( max(1.0e-14, domn->rand->getRand()) )
+                             / domn->pram->relaxRate;
+
     while(time <= domn->pram->tEnd) {
 
         diffusionCatchUpIfNeeded();
@@ -149,6 +153,14 @@ void solver::calculateSolution() {
 
         time += sampleDt();             // advance the time
 
+        if(domn->pram->relaxRate > 0.0)      // relaxation clock (Kerstein):
+            while(nextRelaxTime <= time) {   //   fire independent events
+                domn->ed->applyRelaxEvent(domn);
+                nRelaxEv++;
+                nextRelaxTime += -log( max(1.0e-14, domn->rand->getRand()) )
+                                 / domn->pram->relaxRate;
+            }
+
         raiseDtSmean();                 // may reset PaSum, nPaSum, dtSmean
     }
 
@@ -157,6 +169,10 @@ void solver::calculateSolution() {
         diffusionCatchUpIfNeeded(true);
 
     //-------------------------------------------------------------------------
+
+    if(domn->pram->relaxRate > 0.0)
+        *domn->io->ostrm << endl << "# relaxation clock: " << nRelaxEv
+                         << " events at rate " << domn->pram->relaxRate << endl;
 
     if(domn->pram->LanisoReject) {
         *domn->io->ostrm << endl << "# Option A aniso gate: rejected " << nAnisoRej

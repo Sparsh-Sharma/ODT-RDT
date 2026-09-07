@@ -107,6 +107,8 @@ param::param(inputoutput *p_io) {
     subKernelLmin    = io->params["subKernelLmin"]    ? io->params["subKernelLmin"].as<double>()   : 0.0;
     subKernelIters   = io->params["subKernelIters"]   ? io->params["subKernelIters"].as<int>()     : 1;
     nConcurrentRelax = io->params["nConcurrentRelax"] ? io->params["nConcurrentRelax"].as<int>()   : 0;
+    relaxRate        = io->params["relaxRate"]        ? io->params["relaxRate"].as<double>()       : 0.0;
+    relaxDepth       = io->params["relaxDepth"]       ? io->params["relaxDepth"].as<int>()         : 0;
     strainClosure  = io->params["strainClosure"]  ? io->params["strainClosure"].as<string>()  : "LRR";
     Astrain = vector<vector<double>>(3, vector<double>(3, 0.0));
     Acal    = vector<vector<double>>(3, vector<double>(3, 0.0));
@@ -214,6 +216,18 @@ param::param(inputoutput *p_io) {
     }
     if(nConcurrentRelax > 0 && (cCoord != 1 || Lspatial)) {
         cout << endl << "ERROR: nConcurrentRelax > 0 requires planar (cCoord=1), temporal (Lspatial=false)." << endl;
+        exit(0);
+    }
+    if(relaxRate < 0.0) {
+        cout << endl << "ERROR: relaxRate must be >= 0." << endl;
+        exit(0);
+    }
+    if(relaxDepth < 0 || relaxDepth > 6) {
+        cout << endl << "ERROR: relaxDepth must be in [0,6]." << endl;
+        exit(0);
+    }
+    if(relaxRate > 0.0 && (cCoord != 1 || Lspatial)) {
+        cout << endl << "ERROR: relaxRate > 0 requires planar (cCoord=1), temporal (Lspatial=false)." << endl;
         exit(0);
     }
 
