@@ -1,40 +1,30 @@
+SENT 2026-09-07 (Sparsh, personal account).
+
 Subject: Re: relaxation clock results - validation campaign + manuscript
 
 Alan,
 
-Glad the clock landed where we hoped. Two updates since this morning,
-one of them yours.
+Glad the clock landed where we hoped. Two quick updates.
 
-I pushed the noise chain all the way to measurement: four published
-leading-edge-noise experiments (Paterson & Amiet's NACA0012, the ECL
-and ISVR flat plates), each predicted absolutely with the full
-non-compact Amiet response and four inflows - frozen von Karman,
-Liepmann, and our computed spectra with and without your clock. Where
-the facilities are cleanest the chain lands within 1-2 dB rms of the
-microphones with the interference lobes reproduced, and the computed
-distortion behaves causally: it vanishes for the thin plates and moves
-the NACA0012 predictions towards the data. Honest caveat: at
-laboratory strains the radiated level cannot tell the standard model
-from the clock - the rigs are designed to avoid the strains where the
-mechanism acts, and the kernel barely weights the sub-cap scales.
+I ran the full noise chain against four published leading-edge
+experiments. In the cleanest facilities we're within 1-2 dB of the
+microphones and the interference lobes come out right. The computed
+distortion does what it should - nothing on the thin plates, and it
+pulls the NACA0012 toward the data. One caveat: at lab strains the far
+field can't tell your clock from the standard model. The rigs just
+never reach the strains where the mechanism works.
 
-The result that is yours: on fresh 1024-realisation ensembles at both
-rapidities, the clock's strained spectra sit two to four times closer
-to the exact-RDT family than the standard model's, and the distance no
-longer grows with strain - it holds at 15-20% from e=0.5 to 2 while
-the standard model degrades to 40%. Your conservation-constrained
-stream, dose-matched, essentially removes the strain-dependence of the
-model's spectral error. In the noise chain that halves the uncertainty
-band on the input and makes it strain-independent.
+The spectra can tell them apart, though. On fresh 1024-realisation
+ensembles the clock sits two to four times closer to exact RDT than
+the baseline, and the error stops growing with strain - flat at 15-20%
+out to e = 2, where the baseline drifts to 40%. That halves the
+uncertainty we feed into the noise calculation.
 
-The configuration that would discriminate the clock in a microphone
-signal is a turbulence-ingesting rotor - streamtube contraction for
-the strain, blade response for the fine-scale weighting. I have put
-that in the paper as the falsifiable target rather than claiming more
-than the data allow.
+The one setup that would show the difference on a microphone is a
+turbulence-ingesting rotor. I've put that in the paper as the
+falsifiable target rather than claim more than the data support.
 
-I am now working the manuscript full time - one paper, three parts
-(closure, measured limits and the clock, noise consequence), with the
-validation above closing part three. Draft to you shortly.
+Manuscript is now my full-time job - one paper, three parts. Draft to
+you shortly.
 
 Sparsh

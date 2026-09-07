@@ -525,8 +525,17 @@ TASK LIST (supersedes the old M-ordering):
          spectra toward the exact-RDT family at every strain, both
          rapidities; npz + tables committed (5fb8683, + S20 pending
          commit).
-       - REMAINING: four-way figures + metrics (suite running),
-         fig_expval_paper 2x2 canon figure, manuscript subsection.]
+       - DONE 2026-09-07 evening (commits 0026149, 632e850): four-way
+         figures + metrics, fig_expval_paper in Part III, validation
+         subsection review-hardened (test-limit framing, paired-shift
+         defence, e_eff labelled estimate+band); fig_amiet_rapid added
+         (exact-RDT reference, frozen error grows to +3.6 dB at e=2,
+         computed inflows within 1-2.5 dB; clock gain = halved
+         strain-flat uncertainty band; rotor ingestion named the
+         falsifiable discriminating class); fig_dividend -> ESM S3.
+         Alan emailed (validation + dividend + rotor target; sent
+         2026-09-07, notes/email_alan_validation.txt); his morning
+         reply: "this phase ... reached the desired outcome".]
 
 Decisions (Sparsh):
 - D1. Combine vs split (after M0 + a look at the length budget).
