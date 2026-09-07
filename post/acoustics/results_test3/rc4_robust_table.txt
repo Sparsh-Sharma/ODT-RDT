@@ -1,0 +1,23 @@
+baseline: bands_homogeneousStrain2.npz (1024 rlz)   option A: bands_homogeneousStrain2RC4.npz (1024 rlz)
+robust statistics: median over realizations, 95% bootstrap CI of the median
+
+      |                  baseline                  |                  option A                 
+    e |       A_low            A_high       u2/2kt |       A_low            A_high       u2/2kt
+  0.0 |  1.00 [1.00,1.00]  0.83 [0.80,0.89]  0.334 |  1.00 [1.00,1.00]  0.83 [0.80,0.89]  0.334
+  1.0 |  1.43 [1.36,1.51]  1.43 [1.37,1.49]  0.420 |  1.08 [1.05,1.14]  1.05 [1.03,1.07]  0.363
+  2.0 |  1.93 [1.81,2.03]  1.81 [1.74,1.95]  0.501 |  1.13 [1.09,1.18]  1.13 [1.08,1.17]  0.365
+  3.0 |  2.28 [2.13,2.41]  1.94 [1.69,2.19]  0.549 |  1.17 [1.11,1.25]  1.19 [1.09,1.29]  0.368
+  3.9 |  2.84 [2.70,3.03]  1.63 [1.44,1.82]  0.579 |  1.17 [1.14,1.20]  1.65 [1.45,1.83]  0.394
+
+downscale transmission, median_i(A_high,i/A_low,i) [95% CI]:
+  e=1.0:  baseline  1.02 [0.94,1.08]   option A  0.96 [0.91,1.00]
+  e=2.0:  baseline  0.95 [0.88,1.03]   option A  1.00 [0.93,1.05]
+  e=3.0:  baseline  0.89 [0.77,1.04]   option A  1.06 [0.92,1.17]
+  e=3.9:  baseline  0.60 [0.52,0.73]   option A  1.30 [1.10,1.43]
+
+paired same-seed contrast, median_i[log10(A^optA/A^base)] [95% CI]:
+  (negative = option A less anisotropic than baseline for the same IC)
+  e=1.0:   lo: -0.110 [-0.132,-0.092] *  hi: -0.141 [-0.160,-0.112] *
+  e=2.0:   lo: -0.206 [-0.230,-0.176] *  hi: -0.196 [-0.227,-0.170] *
+  e=3.0:   lo: -0.276 [-0.320,-0.243] *  hi: -0.210 [-0.270,-0.146] *
+  e=3.9:   lo: -0.374 [-0.399,-0.344] *  hi: -0.024 [-0.069,+0.023]  

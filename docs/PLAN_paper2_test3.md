@@ -469,6 +469,39 @@ fourway.npz r0.4 rows; fig_fourway3 = 3-panel 0.4|0.8|16):
   Amiet-weighted band, no-harm default; residual absolute band-b error
   ~0.05 vs ~0.15+shape for frozen inputs.
 
+### 4g. RELAXATION CLOCK (Kerstein's decoupling idea, 2026-09-08) — TIMING IS THE LEVER, but the uncapped clock overcorrects
+
+Implemented (b0be6e2): `relaxRate` = INDEPENDENT Poisson stream of
+relaxation-only events (own exponential clock in the solver march),
+interval sizes from the model's eddy-size distribution, position
+uniform, each event = conservative kernel pass + adaptive hierarchy
+inside it (`relaxDepth` 6, floor 0.005); eddy-locked hierarchy OFF in
+the decks, isolating the timing axis.  Conservation per event exact
+(interval-based — Alan's constraint).  Default off bit-identical
+(regression PASSED); verified 283 events at rate 70 over t=4 =
+dose-matched to the baseline's ~279 accepted eddies.  RC1 (rate 70) and
+RC4 (280), 1024 rlz each (jobs 4435836/7; rc1/rc4_robust_table.txt).
+
+**RESULT — the deep-strain fade is BROKEN for the first time:**
+- RC1: every paired contrast starred at EVERY strain and GROWING with
+  strain: e=3.9 lo -0.303*, hi -0.083*.  A_lo saturates ~1.3 (baseline
+  2.84), A_hi ~1.25 (baseline 1.63 after its own crash).  A constant
+  clock keeps pace where the eddy-locked variants faded => the
+  event-locking WAS the deep-strain limiter.  The strong form of the
+  resupply argument ("nothing fixes when") is OVERTURNED.
+- BUT the uncapped clock is scale-indiscriminate: it also crushes the
+  PHYSICAL large-scale/one-point anisotropy (u2^2/2kt 0.579 -> 0.414 at
+  e=3.9; RC4 -> 0.394) — it fights the strain itself, breaking the
+  validated moment-level trajectory (L&R tracking).  RC4 = same,
+  stronger; its A_hi rebounds to 1.65 at e=3.9 (hi contrast ns) — over-
+  driven fine scales at extreme dose.
+- **Refinement RUNNING (RCS1/RCS4, relaxLmax=0.05, jobs 4435862/3):**
+  cap the stream to SUB-BAND interval sizes (l* between the diagnostic
+  bands, as in the A-S gate) so sustained relaxation acts only where
+  the model over-transmits, leaving the physical large-scale anisotropy
+  and the moment trajectory untouched.  This is the actual candidate
+  mechanism: clock timing + scale selectivity.
+
 ## 5. Reply history:
    - 2026-09-04: first reply SENT (email_alan_test3_reply.html).
    - 2026-09-05 morning: Option-B reply SENT — the MORNING draft of
