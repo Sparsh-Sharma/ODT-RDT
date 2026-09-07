@@ -489,6 +489,39 @@ TASK LIST (supersedes the old M-ordering):
       [STATUS 2026-09-09: main 41 pp + ESM 5 pp (was 42 pp rejected,
       39 pp before Part III). Close enough; only trim further if
       Sparsh wants.]
+- U6. (Sparsh directive 2026-09-09) EXPERIMENTAL four-way validation:
+      >=4 published far-field LE-noise cases, each with classical
+      Amiet+vK, Liepmann-Amiet, standard-ODT-Amiet, fixed-ODT-Amiet
+      + measured spectra overlaid; quantify which is closest.
+      [IN PROGRESS. Stage 1 DONE (commit 91590d2):
+       - cases: Paterson-Amiet CR-2733 (NACA0012, 40/60/90 m/s used;
+         120/165 excluded, M too high for the incompressible response),
+         Bampanis 2022 JSV + 2019 AIAA (ECL flat plate, 19/27/32),
+         Narayanan 2015 PoF (ISVR flat plate, 60); configs + digitised
+         baseline spectra in post/acoustics/expdata (CASES.md/NOTES.md,
+         overlay proofs; PA fig 13 via interior-hole detection).
+       - chain (post/acoustics/expval/chain.py): full non-compact
+         Amiet (Bampanis 2022 eqs 2-4, L1+L2 Fresnel, mu>0.4 in all
+         metric bands), 2D vK/Liepmann/ODT-representation inflows,
+         Gershfeld thickness surrogate on the NACA case (all four
+         chains identically), potential-flow-ellipse e_eff truncated
+         at the eddy scale (PA: 0.09-0.16; flat plates: 0.03-0.05 ->
+         ODT correction correctly ~vanishes there).
+       - VERIFICATION: chain reproduces CR-2733's own theory curve to
+         ~2-3 dB incl. the non-compactness dip; Bampanis anchor at
+         27/32 m/s: bias < 0.4 dB, rms ~1.2 dB (same fidelity as
+         their own Amiet validation).
+       - measured so far (vk/liepmann/odt_std): ECL flat plates
+         ~1 dB rms; PA overpredicted +1.8..+5.7 dB in the clean band
+         (their own 1976 theory overpredicts the same data +2..+4:
+         thickness+distortion); Narayanan -5 dB anomaly (observer
+         angle NOT STATED in paper; their-Amiet digitisation queued
+         to attribute it).
+       - PENDING: gateA_S1_RCS1 + gateA_S20_RCS1 ensembles on caro
+         (jobs 4437736/7, 1024 rlz each, dose-matched rates 859/3697,
+         Lmax 0.05, depth 6) -> dump_spectra -> fit_rdt_family
+         (TAG=S{1,20}_RCS1, KMAX=300) -> odt_fix rows + final
+         four-way figures + manuscript subsection.]
 
 Decisions (Sparsh):
 - D1. Combine vs split (after M0 + a look at the length budget).
