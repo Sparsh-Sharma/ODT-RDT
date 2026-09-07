@@ -517,11 +517,16 @@ TASK LIST (supersedes the old M-ordering):
          thickness+distortion); Narayanan -5 dB anomaly (observer
          angle NOT STATED in paper; their-Amiet digitisation queued
          to attribute it).
-       - PENDING: gateA_S1_RCS1 + gateA_S20_RCS1 ensembles on caro
-         (jobs 4437736/7, 1024 rlz each, dose-matched rates 859/3697,
-         Lmax 0.05, depth 6) -> dump_spectra -> fit_rdt_family
-         (TAG=S{1,20}_RCS1, KMAX=300) -> odt_fix rows + final
-         four-way figures + manuscript subsection.]
+       - ENSEMBLES DONE (jobs 4437736/7): both 1024/1024, zero aborts
+         (dilatation fix holds at S=20 with the clock on). KEY SIDE
+         RESULT: RCS1 fit costs vs baseline - S1: 0.47-0.77 vs
+         0.66-1.74; S20: 0.61-1.05 vs 0.58-2.42 (e=1: 0.97 vs 1.93;
+         e=2: 0.61 vs ~2.4) - the size-capped clock moves the model
+         spectra toward the exact-RDT family at every strain, both
+         rapidities; npz + tables committed (5fb8683, + S20 pending
+         commit).
+       - REMAINING: four-way figures + metrics (suite running),
+         fig_expval_paper 2x2 canon figure, manuscript subsection.]
 
 Decisions (Sparsh):
 - D1. Combine vs split (after M0 + a look at the length budget).
