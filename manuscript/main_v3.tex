@@ -2151,11 +2151,24 @@ the measurement band.
   the sampled intervals act at eddy scale; delocalising the events
   alone is not the lever\\[4pt]
   concurrent $+$ depth ($N=3$, adaptive hierarchy in each interval) &
-  strongest early effect of the family ($\mathcal A_{\rm hi}$
-  $1.43\to1.26$); low band significant even at $e=3.9$; fine scales
-  overshoot depth-only at deep strain &
+  strongest early effect of the eddy-locked family ($\mathcal A_{\rm
+  hi}$ $1.43\to1.26$); low band significant even at $e=3.9$; fine
+  scales overshoot depth-only at deep strain &
   dosage helps early and at large scales, and harms deep-strain fine
-  scales wherever it is applied\\
+  scales wherever it is applied\\[4pt]
+  independent relaxation clock, uncapped (rate matched to the eddy
+  rate) &
+  significant in both bands at \emph{every} strain, growing with
+  strain---the fade broken---but the one-point anisotropy is
+  suppressed ($u_2^2/2k_t$ $0.58\to0.41$ at $e=3.9$) &
+  event-locked timing was the deep-strain limiter; a scale-blind
+  stream fights the strain itself\\[4pt]
+  independent clock, size-capped ($\ell\le\ell^{*}$, adaptive depth
+  inside) &
+  fine scales significant at every strain with no fade
+  ($\mathcal A_{\rm hi}$ held at $1.30$--$1.44$); one-point trajectory
+  intact for $e\lesssim2$, mildly reduced beyond &
+  timing $+$ scale selectivity: the working form of the mechanism\\
   \end{tabular}
   \caption{The intervention family on the transmission diagnostic
   ($1024$ paired-seed realisations per case; effects quoted as median
@@ -2222,74 +2235,128 @@ isotropiser of the family ($\mathcal A_{\rm hi}$ from $1.43$ to $1.26$
 at $e=1$) and delivers the only significant deep-strain effect, in the
 energy-containing band at $e=3.9$; yet at the fine scales and deep
 strain it overshoots the depth-only variant significantly. The ledger
-is then complete: depth sets \emph{where} the relaxation acts and is
-necessary; dosage and delocalisation raise the early gains in
-proportion to the total relaxation delivered; and no combination
-tested---more depth, more dosage, more events, other
-locations---prevents the fine-scale fade beyond $e\approx3$. The
-deep-strain fine scales are resupply-limited, not
-implementation-limited: relaxation acts at the event rate while the
-strain resupplies the imbalance continuously, and at these total
-strains no per-event scheme keeps pace. Whether that saturation is a
-model artefact or the physical statement that sustained rapid
-distortion outruns any cascade-mediated return to isotropy is not
-decided by these experiments.
+is then complete for every scheme locked to the eddy clock: depth sets
+\emph{where} the relaxation acts and is necessary; dosage and
+delocalisation raise the early gains in proportion to the total
+relaxation delivered; and no eddy-locked combination---more depth, more
+dosage, more events, other locations---prevents the fine-scale fade
+beyond $e\approx3$. The remaining suspect is the clock itself:
+relaxation acts at the eddy rate while the strain resupplies the
+imbalance continuously. Whether that is fundamental or merely
+structural is decided by the final intervention.
+
+\subsection{Decoupling the relaxation clock}\label{sec:clock}
+
+The one axis the eddy-locked family cannot test is \emph{when}
+relaxation acts. We therefore give it its own clock: an independent
+Poisson stream of relaxation-only events at a prescribed rate, each
+event an interval drawn from the model's eddy-size distribution, placed
+uniformly on the domain, and relaxed by the same conservative kernel
+pass with the adaptive-depth hierarchy inside it. Because each event
+acts on an interval, momentum and kinetic energy are conserved exactly
+per event; because the stream has its own rate, its pacing is decoupled
+from the eddy statistics entirely. The rate is matched to the
+baseline's mean eddy rate, so the comparison against the eddy-locked
+variants is dose-matched by construction.
+
+The result (figure~\ref{fig:clock}) decides the question. With the
+clock, the fine-scale imbalance is reduced significantly at
+\emph{every} strain and the effect grows rather than fades---the paired
+contrasts reach $-0.30$ (low band) and remain significant in the high
+band at $e=3.9$---because a constant-rate stream keeps pace precisely
+where the eddy rate could not: event-locked timing, not any per-event
+property, was the deep-strain limiter. But the uncapped stream is
+scale-blind and overcorrects: it also suppresses the one-point
+anisotropy that the strain should produce, pulling $u_2^2/2k_t$ from
+$0.58$ to $0.41$ at $e=3.9$ and thereby breaking the moment-level
+behaviour validated in \S\,\ref{sec:lr-validation}. Restricting the
+stream to sub-band interval sizes ($\ell\le\ell^{*}$, the scale
+separating the two measurement bands) resolves the tension: the
+size-capped clock holds the fine scales at every strain with no
+fade---$\mathcal A_{\rm hi}$ at $1.30$--$1.44$ against the baseline's
+$1.63$--$1.94$, contrasts significant throughout and strongest at
+$e=3$---while the one-point trajectory is essentially untouched in the
+moderate-strain regime ($u_2^2/2k_t$ within $0.005$ of the baseline at
+$e=1$) and only mildly reduced at the deepest strain. The rate is a
+clean dial: four times the rate holds the fine scales harder at a
+proportionate one-point cost.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_clock.pdf}
+  \caption{The independent relaxation clock against the eddy-locked
+  family. (\textit{a}) Fine-scale-band imbalance $\mathcal A_{\rm hi}$
+  against total strain: the eddy-locked variants fade beyond
+  $e\approx3$; the clock holds at every strain. (\textit{b}) The
+  price: upwash energy fraction---the uncapped clock suppresses the
+  physical one-point anisotropy, the size cap restores it. Medians
+  over $1024$ paired-seed realisations; the clock rate is matched to
+  the baseline eddy rate.}
+  \label{fig:clock}
+\end{figure}
 
 \subsection{The measured missing ingredient}\label{sec:limits-endpoint}
 
 The arc closes the loop opened by the three-way comparison. The
 deficiency measured there---anisotropy allocated uniformly over
 wavenumber---is confirmed here in transmission form, is unfixable by
-gating or map reweighting, and is corrected, at moderate strain, by
-exactly one ingredient: relaxation applied at the scale of the imbalance.
-At the formulation level this ingredient has a natural continuous home:
-the spectral kernel form \eqref{eq:Piclosed}--\eqref{eq:g3} is
-precisely a wavenumber- and angle-dependent rapid operator, and replacing
-the wavenumber-uniform moment closure of \S\,\ref{sec:formulation} by a
-discretisation of it is the formulation-level analogue of the sub-scale
-kernels' event-level correction. The present results bound what such an
-upgrade can and cannot deliver: it can re-allocate the rapid
-redistribution across scales (the measured deficit of
-\S\,\ref{sec:threeway}), and it cannot, any more than the event-level
-mechanisms, outrun sustained resupply at deep strain.
+gating or map reweighting, and is cured by exactly two ingredients,
+each isolated by a falsified alternative: relaxation applied \emph{at
+the scale of the imbalance} (depth, not dosage or location) and
+relaxation applied \emph{on its own clock} (the size-capped stream,
+which alone survives deep strain). One limit remains, and it is
+structural rather than curable by any amount of relaxation: an
+isotropising mechanism is bounded at component equality, whereas exact
+linear theory and the DNS carry the fine-scale upwash \emph{below} the
+transverse mean. Crossing that boundary requires the rapid operator
+itself to discriminate by wavenumber, and the formulation already
+contains its natural form: the spectral kernel
+\eqref{eq:Piclosed}--\eqref{eq:g3} is precisely a wavenumber- and
+angle-dependent rapid operator, whose discretisation in place of the
+wavenumber-uniform moment closure of \S\,\ref{sec:formulation} is the
+identified next step.
 
-The head-to-head that summarises the paper is
+The head-to-head that summarises this part is
 figure~\ref{fig:fourway}: the strain-induced upwash anisotropy per
 wavenumber band---the observable on which \S\,\ref{sec:threeway}
 established the benchmark---for exact linear theory, the DNS, the
-strain-coupled model, and the model with the adaptive-depth sub-scale
-kernels active, at both strain-rate parameters, from same-binary
-ensembles under the identical precursor protocol. Three statements can
-be read directly from the shared axes. First, at $Sk_t/\varepsilon=16$
-the DNS lies on the exact-RDT curve: the rapid limit is realised in the
-benchmark itself, and the deficiency of the baseline model---its
-uniform allocation of a correct integrated anisotropy---is starkest
-precisely where the eddies matter least. Second, at
-$Sk_t/\varepsilon=0.8$ scale-local relaxation tilts the model's
-allocation towards the DNS: the anisotropy now decreases with
-wavenumber, and the fine-band excess over the DNS is roughly halved
-(from $+0.076$ against the DNS value $-0.046$ to $+0.024$). Third, at
-$Sk_t/\varepsilon=16$ the same mechanism moves the allocation only
-marginally within $e\le1$: at rapid strain the relaxation events cannot
-keep pace with the resupply---the transmission finding of this section
-restated on the benchmark axes. What the eddy-level correction achieves
-and where it saturates are thereby exhibited on the same axes as the
-deficiency it addresses; closing the remaining gap is the burden of the
-continuous wavenumber-dependent operator identified above.
+strain-coupled model, and the model under each of the two mechanism
+forms (adaptive depth; the size-capped clock), at three strain-rate
+parameters, from same-binary ensembles under the identical precursor
+protocol. Four statements can be read directly from the shared axes.
+First, at $Sk_t/\varepsilon=16$ the DNS lies on the exact-RDT curve:
+the rapid limit is realised in the benchmark itself, and the
+deficiency of the baseline model---its uniform allocation of a correct
+integrated anisotropy---is starkest precisely where the eddies matter
+least. Second, at moderate rapidity the mechanism tilts the model's
+allocation towards the DNS---the anisotropy now decreases with
+wavenumber, the fine-band excess roughly halved (at
+$Sk_t/\varepsilon=0.8$: from $+0.076$ against the DNS value $-0.046$
+to $+0.024$)---and the improvement grows as the rapidity falls, the
+trend the application regime sits on. Third, within $e\le1$ the two
+mechanism forms are equivalent on these axes; the clock's advantage is
+the deep-strain hold of figure~\ref{fig:clock}, which this
+protocol---bounded at $e=1$ by the DNS reference---cannot display.
+Fourth, at $Sk_t/\varepsilon=16$ neither form moves the allocation:
+rapid strain limits the physical time available, and no relaxation
+scheme manufactures more of it. The remaining, sign-level gap belongs
+to the wavenumber-dependent operator identified above.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\textwidth]{Figures/fig_fourway.pdf}
-  \caption{The four-way comparison on the benchmark observable of
+  \includegraphics[width=\textwidth]{Figures/fig_fourway5.pdf}
+  \caption{The five-way comparison on the benchmark observable of
   \S\,\ref{sec:threeway}: strain-induced upwash anisotropy per
   wavenumber band at $e=1$, for exact linear RDT, DNS, the
-  strain-coupled model, and the model with adaptive-depth scale-local
-  relaxation, at (\textit{a}) $Sk_t/\varepsilon=0.8$ and (\textit{b})
-  $16$ (ODT: $1024$ realisations per case, same binary and precursor
-  protocol; DNS and companions as in \S\,\ref{sec:box-dns}). At rapid
-  strain the DNS realises the exact-RDT allocation; scale-local
-  relaxation moves the model towards the DNS at moderate rapidity and
-  only marginally at rapid strain.}
+  strain-coupled model, and the model with each mechanism form
+  (adaptive depth; size-capped relaxation clock), at
+  $Sk_t/\varepsilon=0.4$, $0.8$ and $16$ (ODT: $1024$ realisations per
+  case, same binary and precursor protocol; DNS and companions as in
+  \S\,\ref{sec:box-dns}; no DNS exists at $0.4$, where exact RDT is
+  the reference---at fixed total strain it is independent of the
+  strain rate). At rapid strain the DNS realises the exact-RDT
+  allocation; the mechanism moves the model towards the DNS
+  increasingly as the rapidity falls.}
   \label{fig:fourway}
 \end{figure}
 
