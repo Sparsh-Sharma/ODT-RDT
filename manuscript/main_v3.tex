@@ -782,7 +782,10 @@ model reproduces the behaviour of real strained turbulence outside that
 limit; the spectral validation, against the strained-box DNS with its
 exact-RDT companion, is the subject of \S\,\ref{sec:val-spectrum}, and
 this section closes with the moment-level validation against the
-strained-turbulence DNS of \citet{LeeReynolds1985}.
+strained-turbulence DNS of \citet{LeeReynolds1985}. Every test in this
+section operates at the Reynolds-stress level, by design; no spectral
+claim rests on it, and none is made before the spectral benchmarks of
+\S\,\ref{sec:val-spectrum}.
 
 \subsection{Canonical strains and the exact onset rate}\label{sec:onset}
 
@@ -965,7 +968,14 @@ traceless rapid term cannot change directly and which grows through the
 production integral
 $\mathrm{d}\ln k_t/\mathrm{d}e=f_{22}-f_{11}$, provides the independent
 magnitude check, and the solver reproduces the LRR amplification to
-within $0.3\%$. Reaching that figure required a resolved spectral
+within $0.3\%$. For definiteness: every strained computation in the
+remainder of the paper uses the LRR closure, whose error against the
+exact solution is quantified above at every strain reached; the
+sensitivity of the spectral conclusions to this closure choice is not
+estimated but measured, through the exact-RDT companions of
+\S\,\ref{sec:val-spectrum} and the axisymmetry measurement of
+\S\,\ref{sec:gate}, which carry the closure deficiency into the quoted
+uncertainty rather than leaving it implicit. Reaching that figure required a resolved spectral
 initialisation (a white-noise start places energy at the grid scale,
 where mesh-adaption interpolation damps it) and a strain-resolved
 timestep bound in the inviscid limit; both effects act nearly
@@ -996,6 +1006,13 @@ single line, and it reports the Reynolds-stress anisotropy against total
 strain for several irrotational strain modes alongside the analytic
 rapid-distortion prediction---a graded, moment-level reference that the
 spectral benchmarks of \S\,\ref{sec:val-spectrum} do not provide. The
+same programme's later rapid-limit analysis
+\citep{LeePiomelliReynolds1986} supplies the analytic reference used in
+the supplementary CMK comparison; higher-Reynolds-number strained
+computations exist, but the spectral role they would serve is filled
+here by the dedicated strained-box DNS of \S\,\ref{sec:val-spectrum},
+leaving \citeauthor{LeeReynolds1985}'s low-Reynolds-number study as the
+appropriate moment-level benchmark for a fully resolved line. The
 comparison quantity is the anisotropy $b_{ij}$ against the deformation
 ratio $c=\exp\int S\,\mathrm{d}t$ (so $\ln c$ is the total strain $e$ of
 the present notation), computed from the single-point component
@@ -1007,7 +1024,9 @@ $3.32$); the measured line compression agrees with
 $\exp(A_{22}t_f)$ to better than $0.3\%$, confirming the kinematic
 fidelity of the dilatation. One parameter distinction matters for
 interpretation: \citeauthor{LeeReynolds1985} characterise each run by
-$S^{*}=Sq^2/\varepsilon=2\chi$, and find the axisymmetric anisotropy
+$S^{*}=Sq^2/\varepsilon$, which equals $2\chi$ identically since
+$q^2=2k_t$---a correspondence of definitions, not a calibration---and
+find the axisymmetric anisotropy
 essentially independent of $S^{*}$---a clean, parameter-free
 target---whereas in plane strain the unstrained component $b_{11}$ is
 strongly $S^{*}$-dependent, spanning $b_{11}\approx0$ (slow) to
