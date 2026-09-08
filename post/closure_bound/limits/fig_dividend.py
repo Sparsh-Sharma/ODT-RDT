@@ -113,8 +113,8 @@ def main():
 
     # ---- (a) deviation from the family, S20 e=2 ------------------------
     j, e = 4, 2.0
-    for variant, col, lab in ((" ", BLACK, "standard"),
-                              ("_RCS1", RED, "clock")):
+    for variant, col, lab in ((" ", BLACK, "SC-ODT"),
+                              ("_RCS1", RED, "clock-relaxed ODT")):
         v = "" if variant == " " else variant
         k2b, (Epb, E2b) = binned("S20", v, j)
         ke, A0, _ = read_fits("S20" + v)[e]
@@ -159,8 +159,8 @@ def main():
     from matplotlib.lines import Line2D
     b.legend(handles=[
         Line2D([], [], color=GOLD, lw=1, label="frozen isotropic"),
-        Line2D([], [], color=BLACK, lw=1, label="standard ODT"),
-        Line2D([], [], color=RED, lw=1, label="ODT + clock"),
+        Line2D([], [], color=BLACK, lw=1, label="SC-ODT"),
+        Line2D([], [], color=RED, lw=1, label="clock-relaxed ODT"),
         Line2D([], [], color="0.4", marker="s", ls="-", ms=3, lw=0.8,
                label=r"$Sk_t/\varepsilon\approx8$"),
         Line2D([], [], color="0.4", marker="o", ls=(0, (4, 2)), ms=3,
@@ -171,8 +171,8 @@ def main():
     j, e = 2, 1.0
     ke_r, A0_r, _ = read_fits("S20_RCS1")[e]
     ke0 = read_fits("S20_RCS1")[0.0][0]
-    for v, col, lab in (("", BLACK, "standard"),
-                        ("_RCS1", RED, "clock")):
+    for v, col, lab in (("", BLACK, "SC-ODT"),
+                        ("_RCS1", RED, "clock-relaxed ODT")):
         k2b, (Epb, E2b) = binned("S20", v, j)
         c.semilogx(k2b / ke0, E2b / Epb, "-", color=col, lw=1.0,
                    label=lab)

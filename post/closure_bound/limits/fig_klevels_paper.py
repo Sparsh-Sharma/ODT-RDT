@@ -16,7 +16,8 @@ from figstyle_jfm import FULL, RED, VARIANTS, panel, plt, save  # noqa: E402
 
 NB = os.path.join(HERE, "newbands")
 CASES = [
-    ("standard ODT", "bands_homogeneousStrain2.npz", VARIANTS[0], "o"),
+    ("SC-ODT (baseline)", "bands_homogeneousStrain2.npz", VARIANTS[0],
+     "o"),
     ("1 level (thirds)", "bands_homogeneousStrain2K1.npz", VARIANTS[1],
      "s"),
     ("2 levels", "bands_homogeneousStrain2K2.npz", VARIANTS[2], "^"),

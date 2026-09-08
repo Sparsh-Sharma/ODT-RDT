@@ -19,14 +19,15 @@ from figstyle_jfm import BLACK, GOLD, GREEN, PURPLE, RED, FULL, panel, plt, save
 
 NB = os.path.join(HERE, "newbands")
 CASES = [
-    ("standard ODT", "bands_homogeneousStrain2.npz", BLACK, "o", "-"),
+    ("SC-ODT (baseline)", "bands_homogeneousStrain2.npz", BLACK, "o",
+     "-"),
     ("depth tied to eddy size", "bands_homogeneousStrain2KS.npz",
      PURPLE, "v", "-"),
     ("clock, uncapped", "bands_homogeneousStrain2RC1.npz", GOLD, "s",
      (0, (4, 2))),
-    ("clock, size-capped", "bands_homogeneousStrain2RCS1.npz", RED,
+    ("clock-relaxed ODT", "bands_homogeneousStrain2RCS1.npz", RED,
      "^", "-"),
-    ("clock, size-capped, $4\\times$", "bands_homogeneousStrain2RCS4.npz",
+    ("clock-relaxed ODT, $4\\times$", "bands_homogeneousStrain2RCS4.npz",
      GREEN, "d", (0, (1, 1.5))),
 ]
 NBOOT = 2000
