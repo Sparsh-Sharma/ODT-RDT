@@ -22,7 +22,7 @@ from scipy.integrate import solve_ivp
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
-from figstyle_jfm import COL, FULL, GOLD, panel, plt, save  # noqa: E402
+from figstyle_jfm import FULL, panel, plt, save  # noqa: E402
 
 C2_IP = 3.0 / 5.0
 C2_LRR, C3_LRR, C4_LRR = 0.8, 1.75, 1.31
@@ -157,26 +157,29 @@ def main():
           % (da["exact"][0, -1], da["LRR"][0, -1], da["IP"][0, -1],
              da["exact"][2, -1], da["LRR"][2, -1], da["IP"][2, -1]))
 
-    CC = [COL["phi11"], COL["phi22"], COL["phi33"]]
-    LS = {"exact": "-", "LRR": (0, (6, 2)), "IP": (0, (1, 1.5))}
+    # monochrome: component -> marker, closure -> line style (all black)
+    MK = ["o", "s", "^"]                      # u_1, u_2, u_3
+    LS = {"exact": "-", "LRR": (0, (6, 2)), "IP": (0, (1, 1.4))}
+    LW = {"exact": 1.3, "LRR": 1.0, "IP": 1.0}
     fig, (a, b) = plt.subplots(1, 2, figsize=(FULL, 2.3), sharex=True)
     for i in range(3):
         for m in ("exact", "LRR", "IP"):
             a.plot(data["plane"]["e"], data["plane"][m][i],
-                   color=CC[i], ls=LS[m],
-                   lw=1.3 if m == "exact" else 1.0)
+                   color="k", ls=LS[m], lw=LW[m], marker=MK[i],
+                   markevery=(6 * i, 28), ms=3.0, mfc="none", mew=0.7)
     for i in (0, 2):
         for m in ("exact", "LRR", "IP"):
             b.plot(data["axisymmetric"]["e"], data["axisymmetric"][m][i],
-                   color=CC[i], ls=LS[m],
-                   lw=1.3 if m == "exact" else 1.0)
+                   color="k", ls=LS[m], lw=LW[m], marker=MK[i],
+                   markevery=(6 * i, 28), ms=3.0, mfc="none", mew=0.7)
     for j, ax in enumerate((a, b)):
         ax.set_xlabel(r"total strain $e = S\,t$")
         ax.set_xlim(0, EMAX)
         panel(ax, "ab"[j])
     a.set_ylabel(r"$\overline{u_i^2}/2k_t$")
     from matplotlib.lines import Line2D
-    hand = ([Line2D([0], [0], color=CC[i], lw=1.5) for i in range(3)]
+    hand = ([Line2D([0], [0], color="k", marker=MK[i], ls="none",
+                    mfc="none", mew=0.9, ms=4) for i in range(3)]
             + [Line2D([0], [0], color="k", ls=LS[m], lw=1.2)
                for m in ("exact", "LRR", "IP")])
     labs = [r"$\overline{u_1^2}$", r"$\overline{u_2^2}$",
@@ -188,17 +191,19 @@ def main():
     save(fig, os.path.join(HERE, "fig_rdt_components"))
 
     fig, ax = plt.subplots(figsize=(0.62 * FULL, 2.3))
-    ax.plot(d["e"], d["exact"][1], color=COL["rdt"], lw=1.4,
+    ax.plot(d["e"], d["exact"][1], color="k", lw=1.4,
             label="exact RDT")
-    ax.plot(d["e"], d["LRR"][1], color=COL["odt"], ls=(0, (6, 2)),
+    ax.plot(d["e"], d["LRR"][1], color="k", ls=(0, (6, 2)), lw=1.0,
+            marker="s", markevery=(8, 30), ms=3.0, mfc="none", mew=0.7,
             label="model, LRR closure")
-    ax.plot(d["e"], d["IP"][1], color=GOLD, ls=(0, (4, 1.5, 1, 1.5)),
+    ax.plot(d["e"], d["IP"][1], color="k", ls=(0, (1, 1.4)), lw=1.0,
+            marker="^", markevery=(16, 30), ms=3.2, mfc="none", mew=0.7,
             label="model, IP closure")
-    ax.plot(d["e"], d["pp"][1], color="0.45", ls=(0, (1, 1.5)),
-            label="production alone")
-    ax.axhline(1.0 / 3.0, color="0.75", lw=0.6)
-    ax.text(0.1, 1.0 / 3.0 + 0.02, "isotropic (1/3)", fontsize=7,
-            color="0.4")
+    ax.plot(d["e"], d["pp"][1], color="k", ls=(0, (5, 1.6, 1, 1.6)),
+            lw=0.9, label="production alone")
+    ax.axhline(1.0 / 3.0, color="0.7", lw=0.6)
+    ax.text(2.6, 0.27, "isotropic ($1/3$)", fontsize=7, color="0.45",
+            ha="left", va="center")
     ax.set_xlabel(r"total strain $e = S\,t$")
     ax.set_ylabel(r"$\overline{u_2^2}/2k_t$")
     ax.set_xlim(0, EMAX)

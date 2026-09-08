@@ -86,43 +86,49 @@ def markers_by(tag, pred):
 
 
 def fig_plane():
+    from matplotlib.lines import Line2D
+    from matplotlib.patches import Patch
     fig, ax = plt.subplots(figsize=(0.8 * FULL, 2.6))
-    names = ["$b_{11}$ (unstrained)", "$b_{22}$ (compressed, line)",
-             "$b_{33}$ (stretched)"]
-    mks = {0: "o", 1: "s", 2: "^"}
-    # DNS b11 slow-fast range band (old green, 11-pt polygon)
+    # monochrome: component -> line style (ODT) + marker (DNS)
+    LS = {0: "-", 1: (0, (6, 2)), 2: (0, (1, 1.4))}     # b11/b22/b33
+    MK = {0: "o", 1: "s", 2: "^"}
     for i in range(4):
         if f"plane_bands{i}_x" not in D:
             continue
         x, y = get("plane", "bands", i, "x"), get("plane", "bands", i, "y")
         comp = comp_of("plane", "bands", i)
-        if len(x) < 20:   # the DNS range band
-            (xl, yl), (xu, yu) = band_edges(x, y)
+        (xl, yl), (xu, yu) = band_edges(x, y)
+        if len(x) < 20:   # the DNS b11 slow--fast range band: hatched
             ax.fill_between(xl, yl, np.interp(xl, xu, yu),
-                            color=CC[0], alpha=0.15, lw=0,
-                            label=r"L&R DNS $b_{11}$ range "
-                                  r"(slow--fast $S^{*}$)")
-        else:             # ODT standard-error bands
-            (xl, yl), (xu, yu) = band_edges(x, y)
+                            facecolor="none", edgecolor="0.55", lw=0.0,
+                            hatch="////", alpha=0.9)
+        else:             # ODT standard-error bands: light grey
             ax.fill_between(xl, yl, np.interp(xl, xu, yu),
-                            color=CC[comp], alpha=0.25, lw=0)
+                            color="0.8", alpha=0.6, lw=0)
     for i in range(3):
         comp = comp_of("plane", "curves", i)
         ax.plot(get("plane", "curves", i, "x"),
                 get("plane", "curves", i, "y"),
-                color=CC[comp], lw=1.2, label="ODT " + names[comp])
+                color="k", ls=LS[comp], lw=1.2)
     for comp in range(3):
         x, y = markers_by(
             "plane", lambda i: comp_of("plane", "markers", i) == comp)
-        ax.plot(x, y, ls="none", marker=mks[comp], ms=3.4, mfc="none",
-                mec=CC[comp], mew=0.8,
-                label=r"L&R DNS $b_{%d%d}$" % (comp + 1, comp + 1)
-                      + (" (high $S^{*}$, RDT)" if comp == 0 else ""))
+        ax.plot(x, y, ls="none", marker=MK[comp], ms=3.4, mfc="none",
+                mec="k", mew=0.8)
     ax.axhline(0, color="0.6", lw=0.5, ls=":")
     ax.set_xlabel(r"reference total strain $c=\exp\!\int S\,\mathrm{d}t$")
     ax.set_ylabel(r"$b_{ij}$")
-    ax.legend(fontsize=6.3, loc="lower left", ncol=2,
-              columnspacing=0.8)
+    hand = [Line2D([0], [0], color="k", ls=LS[c], marker=MK[c],
+                   mfc="none", mew=0.9, ms=4, lw=1.2) for c in range(3)]
+    hand.append(Patch(facecolor="none", edgecolor="0.55", hatch="////"))
+    labs = [r"$b_{11}$ unstrained", r"$b_{22}$ compressed",
+            r"$b_{33}$ stretched", r"DNS $b_{11}$ range ($S^{*}$)"]
+    leg = ax.legend(hand, labs, fontsize=6.3, loc="center right",
+                    bbox_to_anchor=(0.99, 0.34), handlelength=2.4,
+                    labelspacing=0.3, borderpad=0.5)
+    leg.get_frame().set_edgecolor("0.7")
+    leg.get_frame().set_facecolor("white")
+    leg.get_frame().set_alpha(1.0)
     fig.tight_layout(pad=0.4)
     save(fig, os.path.join(HERE, "fig_LR_plane"))
 
@@ -184,35 +190,42 @@ def fig_b11():
                      for c in (1.5, 2, 3, 4)))
 
     fig, ax = plt.subplots(figsize=(0.72 * FULL, 2.6))
-    # DNS range band (grey, small polygon)
+    # monochrome: DNS range band hatched, ODT s.e. band light grey
     for i in range(2):
         x, y = get("b11", "bands", i, "x"), get("b11", "bands", i, "y")
         c = col_of("b11", "bands", i)
         (xl, yl), (xu, yu) = band_edges(x, y)
-        if c == (0.75, 0.75, 0.75):
-            ax.fill_between(xl, yl, np.interp(xl, xu, yu), color="0.8",
-                            alpha=0.6, lw=0,
-                            label=r"L&R DNS range (slow--fast $S^{*}$)")
-        else:
+        if c == (0.75, 0.75, 0.75):   # DNS slow--fast range
             ax.fill_between(xl, yl, np.interp(xl, xu, yu),
-                            color=COL["odt"], alpha=0.25, lw=0)
-    ax.plot(*ana["exact"], color=COL["rdt"], ls=(0, (1, 1.5)), lw=1.3,
+                            facecolor="none", edgecolor="0.55",
+                            hatch="////", lw=0.0, alpha=0.9)
+        else:                          # ODT standard-error band
+            ax.fill_between(xl, yl, np.interp(xl, xu, yu), color="0.8",
+                            alpha=0.6, lw=0)
+    ax.plot(*ana["exact"], color="k", ls=(0, (6, 2)), lw=1.3,
             label="exact linear RDT")
-    ax.plot(*ana["IP"], color=GOLD, ls=(0, (4, 1.5, 1, 1.5)), lw=1.1,
+    ax.plot(*ana["IP"], color="k", ls=(0, (1, 1.4)), lw=1.0,
             label=r"IP ($C_2=3/5$)")
-    ax.plot(*ana["LRR"], color=GREEN, ls=(0, (6, 2)), lw=1.1,
+    ax.plot(*ana["LRR"], color="k", ls=(0, (3, 1.4)), lw=1.0,
             label="LRR-QI")
     ax.plot(get("b11", "curves", 3, "x"), get("b11", "curves", 3, "y"),
-            color=COL["odt"], lw=1.3, label="present ODT ($N=1000$)")
+            color="k", ls="-", lw=1.4, label="SC-ODT ($N=1000$)")
     x, y = markers_by("b11", lambda i: True)
-    ax.plot(x, y, "s", ms=3.4, mfc="none", mec="k", mew=0.8,
-            label=r"L&R DNS (fast $S^{*}$)")
+    ax.plot(x, y, "s", ms=3.6, mfc="none", mec="k", mew=0.9,
+            label=r"L\&R DNS (fast $S^{*}$)")
     ax.axhline(0, color="0.6", lw=0.5, ls=":")
     ax.set_xlabel(r"reference total strain $c=\exp\!\int S\,\mathrm{d}t$")
     ax.set_ylabel(r"$b_{11}$")
-    ax.legend(fontsize=6.3, loc="upper left", ncol=2,
-              columnspacing=0.8, frameon=True, framealpha=0.85,
-              edgecolor="none")
+    from matplotlib.patches import Patch
+    h, la = ax.get_legend_handles_labels()
+    h.append(Patch(facecolor="none", edgecolor="0.55", hatch="////"))
+    la.append(r"DNS $b_{11}$ range ($S^{*}$)")
+    leg = ax.legend(h, la, fontsize=6.2, loc="lower left", ncol=2,
+                    bbox_to_anchor=(0.015, 0.02), columnspacing=1.0,
+                    handlelength=2.2, labelspacing=0.3, borderpad=0.5)
+    leg.get_frame().set_edgecolor("0.7")
+    leg.get_frame().set_facecolor("white")
+    leg.get_frame().set_alpha(1.0)
     fig.tight_layout(pad=0.4)
     save(fig, os.path.join(HERE, "fig_LR_b11_closure"))
 

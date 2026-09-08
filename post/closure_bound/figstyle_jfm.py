@@ -53,6 +53,13 @@ COL = {
 # ODT intervention family (baseline first, then the ramp)
 VARIANTS = [BLACK, BLUE, GREEN, ORANGE, PURPLE, GOLD]
 
+# --- monochrome encodings (house decision 2026-09-08: figures are ------
+#     black-and-white; entities separated by line style + marker, not
+#     colour).  Ordered cycles; each figure picks the slots it needs.
+MONO_LINES = ["-", (0, (6, 2)), (0, (1, 1.4)),
+              (0, (5, 1.6, 1, 1.6)), (0, (4, 1.4, 1, 1.4, 1, 1.4))]
+MONO_MARKS = ["o", "s", "^", "D", "v"]
+
 
 def set_jfm():
     plt.rcParams.update({
