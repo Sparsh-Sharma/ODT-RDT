@@ -428,10 +428,10 @@ mean with constant gradient $A_{ij}$ reads, in homogeneous turbulence,
             \big(\partial_j u_i'+\partial_i u_j'\big)\Big\rangle,
   \label{eq:rstransport}
 \end{equation}
-with $\varepsilon_{ij}$ the dissipation tensor \citep{Pope2000}. Taking
-the divergence of the fluctuating momentum equation gives the pressure as
-the solution of a Poisson equation whose source splits into a part linear
-in the mean gradient and a part quadratic in the fluctuations,
+with $\varepsilon_{ij}$ the dissipation tensor \citep{Pope2000}. The
+fluctuating pressure satisfies a Poisson equation whose source splits
+into a part linear in the mean gradient and a part quadratic in the
+fluctuations \citep{Pope2000},
 \begin{equation}
   \frac{1}{\rho}\nabla^2 p'
   = \underbrace{-2\,A_{lm}\,\partial_l u_m'}_{\text{rapid}}
@@ -450,8 +450,8 @@ rapid part is linear in $A_{lm}$ and is determined by the velocity
 spectrum tensor $\Phi_{ij}(\boldsymbol{\kappa})$; the standard model
 represents neither $\mathcal{P}_{ij}$ nor $\Pi^{(\mathrm r)}_{ij}$.
 
-When the total strain accumulates in a time short compared with the eddy
-turnover time, the response is computed exactly by linear theory
+When the strain outruns the eddy turnover---the rapid limit---the
+response is computed exactly by linear theory
 \citep{BatchelorProudman1954,Hunt1973,HuntCarruthers1990}. Writing the
 fluctuation as Fourier modes that follow the mean flow, each mode of
 time-dependent wavevector $\boldsymbol{\kappa}(t)$ and amplitude
@@ -543,7 +543,7 @@ $\mathrm{d}R_{ij}/\mathrm{d}t=\mathcal{P}_{ij}$, whereas the exact
 inviscid rapid-distortion balance is
 $\mathrm{d}R_{ij}/\mathrm{d}t=\mathcal{P}_{ij}+\Pi^{(\mathrm r)}_{ij}$.
 The omission is not small: for turbulence isotropic at the onset of
-straining the classical result derived below gives
+straining the classical result recovered below gives
 $\Pi^{(\mathrm r)}_{ij}=-\tfrac35\mathcal{P}_{ij}$, so production acting
 alone overstates the initial distortion rate by a factor of $\tfrac52$;
 under sustained strain it also lets a component energy grow without the
@@ -671,9 +671,9 @@ $\mathcal{P}_{ij}$ to $\mathrm{d}R_{ij}/\mathrm{d}t$ and by construction
 \eqref{eq:lyapunov} the operator contributes $\Pi^{(\mathrm r)}_{ij}$;
 their sum is the exact balance \eqref{eq:dRdt-rdt} for the prescribed
 closure, with no adjustable constant, recovering \eqref{eq:crow} at the
-onset of distortion of isotropic turbulence. The scope of the statement
-must be drawn as carefully as the result: the consistency holds at the
-level of the \emph{component energies} and is \emph{conditional on the
+onset of distortion of isotropic turbulence. Two qualifications delimit
+this statement: the consistency holds at the level of the
+\emph{component energies} and is \emph{conditional on the
 spectral closure}; the isotropic closure is exact only at onset, and its
 accuracy for anisotropic states is that of the
 isotropisation-of-production approximation it reproduces. The
@@ -721,12 +721,12 @@ the component energies without relabelling scales. The two operations are
 the physical-space counterparts of the characteristic motion and the
 amplitude evolution in \eqref{eq:rdt}, and together they account for the
 mean straining without double counting. Two limitations are inherent to
-representing a three-dimensional kinematics on one axis: the transverse
-wavenumbers also strain but are not represented, their effect being
-subsumed in the spectral closure, which already supplies the orientation
-information the line lacks; and a rotational mean flow, or a line not
-aligned with a principal axis, tilts the material line out of the
-coordinate direction and lies outside the formulation.
+representing a three-dimensional kinematics on one axis. First, the
+transverse wavenumbers also strain but are not represented; their
+effect is subsumed in the spectral closure, which already supplies the
+orientation information the line lacks. Second, a rotational mean flow,
+or a line not aligned with a principal axis, tilts the material line
+out of the coordinate direction and lies outside the formulation.
 
 \subsection{Summary of the formulation}\label{sec:summary}
 
