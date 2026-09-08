@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Manuscript figure fig_spec_op (main_v3.tex sec:spec-op), rebuilt in
+"""SUPERSEDED (2026-09-08): fig_spec_op is now built from the real
+200-realisation operating-point ensemble (C_kv3em6_hires on caro,
+postprocessed to OP_ens.npz) by fig_spec_ensembles.fig_op.  The two agree
+(centroid at e=3.9: 2.37 real vs 2.39 archived); the real data is
+better-resolved (spectra reach 1e5, no grid-scale shelf) and carries the
+energy budget for chi.  This extractor is kept only as the provenance
+record of the transplant it replaced.
+
+Manuscript figure fig_spec_op (main_v3.tex sec:spec-op), rebuilt in
 the JFM canon from the ARCHIVED vector figures
 C_kv3em6_hires_op_{spectra,centroid}.pdf.
 
@@ -28,7 +36,9 @@ FIGDIR = os.path.normpath(os.path.join(HERE, "..", "..", "..",
 OLD = {(0.12, 0.47, 0.71): 0,   # blue was E1
        (0.84, 0.15, 0.16): 1,   # red  was E2
        (0.17, 0.63, 0.17): 2}   # green was E3
-CC = [COL["phi11"], COL["phi22"], COL["phi33"]]
+# monochrome: components -> line style (E1 solid, E2 dashed, E3 dotted),
+# matching fig_spec_kinematic / fig_spec_bvc.
+LS = ("-", (0, (6, 2)), (0, (1, 1.4)))
 
 
 def polyline(D):
@@ -148,32 +158,34 @@ def main():
     cen = extract_centroid()
 
     fig, (a, b) = plt.subplots(1, 2, figsize=(FULL, 2.3))
+    # a single light-grey envelope from the widest component band (the
+    # three overlap; three grey fills would only muddy the panel)
+    if bands:
+        kb, Eb = bands[max(bands, key=lambda c: len(bands[c][0]))]
+        a.fill(kb, Eb, color="0.85", alpha=0.7, lw=0)
     for comp, lab in ((0, "$E_1$"), (1, "$E_2$"), (2, "$E_3$")):
         k, E = curves[comp]
         o = np.argsort(k)
-        a.loglog(k[o], E[o], color=CC[comp], lw=0.8, label=lab)
-        if comp in bands:
-            kb, Eb = bands[comp]
-            n = len(kb) // 2
-            a.fill(kb, Eb, color=CC[comp], alpha=0.15, lw=0)
+        a.loglog(k[o], E[o], color="k", ls=LS[comp], lw=1.0, label=lab)
     kref = np.array([300.0, 6000.0])
-    a.plot(kref, 1e-3 * (kref / kref[0]) ** (-5 / 3), "k:", lw=0.7)
+    a.plot(kref, 1e-3 * (kref / kref[0]) ** (-5 / 3), color="0.45",
+           ls=(0, (1, 1.2)), lw=0.9)
     a.text(1500, 1.6e-3 * (1500 / kref[0]) ** (-5 / 3),
-           r"$\kappa^{-5/3}$", fontsize=7)
+           r"$\kappa^{-5/3}$", fontsize=7, color="0.3")
     a.set_xlabel(r"wavenumber $\kappa_2$")
     a.set_ylabel(r"$E_i(\kappa_2)$")
     a.set_xlim(70, 1.3e5)
     a.set_ylim(1e-12, 3e-2)
     a.legend(loc="lower left")
     ee = np.linspace(0, 4, 100)
-    b.plot(ee, np.exp(0.5 * ee), "k--", lw=0.9,
+    b.plot(ee, np.exp(0.5 * ee), color="0.45", ls=(0, (1, 1.2)), lw=1.0,
            label="rigid translation")
+    if "band" in cen:
+        b.fill(cen["band"][0], cen["band"][1], color="0.85", alpha=0.7,
+               lw=0)
     x, y = cen["mean"]
     o = np.argsort(x)
-    b.plot(x[o], y[o], color=COL["odt"], lw=1.1, label="ODT centroid")
-    if "band" in cen:
-        b.fill(cen["band"][0], cen["band"][1], color=COL["odt"],
-               alpha=0.2, lw=0)
+    b.plot(x[o], y[o], color="k", ls="-", lw=1.2, label="SC-ODT centroid")
     b.set_xlabel(r"total strain $e$")
     b.set_ylabel(r"$\bar\kappa(e)/\bar\kappa(0)$")
     b.set_xlim(0, 4)

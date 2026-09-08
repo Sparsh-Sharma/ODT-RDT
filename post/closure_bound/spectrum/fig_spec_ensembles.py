@@ -29,12 +29,18 @@ def load(tag):
 
 
 def fig_bvc(on, off):
+    # monochrome: SC-ODT (strain on) = solid + grey filled band;
+    # standard ODT (strain off) = dashed + hatched open band.
+    ON = dict(color="k", ls="-", lw=1.2)
+    OFF = dict(color="k", ls=(0, (5, 2)), lw=1.0)
     fig, (a, b) = plt.subplots(1, 2, figsize=(FULL, 2.3))
-    for d, col, lab in ((on, COL["odt"], "strain on"),
-                        (off, "0.35", "strain off")):
-        k, E, gs = d["k_last"], d["Etot_last"], d["Etot_last_gsd"]
-        a.loglog(k, E, color=col, lw=1.1, label=lab)
-        a.fill_between(k, E / gs, E * gs, color=col, alpha=0.2, lw=0)
+    k, E, gs = on["k_last"], on["Etot_last"], on["Etot_last_gsd"]
+    a.fill_between(k, E / gs, E * gs, color="0.8", alpha=0.6, lw=0)
+    a.loglog(k, E, label="SC-ODT (strain on)", **ON)
+    k, E, gs = off["k_last"], off["Etot_last"], off["Etot_last_gsd"]
+    a.fill_between(k, E / gs, E * gs, facecolor="none", edgecolor="0.55",
+                   hatch="////", lw=0.0)
+    a.loglog(k, E, label="standard ODT (strain off)", **OFF)
     a.set_xlabel(r"wavenumber $\kappa_2$")
     a.set_ylabel(r"$E(\kappa_2)$")
     a.set_xlim(6, 2e4)
@@ -42,15 +48,19 @@ def fig_bvc(on, off):
     a.set_ylim(ymax * 1e-9, ymax)
     a.legend(loc="lower left")
     ee = np.linspace(0, 4, 100)
-    b.plot(ee, np.exp(0.5 * ee), "k--", lw=0.9,
+    b.plot(ee, np.exp(0.5 * ee), color="0.45", ls=(0, (1, 1.2)), lw=1.0,
            label="rigid translation")
-    for d, col, lab in ((on, COL["odt"], "strain on"),
-                        (off, "0.35", "strain off")):
+    for d, st, lab in ((on, ON, "SC-ODT (strain on)"),
+                       (off, OFF, "standard ODT (strain off)")):
         r = d["cent_gmean"] / d["cent_gmean"][0]
-        gs = d["cent_gsd"]
-        b.plot(d["t"], r, color=col, lw=1.1, label=lab)
-        b.fill_between(d["t"], r / gs, r * gs, color=col, alpha=0.2,
-                       lw=0)
+        gsd = d["cent_gsd"]
+        b.plot(d["t"], r, label=lab, **st)
+        if lab.startswith("SC"):
+            b.fill_between(d["t"], r / gsd, r * gsd, color="0.8",
+                           alpha=0.6, lw=0)
+        else:
+            b.fill_between(d["t"], r / gsd, r * gsd, facecolor="none",
+                           edgecolor="0.55", hatch="////", lw=0.0)
     b.axhline(1.0, color="0.7", lw=0.5, ls=":")
     b.set_xlabel(r"total strain $e$")
     b.set_ylabel(r"$\bar\kappa(e)/\bar\kappa(0)$")
@@ -67,18 +77,30 @@ def fig_bvc(on, off):
 
 
 def fig_op(op):
+    # NB: until the operating-point caro rerun (nu=3e-6, N=200,
+    # input/homogeneousStrainOP) lands as a real OP_ens.npz, the
+    # manuscript figure fig_spec_op is built by fig_spec_op_archive.py
+    # from the archived vectors -- NOT here.  This path is guarded so a
+    # degenerate (single-timestep) ensemble cannot silently overwrite it.
+    if np.ndim(op["t"]) == 0 or len(op["t"]) < 2:
+        raise ValueError(
+            "OP ensemble has < 2 timesteps (stub/degenerate); refusing to "
+            "regenerate fig_spec_op. Use fig_spec_op_archive.py, or supply "
+            "a real OP_ens.npz from the caro rerun.")
+    # monochrome: components -> line style (E1 solid, E2 dashed, E3
+    # dotted), matching fig_spec_kinematic.
+    LS = ("-", (0, (6, 2)), (0, (1, 1.4)))
     fig, (a, b) = plt.subplots(1, 2, figsize=(FULL, 2.3))
-    for i, (col, lab) in enumerate(
-            ((COL["phi11"], "$E_1$"), (COL["phi22"], "$E_2$"),
-             (COL["phi33"], "$E_3$"))):
-        a.loglog(op["k_last"], op[f"E{i + 1}_last"], color=col, lw=0.9,
-                 label=lab)
+    for i, lab in enumerate(("$E_1$", "$E_2$", "$E_3$")):
+        a.loglog(op["k_last"], op[f"E{i + 1}_last"], color="k",
+                 ls=LS[i], lw=1.0, label=lab)
     kref = np.array([200.0, 4000.0])
     a.plot(kref, 3e-3 * op["Etot_last"].max()
-           * (kref / kref[0]) ** (-5 / 3), "k:", lw=0.7)
+           * (kref / kref[0]) ** (-5 / 3), color="0.45", ls=(0, (1, 1.2)),
+           lw=0.9)
     a.text(1000, 4e-3 * op["Etot_last"].max()
            * (1000 / kref[0]) ** (-5 / 3), r"$\kappa^{-5/3}$",
-           fontsize=7)
+           fontsize=7, color="0.3")
     a.set_xlabel(r"wavenumber $\kappa_2$")
     a.set_ylabel(r"$E_i(\kappa_2)$")
     ymax = op["Etot_last"].max() * 3
@@ -86,14 +108,14 @@ def fig_op(op):
     a.set_ylim(ymax * 1e-10, ymax)
     a.legend(loc="lower left")
     ee = np.linspace(0, 4, 100)
-    b.plot(ee, np.exp(0.5 * ee), "k--", lw=0.9,
+    b.plot(ee, np.exp(0.5 * ee), color="0.45", ls=(0, (1, 1.2)), lw=1.0,
            label="rigid translation")
     r = op["cent_gmean"] / op["cent_gmean"][0]
-    b.plot(op["t"], r, color=COL["odt"], lw=1.1, label="ODT centroid")
+    b.plot(op["t"], r, color="k", ls="-", lw=1.2, label="SC-ODT centroid")
     b.fill_between(op["t"], r / op["cent_gsd"], r * op["cent_gsd"],
-                   color=COL["odt"], alpha=0.2, lw=0)
+                   color="0.8", alpha=0.6, lw=0)
     rp = op["peak_gmean"] / op["peak_gmean"][0]
-    b.plot(op["t"], rp, color=COL["phi11"], lw=0.9, ls=(0, (4, 2)),
+    b.plot(op["t"], rp, color="k", lw=1.0, ls=(0, (5, 2)),
            label="spectral peak")
     b.set_xlabel(r"total strain $e$")
     b.set_ylabel(r"migration from $e=0$")
@@ -161,6 +183,7 @@ if __name__ == "__main__":
     try:
         op = load("OP")
     except FileNotFoundError:
-        print("OP ensemble not ready; skipping fig_spec_op")
+        print("OP ensemble not ready (caro rerun pending); "
+              "fig_spec_op is built by fig_spec_op_archive.py")
     else:
         fig_op(op)
