@@ -102,7 +102,22 @@ def panel(ax, lb, x=0.02, y=0.97, color="k"):
 
 
 def save(fig, path_noext):
-    """Write .pdf (manuscript, 600 dpi raster parts) + .png proof."""
+    """Write .pdf (manuscript, 600 dpi raster parts) + .png proof, and
+    mirror the .pdf into manuscript/Figures/ so the compiled document
+    (local and Overleaf) always sees the current figure.  The scripts
+    live under post/**; the manuscript includes from manuscript/Figures/
+    --- the copy keeps the two in sync automatically."""
+    import os
+    import shutil
     fig.savefig(path_noext + ".pdf")
     fig.savefig(path_noext + ".png", dpi=200)
     print("saved", path_noext + ".pdf/.png")
+    # mirror into manuscript/Figures/ (located relative to this module)
+    here = os.path.dirname(os.path.abspath(__file__))
+    figdir = os.path.normpath(
+        os.path.join(here, "..", "..", "manuscript", "Figures"))
+    if os.path.isdir(figdir):
+        dest = os.path.join(figdir, os.path.basename(path_noext) + ".pdf")
+        shutil.copyfile(path_noext + ".pdf", dest)
+        print("  -> mirrored to manuscript/Figures/"
+              + os.path.basename(dest))
