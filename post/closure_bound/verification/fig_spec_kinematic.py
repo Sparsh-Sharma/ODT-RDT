@@ -20,13 +20,15 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
-from figstyle_jfm import COL, FULL, panel, plt, save  # noqa: E402
+from figstyle_jfm import FULL, panel, plt, save  # noqa: E402
 
 A22 = -0.5
 NUNIFORM = 4096
 STRAINS = [0.0, 1.0, 2.0, 3.0, 3.9]
 CENT_THRESH = 1e-3
-CC = [COL["phi11"], COL["phi22"], COL["phi33"]]
+# monochrome: component -> line style, strain -> grey ramp (light -> black)
+LS = ["-", (0, (6, 2)), (0, (1, 1.4))]          # E_1, E_2, E_3
+MK = ["o", "s", "^"]
 
 
 def read_dump(fname):
@@ -89,9 +91,9 @@ def main():
         j = int(np.argmin(np.abs(times - e_t)))
         _, posf, u, v, w = rows[j]
         k, Es = spectra_of(posf, [u, v, w])
-        shade = 0.3 + 0.7 * (e_t / max(STRAINS))
+        grey = 0.62 * (1.0 - e_t / max(STRAINS))   # 0.62 (e=0) -> 0 (black)
         for i in range(3):
-            a.loglog(k, Es[i], color=CC[i], alpha=shade, lw=0.8)
+            a.loglog(k, Es[i], color=str(grey), ls=LS[i], lw=0.85)
         epts.append(times[j])
         for i in range(3):
             cent3[i].append(centroid(k, Es[i]))
@@ -103,16 +105,21 @@ def main():
     a.set_xlabel(r"wavenumber $\kappa_2$")
     a.set_ylabel(r"$E_i(\kappa_2)$")
     a.set_xlim(6, 3e3)
-    a.set_ylim(1e-8, 2)
+    a.set_ylim(1e-5, 2)
     from matplotlib.lines import Line2D
-    a.legend([Line2D([0], [0], color=c, lw=1.4) for c in CC],
-             [r"$E_1$", r"$E_2$", r"$E_3$"], loc="lower left")
+    a.legend([Line2D([0], [0], color="k", ls=LS[i], lw=1.3)
+              for i in range(3)],
+             [r"$E_1$", r"$E_2$", r"$E_3$"], loc="upper left",
+             bbox_to_anchor=(0.0, 1.0),
+             title=r"light $\to$ black: $e\!=\!0\to3.9$")
+    a.get_legend().get_title().set_fontsize(6.5)
     ee = np.linspace(0, max(STRAINS), 100)
     b.plot(ee, np.exp(-A22 * ee), "k--", lw=0.9,
            label=r"kinematic $\mathrm{e}^{-A_{22}e}$")
     for i in range(3):
-        b.plot(epts, np.array(cent3[i]) / cent3[i][0], "o-",
-               color=CC[i], label=r"$\bar\kappa_%d$" % (i + 1))
+        b.plot(epts, np.array(cent3[i]) / cent3[i][0], color="k",
+               ls="-", lw=0.7, marker=MK[i], ms=3.6, mfc="none", mew=0.8,
+               label=r"$\bar\kappa_%d$" % (i + 1))
     b.set_xlabel(r"total strain $e = S\,t$")
     b.set_ylabel(r"$\bar\kappa(e)/\bar\kappa(0)$")
     b.legend(loc="upper left")

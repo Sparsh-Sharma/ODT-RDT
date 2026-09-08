@@ -1199,32 +1199,41 @@ projections---integrals over the transverse wavenumber plane---and there is
 no reason for a projection of orientation-dependent amplification to
 translate rigidly. Whether it does is a question of calculation, and the
 answer is that it does not. Using the closed-form Cauchy solution of the
-linear problem applied to isotropic initial fields and projected onto a
-line (the exact-RDT companion calculations described in
-\S\,\ref{sec:box-dns}), we define the shape ratio
+linear problem for an isotropic initial spectrum, integrated analytically
+over the transverse wavenumber plane and band-limited to the wavenumbers
+resolved by the DNS box of \S\,\ref{sec:box-dns}, we define the shape ratio
 $R_{nn}(\kappa_2)$ as the projected component spectrum at strain $e$,
 normalised by its integral, divided by the rigidly translated initial
 spectrum normalised likewise; $R_{nn}\equiv1$ at every $\kappa_2$ if and
 only if the translation is rigid. At $e=1$ under plane strain the upwash
-ratio $R_{22}$ falls monotonically from $1.60$ at half the initial spectral
-centroid to $0.38$ at twelve times it: exact linear theory redistributes
-the projected upwash spectrum towards low wavenumber by a factor of four
+ratio $R_{22}$ falls monotonically from $0.86$ at half the initial spectral
+centroid to $0.36$ at ten times it: exact linear theory redistributes the
+projected upwash spectrum towards low wavenumber by a factor of $2.4$
 across the resolved range, because modes aligned with the line
 ($\kappa\to\kappa_2$) are amplified least. The transverse components are
-affected more weakly ($R_{11}$ from $1.27$ to $0.75$; $R_{33}$ within ten
+affected more weakly ($R_{11}$ from $1.07$ to $0.81$; $R_{33}$ within seven
 per cent of unity), so the projected anisotropy of linear theory is itself
-scale-dependent. Figure~\ref{fig:rdt-projection} shows the ratios.
+scale-dependent. Figure~\ref{fig:rdt-projection} shows the ratios. The
+exact-RDT companions of the DNS (\S\,\ref{sec:box-dns}), which share its
+initial fields, reproduce these analytic curves to within $0.05$ in the
+transverse splitting over the resolved band; the analytic integral is
+used because the companions sample the largest scales with one Fourier
+line per band.
 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{Figures/fig_rdt_projection.pdf}
   \caption{Exact linear theory does not translate the projected spectra
-  rigidly. Left: shape ratio $R_{nn}(\kappa_2)$ of the exactly distorted,
-  line-projected component spectra to a rigid translation, at $e=1$ under
-  plane strain (closed-form Cauchy solution, isotropic initial fields, four
-  realisations). Right: the transverse splitting
-  $\phi_{11}/\phi_{33}-1$ versus wavenumber in exact linear theory and in
-  the strained-box DNS of \S\,\ref{sec:box-dns}.}
+  rigidly. (\textit{a}) Shape ratio $R_{nn}(\kappa_2)$ of the exactly
+  distorted, line-projected component spectra to a rigid translation under
+  plane strain, at $e=1$ (solid, filled markers) and $e=0.5$ (dashed, open
+  markers); markers distinguish the components, and the dotted line is the
+  rigid translation $R_{nn}=1$. Closed-form Cauchy solution for an
+  isotropic initial spectrum, integrated over the transverse wavenumber
+  plane. (\textit{b}) Transverse splitting $\phi_{11}/\phi_{33}-1$ versus
+  wavenumber in exact linear theory (dashed) and in the strained-box DNS of
+  \S\,\ref{sec:box-dns} (solid, squares), at $e=1$ (heavy) and $e=0.5$
+  (light).}
   \label{fig:rdt-projection}
 \end{figure}
 
@@ -2608,7 +2617,7 @@ single-point closure discards, not to the line.
 Three findings shape how such a model must be judged. First, the
 correct linear reference for line-projected spectra is broadband: exact
 rapid-distortion theory, projected onto a line, redistributes the
-projected upwash spectrum by a factor of four across the resolved range
+projected upwash spectrum by a factor of $2.4$ across the resolved range
 at $e=1$, so a rigid spectral translation---the model's own
 kinematics---is not the linear prediction, and comparisons built on it
 conflate a structural approximation with nonlinear physics. Second,
