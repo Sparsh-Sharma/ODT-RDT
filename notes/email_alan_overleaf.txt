@@ -1,0 +1,25 @@
+DRAFT (Sparsh -> Alan). Sparsh sends personally.
+
+Subject: Overleaf project shared - our ODT paper
+
+Hi Alan,
+
+I've shared the Overleaf project for our paper with you - it should be
+in your inbox, or check spam if it isn't there. If you can't get in,
+just let me know and I'll re-send or add you another way.
+
+Quick update on what's in the draft. It's now one paper in three parts:
+- Part I: the strain-coupled model and what a single line can say about
+  the rapid pressure-strain.
+- Part II: the measured limits, and your relaxation clock as the fix -
+  this is where the clock results live.
+- Part III: the leading-edge-noise consequence, now with the full Amiet
+  chain and a comparison against four published experiments.
+
+I've also redone all the figures in black and white, and made the
+naming consistent so the three versions can't be mixed up: standard
+ODT, our strain-coupled ODT, and the clock-relaxed ODT.
+
+Have a look whenever you get a chance - no rush.
+
+Sparsh
