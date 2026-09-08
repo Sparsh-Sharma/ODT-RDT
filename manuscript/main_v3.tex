@@ -1143,7 +1143,19 @@ decomposition on which \S\,\ref{sec:gate} rests.
 %%   sec:gate referenced inside the transplants resolve once the
 %%   formulation/verification transplants land.
 
-\subsubsection{Compression without cascade: the model's kinematic
+This section establishes what SC-ODT predicts for the strained spectrum
+and measures it against the correct linear reference and against DNS.
+It first separates the model's own kinematics---a rigid spectral
+translation---from the prediction of linear theory for the
+line-projected spectrum, which is \emph{not} rigid
+(\S\S\,\ref{sec:spec-rdt}--\ref{sec:spec-linref}); it then examines the
+emergent distorted spectrum and fixes the physical operating point
+(\S\S\,\ref{sec:spec-bvc}--\ref{sec:spec-op}); and it closes with the
+benchmark that meets the model-versus-itself objection head on---a
+strained-box DNS with an exact rapid-distortion companion, reduced to
+the same one-dimensional observables (\S\,\ref{sec:box-dns}).
+
+\subsection{Compression without cascade: the model's kinematic
 reference}\label{sec:spec-rdt}
 
 With the eddy events suppressed and zero molecular viscosity, the mean strain
@@ -1156,7 +1168,7 @@ with rapid-distortion theory \citep{BatchelorProudman1954,HuntCarruthers1990}%
 \S\,\ref{sec:rapid-kernel} acts uniformly on every resolved wavenumber. The
 combination transfers no energy between scales: a rigid translation of the
 line spectrum towards higher wavenumber. We emphasise at the outset that this
-rigid translation is a property of the strain-coupled \emph{line}---uniform
+rigid translation is a property of the SC-ODT \emph{line}---uniform
 dilatation composed with a wavenumber-uniform operator---and not of linear
 distortion theory itself; the correct linear reference for the projected
 spectrum is constructed in \S\,\ref{sec:spec-linref} below. As a check on the
@@ -1175,7 +1187,7 @@ therefore acts entirely on the spectrum and reproduces the model's kinematic
 prediction exactly. It is the kinematic reference (the dashed line in all
 centroid figures below) against which the full model is measured.
 
-\subsubsection{The linear reference for the projected spectrum: exact
+\subsection{The linear reference for the projected spectrum: exact
 RDT}\label{sec:spec-linref}
 
 The rigid translation above must not be mistaken for the prediction of
@@ -1249,15 +1261,16 @@ against both the exact reference and DNS.
 %%   the old WSL data are gone) and all figures rebuilt in the canon;
 %%   numbers below are from the fresh ensembles.
 
-\subsubsection{The distorted spectrum: strain on against strain
+\subsection{The distorted spectrum: strain on against strain
 off}\label{sec:spec-bvc}
 
 The central model-internal comparison isolates what the strain does to
 the spectrum at fixed Reynolds number, holding the turbulence otherwise
 identical. Two ensembles of $128$ realisations are run at $\nu=10^{-5}$:
-the full model (eddies and dilatation active) and a baseline identical
+SC-ODT (eddies and dilatation active) and a baseline identical
 in every respect except that the strain machinery is switched off, so
-the line does not compress. Because the two differ only in the presence
+the line does not compress---which is standard ODT, the $A_{ij}=0$
+limit of \S\,\ref{sec:summary}. Because the two differ only in the presence
 of the mean strain, the difference between them is the distortion,
 cleanly separated from the cascade and dissipation the eddies produce on
 their own.
@@ -1267,12 +1280,12 @@ kinematic reference in a specific and physically meaningful way.
 Consider the centroid first. The no-strain baseline, after the brief
 initialisation transient, relaxes monotonically to
 $\bar\kappa/\bar\kappa_0<1$: with no compression, the eddies merely
-redistribute energy and the centroid drifts below its initial value. The
-full model is lifted clearly above this baseline---compression does push
+redistribute energy and the centroid drifts below its initial value.
+SC-ODT is lifted clearly above this baseline---compression does push
 the spectrum towards higher wavenumber---yet it settles at
 $\bar\kappa/\bar\kappa_0\approx1.6$--$2.1$, far below the
 rigid-translation line, which rises to $7.4$ at $e=4$. The reason is
-visible in the spectra: the full-model spectrum is not a rigid
+visible in the spectra: the SC-ODT spectrum is not a rigid
 translation of the baseline but a \emph{broadband} distortion. It
 extends to substantially higher wavenumber than the baseline---energy is
 genuinely carried to small scales by compression and cascade---but the
@@ -1300,20 +1313,21 @@ without the frozen-shape assumption.
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{Figures/fig_spec_bvc.pdf}
-  \caption{Full model against the matched no-strain baseline at
+  \caption{SC-ODT (strain on) against the matched strain-off baseline,
+  standard ODT, at
   $\nu=10^{-5}$ (ensemble means over $128$ realisations, geometric
   $\pm\sigma$ bands). (\textit{a}) Final-strain total spectrum
-  $E(\kappa_2)$: the full model (strain on) extends to higher wavenumber
+  $E(\kappa_2)$: SC-ODT (strain on) extends to higher wavenumber
   than the baseline (strain off) but remains broadband, not a rigid
   translation. (\textit{b}) Centroid migration: the baseline relaxes
-  below unity, the full model is lifted above it by the compression, yet
+  below unity, SC-ODT is lifted above it by the compression, yet
   stays far below the rigid-translation line (dashed). The gap between
   the two solid curves is the distortion attributable to the mean strain
   at this Reynolds number.}
   \label{fig:spec-bvc}
 \end{figure}
 
-\subsubsection{The physical operating point}\label{sec:spec-op}
+\subsection{The physical operating point}\label{sec:spec-op}
 
 The molecular viscosity is, in these units, the inverse integral-scale
 Reynolds number, and it is a physical property of the represented
@@ -1468,7 +1482,7 @@ $\kappa_2(e)/\kappa_c(0)$ with $\kappa_c$ the initial spectral centroid.
   $\Delta b_{22}(\kappa_2)$, band $\kappa_2/\kappa_c$: & 0.5--0.75 & 0.75--1.2 & 1.2--1.9 & 1.9--3 & 3--4.8 & 4.8--7.6 & 7.6--12\\[2pt]
   exact projected RDT & $+0.146$ & $+0.008$ & $-0.020$ & $-0.041$ & $-0.050$ & $-0.054$ & $-0.056$\\
   DNS                 & $+0.032$ & $-0.033$ & $-0.029$ & $-0.032$ & $-0.036$ & $-0.040$ & $-0.046$\\
-  strain-coupled ODT  & $+0.103$ & $+0.103$ & $+0.096$ & $+0.073$ & $+0.075$ & $+0.079$ & $+0.076$\\
+  SC-ODT              & $+0.103$ & $+0.103$ & $+0.096$ & $+0.073$ & $+0.075$ & $+0.079$ & $+0.076$\\
   \end{tabular}
   \caption{Strain-induced upwash anisotropy per wavenumber band at $e=1$,
   $Sk_t/\varepsilon=0.8$, each system referenced to its own unstrained
@@ -1481,7 +1495,7 @@ The structure of the table is the finding. Exact linear theory concentrates
 the strain-induced upwash anisotropy at the energy-containing scales and
 \emph{removes} it from the small scales, because modes aligned with the
 line are amplified least; the DNS shows the same shape, weakened at the
-large scales by the nonlinear return. The strain-coupled ODT distributes
+large scales by the nonlinear return. SC-ODT distributes
 its moment-level anisotropy essentially uniformly over wavenumber---the
 signature, anticipated in \S\,\ref{sec:spec-linref}, of a
 wavenumber-uniform redistribution operator acting on a uniformly dilated
@@ -1490,7 +1504,7 @@ the closure at the moment level, \S\,\ref{sec:lr-plane}), so the deficiency
 is one of allocation across scales, not of amount. For the leading-edge
 application the operative consequence is that the high-wavenumber
 anisotropy of the upwash spectrum, which the Amiet response weights, has
-the wrong sign in the present model; the closure element that must carry
+the wrong sign in SC-ODT; the closure element that must carry
 the correction---a wavenumber-dependent rapid operator in place of the
 uniform one---is exactly the spectral kernel formulation of
 \S\,\ref{sec:gate}, whose exercise is thereby motivated by a measured
@@ -1501,7 +1515,7 @@ deficit rather than by completeness.
   \includegraphics[width=\textwidth]{Figures/fig_threeway.pdf}
   \caption{Three-way comparison at $Sk_t/\varepsilon=0.8$: strain-induced
   anisotropy of the line spectra relative to each system's own unstrained
-  state; strain-coupled ODT ($1024$ realisations) against exact projected
+  state; SC-ODT ($1024$ realisations) against exact projected
   RDT and DNS ($128^3$, four realisations); $e=1$ solid, $e=0.5$ dashed.}
   \label{fig:threeway}
 \end{figure}
@@ -1542,7 +1556,7 @@ operating point's strain and rapidity.
 \begin{figure}
   \centering
   \includegraphics[width=0.62\textwidth]{Figures/fig_rdt_distance.pdf}
-  \caption{Scale-resolved distance between the strained ODT line spectra
+  \caption{Scale-resolved distance between the strained SC-ODT line spectra
   and exact linear theory: rms log-residual of the two-parameter
   exact-RDT-distorted von K\'arm\'an fit, against total strain, for slow
   and rapid onset strain-rate parameters (medians over $1024$
@@ -1553,8 +1567,8 @@ operating point's strain and rapidity.
 % =========================================================================
 \section{Closure of the rapid pressure--strain term on a single line}\label{sec:gate}
 
-The results of \S\,\ref{sec:val-spectrum} establish what the strain-coupled
-model produces and where it stands against exact linear theory and DNS. The
+The results of \S\,\ref{sec:val-spectrum} establish what SC-ODT
+produces and where it stands against exact linear theory and DNS. The
 rapid pressure--strain redistribution that drives that evolution was
 evaluated throughout by the algebraic moment closure of
 \S\,\ref{sec:formulation} \citep{LaunderReeceRodi1975}, applied component by
