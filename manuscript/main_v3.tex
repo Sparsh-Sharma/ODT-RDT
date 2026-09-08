@@ -47,10 +47,10 @@
 \lefttitle{Sharma and Kerstein}
 \righttitle{Journal of Fluid Mechanics}
 
-%% TODO(title): one-paper working title (map, DECISION 2026-09-08);
-%%   Sparsh to confirm before submission.
-\title{Strain-coupled one-dimensional turbulence for leading-edge noise:
-closure, measured limits and the scale-local relaxation mechanism}
+%% Title confirmed by Sparsh 2026-09-09 (physics-first hierarchy).
+\title{Strain-coupled one-dimensional turbulence: a single-line closure
+for rapid distortion, its measured limits, and the consequence for
+leading-edge noise}
 
 \author{Sparsh Sharma\aff{1} \and Alan R. Kerstein\aff{2}}
 
@@ -203,7 +203,8 @@ to acoustic analogies for jet noise
 inexpensive generator of scale-resolved turbulence statistics---exactly
 what a model of strained turbulence must deliver. But standard ODT
 cannot represent distortion by a mean strain: its pressure treatment
-models only the slow, turbulence-driven return to isotropy, and the
+models only the slow, turbulence-driven return to isotropy, not the
+rapid part driven directly by the mean strain, and the
 apparent remedy---importing the RDT amplitude equation, whose pressure
 response is the solenoidal projection in three-dimensional wavenumber
 space---is unavailable on a line that resolves only the wavenumber along
@@ -230,29 +231,33 @@ companion calculations, reduced to the same one-dimensional observables,
 yielding a three-way comparison that localises the model's remaining
 deficiency in its wavenumber-uniform rapid kinematics and a
 distance-from-linear-theory envelope as a function of strain rapidity
-(\S\,\ref{sec:box-dns}). Fourth, an answer to the question of principle
---- what can a single line say about the rapid pressure--strain term,
-which is exactly a non-local three-dimensional object? --- in a form
+$Sk_t/\varepsilon$, the strain rate in eddy-turnover units
+(\S\,\ref{sec:box-dns}). Fourth, an answer to the question of
+principle---what can a single line say about the rapid pressure--strain
+term, which is exactly a non-local three-dimensional object?---in a form
 deliberately more modest than a closure claim: the obstruction is stated
 exactly, sharp bounds on the rapid term are derived from line data
 alone, and the axisymmetry hypothesis under which the term collapses is
 not assumed but \emph{measured}, exact for axisymmetric distortion and
 with a quantified error under plane strain (\S\,\ref{sec:gate}). Fifth,
-the measured limits of the model and the mechanism that moves them:
-a transmission diagnostic shows the strain-induced anisotropy crossing
-two map generations undiminished, a controlled family of interventions
-falsifies acceptance gating and map reweighting as remedies,
-hierarchical application of the energy-redistributing kernel to eddy
-sub-scales---scale-local relaxation---is shown to supply the missing
-ingredient where it reaches the scales of the imbalance, and the
-mechanism's own deep-strain fade is traced to its event-locked timing
-and removed by an independent, size-capped relaxation clock, leaving a
-single measured allocation bound (\S\,\ref{sec:limits}). Sixth, the
+the measured limits of the model and the mechanism that moves them
+(\S\,\ref{sec:limits}): a transmission diagnostic shows the
+strain-induced anisotropy crossing two triplet-map generations---a
+factor of nine in scale---undiminished,
+and a controlled family of interventions falsifies acceptance gating
+and map reweighting as remedies. Hierarchical application of the
+energy-redistributing kernel to eddy sub-scales---scale-local
+relaxation---supplies the missing ingredient where it reaches the
+scales of the imbalance; the mechanism's own deep-strain fade is
+traced to its event-locked timing and removed by an independent,
+size-capped relaxation clock, leaving a single measured allocation
+bound. Sixth, the
 consequence for the motivating application (\S\,\ref{sec:lenoise}):
 the computed distorted spectrum is supplied to Amiet's
 leading-edge-noise theory in place of the frozen inflow of standard
-practice, both as a geometry-free kernel ratio and as an assembled
-absolute prediction at the reference operating point, quantifying the
+practice, both as a ratio from which aerofoil geometry and observer
+cancel exactly and as an assembled absolute prediction at the
+reference operating point, quantifying the
 $5$--$20$\,dB term that prescribed-spectrum practice omits; the
 assembled chain is confronted with four published experiments, which
 it reproduces to $1$--$2$\,dB rms where the facilities are cleanest.
@@ -1106,7 +1111,7 @@ with rapid-distortion theory \citep{BatchelorProudman1954,HuntCarruthers1990}%
 ---while the continuous redistribution operator of
 \S\,\ref{sec:rapid-kernel} acts uniformly on every resolved wavenumber. The
 combination transfers no energy between scales: a rigid translation of the
-line spectrum toward higher wavenumber. We emphasise at the outset that this
+line spectrum towards higher wavenumber. We emphasise at the outset that this
 rigid translation is a property of the strain-coupled \emph{line}---uniform
 dilatation composed with a wavenumber-uniform operator---and not of linear
 distortion theory itself; the correct linear reference for the projected
@@ -1147,7 +1152,7 @@ spectrum normalised likewise; $R_{nn}\equiv1$ at every $\kappa_2$ if and
 only if the translation is rigid. At $e=1$ under plane strain the upwash
 ratio $R_{22}$ falls monotonically from $1.60$ at half the initial spectral
 centroid to $0.38$ at twelve times it: exact linear theory redistributes
-the projected upwash spectrum toward low wavenumber by a factor of four
+the projected upwash spectrum towards low wavenumber by a factor of four
 across the resolved range, because modes aligned with the line
 ($\kappa\to\kappa_2$) are amplified least. The transverse components are
 affected more weakly ($R_{11}$ from $1.27$ to $0.75$; $R_{33}$ within ten
@@ -1220,7 +1225,7 @@ initialisation transient, relaxes monotonically to
 $\bar\kappa/\bar\kappa_0<1$: with no compression, the eddies merely
 redistribute energy and the centroid drifts below its initial value. The
 full model is lifted clearly above this baseline---compression does push
-the spectrum toward higher wavenumber---yet it settles at
+the spectrum towards higher wavenumber---yet it settles at
 $\bar\kappa/\bar\kappa_0\approx1.6$--$2.1$, far below the
 rigid-translation line, which rises to $7.4$ at $e=4$. The reason is
 visible in the spectra: the full-model spectrum is not a rigid
@@ -1271,7 +1276,7 @@ Reynolds number, and it is a physical property of the represented
 inflow, not a tunable parameter: a sweep over
 $\nu=10^{-4}$--$10^{-7}$ shows the cascade deepening monotonically, with
 the resolved cases settling below the linear-RDT centroid line while the
-lowest viscosities climb toward it only by piling energy into an
+lowest viscosities climb towards it only by piling energy into an
 under-resolved grid-scale shelf. The operating point is therefore the
 viscosity matching the target inflow, resolution-checked. For the
 reference configuration---a NACA0012 at $U_\infty=20$\,m\,s$^{-1}$ in
@@ -2076,7 +2081,7 @@ thresholds the surviving eddy population reproduces the baseline
 anisotropy budget in every band (the gate self-selects eddies whose
 kernels were already going to do the relaxing, and the unrelaxed field
 keeps generating candidates), while at the harshest threshold the model
-merely drifts toward its eddy-free limit. Restricting the gate to
+merely drifts towards its eddy-free limit. Restricting the gate to
 sub-band-scale eddies sharpens the negative result into the mechanism
 statement above: removing up to $97$ per cent of small-eddy events leaves
 both the fine-scale anisotropy \emph{and} the fine-scale energy
@@ -2107,7 +2112,7 @@ effect to deep strain: the levels that work, $\ell/9$ and $\ell/27$, are
 exactly the first that reach the measured band. The bookkeeping is clean
 throughout---band energies move by a few per cent, the upwash energy
 fraction and the intermittency tails are unchanged---and the pre-strain
-fine-scale floor moves toward component equality immediately
+fine-scale floor moves towards component equality immediately
 ($\mathcal A_{\rm hi}$ from $0.83$ to $0.95$ at $e=0$).
 
 Four further variants separate the candidate explanations for the one
