@@ -33,7 +33,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, ".."))
 import fig_lenoise as fl  # noqa: E402  (phi_ww, read_fits, sym_log_grid)
-from figstyle_jfm import COL, FULL, plt, save  # noqa: E402
+from figstyle_jfm import FULL, plt, save  # noqa: E402
 
 RHO0, C0, PREF = 1.225, 340.0, 20e-6      # len_vsdb constants
 U = 20.0
@@ -112,12 +112,14 @@ def main():
     # definition as the model curves would need the 2D form, so use the
     # e=0 representation's ell_y — spectrum-consistent, and at e=0 the
     # representation IS vK, so this is a pure shape cross-check)
+    # monochrome: frozen references = black dashed / grey dotted (no
+    # marker); SC-ODT-distorted = solid + circle, strain by grey ramp
     styles = [("frozen von Kármán (standard practice)", 0.0,
-               "k", (0, (5, 2))),
-              ("ODT-distorted, $e=0.5$", 0.5, COL["odt"], "-"),
-              ("ODT-distorted, $e=1$", 1.0, COL["phi33"], "-"),
-              ("ODT-distorted, $e=2$", 2.0, COL["rdt"], "-")]
-    for lab, e, col, ls in styles:
+               "k", (0, (5, 2)), None),
+              ("SC-ODT-distorted, $e=0.5$", 0.5, "0.6", "-", "o"),
+              ("SC-ODT-distorted, $e=1$", 1.0, "0.35", "-", "o"),
+              ("SC-ODT-distorted, $e=2$", 2.0, "0.0", "-", "o")]
+    for lab, e, col, ls, mk in styles:
         ke, A0 = fits[e]
         lev = r22(e) / r22(0.0)             # measured variance ratio
         p0 = np.array([fl.phi_ww(k, 0.0, e, ke, A0) for k in kxm])
@@ -144,7 +146,8 @@ def main():
         Spp = far_field_psd_dipole(XOBS, omega, S2, phi1d, CHORD, U,
                                    SPAN, M, ell_y)
         spl = 10 * np.log10(Spp * 2 * np.pi / PREF ** 2)   # -> dB/Hz
-        ax.plot(f, spl, ls=ls, color=col, lw=1.1, label=lab)
+        ax.plot(f, spl, ls=ls, color=col, lw=1.1, marker=mk, ms=2.6,
+                mfc=col, markevery=8, label=lab)
         if e == 0.0:
             # self-validation: the e=0 representation against analytic vK
             rat = phi1d / vk_phi1d(Kx, UP ** 2, LAMBDA)
