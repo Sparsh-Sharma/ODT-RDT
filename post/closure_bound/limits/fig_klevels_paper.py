@@ -12,23 +12,26 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
-from figstyle_jfm import FULL, RED, VARIANTS, panel, plt, save  # noqa: E402
+from figstyle_jfm import FULL, panel, plt, save  # noqa: E402
 
 NB = os.path.join(HERE, "newbands")
+# monochrome: baseline black solid; the fixed-depth 1/2/3-level family a
+# light->dark grey ramp (deeper = darker); the other four each a distinct
+# black line style.  (label, file, marker, colour, linestyle)
 CASES = [
-    ("SC-ODT (baseline)", "bands_homogeneousStrain2.npz", VARIANTS[0],
-     "o"),
-    ("1 level (thirds)", "bands_homogeneousStrain2K1.npz", VARIANTS[1],
-     "s"),
-    ("2 levels", "bands_homogeneousStrain2K2.npz", VARIANTS[2], "^"),
-    ("3 levels", "bands_homogeneousStrain2K3.npz", VARIANTS[3], "d"),
+    ("SC-ODT (baseline)", "bands_homogeneousStrain2.npz", "o", "k", "-"),
+    ("1 level (thirds)", "bands_homogeneousStrain2K1.npz", "s", "0.62",
+     "-"),
+    ("2 levels", "bands_homogeneousStrain2K2.npz", "^", "0.42", "-"),
+    ("3 levels", "bands_homogeneousStrain2K3.npz", "D", "0.18", "-"),
     ("depth tied to eddy size", "bands_homogeneousStrain2KS.npz",
-     VARIANTS[4], "v"),
+     "v", "k", (0, (6, 2))),
     ("2 levels, iterated 3x", "bands_homogeneousStrain2K2I3.npz",
-     VARIANTS[5], "P"),
+     "P", "k", (0, (1, 1.4))),
     ("concurrent, $N{=}3$", "bands_homogeneousStrain2CR3.npz",
-     "#d66ba0", "X"),
-    ("concurrent + depth", "bands_homogeneousStrain2CRS.npz", RED, "*"),
+     "X", "k", (0, (5, 1.6, 1, 1.6))),
+    ("concurrent + depth", "bands_homogeneousStrain2CRS.npz", "*", "k",
+     (0, (4, 1.4, 1, 1.4, 1, 1.4))),
 ]
 NBOOT = 2000
 
@@ -44,7 +47,7 @@ def main():
     rng = np.random.default_rng(0)
     fig, axs = plt.subplots(2, 2, figsize=(FULL, 3.9), sharex=True)
     axs = axs.ravel()
-    for lab, fn, col, mk in CASES:
+    for lab, fn, mk, col, ls in CASES:
         d = np.load(os.path.join(NB, fn))
         es = d["strains"]
         Alo = d["E2lo"] / d["Eplo"]
@@ -56,9 +59,9 @@ def main():
         for ax, (ylab, arr) in zip(axs, series):
             m, lo, hi = np.array([med_ci(arr[:, j], rng)
                                   for j in range(len(es))]).T
-            ax.errorbar(es, m, yerr=[m - lo, hi - m], fmt=mk + "-",
-                        color=col, capsize=1.8, capthick=0.6,
-                        elinewidth=0.6, ms=3, lw=0.9, label=lab)
+            ax.errorbar(es, m, yerr=[m - lo, hi - m], fmt=mk, ls=ls,
+                        color=col, mfc=col, capsize=1.4, capthick=0.5,
+                        elinewidth=0.5, ms=2.8, lw=0.9, label=lab)
             ax.set_ylabel(ylab)
     axs[2].axhline(1.0, color="k", lw=0.6, ls=":")
     for j, ax in enumerate(axs):

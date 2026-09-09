@@ -1,20 +1,20 @@
 # Fdb version 4
-["bibtex build/supplementary"] 1788960031.65544 "build/supplementary.aux" "build/supplementary.bbl" "build/supplementary" 1788960063.95856 0
+["bibtex build/supplementary"] 1788966905.68112 "build/supplementary.aux" "build/supplementary.bbl" "build/supplementary" 1788966908.49922 0
   "./jfm.bib" 1788958134 28734 ccc10329d29c1899df9b4379f2a66de0 ""
   "./jfm.bst" 1788675880 33456 4905f5a36c36e08bc982133b3dc1d7d2 ""
-  "build/supplementary.aux" 1788960063 9374 866cc005da85d2fdde75a1d055e3f95b "pdflatex"
+  "build/supplementary.aux" 1788966907 9388 a47cbd75655293ae995c12623abb7b3a "pdflatex"
   (generated)
   "build/supplementary.bbl"
   "build/supplementary.blg"
   (rewritten before read)
-["pdflatex"] 1788960061.87065 "supplementary.tex" "build/supplementary.pdf" "supplementary" 1788960063.95917 0
+["pdflatex"] 1788966906.07575 "supplementary.tex" "build/supplementary.pdf" "supplementary" 1788966908.49977 0
   "Figures/fig_cmk_aniso.pdf" 1788940578 13773 1cb805df040bb1b40b749f51aa3dfeab ""
   "Figures/fig_cmk_rdt.pdf" 1788880053 16491 8dda93a38fb67af2d24dfa8df3207a20 ""
   "Figures/fig_dividend.pdf" 1788880053 19884 6b65525089977dc1476b3ed8ccf92186 ""
-  "Figures/fig_klevels.pdf" 1788880054 33766 0635b93345b02b4eb6ee8b3955b0c7ea ""
+  "Figures/fig_klevels.pdf" 1788966704 33127 85411d621ef1a1eba30ab96fe7f4668c ""
   "JFM-FLM_Au.cls" 1788675880 80202 3c186eafc5523bfaca542e040d306b68 ""
-  "build/supplementary.aux" 1788960063 9374 866cc005da85d2fdde75a1d055e3f95b "pdflatex"
-  "build/supplementary.bbl" 1788960031 1225 952f42ec16f5f8e0721bfc64ed5f2fd6 "bibtex build/supplementary"
+  "build/supplementary.aux" 1788966907 9388 a47cbd75655293ae995c12623abb7b3a "pdflatex"
+  "build/supplementary.bbl" 1788966906 1225 952f42ec16f5f8e0721bfc64ed5f2fd6 "bibtex build/supplementary"
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc" 1772942362 2211 c42193888177bc8f86d55dca129a9358 ""
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1772942362 2083 60e36f8eac802fcaf19eabe2633b406e ""
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc" 1772942383 3124 3813fd4c981d99822890a2861b0d274c ""
@@ -177,7 +177,7 @@
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1786334190 5619460 b80d3c62f5dc5917cf14429be354c55e ""
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1786334748 3656836 a1b995d32558bbfb1f76a35bfe9e2a46 ""
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf.cnf" 1772942091 903 164c5b127cd0d6dc91abad2f62421ea2 ""
-  "supplementary.tex" 1788960053 14639 d94d1b88f1a62c830d0730526c2c4e15 ""
+  "supplementary.tex" 1788966632 14646 fb46c102c2cc2ce4c85f43b00fae822e ""
   (generated)
   "build/supplementary.aux"
   "build/supplementary.log"

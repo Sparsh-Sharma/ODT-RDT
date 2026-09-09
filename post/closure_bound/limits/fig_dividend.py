@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The mechanism dividend, shown in the model's own observables (for
 Alan + ESM): how the size-capped relaxation clock (RCS1) improves the
-strained spectra over standard ODT, and what the frozen-von-Karman
+strained spectra over the SC-ODT baseline, and what the frozen-von-Karman
 practice misses entirely.
 
 (a) deviation from the exact-RDT-distorted vK family at e=2, rapid
