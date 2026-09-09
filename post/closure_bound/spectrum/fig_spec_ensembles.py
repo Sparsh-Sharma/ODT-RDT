@@ -95,13 +95,13 @@ def fig_op(op):
         a.loglog(op["k_last"], op[f"E{i + 1}_last"], color="k",
                  ls=LS[i], lw=1.0, label=lab)
     kref = np.array([200.0, 9000.0])
-    kslope = 3e-3 * op["Etot_last"].max() * (kref / 200.0) ** (-5 / 3)
+    AMP = 1.5e-2 * op["Etot_last"].max()      # slope guide, lifted clear
+    kslope = AMP * (kref / 200.0) ** (-5 / 3)
     a.plot(kref, kslope, color="0.45", ls=(0, (1, 1.2)), lw=0.9)
-    # label at the far right of the slope guide, where the spectra have
-    # dropped orders of magnitude below it (they roll off faster than -5/3)
-    a.text(6000, 2.4 * 3e-3 * op["Etot_last"].max()
-           * (6000 / 200.0) ** (-5 / 3), r"$\kappa^{-5/3}$",
-           fontsize=7, color="0.3", ha="center", va="bottom")
+    # label at the far right of the slope guide, above the line
+    a.text(6000, 1.8 * AMP * (6000 / 200.0) ** (-5 / 3),
+           r"$\kappa^{-5/3}$", fontsize=7, color="0.3", ha="center",
+           va="bottom")
     a.set_xlabel(r"wavenumber $\kappa_2$")
     a.set_ylabel(r"$E_i(\kappa_2)$")
     ymax = op["Etot_last"].max() * 3
