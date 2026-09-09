@@ -17,7 +17,7 @@ import numpy as np
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 ".."))
-from figstyle_jfm import COL, FULL, panel, plt, save  # noqa: E402
+from figstyle_jfm import FULL, panel, plt, save  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ECHECKS = ("0", "0.25", "0.5", "0.75", "1")
@@ -25,7 +25,11 @@ EVAL = [float(e) for e in ECHECKS]
 KMAX_FRAC = 0.85
 RATIO = "16"
 
-C_PLANE, C_AXI, C_B22 = COL["plane"], COL["axi"], COL["b22"]
+# monochrome: geometry -> line style + marker (plane solid/circle,
+# axisymmetric dashed/square); b22 (robust across geometry) grey dash-dot.
+PLANE = dict(color="k", ls="-", marker="o", ms=3.4, mfc="k", mew=0.6)
+AXI = dict(color="k", ls=(0, (5, 2)), marker="s", ms=3.4, mfc="none",
+           mew=0.8)
 
 
 def group(subdir, prefix, e):
@@ -61,23 +65,25 @@ m2_a, sp_a, b_a = series("n128axi", "axi_")
 
 fig, (axl, axr) = plt.subplots(1, 2, figsize=(FULL, 2.2))
 
-axl.axhline(0.133, color="0.7", lw=0.6, ls=":", zorder=0)
-axl.text(0.02, 0.138, "isotropic floor", fontsize=8, color="0.5")
-axl.plot(EVAL, m2_p, "o-", color=C_PLANE,
-         label="plane strain (A1 broken)")
-axl.plot(EVAL, m2_a, "s-", color=C_AXI,
-         label="axisymmetric (A1 exact)")
+axl.axhline(0.133, color="0.6", lw=0.6, ls=(0, (1, 1.2)), zorder=0)
+axl.text(0.02, 0.138, "isotropic floor", fontsize=7.5, color="0.4")
+axl.plot(EVAL, m2_p, lw=1.1, label="plane strain (A1 broken)", **PLANE)
+axl.plot(EVAL, m2_a, lw=1.0, label="axisymmetric (A1 exact)", **AXI)
 axl.set_ylabel(r"azimuthal $m{=}2$ residue of $\Phi_{22}$")
 axl.legend(loc="upper left")
 
-axr.axhline(0.0, color="0.7", lw=0.6, ls=":", zorder=0)
-axr.plot(EVAL, sp_p, "o-", color=C_PLANE,
-         label=r"plane: $\phi_{11}/\phi_{33}{-}1$")
-axr.plot(EVAL, sp_a, "s-", color=C_AXI,
-         label=r"axisym: $\phi_{11}/\phi_{33}{-}1$")
-axr.plot(EVAL, b_p, "^--", color=C_B22, lw=0.9,
+axr.axhline(0.0, color="0.6", lw=0.6, ls=(0, (1, 1.2)), zorder=0)
+axr.plot(EVAL, sp_p, lw=1.1,
+         label=r"plane: $\phi_{11}/\phi_{33}{-}1$", **PLANE)
+axr.plot(EVAL, sp_a, lw=1.0,
+         label=r"axisym: $\phi_{11}/\phi_{33}{-}1$", **AXI)
+# b22 (upwash) is geometry-independent: both curves in one grey style so
+# they merge, showing the acoustically relevant amplification is robust.
+axr.plot(EVAL, b_p, color="0.45", ls=(0, (4, 1.4, 1, 1.4)), lw=0.9,
+         marker="^", ms=3.0, mfc="none", mew=0.7,
          label=r"$b_{22}$ (upwash), both geometries")
-axr.plot(EVAL, b_a, "^:", color=C_B22, lw=0.9, ms=3, alpha=0.7)
+axr.plot(EVAL, b_a, color="0.45", ls=(0, (4, 1.4, 1, 1.4)), lw=0.9,
+         marker="^", ms=3.0, mfc="none", mew=0.7)
 axr.set_ylabel("transverse splitting / upwash anisotropy")
 axr.legend(loc="lower left")
 

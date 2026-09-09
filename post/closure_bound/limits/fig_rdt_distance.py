@@ -12,7 +12,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
-from figstyle_jfm import COL, FULL, plt, save  # noqa: E402
+from figstyle_jfm import FULL, plt, save  # noqa: E402
 
 N_RES = 80.0
 
@@ -30,14 +30,16 @@ def read_costs(tag):
 
 def main():
     fig, ax = plt.subplots(figsize=(0.62 * FULL, 2.3))
-    for tag, lab, col, mk in (
-            ("S1", r"$Sk_t/\varepsilon \approx 0.4$ (slow)", COL["slow"],
-             "o"),
-            ("S20", r"$Sk_t/\varepsilon \approx 8$ (rapid)", COL["rapid"],
-             "s")):
+    # monochrome: slow -> solid + filled circle, rapid -> dashed + filled
+    # square (rapidity by line style + marker).
+    for tag, lab, ls, mk in (
+            ("S1", r"$Sk_t/\varepsilon \approx 0.4$ (slow)", "-", "o"),
+            ("S20", r"$Sk_t/\varepsilon \approx 8$ (rapid)",
+             (0, (5, 2)), "s")):
         es, costs = read_costs(tag)
         rms = 100.0 * np.sqrt(2.0 * costs / N_RES)
-        ax.plot(es, rms, mk + "-", color=col, label=lab)
+        ax.plot(es, rms, color="k", ls=ls, lw=1.1, marker=mk, ms=3.4,
+                mfc="k", mew=0.6, label=lab)
         print(tag, [f"{r:.1f}" for r in rms])
     ax.set_xlabel("total strain $e$")
     ax.set_ylabel("rms log-residual of exact-RDT fit [%]")
