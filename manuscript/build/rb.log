@@ -6,10 +6,8 @@ Latexmk: This is Latexmk, John Collins, 9 March 2026. Version 4.88.
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  Figures/fig_fourway5.pdf
   main_v3.tex
 Category 'changed_user':
-  Figures/fig_fourway5.pdf
   main_v3.tex
 
 ------------
@@ -179,7 +177,7 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [32] [33]
-Overfull \hbox (20.32889pt too wide) in paragraph at lines 2356--2381
+Overfull \hbox (20.32889pt too wide) in paragraph at lines 2357--2382
 \OT1/minntx/m/n/10.74011 anisotropy per wavenum-ber band---the ob-serv-able on which \TS1/ntxtlf/m/n/10.74011 §[][]\OT1/minntx/m/n/10.74011 4.6.1[][] es-tab-lished the benchmark---
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
@@ -197,7 +195,7 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 pdfTeX warning (ext4): destination with the same identifier (name{section.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2755 ...n{The forward map and the bound kernels}
+l.2756 ...n{The forward map and the bound kernels}
                                                   \label{app:forward} [41]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
@@ -205,22 +203,22 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 pdfTeX warning (ext4): destination with the same identifier (name{section.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2962 ...ters, initial conditions and statistics}
+l.2963 ...ters, initial conditions and statistics}
                                                   
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2967 \subsection{ODT configurations}
+l.2968 \subsection{ODT configurations}
                                       
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2989 ...rained-box DNS and exact-RDT companions}
+l.2990 ...rained-box DNS and exact-RDT companions}
                                                   
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3014 \subsection{Statistics policy}
+l.3015 \subsection{Statistics policy}
                                       [43] (build/main_v3.bbl
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
@@ -230,7 +228,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)<c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexas.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/main_v3.pdf (45 pages, 871287 bytes).
+Output written on build/main_v3.pdf (45 pages, 871323 bytes).
 Transcript written on build/main_v3.log.
 Latexmk: Getting log file 'build/main_v3.log'
 Latexmk: Examining 'build/main_v3.fls'
@@ -437,7 +435,7 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [32] [33]
-Overfull \hbox (20.32889pt too wide) in paragraph at lines 2356--2381
+Overfull \hbox (20.32889pt too wide) in paragraph at lines 2357--2382
 \OT1/minntx/m/n/10.74011 anisotropy per wavenum-ber band---the ob-serv-able on which \TS1/ntxtlf/m/n/10.74011 §[][]\OT1/minntx/m/n/10.74011 4.6.1[][] es-tab-lished the benchmark---
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
@@ -455,7 +453,7 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 pdfTeX warning (ext4): destination with the same identifier (name{section.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2755 ...n{The forward map and the bound kernels}
+l.2756 ...n{The forward map and the bound kernels}
                                                   \label{app:forward} [41]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
@@ -463,28 +461,28 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 pdfTeX warning (ext4): destination with the same identifier (name{section.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2962 ...ters, initial conditions and statistics}
+l.2963 ...ters, initial conditions and statistics}
                                                   
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2967 \subsection{ODT configurations}
+l.2968 \subsection{ODT configurations}
                                       
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2989 ...rained-box DNS and exact-RDT companions}
+l.2990 ...rained-box DNS and exact-RDT companions}
                                                   
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3014 \subsection{Statistics policy}
+l.3015 \subsection{Statistics policy}
                                       [43] (build/main_v3.bbl
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [44{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}]) [45] (build/main_v3.aux) )
 (see the transcript file for additional information)<c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexas.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/main_v3.pdf (45 pages, 871287 bytes).
+Output written on build/main_v3.pdf (45 pages, 871323 bytes).
 Transcript written on build/main_v3.log.
 Latexmk: Getting log file 'build/main_v3.log'
 Latexmk: Examining 'build/main_v3.fls'
