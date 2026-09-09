@@ -24,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, ".."))
 import rdt_kernel as rk  # noqa: E402
-from figstyle_jfm import COL, GOLD, RED, FULL, panel, plt, save  # noqa: E402,E501
+from figstyle_jfm import FULL, panel, plt, save  # noqa: E402
 
 U, UP, LAMBDA = 20.0, 1.2, 0.055
 CHORD, SPAN, XOBS = 0.386, 0.8, (0.0, 0.0, 1.0)
@@ -134,16 +134,22 @@ def main():
             lev = r22(sp, e) / r22(sp, 0.0)
             out[tag] = spl_curve(f, e, fits[e][0], ke0 / ke_phys, lev,
                                  w2)
-        ax.plot(f, spl_v, "k", ls=(0, (5, 2)), lw=1.0,
-                label="frozen von Kármán")
-        ax.plot(f, spl_t, color="#8e44ad", lw=1.4,
+        # monochrome: truth = black solid (the anchor); frozen practice =
+        # black dashed; the two models = grey with a shared grey band (they
+        # are indistinguishable in SPL -- the honest result), separated by
+        # line style + marker.
+        ax.plot(f, spl_t, color="k", ls="-", lw=1.5,
                 label="exact RDT (DNS-anchored)")
-        for tag, col, lab in (("std", COL["odt"], "ODT standard"),
-                              ("fix", RED, "ODT + clock")):
+        ax.plot(f, spl_v, color="k", ls=(0, (5, 2)), lw=1.0,
+                label="frozen von Kármán")
+        for tag, lab, ls, mk in (("std", "SC-ODT", "-", "o"),
+                                 ("fix", "clock-relaxed ODT",
+                                  (0, (1, 1.4)), "^")):
             db = 10 * np.log10(1 + RMS[tag][e])
-            ax.fill_between(f, out[tag] - db, out[tag] + db, color=col,
-                            alpha=0.14, lw=0)
-            ax.plot(f, out[tag], color=col, lw=1.0, label=lab)
+            ax.fill_between(f, out[tag] - db, out[tag] + db, color="0.8",
+                            alpha=0.45, lw=0)
+            ax.plot(f, out[tag], color="0.4", ls=ls, lw=1.0, marker=mk,
+                    ms=2.6, mfc="0.4", markevery=6, label=lab)
         ax.set_xscale("log")
         ax.set_xlabel(r"$f$ [Hz]")
         ax.text(0.5, 0.96, f"$e={e:.0f}$", transform=ax.transAxes,

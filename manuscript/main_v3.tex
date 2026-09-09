@@ -2539,10 +2539,10 @@ through geometry, aerofoil response and radiation to the observer.
   \caption{Absolute far-field predictions against published
   measurements, all four inflow spectra through the identical
   non-compact response \citep{Amiet1975,RogerMoreau2010}: frozen
-  von K\'arm\'an (dashed), frozen Liepmann (dotted), the computed
-  standard-model spectrum (blue) and the computed clock-relaxed
-  spectrum (red), each entered at the case's effective free-distortion
-  strain. (\textit{a,b}) NACA0012 of \citet{PatersonAmiet1976}
+  von K\'arm\'an (black dashed), frozen Liepmann (grey dotted), the
+  computed SC-ODT spectrum (grey, circles) and the computed
+  clock-relaxed ODT spectrum (grey, triangles), each entered at the
+  case's effective free-distortion strain. (\textit{a,b}) NACA0012 of \citet{PatersonAmiet1976}
   ($c=0.23$\,m, $u'_w/U\approx4$--$5\%$, $\Lambda_f\approx30$\,mm,
   observer $2.25$\,m overhead; Gershfeld thickness admittance applied
   identically to all four chains); (\textit{c}) ECL flat plate of
@@ -2567,7 +2567,7 @@ excluded only by their Mach number), and the flat plates of
 \citet{Bampanis2022} and \citet{Narayanan2015}---each with four
 predictions computed through the identical response: the frozen
 von K\'arm\'an and Liepmann inflows of standard practice, and the
-model's computed spectra, standard and clock-relaxed, evaluated at the
+model's computed spectra, SC-ODT and clock-relaxed ODT, evaluated at the
 effective free-distortion strain accumulated along the potential-flow
 stagnation streamline down to the eddy scale ($e_{\rm eff}=0.09$--$0.16$
 for the NACA0012; below $0.05$ for the thin plates). Three statements
@@ -2586,7 +2586,7 @@ $+1.8\!\to\!+1.4$\,dB at $60$, $+5.1\!\to\!+4.7$\,dB at $90$), by the
 modest amount its geometric effective strain implies; the shift
 between predictions is exact, since the digitisation uncertainty
 ($\pm0.5$\,dB) is common to all four. Third, the
-standard and clock-relaxed models are indistinguishable in the far
+SC-ODT and clock-relaxed ODT models are indistinguishable in the far
 field at these laboratory strains (differences below $0.05$\,dB),
 and this is stated as a limit of the test, not of the mechanism:
 laboratory rigs are designed to minimise inflow distortion, so no
@@ -2604,15 +2604,17 @@ of inflow spectrum.
   \caption{Computed against prescribed inflow at application strains,
   judged by the linear reference: absolute SPL at the reference
   configuration for the rapid family ($Sk_t/\varepsilon\approx8$) at
-  (\textit{a}) $e=1$ and (\textit{b}) $e=2$. Purple: exact (inviscid)
-  RDT of the model's relaxed initial state---the reference the
+  (\textit{a}) $e=1$ and (\textit{b}) $e=2$. Solid black: exact
+  (inviscid) RDT of the model's relaxed initial state---the reference the
   strained-box DNS of \S\,\ref{sec:box-dns} validates at rapid
   rates---with level set by the kernel's exact upwash amplification
-  (reproducing the moment-level value to $0.7\%$). Dashed: the frozen
-  von K\'arm\'an inflow of standard practice. Blue/red: the standard
-  and clock-relaxed computed inflows (fitted representations, measured
-  ensemble levels), each shaded by its measured spectral rms distance
-  from the RDT family mapped to decibels.}
+  (reproducing the moment-level value to $0.7\%$). Black dashed: the
+  frozen von K\'arm\'an inflow of standard practice. Grey (circles:
+  SC-ODT; triangles: clock-relaxed ODT): the two computed inflows
+  (fitted representations, measured ensemble levels), each with a band
+  giving its measured spectral rms distance from the RDT family mapped
+  to decibels; the two share the band and are indistinguishable at this
+  level.}
   \label{fig:amiet-rapid}
 \end{figure}
 
@@ -2631,7 +2633,7 @@ size cap, where the noise kernel carries little weight, and its gain
 appears instead in the uncertainty the input carries into the
 prediction---the clock-relaxed ensembles lie closer to the
 exact-RDT-distorted family by a factor of two to four in rms at both
-rapidities, and, unlike the standard model's, their distance does not
+rapidities, and, unlike SC-ODT's, their distance does not
 grow with strain (supplementary material, \S\,S3), which halves the
 shaded band of figure~\ref{fig:amiet-rapid} and makes it
 strain-independent. A far-field discrimination of the mechanism

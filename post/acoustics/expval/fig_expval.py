@@ -18,12 +18,16 @@ sys.path.insert(0, os.path.normpath(os.path.join(HERE, "..", "..",
                                                  "closure_bound")))
 import chain  # noqa: E402
 from cases import CASES, load_csv  # noqa: E402
-from figstyle_jfm import COL, FULL, GOLD, RED, plt, save  # noqa: E402
+from figstyle_jfm import FULL, plt, save  # noqa: E402
 
-MODELS = [("vk", "Amiet + von Kármán", "k", (0, (5, 2))),
-          ("liepmann", "Amiet + Liepmann", "0.45", (0, (1, 1.2))),
-          ("odt_std", "Amiet + ODT (standard)", COL["odt"], "-"),
-          ("odt_fix", "Amiet + ODT (fixed)", RED, "-")]
+# monochrome: frozen references black dashed / grey dotted (no marker);
+# the two model chains grey, separated by line style + marker.
+# (tag, label, colour, linestyle, marker)
+MODELS = [("vk", "Amiet + von Kármán", "k", (0, (5, 2)), None),
+          ("liepmann", "Amiet + Liepmann", "0.5", (0, (1, 1.2)), None),
+          ("odt_std", "Amiet + SC-ODT", "0.38", "-", "o"),
+          ("odt_fix", "Amiet + clock-relaxed ODT", "0.38",
+           (0, (4, 1.4, 1, 1.4)), "^")]
 
 
 def have_fix(tag):
@@ -36,7 +40,7 @@ def run_case(key, ax=None):
     fexp, spl_exp = load_csv(c["csv"])
     f = np.geomspace(max(fexp.min(), 80.0), fexp.max(), 48)
     out, metrics = {}, {}
-    for m, lab, col, ls in MODELS:
+    for m, lab, col, ls, mk in MODELS:
         if m == "odt_fix" and not have_fix(c["fit_tag"]):
             continue
         kw = dict(t_over_c=c["t_over_c"], fit_tag=c["fit_tag"])
@@ -60,9 +64,10 @@ def run_case(key, ax=None):
                 mew=0.7, label="measured")
         ax.plot(fexp[~inb], spl_exp[~inb], "o", ms=3, mfc="none",
                 mec="0.65", mew=0.6)
-        for m, lab, col, ls in MODELS:
+        for m, lab, col, ls, mk in MODELS:
             if m in out:
-                ax.plot(f, out[m], color=col, ls=ls, lw=1.1, label=lab)
+                ax.plot(f, out[m], color=col, ls=ls, lw=1.1, marker=mk,
+                        ms=2.6, mfc=col, markevery=7, label=lab)
         # e_eff sensitivity band for the ODT curves
         if "odt_std" in out and c["e_hi"] > 0:
             lo = chain.predict_spl(f, c["U"], c["w2"], c["Lam"],
@@ -75,8 +80,7 @@ def run_case(key, ax=None):
                                    "odt_std", t_over_c=c["t_over_c"],
                                    fit_tag=c["fit_tag"],
                                    e_eff=c["e_hi"]) + c["slc_db"]
-            ax.fill_between(f, lo, hi, color=COL["odt"], alpha=0.15,
-                            lw=0)
+            ax.fill_between(f, lo, hi, color="0.8", alpha=0.5, lw=0)
         ax.set_xscale("log")
         ax.set_xlabel(r"$f$ [Hz]")
         ax.set_ylabel(r"SPL [dB Hz$^{-1}$ re $20\,\mu$Pa]")
