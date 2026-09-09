@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  9 SEP 2026 08:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  9 SEP 2026 09:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1611,7 +1611,7 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
  []
 
 [32]
-<Figures/fig_clock.pdf, id=982, 378.45828pt x 187.53664pt>
+<Figures/fig_clock.pdf, id=988, 378.45828pt x 187.53664pt>
 File: Figures/fig_clock.pdf Graphic file (type pdf)
 <use Figures/fig_clock.pdf>
 Package pdftex.def Info: Figures/fig_clock.pdf  used on input line 2276.
@@ -1621,7 +1621,7 @@ Overfull \hbox (20.32889pt too wide) in paragraph at lines 2309--2334
 \OT1/minntx/m/n/10.74011 anisotropy per wavenum-ber band---the ob-serv-able on which \TS1/ntxtlf/m/n/10.74011 §[][]\OT1/minntx/m/n/10.74011 4.6.1[][] es-tab-lished the benchmark---
  []
 
-<Figures/fig_fourway5.pdf, id=1026, 376.86206pt x 171.1213pt>
+<Figures/fig_fourway5.pdf, id=1032, 376.86206pt x 171.1213pt>
 File: Figures/fig_fourway5.pdf Graphic file (type pdf)
 <use Figures/fig_fourway5.pdf>
 Package pdftex.def Info: Figures/fig_fourway5.pdf  used on input line 2337.
@@ -1632,18 +1632,18 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
  []
 
 [34 <./Figures/fig_fourway5.pdf>]
-<Figures/fig_lenoise.pdf, id=1072, 378.11365pt x 184.21222pt>
+<Figures/fig_lenoise.pdf, id=1078, 378.11365pt x 184.21222pt>
 File: Figures/fig_lenoise.pdf Graphic file (type pdf)
 <use Figures/fig_lenoise.pdf>
 Package pdftex.def Info: Figures/fig_lenoise.pdf  used on input line 2412.
 (pdftex.def)             Requested size: 384.0pt x 187.08725pt.
-<Figures/fig_amiet_abs.pdf, id=1076, 261.75366pt x 181.38968pt>
+<Figures/fig_amiet_abs.pdf, id=1082, 261.75366pt x 181.38968pt>
 File: Figures/fig_amiet_abs.pdf Graphic file (type pdf)
 <use Figures/fig_amiet_abs.pdf>
 Package pdftex.def Info: Figures/fig_amiet_abs.pdf  used on input line 2446.
 (pdftex.def)             Requested size: 268.79883pt x 186.27158pt.
  [35]
-<Figures/fig_expval_paper.pdf, id=1093, 376.06691pt x 346.16127pt>
+<Figures/fig_expval_paper.pdf, id=1099, 376.06691pt x 346.16127pt>
 File: Figures/fig_expval_paper.pdf Graphic file (type pdf)
 <use Figures/fig_expval_paper.pdf>
 Package pdftex.def Info: Figures/fig_expval_paper.pdf  used on input line 2488.
@@ -1660,7 +1660,7 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
  []
 
 [36 <./Figures/fig_lenoise.pdf> <./Figures/fig_amiet_abs.pdf>] [37 <./Figures/fig_expval_paper.pdf>]
-<Figures/fig_amiet_rapid.pdf, id=1202, 376.95367pt x 197.32721pt>
+<Figures/fig_amiet_rapid.pdf, id=1208, 376.95367pt x 197.32721pt>
 File: Figures/fig_amiet_rapid.pdf Graphic file (type pdf)
 <use Figures/fig_amiet_rapid.pdf>
 Package pdftex.def Info: Figures/fig_amiet_rapid.pdf  used on input line 2553.
@@ -1786,15 +1786,15 @@ L3 programming layer <2020/03/25>
 Here is how much of TeX's memory you used:
  29537 strings out of 467159
  539468 string characters out of 5398120
- 931223 words of memory out of 5000000
+ 931266 words of memory out of 5000000
  58005 multiletter control sequences out of 15000+600000
  817862 words of font info for 377 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  92i,13n,131p,1475b,555s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexas.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/main_v3.pdf (44 pages, 848720 bytes).
+Output written on build/main_v3.pdf (44 pages, 850311 bytes).
 PDF statistics:
- 1598 PDF objects out of 1728 (max. 8388607)
+ 1604 PDF objects out of 1728 (max. 8388607)
  1227 compressed objects within 13 object streams
  206 named destinations out of 1000 (max. 500000)
  476 words of extra memory for PDF output out of 10000 (max. 10000000)
