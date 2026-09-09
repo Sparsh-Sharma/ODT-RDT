@@ -18,7 +18,7 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
 sys.path.insert(0, HERE)
-from figstyle_jfm import COL, FULL, GOLD, GREEN, panel, plt, save  # noqa: E402
+from figstyle_jfm import FULL, panel, plt, save  # noqa: E402
 from fig_rdt_moments import (I3, exact_rdt, integrate_model,  # noqa: E402
                              production, rapid_IP, rapid_LRR)
 from scipy.integrate import solve_ivp  # noqa: E402
@@ -30,7 +30,6 @@ OLD2COMP = {  # old figure colours -> component index
     (0.12, 0.47, 0.71): 1,   # blue was b22
     (0.84, 0.15, 0.16): 2,   # red was b33
 }
-CC = [COL["phi11"], COL["phi22"], COL["phi33"]]
 
 
 def get(tag, kind, i, f):
@@ -134,33 +133,36 @@ def fig_plane():
 
 
 def fig_axisym():
+    # monochrome (not used in the current manuscript; kept colour-free for
+    # figstyle consistency): axis b11 solid/square, transverse dashed/^.
     fig, ax = plt.subplots(figsize=(0.72 * FULL, 2.6))
-    OLD = {(0.12, 0.47, 0.71): ("axis $b_{11}$", CC[0]),
+    # old colour -> (label, line style, marker)
+    OLD = {(0.12, 0.47, 0.71): (r"axis $b_{11}$", "-", "s"),
            (0.84, 0.15, 0.16): (r"transverse $\frac{1}{2}(b_{22}+b_{33})$",
-                                CC[1])}
+                                (0, (5, 2)), "^")}
     for i in range(2):
         c = col_of("axisym", "bands", i)
-        lab, col = OLD[c]
+        lab, ls, mk = OLD[c]
         x, y = get("axisym", "bands", i, "x"), get("axisym", "bands", i,
                                                    "y")
         (xl, yl), (xu, yu) = band_edges(x, y)
-        ax.fill_between(xl, yl, np.interp(xl, xu, yu), color=col,
-                        alpha=0.25, lw=0,
+        ax.fill_between(xl, yl, np.interp(xl, xu, yu), color="0.8",
+                        alpha=0.5, lw=0,
                         label=("ODT $b_{22}$--$b_{33}$ spread"
                                if c == (0.84, 0.15, 0.16) else None))
     for i in range(2):
-        lab, col = OLD[col_of("axisym", "curves", i)]
+        lab, ls, mk = OLD[col_of("axisym", "curves", i)]
         ax.plot(get("axisym", "curves", i, "x"),
-                get("axisym", "curves", i, "y"), color=col, lw=1.2,
+                get("axisym", "curves", i, "y"), color="k", ls=ls, lw=1.2,
                 label="ODT " + lab)
     x, y = markers_by("axisym", lambda i: str(
         get("axisym", "markers", i, "shape")) == "re")
-    ax.plot(x, y, "s", ms=3.4, mfc="none", mec=CC[0], mew=0.8,
-            label=r"L&R DNS $b_{11}$")
+    ax.plot(x, y, "s", ms=3.4, mfc="none", mec="k", mew=0.8,
+            label=r"L\&R DNS $b_{11}$")
     x, y = markers_by("axisym", lambda i: str(
         get("axisym", "markers", i, "shape")) == "l")
-    ax.plot(x, y, "^", ms=3.4, mfc="none", mec=CC[1], mew=0.8,
-            label=r"L&R DNS transverse")
+    ax.plot(x, y, "^", ms=3.4, mfc="none", mec="k", mew=0.8,
+            label=r"L\&R DNS transverse")
     ax.axhline(0, color="0.6", lw=0.5, ls=":")
     ax.set_xlabel(r"reference total strain $c=\exp\!\int S\,\mathrm{d}t$")
     ax.set_ylabel(r"$b_{ij}$")
