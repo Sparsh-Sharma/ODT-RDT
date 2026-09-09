@@ -1,19 +1,19 @@
 # Fdb version 4
-["bibtex build/supplementary"] 1788966905.68112 "build/supplementary.aux" "build/supplementary.bbl" "build/supplementary" 1788966908.49922 0
+["bibtex build/supplementary"] 1788966905.68112 "build/supplementary.aux" "build/supplementary.bbl" "build/supplementary" 1788967341.13045 0
   "./jfm.bib" 1788958134 28734 ccc10329d29c1899df9b4379f2a66de0 ""
   "./jfm.bst" 1788675880 33456 4905f5a36c36e08bc982133b3dc1d7d2 ""
-  "build/supplementary.aux" 1788966907 9388 a47cbd75655293ae995c12623abb7b3a "pdflatex"
+  "build/supplementary.aux" 1788967340 9388 a47cbd75655293ae995c12623abb7b3a "pdflatex"
   (generated)
   "build/supplementary.bbl"
   "build/supplementary.blg"
   (rewritten before read)
-["pdflatex"] 1788966906.07575 "supplementary.tex" "build/supplementary.pdf" "supplementary" 1788966908.49977 0
+["pdflatex"] 1788967338.66042 "supplementary.tex" "build/supplementary.pdf" "supplementary" 1788967341.13107 0
   "Figures/fig_cmk_aniso.pdf" 1788940578 13773 1cb805df040bb1b40b749f51aa3dfeab ""
   "Figures/fig_cmk_rdt.pdf" 1788880053 16491 8dda93a38fb67af2d24dfa8df3207a20 ""
-  "Figures/fig_dividend.pdf" 1788880053 19884 6b65525089977dc1476b3ed8ccf92186 ""
+  "Figures/fig_dividend.pdf" 1788967201 20104 ecbfbbc35b79150fb8290d385bf5f8bf ""
   "Figures/fig_klevels.pdf" 1788966704 33127 85411d621ef1a1eba30ab96fe7f4668c ""
   "JFM-FLM_Au.cls" 1788675880 80202 3c186eafc5523bfaca542e040d306b68 ""
-  "build/supplementary.aux" 1788966907 9388 a47cbd75655293ae995c12623abb7b3a "pdflatex"
+  "build/supplementary.aux" 1788967340 9388 a47cbd75655293ae995c12623abb7b3a "pdflatex"
   "build/supplementary.bbl" 1788966906 1225 952f42ec16f5f8e0721bfc64ed5f2fd6 "bibtex build/supplementary"
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc" 1772942362 2211 c42193888177bc8f86d55dca129a9358 ""
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1772942362 2083 60e36f8eac802fcaf19eabe2633b406e ""

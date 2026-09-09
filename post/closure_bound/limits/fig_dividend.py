@@ -30,7 +30,10 @@ LEN = os.path.normpath(os.path.join(HERE, "..", "lenoise"))
 sys.path.insert(0, LEN)
 sys.path.insert(0, os.path.join(HERE, ".."))
 import rdt_kernel as rk  # noqa: E402
-from figstyle_jfm import BLACK, GOLD, RED, FULL, panel, plt, save  # noqa: E402,E501
+from figstyle_jfm import FULL, panel, plt, save  # noqa: E402
+
+# monochrome: model -> line style (all black); exact RDT a grey reference
+SC_LS, CLK_LS, FROZ_LS = "-", (0, (5, 2)), (0, (1, 1.4))
 
 NBIN, KMAX, KMIN_FAC, NKP, NPHI = 40, 300.0, 3.0, 200, 96
 EOFF = {"S1": (0.4, 1.0), "S20": (0.4, 20.0)}       # (E_OFF, SMAG)
@@ -113,29 +116,32 @@ def main():
 
     # ---- (a) deviation from the family, S20 e=2 ------------------------
     j, e = 4, 2.0
-    for variant, col, lab in ((" ", BLACK, "SC-ODT"),
-                              ("_RCS1", RED, "clock-relaxed ODT")):
+    for variant, ls, lab in ((" ", SC_LS, "SC-ODT"),
+                             ("_RCS1", CLK_LS, "clock-relaxed ODT")):
         v = "" if variant == " " else variant
         k2b, (Epb, E2b) = binned("S20", v, j)
         ke, A0, _ = read_fits("S20" + v)[e]
         Epm, E2m = rdt_line_spectra(k2b, e, ke, A0)
         ke0 = read_fits("S20" + v)[0.0][0]
-        a.semilogx(k2b / ke0, E2b / E2m, "-", color=col, lw=1.0,
+        a.semilogx(k2b / ke0, E2b / E2m, ls=ls, color="k", lw=1.1,
                    label=lab)
-        a.semilogx(k2b / ke0, Epb / Epm, ls=(0, (2, 1.5)), color=col,
-                   lw=0.8, alpha=0.7)
+        a.semilogx(k2b / ke0, Epb / Epm, ls=ls, color="k",
+                   lw=0.6, alpha=0.4)
     a.axhline(1.0, color="0.6", lw=0.6, ls=":")
     a.set_xlabel(r"$\kappa_2/\kappa_e(0)$")
     a.set_ylabel(r"$E_i/E_i^{\rm RDT\,fit}$")
     a.set_xticks([6, 10, 20, 40])
     a.set_xticklabels(["6", "10", "20", "40"])
     a.minorticks_off()
+    a.text(0.03, 0.05, r"bold: $E_2$;  faint: $E_\perp$",
+           transform=a.transAxes, fontsize=5.5, color="0.35")
     a.legend(fontsize=6, loc="upper right")
 
     # ---- (b) rms distance vs strain, both rapidities -------------------
+    # model -> line style, rapidity -> marker (o slow, s rapid)
     for tag, mk in (("S1", "o"), ("S20", "s")):
         es = [0.5, 1.0, 1.5, 2.0]
-        for v, col in (("", BLACK), ("_RCS1", RED)):
+        for v, ls in (("", SC_LS), ("_RCS1", CLK_LS)):
             fits = read_fits(tag + v)
             r = []
             for e in es:
@@ -143,8 +149,8 @@ def main():
                 k2b, (Epb, E2b) = binned(tag, v, jj)
                 ke, A0, _ = fits[e]
                 r.append(100 * rms_from(k2b, Epb, E2b, e, ke, A0))
-            b.plot(es, r, marker=mk, ms=3, color=col, lw=0.9,
-                   ls="-" if tag == "S20" else (0, (4, 2)))
+            b.plot(es, r, marker=mk, ms=3, color="k", mfc="k", lw=0.9,
+                   ls=ls)
         # frozen-isotropic surrogate on the STANDARD ensembles
         r = []
         for e in es:
@@ -152,41 +158,44 @@ def main():
             k2b, (Epb, E2b) = binned(tag, "", jj)
             ke, A0 = fit_frozen(k2b, Epb, E2b)
             r.append(100 * rms_from(k2b, Epb, E2b, 0.0, ke, A0))
-        b.plot(es, r, marker=mk, ms=3, color=GOLD, lw=0.9,
-               ls="-" if tag == "S20" else (0, (4, 2)))
+        b.plot(es, r, marker=mk, ms=3, color="k", mfc="k", lw=0.9,
+               ls=FROZ_LS)
     b.set_xlabel(r"total strain $e$")
     b.set_ylabel(r"rms distance from RDT family [\%]")
     from matplotlib.lines import Line2D
     b.legend(handles=[
-        Line2D([], [], color=GOLD, lw=1, label="frozen isotropic"),
-        Line2D([], [], color=BLACK, lw=1, label="SC-ODT"),
-        Line2D([], [], color=RED, lw=1, label="clock-relaxed ODT"),
-        Line2D([], [], color="0.4", marker="s", ls="-", ms=3, lw=0.8,
+        Line2D([], [], color="k", ls=SC_LS, lw=1, label="SC-ODT"),
+        Line2D([], [], color="k", ls=CLK_LS, lw=1,
+               label="clock-relaxed ODT"),
+        Line2D([], [], color="k", ls=FROZ_LS, lw=1,
+               label="frozen isotropic"),
+        Line2D([], [], color="k", marker="s", ls="none", ms=3,
                label=r"$Sk_t/\varepsilon\approx8$"),
-        Line2D([], [], color="0.4", marker="o", ls=(0, (4, 2)), ms=3,
-               lw=0.8, label=r"$\approx0.4$")],
+        Line2D([], [], color="k", marker="o", ls="none", ms=3,
+               label=r"$\approx0.4$")],
         fontsize=5.5, loc="upper left", ncol=2, columnspacing=0.8)
 
     # ---- (c) allocation observable, S20 e=1 ----------------------------
     j, e = 2, 1.0
     ke_r, A0_r, _ = read_fits("S20_RCS1")[e]
     ke0 = read_fits("S20_RCS1")[0.0][0]
-    for v, col, lab in (("", BLACK, "SC-ODT"),
-                        ("_RCS1", RED, "clock-relaxed ODT")):
+    for v, ls, lab in (("", SC_LS, "SC-ODT"),
+                       ("_RCS1", CLK_LS, "clock-relaxed ODT")):
         k2b, (Epb, E2b) = binned("S20", v, j)
-        c.semilogx(k2b / ke0, E2b / Epb, "-", color=col, lw=1.0,
+        c.semilogx(k2b / ke0, E2b / Epb, ls=ls, color="k", lw=1.1,
                    label=lab)
     kk = np.geomspace(KMIN_FAC * 0.4, KMAX, 60)
     Epm, E2m = rdt_line_spectra(kk, e, ke_r, A0_r)
-    c.semilogx(kk / ke0, E2m / Epm, color="#8e44ad", lw=1.2,
-               ls=(0, (5, 2)), label="exact RDT")
-    c.axhline(1.0, color=GOLD, lw=1.0, ls=":", label="frozen (any form)")
+    c.semilogx(kk / ke0, E2m / Epm, color="0.4", lw=1.2,
+               ls=(0, (6, 2)), label="exact RDT")
+    c.axhline(1.0, color="0.55", lw=1.0, ls=(0, (1, 2)),
+              label="frozen (any form)")
     c.set_xlabel(r"$\kappa_2/\kappa_e(0)$")
     c.set_ylabel(r"$E_2/E_\perp$")
     c.set_ylim(0.8, 2.6)
     c.text(0.05, 0.62, "RDT ratio $\\to8$ at the\nenergy scales "
            "(off-scale)", transform=c.transAxes, fontsize=5.5,
-           color="#8e44ad")
+           color="0.4")
     c.legend(fontsize=6, loc="upper right")
 
     for ax, s in ((a, "a"), (b, "b"), (c, "c")):
