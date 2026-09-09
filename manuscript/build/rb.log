@@ -6,10 +6,8 @@ Latexmk: This is Latexmk, John Collins, 9 March 2026. Version 4.88.
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  Figures/fig_threeway.pdf
   main_v3.tex
 Category 'changed_user':
-  Figures/fig_threeway.pdf
   main_v3.tex
 
 ------------
@@ -156,45 +154,51 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [22 <./Figures/fig_threeway.pdf>] [23 <./Figures/fig_rdt_distance.pdf>]
-Overfull \hbox (0.50798pt too wide) in paragraph at lines 1685--1697
+Overfull \hbox (0.50798pt too wide) in paragraph at lines 1691--1703
 \OT1/minntx/m/n/10.74011 the one-dimensional spec-tra ob-tained by in-te-grat-ing $\OML/ntxmi/m/it/10.74011 ^^H[]$ \OT1/minntx/m/n/10.74011 over the two un-re-solved wavenum-
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [24]
-Overfull \hbox (14.10033pt too wide) in paragraph at lines 1731--1735
+Overfull \hbox (14.10033pt too wide) in paragraph at lines 1737--1741
 []\OT1/minntx/m/n/10.74011 Under A1 the an-gu-lar in-te-gral in [] can be car-ried out. Writ-ing $[] \U/ntxmia/m/it/10.74011 = \LMS/ntxsy/m/n/10.74011 ¹\OML/ntxmi/m/it/10.74011 ^^T[] [] ^^R;  ^^T[];  ^^T[] [] ^^R\LMS/ntxsy/m/n/10.74011 º$
-[25]
+
 Underfull \vbox (badness 10000) has occurred while \output is active
-Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \vbox (badness 10000) has occurred while \output is active [25]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [26] [27]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
-[28 <./Figures/fig_a1_control.pdf>] [29 <./Figures/fig_pi_kernels.pdf>]
+[28 <./Figures/fig_a1_control.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \vbox (badness 10000) has occurred while \output is active [29 <./Figures/fig_pi_kernels.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \vbox (badness 10000) has occurred while \output is active
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [30] [31]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
-[32]
-Overfull \hbox (20.32889pt too wide) in paragraph at lines 2297--2322
+[32] [33 <./Figures/fig_clock.pdf>]
+Overfull \hbox (20.32889pt too wide) in paragraph at lines 2303--2328
 \OT1/minntx/m/n/10.74011 anisotropy per wavenum-ber band---the ob-serv-able on which \TS1/ntxtlf/m/n/10.74011 §[][]\OT1/minntx/m/n/10.74011 4.6.1[][] es-tab-lished the benchmark---
-[33 <./Figures/fig_clock.pdf>]
+
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
-[34 <./Figures/fig_fourway5.pdf>] [35 <./Figures/fig_lenoise.pdf>]
+[34 <./Figures/fig_fourway5.pdf>] [35]
+Underfull \vbox (badness 1264) has occurred while \output is active
+Underfull \vbox (badness 1264) has occurred while \output is active
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
-[36 <./Figures/fig_amiet_abs.pdf>] [37 <./Figures/fig_expval_paper.pdf>]
+[36 <./Figures/fig_lenoise.pdf> <./Figures/fig_amiet_abs.pdf>] [37 <./Figures/fig_expval_paper.pdf>]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [38 <./Figures/fig_amiet_rapid.pdf>] [39]
 pdfTeX warning (ext4): destination with the same identifier (name{section.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2696 ...n{The forward map and the bound kernels}
+l.2702 ...n{The forward map and the bound kernels}
                                                   \label{app:forward}
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
@@ -202,28 +206,26 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 pdfTeX warning (ext4): destination with the same identifier (name{section.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2903 ...ters, initial conditions and statistics}
+l.2909 ...ters, initial conditions and statistics}
                                                   
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2908 \subsection{ODT configurations}
+l.2914 \subsection{ODT configurations}
                                       
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2930 ...rained-box DNS and exact-RDT companions}
+l.2936 ...rained-box DNS and exact-RDT companions}
                                                   
+Overfull \hbox (1.61096pt too wide) has occurred while \output is active
+[] 
+[42]
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2955 \subsection{Statistics policy}
-                                     
-Overfull \hbox (1.61096pt too wide) has occurred while \output is active
-[] 
-[42] (build/main_v3.bbl
-Underfull \vbox (badness 8132) has occurred while \output is active
-Underfull \vbox (badness 8132) has occurred while \output is active [43{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}])
+l.2961 \subsection{Statistics policy}
+                                      (build/main_v3.bbl [43{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}])
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [44] (build/main_v3.aux)
@@ -232,7 +234,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)<c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexas.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/main_v3.pdf (44 pages, 848826 bytes).
+Output written on build/main_v3.pdf (44 pages, 848534 bytes).
 Transcript written on build/main_v3.log.
 Latexmk: Getting log file 'build/main_v3.log'
 Latexmk: Examining 'build/main_v3.fls'
@@ -416,45 +418,51 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [22 <./Figures/fig_threeway.pdf>] [23 <./Figures/fig_rdt_distance.pdf>]
-Overfull \hbox (0.50798pt too wide) in paragraph at lines 1685--1697
+Overfull \hbox (0.50798pt too wide) in paragraph at lines 1691--1703
 \OT1/minntx/m/n/10.74011 the one-dimensional spec-tra ob-tained by in-te-grat-ing $\OML/ntxmi/m/it/10.74011 ^^H[]$ \OT1/minntx/m/n/10.74011 over the two un-re-solved wavenum-
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [24]
-Overfull \hbox (14.10033pt too wide) in paragraph at lines 1731--1735
+Overfull \hbox (14.10033pt too wide) in paragraph at lines 1737--1741
 []\OT1/minntx/m/n/10.74011 Under A1 the an-gu-lar in-te-gral in [] can be car-ried out. Writ-ing $[] \U/ntxmia/m/it/10.74011 = \LMS/ntxsy/m/n/10.74011 ¹\OML/ntxmi/m/it/10.74011 ^^T[] [] ^^R;  ^^T[];  ^^T[] [] ^^R\LMS/ntxsy/m/n/10.74011 º$
-[25]
+
 Underfull \vbox (badness 10000) has occurred while \output is active
-Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \vbox (badness 10000) has occurred while \output is active [25]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [26] [27]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
-[28 <./Figures/fig_a1_control.pdf>] [29 <./Figures/fig_pi_kernels.pdf>]
+[28 <./Figures/fig_a1_control.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \vbox (badness 10000) has occurred while \output is active [29 <./Figures/fig_pi_kernels.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \vbox (badness 10000) has occurred while \output is active
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [30] [31]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
-[32]
-Overfull \hbox (20.32889pt too wide) in paragraph at lines 2297--2322
+[32] [33 <./Figures/fig_clock.pdf>]
+Overfull \hbox (20.32889pt too wide) in paragraph at lines 2303--2328
 \OT1/minntx/m/n/10.74011 anisotropy per wavenum-ber band---the ob-serv-able on which \TS1/ntxtlf/m/n/10.74011 §[][]\OT1/minntx/m/n/10.74011 4.6.1[][] es-tab-lished the benchmark---
-[33 <./Figures/fig_clock.pdf>]
+
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
-[34 <./Figures/fig_fourway5.pdf>] [35 <./Figures/fig_lenoise.pdf>]
+[34 <./Figures/fig_fourway5.pdf>] [35]
+Underfull \vbox (badness 1264) has occurred while \output is active
+Underfull \vbox (badness 1264) has occurred while \output is active
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
-[36 <./Figures/fig_amiet_abs.pdf>] [37 <./Figures/fig_expval_paper.pdf>]
+[36 <./Figures/fig_lenoise.pdf> <./Figures/fig_amiet_abs.pdf>] [37 <./Figures/fig_expval_paper.pdf>]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [38 <./Figures/fig_amiet_rapid.pdf>] [39]
 pdfTeX warning (ext4): destination with the same identifier (name{section.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2696 ...n{The forward map and the bound kernels}
+l.2702 ...n{The forward map and the bound kernels}
                                                   \label{app:forward}
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
@@ -462,33 +470,31 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 pdfTeX warning (ext4): destination with the same identifier (name{section.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2903 ...ters, initial conditions and statistics}
+l.2909 ...ters, initial conditions and statistics}
                                                   
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2908 \subsection{ODT configurations}
+l.2914 \subsection{ODT configurations}
                                       
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2930 ...rained-box DNS and exact-RDT companions}
+l.2936 ...rained-box DNS and exact-RDT companions}
                                                   
+Overfull \hbox (1.61096pt too wide) has occurred while \output is active
+[] 
+[42]
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2955 \subsection{Statistics policy}
-                                     
-Overfull \hbox (1.61096pt too wide) has occurred while \output is active
-[] 
-[42] (build/main_v3.bbl
-Underfull \vbox (badness 8132) has occurred while \output is active
-Underfull \vbox (badness 8132) has occurred while \output is active [43{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}])
+l.2961 \subsection{Statistics policy}
+                                      (build/main_v3.bbl [43{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}])
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [44] (build/main_v3.aux) )
 (see the transcript file for additional information)<c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexas.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/main_v3.pdf (44 pages, 848826 bytes).
+Output written on build/main_v3.pdf (44 pages, 848534 bytes).
 Transcript written on build/main_v3.log.
 Latexmk: Getting log file 'build/main_v3.log'
 Latexmk: Examining 'build/main_v3.fls'

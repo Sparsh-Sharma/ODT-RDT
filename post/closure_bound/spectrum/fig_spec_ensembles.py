@@ -151,16 +151,21 @@ def fig_aniso(on, off):
     fig, ax = plt.subplots(figsize=(0.62 * FULL, 2.3))
     t = on["t"]
     ee = np.linspace(0, 2.2, 50)
-    ax.plot(ee, np.exp(0.5 * ee), "k--", lw=0.9,
+    ax.plot(ee, np.exp(0.5 * ee), color="0.45", ls=(0, (1, 1.2)), lw=1.0,
             label="rigid translation")
-    for key, col, lab in (("c1", COL["phi11"],
-                           r"streamwise $\bar\kappa_1$"),
-                          ("c2", COL["phi22"],
-                           r"upwash $\bar\kappa_2$")):
+    # monochrome: component -> line style + marker; the qualitative
+    # ensemble spread is a single light grey band per component (thin
+    # matching-style envelope edges so overlaps stay legible).
+    specs = (("c2", r"upwash $\bar\kappa_2$", "-", "o", "0.82"),
+             ("c1", r"streamwise $\bar\kappa_1$", (0, (5, 2)), "s", "0.9"))
+    for key, lab, ls, mk, band in specs:
         r = on[key + "_gmean"] / off[key + "_gmean"]
         gs = np.sqrt(on[key + "_gsd"] * off[key + "_gsd"])
-        ax.plot(t, r, color=col, lw=1.1, label=lab)
-        ax.fill_between(t, r / gs, r * gs, color=col, alpha=0.2, lw=0)
+        ax.fill_between(t, r / gs, r * gs, color=band, lw=0.0, zorder=0)
+        for edge in (r / gs, r * gs):
+            ax.plot(t, edge, color="0.6", ls=ls, lw=0.5, zorder=1)
+        ax.plot(t, r, color="k", ls=ls, lw=1.2, marker=mk, ms=3.2,
+                mfc="k", mew=0.6, markevery=5, label=lab, zorder=3)
     ax.axhline(1.0, color="0.7", lw=0.5, ls=":")
     ax.set_xlim(0, 2.2)
     ax.set_ylim(0.9, 3.2)
