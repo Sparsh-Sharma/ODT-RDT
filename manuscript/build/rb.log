@@ -6,9 +6,9 @@ Latexmk: This is Latexmk, John Collins, 9 March 2026. Version 4.88.
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  Figures/fig_pi_kernels.pdf
+  Figures/fig_a1_control.pdf
 Category 'changed_user':
-  Figures/fig_pi_kernels.pdf
+  Figures/fig_a1_control.pdf
 
 ------------
 Run number 1 of rule 'pdflatex'
@@ -228,7 +228,7 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
 [44] (build/main_v3.aux) )
 (see the transcript file for additional information)<c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexas.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/main_v3.pdf (44 pages, 849934 bytes).
+Output written on build/main_v3.pdf (44 pages, 849924 bytes).
 Transcript written on build/main_v3.log.
 Latexmk: Getting log file 'build/main_v3.log'
 Latexmk: Examining 'build/main_v3.fls'

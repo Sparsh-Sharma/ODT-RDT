@@ -66,9 +66,13 @@ m2_a, sp_a, b_a = series("n128axi", "axi_")
 fig, (axl, axr) = plt.subplots(1, 2, figsize=(FULL, 2.2))
 
 axl.axhline(0.133, color="0.6", lw=0.6, ls=(0, (1, 1.2)), zorder=0)
-axl.text(0.02, 0.138, "isotropic floor", fontsize=7.5, color="0.4")
 axl.plot(EVAL, m2_p, lw=1.1, label="plane strain (A1 broken)", **PLANE)
 axl.plot(EVAL, m2_a, lw=1.0, label="axisymmetric (A1 exact)", **AXI)
+# label the floor just below the line, clear of the axisymmetric curve
+# (which lies on it) and of the rising plane-strain curve
+axl.set_ylim(0.11, None)
+axl.text(0.32, 0.122, "isotropic floor", fontsize=7.5, color="0.4",
+         va="top")
 axl.set_ylabel(r"azimuthal $m{=}2$ residue of $\Phi_{22}$")
 axl.legend(loc="upper left")
 
