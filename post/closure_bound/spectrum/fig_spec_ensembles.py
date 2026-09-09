@@ -94,14 +94,13 @@ def fig_op(op):
     for i, lab in enumerate(("$E_1$", "$E_2$", "$E_3$")):
         a.loglog(op["k_last"], op[f"E{i + 1}_last"], color="k",
                  ls=LS[i], lw=1.0, label=lab)
-    kref = np.array([200.0, 4000.0])
-    a.plot(kref, 3e-3 * op["Etot_last"].max()
-           * (kref / kref[0]) ** (-5 / 3), color="0.45", ls=(0, (1, 1.2)),
-           lw=0.9)
-    # label at the right end of the reference line, above it, where the
-    # spectra have rolled well below the slope guide
-    a.text(2500, 2.0 * 3e-3 * op["Etot_last"].max()
-           * (2500 / kref[0]) ** (-5 / 3), r"$\kappa^{-5/3}$",
+    kref = np.array([200.0, 9000.0])
+    kslope = 3e-3 * op["Etot_last"].max() * (kref / 200.0) ** (-5 / 3)
+    a.plot(kref, kslope, color="0.45", ls=(0, (1, 1.2)), lw=0.9)
+    # label at the far right of the slope guide, where the spectra have
+    # dropped orders of magnitude below it (they roll off faster than -5/3)
+    a.text(6000, 2.4 * 3e-3 * op["Etot_last"].max()
+           * (6000 / 200.0) ** (-5 / 3), r"$\kappa^{-5/3}$",
            fontsize=7, color="0.3", ha="center", va="bottom")
     a.set_xlabel(r"wavenumber $\kappa_2$")
     a.set_ylabel(r"$E_i(\kappa_2)$")
