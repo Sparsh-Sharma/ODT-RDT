@@ -15,7 +15,7 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
 sys.path.insert(0, os.path.join(HERE, "..", "verification"))
-from figstyle_jfm import COL, FULL, panel, plt, save  # noqa: E402
+from figstyle_jfm import FULL, panel, plt, save  # noqa: E402
 from fig_rdt_moments import (exact_rdt, integrate_model,  # noqa: E402
                              strain_tensor)
 
@@ -34,26 +34,26 @@ def main():
 
     fig, (a, b) = plt.subplots(1, 2, figsize=(FULL, 2.3))
     ee = np.linspace(0, ECMK, 100)
-    a.plot(ee, np.exp(0.5 * ee), "k--", lw=0.9,
+    a.plot(ee, np.exp(0.5 * ee), color="k", ls=(0, (6, 2)), lw=0.9,
            label=r"rigid translation $\mathrm{e}^{-A_{22}e}$")
     a.plot(t[m], d["c1_mean"][m] / d["c1_mean"][0], "o",
-           color=COL["phi11"], ms=2.8, mfc="none",
+           color="k", ms=3.0, mfc="none", mew=0.8,
            label=r"$\bar\kappa_1$")
     a.plot(t[m], d["c2_mean"][m] / d["c2_mean"][0], "s",
-           color=COL["phi22"], ms=2.8, mfc="none",
+           color="k", ms=3.0, mfc="none", mew=0.8,
            label=r"$\bar\kappa_2$")
-    a.axhline(3.0, color="0.7", lw=0.5, ls=":")
+    a.axhline(3.0, color="0.6", lw=0.6, ls=(0, (1, 1.4)))
     a.set_ylim(0.95, 3.3)
     a.text(1.9, 3.05, r"$D=3$", fontsize=7, color="0.4")
     a.set_xlabel(r"total strain $e = S\,t$")
     a.set_ylabel(r"$\bar\kappa(e)/\bar\kappa(0)$")
     a.legend(loc="upper left")
-    b.plot(te, kte / kte[0], color=COL["rdt"], lw=1.2,
+    b.plot(te, kte / kte[0], color="k", ls="-", lw=1.2,
            label="exact RDT")
-    b.plot(tm, ktm / ktm[0], color="k", ls=(0, (6, 2)), lw=0.9,
+    b.plot(tm, ktm / ktm[0], color="0.45", ls=(0, (6, 2)), lw=1.0,
            label="LRR closure")
     b.plot(t[m], d["kt_mean"][m] / d["kt_mean"][0], "o",
-           color=COL["odt"], ms=2.8, mfc="none", label="ODT solver")
+           color="k", ms=3.0, mfc="none", mew=0.8, label="SC-ODT")
     b.set_xlabel(r"total strain $e = S\,t$")
     b.set_ylabel(r"$k_t(e)/k_t(0)$")
     b.legend(loc="upper left")
