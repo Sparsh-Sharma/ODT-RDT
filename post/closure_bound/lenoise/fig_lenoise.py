@@ -36,7 +36,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, ".."))
 import rdt_kernel as rk  # noqa: E402
-from figstyle_jfm import COL, FULL, panel, plt, save  # noqa: E402
+from figstyle_jfm import FULL, panel, plt, save  # noqa: E402
+
+# monochrome: total strain e=0.5,1,1.5,2 -> light->black grey ramp
+SHADES = ["0.66", "0.44", "0.22", "0.0"]
 
 NK2 = 240      # k2-integral nodes (symmetric log grid)
 NKY = 160      # Ky-integral nodes
@@ -98,7 +101,7 @@ def main():
         ke0, A00 = fits[0.0]
         kx = ke0 * np.geomspace(0.04, 12.0, 34)
         K0 = np.array([noise_kernel(k, 0.0, ke0, A00) for k in kx])
-        cols = [COL["odt"], COL["phi33"], COL["phi11"], COL["rdt"]]
+        cols = SHADES
         # level term: the MODEL's measured upwash-variance ratio (median
         # line spectra of the clean ensembles), not the fit amplitude
         sp = np.load(os.path.join(HERE, f"spectra_gateA_{tag}.npz"),
@@ -119,9 +122,10 @@ def main():
             lev = 10.0 * np.log10(r22(e) / R220)
             shape = dspl - lev
             ax.plot(kx / ke0, shape, "-", color=col, ms=2.5, marker="o",
+                    mfc=col, lw=1.0,
                     label=f"$e={e:.1f}$" if ax is axs[0] else None)
             ax.plot(kx / ke0, dspl, ls=(0, (1, 1.5)), color=col,
-                    lw=0.8, alpha=0.6)
+                    lw=0.8, alpha=0.7)
             print(f"{tag} e={e}: level {lev:+.1f} dB; shape-only at "
                   "kx/ke0=0.05/0.3/1/3/10: "
                   + " ".join(f"{np.interp(v, kx / ke0, shape):+.1f}"
