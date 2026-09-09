@@ -24,10 +24,21 @@ the colour-separation route of `pa_extract.py`. Every extraction must
 print a calibration check (axis tick positions round-tripped) before its
 CSV is trusted, as `../fig_lr_paper.py` does for the L&R curves.
 
-## Targets
+## Status (2026-09-09)
 
-- `ZusiPerot2013` → new marker family on `../fig_lr_paper.py::fig_plane`
-  (`fig_LR_plane`).
-- `GualtieriMeneveau2010` → ESM §S1 CMK figure (`../../spectrum/fig_cmk_*`).
-- `ZusiPerot2014` → revive `../fig_lr_paper.py::fig_axisym`
-  (`fig_LR_axisym`) with L&R EXO/AXK.
+- **ZusiPerot2013 — DONE.** `extract_zp2013.py` digitises their fig. 10(a)
+  (plane strain, IC3, all rates; vector, calibration residual < 1e-3).
+  `zp2013_plane_high.csv` (their halved-normalisation `b_ij` relabelled to
+  L&R's component convention) is overlaid as filled markers on
+  `fig_LR_plane` by `../fig_lr_paper.py`.
+- **ZusiPerot2014 — DONE.** `extract_zp2014.py` digitises their fig. 7
+  (AXC/AXE, all rates; vector, colour→rate by the b11-extremum time).
+  `zp2014_AXC_high_b11.csv` overlaid on the newly added `fig_LR_axisym`.
+- **GualtieriMeneveau2010 — CITATION ONLY.** Their fig. 12 `b_ij` is a
+  black-on-white RASTER of heavily overlapping hollow symbols; automated
+  symbol classification was unreliable, AND the observable is the full
+  straining–*destraining* cycle, which the monotonic model run does not
+  reproduce (no strain reversal). So GM2010 is cited, not overlaid (ESM
+  §S1). `gm2010_Sstar.csv` is the digitised fig. 1 strain history (vector,
+  clean): integrating S* over the straining phase gives total deformation
+  D = exp(∫S dt) ≈ 4.5, e ≈ 3.0 — recorded for reference.

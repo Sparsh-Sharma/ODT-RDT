@@ -1039,14 +1039,17 @@ irrotational-strain benchmark of that programme's own later work: the
 structure-based models of \citet{ReynoldsKassinos1995} and
 \citet{KassinosReynoldsRogers2001} are validated against its plane-strain
 and axisymmetric runs \citep{KassinosReynolds1998}. More recent direct
-simulations of the same deformations at moderate Reynolds number
-\citep{ZusiPerot2013,ZusiPerot2014}, and of the
+simulations of the same deformations at moderate Reynolds number provide
+independent, journal-published comparators, and are overlaid on the
+comparisons below: \citet{ZusiPerot2013} for plane strain
+(figure~\ref{fig:lr-plane-fig}) and \citet{ZusiPerot2014} for
+axisymmetric contraction (figure~\ref{fig:lr-axisym-fig}), both digitised
+from their published anisotropy figures and shown over the strain range
+they reach ($c\le1.65$). A direct simulation of the
 \citeauthor{ChenMeneveauKatz2006} straining cycle
-\citep{GualtieriMeneveau2010}, provide independent journal-published
-comparators.
-%% TODO(O8, pending PDFs): overlay ZusiPerot2013 on fig_LR_plane,
-%% ZusiPerot2014 on a revived fig_LR_axisym, GualtieriMeneveau2010 in
-%% ESM S1; then extend the sentence above to point at those figures.
+\citep{GualtieriMeneveau2010}, which reports the same variances and
+pressure--strain budget as that experiment against a
+Launder--Reece--Rodi closure, is discussed in the supplementary material.
 The
 comparison quantity is the anisotropy $b_{ij}$ against the deformation
 ratio $c=\exp\int S\,\mathrm{d}t$ (so $\ln c$ is the total strain $e$ of
@@ -1081,7 +1084,10 @@ spectral-closure gap isolated in \S\,\ref{sec:finite-strain} and common
 to the whole second-moment family; the line adds only a small artefact,
 breaking the transverse symmetry with a residual split
 $b_{22}=+0.102$ against $b_{33}=+0.113$ that the symmetry-respecting
-mean $\tfrac12(b_{22}+b_{33})$ removes.
+mean $\tfrac12(b_{22}+b_{33})$ removes. Figure~\ref{fig:lr-axisym-fig}
+shows the comparison, with the independent DNS of \citet{ZusiPerot2014}
+tracking both the model and Lee \& Reynolds over the strain range it
+reaches.
 
 \begin{figure}
   \centering
@@ -1091,12 +1097,32 @@ mean $\tfrac12(b_{22}+b_{33})$ removes.
   against the DNS of \citet{LeeReynolds1985} (open symbols, digitised
   from their figure~5.4). Line style and marker denote the component
   ($b_{11}$ solid/$\circ$, $b_{22}$ dashed/$\square$, $b_{33}$
-  dotted/$\triangle$); the hatched band is the DNS $b_{11}$ range over
-  slow-to-fast $S^{*}$. The strained components $b_{22}$ and $b_{33}$
-  are reproduced quantitatively; the unstrained $b_{11}$ is
+  dotted/$\triangle$); open markers are \citet{LeeReynolds1985}, filled
+  markers the independent DNS of \citet{ZusiPerot2013} (their highest
+  rate, over the strained range $c\le1.65$); the hatched band is the DNS
+  $b_{11}$ range over slow-to-fast $S^{*}$. The strained components
+  $b_{22}$ and $b_{33}$ are reproduced quantitatively, and the two DNS
+  agree where they overlap; the unstrained $b_{11}$ is
   strain-rate-dependent in the DNS, with SC-ODT at its
   slow-strain edge.}
   \label{fig:lr-plane-fig}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.72\textwidth]{Figures/fig_LR_axisym.pdf}
+  \caption{Reynolds-stress anisotropy under axisymmetric contraction:
+  SC-ODT (lines; ensemble mean over $1000$ realisations, standard-error
+  band) against the DNS of \citet{LeeReynolds1985} (open markers) and the
+  independent DNS of \citet{ZusiPerot2014} (filled markers, their highest
+  rate, over $c\le1.65$). Solid/$\square$: the compressed axial component
+  $b_{11}$; dashed/$\triangle$: the transverse component
+  $\tfrac12(b_{22}+b_{33})$. The model tracks the sign and monotonic
+  growth of both, and the two DNS agree where they overlap; the
+  magnitude is under-predicted at large strain by the closure gap common
+  to the second-moment family (\S\,\ref{sec:finite-strain}), not by the
+  line.}
+  \label{fig:lr-axisym-fig}
 \end{figure}
 
 The one component the model does not reproduce, the plane-strain

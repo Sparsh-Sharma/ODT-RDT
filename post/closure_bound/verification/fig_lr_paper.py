@@ -114,21 +114,37 @@ def fig_plane():
             "plane", lambda i: comp_of("plane", "markers", i) == comp)
         ax.plot(x, y, ls="none", marker=MK[comp], ms=3.4, mfc="none",
                 mec="k", mew=0.8)
+    # Zusi & Perot 2013 (Phys. Fluids 25, 110819): IC3, highest rate
+    # Sk0/eps0 = 3.37 (S* = 6.7), digitised from their fig. 10(a);
+    # their b_ij is twice the standard one (their p. 10) -> halved, and
+    # their (1,2,3) = (stretched, compressed, neutral) -> relabelled to
+    # L&R's (neutral, compressed, stretched) in dns_benchmarks/.
+    # Their runs strain to e = 0.5 only (c <= 1.65).  Filled markers.
+    zp = np.genfromtxt(os.path.join(HERE, "dns_benchmarks",
+                                    "zp2013_plane_high.csv"),
+                       delimiter=",", skip_header=1)
+    sel = zp[1::2]                               # e = 0.1, 0.2, ..., 0.5
+    for comp, col in ((0, 2), (1, 3), (2, 4)):
+        ax.plot(sel[:, 1], sel[:, col], ls="none", marker=MK[comp],
+                ms=3.0, mfc="k", mec="k", mew=0.6, zorder=5)
     ax.axhline(0, color="0.6", lw=0.5, ls=":")
     ax.set_xlabel(r"reference total strain $c=\exp\!\int S\,\mathrm{d}t$")
     ax.set_ylabel(r"$b_{ij}$")
     hand = [Line2D([0], [0], color="k", ls=LS[c], marker=MK[c],
                    mfc="none", mew=0.9, ms=4, lw=1.2) for c in range(3)]
     hand.append(Patch(facecolor="none", edgecolor="0.55", hatch="////"))
+    hand.append(Line2D([0], [0], color="k", ls="none", marker="o",
+                       mfc="none", mew=0.9, ms=4))
+    hand.append(Line2D([0], [0], color="k", ls="none", marker="o",
+                       mfc="k", mew=0.6, ms=3.2))
     labs = [r"$b_{11}$ unstrained", r"$b_{22}$ compressed",
-            r"$b_{33}$ stretched", r"DNS $b_{11}$ range ($S^{*}$)"]
-    leg = ax.legend(hand, labs, fontsize=6.3, loc="center right",
-                    bbox_to_anchor=(0.99, 0.34), handlelength=2.4,
-                    labelspacing=0.3, borderpad=0.5)
-    leg.get_frame().set_edgecolor("0.7")
-    leg.get_frame().set_facecolor("white")
-    leg.get_frame().set_alpha(1.0)
-    fig.tight_layout(pad=0.4)
+            r"$b_{33}$ stretched", r"DNS $b_{11}$ range ($S^{*}$)",
+            r"open: Lee \& Reynolds 1985",
+            r"filled: Zusi \& Perot 2013"]
+    fig.legend(hand, labs, fontsize=6.3, loc="lower center", ncol=3,
+               bbox_to_anchor=(0.5, -0.02), handlelength=2.2,
+               columnspacing=1.3, labelspacing=0.3)
+    fig.tight_layout(pad=0.4, rect=(0, 0.12, 1, 1))
     save(fig, os.path.join(HERE, "fig_LR_plane"))
 
 
@@ -163,11 +179,27 @@ def fig_axisym():
         get("axisym", "markers", i, "shape")) == "l")
     ax.plot(x, y, "^", ms=3.4, mfc="none", mec="k", mew=0.8,
             label=r"L\&R DNS transverse")
+    # Zusi & Perot 2014 (Phys. Fluids 26, 115103): AXC IC1, highest rate
+    # Sk0/eps0 = 3.37 (S* = 6.7), digitised from their fig. 7(a); standard
+    # b_ij; c = exp(a t) with a the axial rate, as for L&R.  Transverse
+    # taken as -b11/2 (axisymmetry + zero trace; their b22, b33 agree with
+    # it to 0.01).  Strain ends at e = 0.5 (c = 1.65).
+    zp = np.genfromtxt(os.path.join(HERE, "dns_benchmarks",
+                                    "zp2014_AXC_high_b11.csv"),
+                       delimiter=",", skip_header=1)
+    ez = np.arange(0.1, 0.501, 0.1)
+    b11z = np.interp(ez, zp[:, 1], zp[:, 2])
+    ax.plot(np.exp(ez), b11z, "s", ms=3.0, mfc="k", mec="k", mew=0.6,
+            zorder=5, label=r"Zusi \& Perot 2014 $b_{11}$")
+    ax.plot(np.exp(ez), -0.5 * b11z, "^", ms=3.0, mfc="k", mec="k",
+            mew=0.6, zorder=5, label=r"Zusi \& Perot 2014 transverse")
     ax.axhline(0, color="0.6", lw=0.5, ls=":")
     ax.set_xlabel(r"reference total strain $c=\exp\!\int S\,\mathrm{d}t$")
     ax.set_ylabel(r"$b_{ij}$")
-    ax.legend(fontsize=6.3, loc="lower left")
-    fig.tight_layout(pad=0.4)
+    fig.legend(fontsize=6.0, loc="lower center", ncol=2,
+               bbox_to_anchor=(0.5, -0.02), columnspacing=1.3,
+               labelspacing=0.3)
+    fig.tight_layout(pad=0.4, rect=(0, 0.18, 1, 1))
     save(fig, os.path.join(HERE, "fig_LR_axisym"))
 
 

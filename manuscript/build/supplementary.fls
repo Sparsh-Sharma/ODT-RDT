@@ -439,11 +439,6 @@ INPUT ./Figures/fig_cmk_aniso.pdf
 INPUT ./Figures/fig_cmk_aniso.pdf
 INPUT ./Figures/fig_cmk_aniso.pdf
 INPUT c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/newtx/ntx-Italic-tlf-ot1.tfm
-INPUT ./Figures/fig_klevels.pdf
-INPUT ./Figures/fig_klevels.pdf
-INPUT ./Figures/fig_klevels.pdf
-INPUT ./Figures/fig_klevels.pdf
-INPUT ./Figures/fig_klevels.pdf
 INPUT c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf
 INPUT c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
 INPUT c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1r.tfm
@@ -454,6 +449,11 @@ INPUT c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/vf/public/newtx/
 INPUT c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
 INPUT c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
+INPUT ./Figures/fig_klevels.pdf
+INPUT ./Figures/fig_klevels.pdf
+INPUT ./Figures/fig_klevels.pdf
+INPUT ./Figures/fig_klevels.pdf
+INPUT ./Figures/fig_klevels.pdf
 INPUT ./Figures/fig_dividend.pdf
 INPUT ./Figures/fig_dividend.pdf
 INPUT ./Figures/fig_dividend.pdf

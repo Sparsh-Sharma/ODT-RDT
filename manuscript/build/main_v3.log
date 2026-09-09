@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  9 SEP 2026 14:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  9 SEP 2026 15:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1460,109 +1460,115 @@ Package pdftex.def Info: Figures/fig_level1a.pdf  used on input line 1004.
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
 (Font)              scaled to size 8.73262pt on input line 1016.
  [13 <./Figures/fig_upwash_amplification.pdf>]
-Underfull \vbox (badness 1603) has occurred while \output is active []
-
-
-Underfull \vbox (badness 1603) has occurred while \output is active []
-
-
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
 [14 <./Figures/fig_level1a.pdf>]
-<Figures/fig_LR_plane.pdf, id=490, 300.13724pt x 182.2239pt>
+<Figures/fig_LR_plane.pdf, id=497, 300.13724pt x 186.73163pt>
 File: Figures/fig_LR_plane.pdf Graphic file (type pdf)
 <use Figures/fig_LR_plane.pdf>
-Package pdftex.def Info: Figures/fig_LR_plane.pdf  used on input line 1088.
-(pdftex.def)             Requested size: 307.20117pt x 186.51933pt.
-<Figures/fig_LR_b11_closure.pdf, id=502, 269.95523pt x 182.2239pt>
+Package pdftex.def Info: Figures/fig_LR_plane.pdf  used on input line 1094.
+(pdftex.def)             Requested size: 307.20117pt x 191.1333pt.
+<Figures/fig_LR_axisym.pdf, id=510, 269.41725pt x 186.8822pt>
+File: Figures/fig_LR_axisym.pdf Graphic file (type pdf)
+<use Figures/fig_LR_axisym.pdf>
+Package pdftex.def Info: Figures/fig_LR_axisym.pdf  used on input line 1113.
+(pdftex.def)             Requested size: 276.48047pt x 191.78645pt.
+
+Underfull \vbox (badness 2213) has occurred while \output is active []
+
+
+Underfull \vbox (badness 2213) has occurred while \output is active []
+
+ [15 <./Figures/fig_LR_plane.pdf>]
+<Figures/fig_LR_b11_closure.pdf, id=561, 269.95523pt x 182.2239pt>
 File: Figures/fig_LR_b11_closure.pdf Graphic file (type pdf)
 <use Figures/fig_LR_b11_closure.pdf>
-Package pdftex.def Info: Figures/fig_LR_b11_closure.pdf  used on input line 1134.
+Package pdftex.def Info: Figures/fig_LR_b11_closure.pdf  used on input line 1160.
 (pdftex.def)             Requested size: 314.88281pt x 212.56158pt.
- [15 <./Figures/fig_LR_plane.pdf>]
+
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[16 <./Figures/fig_LR_b11_closure.pdf>]
-<Figures/fig_rdt_projection.pdf, id=581, 376.85335pt x 152.65633pt>
+[16 <./Figures/fig_LR_axisym.pdf>] [17 <./Figures/fig_LR_b11_closure.pdf>]
+<Figures/fig_rdt_projection.pdf, id=636, 376.85335pt x 152.65633pt>
 File: Figures/fig_rdt_projection.pdf Graphic file (type pdf)
 <use Figures/fig_rdt_projection.pdf>
-Package pdftex.def Info: Figures/fig_rdt_projection.pdf  used on input line 1239.
+Package pdftex.def Info: Figures/fig_rdt_projection.pdf  used on input line 1265.
 (pdftex.def)             Requested size: 384.0pt x 155.55363pt.
- [17 <./Figures/fig_rdt_projection.pdf>]
-<Figures/fig_spec_kinematic.pdf, id=614, 378.25217pt x 159.99774pt>
+<Figures/fig_spec_kinematic.pdf, id=641, 378.25217pt x 159.99774pt>
 File: Figures/fig_spec_kinematic.pdf Graphic file (type pdf)
 <use Figures/fig_spec_kinematic.pdf>
-Package pdftex.def Info: Figures/fig_spec_kinematic.pdf  used on input line 1267.
+Package pdftex.def Info: Figures/fig_spec_kinematic.pdf  used on input line 1293.
 (pdftex.def)             Requested size: 384.0pt x 162.42894pt.
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[18 <./Figures/fig_spec_kinematic.pdf>]
-<Figures/fig_spec_bvc.pdf, id=645, 378.40276pt x 160.1423pt>
+[18 <./Figures/fig_rdt_projection.pdf>]
+<Figures/fig_spec_bvc.pdf, id=678, 378.40276pt x 160.1423pt>
 File: Figures/fig_spec_bvc.pdf Graphic file (type pdf)
 <use Figures/fig_spec_bvc.pdf>
-Package pdftex.def Info: Figures/fig_spec_bvc.pdf  used on input line 1338.
+Package pdftex.def Info: Figures/fig_spec_bvc.pdf  used on input line 1364.
 (pdftex.def)             Requested size: 384.0pt x 162.52194pt.
- [19 <./Figures/fig_spec_bvc.pdf>]
-<Figures/fig_spec_op.pdf, id=676, 377.71515pt x 160.04092pt>
+ [19 <./Figures/fig_spec_kinematic.pdf>]
+<Figures/fig_spec_op.pdf, id=709, 377.71515pt x 160.04092pt>
 File: Figures/fig_spec_op.pdf Graphic file (type pdf)
 <use Figures/fig_spec_op.pdf>
-Package pdftex.def Info: Figures/fig_spec_op.pdf  used on input line 1412.
+Package pdftex.def Info: Figures/fig_spec_op.pdf  used on input line 1438.
 (pdftex.def)             Requested size: 384.0pt x 162.71452pt.
+
+Underfull \vbox (badness 1565) has occurred while \output is active []
+
+
+Underfull \vbox (badness 1565) has occurred while \output is active []
+
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[20 <./Figures/fig_spec_op.pdf>]
+[20 <./Figures/fig_spec_bvc.pdf>] [21 <./Figures/fig_spec_op.pdf>]
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 8.46002pt on input line 1508.
+(Font)              scaled to size 8.46002pt on input line 1534.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 6.20401pt on input line 1508.
+(Font)              scaled to size 6.20401pt on input line 1534.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 5.17001pt on input line 1508.
- [21]
-<Figures/fig_threeway.pdf, id=724, 375.52193pt x 278.33788pt>
+(Font)              scaled to size 5.17001pt on input line 1534.
+
+Overfull \hbox (1.61096pt too wide) has occurred while \output is active
+[] 
+ []
+
+[22]
+<Figures/fig_threeway.pdf, id=779, 375.52193pt x 278.33788pt>
 File: Figures/fig_threeway.pdf Graphic file (type pdf)
 <use Figures/fig_threeway.pdf>
-Package pdftex.def Info: Figures/fig_threeway.pdf  used on input line 1551.
+Package pdftex.def Info: Figures/fig_threeway.pdf  used on input line 1577.
 (pdftex.def)             Requested size: 384.0pt x 284.63562pt.
-<Figures/fig_rdt_distance.pdf, id=726, 232.89375pt x 161.48016pt>
+ [23 <./Figures/fig_threeway.pdf>]
+<Figures/fig_rdt_distance.pdf, id=814, 232.89375pt x 161.48016pt>
 File: Figures/fig_rdt_distance.pdf Graphic file (type pdf)
 <use Figures/fig_rdt_distance.pdf>
-Package pdftex.def Info: Figures/fig_rdt_distance.pdf  used on input line 1600.
+Package pdftex.def Info: Figures/fig_rdt_distance.pdf  used on input line 1626.
 (pdftex.def)             Requested size: 238.07813pt x 165.0747pt.
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[22] [23 <./Figures/fig_threeway.pdf> <./Figures/fig_rdt_distance.pdf>]
-Overfull \hbox (1.61096pt too wide) has occurred while \output is active
-[] 
- []
-
-[24]
-Overfull \hbox (0.50798pt too wide) in paragraph at lines 1712--1724
+[24 <./Figures/fig_rdt_distance.pdf>]
+Overfull \hbox (0.50798pt too wide) in paragraph at lines 1738--1750
 \OT1/minntx/m/n/10.74011 the one-dimensional spec-tra ob-tained by in-te-grat-ing $\OML/ntxmi/m/it/10.74011 ^^H[]$ \OT1/minntx/m/n/10.74011 over the two un-re-solved wavenum-
  []
 
-
-Overfull \hbox (14.10033pt too wide) in paragraph at lines 1758--1762
+[25]
+Overfull \hbox (14.10033pt too wide) in paragraph at lines 1784--1788
 []\OT1/minntx/m/n/10.74011 Under A1 the an-gu-lar in-te-gral in [] can be car-ried out. Writ-ing $[] \U/ntxmia/m/it/10.74011 = \LMS/ntxsy/m/n/10.74011 ¹\OML/ntxmi/m/it/10.74011 ^^T[] [] ^^R;  ^^T[];  ^^T[] [] ^^R\LMS/ntxsy/m/n/10.74011 º$
  []
-
-[25]
-Underfull \vbox (badness 1270) has occurred while \output is active []
-
-
-Underfull \vbox (badness 1270) has occurred while \output is active []
 
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
@@ -1570,23 +1576,29 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
  []
 
 [26] [27]
-<Figures/fig_a1_control.pdf, id=873, 377.44029pt x 153.3159pt>
+<Figures/fig_a1_control.pdf, id=922, 377.44029pt x 153.3159pt>
 File: Figures/fig_a1_control.pdf Graphic file (type pdf)
 <use Figures/fig_a1_control.pdf>
-Package pdftex.def Info: Figures/fig_a1_control.pdf  used on input line 1944.
+Package pdftex.def Info: Figures/fig_a1_control.pdf  used on input line 1970.
 (pdftex.def)             Requested size: 384.0pt x 155.9801pt.
+
+Underfull \vbox (badness 1264) has occurred while \output is active []
+
+
+Underfull \vbox (badness 1264) has occurred while \output is active []
+
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[28 <./Figures/fig_a1_control.pdf>]
-<Figures/fig_pi_kernels.pdf, id=926, 271.2423pt x 175.14145pt>
+[28] [29 <./Figures/fig_a1_control.pdf>]
+<Figures/fig_pi_kernels.pdf, id=984, 271.2423pt x 175.14145pt>
 File: Figures/fig_pi_kernels.pdf Graphic file (type pdf)
 <use Figures/fig_pi_kernels.pdf>
-Package pdftex.def Info: Figures/fig_pi_kernels.pdf  used on input line 2049.
+Package pdftex.def Info: Figures/fig_pi_kernels.pdf  used on input line 2075.
 (pdftex.def)             Requested size: 276.48047pt x 178.53767pt.
- [29]
+
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
@@ -1596,73 +1608,62 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[32]
-<Figures/fig_clock.pdf, id=1010, 378.45828pt x 187.53664pt>
+[32] [33]
+<Figures/fig_clock.pdf, id=1066, 378.45828pt x 187.53664pt>
 File: Figures/fig_clock.pdf Graphic file (type pdf)
 <use Figures/fig_clock.pdf>
-Package pdftex.def Info: Figures/fig_clock.pdf  used on input line 2297.
+Package pdftex.def Info: Figures/fig_clock.pdf  used on input line 2323.
 (pdftex.def)             Requested size: 384.0pt x 190.29185pt.
 
-Underfull \vbox (badness 4792) has occurred while \output is active []
-
-
-Underfull \vbox (badness 4792) has occurred while \output is active []
-
- [33 <./Figures/fig_clock.pdf>]
-Overfull \hbox (20.32889pt too wide) in paragraph at lines 2330--2355
+Overfull \hbox (20.32889pt too wide) in paragraph at lines 2356--2381
 \OT1/minntx/m/n/10.74011 anisotropy per wavenum-ber band---the ob-serv-able on which \TS1/ntxtlf/m/n/10.74011 §[][]\OT1/minntx/m/n/10.74011 4.6.1[][] es-tab-lished the benchmark---
  []
 
-<Figures/fig_fourway5.pdf, id=1054, 376.86206pt x 171.1213pt>
+
+Overfull \hbox (1.61096pt too wide) has occurred while \output is active
+[] 
+ []
+
+[34 <./Figures/fig_clock.pdf>]
+<Figures/fig_fourway5.pdf, id=1111, 376.86206pt x 171.1213pt>
 File: Figures/fig_fourway5.pdf Graphic file (type pdf)
 <use Figures/fig_fourway5.pdf>
-Package pdftex.def Info: Figures/fig_fourway5.pdf  used on input line 2358.
+Package pdftex.def Info: Figures/fig_fourway5.pdf  used on input line 2384.
 (pdftex.def)             Requested size: 384.0pt x 174.36908pt.
-
-Overfull \hbox (1.61096pt too wide) has occurred while \output is active
-[] 
- []
-
-[34]
-<Figures/fig_lenoise.pdf, id=1073, 378.11365pt x 184.21222pt>
+ [35 <./Figures/fig_fourway5.pdf>]
+<Figures/fig_lenoise.pdf, id=1157, 378.11365pt x 184.21222pt>
 File: Figures/fig_lenoise.pdf Graphic file (type pdf)
 <use Figures/fig_lenoise.pdf>
-Package pdftex.def Info: Figures/fig_lenoise.pdf  used on input line 2433.
+Package pdftex.def Info: Figures/fig_lenoise.pdf  used on input line 2459.
 (pdftex.def)             Requested size: 384.0pt x 187.08725pt.
 
-Underfull \vbox (badness 4673) has occurred while \output is active []
+Overfull \hbox (1.61096pt too wide) has occurred while \output is active
+[] 
+ []
 
-
-Underfull \vbox (badness 4673) has occurred while \output is active []
-
- [35 <./Figures/fig_fourway5.pdf>]
-<Figures/fig_amiet_abs.pdf, id=1111, 261.75366pt x 181.38968pt>
+[36 <./Figures/fig_lenoise.pdf>]
+<Figures/fig_amiet_abs.pdf, id=1190, 261.75366pt x 181.38968pt>
 File: Figures/fig_amiet_abs.pdf Graphic file (type pdf)
 <use Figures/fig_amiet_abs.pdf>
-Package pdftex.def Info: Figures/fig_amiet_abs.pdf  used on input line 2467.
+Package pdftex.def Info: Figures/fig_amiet_abs.pdf  used on input line 2493.
 (pdftex.def)             Requested size: 268.79883pt x 186.27158pt.
-
-Overfull \hbox (1.61096pt too wide) has occurred while \output is active
-[] 
- []
-
-[36 <./Figures/fig_lenoise.pdf> <./Figures/fig_amiet_abs.pdf>]
-<Figures/fig_expval_paper.pdf, id=1165, 376.06691pt x 346.16127pt>
+<Figures/fig_expval_paper.pdf, id=1200, 376.06691pt x 346.16127pt>
 File: Figures/fig_expval_paper.pdf Graphic file (type pdf)
 <use Figures/fig_expval_paper.pdf>
-Package pdftex.def Info: Figures/fig_expval_paper.pdf  used on input line 2509.
+Package pdftex.def Info: Figures/fig_expval_paper.pdf  used on input line 2535.
 (pdftex.def)             Requested size: 384.0pt x 353.4654pt.
-<Figures/fig_amiet_rapid.pdf, id=1199, 376.95367pt x 197.32721pt>
-File: Figures/fig_amiet_rapid.pdf Graphic file (type pdf)
-<use Figures/fig_amiet_rapid.pdf>
-Package pdftex.def Info: Figures/fig_amiet_rapid.pdf  used on input line 2574.
-(pdftex.def)             Requested size: 384.0pt x 201.02115pt.
- [37]
+ [37 <./Figures/fig_amiet_abs.pdf>]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[38 <./Figures/fig_expval_paper.pdf>] [39 <./Figures/fig_amiet_rapid.pdf>]
+[38 <./Figures/fig_expval_paper.pdf>]
+<Figures/fig_amiet_rapid.pdf, id=1286, 376.95367pt x 197.32721pt>
+File: Figures/fig_amiet_rapid.pdf Graphic file (type pdf)
+<use Figures/fig_amiet_rapid.pdf>
+Package pdftex.def Info: Figures/fig_amiet_rapid.pdf  used on input line 2600.
+(pdftex.def)             Requested size: 384.0pt x 201.02115pt.
+ [39 <./Figures/fig_amiet_rapid.pdf>]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
@@ -1671,89 +1672,89 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 pdfTeX warning (ext4): destination with the same identifier (name{section.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2729 ...n{The forward map and the bound kernels}
+l.2755 ...n{The forward map and the bound kernels}
                                                   \label{app:forward}
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2745.
+(Font)              scaled to size 8.73262pt on input line 2771.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2745.
+(Font)              scaled to size 6.37477pt on input line 2771.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2745.
+(Font)              scaled to size 4.80296pt on input line 2771.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 8.73262pt on input line 2745.
+(Font)              scaled to size 8.73262pt on input line 2771.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 6.37477pt on input line 2745.
+(Font)              scaled to size 6.37477pt on input line 2771.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 4.80296pt on input line 2745.
+(Font)              scaled to size 4.80296pt on input line 2771.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2745.
+(Font)              scaled to size 8.73262pt on input line 2771.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2745.
+(Font)              scaled to size 6.37477pt on input line 2771.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2745.
+(Font)              scaled to size 4.80296pt on input line 2771.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2745.
+(Font)              scaled to size 8.73262pt on input line 2771.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2745.
+(Font)              scaled to size 6.37477pt on input line 2771.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2745.
+(Font)              scaled to size 4.80296pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 8.73262pt on input line 2745.
+(Font)              scaled to size 8.73262pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 6.37477pt on input line 2745.
+(Font)              scaled to size 6.37477pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 4.80296pt on input line 2745.
+(Font)              scaled to size 4.80296pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2745.
+(Font)              scaled to size 8.73262pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2745.
+(Font)              scaled to size 6.37477pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2745.
+(Font)              scaled to size 4.80296pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2745.
+(Font)              scaled to size 8.73262pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2745.
+(Font)              scaled to size 6.37477pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2745.
+(Font)              scaled to size 4.80296pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2745.
+(Font)              scaled to size 8.73262pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2745.
+(Font)              scaled to size 6.37477pt on input line 2771.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2745.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2806.
+(Font)              scaled to size 4.80296pt on input line 2771.
  [41]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 8.73262pt on input line 2832.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.37477pt on input line 2855.
+(Font)              scaled to size 6.37477pt on input line 2881.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 4.80296pt on input line 2855.
+(Font)              scaled to size 4.80296pt on input line 2881.
 
-pdfTeX warning (ext4): destination with the same identifier (name{section.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2936 ...ters, initial conditions and statistics}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2941 \subsection{ODT configurations}
-                                      
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
 [42]
+pdfTeX warning (ext4): destination with the same identifier (name{section.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2962 ...ters, initial conditions and statistics}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2967 \subsection{ODT configurations}
+                                      
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2963 ...rained-box DNS and exact-RDT companions}
+l.2989 ...rained-box DNS and exact-RDT companions}
                                                   
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2988 \subsection{Statistics policy}
-                                      (build/main_v3.bbl
+l.3014 \subsection{Statistics policy}
+                                      [43] (build/main_v3.bbl
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 8.73pt on input line 1.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
@@ -1764,36 +1765,30 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
 (Font)              scaled to size 8.73pt on input line 6.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 (Font)              scaled to size 8.73pt on input line 6.
- [43{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[44]) [45] (build/main_v3.aux)
+[44{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}]) [45] (build/main_v3.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 29566 strings out of 467159
- 540182 string characters out of 5398120
- 927546 words of memory out of 5000000
- 58026 multiletter control sequences out of 15000+600000
+ 29575 strings out of 467159
+ 540465 string characters out of 5398120
+ 931407 words of memory out of 5000000
+ 58034 multiletter control sequences out of 15000+600000
  817862 words of font info for 377 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 92i,13n,131p,1475b,595s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 92i,13n,131p,1475b,565s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexas.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/main_v3.pdf (45 pages, 853993 bytes).
+Output written on build/main_v3.pdf (45 pages, 871819 bytes).
 PDF statistics:
- 1632 PDF objects out of 1728 (max. 8388607)
- 1254 compressed objects within 13 object streams
- 214 named destinations out of 1000 (max. 500000)
- 476 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1683 PDF objects out of 1728 (max. 8388607)
+ 1282 compressed objects within 13 object streams
+ 215 named destinations out of 1000 (max. 500000)
+ 481 words of extra memory for PDF output out of 10000 (max. 10000000)
 

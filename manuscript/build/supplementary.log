@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  9 SEP 2026 14:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  9 SEP 2026 15:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1083,9 +1083,9 @@ LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 4.80296pt on input line 92.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.5pt on input line 131.
+(Font)              scaled to size 8.5pt on input line 134.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 8.5pt on input line 131.
+(Font)              scaled to size 8.5pt on input line 134.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 
@@ -1100,14 +1100,14 @@ Overfull \hbox (1.0pt too wide) has occurred while \output is active
 Overfull \vbox (34.02812pt too high) has occurred while \output is active []
 
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.24pt on input line 131.
+(Font)              scaled to size 10.24pt on input line 134.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.24pt on input line 131.
+(Font)              scaled to size 10.24pt on input line 134.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 131.
+(Font)              scaled to size 12.0pt on input line 134.
 
 
-Package xcolor Warning: Incompatible color definition on input line 131.
+Package xcolor Warning: Incompatible color definition on input line 134.
 
 [1{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}
 Non-PDF special ignored!
@@ -1116,82 +1116,74 @@ Non-PDF special ignored!
 <Figures/fig_cmk_aniso.pdf, id=45, 232.32951pt x 161.02534pt>
 File: Figures/fig_cmk_aniso.pdf Graphic file (type pdf)
 <use Figures/fig_cmk_aniso.pdf>
-Package pdftex.def Info: Figures/fig_cmk_aniso.pdf  used on input line 134.
+Package pdftex.def Info: Figures/fig_cmk_aniso.pdf  used on input line 137.
 (pdftex.def)             Requested size: 238.07813pt x 165.0078pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--165
+Underfull \hbox (badness 10000) in paragraph at lines 168--168
 []|\OT1/minntx/m/n/9 acceptance gate on post-event
  []
 
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 9.0pt on input line 169.
+(Font)              scaled to size 9.0pt on input line 172.
 
-Underfull \hbox (badness 4819) in paragraph at lines 172--173
+Underfull \hbox (badness 4819) in paragraph at lines 175--176
 []|\OT1/minntx/m/n/9 null (one-point statis-tics
  []
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 189--189
+Underfull \hbox (badness 1168) in paragraph at lines 192--192
 []|\OT1/minntx/m/n/9 per-event am-pli-tude is not the
  []
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 192--193
+Underfull \hbox (badness 1590) in paragraph at lines 195--196
 []|$\OML/ntxmi/m/it/9 N \U/ntxmia/m/it/9 = \OT1/minntx/m/n/9 1$ null; $\OML/ntxmi/m/it/9 N \U/ntxmia/m/it/9 = \OT1/minntx/m/n/9 3$
  []
 
 
-Underfull \hbox (badness 6691) in paragraph at lines 192--193
+Underfull \hbox (badness 6691) in paragraph at lines 195--196
 \OT1/minntx/m/n/9 at $\OML/ntxmi/m/it/9 e \U/ntxmia/m/it/9 = \OT1/minntx/m/n/9 1$, strongest
  []
 
 
-Underfull \hbox (badness 4403) in paragraph at lines 192--193
+Underfull \hbox (badness 4403) in paragraph at lines 195--196
 \OT1/minntx/m/n/9 at the energy-containing
  []
 
 
-Underfull \hbox (badness 2653) in paragraph at lines 197--199
+Underfull \hbox (badness 2653) in paragraph at lines 200--202
 []|\OT1/minntx/m/n/9 strongest early ef-fect of
  []
 
 
-Underfull \hbox (badness 2237) in paragraph at lines 204--206
+Underfull \hbox (badness 2237) in paragraph at lines 207--209
 \OT1/minntx/m/n/9 at \OT1/ntxtlf/m/it/9 ev-ery \OT1/minntx/m/n/9 strain, grow-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--206
+Underfull \hbox (badness 10000) in paragraph at lines 207--209
 \OT1/minntx/m/n/9 with strain---the fade
  []
 
 
-Underfull \hbox (badness 3803) in paragraph at lines 204--206
+Underfull \hbox (badness 3803) in paragraph at lines 207--209
 \OT1/minntx/m/n/9 anisotropy is sup-pressed
  []
 
 
-Underfull \hbox (badness 1776) in paragraph at lines 211--213
+Underfull \hbox (badness 1776) in paragraph at lines 214--216
 []|\OT1/minntx/m/n/9 fine scales sig-nif-i-cant at
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 211--213
+Underfull \hbox (badness 1142) in paragraph at lines 214--216
 \OT1/minntx/m/n/9 ($\LMS/ntxsy/m/n/9 A[]$ \OT1/minntx/m/n/9 held at $1\OML/ntxmi/m/it/9 :\OT1/minntx/m/n/9 30$--$1\OML/ntxmi/m/it/9 :\OT1/minntx/m/n/9 44$);
  []
 
 
-Underfull \hbox (badness 1173) in paragraph at lines 214--215
+Underfull \hbox (badness 1173) in paragraph at lines 217--218
 []|\OT1/minntx/m/n/9 timing $\LMS/ntxsy/m/n/9 Ï$ \OT1/minntx/m/n/9 scale se-lec-tiv-ity: the
  []
-
-<Figures/fig_klevels.pdf, id=52, 378.45828pt x 304.75858pt>
-File: Figures/fig_klevels.pdf Graphic file (type pdf)
-<use Figures/fig_klevels.pdf>
-Package pdftex.def Info: Figures/fig_klevels.pdf  used on input line 225.
-(pdftex.def)             Requested size: 384.0pt x 309.236pt.
-
-Underfull \vbox (badness 3396) has occurred while \output is active []
 
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
@@ -1199,10 +1191,15 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
  []
 
 [2 <./Figures/fig_cmk_rdt.pdf>]
+<Figures/fig_klevels.pdf, id=77, 378.45828pt x 304.75858pt>
+File: Figures/fig_klevels.pdf Graphic file (type pdf)
+<use Figures/fig_klevels.pdf>
+Package pdftex.def Info: Figures/fig_klevels.pdf  used on input line 228.
+(pdftex.def)             Requested size: 384.0pt x 309.236pt.
 <Figures/fig_dividend.pdf, id=79, 377.57498pt x 163.72244pt>
 File: Figures/fig_dividend.pdf Graphic file (type pdf)
 <use Figures/fig_dividend.pdf>
-Package pdftex.def Info: Figures/fig_dividend.pdf  used on input line 261.
+Package pdftex.def Info: Figures/fig_dividend.pdf  used on input line 264.
 (pdftex.def)             Requested size: 384.0pt x 166.51253pt.
  (build/supplementary.bbl
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
@@ -1217,7 +1214,7 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 (Font)              scaled to size 8.73pt on input line 6.
 ) [3{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc} <./Figures/fig_cmk_aniso.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 279.
+Package xcolor Warning: Incompatible color definition on input line 282.
 
 [4] [5 <./Figures/fig_klevels.pdf>]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
@@ -1233,13 +1230,13 @@ L3 programming layer <2020/03/25>
 Here is how much of TeX's memory you used:
  17802 strings out of 467159
  279742 string characters out of 5398120
- 698324 words of memory out of 5000000
+ 697324 words of memory out of 5000000
  46713 multiletter control sequences out of 15000+600000
  727448 words of font info for 252 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  89i,13n,131p,980b,543s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/supplementary.pdf (6 pages, 255968 bytes).
+Output written on build/supplementary.pdf (6 pages, 256204 bytes).
 PDF statistics:
  256 PDF objects out of 1000 (max. 8388607)
  145 compressed objects within 2 object streams
