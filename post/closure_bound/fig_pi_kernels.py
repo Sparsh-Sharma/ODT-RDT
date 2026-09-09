@@ -38,6 +38,8 @@ def main():
     ax.axhline(0, color="0.6", lw=0.6, ls=":")
     ax.set_xlabel(r"$x=\kappa_2^2/\kappa^2$")
     ax.set_ylabel(r"kernel value")
+    # headroom above the g1 peak (0.28) for the legend, clear of curves
+    ax.set_ylim(-0.42, 0.52)
     kern_h = [Line2D([], [], color="k", ls="-", lw=1.2, marker=MK[k],
                      ms=3.4, mfc="k", mew=0.6, label=k)
               for k in (r"$g_1$", r"$g_2$", r"$g_3$")]
@@ -45,8 +47,9 @@ def main():
                      label=r"$a$ coefficient"),
               Line2D([], [], color="0.5", ls=(0, (5, 2)), lw=0.9,
                      label=r"$c$ coefficient")]
-    ax.legend(handles=kern_h + coef_h, ncol=2, loc="lower left",
-              columnspacing=1.0, fontsize=6.8)
+    ax.legend(handles=kern_h + coef_h, ncol=5, loc="upper center",
+              columnspacing=0.9, handlelength=1.6, fontsize=6.5,
+              borderaxespad=0.3)
     fig.tight_layout(pad=0.4)
     save(fig, os.path.join(HERE, "fig_pi_kernels"))
 
