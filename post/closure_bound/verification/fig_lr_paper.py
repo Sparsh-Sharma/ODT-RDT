@@ -139,8 +139,8 @@ def fig_plane():
                        mfc="k", mew=0.6, ms=3.2))
     labs = [r"$b_{11}$ unstrained", r"$b_{22}$ compressed",
             r"$b_{33}$ stretched", r"DNS $b_{11}$ range ($S^{*}$)",
-            r"open: Lee \& Reynolds 1985",
-            r"filled: Zusi \& Perot 2013"]
+            "open: Lee & Reynolds 1985",
+            "filled: Zusi & Perot 2013"]
     fig.legend(hand, labs, fontsize=6.3, loc="lower center", ncol=3,
                bbox_to_anchor=(0.5, -0.02), handlelength=2.2,
                columnspacing=1.3, labelspacing=0.3)
@@ -164,21 +164,21 @@ def fig_axisym():
         (xl, yl), (xu, yu) = band_edges(x, y)
         ax.fill_between(xl, yl, np.interp(xl, xu, yu), color="0.8",
                         alpha=0.5, lw=0,
-                        label=("ODT $b_{22}$--$b_{33}$ spread"
+                        label=("SC-ODT $b_{22}$--$b_{33}$ spread"
                                if c == (0.84, 0.15, 0.16) else None))
     for i in range(2):
         lab, ls, mk = OLD[col_of("axisym", "curves", i)]
         ax.plot(get("axisym", "curves", i, "x"),
                 get("axisym", "curves", i, "y"), color="k", ls=ls, lw=1.2,
-                label="ODT " + lab)
+                label="SC-ODT " + lab)
     x, y = markers_by("axisym", lambda i: str(
         get("axisym", "markers", i, "shape")) == "re")
     ax.plot(x, y, "s", ms=3.4, mfc="none", mec="k", mew=0.8,
-            label=r"L\&R DNS $b_{11}$")
+            label="L&R DNS $b_{11}$")
     x, y = markers_by("axisym", lambda i: str(
         get("axisym", "markers", i, "shape")) == "l")
     ax.plot(x, y, "^", ms=3.4, mfc="none", mec="k", mew=0.8,
-            label=r"L\&R DNS transverse")
+            label="L&R DNS transverse")
     # Zusi & Perot 2014 (Phys. Fluids 26, 115103): AXC IC1, highest rate
     # Sk0/eps0 = 3.37 (S* = 6.7), digitised from their fig. 7(a); standard
     # b_ij; c = exp(a t) with a the axial rate, as for L&R.  Transverse
@@ -190,9 +190,9 @@ def fig_axisym():
     ez = np.arange(0.1, 0.501, 0.1)
     b11z = np.interp(ez, zp[:, 1], zp[:, 2])
     ax.plot(np.exp(ez), b11z, "s", ms=3.0, mfc="k", mec="k", mew=0.6,
-            zorder=5, label=r"Zusi \& Perot 2014 $b_{11}$")
+            zorder=5, label="Zusi & Perot 2014 $b_{11}$")
     ax.plot(np.exp(ez), -0.5 * b11z, "^", ms=3.0, mfc="k", mec="k",
-            mew=0.6, zorder=5, label=r"Zusi \& Perot 2014 transverse")
+            mew=0.6, zorder=5, label="Zusi & Perot 2014 transverse")
     ax.axhline(0, color="0.6", lw=0.5, ls=":")
     ax.set_xlabel(r"reference total strain $c=\exp\!\int S\,\mathrm{d}t$")
     ax.set_ylabel(r"$b_{ij}$")
@@ -246,7 +246,7 @@ def fig_b11():
             color="k", ls="-", lw=1.4, label="SC-ODT ($N=1000$)")
     x, y = markers_by("b11", lambda i: True)
     ax.plot(x, y, "s", ms=3.6, mfc="none", mec="k", mew=0.9,
-            label=r"L\&R DNS (fast $S^{*}$)")
+            label="L&R DNS (fast $S^{*}$)")
     ax.axhline(0, color="0.6", lw=0.5, ls=":")
     ax.set_xlabel(r"reference total strain $c=\exp\!\int S\,\mathrm{d}t$")
     ax.set_ylabel(r"$b_{11}$")
