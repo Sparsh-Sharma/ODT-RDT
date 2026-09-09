@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex build/main_v3"] 1788938058.13576 "build/main_v3.aux" "build/main_v3.bbl" "build/main_v3" 1788939772.16382 0
-  "./jfm.bib" 1788794182 26045 d702704769492ba72fcbfa44361bc042 ""
+["bibtex build/main_v3"] 1788958176.91253 "build/main_v3.aux" "build/main_v3.bbl" "build/main_v3" 1788958180.50587 0
+  "./jfm.bib" 1788958134 28734 ccc10329d29c1899df9b4379f2a66de0 ""
   "./jfm.bst" 1788675880 33456 4905f5a36c36e08bc982133b3dc1d7d2 ""
-  "build/main_v3.aux" 1788939771 73607 52a62310538c3f7fed761fea12bf094c "pdflatex"
+  "build/main_v3.aux" 1788958179 74358 3fd2f2a55d62c2836c2d141e3528776f "pdflatex"
   (generated)
   "build/main_v3.bbl"
   "build/main_v3.blg"
   (rewritten before read)
-["pdflatex"] 1788939768.7442 "main_v3.tex" "build/main_v3.pdf" "main_v3" 1788939772.16461 0
+["pdflatex"] 1788958177.29834 "main_v3.tex" "build/main_v3.pdf" "main_v3" 1788958180.50663 0
   "Figures/fig_LR_b11_closure.pdf" 1788937440 18373 753e3de03ad097fde69b627ed87ab1d8 ""
   "Figures/fig_LR_plane.pdf" 1788937439 16432 455ae712dadbffd6bb0dcdd9eb06b7f5 ""
   "Figures/fig_a1_control.pdf" 1788939623 16830 063c02ad3f2402077ca6a0520ed4a3a5 ""
@@ -22,14 +22,14 @@
   "Figures/fig_rdt_components.pdf" 1788880094 19447 1f13754c7fc3371609f00eceb1c31b5b ""
   "Figures/fig_rdt_distance.pdf" 1788937054 12994 d00f262a5b6080f83bea8d81da272c46 ""
   "Figures/fig_rdt_projection.pdf" 1788896968 20145 854dd9cde299c35fffc91a2d54b0bc0d ""
-  "Figures/fig_spec_bvc.pdf" 1788897284 107745 d57cc301a428d88ba8d63427b51a506b ""
+  "Figures/fig_spec_bvc.pdf" 1788940578 107612 9edd3465f47a0ab8908d65a1a9c9a1a7 ""
   "Figures/fig_spec_kinematic.pdf" 1788895460 20292 759d7e0c0ac682c17bf38479fd9a103c ""
-  "Figures/fig_spec_op.pdf" 1788939753 41240 35705c0f1a190f6a18c9b8581cdc961a ""
+  "Figures/fig_spec_op.pdf" 1788940578 41284 14b9210ad6c3fc0d35146b14bc634e3f ""
   "Figures/fig_threeway.pdf" 1788933479 18158 84eba041194c3a632bc0bfa2a8aebae1 ""
   "Figures/fig_upwash_amplification.pdf" 1788880095 12700 c5654a89077f7b04bd9e32b3313fd1ba ""
   "JFM-FLM_Au.cls" 1788675880 80202 3c186eafc5523bfaca542e040d306b68 ""
-  "build/main_v3.aux" 1788939771 73607 52a62310538c3f7fed761fea12bf094c "pdflatex"
-  "build/main_v3.bbl" 1788938058 12579 350174536f2df3999f614c345e4ccc0a "bibtex build/main_v3"
+  "build/main_v3.aux" 1788958179 74358 3fd2f2a55d62c2836c2d141e3528776f "pdflatex"
+  "build/main_v3.bbl" 1788958177 14503 faace6fcca2528537fd0f4929928d0e5 "bibtex build/main_v3"
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc" 1772942362 2211 c42193888177bc8f86d55dca129a9358 ""
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1772942362 2083 60e36f8eac802fcaf19eabe2633b406e ""
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc" 1772942383 2409 c64dab22331c83731e970f6020b4448b ""
@@ -281,7 +281,7 @@
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1786334748 3656836 a1b995d32558bbfb1f76a35bfe9e2a46 ""
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf.cnf" 1772942091 903 164c5b127cd0d6dc91abad2f62421ea2 ""
   "lineno-FLM.sty" 1788675880 3667 99c3d5a9f0bdda44e752563df250e3ed ""
-  "main_v3.tex" 1788937888 166305 8974825127044061971dd0a11b92594e ""
+  "main_v3.tex" 1788958144 167511 91b0a129f62a48146600c1f875bcbb45 ""
   (generated)
   "build/main_v3.aux"
   "build/main_v3.log"

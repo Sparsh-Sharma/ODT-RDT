@@ -1,4 +1,4 @@
-\begin{thebibliography}{43}
+\begin{thebibliography}{50}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \def\au#1{#1} \def\ed#1{#1} \def\yr#1{#1}\def\at#1{#1}\def\jt#1{\textit{#1}} \def\bt#1{#1}\def\bvol#1{\textbf{#1}} \def\vol#1{#1} \def\pg#1{#1} \def\publ#1{#1}\def\arxiv#1{#1}\def\org#1{#1}\def\st#1{\textit{#1}}
 
@@ -23,6 +23,9 @@
 \bibitem[Chen {\em et~al.\/}(2006)Chen, Meneveau \& Katz]{ChenMeneveauKatz2006}
 {\sc \au{Chen, Jun}, \au{Meneveau, Charles} \& \au{Katz, Joseph}} \yr{2006}  \at{Scale interactions of turbulence subjected to a straining--relaxation--destraining cycle}.  \jt{Journal of Fluid Mechanics}  \bvol{562},  \pg{123--150}.
 
+\bibitem[Clay \& Yeung(2016)]{ClayYeung2016}
+{\sc \au{Clay, M.~P.} \& \au{Yeung, P.~K.}} \yr{2016}  \at{A numerical study of turbulence under temporally evolving axisymmetric contraction and subsequent relaxation}.  \jt{Journal of Fluid Mechanics}  \bvol{805},  \pg{460--493}.
+
 \bibitem[Crow(1968)]{Crow1968}
 {\sc \au{Crow, S.~C.}} \yr{1968}  \at{Viscoelastic properties of fine-grained incompressible turbulence}.  \jt{Journal of Fluid Mechanics}  \bvol{33}~(1),  \pg{1--20}.
 
@@ -31,6 +34,9 @@
 
 \bibitem[Goldstein \& Atassi(1976)]{GoldsteinAtassi1976}
 {\sc \au{Goldstein, M.~E.} \& \au{Atassi, H.}} \yr{1976}  \at{A complete second-order theory for the unsteady flow about an airfoil due to a periodic gust}.  \jt{Journal of Fluid Mechanics}  \bvol{74}~(4),  \pg{741--765}.
+
+\bibitem[Gualtieri \& Meneveau(2010)]{GualtieriMeneveau2010}
+{\sc \au{Gualtieri, P.} \& \au{Meneveau, C.}} \yr{2010}  \at{Direct numerical simulations of turbulence subjected to a straining and destraining cycle}.  \jt{Physics of Fluids}  \bvol{22}~(6),  \pg{065104}.
 
 \bibitem[Hunt(1973)]{Hunt1973}
 {\sc \au{Hunt, J. C.~R.}} \yr{1973}  \at{A theory of turbulent flow round two-dimensional bluff bodies}.  \jt{Journal of Fluid Mechanics}  \bvol{61}~(4),  \pg{625--706}.
@@ -43,6 +49,12 @@
 
 \bibitem[von K{\'a}rm{\'a}n(1948)]{vonKarman1948}
 {\sc \au{von K{\'a}rm{\'a}n, Theodore}} \yr{1948}  \at{Progress in the statistical theory of turbulence}.  \jt{Proceedings of the National Academy of Sciences}  \bvol{34}~(11),  \pg{530--539}.
+
+\bibitem[Kassinos \& Reynolds(1998)]{KassinosReynolds1998}
+{\sc \au{Kassinos, S.~C.} \& \au{Reynolds, W.~C.}} \yr{1998}  \at{A structure-based model with stropholysis effects}.  \bt{In {\em Annual Research Briefs 1998\/}},  \pg{pp. 197--209}.  \publ{Center for Turbulence Research, Stanford University}.
+
+\bibitem[Kassinos {\em et~al.\/}(2001)Kassinos, Reynolds \& Rogers]{KassinosReynoldsRogers2001}
+{\sc \au{Kassinos, S.~C.}, \au{Reynolds, W.~C.} \& \au{Rogers, M.~M.}} \yr{2001}  \at{One-point turbulence structure tensors}.  \jt{Journal of Fluid Mechanics}  \bvol{428},  \pg{213--248}.
 
 \bibitem[Kerstein(1991)]{Kerstein1991}
 {\sc \au{Kerstein, Alan~R.}} \yr{1991}  \at{Linear-eddy modelling of turbulent transport. {Part} 6. {Microstructure} of diffusive scalar mixing fields}.  \jt{Journal of Fluid Mechanics}  \bvol{231},  \pg{361--394}.
@@ -98,6 +110,9 @@
 \bibitem[Pope(2000)]{Pope2000}
 {\sc \au{Pope, Stephen~B.}} \yr{2000} {\em Turbulent Flows\/}.  \publ{Cambridge: Cambridge University Press}.
 
+\bibitem[Reynolds \& Kassinos(1995)]{ReynoldsKassinos1995}
+{\sc \au{Reynolds, W.~C.} \& \au{Kassinos, S.~C.}} \yr{1995}  \at{One-point modelling of rapidly deformed homogeneous turbulence}.  \jt{Proceedings of the Royal Society of London A}  \bvol{451}~(1941),  \pg{87--104}.
+
 \bibitem[Ribeiro {\em et~al.\/}(2023)Ribeiro, dos Santos, Venner \& de~Santana]{Ribeiro2023}
 {\sc \au{Ribeiro, A. F.~P.}, \au{dos Santos, F.~L.}, \au{Venner, C.~H.} \& \au{de~Santana, L.~D.}} \yr{2023}  \at{Numerical study of inflow turbulence distortion and noise for airfoils}.  \jt{Physics of Fluids}  \bvol{35}~(11),  \pg{115112}.
 
@@ -130,5 +145,11 @@
 
 \bibitem[Wunsch \& Kerstein(2001)]{WunschKerstein2001}
 {\sc \au{Wunsch, Scott} \& \au{Kerstein, Alan~R.}} \yr{2001}  \at{A model for layer formation in stably stratified turbulence}.  \jt{Physics of Fluids}  \bvol{13}~(3),  \pg{702--712}.
+
+\bibitem[Zusi \& Perot(2013)]{ZusiPerot2013}
+{\sc \au{Zusi, C.~J.} \& \au{Perot, J.~B.}} \yr{2013}  \at{Simulation and modeling of turbulence subjected to a period of uniform plane strain}.  \jt{Physics of Fluids}  \bvol{25}~(11),  \pg{110819}.
+
+\bibitem[Zusi \& Perot(2014)]{ZusiPerot2014}
+{\sc \au{Zusi, C.~J.} \& \au{Perot, J.~B.}} \yr{2014}  \at{Simulation and modeling of turbulence subjected to a period of axisymmetric contraction or expansion}.  \jt{Physics of Fluids}  \bvol{26}~(11),  \pg{115103}.
 
 \end{thebibliography}

@@ -26,3 +26,6 @@ manuscript/*.log
 manuscript/*.fdb_latexmk
 manuscript/build.log
 manuscript/buildv3.log
+
+# paywalled publisher PDFs for digitisation only -- never commit
+post/closure_bound/verification/dns_benchmarks/*.pdf

@@ -4,44 +4,44 @@ The top-level auxiliary file: supplementary.aux
 The style file: jfm.bst
 Database file #1: jfm.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-You've used 2 entries,
+You've used 3 entries,
             3068 wiz_defined-function locations,
-            696 strings with 5593 characters,
-and the built_in function-call counts, 1182 in all, are:
-= -- 106
-> -- 52
-< -- 0
-+ -- 20
-- -- 18
-* -- 133
-:= -- 198
-add.period$ -- 4
-call.type$ -- 2
-change.case$ -- 16
-chr.to.int$ -- 2
-cite$ -- 2
-duplicate$ -- 58
-empty$ -- 94
-format.name$ -- 20
-if$ -- 226
+            704 strings with 5767 characters,
+and the built_in function-call counts, 1681 in all, are:
+= -- 152
+> -- 70
+< -- 1
++ -- 27
+- -- 24
+* -- 186
+:= -- 281
+add.period$ -- 6
+call.type$ -- 3
+change.case$ -- 23
+chr.to.int$ -- 3
+cite$ -- 3
+duplicate$ -- 85
+empty$ -- 137
+format.name$ -- 29
+if$ -- 326
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 2
-newline$ -- 11
-num.names$ -- 8
-pop$ -- 14
+missing$ -- 3
+newline$ -- 14
+num.names$ -- 12
+pop$ -- 20
 preamble$ -- 1
-purify$ -- 14
+purify$ -- 20
 quote$ -- 0
-skip$ -- 25
+skip$ -- 37
 stack$ -- 0
-substring$ -- 78
-swap$ -- 22
+substring$ -- 107
+swap$ -- 31
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 18
+type$ -- 27
 warning$ -- 0
-while$ -- 10
+while$ -- 14
 width$ -- 0
-write$ -- 26
+write$ -- 37

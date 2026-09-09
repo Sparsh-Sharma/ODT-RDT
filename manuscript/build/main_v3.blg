@@ -5,45 +5,45 @@ The style file: jfm.bst
 Database file #1: jfm.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Warning--there's a number but no volume in MillsCorrsin1959
-You've used 43 entries,
+You've used 50 entries,
             3068 wiz_defined-function locations,
-            982 strings with 12754 characters,
-and the built_in function-call counts, 22408 in all, are:
-= -- 2052
-> -- 914
-< -- 34
-+ -- 374
-- -- 309
-* -- 2378
-:= -- 3735
-add.period$ -- 88
-call.type$ -- 43
-change.case$ -- 320
-chr.to.int$ -- 55
-cite$ -- 44
-duplicate$ -- 1182
-empty$ -- 1848
-format.name$ -- 382
-if$ -- 4408
+            1029 strings with 13943 characters,
+and the built_in function-call counts, 26174 in all, are:
+= -- 2409
+> -- 1048
+< -- 41
++ -- 430
+- -- 354
+* -- 2765
+:= -- 4339
+add.period$ -- 103
+call.type$ -- 50
+change.case$ -- 372
+chr.to.int$ -- 62
+cite$ -- 51
+duplicate$ -- 1384
+empty$ -- 2171
+format.name$ -- 446
+if$ -- 5173
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 44
-newline$ -- 134
-num.names$ -- 172
-pop$ -- 295
+missing$ -- 51
+newline$ -- 155
+num.names$ -- 200
+pop$ -- 341
 preamble$ -- 1
-purify$ -- 275
+purify$ -- 318
 quote$ -- 0
-skip$ -- 531
+skip$ -- 631
 stack$ -- 0
-substring$ -- 1321
-swap$ -- 415
-text.length$ -- 2
+substring$ -- 1560
+swap$ -- 490
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 378
+type$ -- 441
 warning$ -- 1
-while$ -- 193
+while$ -- 226
 width$ -- 0
-write$ -- 478
+write$ -- 556
 (There was 1 warning)

@@ -1033,7 +1033,21 @@ the supplementary CMK comparison; higher-Reynolds-number strained
 computations exist, but the spectral role they would serve is filled
 here by the dedicated strained-box DNS of \S\,\ref{sec:val-spectrum},
 leaving \citeauthor{LeeReynolds1985}'s low-Reynolds-number study as the
-appropriate moment-level benchmark for a fully resolved line. The
+appropriate moment-level benchmark for a fully resolved line. It is a
+Stanford report rather than a journal paper, but it remains the
+irrotational-strain benchmark of that programme's own later work: the
+structure-based models of \citet{ReynoldsKassinos1995} and
+\citet{KassinosReynoldsRogers2001} are validated against its plane-strain
+and axisymmetric runs \citep{KassinosReynolds1998}. More recent direct
+simulations of the same deformations at moderate Reynolds number
+\citep{ZusiPerot2013,ZusiPerot2014}, and of the
+\citeauthor{ChenMeneveauKatz2006} straining cycle
+\citep{GualtieriMeneveau2010}, provide independent journal-published
+comparators.
+%% TODO(O8, pending PDFs): overlay ZusiPerot2013 on fig_LR_plane,
+%% ZusiPerot2014 on a revived fig_LR_axisym, GualtieriMeneveau2010 in
+%% ESM S1; then extend the sentence above to point at those figures.
+The
 comparison quantity is the anisotropy $b_{ij}$ against the deformation
 ratio $c=\exp\int S\,\mathrm{d}t$ (so $\ln c$ is the total strain $e$ of
 the present notation), computed from the single-point component
@@ -1508,7 +1522,10 @@ The structure of the table is the finding. Exact linear theory concentrates
 the strain-induced upwash anisotropy at the energy-containing scales and
 \emph{removes} it from the small scales, because modes aligned with the
 line are amplified least; the DNS shows the same shape, weakened at the
-large scales by the nonlinear return. SC-ODT distributes
+large scales by the nonlinear return---that nonlinear effects absent from
+linear theory shape the strained anisotropy across scales is likewise the
+finding of the $4096^3$ axisymmetric-contraction simulations of
+\citet{ClayYeung2016}. SC-ODT distributes
 its moment-level anisotropy essentially uniformly over wavenumber---the
 signature, anticipated in \S\,\ref{sec:spec-linref}, of a
 wavenumber-uniform redistribution operator acting on a uniformly dilated
@@ -1601,7 +1618,11 @@ component on the resolved line. That closure is a modelling input, and the
 redistribution it represents is, in its exact form, a \emph{nonlocal,
 three-dimensional} object: the rapid pressure at a point is a volume
 integral over the entire fluctuating field, and the pressure--strain
-correlation is an integral over the full three-dimensional spectrum. What a
+correlation is an integral over the full three-dimensional spectrum---one
+that can be evaluated scale by scale only where the whole field is
+available, as \citet{ClayYeung2016} do in a $4096^3$ simulation of
+axisymmetric contraction, separating its rapid and slow parts spectrally.
+What a
 single one-dimensional line of turbulence can say about such an object is
 the analytical question of this paper, and this section answers it in a
 form that is deliberately more modest, and more defensible, than a closure
