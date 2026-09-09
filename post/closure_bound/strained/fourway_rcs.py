@@ -18,25 +18,31 @@ sys.path.insert(0, os.path.join(HERE, os.pardir, "odt_alloc"))
 os.environ.setdefault("ALLOC_SLOW", "S2")
 import threeway as T  # noqa: E402
 from fourway import odt_ens  # noqa: E402
-from figstyle_jfm import COL, FULL, GREEN, RED, panel, plt, save  # noqa: E402
+from figstyle_jfm import FULL, panel, plt, save  # noqa: E402
 
 
 def main():
-    fwdir = sys.argv[1]
     f = np.exp(0.5)
     d = dict(np.load(os.path.join(HERE, "fourway.npz")))
-    for rat, tag in (("0.4", "s1"), ("0.8", "s2"), ("16", "s40")):
-        o = odt_ens(os.path.join(fwdir, f"fw_{tag}r_ensemble.npz"), 4, f)
-        for q in ("db22", "db11", "db33"):
-            d[f"r{rat}_ODTR_{q}"] = o[q]
-    np.savez(os.path.join(HERE, "fourway.npz"), **d)
+    # Recompute the ODTR (capped-clock) rows only when a directory with the
+    # raw fw_*r ensembles is supplied; otherwise plot-only from fourway.npz,
+    # which already carries them (rate 300, Lmax 0.05, depth 6).
+    if len(sys.argv) > 1:
+        fwdir = sys.argv[1]
+        for rat, tag in (("0.4", "s1"), ("0.8", "s2"), ("16", "s40")):
+            o = odt_ens(os.path.join(fwdir, f"fw_{tag}r_ensemble.npz"), 4, f)
+            for q in ("db22", "db11", "db33"):
+                d[f"r{rat}_ODTR_{q}"] = o[q]
+        np.savez(os.path.join(HERE, "fourway.npz"), **d)
 
-    CC = {"RDT": COL["rdt"], "DNS": COL["dns"], "ODT": COL["odt"],
-          "ODTK": GREEN, "ODTR": RED}
+    # monochrome: system -> line style + marker (all black)
+    LS = {"RDT": "-", "DNS": (0, (6, 2)), "ODT": (0, (1, 1.4)),
+          "ODTK": (0, (5, 1.6, 1, 1.6)),
+          "ODTR": (0, (4, 1.4, 1, 1.4, 1, 1.4))}
     LBL = {"RDT": "exact linear RDT", "DNS": r"DNS $128^3$",
-           "ODT": "strain-coupled ODT",
-           "ODTK": "ODT $+$ scale-local relaxation",
-           "ODTR": "ODT $+$ capped relaxation clock"}
+           "ODT": "SC-ODT",
+           "ODTK": "SC-ODT $+$ scale-local relaxation",
+           "ODTR": "clock-relaxed ODT"}
     MK = {"RDT": "D", "DNS": "o", "ODT": "s", "ODTK": "^", "ODTR": "v"}
     fig, axs = plt.subplots(1, 3, figsize=(FULL, 2.1), sharey=True)
     for ax, rat, ttl in ((axs[0], "0.4", r"$Sk_t/\varepsilon=0.4$"),
@@ -49,8 +55,9 @@ def main():
                     key = "r0.8_RDT_db22"
                 else:
                     continue
-            ax.plot(T.XC, d[key], "-", color=CC[lab], marker=MK[lab],
-                    ms=2.4, label=LBL[lab] if ax is axs[1] else None)
+            ax.plot(T.XC, d[key], ls=LS[lab], color="k", marker=MK[lab],
+                    ms=2.6, mfc="k", mew=0.6, lw=0.9,
+                    label=LBL[lab] if ax is axs[1] else None)
         ax.axhline(0, color="0.6", lw=0.6, ls=":")
         ax.set_xscale("log")
         ax.set_xlabel(r"$\kappa_2(e)/\kappa_c(0)$")
