@@ -98,9 +98,11 @@ def fig_op(op):
     a.plot(kref, 3e-3 * op["Etot_last"].max()
            * (kref / kref[0]) ** (-5 / 3), color="0.45", ls=(0, (1, 1.2)),
            lw=0.9)
-    a.text(1000, 4e-3 * op["Etot_last"].max()
-           * (1000 / kref[0]) ** (-5 / 3), r"$\kappa^{-5/3}$",
-           fontsize=7, color="0.3")
+    # label at the right end of the reference line, above it, where the
+    # spectra have rolled well below the slope guide
+    a.text(2500, 2.0 * 3e-3 * op["Etot_last"].max()
+           * (2500 / kref[0]) ** (-5 / 3), r"$\kappa^{-5/3}$",
+           fontsize=7, color="0.3", ha="center", va="bottom")
     a.set_xlabel(r"wavenumber $\kappa_2$")
     a.set_ylabel(r"$E_i(\kappa_2)$")
     ymax = op["Etot_last"].max() * 3

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex build/main_v3"] 1788938058.13576 "build/main_v3.aux" "build/main_v3.bbl" "build/main_v3" 1788938732.23055 0
+["bibtex build/main_v3"] 1788938058.13576 "build/main_v3.aux" "build/main_v3.bbl" "build/main_v3" 1788938967.28979 0
   "./jfm.bib" 1788794182 26045 d702704769492ba72fcbfa44361bc042 ""
   "./jfm.bst" 1788675880 33456 4905f5a36c36e08bc982133b3dc1d7d2 ""
-  "build/main_v3.aux" 1788938731 73607 52a62310538c3f7fed761fea12bf094c "pdflatex"
+  "build/main_v3.aux" 1788938966 73607 52a62310538c3f7fed761fea12bf094c "pdflatex"
   (generated)
   "build/main_v3.bbl"
   "build/main_v3.blg"
   (rewritten before read)
-["pdflatex"] 1788938729.02655 "main_v3.tex" "build/main_v3.pdf" "main_v3" 1788938732.23359 0
+["pdflatex"] 1788938964.11585 "main_v3.tex" "build/main_v3.pdf" "main_v3" 1788938967.291 0
   "Figures/fig_LR_b11_closure.pdf" 1788937440 18373 753e3de03ad097fde69b627ed87ab1d8 ""
   "Figures/fig_LR_plane.pdf" 1788937439 16432 455ae712dadbffd6bb0dcdd9eb06b7f5 ""
   "Figures/fig_a1_control.pdf" 1788938713 16811 3c2362dcc8bb1efb9e4cbb56cf0cdc69 ""
@@ -24,11 +24,11 @@
   "Figures/fig_rdt_projection.pdf" 1788896968 20145 854dd9cde299c35fffc91a2d54b0bc0d ""
   "Figures/fig_spec_bvc.pdf" 1788897284 107745 d57cc301a428d88ba8d63427b51a506b ""
   "Figures/fig_spec_kinematic.pdf" 1788895460 20292 759d7e0c0ac682c17bf38479fd9a103c ""
-  "Figures/fig_spec_op.pdf" 1788899049 41243 ebb7c15a7e64dac10874f564b70871eb ""
+  "Figures/fig_spec_op.pdf" 1788938943 41244 d350e62748ca37544b69cb1a0f7236f2 ""
   "Figures/fig_threeway.pdf" 1788933479 18158 84eba041194c3a632bc0bfa2a8aebae1 ""
   "Figures/fig_upwash_amplification.pdf" 1788880095 12700 c5654a89077f7b04bd9e32b3313fd1ba ""
   "JFM-FLM_Au.cls" 1788675880 80202 3c186eafc5523bfaca542e040d306b68 ""
-  "build/main_v3.aux" 1788938731 73607 52a62310538c3f7fed761fea12bf094c "pdflatex"
+  "build/main_v3.aux" 1788938966 73607 52a62310538c3f7fed761fea12bf094c "pdflatex"
   "build/main_v3.bbl" 1788938058 12579 350174536f2df3999f614c345e4ccc0a "bibtex build/main_v3"
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc" 1772942362 2211 c42193888177bc8f86d55dca129a9358 ""
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1772942362 2083 60e36f8eac802fcaf19eabe2633b406e ""
