@@ -165,15 +165,15 @@ authorship invitation timing); Alan (acceptance).
 ## 6. Task list (ordered)
 
 Manuscript (master):
-- CANDIDATE fig_frozen_cost (2026-09-16, Sparsh's "money shot" ask; script
-  `post/closure_bound/lenoise/fig_frozen_cost.py`, PDF mirrored to
-  Figures/, NOT wired into the tex): single panel, signed SPL prediction
-  error vs total strain e — the eight fig_expval experiments in the
-  laboratory window (frozen and computed coincide; NACA thickness cluster
-  marked common-mode) and the exact-RDT-referenced band-mean errors at
-  e=0.5/1/2 (frozen +0.6/+1.4/+3.4 dB and climbing, computed inflows near
-  the reference with measured-rms bands). AWAITING Sparsh+Alan verdict on
-  inclusion (would likely close Part III as the summary figure).
+- fig_frozen_cost INTEGRATED 2026-09-16 (Sparsh's "money shot"; script
+  `post/closure_bound/lenoise/fig_frozen_cost.py`): single panel, signed
+  SPL prediction error vs total strain e — the eight fig_expval
+  experiments in the laboratory window (frozen and computed coincide;
+  NACA thickness cluster marked common-mode) and the exact-RDT-referenced
+  band-mean errors at e=0.5/1/2 (frozen +0.6/+1.4/+3.4 dB and climbing,
+  computed within 1.1–2.7 dB with measured-rms bands). Now closes Part
+  III as its summary figure (fig:frozen-cost + one paragraph before the
+  scope paragraph); Alan has not yet seen it — flag at next exchange.
 - fig_odt_schematic DONE 2026-09-16 (now Figure 1, sec 2.2) — Sparsh finds
   the matplotlib rendering unattractive; a Claude-Design remake is being
   explored, so treat the current PDF as a placeholder that may be replaced
