@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex build/main_v3"] 1789116822.29306 "build/main_v3.aux" "build/main_v3.bbl" "build/main_v3" 1789116827.37217 0
+["bibtex build/main_v3"] 1789116822.29306 "build/main_v3.aux" "build/main_v3.bbl" "build/main_v3" 1789117989.19961 0
   "./jfm.bib" 1788958134 28734 ccc10329d29c1899df9b4379f2a66de0 ""
   "./jfm.bst" 1788675880 33456 4905f5a36c36e08bc982133b3dc1d7d2 ""
-  "build/main_v3.aux" 1789116825 77111 775333d049393e62f1e321852e762511 "pdflatex"
+  "build/main_v3.aux" 1789117988 77111 775333d049393e62f1e321852e762511 "pdflatex"
   (generated)
   "build/main_v3.bbl"
   "build/main_v3.blg"
   (rewritten before read)
-["pdflatex"] 1789116823.03346 "main_v3.tex" "build/main_v3.pdf" "main_v3" 1789116827.37295 0
+["pdflatex"] 1789117985.19451 "main_v3.tex" "build/main_v3.pdf" "main_v3" 1789117989.20058 0
   "Figures/fig_LR_axisym.pdf" 1789116805 14492 d24cf45e3a5bb44c55b3cf5b19ac59c3 ""
   "Figures/fig_LR_b11_closure.pdf" 1789116517 18320 b687b83e4e845e005c84ecaf15d1b4b9 ""
   "Figures/fig_LR_plane.pdf" 1789116515 18851 2ffea64881d2937db9dfcb63e7685fcd ""
@@ -22,14 +22,14 @@
   "Figures/fig_pi_kernels.pdf" 1788938345 14551 298f4e07ccad9a19fba5138c01fd9342 ""
   "Figures/fig_rdt_components.pdf" 1788880094 19447 1f13754c7fc3371609f00eceb1c31b5b ""
   "Figures/fig_rdt_distance.pdf" 1788937054 12994 d00f262a5b6080f83bea8d81da272c46 ""
-  "Figures/fig_rdt_projection.pdf" 1788896968 20145 854dd9cde299c35fffc91a2d54b0bc0d ""
+  "Figures/fig_rdt_projection.pdf" 1789117952 20149 2913c1003e1b9a1496975aac0296ee9d ""
   "Figures/fig_spec_bvc.pdf" 1788940578 107612 9edd3465f47a0ab8908d65a1a9c9a1a7 ""
   "Figures/fig_spec_kinematic.pdf" 1788895460 20292 759d7e0c0ac682c17bf38479fd9a103c ""
   "Figures/fig_spec_op.pdf" 1788940578 41284 14b9210ad6c3fc0d35146b14bc634e3f ""
   "Figures/fig_threeway.pdf" 1788933479 18158 84eba041194c3a632bc0bfa2a8aebae1 ""
   "Figures/fig_upwash_amplification.pdf" 1788880095 12700 c5654a89077f7b04bd9e32b3313fd1ba ""
   "JFM-FLM_Au.cls" 1788675880 80202 3c186eafc5523bfaca542e040d306b68 ""
-  "build/main_v3.aux" 1789116825 77111 775333d049393e62f1e321852e762511 "pdflatex"
+  "build/main_v3.aux" 1789117988 77111 775333d049393e62f1e321852e762511 "pdflatex"
   "build/main_v3.bbl" 1789116822 14503 faace6fcca2528537fd0f4929928d0e5 "bibtex build/main_v3"
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc" 1772942362 2211 c42193888177bc8f86d55dca129a9358 ""
   "c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1772942362 2083 60e36f8eac802fcaf19eabe2633b406e ""

@@ -99,7 +99,7 @@ def main():
                mfc="none", mew=0.6, label=r"DNS, $e{=}0.5$"),
         Line2D([], [], color="k", ls=(0, (5, 2)), lw=0.7,
                label=r"exact RDT, $e{=}0.5$")],
-        loc="lower left", fontsize=6.5, ncol=1,
+        loc="upper left", fontsize=6.5, ncol=1,
         frameon=True, framealpha=0.92, edgecolor="none")
     leg.get_frame().set_facecolor("white")
     panel(a, "a", x=0.02, y=0.97)
