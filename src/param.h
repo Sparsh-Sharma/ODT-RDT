@@ -134,6 +134,7 @@ class param {
         double                  relaxRate;      ///< relaxation clock (Kerstein 2026-09-08): INDEPENDENT Poisson stream of relaxation-only events at this rate per unit time, interval sizes from the eddy-size distribution; default 0 = off
         int                     relaxDepth;     ///< relaxation clock: run the sub-scale hierarchy to this depth inside each clock event (with subKernelLmin as adaptive floor); 0 = bare interval pass
         double                  relaxLmax;      ///< relaxation clock: only intervals <= this size (rejection-sampled); 0 = no cap.  Restricts the stream to the scales the model over-transmits, leaving the physical large-scale anisotropy untouched
+        bool                    LrelaxLastEddySize; ///< relaxation clock variant (Kerstein 2026-09-11): clock events take the size of the most recent ACCEPTED eddy instead of a draw from the eddy-size distribution (no event before the first eddy; with relaxLmax > 0, events are skipped while the last eddy exceeds the cap); default false = bit-identical
         string                  strainClosure;  ///< "IP" or "LRR"
         vector<vector<double>>  Astrain;        ///< imposed mean velocity gradient A_ij (3x3)
         vector<vector<double>>  Acal;           ///< combined op -A_ij + B_ij (updated per substep)

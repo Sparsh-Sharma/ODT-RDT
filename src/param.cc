@@ -110,6 +110,7 @@ param::param(inputoutput *p_io) {
     relaxRate        = io->params["relaxRate"]        ? io->params["relaxRate"].as<double>()       : 0.0;
     relaxDepth       = io->params["relaxDepth"]       ? io->params["relaxDepth"].as<int>()         : 0;
     relaxLmax        = io->params["relaxLmax"]        ? io->params["relaxLmax"].as<double>()       : 0.0;
+    LrelaxLastEddySize = io->params["LrelaxLastEddySize"] ? io->params["LrelaxLastEddySize"].as<bool>() : false;
     strainClosure  = io->params["strainClosure"]  ? io->params["strainClosure"].as<string>()  : "LRR";
     Astrain = vector<vector<double>>(3, vector<double>(3, 0.0));
     Acal    = vector<vector<double>>(3, vector<double>(3, 0.0));

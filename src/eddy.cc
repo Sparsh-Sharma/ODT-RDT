@@ -33,6 +33,7 @@ void eddy::init(domain *p_domn, domain *p_eddl) {
     eddySize      = 0.0;               // defined before first sampling: these
     leftEdge      = 0.0;               //   are rescaled by applyStrainDilatation
     rightEdge     = 0.0;               //   and must not be uninitialized
+    lastAcceptedSize = 0.0;            // 0 = no accepted eddy yet
 
     cca = vector<double>(7);
     ccb = vector<double>(5);
@@ -754,14 +755,26 @@ void eddy::applyConcurrentRelax(domain *line, const int N) {
  *  per event; timing is decoupled from the eddy events entirely.  RNG
  *  draws happen only when the stream is active (relaxRate > 0), so the
  *  default is bit-identical to the standard model.
+ *  LrelaxLastEddySize (Kerstein 2026-09-11): the event takes the size of
+ *  the most recent ACCEPTED eddy instead of a distribution draw (position
+ *  still uniform); no event before the first eddy, and with relaxLmax > 0
+ *  the event is skipped while the last eddy exceeds the cap.
  */
 void eddy::applyRelaxEvent(domain *line) {
 
-    double l = esdp1 / log( domn->rand->getRand() * esdp2 + esdp3 );
-    if(domn->pram->relaxLmax > 0.0) {          // size-capped stream: restrict
-        for(int t=0; t<20 && l > domn->pram->relaxLmax; t++)   // to sub-band
-            l = esdp1 / log( domn->rand->getRand() * esdp2 + esdp3 );
-        if(l > domn->pram->relaxLmax) return;
+    double l;
+    if(domn->pram->LrelaxLastEddySize) {
+        l = lastAcceptedSize;                  // most recent accepted eddy
+        if(l <= 0.0) return;                   // no eddy yet
+        if(domn->pram->relaxLmax > 0.0 && l > domn->pram->relaxLmax) return;
+    }
+    else {
+        l = esdp1 / log( domn->rand->getRand() * esdp2 + esdp3 );
+        if(domn->pram->relaxLmax > 0.0) {          // size-capped stream: restrict
+            for(int t=0; t<20 && l > domn->pram->relaxLmax; t++)   // to sub-band
+                l = esdp1 / log( domn->rand->getRand() * esdp2 + esdp3 );
+            if(l > domn->pram->relaxLmax) return;
+        }
     }
     double a  = line->posf->d.at(0);
     double b  = line->posf->d.at(line->ngrd);

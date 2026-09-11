@@ -543,4 +543,5 @@ void domain::applyStrainDilatation(const double dt) {
     ed->leftEdge  = xc + (ed->leftEdge  - xc)*f;
     ed->rightEdge = xc + (ed->rightEdge - xc)*f;
     ed->eddySize *= f;
+    ed->lastAcceptedSize *= f;   // the stored last-accepted size tracks the compressing line too
 }

@@ -409,6 +409,8 @@ bool solver::sampleEddyAndImplementIfAccepted() {
                 domn->ed->applyConcurrentRelax(domn, domn->pram->nConcurrentRelax);
         }
 
+        domn->ed->lastAcceptedSize = domn->ed->eddySize;   // feeds LrelaxLastEddySize clock events
+
         return true;
     }
 

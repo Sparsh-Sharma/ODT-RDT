@@ -34,6 +34,7 @@ class eddy {
         double              Pa;                 ///< eddy acceptance probability
         bool                LperiodicEddy;      ///< a wrap-around eddy
         double              curMidFrac;         ///< this candidate's middle-image volume fraction (Option B / mixture)
+        double              lastAcceptedSize;   ///< size of the most recent ACCEPTED eddy (0 before the first); rescaled by applyStrainDilatation; feeds LrelaxLastEddySize clock events
         vector<double>      cCoef;              ///< coefficient of K kernel
         vector<double>      bCoef;              ///< coefficient of J kernel
         vector<double>      K;                  ///< eddy kernel K
