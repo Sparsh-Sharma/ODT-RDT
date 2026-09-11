@@ -156,16 +156,9 @@ def fig_axisym():
     OLD = {(0.12, 0.47, 0.71): (r"axis $b_{11}$", "-", "s"),
            (0.84, 0.15, 0.16): (r"transverse $\frac{1}{2}(b_{22}+b_{33})$",
                                 (0, (5, 2)), "^")}
-    for i in range(2):
-        c = col_of("axisym", "bands", i)
-        lab, ls, mk = OLD[c]
-        x, y = get("axisym", "bands", i, "x"), get("axisym", "bands", i,
-                                                   "y")
-        (xl, yl), (xu, yu) = band_edges(x, y)
-        ax.fill_between(xl, yl, np.interp(xl, xu, yu), color="0.8",
-                        alpha=0.5, lw=0,
-                        label=("SC-ODT $b_{22}$--$b_{33}$ spread"
-                               if c == (0.84, 0.15, 0.16) else None))
+    # no shading: the b22-b33 spread is negligible (b22, b33 nearly equal
+    # by axisymmetry -- stated in the text) and the N=1000 standard error
+    # is thinner than the lines (Alan, 2026-09-11).
     for i in range(2):
         lab, ls, mk = OLD[col_of("axisym", "curves", i)]
         ax.plot(get("axisym", "curves", i, "x"),
