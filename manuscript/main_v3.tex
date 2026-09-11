@@ -331,7 +331,8 @@ original. The model evolves a three-component velocity field $u_i(y,t)$,
 $i=1,2,3$, on a one-dimensional domain whose coordinate $y$ is identified
 with the direction $x_2$. The fields represent individual realisations;
 ensemble statistics are accumulated over many independent simulations.
-Two interleaved mechanisms advance the state: between events the fields
+Two interleaved mechanisms advance the state
+(figure~\ref{fig:odt-schematic}): between events the fields
 obey ordinary one-dimensional diffusion,
 $(\partial_t-\nu\,\partial_y^2)\,u_i=0$, with kinematic viscosity $\nu$;
 and a stochastic sequence of instantaneous \emph{eddy events} represents
@@ -407,7 +408,29 @@ standard eddy time-scale construction, with a rate constant, a viscous
 cutoff and a large-eddy suppression parameter as the only tunable
 constants \citep{Kerstein1999,StephensLignell2021}; the inertial-range
 cascade and the $k^{-5/3}$ spectrum are \emph{outcomes} of repeated
-sampling from this rate, not inputs \citep{Kerstein1999}. Finally, one
+sampling from this rate, not inputs \citep{Kerstein1999}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_odt_schematic.pdf}
+  \caption{The model at a glance. (\textit{a}) An eddy event: on the
+  sampled interval $[y_0,y_0+l\,]$ the triplet map compresses each
+  profile threefold, inserts three images (the central one reversed,
+  images numbered), and the kernel addition $c_iK(y)$ (inset;
+  dotted: the mapped profile before it) redistributes kinetic energy
+  among the components at conserved per-component momentum and total
+  energy; the exterior is untouched. (\textit{b}) The two interleaved
+  mechanisms in the space--time plane: eddy events are instantaneous
+  (vertical bars: position and size as sampled), arriving as a Poisson
+  sequence whose rate density is set by the instantaneous flow state,
+  while between events the fields advance by deterministic diffusion
+  and, from \S\,\ref{sec:strain-forcing} onward, the continuous
+  mean-strain forcing. (\textit{c}) The corresponding advancement
+  cycle of the implementation.}
+  \label{fig:odt-schematic}
+\end{figure}
+
+Finally, one
 diagnostic caveat of \citet{Kerstein2001} is respected throughout:
 because the line velocity does not itself advect fluid, off-diagonal
 products of line velocity components are not momentum fluxes; diagonal
