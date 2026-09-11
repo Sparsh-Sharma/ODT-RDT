@@ -174,10 +174,16 @@ Manuscript (master):
   computed within 1.1–2.7 dB with measured-rms bands). Now closes Part
   III as its summary figure (fig:frozen-cost + one paragraph before the
   scope paragraph); Alan has not yet seen it — flag at next exchange.
-- fig_odt_schematic DONE 2026-09-16 (now Figure 1, sec 2.2) — Sparsh finds
-  the matplotlib rendering unattractive; a Claude-Design remake is being
-  explored, so treat the current PDF as a placeholder that may be replaced
-  at same size/caption.
+- fig_odt_schematic REPLACED 2026-09-16 (Figure 1, sec 2.2): the
+  matplotlib version is retired; the figure is now an INLINE TikZ picture
+  in main_v3.tex (three panels — eddy event / space-time interleaving /
+  advancement flowchart), so it inherits the JFM Times body+math fonts.
+  Long descriptive sentences moved from the panels into the \caption to
+  keep the panels clean and overlap-free. Canonical standalone copy of
+  the TikZ (for editing outside the giant main tex) at
+  `post/closure_bound/schematic/fig_odt_schematic_tikz.tex`. The
+  matplotlib script and the Figures/fig_odt_schematic.pdf target were
+  git-removed (superseded; recoverable from history).
 - V3 SCAFFOLD DONE 2026-09-06: writing now happens in `manuscript/main_v3.tex`
   (fresh skeleton per section-5 outline, Sharma & Kerstein, provisional
   abstract limited to the six claims + envelope + hierarchical-kernel
