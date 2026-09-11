@@ -36,29 +36,31 @@ def main():
     # e=1 only -- one filled marker per system, single line style, no
     # second encoding.  (Strain-rapidity dependence is the subject of the
     # following envelope figure, sec:envelope.)
-    fig, axs = plt.subplots(2, 2, figsize=(FULL, 3.9))
-    panels = ((axs[0, 0], "db22", r"$\Delta b_{22}(\kappa_2)$"),
-              (axs[0, 1], "db11", r"$\Delta b_{11}(\kappa_2)$"),
-              (axs[1, 0], "db33", r"$\Delta b_{33}(\kappa_2)$"),
-              (axs[1, 1], "split", r"$\phi_{11}/\phi_{33}-1$"))
+    # three diagonal components in a row (SC-ODT is not the final model,
+    # so its evaluation need not be exhaustive -- Alan, 2026-09-11): the
+    # transverse splitting phi11/phi33-1 is derivable from b11, b33 and is
+    # described in the text rather than shown.
+    fig, axs = plt.subplots(1, 3, figsize=(FULL, 2.3), sharex=True)
+    panels = ((axs[0], "db22", r"$\Delta b_{22}(\kappa_2)$"),
+              (axs[1], "db11", r"$\Delta b_{11}(\kappa_2)$"),
+              (axs[2], "db33", r"$\Delta b_{33}(\kappa_2)$"))
     for ax, name, yl in panels:
         for s in ("RDT", "DNS", "ISO"):
             ax.plot(XC, q(s, 1.0, name), color="k", ls="-", lw=LW[s],
-                    marker=MK[s], ms=3.6, mfc="k", mew=0.6)
+                    marker=MK[s], ms=3.2, mfc="k", mew=0.6)
         ax.axhline(0, color="0.75", lw=0.6, ls=":")
         ax.set_xscale("log")
         ax.set_ylabel(yl)
-    for ax in axs[1, :]:
         ax.set_xlabel(r"$\kappa_2(e)/\kappa_c(0)$")
-    for j, ax in enumerate(axs.flat):
-        panel(ax, "abcd"[j], y=0.15 if j in (0, 1) else 0.97)
+    for j, ax in enumerate(axs):
+        panel(ax, "abc"[j], y=0.15)
     sys_h = [Line2D([], [], color="k", ls="-", lw=1.1, marker=MK[s],
-                    ms=3.6, mfc="k", mew=0.6, label=LBL[s])
+                    ms=3.2, mfc="k", mew=0.6, label=LBL[s])
              for s in ("RDT", "DNS", "ISO")]
     fig.legend(handles=sys_h, ncol=3, loc="lower center",
-               bbox_to_anchor=(0.5, -0.01), columnspacing=1.6,
+               bbox_to_anchor=(0.5, -0.04), columnspacing=1.6,
                handlelength=2.2, fontsize=7.5)
-    fig.tight_layout(pad=0.5, rect=(0, 0.05, 1, 1))
+    fig.tight_layout(pad=0.5, rect=(0, 0.08, 1, 1))
     save(fig, os.path.join(HERE, "fig_threeway"))
 
 
