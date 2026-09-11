@@ -1,0 +1,155 @@
+\begin{thebibliography}{50}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\def\au#1{#1} \def\ed#1{#1} \def\yr#1{#1}\def\at#1{#1}\def\jt#1{\textit{#1}} \def\bt#1{#1}\def\bvol#1{\textbf{#1}} \def\vol#1{#1} \def\pg#1{#1} \def\publ#1{#1}\def\arxiv#1{#1}\def\org#1{#1}\def\st#1{\textit{#1}}
+
+\bibitem[Amiet(1975)]{Amiet1975}
+{\sc \au{Amiet, R.~K.}} \yr{1975}  \at{Acoustic radiation from an airfoil in a turbulent stream}.  \jt{Journal of Sound and Vibration}  \bvol{41}~(4),  \pg{407--420}.
+
+\bibitem[Ashurst \& Kerstein(2005)]{AshurstKerstein2005}
+{\sc \au{Ashurst, William~T.} \& \au{Kerstein, Alan~R.}} \yr{2005}  \at{One-dimensional turbulence: variable-density formulation and application to mixing layers}.  \jt{Physics of Fluids}  \bvol{17}~(2),  \pg{025107}.
+
+\bibitem[Bampanis {\em et~al.\/}(2022)Bampanis, Roger \& Moreau]{Bampanis2022}
+{\sc \au{Bampanis, G.}, \au{Roger, M.} \& \au{Moreau, S.}} \yr{2022}  \at{On a three-dimensional investigation of airfoil turbulence-impingement noise and its reduction by leading-edge tubercles}.  \jt{Journal of Sound and Vibration}  \bvol{520},  \pg{116635}.
+
+\bibitem[Batchelor(1946)]{Batchelor1946}
+{\sc \au{Batchelor, G.~K.}} \yr{1946}  \at{The theory of axisymmetric turbulence}.  \jt{Proceedings of the Royal Society of London. Series A}  \bvol{186}~(1007).
+
+\bibitem[Batchelor \& Proudman(1954)]{BatchelorProudman1954}
+{\sc \au{Batchelor, G.~K.} \& \au{Proudman, Ian}} \yr{1954}  \at{The effect of rapid distortion of a fluid in turbulent motion}.  \jt{The Quarterly Journal of Mechanics and Applied Mathematics}  \bvol{7}~(1),  \pg{83--103}.
+
+\bibitem[Chandrasekhar(1950)]{ChandrasekharAxisym1950}
+{\sc \au{Chandrasekhar, S.}} \yr{1950}  \at{The theory of axisymmetric turbulence}.  \jt{Philosophical Transactions of the Royal Society of London. Series A}  \bvol{242}~(855).
+
+\bibitem[Chen {\em et~al.\/}(2006)Chen, Meneveau \& Katz]{ChenMeneveauKatz2006}
+{\sc \au{Chen, Jun}, \au{Meneveau, Charles} \& \au{Katz, Joseph}} \yr{2006}  \at{Scale interactions of turbulence subjected to a straining--relaxation--destraining cycle}.  \jt{Journal of Fluid Mechanics}  \bvol{562},  \pg{123--150}.
+
+\bibitem[Clay \& Yeung(2016)]{ClayYeung2016}
+{\sc \au{Clay, M.~P.} \& \au{Yeung, P.~K.}} \yr{2016}  \at{A numerical study of turbulence under temporally evolving axisymmetric contraction and subsequent relaxation}.  \jt{Journal of Fluid Mechanics}  \bvol{805},  \pg{460--493}.
+
+\bibitem[Crow(1968)]{Crow1968}
+{\sc \au{Crow, S.~C.}} \yr{1968}  \at{Viscoelastic properties of fine-grained incompressible turbulence}.  \jt{Journal of Fluid Mechanics}  \bvol{33}~(1),  \pg{1--20}.
+
+\bibitem[Gershfeld(2004)]{Gershfeld2004}
+{\sc \au{Gershfeld, J.}} \yr{2004}  \at{Leading edge noise from thick foils in turbulent flows}.  \jt{Journal of the Acoustical Society of America}  \bvol{116}~(3),  \pg{1416--1426}.
+
+\bibitem[Goldstein \& Atassi(1976)]{GoldsteinAtassi1976}
+{\sc \au{Goldstein, M.~E.} \& \au{Atassi, H.}} \yr{1976}  \at{A complete second-order theory for the unsteady flow about an airfoil due to a periodic gust}.  \jt{Journal of Fluid Mechanics}  \bvol{74}~(4),  \pg{741--765}.
+
+\bibitem[Gualtieri \& Meneveau(2010)]{GualtieriMeneveau2010}
+{\sc \au{Gualtieri, P.} \& \au{Meneveau, C.}} \yr{2010}  \at{Direct numerical simulations of turbulence subjected to a straining and destraining cycle}.  \jt{Physics of Fluids}  \bvol{22}~(6),  \pg{065104}.
+
+\bibitem[Hunt(1973)]{Hunt1973}
+{\sc \au{Hunt, J. C.~R.}} \yr{1973}  \at{A theory of turbulent flow round two-dimensional bluff bodies}.  \jt{Journal of Fluid Mechanics}  \bvol{61}~(4),  \pg{625--706}.
+
+\bibitem[Hunt \& Carruthers(1990)]{HuntCarruthers1990}
+{\sc \au{Hunt, J. C.~R.} \& \au{Carruthers, D.~J.}} \yr{1990}  \at{Rapid distortion theory and the `problems' of turbulence}.  \jt{Journal of Fluid Mechanics}  \bvol{212},  \pg{497--532}.
+
+\bibitem[Hunt \& Graham(1978)]{HuntGraham1978}
+{\sc \au{Hunt, J. C.~R.} \& \au{Graham, J. M.~R.}} \yr{1978}  \at{Free-stream turbulence near plane boundaries}.  \jt{Journal of Fluid Mechanics}  \bvol{84}~(2),  \pg{209--235}.
+
+\bibitem[von K{\'a}rm{\'a}n(1948)]{vonKarman1948}
+{\sc \au{von K{\'a}rm{\'a}n, Theodore}} \yr{1948}  \at{Progress in the statistical theory of turbulence}.  \jt{Proceedings of the National Academy of Sciences}  \bvol{34}~(11),  \pg{530--539}.
+
+\bibitem[Kassinos \& Reynolds(1998)]{KassinosReynolds1998}
+{\sc \au{Kassinos, S.~C.} \& \au{Reynolds, W.~C.}} \yr{1998}  \at{A structure-based model with stropholysis effects}.  \bt{In {\em Annual Research Briefs 1998\/}},  \pg{pp. 197--209}.  \publ{Center for Turbulence Research, Stanford University}.
+
+\bibitem[Kassinos {\em et~al.\/}(2001)Kassinos, Reynolds \& Rogers]{KassinosReynoldsRogers2001}
+{\sc \au{Kassinos, S.~C.}, \au{Reynolds, W.~C.} \& \au{Rogers, M.~M.}} \yr{2001}  \at{One-point turbulence structure tensors}.  \jt{Journal of Fluid Mechanics}  \bvol{428},  \pg{213--248}.
+
+\bibitem[Kerstein(1991)]{Kerstein1991}
+{\sc \au{Kerstein, Alan~R.}} \yr{1991}  \at{Linear-eddy modelling of turbulent transport. {Part} 6. {Microstructure} of diffusive scalar mixing fields}.  \jt{Journal of Fluid Mechanics}  \bvol{231},  \pg{361--394}.
+
+\bibitem[Kerstein(1999)]{Kerstein1999}
+{\sc \au{Kerstein, Alan~R.}} \yr{1999}  \at{One-dimensional turbulence: model formulation and application to homogeneous turbulence, shear flows, and buoyant stratified flows}.  \jt{Journal of Fluid Mechanics}  \bvol{392},  \pg{277--334}.
+
+\bibitem[Kerstein {\em et~al.\/}(2001)Kerstein, Ashurst, Wunsch \& Nilsen]{Kerstein2001}
+{\sc \au{Kerstein, Alan~R.}, \au{Ashurst, William~T.}, \au{Wunsch, Scott} \& \au{Nilsen, Vebjorn}} \yr{2001}  \at{One-dimensional turbulence: vector formulation and application to free shear flows}.  \jt{Journal of Fluid Mechanics}  \bvol{447},  \pg{85--109}.
+
+\bibitem[Kim \& Haeri(2015)]{KimHaeri2015}
+{\sc \au{Kim, Jae~Wook} \& \au{Haeri, Sina}} \yr{2015}  \at{An advanced synthetic eddy method for the computation of aerofoil--turbulence interaction noise}.  \jt{Journal of Computational Physics}  \bvol{287},  \pg{1--17}.
+
+\bibitem[Kolmogorov(1991)]{Kolmogorov1991}
+{\sc \au{Kolmogorov, A.~N.}} \yr{1991}  \at{The local structure of turbulence in incompressible viscous fluid for very large {Reynolds} numbers}.  \jt{Proceedings of the Royal Society of London. Series A}  \bvol{434}~(1890),  \pg{9--13}.
+
+\bibitem[Launder {\em et~al.\/}(1975)Launder, Reece \& Rodi]{LaunderReeceRodi1975}
+{\sc \au{Launder, B.~E.}, \au{Reece, G.~J.} \& \au{Rodi, W.}} \yr{1975}  \at{Progress in the development of a reynolds-stress turbulence closure}.  \jt{Journal of Fluid Mechanics}  \bvol{68}~(3),  \pg{537--566}.
+
+\bibitem[Lee {\em et~al.\/}(1986)Lee, Piomelli \& Reynolds]{LeePiomelliReynolds1986}
+{\sc \au{Lee, Moon~J.}, \au{Piomelli, Ugo} \& \au{Reynolds, William~C.}} \yr{1986}  \at{Useful formulas in the rapid distortion theory of homogeneous turbulence}.  \jt{Physics of Fluids}  \bvol{29}~(10),  \pg{3471--3474}.
+
+\bibitem[Lee \& Reynolds(1985)]{LeeReynolds1985}
+{\sc \au{Lee, Moon~J.} \& \au{Reynolds, William~C.}} \yr{1985}  \bt{Numerical experiments on the structure of homogeneous turbulence}. {\em Tech. Rep.\/} TF-24.  \org{Thermosciences Division, Department of Mechanical Engineering, Stanford University}, Stanford, California, prepared under NASA Grant NCC-2-15.
+
+\bibitem[Lignell {\em et~al.\/}(2013)Lignell, Kerstein, Sun \& Monson]{Lignell2013}
+{\sc \au{Lignell, David~O.}, \au{Kerstein, Alan~R.}, \au{Sun, Guangyuan} \& \au{Monson, Elizabeth~I.}} \yr{2013}  \at{Mesh adaption for efficient multiscale implementation of one-dimensional turbulence}.  \jt{Theoretical and Computational Fluid Dynamics}  \bvol{27}~(3),  \pg{273--295}.
+
+\bibitem[Lignell {\em et~al.\/}(2018)Lignell, Lansinger, Medina~M{\'e}ndez, Klein, Kerstein, Schmidt, Fistler \& Oevermann]{Lignell2018}
+{\sc \au{Lignell, David~O.}, \au{Lansinger, Victoria~B.}, \au{Medina~M{\'e}ndez, Juan~A.}, \au{Klein, Marten}, \au{Kerstein, Alan~R.}, \au{Schmidt, Heiko}, \au{Fistler, Marco} \& \au{Oevermann, Michael}} \yr{2018}  \at{One-dimensional turbulence modeling for cylindrical and spherical flows: model formulation and application}.  \jt{Theoretical and Computational Fluid Dynamics}  \bvol{32}~(4),  \pg{495--520}.
+
+\bibitem[Lindborg(1995)]{Lindborg1995}
+{\sc \au{Lindborg, E.}} \yr{1995}  \at{Kinematics of homogeneous axisymmetric turbulence}.  \jt{Journal of Fluid Mechanics}  \bvol{302},  \pg{179--201}.
+
+\bibitem[Medina~M{\'e}ndez {\em et~al.\/}(2023)Medina~M{\'e}ndez, Sharma, Schmidt \& Klein]{MedinaMendez2023}
+{\sc \au{Medina~M{\'e}ndez, Juan~A.}, \au{Sharma, Sparsh}, \au{Schmidt, Heiko} \& \au{Klein, Marten}} \yr{2023}  \at{Toward the use of a reduced-order and stochastic turbulence model for assessment of far-field sound radiation: Low {Mach} number jet flows}.  \jt{Proceedings in Applied Mathematics and Mechanics}  \bvol{23}~(3),  \pg{e202300186}.
+
+\bibitem[Mills \& Corrsin(1959)]{MillsCorrsin1959}
+{\sc \au{Mills, R.~R.} \& \au{Corrsin, S.}} \yr{1959}  \at{Effect of contraction on turbulence and temperature fluctuations generated by a warm grid}.  \jt{NASA Memo} ~(5-5-59W).
+
+\bibitem[Narayanan {\em et~al.\/}(2015)Narayanan, Chaitanya, Haeri, Joseph, Kim \& Polacsek]{Narayanan2015}
+{\sc \au{Narayanan, S.}, \au{Chaitanya, P.}, \au{Haeri, S.}, \au{Joseph, P.}, \au{Kim, J.~W.} \& \au{Polacsek, C.}} \yr{2015}  \at{Airfoil noise reductions through leading edge serrations}.  \jt{Physics of Fluids}  \bvol{27}~(2),  \pg{025109}.
+
+\bibitem[Paterson \& Amiet(1976)]{PatersonAmiet1976}
+{\sc \au{Paterson, R.~W.} \& \au{Amiet, R.~K.}} \yr{1976}  \bt{Acoustic radiation and surface pressure characteristics of an airfoil due to incident turbulence}. {\em Tech. Rep.\/} CR-2733.  \org{NASA}.
+
+\bibitem[Paterson \& Amiet(1977)]{PatersonAmiet1977}
+{\sc \au{Paterson, R.~W.} \& \au{Amiet, R.~K.}} \yr{1977}  \at{Noise and surface pressure response of an airfoil to incident turbulence}.  \jt{Journal of Aircraft}  \bvol{14}~(8),  \pg{729--736}.
+
+\bibitem[Piccolo {\em et~al.\/}(2024)Piccolo, Zamponi, Avallone \& Ragni]{Piccolo2024}
+{\sc \au{Piccolo, A.}, \au{Zamponi, R.}, \au{Avallone, F.} \& \au{Ragni, D.}} \yr{2024}  \at{Turbulence distortion and leading-edge noise}.  \jt{Physics of Fluids}  \bvol{36}~(12),  \pg{125183}.
+
+\bibitem[Pope(2000)]{Pope2000}
+{\sc \au{Pope, Stephen~B.}} \yr{2000} {\em Turbulent Flows\/}.  \publ{Cambridge: Cambridge University Press}.
+
+\bibitem[Reynolds \& Kassinos(1995)]{ReynoldsKassinos1995}
+{\sc \au{Reynolds, W.~C.} \& \au{Kassinos, S.~C.}} \yr{1995}  \at{One-point modelling of rapidly deformed homogeneous turbulence}.  \jt{Proceedings of the Royal Society of London A}  \bvol{451}~(1941),  \pg{87--104}.
+
+\bibitem[Ribeiro {\em et~al.\/}(2023)Ribeiro, dos Santos, Venner \& de~Santana]{Ribeiro2023}
+{\sc \au{Ribeiro, A. F.~P.}, \au{dos Santos, F.~L.}, \au{Venner, C.~H.} \& \au{de~Santana, L.~D.}} \yr{2023}  \at{Numerical study of inflow turbulence distortion and noise for airfoils}.  \jt{Physics of Fluids}  \bvol{35}~(11),  \pg{115112}.
+
+\bibitem[Roger \& Moreau(2010)]{RogerMoreau2010}
+{\sc \au{Roger, Michel} \& \au{Moreau, St{\'e}phane}} \yr{2010}  \at{Extensions and limitations of analytical airfoil broadband noise models}.  \jt{International Journal of Aeroacoustics}  \bvol{9}~(3),  \pg{273--305}.
+
+\bibitem[Sagaut \& Cambon(2018)]{SagautCambon2018}
+{\sc \au{Sagaut, P.} \& \au{Cambon, C.}} \yr{2018} {\em Homogeneous Turbulence Dynamics\/}, 2nd edn.  \publ{Cham: Springer}.
+
+\bibitem[de~Santana {\em et~al.\/}(2016)de~Santana, Christophe, Schram \& Desmet]{deSantana2016}
+{\sc \au{de~Santana, Leandro~D.}, \au{Christophe, Julien}, \au{Schram, Christophe~F.} \& \au{Desmet, Wim}} \yr{2016}  \at{A rapid distortion theory modified turbulence spectra for semi-analytical airfoil noise prediction}.  \jt{Journal of Sound and Vibration}  \bvol{383},  \pg{349--363}.
+
+\bibitem[dos Santos {\em et~al.\/}(2023)dos Santos, Botero-Bolivar, Venner \& de~Santana]{dosSantos2023}
+{\sc \au{dos Santos, F.~L.}, \au{Botero-Bolivar, L.}, \au{Venner, C.~H.} \& \au{de~Santana, L.~D.}} \yr{2023}  \at{Inflow turbulence distortion for airfoil leading-edge noise prediction for large turbulence length scales for zero-mean loading}.  \jt{The Journal of the Acoustical Society of America}  \bvol{153}~(3),  \pg{1811--1822}.
+
+\bibitem[Schmidt {\em et~al.\/}(2010)Schmidt, Kerstein \& McDermott]{SchmidtKerstein2010}
+{\sc \au{Schmidt, Rodney~C.}, \au{Kerstein, Alan~R.} \& \au{McDermott, Randall}} \yr{2010}  \at{{ODTLES}: A multi-scale model for {3D} turbulent flow based on one-dimensional turbulence modeling}.  \jt{Computer Methods in Applied Mechanics and Engineering}  \bvol{199}~(9--12),  \pg{865--880}.
+
+\bibitem[Sharma {\em et~al.\/}(2022)Sharma, Klein \& Schmidt]{SharmaKleinSchmidt2022}
+{\sc \au{Sharma, Sparsh}, \au{Klein, Marten} \& \au{Schmidt, Heiko}} \yr{2022}  \at{Features of far-downstream asymptotic velocity fluctuations in a round jet: A one-dimensional turbulence study}.  \jt{Physics of Fluids}  \bvol{34}~(8),  \pg{085131}.
+
+\bibitem[Stephens \& Lignell(2021)]{StephensLignell2021}
+{\sc \au{Stephens, Victoria~B.} \& \au{Lignell, David~O.}} \yr{2021}  \at{One-dimensional turbulence ({ODT}): Computationally efficient modeling and simulation of turbulent flows}.  \jt{SoftwareX}  \bvol{13},  \pg{100641}.
+
+\bibitem[Townsend(1976)]{TownsendBook1976}
+{\sc \au{Townsend, A.~A.}} \yr{1976} {\em The Structure of Turbulent Shear Flow\/}, 2nd edn.  \publ{Cambridge: Cambridge University Press}.
+
+\bibitem[Tucker \& Reynolds(1968)]{TuckerReynolds1968}
+{\sc \au{Tucker, H.~J.} \& \au{Reynolds, A.~J.}} \yr{1968}  \at{The distortion of turbulence by irrotational plane strain}.  \jt{Journal of Fluid Mechanics}  \bvol{32}~(4),  \pg{657--673}.
+
+\bibitem[Wunsch \& Kerstein(2001)]{WunschKerstein2001}
+{\sc \au{Wunsch, Scott} \& \au{Kerstein, Alan~R.}} \yr{2001}  \at{A model for layer formation in stably stratified turbulence}.  \jt{Physics of Fluids}  \bvol{13}~(3),  \pg{702--712}.
+
+\bibitem[Zusi \& Perot(2013)]{ZusiPerot2013}
+{\sc \au{Zusi, C.~J.} \& \au{Perot, J.~B.}} \yr{2013}  \at{Simulation and modeling of turbulence subjected to a period of uniform plane strain}.  \jt{Physics of Fluids}  \bvol{25}~(11),  \pg{110819}.
+
+\bibitem[Zusi \& Perot(2014)]{ZusiPerot2014}
+{\sc \au{Zusi, C.~J.} \& \au{Perot, J.~B.}} \yr{2014}  \at{Simulation and modeling of turbulence subjected to a period of axisymmetric contraction or expansion}.  \jt{Physics of Fluids}  \bvol{26}~(11),  \pg{115103}.
+
+\end{thebibliography}

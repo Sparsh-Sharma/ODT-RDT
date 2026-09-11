@@ -1,0 +1,14 @@
+\begin{thebibliography}{3}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\def\au#1{#1} \def\ed#1{#1} \def\yr#1{#1}\def\at#1{#1}\def\jt#1{\textit{#1}} \def\bt#1{#1}\def\bvol#1{\textbf{#1}} \def\vol#1{#1} \def\pg#1{#1} \def\publ#1{#1}\def\arxiv#1{#1}\def\org#1{#1}\def\st#1{\textit{#1}}
+
+\bibitem[Chen {\em et~al.\/}(2006)Chen, Meneveau \& Katz]{ChenMeneveauKatz2006}
+{\sc \au{Chen, Jun}, \au{Meneveau, Charles} \& \au{Katz, Joseph}} \yr{2006}  \at{Scale interactions of turbulence subjected to a straining--relaxation--destraining cycle}.  \jt{Journal of Fluid Mechanics}  \bvol{562},  \pg{123--150}.
+
+\bibitem[Gualtieri \& Meneveau(2010)]{GualtieriMeneveau2010}
+{\sc \au{Gualtieri, P.} \& \au{Meneveau, C.}} \yr{2010}  \at{Direct numerical simulations of turbulence subjected to a straining and destraining cycle}.  \jt{Physics of Fluids}  \bvol{22}~(6),  \pg{065104}.
+
+\bibitem[Lee {\em et~al.\/}(1986)Lee, Piomelli \& Reynolds]{LeePiomelliReynolds1986}
+{\sc \au{Lee, Moon~J.}, \au{Piomelli, Ugo} \& \au{Reynolds, William~C.}} \yr{1986}  \at{Useful formulas in the rapid distortion theory of homogeneous turbulence}.  \jt{Physics of Fluids}  \bvol{29}~(10),  \pg{3471--3474}.
+
+\end{thebibliography}
