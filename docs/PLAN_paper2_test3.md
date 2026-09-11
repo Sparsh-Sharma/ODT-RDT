@@ -554,6 +554,54 @@ NEXT (sequel): extend the allocation protocol to e=2-3 with the RDT
 reference (computable at any e; DNS reference ends at e=1) to exhibit
 the clock's deep-strain allocation advantage on the same axes.
 
+### 4g addendum 4 — LAST-EDDY-SIZE clock (Alan 2026-09-11) — NULL result,
+### and it isolates the size measure as load-bearing
+
+Alan's suggestion (reply to the clock-results mail): set the relaxation-
+event size equal to the most recent eddy event's size (uniform position;
+multiple equal-size events between eddies at high relative rate), hoping
+to "boost the wavenumber dependence in the right direction".  He also
+mis-remembered the current sizes as measured from a baseline simulation
+— they are the model's own ANALYTIC sampling measure (same esdp form the
+eddy sampler uses); only the RATE was dose-matched, and only for the
+controlled comparison.
+
+Implemented (9ce7bca): `LrelaxLastEddySize` (default off bit-identical —
+regression vs stored RCS1 campaign realization PASSED, byte-identical
+dumps); `eddy::lastAcceptedSize` set at eddy acceptance and rescaled by
+applyStrainDilatation like the stored edges; with relaxLmax > 0 events
+are skipped while the last eddy exceeds the cap.  Decks RCE1 (uncapped,
+rate 70) + RCES1 (capped 0.05), 1024 paired-seed rlz each (jobs
+4453217/8, ~1 min wall); rce1/rces1_robust_table.txt,
+rcs1_vs_rce1_table.txt, fig_clock_lastEddy, newbands/.
+
+Context that decides it (baseline runtime stats, this deck): accepted
+eddies = burst of ~129 before t=1 (mean size 0.039, 77% sub-cap), then
+~1.6 eddies TOTAL over t in [1,4] with mean size ~0.12 and essentially
+none sub-cap.  So "the most recent eddy" is small during the burst and
+a large energy-containing interval for the whole deep-strain phase.
+
+- RCE1 (as Alan stated it): fade broken (timing decoupling survives yet
+  another per-event modification — every paired contrast starred at
+  every strain) but the effect is BROADBAND, tracking the uncapped
+  distribution clock at e<=2 (A_lo/A_hi/u2 = 1.23/1.12/0.385 vs RC1
+  1.26/1.16/0.389 at e=1): the one-point trajectory is broken already
+  in the application regime (u2 0.385 vs baseline 0.420 at e=1; 0.49 vs
+  0.58 at e=3.9).  Fine scales at deep strain NO better than RCS1
+  (paired hi contrasts vs RCS1 ns at e>=3).
+- RCES1 (cap retained): the stream STARVES after the burst (no sub-cap
+  eddies to inherit) — null at e<=2 (all CIs straddle zero, u2
+  untouched), and the deep-strain hold degrades to borderline (A_hi
+  1.41 at 3.9, paired -0.045 ns, vs RCS1 1.30 starred everywhere).
+- VERDICT: NO — slaving the event size to the eddy sequence makes the
+  relaxation LESS scale-selective (uncapped) or starves it (capped);
+  the wavenumber dependence moves the wrong way in both variants.  The
+  constructive yield: the clock needs BOTH its own timing AND its own
+  sub-band size measure — borrowing either back from the eddy
+  statistics re-imports the eddy population's deep-strain failure.
+  RCS1 stands as the candidate mechanism, now with its second axis
+  (the size measure) demonstrated load-bearing, not incidental.
+
 ## 5. Reply history:
    - 2026-09-04: first reply SENT (email_alan_test3_reply.html).
    - 2026-09-05 morning: Option-B reply SENT — the MORNING draft of
