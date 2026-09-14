@@ -1,13 +1,3 @@
-% =========================================================================
-%  main_v3.tex — the RECONSTRUCTED paper 1 (JFM-2026-1781 resubmission)
-%  Sharma & Kerstein.  Fresh skeleton, transplanted organs:
-%  V2 (Main_submission_V2.tex) is FROZEN as the quarry — transplant sources
-%  are named per section as  %% TRANSPLANT: <source> — <what/how much>.
-%  Structure follows docs/REVISION_MAP_jfm1781.md section 5 (spine = the
-%  single-line closure).  The LE-consequence section is DETACHABLE
-%  (Option C -> S) and is written LAST.
-%  Build: latexmk -pdf main_v3.tex
-% =========================================================================
 \documentclass[lineno]{JFM-FLM_Au}
 
 \usepackage{xcolor}
@@ -16,7 +6,6 @@
 \usepackage{subcaption}
 
 \definecolor{jfmblue}{RGB}{0,56,168}
-\def\xshift{1.5}
 
 \hypersetup{
   colorlinks=true,
@@ -25,105 +14,33 @@
   urlcolor=jfmblue
 }
 
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}
-\newtheorem{proposition}{Proposition}
-
-\newenvironment{proof}
-  {\par\noindent\textit{Proof.}\ }
-  {\hfill$\Box$\par}
-
-\newcounter{assumption}
-\renewcommand{\theassumption}{A\arabic{assumption}}
-
-\newenvironment{assumption}[1]{%
-  \refstepcounter{assumption}%
-  \par\medskip
-  \noindent\textbf{Assumption~\theassumption\ (#1).}\ %
-}{%
-  \par\medskip
-}
-
 \lefttitle{Sharma and Kerstein}
 \righttitle{Journal of Fluid Mechanics}
 
-%% Title confirmed by Sparsh 2026-09-09 (physics-first hierarchy).
-\title{Strain-coupled one-dimensional turbulence: a single-line closure
-for rapid distortion, its measured limits, and the consequence for
-leading-edge noise}
+\title{Strain-coupled one-dimensional turbulence: a single-line closure for rapid distortion, its measured limits, and the consequence for leading-edge noise}
 
 \author{Sparsh Sharma\aff{1} \and Alan R. Kerstein\aff{2}}
 
-\affiliation{\aff{1}German Aerospace Center (DLR), 38108 Braunschweig, Germany
-\aff{2}Consultant, Danville, CA 94526, USA}
+\affiliation{
+\aff{1}German Aerospace Center (DLR), 38108 Braunschweig, Germany
+\aff{2}Consultant, Danville, CA 94526, USA
+}
 
 \corresau{Sparsh Sharma, sparsh.sharma@dlr.de}
 
 \begin{document}
+
 \maketitle
 
 \begin{abstract}
-%% PROVISIONAL — rewrite last (map task M4).  Must claim ONLY:
-%%  (1) strain-coupled ODT formulation, invariants preserved (V2 claims OK);
-%%  (2) the single-line closure: exact obstruction stated, sharp LOS bounds,
-%%      A1 measured (exact for axisymmetric distortion, quantified error
-%%      under plane strain) — NOT "a closed functional";
-%%  (3) the correct linear reference: exact projected RDT is broadband, NOT
-%%      rigid translation (Referee 3.1 was right; own calculation);
-%%  (4) independent spectral benchmark: strained-box DNS + exact-RDT
-%%      companions, three-way comparison; kappa-uniformity deficiency
-%%      measured, distance-from-linear-theory envelope vs Sk/eps;
-%%  (5) scale-local relaxation (hierarchical kernels) as the measured
-%%      constructive direction.  NO claim that the deficiency is fixed.
-The rapid distortion of turbulence by a mean strain is central to flows
-from wind-tunnel contractions to the stagnation regions of lifting
-surfaces, yet its economical prediction founders on a closure problem: the
-rapid pressure--strain term is a nonlocal three-dimensional spectral
-integral, while affordable models evolve at most one-dimensional or
-single-point information. We present a strain-coupled formulation of
-one-dimensional turbulence (ODT) and, as its analytical core, a systematic
-treatment of what a single line of turbulence data determines about the
-rapid pressure--strain term: the obstruction to a single-line closure is
-stated exactly, sharp bounds on the rapid term are derived from line data
-alone, and the closure assumption of axisymmetry about the line is not
-assumed but measured---it is exact for axisymmetric distortion and its
-plane-strain error is quantified as a function of accumulated strain.
-A strained-box direct numerical simulation with an exact rapid-distortion
-companion provides the independent spectral benchmark: it shows that the
-correct linear reference for line-projected spectra is broadband rather
-than a rigid spectral translation, and a three-way comparison localises
-the model's remaining deficiency in its wavenumber-uniform rapid
-kinematics, quantified by a distance-from-linear-theory envelope as a
-function of strain rapidity. Hierarchical application of the model's
-energy-redistributing kernel to eddy sub-scales supplies the
-measured missing ingredient---scale-local relaxation---where it reaches
-the scales of the imbalance, and decoupling the relaxation from the
-eddy clock removes its deep-strain fade while a size cap preserves the
-one-point physics: in a five-way comparison against the DNS and exact
-linear theory on the benchmark observable, the mechanism moves the
-model's spectral allocation of anisotropy towards the DNS at moderate
-strain rapidity, with its rapid-strain saturation measured and stated.
-The output is then carried to the motivating application: supplied to
-Amiet's leading-edge-noise theory in place of the frozen von K\'arm\'an
-inflow of standard practice, the computed distorted spectrum lowers the
-predicted radiated level by $5$--$20$\,dB at the energy-containing
-frequencies for total strains $0.5$--$2$, in a geometry-free kernel
-ratio and in an assembled absolute prediction alike---the magnitude and
-sign of the term that frozen-spectrum practice omits, opposite to the
-surface-blocking correction with which it must be combined.
+xxxx
 \end{abstract}
 
 \begin{keywords}
-%% chosen at submission
+one-dimensional turbulence; leading-edge noise; turbulence modelling
 \end{keywords}
 
-% =========================================================================
 \section{Introduction}\label{sec:intro}
-% =========================================================================
-%% REWRITTEN 2026-09-08 (M4): V2 motivation compressed ~60%; novelty
-%%   statement honest (dosSantos2023/Ribeiro2023/Piccolo2024 cited per
-%%   R1); Sagaut & Cambon 2018 as the RDT spine (R2); new arc paragraph.
-
 The distortion of turbulence by a mean velocity gradient is among the
 most basic problems of turbulence dynamics. When a turbulent flow is
 strained---accelerated through a contraction, deflected around a bluff
@@ -177,11 +94,11 @@ the edge \citep{Piccolo2024}. What these corrections share is that the
 distorted spectrum is imposed---from linear theory, or from a
 measurement that a prediction tool does not have. Synthetic-turbulence
 generators \citep{KimHaeri2015} share the limitation by construction:
-they reproduce a prescribed spectrum rather than evolving one. A model
-that \emph{predicts} the distorted spectrum, including the nonlinear
-relaxation that linear transforms omit, is the missing element---here
-and wherever distorted turbulence feeds a downstream prediction, from
-contraction design to the turbulence ingested by rotors. The subject
+they reproduce a prescribed spectrum rather than evolving one. A model that predicts the distorted spectrum, including the nonlinear
+relaxation that linear transforms omit, would supply an element that is
+at present missing---here and wherever distorted turbulence feeds a
+downstream prediction, from contraction design to the turbulence ingested
+by rotors. The subject
 of this paper is that distortion problem; the acoustic stage enters
 only as the established linear functional that consumes the model's
 output.
@@ -200,8 +117,7 @@ StephensLignell2021} and cylindrical geometry \citep{Lignell2018},
 embedded as a subgrid closure \citep{SchmidtKerstein2010}, and coupled
 to acoustic analogies for jet noise
 \citep{SharmaKleinSchmidt2022,MedinaMendez2023}, ODT is an accurate and
-inexpensive generator of scale-resolved turbulence statistics---exactly
-what a model of strained turbulence must deliver. But standard ODT
+inexpensive generator of scale-resolved turbulence statistics. But standard ODT
 cannot represent distortion by a mean strain: its pressure treatment
 models only the slow, turbulence-driven return to isotropy, not the
 rapid part driven directly by the mean strain, and the
@@ -212,84 +128,84 @@ its own coordinate. Reconciling the inherently three-dimensional,
 non-local pressure physics of rapid distortion with the one-dimensional,
 local structure of ODT is the central modelling problem addressed here.
 
-The paper makes six contributions, each stated so as to be falsifiable.
-First, a strain-coupled formulation of ODT (SC-ODT, hereafter)
-(\S\,\ref{sec:formulation}):
-production enters as an exact continuous forcing, the rapid
-pressure--strain as an energy-conserving redistribution operator built
-from an explicit spectral closure, and the wavevector kinematics as a
-dilatation of the domain; the construction preserves the model's
-structural invariants and reproduces the rapid-distortion evolution of
-the component energies, under the stated closure, with no adjustable
-constant (\S\,\ref{sec:verification}). Second, the correct linear
-reference for what the model actually predicts: exact RDT, projected
-onto a line, is \emph{broadband}---it does not translate the projected
-spectra rigidly---so the reference against which any line model must be
-judged differs from the model's own rigid kinematics already at the
-linear level (\S\,\ref{sec:spec-linref}). Third, an independent spectral
-benchmark: a strained-box direct numerical simulation with exact-RDT
-companion calculations, reduced to the same one-dimensional observables,
-yielding a three-way comparison that localises the model's remaining
-deficiency in its wavenumber-uniform rapid kinematics and a
-distance-from-linear-theory envelope as a function of strain rapidity
-$Sk_t/\varepsilon$, the strain rate in eddy-turnover units
-(\S\,\ref{sec:box-dns}). Fourth, an answer to the question of
-principle---what can a single line say about the rapid pressure--strain
-term, which is exactly a non-local three-dimensional object?---in a form
-deliberately more modest than a closure claim: the obstruction is stated
-exactly, sharp bounds on the rapid term are derived from line data
-alone, and the axisymmetry hypothesis under which the term collapses is
-not assumed but \emph{measured}, exact for axisymmetric distortion and
-with a quantified error under plane strain (\S\,\ref{sec:gate}). Fifth,
-the measured limits of the model and the mechanism that moves them
-(\S\,\ref{sec:limits}): a transmission diagnostic shows the
-strain-induced anisotropy crossing two triplet-map generations---a
-factor of nine in scale---undiminished,
-and a controlled family of interventions falsifies acceptance gating
-and map reweighting as remedies. Hierarchical application of the
-energy-redistributing kernel to eddy sub-scales---scale-local
-relaxation---supplies the missing ingredient where it reaches the
-scales of the imbalance; the mechanism's own deep-strain fade is
-traced to its event-locked timing and removed by an independent,
-size-capped relaxation clock, leaving a single measured allocation
-bound. Sixth, the
-consequence for the motivating application (\S\,\ref{sec:lenoise}):
-the computed distorted spectrum is supplied to Amiet's
-leading-edge-noise theory in place of the frozen inflow of standard
-practice, both as a ratio from which aerofoil geometry and observer
-cancel exactly and as an assembled absolute prediction at the
-reference operating point, quantifying the
-$5$--$20$\,dB term that prescribed-spectrum practice omits; the
-assembled chain is confronted with four published experiments, which
-it reproduces to $1$--$2$\,dB rms where the facilities are cleanest.
-Throughout, the posture is the same: where the model is right we show
-against what, and where it is wrong we measure by how much and locate
-why.
+The paper reports the following aspects of model formulation and assessment:
+\begin{itemize}
+\item A strain-coupled formulation of ODT (SC-ODT)
+(\S\,\ref{sec:formulation}): production enters as an exact continuous
+forcing, the rapid pressure--strain as an energy-conserving redistribution
+operator built from an explicit spectral closure, and the wavevector
+kinematics as a dilatation of the domain. The construction preserves the
+model's structural invariants and, under the stated closure, reproduces
+the rapid-distortion evolution of the component energies with no adjustable
+constant (\S\,\ref{sec:verification}).
 
-The paper falls into three parts. The first is the model and what a
-line can know: \S\,\ref{sec:formulation} reviews standard ODT and
-derives the strain-coupled formulation; \S\,\ref{sec:verification}
-verifies it against exact rapid-distortion solutions and validates it
-at the moment level against the DNS of \citet{LeeReynolds1985};
-\S\,\ref{sec:val-spectrum} constructs the linear reference, examines
-the emergent distorted spectrum and its operating point, and carries
-out the strained-box DNS benchmark; \S\,\ref{sec:gate} treats the
-single-line closure question. The second part,
-\S\,\ref{sec:limits}, measures the model's limits and establishes
-scale-local relaxation---timed by its own clock---as the mechanism
-that moves them. The third part, \S\,\ref{sec:lenoise}, carries the
-computed distortion to the leading-edge-noise input.
-Section~\ref{sec:conclusions} concludes. Supplementary material
-contains the validation against the strained-turbulence experiment of
-\citet{ChenMeneveauKatz2006} and the complete intervention family
-behind the mechanism ledger.
+\item The linear reference appropriate to the model's observables: exact
+RDT projected onto a line is broadband rather than a rigid spectral
+translation, so the reference against which any line model must be judged
+already differs from the model's own kinematics at the linear level
+(\S\,\ref{sec:spec-linref}).
+
+\item An independent spectral benchmark consisting of a strained-box direct
+numerical simulation together with exact-RDT companion calculations,
+reduced to the same one-dimensional observables. A three-way comparison
+localises the model's remaining deficiency in its wavenumber-uniform rapid
+kinematics and supplies a distance-from-linear-theory envelope as a
+function of strain rapidity $Sk_t/\varepsilon$ (\S\,\ref{sec:box-dns}).
+
+\item A treatment of what a single line can determine about the rapid
+pressure--strain term (a non-local three-dimensional object). The
+obstruction is stated exactly, sharp bounds are obtained from line data
+alone, and the axisymmetry hypothesis is measured rather than assumed: it
+is exact for axisymmetric distortion and carries a quantified error under
+plane strain (\S\,\ref{sec:gate}).
+
+\item The measured limits of the model and a mechanism that moves them
+(\S\,\ref{sec:limits}). A transmission diagnostic shows the strain-induced
+anisotropy crossing two triplet-map generations (a factor of nine in
+scale) undiminished; a controlled family of interventions rules out
+acceptance gating and map reweighting as remedies. Hierarchical application
+of the energy-redistributing kernel to eddy sub-scales supplies scale-local
+relaxation at the scales of the imbalance. The mechanism's deep-strain fade
+is traced to its event-locked timing and is removed by an independent,
+size-capped relaxation clock, leaving a single measured allocation bound.
+
+\item The consequence for the motivating application
+(\S\,\ref{sec:lenoise}): the computed distorted spectrum is supplied to
+Amiet's leading-edge-noise theory in place of the frozen inflow of standard
+practice, both as a ratio from which aerofoil geometry and observer cancel
+and as an absolute prediction at the reference operating point. The
+calculation quantifies the $5$--$20$\,dB term omitted by prescribed-spectrum
+practice; the assembled chain is compared with four published experiments
+and lies within $1$--$2$\,dB rms where the facilities are cleanest.
+\end{itemize}
+Throughout we show where the model agrees with reference data and, where it
+does not, by how much and for what reason.
+
+
+The paper falls into three parts:
+\begin{itemize}
+\item The model and what a line can know: \S\,\ref{sec:formulation}
+reviews standard ODT and derives the strain-coupled formulation;
+\S\,\ref{sec:verification} verifies it against exact rapid-distortion
+solutions and validates it at the moment level against the DNS of
+\citet{LeeReynolds1985}; \S\,\ref{sec:val-spectrum} constructs the linear
+reference, examines the emergent distorted spectrum and its operating
+point, and carries out the strained-box DNS benchmark; \S\,\ref{sec:gate}
+treats the single-line closure question.
+
+\item \S\,\ref{sec:limits} measures the model's limits and establishes
+scale-local relaxation---timed by its own clock---as the mechanism that
+moves them.
+
+\item \S\,\ref{sec:lenoise} applies the computed distortion as a
+correction to the leading-edge-noise input.
+% \end{enumerate}
+\end{itemize}
+Section~\ref{sec:conclusions} concludes. The validation against the strained-turbulence experiment of \citet{ChenMeneveauKatz2006} (CMK), summarised in \S\,\ref{sec:cmk}, is detailed in the supplementary material (\S\,S1), which also contains the complete intervention family behind the mechanism ledger.
 
 % =========================================================================
 \section{Strain-coupled one-dimensional turbulence}\label{sec:formulation}
 % =========================================================================
-%% TRANSPLANTED 2026-09-06 from V2 (sec:odt compressed to one review
-%%   subsection per R2; sec:rapid-slow trimmed; sec:formulation ~80%;
-%%   Propositions 1-2 demoted to consistency checks per R1 minor).
 
 The linear rapid-distortion equations, recalled below, contain two
 distinct ingredients: an evolution of the Fourier \emph{amplitudes},
@@ -297,7 +213,7 @@ comprising production and the solenoidal pressure projection, and an
 evolution of the \emph{wavevectors} that carries the kinematic straining
 of scales. The pressure part of the amplitude equation requires the full
 three-dimensional wavevector and is therefore not directly representable
-on a one-dimensional line; that incompatibility organises this section.
+on a one-dimensional line; that incompatibility is the focus of this section.
 The distortion physics is split according to its structure and each part
 assigned to the mechanism that can carry it faithfully: the production,
 which is local in physical space, is imposed as a continuous forcing of
@@ -307,14 +223,14 @@ energy-conserving redistribution operator constructed to reproduce the
 homogeneous rapid-distortion evolution of the component energies under an
 explicit spectral closure (\S\,\ref{sec:rapid-kernel}); and the wavevector
 kinematics are recovered by a consistent straining of the domain
-(\S\,\ref{sec:domain-strain}). The slow, turbulence-driven
-pressure--strain and the inertial cascade remain the discrete eddy events
-of the standard model, reviewed first.
+(\S\,\ref{sec:domain-strain}). The slow, turbulence-driven pressure--strain and the inertial cascade
+are captured by the discrete eddy events of the standard model, reviewed first.
 
 Throughout, $A_{ij}=\partial U_i/\partial x_j$ denotes the imposed mean
 velocity gradient, taken uniform across the line at each instant; the
 medium is incompressible, $A_{ii}=0$. The line carries the fluctuation
-field $u_i(y,t)$ about this mean; $R_{ij}\equiv\overline{u_iu_j}$ is the
+field $u_i(y,t)$ about this mean, so that the total velocity is
+$U_i+u_i$ with $\overline{u_i}=0$; $R_{ij}\equiv\overline{u_iu_j}$ is the
 Reynolds-stress tensor, the overline denoting the average over the
 statistically homogeneous directions (equivalently, the ensemble of
 independent realisations), and $k_t\equiv\tfrac12R_{ii}$ the turbulent
@@ -322,8 +238,91 @@ kinetic energy. In the homogeneous configurations used to establish and
 test the formulation the spatial line average and the ensemble average
 coincide.
 
-\subsection{The standard model}\label{sec:odt-review}
 
+\subsection{The standard model}\label{sec:odt-review}
+\begin{figure}
+  \centering
+% ===================== ODT schematic (inline TikZ) =====================
+\begin{tikzpicture}[
+  x=1cm, y=1cm,
+  line width=0.4pt,
+  font=\fontsize{8}{9}\selectfont,
+  ev/.style={-{Latex[length=1.4mm,width=1.1mm]}},
+  ax/.style={-{Latex[length=1.4mm,width=1.1mm]}, gray!55, line width=0.4pt},
+  box/.style={draw, rectangle, rounded corners=1pt, text width=2.45cm,
+              align=center, inner xsep=3pt, inner ysep=4pt, line width=0.4pt,
+              minimum height=0.9cm},
+]
+
+% =========================== PANEL (a) ===========================
+\begin{scope}[shift={(0,0)}]
+  \fill[black!6] (1.4,1.70) rectangle (2.9,4.85);
+  \draw[black!25] (1.4,1.70) -- (1.4,4.85);
+  \draw[black!25] (2.9,1.70) -- (2.9,4.85);
+  \node[font=\fontsize{8}{8}\selectfont] at (1.4,5.06) {$y_0$};
+  \node[font=\fontsize{8}{8}\selectfont] at (2.9,5.06) {$y_0+l$};
+  \draw[ax] (0.10,4.45) -- (3.85,4.45);
+  \draw[ax] (0.10,2.55) -- (3.85,2.55);
+  \node[anchor=east,font=\fontsize{8}{8}\selectfont] at (3.99,4.45) {$y$};
+  \node[anchor=east,font=\fontsize{8}{8}\selectfont] at (3.99,2.55) {$y$};
+  \draw[black!40, line width=0.5pt] plot coordinates {(0.250,4.615) (0.263,4.615) (0.277,4.616) (0.290,4.616) (0.303,4.616) (0.317,4.615) (0.330,4.615) (0.343,4.614) (0.357,4.613) (0.370,4.612) (0.383,4.610) (0.397,4.609) (0.410,4.607) (0.423,4.605) (0.436,4.603) (0.450,4.601) (0.463,4.599) (0.476,4.597) (0.490,4.595) (0.503,4.592) (0.516,4.590) (0.530,4.588) (0.543,4.586) (0.556,4.583) (0.570,4.581) (0.583,4.579) (0.596,4.577) (0.610,4.574) (0.623,4.572) (0.636,4.570) (0.650,4.569) (0.663,4.567) (0.676,4.565) (0.690,4.564) (0.703,4.562) (0.716,4.561) (0.730,4.560) (0.743,4.559) (0.756,4.558) (0.769,4.558) (0.783,4.557) (0.796,4.557) (0.809,4.557) (0.823,4.556) (0.836,4.557) (0.849,4.557) (0.863,4.557) (0.876,4.558) (0.889,4.558) (0.903,4.559) (0.916,4.560) (0.929,4.561) (0.943,4.562) (0.956,4.563) (0.969,4.564) (0.983,4.565) (0.996,4.566) (1.009,4.567) (1.023,4.568) (1.036,4.570) (1.049,4.571) (1.063,4.572) (1.076,4.573) (1.089,4.574) (1.103,4.575) (1.116,4.576) (1.129,4.577) (1.142,4.578) (1.156,4.578) (1.169,4.579) (1.182,4.579) (1.196,4.579) (1.209,4.579) (1.222,4.579) (1.236,4.578) (1.249,4.577) (1.262,4.577) (1.276,4.575) (1.289,4.574) (1.302,4.572) (1.316,4.571) (1.329,4.569) (1.342,4.566) (1.356,4.564) (1.369,4.561) (1.382,4.558) (1.396,4.554) (1.409,4.551) (1.422,4.547) (1.436,4.543) (1.449,4.539) (1.462,4.534) (1.475,4.530) (1.489,4.525) (1.502,4.519) (1.515,4.514) (1.529,4.509) (1.542,4.503) (1.555,4.497) (1.569,4.491) (1.582,4.485) (1.595,4.479) (1.609,4.473) (1.622,4.466) (1.635,4.460) (1.649,4.453) (1.662,4.447) (1.675,4.441) (1.689,4.434) (1.702,4.428) (1.715,4.421) (1.729,4.415) (1.742,4.409) (1.755,4.402) (1.769,4.396) (1.782,4.390) (1.795,4.385) (1.808,4.379) (1.822,4.374) (1.835,4.368) (1.848,4.363) (1.862,4.358) (1.875,4.354) (1.888,4.349) (1.902,4.345) (1.915,4.342) (1.928,4.338) (1.942,4.335) (1.955,4.332) (1.968,4.329) (1.982,4.326) (1.995,4.324) (2.008,4.323) (2.022,4.321) (2.035,4.320) (2.048,4.319) (2.062,4.318) (2.075,4.318) (2.088,4.318) (2.102,4.318) (2.115,4.318) (2.128,4.319) (2.142,4.320) (2.155,4.321) (2.168,4.323) (2.181,4.325) (2.195,4.327) (2.208,4.329) (2.221,4.331) (2.235,4.334) (2.248,4.336) (2.261,4.339) (2.275,4.342) (2.288,4.345) (2.301,4.349) (2.315,4.352) (2.328,4.355) (2.341,4.359) (2.355,4.362) (2.368,4.366) (2.381,4.369) (2.395,4.373) (2.408,4.376) (2.421,4.380) (2.435,4.383) (2.448,4.387) (2.461,4.390) (2.475,4.393) (2.488,4.396) (2.501,4.399) (2.514,4.402) (2.528,4.405) (2.541,4.408) (2.554,4.410) (2.568,4.412) (2.581,4.415) (2.594,4.417) (2.608,4.419) (2.621,4.420) (2.634,4.422) (2.648,4.423) (2.661,4.425) (2.674,4.426) (2.688,4.427) (2.701,4.428) (2.714,4.428) (2.728,4.429) (2.741,4.429) (2.754,4.429) (2.768,4.429) (2.781,4.429) (2.794,4.429) (2.808,4.429) (2.821,4.429) (2.834,4.429) (2.847,4.428) (2.861,4.428) (2.874,4.428) (2.887,4.427) (2.901,4.427) (2.914,4.426) (2.927,4.426) (2.941,4.425) (2.954,4.425) (2.967,4.425) (2.981,4.425) (2.994,4.425) (3.007,4.425) (3.021,4.425) (3.034,4.425) (3.047,4.425) (3.061,4.426) (3.074,4.427) (3.087,4.428) (3.101,4.429) (3.114,4.430) (3.127,4.431) (3.141,4.433) (3.154,4.435) (3.167,4.437) (3.181,4.439) (3.194,4.442) (3.207,4.445) (3.220,4.448) (3.234,4.451) (3.247,4.454) (3.260,4.458) (3.274,4.462) (3.287,4.466) (3.300,4.470) (3.314,4.474) (3.327,4.479) (3.340,4.484) (3.354,4.489) (3.367,4.494) (3.380,4.499) (3.394,4.504) (3.407,4.510) (3.420,4.516) (3.434,4.521) (3.447,4.527) (3.460,4.533) (3.474,4.539) (3.487,4.545) (3.500,4.551) (3.514,4.556) (3.527,4.562) (3.540,4.568) (3.553,4.574) (3.567,4.580) (3.580,4.585) (3.593,4.591) (3.607,4.596) (3.620,4.601) (3.633,4.607) (3.647,4.611) (3.660,4.616) (3.673,4.621) (3.687,4.625) (3.700,4.629)};
+  \draw[black, line width=0.6pt] plot coordinates {(0.250,2.685) (0.263,2.685) (0.277,2.686) (0.290,2.686) (0.303,2.686) (0.317,2.685) (0.330,2.685) (0.343,2.684) (0.357,2.683) (0.370,2.682) (0.383,2.680) (0.397,2.679) (0.410,2.677) (0.423,2.675) (0.436,2.673) (0.450,2.671) (0.463,2.669) (0.476,2.667) (0.490,2.665) (0.503,2.662) (0.516,2.660) (0.530,2.658) (0.543,2.656) (0.556,2.653) (0.570,2.651) (0.583,2.649) (0.596,2.647) (0.610,2.644) (0.623,2.642) (0.636,2.640) (0.650,2.639) (0.663,2.637) (0.676,2.635) (0.690,2.634) (0.703,2.632) (0.716,2.631) (0.730,2.630) (0.743,2.629) (0.756,2.628) (0.769,2.628) (0.783,2.627) (0.796,2.627) (0.809,2.627) (0.823,2.626) (0.836,2.627) (0.849,2.627) (0.863,2.627) (0.876,2.628) (0.889,2.628) (0.903,2.629) (0.916,2.630) (0.929,2.631) (0.943,2.632) (0.956,2.633) (0.969,2.634) (0.983,2.635) (0.996,2.636) (1.009,2.637) (1.023,2.638) (1.036,2.640) (1.049,2.641) (1.063,2.642) (1.076,2.643) (1.089,2.644) (1.103,2.645) (1.116,2.646) (1.129,2.647) (1.142,2.648) (1.156,2.648) (1.169,2.649) (1.182,2.649) (1.196,2.649) (1.209,2.649) (1.222,2.649) (1.236,2.648) (1.249,2.647) (1.262,2.647) (1.276,2.645) (1.289,2.644) (1.302,2.642) (1.316,2.641) (1.329,2.639) (1.342,2.636) (1.356,2.634) (1.369,2.631) (1.382,2.628) (1.396,2.624) (1.409,2.616) (1.422,2.603) (1.436,2.588) (1.449,2.571) (1.462,2.553) (1.475,2.534) (1.489,2.515) (1.502,2.495) (1.515,2.476) (1.529,2.458) (1.542,2.442) (1.555,2.427) (1.569,2.414) (1.582,2.404) (1.595,2.396) (1.609,2.391) (1.622,2.388) (1.635,2.388) (1.649,2.391) (1.662,2.395) (1.675,2.402) (1.689,2.410) (1.702,2.420) (1.715,2.430) (1.729,2.440) (1.742,2.451) (1.755,2.461) (1.769,2.470) (1.782,2.478) (1.795,2.485) (1.808,2.491) (1.822,2.495) (1.835,2.498) (1.848,2.499) (1.862,2.499) (1.875,2.499) (1.888,2.498) (1.902,2.497) (1.915,2.498) (1.928,2.499) (1.942,2.499) (1.955,2.499) (1.968,2.497) (1.982,2.494) (1.995,2.490) (2.008,2.484) (2.022,2.476) (2.035,2.468) (2.048,2.458) (2.062,2.448) (2.075,2.438) (2.088,2.427) (2.102,2.417) (2.115,2.408) (2.128,2.400) (2.142,2.394) (2.155,2.390) (2.168,2.388) (2.181,2.388) (2.195,2.392) (2.208,2.398) (2.221,2.406) (2.235,2.417) (2.248,2.431) (2.261,2.446) (2.275,2.463) (2.288,2.481) (2.301,2.500) (2.315,2.520) (2.328,2.539) (2.341,2.558) (2.355,2.576) (2.368,2.592) (2.381,2.606) (2.395,2.619) (2.408,2.617) (2.421,2.604) (2.435,2.589) (2.448,2.572) (2.461,2.554) (2.475,2.536) (2.488,2.516) (2.501,2.497) (2.514,2.478) (2.528,2.460) (2.541,2.443) (2.554,2.428) (2.568,2.415) (2.581,2.404) (2.594,2.396) (2.608,2.391) (2.621,2.388) (2.634,2.388) (2.648,2.390) (2.661,2.395) (2.674,2.402) (2.688,2.410) (2.701,2.419) (2.714,2.429) (2.728,2.440) (2.741,2.450) (2.754,2.460) (2.768,2.470) (2.781,2.478) (2.794,2.485) (2.808,2.491) (2.821,2.495) (2.834,2.498) (2.847,2.499) (2.861,2.499) (2.874,2.499) (2.887,2.498) (2.901,2.497) (2.914,2.496) (2.927,2.496) (2.941,2.495) (2.954,2.495) (2.967,2.495) (2.981,2.495) (2.994,2.495) (3.007,2.495) (3.021,2.495) (3.034,2.495) (3.047,2.495) (3.061,2.496) (3.074,2.497) (3.087,2.498) (3.101,2.499) (3.114,2.500) (3.127,2.501) (3.141,2.503) (3.154,2.505) (3.167,2.507) (3.181,2.509) (3.194,2.512) (3.207,2.515) (3.220,2.518) (3.234,2.521) (3.247,2.524) (3.260,2.528) (3.274,2.532) (3.287,2.536) (3.300,2.540) (3.314,2.544) (3.327,2.549) (3.340,2.554) (3.354,2.559) (3.367,2.564) (3.380,2.569) (3.394,2.574) (3.407,2.580) (3.420,2.586) (3.434,2.591) (3.447,2.597) (3.460,2.603) (3.474,2.609) (3.487,2.615) (3.500,2.621) (3.514,2.626) (3.527,2.632) (3.540,2.638) (3.553,2.644) (3.567,2.650) (3.580,2.655) (3.593,2.661) (3.607,2.666) (3.620,2.671) (3.633,2.677) (3.647,2.681) (3.660,2.686) (3.673,2.691) (3.687,2.695) (3.700,2.699)};
+  \draw[jfmblue, line width=1.0pt] plot coordinates {(1.902,2.497) (1.915,2.498) (1.928,2.499) (1.942,2.499) (1.955,2.499) (1.968,2.497) (1.982,2.494) (1.995,2.490) (2.008,2.484) (2.022,2.476) (2.035,2.468) (2.048,2.458) (2.062,2.448) (2.075,2.438) (2.088,2.427) (2.102,2.417) (2.115,2.408) (2.128,2.400) (2.142,2.394) (2.155,2.390) (2.168,2.388) (2.181,2.388) (2.195,2.392) (2.208,2.398) (2.221,2.406) (2.235,2.417) (2.248,2.431) (2.261,2.446) (2.275,2.463) (2.288,2.481) (2.301,2.500) (2.315,2.520) (2.328,2.539) (2.341,2.558) (2.355,2.576) (2.368,2.592) (2.381,2.606) (2.395,2.619)};
+  \draw[ev,black] (1.00,3.85) -- (1.00,3.05);
+  \node[anchor=west,text width=1.55cm,align=left] at (1.14,3.45)
+       {instantaneous eddy event};
+  \draw[densely dotted] (1.9,2.90) -- (1.9,1.80);
+  \draw[densely dotted] (2.4,2.90) -- (2.4,1.80);
+  \node[anchor=west] at (0.10,1.34) {$K(y)=y-f(y)$};
+  \draw[black!18] (1.4,0.85) -- (2.9,0.85);
+  \draw[black, line width=0.5pt] plot coordinates {(1.4,0.85) (1.9,0.65) (2.4,1.05) (2.9,0.85)};
+  \node[anchor=west,font=\itshape] at (0.02,5.35) {(a)};
+  \node[anchor=west,black!50] at (0.18,4.80) {before};
+  \node[anchor=west] at (0.18,2.92) {after};
+  \node at (1.65,2.02) {1};
+  \node[jfmblue] at (2.15,2.02) {2};
+  \node at (2.65,2.02) {3};
+  \node[font=\itshape\fontsize{7.2}{8}\selectfont,jfmblue] at (2.15,1.78) {reversed};
+  \draw[-{Latex[length=1.2mm,width=0.9mm]},jfmblue,line width=0.5pt]
+       (2.52,1.86) .. controls (2.58,2.20) .. (2.33,2.42);
+\end{scope}
+
+% =========================== PANEL (b) ===========================
+\begin{scope}[shift={(4.55,0)}]
+  \foreach \yy in {1.55, 2.55, 3.55}
+    \draw[-{Latex[length=1mm,width=0.8mm]},black!22] (0.75,\yy) -- (3.70,\yy);
+  \draw[-{Latex[length=1.4mm,width=1.1mm]}] (0.50,0.75) -- (4.05,0.75);
+  \draw[-{Latex[length=1.4mm,width=1.1mm]}] (0.50,0.75) -- (0.50,4.85);
+  \node[anchor=north east,font=\itshape\fontsize{8}{8}\selectfont] at (4.05,0.62) {t};
+  \node[anchor=south east,font=\itshape\fontsize{8}{8}\selectfont] at (0.40,4.85) {y};
+  \foreach \x/\a/\bb in {0.90/1.35/2.05, 1.20/2.65/3.45, 1.55/1.45/2.95,
+    2.00/3.05/3.95, 2.40/1.55/2.55, 2.80/2.75/3.85, 3.20/1.25/1.95,
+    3.62/2.95/4.05}
+    \draw[line width=0.9pt] (\x,\a) -- (\x,\bb);
+  \node[anchor=west,font=\itshape] at (0.02,5.35) {(b)};
+\end{scope}
+
+% =========================== PANEL (c) ===========================
+\begin{scope}[shift={(9.05,0)}]
+  \node[box]              (b1) at (1.35,4.35) {sample next candidate time; advance diffusion to it};
+  \node[box]              (b2) at (1.35,2.95) {sample candidate eddy $(y_0,l)$; infer timescale $\tau(l)$ from the local field};
+  \node[box]              (b3) at (1.35,1.55) {accept with probability $\propto 1/\tau$};
+  \node[box,fill=black!6] (b4) at (1.35,0.15) {apply event: triplet map $+$ kernels};
+  \draw[ev] (b1) -- (b2);
+  \draw[ev] (b2) -- (b3);
+  \draw[ev] (b3) -- (b4) node[midway,anchor=west,font=\itshape\fontsize{7.2}{8}\selectfont,black!60] {accept};
+  \draw[ev] (b3.east) -- ++(0.45,0) |- (b1.east);
+  \node[font=\itshape\fontsize{7.2}{8}\selectfont,black!55,rotate=-90] at (2.98,2.95) {reject};
+  \draw[ev] (b4.west) -- ++(-0.45,0) |- (b1.west);
+  \node[anchor=west,font=\itshape] at (-0.30,5.35) {(c)};
+\end{scope}
+\end{tikzpicture}
+  \caption{The model at a glance.
+(\textit{a}) Eddy event on $[y_0,y_0+l]$: the triplet map compresses and triplicates the local field; the additive kernel $K(y)$ redistributes energy among components, both conserving momentum and total energy.
+(\textit{b}) Eddy events (Poisson), the vertical bars marking the spatial range of each event, punctuating the continuous diffusion and mean-strain forcing (grey arrows).
+(\textit{c}) Advancement cycle at a state-dependent rate; the $k^{-5/3}$ cascade emerges as an outcome of repeated sampling, consistent with inertial-range phenomenology.}
+  \label{fig:odt-schematic}
+\end{figure}
 This subsection reviews the one-dimensional turbulence model of
 \citet{Kerstein1999} in the vector-valued formulation of
 \citet{Kerstein2001}, in the notation used throughout; nothing in it is
@@ -337,6 +336,7 @@ obey ordinary one-dimensional diffusion,
 $(\partial_t-\nu\,\partial_y^2)\,u_i=0$, with kinematic viscosity $\nu$;
 and a stochastic sequence of instantaneous \emph{eddy events} represents
 the effect of individual turbulent overturns.
+
 
 Because a continuum rotational motion cannot be represented on a line, an
 eddy event is an instantaneous, measure-preserving rearrangement of the
@@ -404,107 +404,11 @@ mean-strain-driven part.
 
 The event sequence is a Poisson process whose rate density
 $\lambda(y_0,l;t)$ is set by the instantaneous flow state through the
-standard eddy time-scale construction, with a rate constant, a viscous
+standard eddy time-scale construction applied to the quantities $Q_i$, with a rate constant, a viscous
 cutoff and a large-eddy suppression parameter as the only tunable
 constants \citep{Kerstein1999,StephensLignell2021}; the inertial-range
 cascade and the $k^{-5/3}$ spectrum are \emph{outcomes} of repeated
-sampling from this rate, not inputs \citep{Kerstein1999}.
-
-\begin{figure}
-  \centering
-% ===================== ODT schematic (inline TikZ) =====================
-\begin{tikzpicture}[
-  x=1cm, y=1cm,
-  line width=0.4pt,
-  font=\fontsize{8}{9}\selectfont,
-  ev/.style={-{Latex[length=1.4mm,width=1.1mm]}},
-  ax/.style={-{Latex[length=1.4mm,width=1.1mm]}, gray!55, line width=0.4pt},
-  box/.style={draw, rectangle, rounded corners=1pt, text width=2.45cm,
-              align=center, inner xsep=3pt, inner ysep=4pt, line width=0.4pt,
-              minimum height=0.9cm},
-]
-
-% =========================== PANEL (a) ===========================
-\begin{scope}[shift={(0,0)}]
-  \fill[black!6] (1.475,1.70) rectangle (2.527,4.85);
-  \draw[black!25] (1.475,1.70) -- (1.475,4.85);
-  \draw[black!25] (2.527,1.70) -- (2.527,4.85);
-  \node[font=\fontsize{8}{8}\selectfont] at (1.475,5.06) {$y_0$};
-  \node[font=\fontsize{8}{8}\selectfont] at (2.527,5.06) {$y_0+l$};
-  \draw[ax] (0.10,4.45) -- (3.85,4.45);
-  \draw[ax] (0.10,2.55) -- (3.85,2.55);
-  \node[anchor=east,font=\fontsize{8}{8}\selectfont] at (3.99,4.45) {$y$};
-  \node[anchor=east,font=\fontsize{8}{8}\selectfont] at (3.99,2.55) {$y$};
-  \draw[black!40, line width=0.5pt, yshift=1.10cm] plot coordinates {(0.250,3.448) (0.267,3.444) (0.284,3.440) (0.302,3.437) (0.319,3.434) (0.336,3.431) (0.353,3.428) (0.371,3.426) (0.388,3.424) (0.405,3.423) (0.422,3.422) (0.440,3.421) (0.457,3.421) (0.474,3.422) (0.492,3.423) (0.509,3.424) (0.526,3.426) (0.543,3.429) (0.560,3.431) (0.578,3.434) (0.595,3.437) (0.612,3.441) (0.629,3.444) (0.647,3.448) (0.664,3.452) (0.681,3.455) (0.699,3.459) (0.716,3.462) (0.733,3.466) (0.750,3.469) (0.767,3.471) (0.785,3.474) (0.802,3.476) (0.819,3.477) (0.837,3.478) (0.854,3.479) (0.871,3.479) (0.888,3.479) (0.906,3.479) (0.923,3.477) (0.940,3.476) (0.957,3.474) (0.975,3.472) (0.992,3.470) (1.009,3.467) (1.026,3.464) (1.044,3.462) (1.061,3.459) (1.078,3.456) (1.095,3.453) (1.113,3.450) (1.130,3.447) (1.147,3.445) (1.164,3.442) (1.182,3.440) (1.199,3.439) (1.216,3.438) (1.233,3.437) (1.250,3.437) (1.268,3.437) (1.285,3.437) (1.302,3.438) (1.320,3.440) (1.337,3.442) (1.354,3.444) (1.371,3.447) (1.389,3.450) (1.406,3.453) (1.423,3.456) (1.440,3.459) (1.458,3.463) (1.475,3.466) (1.492,3.470) (1.509,3.473) (1.526,3.476) (1.544,3.478) (1.561,3.480) (1.578,3.481) (1.596,3.482) (1.613,3.482) (1.630,3.481) (1.647,3.480) (1.665,3.477) (1.682,3.474) (1.699,3.469) (1.716,3.464) (1.734,3.457) (1.751,3.449) (1.768,3.440) (1.785,3.431) (1.803,3.420) (1.820,3.408) (1.837,3.395) (1.854,3.381) (1.871,3.367) (1.889,3.351) (1.906,3.335) (1.923,3.319) (1.941,3.302) (1.958,3.284) (1.975,3.267) (1.992,3.249) (2.010,3.232) (2.027,3.214) (2.044,3.197) (2.061,3.180) (2.079,3.164) (2.096,3.148) (2.113,3.133) (2.130,3.119) (2.147,3.106) (2.165,3.094) (2.182,3.083) (2.199,3.073) (2.216,3.064) (2.234,3.057) (2.251,3.051) (2.268,3.047) (2.285,3.044) (2.303,3.042) (2.320,3.042) (2.337,3.043) (2.355,3.045) (2.372,3.049) (2.389,3.054) (2.406,3.060) (2.424,3.067) (2.441,3.075) (2.458,3.084) (2.475,3.093) (2.493,3.104) (2.510,3.115) (2.527,3.126) (2.544,3.138) (2.562,3.150) (2.579,3.163) (2.596,3.175) (2.613,3.187) (2.631,3.199) (2.648,3.211) (2.665,3.223) (2.682,3.234) (2.700,3.245) (2.717,3.256) (2.734,3.265) (2.751,3.275) (2.768,3.283) (2.786,3.291) (2.803,3.299) (2.820,3.305) (2.838,3.311) (2.855,3.317) (2.872,3.322) (2.889,3.326) (2.907,3.330) (2.924,3.334) (2.941,3.337) (2.958,3.339) (2.976,3.342) (2.993,3.344) (3.010,3.346) (3.027,3.348) (3.045,3.350) (3.062,3.352) (3.079,3.354) (3.096,3.356) (3.114,3.358) (3.131,3.360) (3.148,3.363) (3.165,3.366) (3.183,3.369) (3.200,3.373) (3.217,3.376) (3.234,3.380) (3.252,3.385) (3.269,3.389) (3.286,3.394) (3.303,3.399) (3.321,3.404) (3.338,3.410) (3.355,3.415) (3.372,3.420) (3.390,3.426) (3.407,3.431) (3.424,3.436) (3.441,3.441) (3.459,3.446) (3.476,3.450) (3.493,3.454) (3.510,3.458) (3.527,3.461) (3.545,3.463) (3.562,3.466) (3.579,3.467) (3.597,3.468) (3.614,3.469) (3.631,3.468) (3.648,3.468) (3.666,3.466) (3.683,3.465) (3.700,3.462)};
-  \draw[black, line width=0.6pt, yshift=1.00cm] plot coordinates {(0.250,1.648) (0.267,1.644) (0.284,1.640) (0.302,1.637) (0.319,1.634) (0.336,1.631) (0.353,1.628) (0.371,1.626) (0.388,1.624) (0.405,1.623) (0.422,1.622) (0.440,1.621) (0.457,1.621) (0.474,1.622) (0.492,1.623) (0.509,1.624) (0.526,1.626) (0.543,1.629) (0.560,1.631) (0.578,1.634) (0.595,1.637) (0.612,1.641) (0.629,1.644) (0.647,1.648) (0.664,1.652) (0.681,1.655) (0.699,1.659) (0.716,1.662) (0.733,1.666) (0.750,1.669) (0.767,1.671) (0.785,1.674) (0.802,1.676) (0.819,1.677) (0.837,1.678) (0.854,1.679) (0.871,1.679) (0.888,1.679) (0.906,1.679) (0.923,1.677) (0.940,1.676) (0.957,1.674) (0.975,1.672) (0.992,1.670) (1.009,1.667) (1.026,1.664) (1.044,1.662) (1.061,1.659) (1.078,1.656) (1.095,1.653) (1.113,1.650) (1.130,1.647) (1.147,1.645) (1.164,1.642) (1.182,1.640) (1.199,1.639) (1.216,1.638) (1.233,1.637) (1.250,1.637) (1.268,1.637) (1.285,1.637) (1.302,1.638) (1.320,1.640) (1.337,1.642) (1.354,1.644) (1.371,1.647) (1.389,1.650) (1.406,1.653) (1.423,1.656) (1.440,1.659) (1.458,1.663) (1.475,1.666) (1.492,1.676) (1.509,1.681) (1.526,1.681) (1.544,1.674) (1.561,1.657) (1.578,1.631) (1.596,1.595) (1.613,1.551) (1.630,1.502) (1.647,1.449) (1.665,1.397) (1.682,1.348) (1.699,1.306) (1.716,1.273) (1.734,1.251) (1.751,1.242) (1.768,1.245) (1.785,1.260) (1.803,1.284) (1.820,1.315) (1.837,1.304) (1.854,1.275) (1.871,1.254) (1.889,1.243) (1.906,1.244) (1.923,1.257) (1.941,1.283) (1.958,1.319) (1.975,1.364) (1.992,1.414) (2.010,1.467) (2.027,1.519) (2.044,1.567) (2.061,1.608) (2.079,1.640) (2.096,1.664) (2.113,1.677) (2.130,1.682) (2.147,1.680) (2.165,1.673) (2.182,1.670) (2.199,1.678) (2.216,1.682) (2.234,1.680) (2.251,1.669) (2.268,1.649) (2.285,1.620) (2.303,1.581) (2.320,1.535) (2.337,1.484) (2.355,1.432) (2.372,1.380) (2.389,1.333) (2.406,1.294) (2.424,1.264) (2.441,1.247) (2.458,1.242) (2.475,1.249) (2.493,1.267) (2.510,1.293) (2.527,1.326) (2.544,1.338) (2.562,1.350) (2.579,1.363) (2.596,1.375) (2.613,1.387) (2.631,1.399) (2.648,1.411) (2.665,1.423) (2.682,1.434) (2.700,1.445) (2.717,1.456) (2.734,1.465) (2.751,1.475) (2.768,1.483) (2.786,1.491) (2.803,1.499) (2.820,1.505) (2.838,1.511) (2.855,1.517) (2.872,1.522) (2.889,1.526) (2.907,1.530) (2.924,1.534) (2.941,1.537) (2.958,1.539) (2.976,1.542) (2.993,1.544) (3.010,1.546) (3.027,1.548) (3.045,1.550) (3.062,1.552) (3.079,1.554) (3.096,1.556) (3.114,1.558) (3.131,1.560) (3.148,1.563) (3.165,1.566) (3.183,1.569) (3.200,1.573) (3.217,1.576) (3.234,1.580) (3.252,1.585) (3.269,1.589) (3.286,1.594) (3.303,1.599) (3.321,1.604) (3.338,1.610) (3.355,1.615) (3.372,1.620) (3.390,1.626) (3.407,1.631) (3.424,1.636) (3.441,1.641) (3.459,1.646) (3.476,1.650) (3.493,1.654) (3.510,1.658) (3.527,1.661) (3.545,1.663) (3.562,1.666) (3.579,1.667) (3.597,1.668) (3.614,1.669) (3.631,1.668) (3.648,1.668) (3.666,1.666) (3.683,1.665) (3.700,1.662)};
-  \draw[ev,black] (1.00,3.85) -- (1.00,3.05);
-  \node[anchor=west,text width=1.55cm,align=left] at (1.14,3.45)
-       {instantaneous eddy event};
-  \draw[densely dotted] (1.826,2.90) -- (1.826,1.80);
-  \draw[densely dotted] (2.176,2.90) -- (2.176,1.80);
-  \node[anchor=west] at (0.10,1.34) {$K(y)=y-f(y)$};
-  \draw[black!18] (0.250,0.85) -- (1.800,0.85);
-  \draw[black, line width=0.5pt] plot coordinates {(0.250,0.85) (0.767,0.65) (1.283,1.05) (1.800,0.85)};
-  \node[anchor=west,font=\itshape] at (0.02,5.35) {(a)};
-  \node[anchor=west,black!50] at (0.18,4.80) {before};
-  \node[anchor=west] at (0.18,2.92) {after};
-  \node at (1.650,2.02) {1};
-  \node at (2.001,2.02) {2};
-  \node at (2.352,2.02) {3};
-  \node[font=\itshape\fontsize{7.2}{8}\selectfont,black!55] at (2.001,1.80) {reversed};
-\end{scope}
-
-% =========================== PANEL (b) ===========================
-\begin{scope}[shift={(4.55,0)}]
-  \foreach \yy in {1.55, 2.55, 3.55}
-    \draw[-{Latex[length=1mm,width=0.8mm]},black!22] (0.75,\yy) -- (3.70,\yy);
-  \draw[-{Latex[length=1.4mm,width=1.1mm]}] (0.50,0.75) -- (4.05,0.75);
-  \draw[-{Latex[length=1.4mm,width=1.1mm]}] (0.50,0.75) -- (0.50,4.85);
-  \node[anchor=north east,font=\itshape\fontsize{8}{8}\selectfont] at (4.05,0.62) {t};
-  \node[anchor=south east,font=\itshape\fontsize{8}{8}\selectfont] at (0.40,4.85) {y};
-  \foreach \x/\a/\bb in {0.90/1.35/2.05, 1.20/2.65/3.45, 1.55/1.45/2.95,
-    2.00/3.05/3.95, 2.40/1.55/2.55, 2.80/2.75/3.85, 3.20/1.25/1.95,
-    3.62/2.95/4.05}
-    \draw[line width=0.9pt] (\x,\a) -- (\x,\bb);
-  \node[anchor=west,font=\itshape] at (0.02,5.35) {(b)};
-\end{scope}
-
-% =========================== PANEL (c) ===========================
-\begin{scope}[shift={(9.05,0)}]
-  \node[box]              (b1) at (1.35,4.35) {sample next candidate time; advance diffusion to it};
-  \node[box]              (b2) at (1.35,2.95) {draw candidate eddy $(y_0,l)$; timescale $\tau(l)$ from the local field};
-  \node[box]              (b3) at (1.35,1.55) {accept with probability $\propto 1/\tau$};
-  \node[box,fill=black!6] (b4) at (1.35,0.15) {apply event: triplet map $+$ kernels};
-  \draw[ev] (b1) -- (b2);
-  \draw[ev] (b2) -- (b3);
-  \draw[ev] (b3) -- (b4) node[midway,anchor=west,font=\fontsize{7.2}{8}\selectfont,black!60] {accept};
-  \draw[ev] (b3.east) -- ++(0.45,0) |- (b1.east);
-  \node[font=\itshape\fontsize{7.2}{8}\selectfont,black!55,rotate=-90] at (2.98,2.95) {reject};
-  \draw[ev] (b4.west) -- ++(-0.45,0) |- (b1.west);
-  \node[anchor=west,font=\itshape] at (-0.30,5.35) {(c)};
-\end{scope}
-\end{tikzpicture}
-  \caption{The model at a glance. (\textit{a}) An eddy event on the
-  sampled interval $[y_0,y_0+l\,]$, taking the field from `before' to
-  `after': the triplet map compresses the profile threefold and inserts
-  three images with the central one reversed (numbered $1$--$3$), and the
-  kernel $K(y)=y-f(y)$ (drawn below) adds $c_iK(y)$, redistributing
-  kinetic energy among the three velocity components while conserving
-  each component's momentum and the total energy; the exterior is
-  untouched. (\textit{b}) The two interleaved mechanisms in the
-  space--time plane: eddy events are instantaneous (vertical bars, at the
-  sampled position $y_0$ and size $l$), arriving as a Poisson sequence
-  whose rate density is set by the instantaneous flow state, while
-  between events the fields advance by deterministic diffusion (faint
-  arrows) and, from \S\,\ref{sec:strain-forcing} onward, the continuous
-  mean-strain forcing. (\textit{c}) The advancement cycle of the
-  implementation; most sampled candidates are rejected, and the
-  $k^{-5/3}$ cascade is an outcome of repeated sampling from this loop,
-  not an input.}
-  \label{fig:odt-schematic}
-\end{figure}
-
-Finally, one
+sampling from this rate, not inputs \citep{Kerstein1999}. Finally, one
 diagnostic caveat of \citet{Kerstein2001} is respected throughout:
 because the line velocity does not itself advect fluid, off-diagonal
 products of line velocity components are not momentum fluxes; diagonal
@@ -646,7 +550,7 @@ $\Pi^{(\mathrm r)}_{ij}=-\tfrac35\mathcal{P}_{ij}$, so production acting
 alone overstates the initial distortion rate by a factor of $\tfrac52$;
 under sustained strain it also lets a component energy grow without the
 bound that incompressibility imposes. Representing
-$\Pi^{(\mathrm r)}_{ij}$ is essential, not optional.
+$\Pi^{(\mathrm r)}_{ij}$ is necessary.
 
 \subsubsection{The exact rapid pressure--strain and the closure problem}
 \label{sec:closure-problem}
@@ -734,7 +638,7 @@ anisotropic correction in \S\,\ref{sec:verification}.
 Given the closed rapid term---symmetric and traceless---we require a
 pointwise operator $B_{ij}$ whose action on the line reproduces it.
 Demanding that the operator evolve the Reynolds stress by exactly
-$\Pi^{(\mathrm r)}_{ij}$,
+$\Pi^{(\mathrm r)}_{ij}$ implies
 \begin{equation}
   \big(\mathsf{B}\mathsf{R}+\mathsf{R}\mathsf{B}\big)_{ij}
   = \Pi^{(\mathrm r)}_{ij},
@@ -885,7 +789,7 @@ section operates at the Reynolds-stress level, by design; no spectral
 claim rests on it, and none is made before the spectral benchmarks of
 \S\,\ref{sec:val-spectrum}.
 
-One point of identification, to be kept in view throughout this section
+One point of identification should to be kept in view throughout this section
 and the next. The model under test is the strain-coupled formulation
 (SC-ODT); \emph{standard} ODT is its $A_{ij}=0$ limit
 (\S\,\ref{sec:summary}) and, having no mean-strain coupling---neither
@@ -894,7 +798,7 @@ domain dilatation---produces none of the strained curves shown here.
 Every departure from isotropy in what follows is generated by the added
 strain coupling, not by the eddy dynamics of the standard model, which
 supplies only the cascade and the slow return to isotropy. Where the
-figures write ``SC-ODT'' they mean this formulation; ``standard ODT''
+figures refer to ``SC-ODT'' they mean this formulation; ``standard ODT''
 is reserved for the baseline, and the relaxation mechanism of
 \S\,\ref{sec:limits} (``clock-relaxed ODT'') does not enter until
 Part~II.
@@ -934,9 +838,8 @@ evolution \eqref{eq:cont-evolution} gives, by
   \label{eq:onset-rate}
 \end{equation}
 the exact rapid-distortion rate for initially isotropic turbulence, with
-no adjustable constant. This is the sharpest verification available: a
-closed-form prediction the model must satisfy identically, not
-approximately. Evaluated for the two canonical strains it gives, under
+no adjustable constant. This is a
+closed-form prediction the model must satisfy identically. Evaluated for the two canonical strains it gives, under
 plane strain, onset rates $\mp\tfrac{8}{15}k_ta$ for the stretched and
 compressed components with the neutral component unchanged, and, under
 axisymmetric strain, $+\tfrac{4}{15}k_t\gamma$ for each lateral
@@ -958,8 +861,7 @@ alone, so the verification becomes a test of the spectral closure rather
 than of the construction. We integrate the model moment equation along
 each canonical strain with two closures: the baseline isotropic closure
 \eqref{eq:iso-closure} (equivalently, isotropisation of production with
-$C_2=3/5$; IP) and the quasi-isotropic model of
-\citet{LaunderReeceRodi1975} (LRR),
+$C_2=3/5$; IP) and the quasi-isotropic model of \citet{LaunderReeceRodi1975} (LRR-QI, abbreviated LRR),
 \begin{equation}
   \Pi^{(\mathrm r)}_{ij} = C_2\,k_t S_{ij}
   + C_3\,k_t\big(b_{ik}S_{jk}+b_{jk}S_{ik}
@@ -991,8 +893,7 @@ IP: for axisymmetric strain at $e=4$ the lateral fraction is $0.498$
 (exact), $0.468$ (LRR), $0.450$ (IP), and the axial fraction $0.003$,
 $0.063$, $0.100$. This gap is the spectral-closure error in
 isolation---the eddy events are inactive in the rapid limit---and it
-bounds the accuracy attainable from any single rapid operator. Third,
-and most important to state plainly, for plane strain both closures miss
+bounds the accuracy attainable from any single rapid operator. Third, for plane strain both closures miss
 a \emph{qualitative} feature: in the exact solution the neutral spanwise
 component grows monotonically, overtakes the upwash near $e\approx3.3$,
 and is the largest component by $e=4$
@@ -1046,10 +947,9 @@ total strain accumulated along the stagnation streamline.
   \includegraphics[width=0.62\textwidth]{Figures/fig_upwash_amplification.pdf}
   \caption{Upwash energy fraction under plane strain for initially
   isotropic turbulence: exact rapid-distortion theory, SC-ODT with
-  the LRR and IP closures, and production alone ($B_{ij}=0$). Production
-  without the rapid term overstates the onset amplification rate by
-  $\tfrac52$ and forces almost all the energy into the upwash component;
-  the rapid term restores the physical, bounded amplification.}
+  the LRR and IP closures, and production alone ($B_{ij}=0$). 
+  %Production without the rapid term overstates the onset amplification rate by $\tfrac52$ and forces almost all the energy into the upwash component; the rapid term restores the physical, bounded amplification.
+  }
   \label{fig:rdt-upwash}
 \end{figure}
 
@@ -1073,7 +973,7 @@ the LRR trajectory over $0\le e\le4$ to within $10^{-4}$ in each
 component fraction, so the per-substep stress reconstruction, Lyapunov
 solve and operator assembly are correct at every state of anisotropy.
 The comparison must be read correctly: the solver reproduces the
-\emph{closure}, and it should---with the events suppressed the line
+\emph{closure}, and it should---with the events and diffusion suppressed the line
 carries no information beyond the single-point statistics the closure
 itself uses. The offset from the exact solution is the single-point
 closure error of \S\,\ref{sec:finite-strain}, not an implementation
@@ -1085,16 +985,16 @@ $\mathrm{d}\ln k_t/\mathrm{d}e=f_{22}-f_{11}$, provides the independent
 magnitude check, and the solver reproduces the LRR amplification to
 within $0.3\%$. For definiteness: every strained computation in the
 remainder of the paper uses the LRR closure, whose error against the
-exact solution is quantified above at every strain reached; the
+exact solution is quantified here at every strain reached; the
 sensitivity of the spectral conclusions to this closure choice is not
-estimated but measured, through the exact-RDT companions of
+estimated but measured, through the exact-RDT comparisons of
 \S\,\ref{sec:val-spectrum} and the axisymmetry measurement of
 \S\,\ref{sec:gate}, which carry the closure deficiency into the quoted
-uncertainty rather than leaving it implicit. Reaching that figure required a resolved spectral
+uncertainty rather than leaving it implicit. That assessment requires a resolved spectral
 initialisation (a white-noise start places energy at the grid scale,
 where mesh-adaption interpolation damps it) and a strain-resolved
 timestep bound in the inviscid limit; both effects act nearly
-isotropically, so the energy panel is what exposes them.
+isotropically, so the energy panel is what distinguishes them.
 
 \begin{figure}[!t]
   \centering
@@ -1126,7 +1026,7 @@ rapid-distortion prediction---a graded, moment-level reference that the
 spectral benchmarks of \S\,\ref{sec:val-spectrum} do not provide. The
 same programme's later rapid-limit analysis
 \citep{LeePiomelliReynolds1986} supplies the analytic reference used in
-the supplementary CMK comparison; higher-Reynolds-number strained
+the CMK comparison; higher-Reynolds-number strained
 computations exist, but the spectral role they would serve is filled
 here by the dedicated strained-box DNS of \S\,\ref{sec:val-spectrum},
 leaving \citeauthor{LeeReynolds1985}'s low-Reynolds-number study as the
@@ -1142,21 +1042,20 @@ comparisons below: \citet{ZusiPerot2013} for plane strain
 (figure~\ref{fig:lr-plane-fig}) and \citet{ZusiPerot2014} for
 axisymmetric contraction (figure~\ref{fig:lr-axisym-fig}), both digitised
 from their published anisotropy figures and shown over the strain range
-they reach ($c\le1.65$). A direct simulation of the
-\citeauthor{ChenMeneveauKatz2006} straining cycle
+they reach ($c\le1.65$, where $c=\exp\int S\,\mathrm{d}t$ is the deformation ratio, and $\ln c$ is the total strain $e$). A direct simulation of the
+CMK straining cycle
 \citep{GualtieriMeneveau2010}, which reports the same variances and
 pressure--strain budget as that experiment against a
 Launder--Reece--Rodi closure, is discussed in the supplementary material.
 The
-comparison quantity is the anisotropy $b_{ij}$ against the deformation
-ratio $c=\exp\int S\,\mathrm{d}t$ (so $\ln c$ is the total strain $e$ of
-the present notation), computed from the single-point component
+comparison is based on the anisotropy $b_{ij}$ as a function of the deformation ratio $c$. %$c=\exp\int S\,\mathrm{d}t$ (so $\ln c$ is the total strain $e$ of the present notation), 
+computed from the single-point component
 variances along the line, ensemble-averaged over $1000$ realisations;
 no spectral transform is involved. Two of their strain modes are run:
 plane strain and axisymmetric contraction, the line along a compressed
 direction in each case, to the total strains of the DNS ($c=4$ and
 $3.32$); the measured line compression agrees with
-$\exp(A_{22}t_f)$ to better than $0.3\%$, confirming the kinematic
+$\exp(A_{22}t_f)$, $t_f$ the total straining time, to better than $0.3\%$, confirming the kinematic
 fidelity of the dilatation. One parameter distinction matters for
 interpretation: \citeauthor{LeeReynolds1985} characterise each run by
 $S^{*}=Sq^2/\varepsilon$, which equals $2\chi$ identically since
@@ -1179,10 +1078,9 @@ under-predicting the anisotropy magnitude by roughly $25\%$
 ($b_{11}=-0.21$ against $\approx-0.29$ at $c=3.16$), dominated by the
 spectral-closure gap isolated in \S\,\ref{sec:finite-strain} and common
 to the whole second-moment family; the line adds only a small artefact,
-breaking the transverse symmetry only slightly: $b_{22}=+0.102$ and
-$b_{33}=+0.113$ are nearly identical, as axisymmetry requires, so the
-figure plots their symmetry-respecting mean
-$\tfrac12(b_{22}+b_{33})$. Figure~\ref{fig:lr-axisym-fig}
+breaking the transverse symmetry with a residual split
+$b_{22}=+0.102$ against $b_{33}=+0.113$ that the symmetry-respecting
+mean $\tfrac12(b_{22}+b_{33})$ removes. Figure~\ref{fig:lr-axisym-fig}
 shows the comparison, with the independent DNS of \citet{ZusiPerot2014}
 tracking both the model and Lee \& Reynolds over the strain range it
 reaches.
@@ -1210,15 +1108,13 @@ reaches.
   \centering
   \includegraphics[width=0.72\textwidth]{Figures/fig_LR_axisym.pdf}
   \caption{Reynolds-stress anisotropy under axisymmetric contraction:
-  SC-ODT (lines; ensemble mean over $1000$ realisations) against the DNS of \citet{LeeReynolds1985} (open markers) and the
+  SC-ODT (lines; ensemble mean over $1000$ realisations, standard-error
+  band) against the DNS of \citet{LeeReynolds1985} (open markers) and the
   independent DNS of \citet{ZusiPerot2014} (filled markers, their highest
   rate, over $c\le1.65$). Solid/$\square$: the compressed axial component
   $b_{11}$; dashed/$\triangle$: the transverse component
   $\tfrac12(b_{22}+b_{33})$. The model tracks the sign and monotonic
-  growth of both, and the two DNS agree where they overlap; the
-  magnitude is under-predicted at large strain by the closure gap common
-  to the second-moment family (\S\,\ref{sec:finite-strain}), not by the
-  line.}
+  growth of both, and the two DNS agree where they overlap.}
   \label{fig:lr-axisym-fig}
 \end{figure}
 
@@ -1244,7 +1140,7 @@ coincides with the closure on which its operator is built, so its
 near-zero $b_{11}$ is correct for its formulation and matches the DNS
 at slow strain rate, where the nonlinear scrambling erases the
 neutral-direction feed; at fast strain it inherits the closure
-family's known limitation rather than any line-specific artefact.
+family's known limitation \S\,(\ref{sec:finite-strain}) rather than any line-specific artefact.
 The components that govern the upwash spectrum fed to the leading-edge
 response are precisely those the model reproduces quantitatively.
 Finally, \citeauthor{LeeReynolds1985}'s own transport-budget analysis
@@ -1256,7 +1152,7 @@ decomposition on which \S\,\ref{sec:gate} rests.
   \centering
   \includegraphics[width=0.82\textwidth]{Figures/fig_LR_b11_closure.pdf}
   \caption{The unstrained-direction anisotropy $b_{11}$ under plane
-  strain: SC-ODT (solid, $1000$ realisations)
+  strain: SC-ODT (solid, $1000$ realisations, standard-error band)
   against exact linear rapid distortion (long-dashed,
   wavevector-ensemble integration), the IP (dotted) and LRR-QI
   (short-dashed) closures, and the DNS of \citet{LeeReynolds1985} (open
@@ -1288,7 +1184,7 @@ line-projected spectrum, which is \emph{not} rigid
 (\S\S\,\ref{sec:spec-rdt}--\ref{sec:spec-linref}); it then examines the
 emergent distorted spectrum and fixes the physical operating point
 (\S\S\,\ref{sec:spec-bvc}--\ref{sec:spec-op}); and it closes with the
-benchmark that meets the model-versus-itself objection head on---a
+benchmark that addresses the model-versus-itself comparison---a
 strained-box DNS with an exact rapid-distortion companion, reduced to
 the same one-dimensional observables (\S\,\ref{sec:box-dns}).
 
@@ -1302,9 +1198,7 @@ $\mathcal{L}(e)=\mathcal{L}_0\,e^{A_{22}e}$, so every resolved wavenumber is
 rescaled as $k(e)=k(0)\,e^{-A_{22}e}$---the wavevector kinematics it shares
 with rapid-distortion theory \citep{BatchelorProudman1954,HuntCarruthers1990}%
 ---while the continuous redistribution operator of
-\S\,\ref{sec:rapid-kernel} acts uniformly on every resolved wavenumber. The
-combination transfers no energy between scales: a rigid translation of the
-line spectrum towards higher wavenumber. We emphasise at the outset that this
+\S\,\ref{sec:rapid-kernel} acts uniformly on every resolved wavenumber. The combination induces a rigid translation of the line spectrum towards higher wavenumber that transfers no energy between scales. We emphasise at the outset that this
 rigid translation is a property of the SC-ODT \emph{line}---uniform
 dilatation composed with a wavenumber-uniform operator---and not of linear
 distortion theory itself; the correct linear reference for the projected
@@ -1312,6 +1206,20 @@ spectrum is constructed in \S\,\ref{sec:spec-linref} below. As a check on the
 implementation, however, the rigid translation is an exact, parameter-free
 target.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_spec_kinematic.pdf}
+  \caption{Compression without cascade (eddy events suppressed, inviscid).
+  (\textit{a}) Component line spectra $E_i(\kappa_2)$ at total strains
+  $e=0,1,2,3,3.9$ (lighter to darker); the spectra translate to higher
+  wavenumber without changing shape.
+  (\textit{b}) Spectral-centroid migration $\bar\kappa(e)/\bar\kappa(0)$
+  for each component (symbols) against the kinematic prediction
+  $\mathrm{e}^{-A_{22}e}$ (dashed). The centroid follows the prediction
+  and the three components coincide, confirming purely geometric
+  compression of the line.}
+  \label{fig:spec-rdt}
+\end{figure}
 Figure~\ref{fig:spec-rdt} confirms it. The component spectra translate toward
 higher $k$ without change of shape---the peak neither broadens nor develops an
 inertial range---and the spectral centroid follows
@@ -1385,20 +1293,7 @@ anisotropy with wavenumber, which a wavenumber-uniform operator cannot
 represent---and \S\,\ref{sec:threeway} quantifies the resulting deficiency
 against both the exact reference and DNS.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{Figures/fig_spec_kinematic.pdf}
-  \caption{Compression without cascade (eddy events suppressed, inviscid).
-  (\textit{a}) Component line spectra $E_i(\kappa_2)$ at total strains
-  $e=0,1,2,3,3.9$ (lighter to darker); the spectra translate to higher
-  wavenumber without changing shape.
-  (\textit{b}) Spectral-centroid migration $\bar\kappa(e)/\bar\kappa(0)$
-  for each component (symbols) against the kinematic prediction
-  $\mathrm{e}^{-A_{22}e}$ (dashed). The centroid follows the prediction
-  and the three components coincide, confirming purely geometric
-  compression of the line.}
-  \label{fig:spec-rdt}
-\end{figure}
+
 
 %% TRANSPLANTED 2026-09-07: sec:spec-bvc (reframed post-M2 version,
 %%   near-verbatim) + sec:spec-Re/spec-op COMPRESSED to one operating-
@@ -1518,17 +1413,17 @@ operating point sits at $\chi=O(1)$, bracketed by the two strained-box
 DNS rapidities $Sk_t/\varepsilon=0.8$ and $16$ used in
 \S\,\ref{sec:threeway}, the regime the leading-edge
 stagnation flow occupies, where neither the rapid-distortion nor the
-near-equilibrium limit applies and where beating linear theory is
+near-equilibrium limit applies and where improvement over linear theory is
 meaningful. The spectral \emph{peak} corroborates the regime reading
 independently of the dissipation estimator: the energy-containing
 wavenumber itself migrates far less than the rigid law, so the eddy
 relaxation holds back the energy-containing range, not merely the
 dissipation tail---linear theory misplaces the energy-containing
-wavenumber, not only the spectral shape at high $\kappa$. The cost is
-the practical justification of the approach: the operating-point
+wavenumber, not only the spectral shape at high $\kappa$. 
+The operating-point
 ensemble completes in a few hundred core-hours, roughly two orders of
 magnitude below a strained DNS ensemble at comparable Reynolds number,
-which is what makes parametric sweeps over inflow condition feasible.
+which permits parametric sweeps over inflow condition.
 
 \begin{figure}
   \centering
@@ -1540,31 +1435,27 @@ which is what makes parametric sweeps over inflow condition feasible.
   $E_2$, dotted $E_3$): smooth rolloff with no grid-scale shelf; the
   upwash $E_2$ amplified above the streamwise $E_1$; grey dotted
   reference slope $\kappa^{-5/3}$.
-  (\textit{b}) Migration of the total-spectrum centroid (solid; grey
-  band the geometric $\pm\sigma$ of the centroid across the $200$
-  realisations) and the spectral peak (dashed) against the
-  rigid-translation law (grey dotted):
+  (\textit{b}) Migration of the total-spectrum centroid (solid) and the
+  spectral peak (dashed) against the rigid-translation law (grey dotted), with the geometric $\pm\sigma$ ensemble spread shaded:
   the broadband distortion that linear theory cannot represent, at the
   operating point and with the noise averaged out.}
   \label{fig:spec-op}
 \end{figure}
 
-\subsection{Validation against the strained-turbulence experiment of
-Chen, Meneveau \& Katz}\label{sec:cmk}
+\subsection{Validation against the CMK strained-turbulence experiment}\label{sec:cmk}
 %% MOVED TO ESM (task U3, 2026-09-09): full text + fig_cmk_rdt +
 %%   fig_cmk_aniso now in supplementary.tex \S S1; this is the summary.
 
 The strain-on/strain-off comparison is model-internal; an external
-benchmark at laboratory Reynolds number is provided by the plane-strain
-experiment of \citet{ChenMeneveauKatz2006} (CMK), whose straining phase
+benchmark at laboratory Reynolds number is provided by the CMK plane-strain
+experiment, whose straining phase
 (total deformation $D\approx3$, $e\approx2.20$ in the present notation)
 we reproduce. In the rapid-distortion limit (eddy events suppressed,
 inviscid) the model follows the analytic reference of
 \citet{LeePiomelliReynolds1986} that CMK use---component centroids on
 the rigid-translation law with deformation ratio $3.00$ at $e=2.20$,
 kinetic-energy amplification $1.72$ against the exact $1.69$, the
-residual being the moment closure's, not the implementation's
-(\S\,\ref{sec:level1a}). With eddies and viscosity active the component
+residual attributed to the moment closure, not the implementation (\S\,\ref{sec:level1a}). With eddies and viscosity active the component
 centroids diverge under strain---streamwise migration $1.9$ against
 $1.5$ for the upwash at the end of the straining phase, both far below
 the rigid value $3$, the upwash held back most---which is the
@@ -1607,8 +1498,7 @@ ODT until the initialisation transient has relaxed and the eddy population
 is statistically active, and the strain is switched on only then, so that
 the strained evolution starts from a physically conditioned state rather
 than from the synthetic initial condition. All ODT statistics in this
-subsection are medians over $1024$ realisations per case with bootstrap
-confidence intervals; median statistics are used because the strained band
+subsection are medians over $1024$ realisations per case with bootstrap confidence intervals (Appendix~\ref{app:numerics}); median statistics are used because the strained band
 energies are strongly intermittent across realisations, and ensemble means
 of spectral ratios are dominated by rare events at any practical sample
 size.
@@ -1624,7 +1514,7 @@ each mode mapped to its strained wavenumber. Referencing each system to its
 own $e=0$ state cancels viscous decay, which is component-blind, and the
 longitudinal--transverse structure of the isotropic line spectra, which
 differs between a three-dimensional box and the component-symmetric ODT
-line. Figure~\ref{fig:threeway} and table~\ref{tab:threeway} give the
+line. Figure~\ref{fig:threeway} and Table~\ref{tab:threeway} give the
 result at $e=1$, $Sk_t/\varepsilon=0.8$, on common bands of
 $\kappa_2(e)/\kappa_c(0)$ with $\kappa_c$ the initial spectral centroid.
 
@@ -1638,12 +1528,12 @@ $\kappa_2(e)/\kappa_c(0)$ with $\kappa_c$ the initial spectral centroid.
   \end{tabular}
   \caption{Strain-induced upwash anisotropy per wavenumber band at $e=1$,
   $Sk_t/\varepsilon=0.8$, each system referenced to its own unstrained
-  state. Bands below $0.75\,\kappa_c$ rest on a few box modes and are
+  state. The band below $0.75\,\kappa_c$ rests on a few box modes so those results are
   indicative only.}
   \label{tab:threeway}
 \end{table}
 
-The structure of the table is the finding. Exact linear theory concentrates
+The structure of the tabulated results is the finding. Exact linear theory concentrates
 the strain-induced upwash anisotropy at the energy-containing scales and
 \emph{removes} it from the small scales, because modes aligned with the
 line are amplified least; the DNS shows the same shape, weakened at the
@@ -1659,6 +1549,8 @@ the closure at the moment level, \S\,\ref{sec:lr-plane}), so the deficiency
 is one of allocation across scales, not of amount. The transverse
 splitting $\phi_{11}/\phi_{33}-1$, a combination of the two transverse
 components just shown, carries the same reading (not plotted): exact RDT
+% splitting $\phi_{11}/\phi_{33}-1$ (figure~\ref{fig:threeway}\textit{d})
+% carries the same reading in a purely transverse observable: exact RDT
 deepens it with wavenumber and the DNS relaxes it towards zero at the
 small scales, whereas SC-ODT holds it essentially constant---the
 wavenumber-uniform signature again, now in the neutral-to-streamwise
@@ -1668,8 +1560,8 @@ anisotropy of the upwash spectrum, which the Amiet response weights, has
 the wrong sign in SC-ODT; the closure element that must carry
 the correction---a wavenumber-dependent rapid operator in place of the
 uniform one---is exactly the spectral kernel formulation of
-\S\,\ref{sec:gate}, whose exercise is thereby motivated by a measured
-deficit rather than by completeness.
+\S\,\ref{sec:gate}, whose introduction exercise is thereby motivated by a measured
+deficit rather than by its association with an identified physical process.
 
 \begin{figure}
   \centering
@@ -1724,8 +1616,7 @@ operating point's strain and rapidity.
   \includegraphics[width=0.62\textwidth]{Figures/fig_rdt_distance.pdf}
   \caption{Scale-resolved distance between the strained SC-ODT line spectra
   and exact linear theory: rms log-residual of the two-parameter
-  exact-RDT-distorted von K\'arm\'an fit, against total strain, for slow
-  and rapid onset strain-rate parameters (medians over $1024$
+  exact-RDT-distorted von K\'arm\'an fit, against total strain, for low and high onset strain-rate parameters (medians over $1024$
   realisations; identical precursor state at $e=0$).}
   \label{fig:rdt-distance}
 \end{figure}
@@ -1813,7 +1704,7 @@ one obtains the standard exact result
   \label{eq:Mijkl}
 \end{equation}
 where $\kappa=|\boldsymbol{\kappa}|$. Equations
-\eqref{eq:poisson}--\eqref{eq:Mijkl} are exact; no modelling has entered. The
+\eqref{eq:poisson} and \eqref{eq:Mijkl} are exact; no modelling has entered. The
 tensor $M_{ijkl}$ is a linear functional of the \emph{full three-dimensional}
 spectrum $\Phi_{mn}(\boldsymbol{\kappa})$ through the nonlocal projection
 operator $\kappa_a\kappa_b/\kappa^2$, which is the wavenumber-space image of
@@ -1859,8 +1750,7 @@ question.
 \subsection{The closure assumption and the collapsed form}
 \label{sec:assumption}
 
-\paragraph{Assumption A1 (axisymmetry of the undistorted spectrum about the
-line).} The spectrum tensor of the incoming turbulence, before the rapid
+\paragraph{Assumption A1 (axisymmetry of the undistorted spectrum about the line; see Appendix~\ref{app:twoscalar}).} The spectrum tensor of the incoming turbulence, before the rapid
 distortion acts, is axisymmetric about the resolved direction $\boldsymbol{e}_2$:
 $\Phi_{mn}(\boldsymbol{\kappa})$ depends on $\boldsymbol{\kappa}$ only through
 $\kappa_2$ and $\kappa_\perp=(\kappa_1^2+\kappa_3^2)^{1/2}$, and its
@@ -1896,7 +1786,7 @@ $\theta$, the azimuthal averages of the projection weights reduce to
 \end{equation}
 with $\kappa^2=\kappa_2^2+\kappa_\perp^2$, and all weights mixing a resolved
 and an unresolved index (e.g.\ $\kappa_1\kappa_2/\kappa^2$) averaging to zero.
-Substituting \eqref{eq:angular} into \eqref{eq:Mijkl} removes the azimuthal
+Substitution of \eqref{eq:angular} into \eqref{eq:Mijkl} removes the azimuthal
 dependence and leaves a two-dimensional integral over $(\kappa_2,\kappa_\perp)$
 of the axisymmetric spectrum. Defining the diagonal one-dimensional spectra
 along the line,
@@ -1984,25 +1874,23 @@ spectra and the derivation of the bound kernels are given in
 Appendix~\ref{app:forward}.
 
 Calibrated on an isotropic von K\'arm\'an spectrum (with a verification
-suite pinning tracelessness, the isotropic angular averages
+suite confirming tracelessness, the isotropic angular averages
 $+\tfrac15:-\tfrac15:0$, the longitudinal--transverse relation, and the
 exact $\tfrac45 k_t S_{ij}$), the indeterminacy is
 \begin{center}\small
 \begin{tabular}{lccc}
-constraint level & $\mathcal I_{11}$ & $\mathcal I_{22}$ & $\mathcal I_{33}$\\[1pt]
+constraint level & $\mathcal I_{1}$ & $\mathcal I_{2}$ & $\mathcal I_{3}$\\[1pt]
 line data $+$ solenoidality $+$ realisability & 0.77 & 1.28 & 0.86\\
 $+$ log-Lipschitz slope cap ($\lambda=4$) & \multicolumn{3}{c}{$<5\%$ narrower}\\
-$+$ polarisation cap $|c|\le\gamma a$, $\gamma=0$ & 0.34 & 0.58 & 0.24\\
+$+$ polarisation cap $|c|\le\gamma a$, $\gamma=0$ (i.e.\ $c=0$) & 0.34 & 0.58 & 0.24\\
 \end{tabular}
 \end{center}
 Two features of this table matter. Smoothness assumptions buy almost
 nothing: the null space is not a roughness artefact. The polarisation cap
 is the lever---but \S\,\ref{sec:a1meas} shows that under strain the
-effective polarisation reaches order one, so the honest bound in the
-strained regime is the uncapped one.
+effective polarisation reaches order one, so the valid bound in the strained regime is the uncapped one.
 
-The representation also supplies two \emph{free falsifiers} that the line
-itself reports: under A1, $\phi_{11}(\kappa_2)=\phi_{33}(\kappa_2)$ at
+As shown in Appendix~\ref{app:forward}, the representation also supplies two \emph{free falsifiers} that the line itself reports: under A1, $\phi_{11}(\kappa_2)=\phi_{33}(\kappa_2)$ at
 every wavenumber (T1) and the velocity cross-spectra vanish (T2). Any
 measured transverse splitting is a wavenumber-resolved violation of A1;
 rather than assuming the hypothesis, the line monitors it.
@@ -2038,7 +1926,7 @@ Three conclusions follow (table~\ref{tab:a1meas}). First, the A1 error is
 grows from its floor to $0.19$ at $Sk_t/\varepsilon=0.8$ and to $0.40$ at
 $16$ by $e=1$---larger at rapid strain, because at moderate strain rate the
 nonlinear dynamics restore axisymmetry as fast as the strain destroys it.
-An $O(b^2)$ error estimate, which the symmetric structure of the discarded
+An error estimate quadratic in the anisotropy ($O(b^2)$), which the symmetric structure of the discarded
 harmonic suggests, is superseded by this measurement. Second, the
 polarisation cap that narrows the isotropic bounds is illegitimate under
 strain: $\gamma_{\rm eff}$ passes unity by $e\simeq0.5$. Third,
@@ -2070,11 +1958,10 @@ is sensitive to.
   four realisations): plane strain (A1 broken; solid, filled circles)
   against axisymmetric contraction at matched $A_{22}$ (A1 exact by
   symmetry; dashed, open squares). (\textit{a}) Azimuthal $m=2$ residue of
-  $\Phi_{22}$: it grows under plane strain but stays at the isotropic
-  floor (grey dotted) under axisymmetric strain. (\textit{b}) Transverse
-  splitting $\phi_{11}/\phi_{33}-1$ per geometry, and the upwash
+  $\Phi_{22}$: it grows under plane strain but under axisymmetric strain stays at the isotropic floor (grey dotted): the nonzero $m=2$ residue an isotropic field produces at this box resolution, $0.133$. (\textit{b}) Transverse
+  splitting $\phi_{11}/\phi_{33}-1$ for each geometry, and the upwash
   anisotropy $b_{22}$ (grey dash-dot, indistinguishable between
-  geometries)---the azimuthal structure A1 assumes away is what differs,
+  geometries)---the azimuthal structure that A1 assumes away is what differs,
   while the acoustically relevant upwash amplification is robust.}
   \label{fig:a1control}
 \end{figure}
@@ -2095,7 +1982,7 @@ closure's $b$-term, not in the line model: the ODT moment-level $b_{ij}$
 follows the closure to $\sim2\%$, and its $b_{33}$ stays within $0.006$ of
 zero in every run. In the spectral representation the ordering is carried
 by the $c$-scalar through the kernels
-\eqref{eq:g1}--\eqref{eq:g3}; the moment reduction discards it. This
+\eqref{eq:g1}--\eqref{eq:g3}; the moment reduction omits it. This
 answers, by measurement, where the known component-ordering error enters
 and what it would take to remove it.
 
@@ -2107,8 +1994,7 @@ obtained with the algebraic moment closure of \S\,\ref{sec:rapid-kernel}
 \citep{LaunderReeceRodi1975}. For the two to be consistent, the spectral
 kernel must reduce to that moment closure in the limit where the moment
 closure is exact---isotropic turbulence. We show that it does, which both
-justifies the closure used in the simulations and fixes the prefactor in an
-explicit convention.
+justifies the closure used in the simulations and fixes the prefactor in an explicit convention (the coefficient of \eqref{eq:crow-spectral} and the remark following it).
 
 Figure~\ref{fig:pi-kernels} plots the kernels $g_1,g_2,g_3$ of
 \eqref{eq:g1}--\eqref{eq:g3} against the angular variable
@@ -2160,12 +2046,11 @@ The consequence is that the algebraic closure used to obtain the distortion of
 \S\,\ref{sec:val-spectrum} is not an independent assumption but the
 isotropic-limit reduction of the line-consistent spectral term derived here.
 The spectral form \eqref{eq:Piclosed} carries, in addition, the angular
-($x$-dependent) and anisotropy ($c$-scalar) information that the moment closure
-discards---and both discards are now measured: the wavenumber dependence
+($x$-dependent) and anisotropy ($c$-scalar) information that the moment closure omits---and the effects of both omissions are now measured: the wavenumber dependence
 of the linear response in the three-way comparison of
 \S\,\ref{sec:threeway}, and the component ordering in
 \S\,\ref{sec:order}. The moment closure and the collapsed form thus
-agree to leading order, and the terms in which they depart are exactly
+agree to leading order, and the terms in which they differ are exactly
 the measured deficiencies of \S\,\ref{sec:val-spectrum}.
 
 \begin{figure}
@@ -2231,7 +2116,7 @@ terms by construction, and now by measurement.
   grows with accumulated strain and with strain rapidity
   (table~\ref{tab:a1meas}).
 \item Independently of A1's validity, line data bound the rapid term
-  sharply; the bound is honest---and verified to bracket the exact
+  sharply; the bound is valid---and verified to bracket the exact
   term---up to $e\approx0.25$--$0.5$ under plane strain, and at all
   computed strains under axisymmetric distortion.
 \item The moment closure used in the simulations is the isotropic reduction
@@ -2271,12 +2156,23 @@ moderate strain, sufficient to move the fine-scale anisotropy.
 
 \subsection{A transmission diagnostic}\label{sec:transmission}
 
+The whole investigation is carried out at a single, moderate turbulence
+Reynolds number, chosen so that the diagnostic has room to separate scales
+but the cascade is short: the molecular viscosity
+($\nu=10^{-4}$; Appendix~\ref{app:numerics}) is set so that more than a
+decade of scales is resolved below the energy peak with wide margin. This
+regime is the referent of the ``at this Reynolds number'' qualifications
+that follow, and the caveat is real---the scale separation, not the eddy
+statistics, is what the negative results below turn on.
 The configuration is a scale-diagnostic variant of the strained line: unit
 strain rate (so $e=t$), an initial spectrum peaked at a wavenumber
-$\kappa_p$ resolved by more than a decade of smaller scales, and two
-measurement bands, $\kappa_2\in[0.6,2]\,\kappa_p$ (the energy-containing
-band) and $[6,16]\,\kappa_p$ (roughly two triplet-map generations below
-it, since each map compresses by a factor of three). On each band the
+$\kappa_p$ with the resolved decade of smaller scales below it, and two
+measurement bands in wavenumber $\kappa_2$: a low-wavenumber,
+energy-containing band $\kappa_2\in[0.6,2]\,\kappa_p$ (subscript
+$\mathrm{lo}$) and a high-wavenumber, fine-scale band
+$[6,16]\,\kappa_p$ (subscript $\mathrm{hi}$)---the latter roughly two
+triplet-map generations \emph{finer}, since each map compresses scales
+by a factor of three. On each band the
 component imbalance is
 $\mathcal A_b = E^{\|}_2(b)/\tfrac12[E^{\|}_1(b)+E^{\|}_3(b)]$, the
 band-integrated upwash energy over the transverse mean; all statistics are
@@ -2336,21 +2232,10 @@ three map images---the sub-interval's own triplet-map displacement shape
 as the kernel, coefficients from the sub-interval's own integrals, so
 that each sub-application conserves the momentum components and the total
 kinetic energy exactly, with no map applied and no random numbers
-drawn---and then recursively to $9$ and $27$ sub-regions. One level
-($\ell/3$ for an eddy of size $\ell$) is null: for the large eddies that
-feed the band, $\ell/3$ still sits above it. Two levels produce the first
-statistically significant fine-scale isotropisation of the family
-($\mathcal A_{\rm hi}$ from $1.43$ to $1.27$ at $e=1$, both bands'
-paired contrasts individually significant), and three levels extend the
-effect to deep strain: the levels that work, $\ell/9$ and $\ell/27$, are
-exactly the first that reach the measured band. The bookkeeping is clean
-throughout---band energies move by a few per cent, the upwash energy
-fraction and the intermittency tails are unchanged---and the pre-strain
-fine-scale floor moves towards component equality immediately
-($\mathcal A_{\rm hi}$ from $0.83$ to $0.95$ at $e=0$).
+drawn---and then recursively to $9$ and $27$ sub-regions. One sub-level ($\ell/3$ for an eddy of size $\ell$) is inconsequential: for the large eddies that
+feed the band, $\ell/3$ still sits above it. Two sub-levels produce the first statistically significant fine-scale isotropisation of the family ($\mathcal A_{\rm hi}$ from $1.43$ to $1.27$ at $e=1$, the change significant in both the fine-scale and energy-containing bands), and three sub-levels extend the effect to deep strain: the sub-levels that work, $\ell/9$ and $\ell/27$, are exactly those that reach the measured band. Band energies move by only a few per cent throughout, the upwash energy fraction and the intermittency tails are unchanged, and even at $e=0$, before any strain, the fine-scale imbalance is pulled towards component equality ($\mathcal A_{\rm hi}$ from $0.83$ to $0.95$).
 
-Four further variants separate the candidate explanations for the one
-remaining limitation, the fading of the gains beyond $e\approx3$. Tying
+Four further variants instantiate distinct candidate explanations for the one remaining limitation, the fading of the gains beyond $e\approx3$. Tying
 the recursion depth to the eddy size (subdividing while the sub-interval
 remains above a near-dissipative floor, so that large eddies do
 proportionally more sub-scale work) gives the gains of depth with no
@@ -2358,7 +2243,7 @@ reversal at the deepest strain: both bands significant at $e=1$ and the
 effect retaining its sign through $e=3$. Iterating the two-level pass
 three times within each event answers the amplitude hypothesis in the
 negative: it is a stronger early isotropiser but overshoots at deep
-strain. Delocalising the relaxation---after each eddy, applying the
+strain. Spatially delocalising the relaxation---after each eddy, applying the
 kernel isotropisation in $N$ randomly placed intervals of the same size,
 overlaps allowed---tests whether the \emph{location} of the events is
 the limiter: $N=1$ is null, and $N=3$ is significant in both bands at
@@ -2382,17 +2267,38 @@ structural is decided by the final intervention.
 
 \subsection{Decoupling the relaxation clock}\label{sec:clock}
 
-The one axis the eddy-locked family cannot test is \emph{when}
-relaxation acts. We therefore give it its own clock: an independent
-Poisson stream of relaxation-only events at a prescribed rate, each
-event an interval drawn from the model's eddy-size distribution, placed
-uniformly on the domain, and relaxed by the same conservative kernel
-pass with the adaptive-depth hierarchy inside it. Because each event
-acts on an interval, momentum and kinetic energy are conserved exactly
-per event; because the stream has its own rate, its pacing is decoupled
-from the eddy statistics entirely. The rate is matched to the
-baseline's mean eddy rate, so the comparison against the eddy-locked
-variants is dose-matched by construction.
+The one feature the eddy-locked formulations do not modify is \emph{when} relaxation acts. We therefore give it its own clock. Whereas the eddy
+events are sampled from the state-dependent rate density
+$\lambda(y_0,\ell;t)$ of \S\,\ref{sec:odt-review}, the relaxation-only
+events form an independent Poisson stream with the prescribed rate
+density
+\begin{equation}
+  \lambda_{\mathrm c}(y_0,\ell)
+  = \frac{R\,f(\ell)}{L-\ell},
+  \qquad
+  f(\ell)
+  = \frac{2L_p\,\ell^{-2}\,\mathrm{e}^{-2L_p/\ell}}
+         {\mathrm{e}^{-2L_p/L_{\max}}-\mathrm{e}^{-2L_p/L_{\min}}},
+  \qquad \ell\in[L_{\min},L_{\max}],
+  \label{eq:clock}
+\end{equation}
+with $R$ the total event rate, the placement $y_0$ uniform over the
+$L-\ell$ admissible positions on the domain of length $L$, and $f$ the
+presumed candidate-size density of the model's own eddy sampling
+\citep{Kerstein1999,StephensLignell2021}, its most-probable size $L_p$
+and range $[L_{\min},L_{\max}]$ taken from the baseline run---so no
+empirically gathered size statistics enter and, unlike $\lambda$,
+\eqref{eq:clock} carries no dependence on the flow state. This candidate density is the model's presumed \emph{sampling} distribution, not the realised distribution of accepted eddies, which the acceptance rule reshapes; it is used because it is convenient to sample and carries the gross features of the physical eddy-size distribution. Each event applies the kernel of \eqref{eq:event} to its interval---the
+interval's own triplet-map displacement as the kernel shape, no map
+applied, amplitudes \eqref{eq:ci} from the interval's own
+integrals---followed by the adaptive-depth hierarchy of
+\S\,\ref{sec:interventions} inside it; the first identity of
+\eqref{eq:kernel-identities} conserves each momentum component and
+the transfer matrix of \eqref{eq:redistribution} their summed kinetic
+energy, exactly and per event. The rate is matched to the baseline's
+mean eddy rate, $R=\bar N_{\mathrm e}/T$ with $\bar N_{\mathrm e}$ the mean number of eddy events over an SC-ODT baseline realisation of duration
+$T$, so the comparison against the eddy-locked variants is
+dose-matched by construction.
 
 The result (figure~\ref{fig:clock}) decides the question. With the
 clock, the fine-scale imbalance is reduced significantly at
@@ -2400,22 +2306,18 @@ clock, the fine-scale imbalance is reduced significantly at
 contrasts reach $-0.30$ (low band) and remain significant in the high
 band at $e=3.9$---because a constant-rate stream keeps pace precisely
 where the eddy rate could not: event-locked timing, not any per-event
-property, was the deep-strain limiter. But the uncapped stream is
-scale-blind and overcorrects: it also suppresses the one-point
+property, was the deep-strain limiter. But the stream drawing the full candidate density---capped only at the model's default largest scale $L_{\max}$---is scale-blind and overcorrects: it also suppresses the one-point
 anisotropy that the strain should produce, pulling $u_2^2/2k_t$ from
 $0.58$ to $0.41$ at $e=3.9$ and thereby breaking the moment-level
-behaviour validated in \S\,\ref{sec:lr-validation}. Restricting the
-stream to sub-band interval sizes ($\ell\le\ell^{*}$, the scale
-separating the two measurement bands) resolves the tension: the
+behaviour validated in \S\,\ref{sec:lr-validation}. Restricting the stream to sub-band interval
+sizes---replacing $f$ in \eqref{eq:clock} by its restriction to
+$\ell\le\ell^{*}$, renormalised (over-cap draws are resampled), with
+$\ell^{*}$ the scale separating the two measurement bands---resolves
+the tension: the
 size-capped clock---the ``clock-relaxed ODT'' of the figures---holds the
 fine scales at every strain with no
 fade---$\mathcal A_{\rm hi}$ at $1.30$--$1.44$ against the baseline's
-$1.63$--$1.94$, contrasts significant throughout and strongest at
-$e=3$---while the one-point trajectory is essentially untouched in the
-moderate-strain regime ($u_2^2/2k_t$ within $0.005$ of the baseline at
-$e=1$) and only mildly reduced at the deepest strain. The rate is a
-clean dial: four times the rate holds the fine scales harder at a
-proportionate one-point cost.
+$1.63$--$1.94$, contrasts significant throughout and strongest at $e=3$ (figure~\ref{fig:clock}\textit{a})---while the one-point trajectory is essentially untouched in the moderate-strain regime ($u_2^2/2k_t$ within $0.005$ of the baseline at $e=1$) and only mildly reduced at the deepest strain (figure~\ref{fig:clock}\textit{b}). The rate is a single control: four times the rate holds the fine scales harder, at a proportionate reduction of the one-point anisotropy.
 
 \begin{figure}
   \centering
@@ -2424,8 +2326,11 @@ proportionate one-point cost.
   family. (\textit{a}) Fine-scale-band imbalance $\mathcal A_{\rm hi}$
   against total strain: the eddy-locked variants fade beyond
   $e\approx3$; the clock holds at every strain. (\textit{b}) The
-  price: upwash energy fraction---the uncapped clock suppresses the
-  physical one-point anisotropy, the size cap restores it. Medians
+  price: upwash energy fraction. The reference is the SC-ODT baseline
+  trajectory---the moment-level behaviour validated in
+  \S\,\ref{sec:lr-validation}---which the uncapped clock suppresses;
+  the size cap at matched rate preserves it, and the $4\times$ rate
+  reduces it in proportion. Medians
   over $1024$ paired-seed realisations; the clock rate is matched to
   the baseline eddy rate.}
   \label{fig:clock}
@@ -2433,14 +2338,18 @@ proportionate one-point cost.
 
 \subsection{The measured missing ingredient}\label{sec:limits-endpoint}
 
-The arc closes the loop opened by the three-way comparison. The
-deficiency measured there---anisotropy allocated uniformly over
-wavenumber---is confirmed here in transmission form, is unfixable by
-gating or map reweighting, and is cured by exactly two ingredients,
-each isolated by a falsified alternative: relaxation applied \emph{at
-the scale of the imbalance} (depth, not dosage or location) and
-relaxation applied \emph{on its own clock} (the size-capped stream,
-which alone survives deep strain). One limit remains, and it is
+The deficiency measured by the three-way comparison---anisotropy
+allocated uniformly over wavenumber---is confirmed by the transmission
+diagnostic of \S\,\ref{sec:transmission} in a different observable: the
+band-imbalance ratio $\mathcal A_{\rm hi}/\mathcal A_{\rm lo}$ stays
+near unity, so the strain-induced imbalance reaches the fine scales
+undiminished. It is unfixable by gating or map reweighting, and is
+cured by exactly two ingredients, each isolated by a falsified
+alternative: relaxation applied \emph{at the scale of the imbalance}
+(depth, not dosage or location) and relaxation applied \emph{on its
+own clock}, with the event-size distribution capped at
+$\ell\le\ell^{*}$ (the clock-relaxed ODT of \S\,\ref{sec:clock}),
+which alone survives deep strain. One limit remains, and it is
 structural rather than curable by any amount of relaxation: an
 isotropising mechanism is bounded at component equality, whereas exact
 linear theory and the DNS carry the fine-scale upwash \emph{below} the
@@ -2475,8 +2384,9 @@ the deep-strain hold of figure~\ref{fig:clock}, which this
 protocol---bounded at $e=1$ by the DNS reference---cannot display.
 Fourth, at $Sk_t/\varepsilon=16$ neither form moves the allocation:
 rapid strain limits the physical time available, and no relaxation
-scheme manufactures more of it. The remaining, sign-level gap belongs
-to the wavenumber-dependent operator identified above.
+scheme manufactures more of it. The remaining, sign-level gap belongs to the
+wavenumber- and angle-dependent rapid operator of
+\eqref{eq:Piclosed}--\eqref{eq:g3}, identified above as the next step.
 
 \begin{figure}
   \centering
@@ -2532,9 +2442,14 @@ that standard practice prescribes?
 The distorted input is taken from the model's own strained ensembles in
 the representation already fitted in \S\,\ref{sec:envelope}: the
 exact-RDT-distorted von K\'arm\'an family, two parameters
-$(A_0,\kappa_e)$ per strain, fitted to the median line spectra of the
+$(A_0,\kappa_e)$ per strain, fitted to the median line spectra of the SC-ODT
 $1024$-realisation ensembles at $Sk_t/\varepsilon\approx0.4$ and
-$\approx8$. The line data pin the resolved-wavenumber structure; the
+$\approx8$. The fit is to SC-ODT; the clock-relaxed inflow of
+\S\,\ref{sec:clock}, fitted identically, is carried alongside from
+figure~\ref{fig:expval} onward, and the radiated level does not
+discriminate between the two---the clock's gain appears in the
+uncertainty the input carries (figure~\ref{fig:amiet-rapid}). The
+line data pin the resolved-wavenumber structure; the
 transverse structure that \eqref{eq:knoise} requires is supplied by the
 representation---this is \S\,\ref{sec:gate}'s statement about line
 knowledge, operating in the application---and the representation's rms
@@ -2549,9 +2464,9 @@ against the wavevector-ensemble integrator of
 under $1\%$). The frozen baseline is the same inflow's relaxed $e=0$
 state carried undistorted. The level and shape contributions are
 separated: the kernel scales linearly with the upwash variance, so
-dividing it out isolates the spectral reallocation, and the variance
-ratio itself is taken from the measured line spectra rather than from
-the fit.
+dividing it out isolates the spectral reallocation, and the variance ratio itself is taken from the measured line spectra
+rather than from the fit. The chain is laid out step by step in the
+supplementary material (\S\,S4).
 
 \begin{figure}
   \centering
@@ -2563,8 +2478,7 @@ the fit.
   (\textit{a}) $Sk_t/\varepsilon\approx0.4$,
   (\textit{b}) $\approx8$. Solid: spectral reallocation at matched
   upwash variance (shape only); dotted: total, including the measured
-  variance change ($-3.5$ to $-7.3$\,dB at the slow rate, where decay
-  dominates the transit; $+0.5$ to $+1.9$\,dB at the rapid rate, where
+  variance change ($-3.5$ to $-7.3$\,dB at the slow rate, where decay dominates the transit time; $+0.5$ to $+1.9$\,dB at the rapid rate, where
   the upwash amplification survives). Geometry, aerofoil response and
   observer position cancel identically in this ratio.}
   \label{fig:lenoise}
@@ -2585,8 +2499,7 @@ low-wavenumber tail of the initial spectrum as the distortion
 proceeds. The distortion, in short, drains the very content the
 aerofoil responds to. The total change adds the variance term: at the
 rapid rate the surviving upwash amplification offsets a small part of
-the reallocation; at the slow rate viscous decay over the longer
-transit deepens it.
+the reallocation; at the slow rate viscous decay over the longer transit time deepens it.
 
 \begin{figure}
   \centering
@@ -2594,7 +2507,7 @@ transit deepens it.
   \caption{The assembled absolute prediction at the reference
   configuration of \S\,\ref{sec:spec-op}: far-field sound pressure
   level from the compact lift-dipole form of \citet{Amiet1975} with
-  the exact Sears response, for a flat plate of chord $0.39$\,m
+  the exact Sears response \citep{Sears1941}, for a flat plate of chord $0.39$\,m
   ($Re_c\approx5\times10^5$) and span $0.8$\,m at
   $U_\infty=20$\,m\,s$^{-1}$, $u'/U_\infty=6\%$,
   $\mathcal{L}=55$\,mm, observer $1$\,m overhead. Dashed: the frozen
@@ -2612,8 +2525,7 @@ transit deepens it.
 Figure~\ref{fig:amiet-abs} places the kernel result in the quantity
 practice actually reports: the absolute far-field spectrum of the
 reference configuration of \S\,\ref{sec:spec-op}, assembled from the
-compact lift-dipole form of Amiet's theory with the exact Sears
-response. The spectra enter in physical units through two matching
+compact lift-dipole form of Amiet's theory with the exact Sears response \citep{Sears1941}. The spectra enter in physical units through two matching
 conditions only---the integral scale fixes the length unit through the
 von K\'arm\'an relation $\kappa_e=0.7468/\mathcal{L}$ and the upwash
 variance at $e=0$ fixes the amplitude---so the frozen baseline
@@ -2628,6 +2540,15 @@ $5$\,dB at $e=0.5$, $9$\,dB at $e=1$ and $14$\,dB at $e=2$ across the
 resolved band ($f\lesssim1.8$\,kHz at this operating point), the
 spanwise-coherence drain of figure~\ref{fig:lenoise} now carried
 through geometry, aerofoil response and radiation to the observer.
+Both this figure and the kernel ratio of figure~\ref{fig:lenoise}
+carry the SC-ODT inflow as the representative computed spectrum: at
+this operating point the clock-relaxed variant gives an
+indistinguishable far-field prediction---its gain lies below the
+size cap, where the noise kernel carries little weight, so it appears
+in the input uncertainty rather than the radiated level
+(figure~\ref{fig:amiet-rapid})---so the two computed inflows are
+carried separately only from the validation of figure~\ref{fig:expval}
+onward, where the comparison is the point.
 
 %% U6 (2026-09-09): experimental four-way validation; machinery in
 %%   post/acoustics/{expdata,expval}; ensembles gateA_S{1,20}_RCS1.
@@ -2653,7 +2574,9 @@ through geometry, aerofoil response and radiation to the observer.
   digitised from the published figures with per-figure calibration
   checks ($\pm0.5$\,dB). The effective strain is a geometric estimate
   (potential-flow stagnation-line accumulation truncated at the eddy
-  scale); the shaded band spans truncation at $\Lambda/4$--$\Lambda$.}
+  scale); the shaded band, present where the effective strain is
+  non-negligible (panels \textit{a,b}), spans truncation at
+  $\Lambda/4$--$\Lambda$.}
   \label{fig:expval}
 \end{figure}
 
@@ -2711,8 +2634,7 @@ of inflow spectrum.
   SC-ODT; triangles: clock-relaxed ODT): the two computed inflows
   (fitted representations, measured ensemble levels), each with a band
   giving its measured spectral rms distance from the RDT family mapped
-  to decibels; the two share the band and are indistinguishable at this
-  level.}
+  to decibels; the bands overlap sufficiently that the two inflows are indistinguishable at this level.}
   \label{fig:amiet-rapid}
 \end{figure}
 
@@ -2723,8 +2645,7 @@ error against the linear reference grows from $+1.3$ to $+3.6$\,dB,
 while both computed inflows track the reference within
 $1$--$2.5$\,dB---a residual that contains the physical relaxation at
 finite rapidity as well as the model deficiency measured in
-\S\,\ref{sec:envelope}---so an evolved inflow beats a prescribed one
-at precisely the strains where the correction matters, whichever
+\S\,\ref{sec:envelope}---so an evolved inflow outperforms a prescribed one at the strains where the correction matters, whichever
 variant of the model evolves it. Between the two variants the
 radiated \emph{level} does not discriminate: the clock acts below its
 size cap, where the noise kernel carries little weight, and its gain
@@ -2772,8 +2693,7 @@ reference and carry their measured uncertainty with them. What the
 methodology adds is the right-hand half of the figure: an inflow that
 continues to predict where the frozen assumption fails silently.
 
-The scope of this statement is set out as carefully as its content.
-It concerns the \emph{free} distortion by the mean strain: the
+The scope is limited to the \emph{free} distortion by the mean strain: the
 surface-blocking effect, which measurements and simulations show
 \emph{enhancing} the near-edge upwash at low frequency
 \citep{HuntGraham1978,dosSantos2023,Piccolo2024}, is a distinct and
@@ -2786,7 +2706,7 @@ energy-containing reduced frequencies for total strains of
 $0.5$--$2$---far too large to neglect, and of the opposite sign to the
 blocking correction with which it must ultimately be combined.
 Figure~\ref{fig:amiet-abs} shows that the chain from model output to
-absolute far-field level is complete and cheap; what remains for a
+absolute far-field level is complete; what remains for a
 predictive comparison against measurement is the blocking correction
 and the streamline strain history, for which the present model
 supplies the distorted-inflow input at negligible cost, with its
@@ -2815,7 +2735,13 @@ it evolves ($10^{-4}$ in the component fractions); at the moment level
 it reproduces the strained components of the \citet{LeeReynolds1985}
 DNS quantitatively, with the one exception---the neutral-direction
 anisotropy---traced to the orientation information that every
-single-point closure discards, not to the line.
+single-point closure discards, not to the line. The laboratory
+counterpart is the plane-strain experiment of
+\citet{ChenMeneveauKatz2006}: the model reproduces the qualitative
+departure from rapid distortion that the experiment reports, the
+component centroids held far below the rigid-translation law and the
+upwash held back most (\S\,\ref{sec:cmk}; supplementary material,
+\S\,S1).
 
 Three findings shape how such a model must be judged. First, the
 correct linear reference for line-projected spectra is broadband: exact
@@ -2832,8 +2758,7 @@ the deficiency is localised in the wavenumber-uniform rapid operator
 and grows with strain rapidity, a measured validity envelope that
 accompanies the model into any application. Third, the single-line
 closure question admits an exact, falsifiable answer in place of a
-closure claim: line data bound the rapid term sharply, the bounds are
-honest up to $e\approx0.25$--$0.5$ under plane strain and at all
+closure claim: line data bound the rapid term sharply, the bounds are valid up to $e\approx0.25$--$0.5$ under plane strain and at all
 computed strains under axisymmetric distortion, and the axisymmetry
 hypothesis is measured rather than assumed---its plane-strain violation
 grows with accumulated strain and rapidity while the acoustically
@@ -2845,8 +2770,7 @@ anisotropy is delivered directly by large-eddy maps, which is why no
 acceptance-gating or map-reweighting scheme can control it; what does
 move it is relaxation applied at the scale of the imbalance---the
 model's own energy-equalising kernel, applied hierarchically to eddy
-sub-scales. The intervention family maps the mechanism's envelope
-precisely: depth that reaches the measured scales is necessary and
+sub-scales. The intervention family traces the mechanism's envelope: depth that reaches the measured scales is necessary and
 sufficient at moderate strain; dosage and delocalised application
 raise the early gains in proportion; and the fine-scale fade beyond
 $e\approx3$, common to every scheme locked to the eddy clock, is
@@ -2855,13 +2779,11 @@ of relaxation events whose size cap preserves the one-point
 physics. What remains is not timing but allocation: isotropisation is
 bounded at component equality and cannot reach the fine-scale sign
 reversal the DNS exhibits, so the remaining step is the
-wavenumber- and angle-dependent spectral kernel derived in
-\S\,\ref{sec:gate}; exercising it in place of the wavenumber-uniform
+wavenumber- and angle-dependent spectral kernel $g_n$ of \eqref{eq:g1}--\eqref{eq:g3}, derived in Appendix~\ref{app:kernels}; exercising it in place of the wavenumber-uniform
 closure is the natural continuation, now motivated by a measured
 deficit and pointed at a measured target.
 
-For the application that motivated the work, the model delivers what
-the prediction chain lacks: a distorted, anisotropic, scale-resolved
+For the application that motivated the work, the model delivers what the prediction chain otherwise lacks: a distorted, anisotropic, scale-resolved
 upwash spectrum, evolved rather than prescribed, at two orders of
 magnitude below the cost of a strained DNS ensemble---and
 \S\,\ref{sec:lenoise} carries it through Amiet's theory to the
@@ -2869,20 +2791,15 @@ radiated level. The assembled chain reproduces four published far-field experime
 $1$--$2$\,dB rms where the facilities are cleanest, with the computed
 correction causal---vanishing for thin plates, lowering the
 prediction towards the data for the NACA0012---and, against the linear
-reference at application strains, an evolved inflow beats the frozen
-one by a margin that grows with strain. Relative to the
+reference at application strains, an evolved inflow outperforms the frozen one by a margin that grows with strain. Relative to the
 frozen-spectrum input of standard practice the computed distortion is
 a weaker leading-edge source at every resolved frequency---by
 $5$--$20$\,dB at the energy-containing scales for total strains
 $0.5$--$2$, in the geometry-free kernel ratio and in the assembled
 absolute prediction at the reference configuration alike---because the
 distortion drains exactly the spanwise-coherent upwash content the
-aerofoil responds to. The omitted
-term is far too large to neglect and opposite in sign to the
-surface-blocking correction with which a complete prediction must
-combine it; predictions inherit a spectral-shape uncertainty of order
-the distance envelope at the operating point's strain and rapidity,
-stated here rather than discovered later.
+aerofoil responds to. This omitted term is opposite in sign to the surface-blocking correction with which a complete prediction must combine it; predictions inherit a spectral-shape uncertainty of order
+the distance envelope at the operating point's strain and rapidity. A far-field test that discriminates the relaxation mechanism---one whose acoustic response samples the sub-cap scales at accumulated strains of order unity, such as a turbulence-ingesting rotor---remains the falsifiable target for future work.
 
 % =========================================================================
 \appendix
@@ -2904,9 +2821,7 @@ these linear relations into the sharp bounds of \S\,\ref{sec:bounds}.
 The spectrum tensor of statistically homogeneous turbulence is Hermitian,
 positive semi-definite at each $\boldsymbol{\kappa}$, and solenoidal,
 $\kappa_m\Phi_{mn}(\boldsymbol{\kappa})=0$; it therefore has rank at most
-two, supported on the plane normal to $\boldsymbol{\kappa}$. Under A1
-(axisymmetry about $\boldsymbol{e}_2$, mirror-symmetric, helicity-free) it
-is fixed by two scalar functions of $(\kappa_2,\kappa_\perp)$
+two, supported on the plane normal to $\boldsymbol{\kappa}$. Upon invoking axisymmetry about $\boldsymbol{e}_2$, mirror symmetry, and zero helicity, here denoted Assumption~A1, it is fixed by two scalar functions of $(\kappa_2,\kappa_\perp)$
 \citep{Batchelor1946,ChandrasekharAxisym1950,Lindborg1995}:
 \begin{equation}
   \Phi_{mn}(\boldsymbol{\kappa})
@@ -3161,7 +3076,7 @@ spectrum ensembles of \S\,\ref{sec:val-spectrum}, and four seeds for
 the DNS and its companions, whose derived quantities carry jackknife
 errors over realisations.
 
+
 \bibliographystyle{jfm}
 \bibliography{jfm}
-
 \end{document}

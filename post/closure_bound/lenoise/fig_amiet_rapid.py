@@ -135,9 +135,9 @@ def main():
             out[tag] = spl_curve(f, e, fits[e][0], ke0 / ke_phys, lev,
                                  w2)
         # monochrome: truth = black solid (the anchor); frozen practice =
-        # black dashed; the two models = grey with a shared grey band (they
+        # black dashed; the two models = black with a shared grey band (they
         # are indistinguishable in SPL -- the honest result), separated by
-        # line style + marker.
+        # line style + marker. Only the band stays grey (Alan).
         ax.plot(f, spl_t, color="k", ls="-", lw=1.5,
                 label="exact RDT (DNS-anchored)")
         ax.plot(f, spl_v, color="k", ls=(0, (5, 2)), lw=1.0,
@@ -148,8 +148,8 @@ def main():
             db = 10 * np.log10(1 + RMS[tag][e])
             ax.fill_between(f, out[tag] - db, out[tag] + db, color="0.8",
                             alpha=0.45, lw=0)
-            ax.plot(f, out[tag], color="0.4", ls=ls, lw=1.0, marker=mk,
-                    ms=2.6, mfc="0.4", markevery=6, label=lab)
+            ax.plot(f, out[tag], color="k", ls=ls, lw=1.0, marker=mk,
+                    ms=2.6, mfc="k", markevery=6, label=lab)
         ax.set_xscale("log")
         ax.set_xlabel(r"$f$ [Hz]")
         ax.text(0.5, 0.96, f"$e={e:.0f}$", transform=ax.transAxes,

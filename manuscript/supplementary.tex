@@ -276,6 +276,56 @@ ratio towards the linear reference precisely below its size cap.
   \label{fig:s-dividend}
 \end{figure}
 
+% =========================================================================
+\section{Operational steps of the leading-edge-noise chain}\label{sec:s-chain}
+% =========================================================================
+
+This section collects, in operational order, the steps of Part III of
+the main text, from strained line ensembles to radiated level; every
+step restates the main text.
+\begin{enumerate}
+\item \emph{Inflow representation.} For each total strain $e$ and
+  strain-rate parameter, fit the exact-RDT-distorted von K\'arm\'an
+  family to the median component line spectra of the
+  $1024$-realisation ensemble---SC-ODT and, identically, the
+  clock-relaxed variant---jointly in the upwash and transverse
+  components, with the pre-distortion amplitude $A_0$ and energy
+  wavenumber $\kappa_e$ the only free parameters. The rms log-residual
+  of the fit is the distance envelope of the main text, carried
+  through the chain as the input uncertainty.
+\item \emph{Two-dimensional upwash spectrum.} Form
+  $\Phi_{ww}(K_x,K_y;e)=A_0\int\Phi^{\rm RDT}_{22}
+  (K_x,\kappa_2,K_y;e)\,\mathrm{d}\kappa_2$ by direct integration of
+  the distorted components of the fitted family; the integration is
+  verified against the wavevector-ensemble integrator of the main
+  text (upwash-variance growth reproduced to under $1\%$).
+\item \emph{Level and shape.} The noise kernel is linear in the
+  upwash variance, so the variance ratio
+  $\overline{u_2^2}(e)/\overline{u_2^2}(0)$ is taken from the
+  measured line spectra and applied as the level; the fitted family
+  supplies only the shape.
+\item \emph{Geometry-free ratio.} Form
+  $\mathcal K(K_x)=\pi\,\Phi_{ww}(K_x,0)^2\big/\!\int\Phi_{ww}
+  (K_x,K_y)\,\mathrm{d}K_y$ for the distorted and for the frozen
+  ($e=0$) input;
+  $\Delta\mathrm{SPL}(K_x)=10\log_{10}
+  [\mathcal K^{\rm distorted}/\mathcal K^{\rm frozen}]$, from which
+  aerofoil geometry, response and observer cancel.
+\item \emph{Absolute prediction.} At the reference configuration,
+  physical units enter through two matching conditions only---the
+  integral scale through $\kappa_e=0.7468/\mathcal{L}$ and the $e=0$
+  upwash variance---and the far-field spectrum is assembled from the
+  compact lift-dipole form of \citet{Amiet1975} with the exact Sears response \citep{Sears1941}; the frozen baseline is then the standard
+  Amiet--von~K\'arm\'an prediction with no recalibration.
+\item \emph{Validation chain.} Against the published measurements,
+  all four inflows (frozen von K\'arm\'an, frozen Liepmann, SC-ODT,
+  clock-relaxed ODT) pass through the identical non-compact response,
+  with the Gershfeld thickness admittance applied to all four chains
+  on the NACA0012 cases and the effective strain taken as the
+  potential-flow stagnation-line accumulation truncated at the eddy
+  scale.
+\end{enumerate}
+
 \bibliographystyle{jfm}
 \bibliography{jfm}
 

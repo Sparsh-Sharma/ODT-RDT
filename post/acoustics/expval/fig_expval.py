@@ -23,10 +23,12 @@ from figstyle_jfm import FULL, plt, save  # noqa: E402
 # monochrome: frozen references black dashed / grey dotted (no marker);
 # the two model chains grey, separated by line style + marker.
 # (tag, label, colour, linestyle, marker)
+# all four prediction chains black, separated by line style + marker;
+# only the out-of-band ("questionable") measured points stay grey (Alan)
 MODELS = [("vk", "Amiet + von Kármán", "k", (0, (5, 2)), None),
-          ("liepmann", "Amiet + Liepmann", "0.5", (0, (1, 1.2)), None),
-          ("odt_std", "Amiet + SC-ODT", "0.38", "-", "o"),
-          ("odt_fix", "Amiet + clock-relaxed ODT", "0.38",
+          ("liepmann", "Amiet + Liepmann", "k", (0, (1, 1.2)), None),
+          ("odt_std", "Amiet + SC-ODT", "k", "-", "o"),
+          ("odt_fix", "Amiet + clock-relaxed ODT", "k",
            (0, (4, 1.4, 1, 1.4)), "^")]
 
 
@@ -66,7 +68,7 @@ def run_case(key, ax=None):
                 mec="0.65", mew=0.6)
         for m, lab, col, ls, mk in MODELS:
             if m in out:
-                ax.plot(f, out[m], color=col, ls=ls, lw=1.1, marker=mk,
+                ax.plot(f, out[m], color=col, ls=ls, lw=0.9, marker=mk,
                         ms=2.6, mfc=col, markevery=7, label=lab)
         # e_eff sensitivity band for the ODT curves
         if "odt_std" in out and c["e_hi"] > 0:
