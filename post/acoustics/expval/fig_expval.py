@@ -20,11 +20,9 @@ import chain  # noqa: E402
 from cases import CASES, load_csv  # noqa: E402
 from figstyle_jfm import FULL, plt, save  # noqa: E402
 
-# monochrome: frozen references black dashed / grey dotted (no marker);
-# the two model chains grey, separated by line style + marker.
-# (tag, label, colour, linestyle, marker)
 # all four prediction chains black, separated by line style + marker;
-# only the out-of-band ("questionable") measured points stay grey (Alan)
+# only the out-of-band ("questionable") measured points stay grey (Alan).
+# (tag, label, colour, linestyle, marker)
 MODELS = [("vk", "Amiet + von Kármán", "k", (0, (5, 2)), None),
           ("liepmann", "Amiet + Liepmann", "k", (0, (1, 1.2)), None),
           ("odt_std", "Amiet + SC-ODT", "k", "-", "o"),
@@ -70,19 +68,9 @@ def run_case(key, ax=None):
             if m in out:
                 ax.plot(f, out[m], color=col, ls=ls, lw=0.9, marker=mk,
                         ms=2.6, mfc=col, markevery=7, label=lab)
-        # e_eff sensitivity band for the ODT curves
-        if "odt_std" in out and c["e_hi"] > 0:
-            lo = chain.predict_spl(f, c["U"], c["w2"], c["Lam"],
-                                   c["chord"], c["span"], c["obs"],
-                                   "odt_std", t_over_c=c["t_over_c"],
-                                   fit_tag=c["fit_tag"],
-                                   e_eff=c["e_lo"]) + c["slc_db"]
-            hi = chain.predict_spl(f, c["U"], c["w2"], c["Lam"],
-                                   c["chord"], c["span"], c["obs"],
-                                   "odt_std", t_over_c=c["t_over_c"],
-                                   fit_tag=c["fit_tag"],
-                                   e_eff=c["e_hi"]) + c["slc_db"]
-            ax.fill_between(f, lo, hi, color="0.8", alpha=0.5, lw=0)
+        # e_eff truncation sensitivity (Lambda/4-Lambda) spans <~1 dB here,
+        # below the digitisation uncertainty -- not banded (see caption)
+
         ax.set_xscale("log")
         ax.set_xlabel(r"$f$ [Hz]")
         ax.set_ylabel(r"SPL [dB Hz$^{-1}$ re $20\,\mu$Pa]")
