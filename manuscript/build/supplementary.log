@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  16 SEP 2026 13:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  16 SEP 2026 13:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1113,11 +1113,11 @@ Package xcolor Warning: Incompatible color definition on input line 129.
 Non-PDF special ignored!
 <special> papersize=174mm,247mm
 {c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
-<Figures/fig_cmk_aniso.pdf, id=45, 232.32951pt x 161.02534pt>
+<Figures/fig_cmk_aniso.pdf, id=45, 231.655pt x 161.48016pt>
 File: Figures/fig_cmk_aniso.pdf Graphic file (type pdf)
 <use Figures/fig_cmk_aniso.pdf>
 Package pdftex.def Info: Figures/fig_cmk_aniso.pdf  used on input line 132.
-(pdftex.def)             Requested size: 238.07813pt x 165.0078pt.
+(pdftex.def)             Requested size: 238.07813pt x 165.96667pt.
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
@@ -1131,24 +1131,29 @@ Underfull \hbox (badness 1448) in paragraph at lines 186--188
 \OT1/minntx/m/n/9 grow-ing with strain---the fade broken---
  []
 
+
+Underfull \hbox (badness 4779) in paragraph at lines 197--198
+\OT1/minntx/m/n/9 holds the fine scales harder, at a
+ []
+
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 196.
+(Font)              scaled to size 8.73262pt on input line 201.
 <Figures/fig_klevels.pdf, id=77, 378.45828pt x 304.75858pt>
 File: Figures/fig_klevels.pdf Graphic file (type pdf)
 <use Figures/fig_klevels.pdf>
-Package pdftex.def Info: Figures/fig_klevels.pdf  used on input line 202.
+Package pdftex.def Info: Figures/fig_klevels.pdf  used on input line 207.
 (pdftex.def)             Requested size: 384.0pt x 309.236pt.
 <Figures/fig_dividend.pdf, id=79, 377.57498pt x 163.72244pt>
 File: Figures/fig_dividend.pdf Graphic file (type pdf)
 <use Figures/fig_dividend.pdf>
-Package pdftex.def Info: Figures/fig_dividend.pdf  used on input line 222.
+Package pdftex.def Info: Figures/fig_dividend.pdf  used on input line 227.
 (pdftex.def)             Requested size: 384.0pt x 166.51253pt.
 [3 <./Figures/fig_cmk_aniso.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 247.
+Package xcolor Warning: Incompatible color definition on input line 252.
 
 [4]
-Overfull \hbox (12.41248pt too wide) in paragraph at lines 247--253
+Overfull \hbox (12.41248pt too wide) in paragraph at lines 252--258
 []\OT1/ntxtlf/m/it/10.74011 Two-dimensional up-wash spec-trum. \OT1/minntx/m/n/10.74011 Form $\OML/ntxmi/m/it/10.74011 ^^H[]\LMS/ntxsy/m/n/10.74011 ¹\OML/ntxmi/m/it/10.74011 K[]; K[]\OT1/minntx/m/n/10.74011 ; \OML/ntxmi/m/it/10.74011 e\LMS/ntxsy/m/n/10.74011 º \U/ntxmia/m/it/10.74011 = \OML/ntxmi/m/it/10.74011 A[] [] ^^H[]\LMS/ntxsy/m/n/10.74011 ¹\OML/ntxmi/m/it/10.74011 K[]; ^^T[]; K[]\OT1/minntx/m/n/10.74011 ; \OML/ntxmi/m/it/10.74011 e\LMS/ntxsy/m/n/10.74011 º \OT1/minntx/m/n/10.74011 d\OML/ntxmi/m/it/10.74011 ^^T[]$
  []
 
@@ -1180,13 +1185,13 @@ L3 programming layer <2020/03/25>
 Here is how much of TeX's memory you used:
  17825 strings out of 467159
  280051 string characters out of 5398120
- 697940 words of memory out of 5000000
+ 699940 words of memory out of 5000000
  46725 multiletter control sequences out of 15000+600000
  729293 words of font info for 255 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  89i,13n,131p,980b,543s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/supplementary.pdf (6 pages, 265301 bytes).
+Output written on build/supplementary.pdf (6 pages, 265308 bytes).
 PDF statistics:
  273 PDF objects out of 1000 (max. 8388607)
  162 compressed objects within 2 object streams

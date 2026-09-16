@@ -20,14 +20,14 @@ from figstyle_jfm import FULL, panel, plt, save  # noqa: E402
 NB = os.path.join(HERE, "newbands")
 # monochrome: each intervention -> distinct line style + marker (all black)
 CASES = [
-    ("SC-ODT (baseline)", "bands_homogeneousStrain2.npz", "o", "-"),
-    ("depth tied to eddy size", "bands_homogeneousStrain2KS.npz",
+    ("SC-ODT (C0.2)", "bands_homogeneousStrain2.npz", "o", "-"),
+    ("C3.4: depth tied to eddy size", "bands_homogeneousStrain2KS.npz",
      "v", (0, (6, 2))),
-    ("clock, uncapped", "bands_homogeneousStrain2RC1.npz", "s",
+    ("C5.1: clock, uncapped", "bands_homogeneousStrain2RC1.npz", "s",
      (0, (1, 1.4))),
-    ("clock-relaxed ODT", "bands_homogeneousStrain2RCS1.npz",
+    ("clock-relaxed ODT (C5.2)", "bands_homogeneousStrain2RCS1.npz",
      "^", (0, (5, 1.6, 1, 1.6))),
-    ("clock-relaxed ODT, $4\\times$", "bands_homogeneousStrain2RCS4.npz",
+    ("clock-relaxed ODT, $4\\times$ (C5.3)", "bands_homogeneousStrain2RCS4.npz",
      "D", (0, (4, 1.4, 1, 1.4, 1, 1.4))),
 ]
 NBOOT = 2000
