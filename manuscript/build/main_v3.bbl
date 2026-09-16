@@ -1,4 +1,4 @@
-\begin{thebibliography}{50}
+\begin{thebibliography}{52}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \def\au#1{#1} \def\ed#1{#1} \def\yr#1{#1}\def\at#1{#1}\def\jt#1{\textit{#1}} \def\bt#1{#1}\def\bvol#1{\textbf{#1}} \def\vol#1{#1} \def\pg#1{#1} \def\publ#1{#1}\def\arxiv#1{#1}\def\org#1{#1}\def\st#1{\textit{#1}}
 
@@ -89,6 +89,9 @@
 \bibitem[Lindborg(1995)]{Lindborg1995}
 {\sc \au{Lindborg, E.}} \yr{1995}  \at{Kinematics of homogeneous axisymmetric turbulence}.  \jt{Journal of Fluid Mechanics}  \bvol{302},  \pg{179--201}.
 
+\bibitem[Majumdar \& Peake(1998)]{MajumdarPeake1998}
+{\sc \au{Majumdar, S.~J.} \& \au{Peake, N.}} \yr{1998}  \at{Noise generation by the interaction between ingested turbulence and a rotating fan}.  \jt{Journal of Fluid Mechanics}  \bvol{359},  \pg{181--216}.
+
 \bibitem[Medina~M{\'e}ndez {\em et~al.\/}(2023)Medina~M{\'e}ndez, Sharma, Schmidt \& Klein]{MedinaMendez2023}
 {\sc \au{Medina~M{\'e}ndez, Juan~A.}, \au{Sharma, Sparsh}, \au{Schmidt, Heiko} \& \au{Klein, Marten}} \yr{2023}  \at{Toward the use of a reduced-order and stochastic turbulence model for assessment of far-field sound radiation: Low {Mach} number jet flows}.  \jt{Proceedings in Applied Mathematics and Mechanics}  \bvol{23}~(3),  \pg{e202300186}.
 
@@ -130,6 +133,9 @@
 
 \bibitem[Schmidt {\em et~al.\/}(2010)Schmidt, Kerstein \& McDermott]{SchmidtKerstein2010}
 {\sc \au{Schmidt, Rodney~C.}, \au{Kerstein, Alan~R.} \& \au{McDermott, Randall}} \yr{2010}  \at{{ODTLES}: A multi-scale model for {3D} turbulent flow based on one-dimensional turbulence modeling}.  \jt{Computer Methods in Applied Mechanics and Engineering}  \bvol{199}~(9--12),  \pg{865--880}.
+
+\bibitem[Sears(1941)]{Sears1941}
+{\sc \au{Sears, William~R.}} \yr{1941}  \at{Some aspects of non-stationary airfoil theory and its practical application}.  \jt{Journal of the Aeronautical Sciences}  \bvol{8}~(3),  \pg{104--108}.
 
 \bibitem[Sharma {\em et~al.\/}(2022)Sharma, Klein \& Schmidt]{SharmaKleinSchmidt2022}
 {\sc \au{Sharma, Sparsh}, \au{Klein, Marten} \& \au{Schmidt, Heiko}} \yr{2022}  \at{Features of far-downstream asymptotic velocity fluctuations in a round jet: A one-dimensional turbulence study}.  \jt{Physics of Fluids}  \bvol{34}~(8),  \pg{085131}.
