@@ -20,3 +20,8 @@ R2 "42 pp, redundant, no clear take-home"; target ~30 pp, SOFT).
   4. intro: fixed broken sentence ('six results the following aspects') and
      the red-marker CMK bullet (defects also present in the LIVE file).
   State: main 47 pp, SM 8 pp.
+  5. sec 7 prose pass: triple-stated SC-ODT-vs-clock redundancy reduced to
+     one evidenced statement (fig 20) + two pointers; dead commented block
+     removed; fixed 'they lowers' and the misattached 'This mechanism
+     replaces' sentence (both defects also in the LIVE file). Still 47 pp
+     (cuts absorbed by figure-float pagination).
