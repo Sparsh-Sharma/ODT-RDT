@@ -36,11 +36,11 @@ def main():
     ee = np.linspace(0, ECMK, 100)
     a.plot(ee, np.exp(0.5 * ee), color="k", ls=(0, (6, 2)), lw=0.9,
            label=r"rigid translation $\mathrm{e}^{-A_{22}e}$")
-    a.plot(t[m], d["c1_mean"][m] / d["c1_mean"][0], "o",
-           color="k", ms=3.0, mfc="none", mew=0.8,
+    a.plot(t[m], d["c1_mean"][m] / d["c1_mean"][0], "x",
+           color="k", ms=5.0, mew=1.1,
            label=r"$\bar\kappa_1$")
-    a.plot(t[m], d["c2_mean"][m] / d["c2_mean"][0], "s",
-           color="k", ms=3.0, mfc="none", mew=0.8,
+    a.plot(t[m], d["c2_mean"][m] / d["c2_mean"][0], "+",
+           color="k", ms=5.0, mew=1.1,
            label=r"$\bar\kappa_2$")
     a.axhline(3.0, color="0.6", lw=0.6, ls=(0, (1, 1.4)))
     a.set_ylim(0.95, 3.3)

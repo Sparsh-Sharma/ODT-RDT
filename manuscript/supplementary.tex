@@ -61,7 +61,11 @@ spectra are compared with rapid-distortion theory. We reproduce the
 strain reversal outside the present monotonic configuration); its end
 corresponds to a total deformation
 $D=\exp(\tfrac12\!\int S\,\mathrm{d}t)\approx3$, i.e. $e\approx2.20$ in
-the notation of the main text.
+the notation of the main text. Unless stated otherwise, the line
+ensembles here use the configuration of Appendix~B of the main text
+(molecular viscosity $\nu=10^{-5}$, scale separation
+$\mathcal L/\eta\approx250$; the value of $\mathcal L/\eta$ is stated
+in that appendix).
 
 In the rapid-distortion limit (eddy events suppressed, inviscid) the
 model must reproduce the analytic reference of
@@ -132,7 +136,7 @@ independent confirmation their DNS provides for the experiment.
   \includegraphics[width=0.62\textwidth]{Figures/fig_cmk_aniso.pdf}
   \caption{Full model (eddies and viscosity active; ensembles over
   $128$ realisations at $\nu=10^{-5}$): strain-induced migration of the
-  streamwise and upwash component centroids, each as the ratio of the strained ensemble to the matched no-strain reference, against the rigid-translation law (grey dotted); the shaded bands are the $95\%$ bootstrap confidence intervals of the median ratio. The line configuration is that of Appendix~B of the main text. The components diverge under
+  streamwise and upwash component centroids, each as the geometric-mean ratio of the strained ensemble to the matched no-strain reference, against the rigid-translation law (grey dotted); the shaded bands span $\pm1$ geometric standard deviation of the ratio across the ensemble. The components diverge under
   strain---the upwash held back most---reproducing the qualitative
   departure-from-RDT mechanism of \citet{ChenMeneveauKatz2006}. The
   comparison is qualitative; see text.}
@@ -143,12 +147,12 @@ independent confirmation their DNS provides for the experiment.
 \section{The intervention categories and variants}\label{sec:s-family}
 % =========================================================================
 
-Table~\ref{tab:s-interventions} records every intervention variant of the measured-limits campaign---its measured fine-scale effect on the transmission diagnostic and the reading, keyed by the category.variant label---and figure~\ref{fig:s-klevels} shows the eddy-locked categories on all four diagnostic panels. The variant descriptions, together with the reference configurations C0.1 (standard ODT) and C0.2 (SC-ODT), are collected in Appendix~B of the main text. Each case was run at $1024$ realisations with seeds paired to the SC-ODT (C0.2) reference; effects are median paired same-seed contrasts, with ``significant'' meaning the $95\%$ bootstrap confidence interval excludes zero. The main text sets out the reading these results establish and retains the two figures that decide it (the relaxation-clock figure and the five-way benchmark comparison).
+Table~\ref{tab:s-interventions} records every intervention variant of the measured-limits campaign---its measured fine-scale effect on the transmission diagnostic and the remarks, keyed by the category.variant label---and figure~\ref{fig:s-klevels} shows the eddy-locked categories on all four diagnostic panels. The variant descriptions, together with the reference configurations C0.1 (standard ODT) and C0.2 (SC-ODT), are collected in Appendix~B of the main text. Each case was run at $1024$ realisations with seeds paired to the SC-ODT (C0.2) reference; effects are median paired same-seed contrasts, with ``significant'' meaning the $95\%$ bootstrap confidence interval excludes zero. The main text sets out the reading these results establish and retains the two figures that decide it (figures~16 and~17 of the main text: the relaxation clock and the five-way benchmark).
 
 \begin{table}
   \centering\small
   \begin{tabular}{p{0.07\textwidth}p{0.42\textwidth}p{0.40\textwidth}}
-  label & fine-scale effect & reading\\[2pt]
+  label & fine-scale effect & remarks\\[2pt]
   \hline
   \multicolumn{3}{@{}l}{\emph{C1\quad acceptance gating}}\\[2pt]
   C1.1 & null at all thresholds; harshest drifts to eddy-free limit &
@@ -219,7 +223,7 @@ Table~\ref{tab:s-interventions} records every intervention variant of the measur
 
 Figure~\ref{fig:s-dividend} shows the spectral counterpart of the
 transmission-diagnostic results of the main text, on the $1024$-realisation strained line spectrum ensembles at both rapidities (Appendix~B of the main text): the size-capped relaxation clock (C5.2) roughly halves the distance between the model's strained line spectra and the exact
-rapid-distortion reference family, and---unlike SC-ODT (C0.2)---holds that distance \emph{constant in strain}. A frozen isotropic spectrum is included for reference; it stands for any frozen-inflow practice, which cannot represent the strained anisotropy at all, so its distance from the reference family grows to $45$--$51\%$ by $e=2$. The component-ratio
+rapid-distortion reference family, and---unlike SC-ODT (C0.2)---holds that distance \emph{constant in strain}. A frozen isotropic spectrum is included for reference; it stands for any calculation that feeds a frozen, undistorted inflow spectrum, which cannot represent the strained anisotropy at all, so its distance from the reference family grows to $45$--$51\%$ by $e=2$. The component-ratio
 panel localises the improvement: exact rapid distortion drives the fine scales towards component equality, SC-ODT (C0.2) over-transmits the anisotropy there, and the clock (C5.2) moves the measured ratio towards the linear reference precisely below its size cap $\ell^*$.
 
 \begin{figure}
