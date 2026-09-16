@@ -129,7 +129,7 @@ its own coordinate. Reconciling the inherently three-dimensional,
 non-local pressure physics of rapid distortion with the one-dimensional,
 local structure of ODT is the central modelling problem addressed here.
 
-The paper reports six results the following aspects of model formulation and assessment:
+The paper reports six results:
 \begin{itemize}
 \item A strain-coupled formulation of ODT (SC-ODT)
 (\S\,\ref{sec:formulation}): production enters as an exact continuous
@@ -140,8 +140,9 @@ model's structural invariants and, under the stated closure, reproduces
 the rapid-distortion evolution of the component energies with no adjustable
 constant (\S\,\ref{sec:verification}).
 
-\item Validation against the strained-turbulence experiment of \citet{ChenMeneveauKatz2006}~(CMK), summarized in (\S\,\ref{sec:cmk}) Sec. 4.5 with details provided in
-\textcolor{red}{Supplementary Material (Sec. S1)}.
+\item Validation against the strained-turbulence experiment of
+\citet{ChenMeneveauKatz2006} (CMK), summarised in \S\,\ref{sec:cmk}
+with details in the supplementary material (\S\,S1).
 
 \item The linear reference appropriate to the model's observables: exact
 RDT projected onto a line is broadband rather than a rigid spectral
@@ -409,17 +410,16 @@ The standard model contains no counterpart of the rapid,
 mean-strain-driven part.
 
 The event sequence is a Poisson process whose rate density
-$\lambda(y_0,l;t)$ is set by the instantaneous flow state through the
-standard eddy time-scale construction applied to the quantities $Q_i$, with a rate constant, a viscous
-cutoff and a large-eddy suppression parameter as the only tunable
-constants \citep{Kerstein1999,StephensLignell2021}; the inertial-range
-cascade and the $k^{-5/3}$ spectrum are \emph{outcomes} of repeated
-sampling from this rate, not inputs \citep{Kerstein1999}. Finally, one
-diagnostic caveat of \citet{Kerstein2001} is respected throughout:
-because the line velocity does not itself advect fluid, off-diagonal
-products of line velocity components are not momentum fluxes; diagonal
-component spectra and variances are read from the fields, whereas shear
-stresses are read from eddy-induced transport.
+$\lambda(y_0,l;t)$ follows the standard eddy time-scale construction
+applied to the $Q_i$, with a rate constant, a viscous cutoff and a
+large-eddy suppression parameter as the only tunable constants; the
+inertial-range cascade and the $k^{-5/3}$ spectrum are \emph{outcomes}
+of the sampling, not inputs
+\citep{Kerstein1999,StephensLignell2021}. One diagnostic caveat of
+\citet{Kerstein2001} is respected throughout: the line velocity does
+not advect fluid, so diagonal component spectra and variances are read
+from the fields while shear stresses are read from eddy-induced
+transport.
 
 \subsection{Rapid and slow pressure--strain, and linear rapid
 distortion}\label{sec:rapid-slow}
@@ -506,26 +506,21 @@ eddy events \eqref{eq:event}--\eqref{eq:ci} are retained without
 modification, and the advancement is split between the continuous phase
 \eqref{eq:cont-evolution} and the discrete event sequence.
 
-The forcing must not violate the structural properties on which the
-model rests, and it does not; we record the argument as a consistency
-check. The measure preservation, scale locality and kernel identities
-\eqref{eq:kernel-identities} are geometric properties of the map $f$ and
-kernel $K$ on a fixed domain, and the operator splitting applies the
-discrete event exactly as in the standard model, so they hold verbatim.
-Continuity of the fields is preserved because, for a mean gradient
-uniform along the line, the operator
-$\mathcal{A}_{ij}\equiv-A_{ij}+B_{ij}$ acts pointwise and the solution of
-the non-diffusive part of \eqref{eq:cont-evolution} over a sub-step is
-\begin{equation}
-  u_i(y,t)=\big[\exp\!\textstyle\int_{t_0}^{t}
-           \mathcal{A}\,\mathrm{d}t'\big]_{ij}\,u_j(y,t_0),
-  \label{eq:matrixexp}
-\end{equation}
-a $y$-independent matrix, which maps continuous profiles to continuous
-profiles while the molecular term is smoothing. The forcing displaces no
-fluid along $y$, so the Lebesgue measure of the domain is untouched; the
-deliberate straining of the domain is a separate operation
-(\S\,\ref{sec:domain-strain}).
+The forcing preserves the structural properties on which the model
+rests; we record the argument as a consistency check. Measure
+preservation, scale locality and the kernel identities
+\eqref{eq:kernel-identities} are geometric properties of $f$ and $K$
+on a fixed domain, and the operator splitting applies the discrete
+event exactly as in the standard model, so they hold verbatim. For a
+mean gradient uniform along the line the operator
+$\mathcal{A}_{ij}\equiv-A_{ij}+B_{ij}$ acts pointwise---the
+non-diffusive sub-step solution
+$u_i(y,t)=[\exp\!\int_{t_0}^{t}\mathcal{A}\,\mathrm{d}t']_{ij}\,
+u_j(y,t_0)$ is a $y$-independent matrix---so continuous profiles map
+to continuous profiles while the molecular term is smoothing; and the
+forcing displaces no fluid along $y$, leaving the domain measure
+untouched (the deliberate domain straining is the separate operation
+of \S\,\ref{sec:domain-strain}).
 
 The energetic role of the forcing is exact. At fixed domain length the
 production term evolves the Reynolds stress as
@@ -962,64 +957,29 @@ total strain accumulated along the stagnation streamline.
 
 \subsection{Verification of the implementation}\label{sec:level1a}
 
-The preceding checks verify the \emph{formulation}. They do not test the
-\emph{implementation}, in which the operator is not prescribed but
-reconstructed at every substep: the line Reynolds stress is formed from
-the resolved field, the closure supplies $\Pi^{(\mathrm r)}_{ij}$, the
-Lyapunov equation \eqref{eq:lyapunov} is solved for $B_{ij}$, and
-$\mathcal{A}_{ij}=-A_{ij}+B_{ij}$ is applied pointwise. To isolate this
-chain the solver is run in the rapid-distortion limit---plane strain,
-eddy events suppressed, zero molecular diffusion---from a statistically
-isotropic resolved initial field, and the component energies are
-evaluated as length-weighted line averages. With the events inactive the
-line's component-energy evolution must coincide with the closed moment
-equation across the whole strain range, not merely at onset.
-
-Figure~\ref{fig:level1a} shows that it does: the solver output lies on
-the LRR trajectory over $0\le e\le4$ to within $10^{-4}$ in each
-component fraction, so the per-substep stress reconstruction, Lyapunov
-solve and operator assembly are correct at every state of anisotropy.
-The comparison must be read correctly: the solver reproduces the
-\emph{closure}, and it should---with the events and diffusion suppressed the line
-carries no information beyond the single-point statistics the closure
-itself uses. The offset from the exact solution is the single-point
-closure error of \S\,\ref{sec:finite-strain}, not an implementation
-error; agreement with the exact solution here would indicate a fault.
-The fractions test only the anisotropy; the kinetic energy, which the
-traceless rapid term cannot change directly and which grows through the
-production integral
-$\mathrm{d}\ln k_t/\mathrm{d}e=f_{22}-f_{11}$, provides the independent
-magnitude check, and the solver reproduces the LRR amplification to
-within $0.3\%$. For definiteness: every strained computation in the
-remainder of the paper uses the LRR closure, whose error against the
-exact solution is quantified here at every strain reached; the
+The preceding checks verify the \emph{formulation}; the
+\emph{implementation}---in which the operator is not prescribed but
+reconstructed at every substep (line Reynolds stress from the resolved
+field, closure, Lyapunov solve \eqref{eq:lyapunov}, pointwise
+application of $\mathcal{A}_{ij}$)---is verified in the supplementary
+material (\S\,S5, figure~S5). Run in the rapid-distortion limit from a
+statistically isotropic resolved initial field, the solver lies on the
+LRR moment trajectory over $0\le e\le4$ to within $10^{-4}$ in each
+component fraction and $0.3\%$ in the kinetic-energy amplification, so
+the per-substep chain is correct at every state of anisotropy;
+agreement with the \emph{exact} solution would indicate a fault, since
+with events and diffusion suppressed the line carries no information
+beyond the single-point statistics the closure itself uses. The test
+requires the resolved spectral initialisation and strain-resolved
+timestep bound recorded in Appendix~\ref{app:numerics}. For
+definiteness: every strained computation in the remainder of the paper
+uses the LRR closure, whose error against the exact solution is
+quantified in \S\,\ref{sec:finite-strain} at every strain reached; the
 sensitivity of the spectral conclusions to this closure choice is not
 estimated but measured, through the exact-RDT comparisons of
 \S\,\ref{sec:val-spectrum} and the axisymmetry measurement of
 \S\,\ref{sec:gate}, which carry the closure deficiency into the quoted
-uncertainty rather than leaving it implicit. That assessment requires a resolved spectral
-initialisation (a white-noise start places energy at the grid scale,
-where mesh-adaption interpolation damps it) and a strain-resolved
-timestep bound in the inviscid limit; both effects act nearly
-isotropically, so the energy panel is what distinguishes them.
-
-\begin{figure}[!t]
-  \centering
-  \includegraphics[width=\textwidth]{Figures/fig_level1a.pdf}
-  \caption{Verification of the SC-ODT implementation under plane
-  strain, eddy events suppressed and zero molecular diffusion.
-  (\textit{a}) Component energy fractions; (\textit{b}) kinetic-energy
-  amplification $k_t(e)/k_t(0)$. Open symbols: the SC-ODT line solver
-  (length-weighted line averages), by component
-  ($\circ\,\overline{u_1^2}$, $\square\,\overline{u_2^2}$,
-  $\triangle\,\overline{u_3^2}$); dashed: the LRR closure integrated as
-  a moment equation; solid with filled symbols: exact rapid-distortion
-  theory. The solver reproduces the closure to $10^{-4}$ in the
-  fractions and $0.3\%$ in the energy; the offset from the exact
-  solution is the closure error of \S\,\ref{sec:finite-strain}, as it
-  must be.}
-  \label{fig:level1a}
-\end{figure}
+uncertainty rather than leaving it implicit.
 
 \subsection{Moment-level validation against the strained-turbulence DNS
 of Lee \& Reynolds}\label{sec:lr-validation}\label{sec:lr-plane}

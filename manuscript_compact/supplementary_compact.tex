@@ -361,6 +361,64 @@ step restates the main text.
   scale.
 \end{enumerate}
 
+% =========================================================================
+\section{Verification of the implementation}\label{sec:s-level1a}
+% =========================================================================
+
+The rapid-distortion checks of the main text verify the
+\emph{formulation}; this section verifies the \emph{implementation},
+in which the operator is not prescribed but reconstructed at every
+substep: the line Reynolds stress is formed from the resolved field,
+the closure supplies $\Pi^{(\mathrm r)}_{ij}$, the Lyapunov equation
+of the main text is solved for $B_{ij}$, and
+$\mathcal{A}_{ij}=-A_{ij}+B_{ij}$ is applied pointwise. To isolate
+this chain the solver is run in the rapid-distortion limit---plane
+strain, eddy events suppressed, zero molecular diffusion---from a
+statistically isotropic resolved initial field, and the component
+energies are evaluated as length-weighted line averages. With the
+events inactive the line's component-energy evolution must coincide
+with the closed moment equation across the whole strain range, not
+merely at onset.
+
+Figure~\ref{fig:s-level1a} shows that it does: the solver output lies
+on the LRR trajectory over $0\le e\le4$ to within $10^{-4}$ in each
+component fraction, so the per-substep stress reconstruction, Lyapunov
+solve and operator assembly are correct at every state of anisotropy.
+The comparison must be read correctly: the solver reproduces the
+\emph{closure}, and it should---with the events and diffusion
+suppressed the line carries no information beyond the single-point
+statistics the closure itself uses. The offset from the exact solution
+is the single-point closure error quantified in the main text's
+finite-strain comparison, not an implementation error; agreement with
+the exact solution here would indicate a fault. The fractions test
+only the anisotropy; the kinetic energy, which the traceless rapid
+term cannot change directly and which grows through the production
+integral $\mathrm{d}\ln k_t/\mathrm{d}e=f_{22}-f_{11}$, provides the
+independent magnitude check, and the solver reproduces the LRR
+amplification to within $0.3\%$. The test requires a resolved spectral
+initialisation (a white-noise start places energy at the grid scale,
+where mesh-adaption interpolation damps it) and a strain-resolved
+timestep bound in the inviscid limit; both effects act nearly
+isotropically, so the energy panel is what distinguishes them.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_level1a.pdf}
+  \caption{Verification of the SC-ODT implementation under plane
+  strain, eddy events suppressed and zero molecular diffusion.
+  (\textit{a}) Component energy fractions; (\textit{b}) kinetic-energy
+  amplification $k_t(e)/k_t(0)$. Open symbols: the SC-ODT line solver
+  (length-weighted line averages), by component
+  ($\circ\,\overline{u_1^2}$, $\square\,\overline{u_2^2}$,
+  $\triangle\,\overline{u_3^2}$); dashed: the LRR closure integrated as
+  a moment equation; solid with filled symbols: exact rapid-distortion
+  theory. The solver reproduces the closure to $10^{-4}$ in the
+  fractions and $0.3\%$ in the energy; the offset from the exact
+  solution is the closure error quantified in the main text, as it
+  must be.}
+  \label{fig:s-level1a}
+\end{figure}
+
 \bibliographystyle{jfm}
 \bibliography{jfm}
 
