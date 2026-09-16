@@ -43,9 +43,7 @@ limits, and the consequence for leading-edge noise''}
 This supplement carries two blocks of supporting material referenced
 from the main text: the validation against the strained-turbulence
 experiment of \citet{ChenMeneveauKatz2006} (\S\,\ref{sec:s-cmk}),
-summarised in the main text's validation section, and the complete
-intervention family behind the scale-local-relaxation ledger of the
-main text's measured-limits section (\S\,\ref{sec:s-family}).
+summarised in the main text's validation section, and the complete set of intervention categories of the main text's measured-limits section (\S\,\ref{sec:s-family}), each carrying the category.variant label introduced there.
 
 % =========================================================================
 \section{Validation against the strained-turbulence experiment of
@@ -93,12 +91,9 @@ translation, an effect we verified directly.
   \label{fig:s-cmk-rdt}
 \end{figure}
 
-With the eddy events and viscosity active the model is no longer
-constrained to rigid translation, and the strain drives a measurable
-anisotropy between the components. Figure~\ref{fig:s-cmk-aniso} shows
+With the eddy events and viscosity active, the full model (SC-ODT, C0.2) is no longer constrained to rigid translation, and the strain drives a measurable anisotropy between the components. Figure~\ref{fig:s-cmk-aniso} shows
 the strain-induced migration of the streamwise and upwash component
-centroids, each measured against the matched no-strain baseline (the
-per-component form of the strain-on/strain-off construction, which
+centroids, each measured against the matched no-strain reference (the per-component form of the strain-on/strain-off construction, which
 cancels the initialisation transient and the eddies' own relaxation):
 the components diverge progressively under continued strain---the
 streamwise migration reaching $1.9$ at the end of the straining phase
@@ -137,9 +132,7 @@ independent confirmation their DNS provides for the experiment.
   \includegraphics[width=0.62\textwidth]{Figures/fig_cmk_aniso.pdf}
   \caption{Full model (eddies and viscosity active; ensembles over
   $128$ realisations at $\nu=10^{-5}$): strain-induced migration of the
-  streamwise and upwash component centroids, each as the ratio of the
-  strained ensemble to the matched no-strain baseline, against the
-  rigid-translation law (grey dotted). The components diverge under
+  streamwise and upwash component centroids, each as the ratio of the strained ensemble to the matched no-strain reference, against the rigid-translation law (grey dotted); the shaded bands are the $95\%$ bootstrap confidence intervals of the median ratio. The line configuration is that of Appendix~B of the main text. The components diverge under
   strain---the upwash held back most---reproducing the qualitative
   departure-from-RDT mechanism of \citet{ChenMeneveauKatz2006}. The
   comparison is qualitative; see text.}
@@ -147,79 +140,60 @@ independent confirmation their DNS provides for the experiment.
 \end{figure}
 
 % =========================================================================
-\section{The complete intervention family}\label{sec:s-family}
+\section{The intervention categories and variants}\label{sec:s-family}
 % =========================================================================
 
-Table~\ref{tab:s-interventions} records every intervention of the
-measured-limits campaign---the knob, its measured fine-scale effect on
-the transmission diagnostic, and the reading---and
-figure~\ref{fig:s-klevels} shows the eddy-locked family on all four
-diagnostic panels. Each case was run at $1024$ realisations with seeds
-paired to a common baseline; effects are median paired same-seed
-contrasts, with ``significant'' meaning the $95\%$ bootstrap interval
-excludes zero. The main text carries the ledger these results
-establish and the two figures that decide it (the relaxation-clock
-figure and the five-way benchmark comparison).
+Table~\ref{tab:s-interventions} records every intervention variant of the measured-limits campaign---its measured fine-scale effect on the transmission diagnostic and the reading, keyed by the category.variant label---and figure~\ref{fig:s-klevels} shows the eddy-locked categories on all four diagnostic panels. The variant descriptions, together with the reference configurations C0.1 (standard ODT) and C0.2 (SC-ODT), are collected in Appendix~B of the main text. Each case was run at $1024$ realisations with seeds paired to the SC-ODT (C0.2) reference; effects are median paired same-seed contrasts, with ``significant'' meaning the $95\%$ bootstrap confidence interval excludes zero. The main text sets out the reading these results establish and retains the two figures that decide it (the relaxation-clock figure and the five-way benchmark comparison).
 
 \begin{table}
   \centering\small
-  \begin{tabular}{p{0.34\textwidth}p{0.26\textwidth}p{0.32\textwidth}}
-  intervention (knob) & fine-scale effect & reading\\[2pt]
-  acceptance gate on post-event anisotropy ($45$--$98\%$ rejection) &
-  null at all thresholds; harshest drifts to eddy-free limit &
+  \begin{tabular}{p{0.07\textwidth}p{0.42\textwidth}p{0.40\textwidth}}
+  label & fine-scale effect & reading\\[2pt]
+  \hline
+  \multicolumn{3}{@{}l}{\emph{C1\quad acceptance gating}}\\[2pt]
+  C1.1 & null at all thresholds; harshest drifts to eddy-free limit &
   gate is scale-blind: modulates eddy rate, not the scale allocation\\[4pt]
-  gate on sub-band eddies only ($42\%$, $97\%$ rejection) &
-  null, including band \emph{energy} &
-  fine scales are fed by large-eddy maps directly\\[4pt]
-  unequal map images (middle $\tfrac23$) &
-  null (one-point statistics move: $\mathcal A_{\rm lo}$ $2.85\to2.50$ at
-  $e=3.9$) &
-  outer images feed the band in one step; channels trade off\\[4pt]
-  sub-scale kernels, $1$ level ($\ell/3$) &
-  null within CIs &
+  C1.2 & null, including band \emph{energy} &
+  fine scales are fed by large-eddy maps directly\\[2pt]
+  \hline
+  \multicolumn{3}{@{}l}{\emph{C2\quad map-image geometry}}\\[2pt]
+  C2.1 & null (one-point statistics move: $\mathcal A_{\rm lo}$ $2.85\to2.50$ at
+  $e=3.9$) & outer images feed the band in one step; channels trade off\\[2pt]
+  \hline
+  \multicolumn{3}{@{}l}{\emph{C3\quad sub-scale relaxation kernels (depth)}}\\[2pt]
+  C3.1 & null within confidence intervals &
   $\ell/3$ sits above the measured band\\[4pt]
-  sub-scale kernels, $2$ levels ($\ell/9$) &
-  $\mathcal A_{\rm hi}$: $1.43\to1.27$ at $e=1$ (significant, both bands) &
+  C3.2 & $\mathcal A_{\rm hi}$: $1.43\to1.27$ at $e=1$ (significant, both bands) &
   first significant fine-scale isotropisation\\[4pt]
-  sub-scale kernels, $3$ levels ($\ell/27$) &
-  significant at $e=1$ \emph{and} $e=3$ ($-12\%$ paired) &
+  C3.3 & significant at $e=1$ \emph{and} $e=3$ ($-12\%$ paired) &
   deepest levels reach the band\\[4pt]
-  depth tied to eddy size &
-  significant in both bands at $e=1$; no late-strain reversal &
-  best of the family: gains without the deep-strain overshoot\\[4pt]
-  $2$ levels iterated $3\times$ per event &
-  strongest at $e=1$ ($1.29$); overshoots at deep strain &
-  per-event amplitude is not the limiter\\[4pt]
-  concurrent relaxation: $N$ same-size intervals, randomly placed
-  ($N=1$, $3$) &
-  $N=1$ null; $N=3$ significant in both bands at $e=1$, strongest at
-  the energy-containing scales; fade persists &
-  the sampled intervals act at eddy scale; delocalising the events
-  alone is not the lever\\[4pt]
-  concurrent $+$ depth ($N=3$, adaptive hierarchy in each interval) &
-  strongest early effect of the eddy-locked family ($\mathcal A_{\rm
-  hi}$ $1.43\to1.26$); low band significant even at $e=3.9$; fine
-  scales overshoot depth-only at deep strain &
-  dosage helps early and at large scales, and harms deep-strain fine
-  scales wherever it is applied\\[4pt]
-  independent relaxation clock, uncapped (rate matched to the eddy
-  rate) &
-  significant in both bands at \emph{every} strain, growing with
-  strain---the fade broken---but the one-point anisotropy is
-  suppressed ($u_2^2/2k_t$ $0.58\to0.41$ at $e=3.9$) &
-  event-locked timing was the deep-strain limiter; a scale-blind
-  stream fights the strain itself\\[4pt]
-  independent clock, size-capped ($\ell\le\ell^{*}$, adaptive depth
-  inside) &
-  fine scales significant at every strain with no fade
-  ($\mathcal A_{\rm hi}$ held at $1.30$--$1.44$); one-point trajectory
-  intact for $e\lesssim2$, mildly reduced beyond &
-  timing $+$ scale selectivity: the working form of the mechanism\\
+  C3.4 & significant in both bands at $e=1$; no late-strain reversal &
+  best of the categories: gains without the deep-strain overshoot\\[4pt]
+  C3.5 & strongest at $e=1$ ($1.29$); overshoots at deep strain &
+  per-event amplitude is not the limiter\\[2pt]
+  \hline
+  \multicolumn{3}{@{}l}{\emph{C4\quad concurrent relaxation}}\\[2pt]
+  C4.1 & null & location alone is not the lever\\[4pt]
+  C4.2 & significant in both bands at $e=1$, strongest at the energy-containing
+  scales; fade persists & the sampled intervals act at eddy scale, so
+  delocalising the events does not reach the fine scales\\[4pt]
+  C4.3 & strongest early effect of the eddy-locked categories
+  ($\mathcal A_{\rm hi}$ $1.43\to1.26$); low band significant even at $e=3.9$;
+  fine scales overshoot depth-only at deep strain & dosage helps early and at
+  large scales, and harms deep-strain fine scales wherever it is applied\\[2pt]
+  \hline
+  \multicolumn{3}{@{}l}{\emph{C5\quad independent relaxation clock}}\\[2pt]
+  C5.1 & significant in both bands at \emph{every} strain, growing with
+  strain---the fade broken---but the one-point anisotropy is suppressed
+  ($u_2^2/2k_t$ $0.58\to0.41$ at $e=3.9$) & event-locked timing was the
+  deep-strain limiter; a scale-blind event sequence fights the strain itself\\[4pt]
+  \textbf{C5.2} & fine scales significant at every strain with no fade
+  ($\mathcal A_{\rm hi}$ held at $1.30$--$1.44$); one-point trajectory intact for
+  $e\lesssim2$, mildly reduced beyond & timing $+$ scale selectivity: the working
+  form of the mechanism\\[2pt]
+  \hline
   \end{tabular}
-  \caption{The intervention family on the transmission diagnostic
-  ($1024$ paired-seed realisations per case; effects quoted as median
-  paired same-seed contrasts, ``significant'' meaning the $95\%$
-  bootstrap interval excludes zero).}
+  \caption{The intervention categories on the transmission diagnostic, labelled by category.variant; variant descriptions and the reference configurations C0.1 (standard ODT) and C0.2 (SC-ODT) are in Appendix~B of the main text. Each case: $1024$ paired-seed realisations; effects are median paired same-seed contrasts, ``significant'' meaning the $95\%$ bootstrap confidence interval excludes zero. The size-capped clock \textbf{C5.2} (the clock-relaxed ODT of the main text), with C0.1 and C0.2, forms the five-way comparison.}
   \label{tab:s-interventions}
 \end{table}
 
@@ -230,13 +204,7 @@ figure and the five-way benchmark comparison).
   (\textit{a}) energy-containing-band imbalance $\mathcal A_{\rm lo}$,
   (\textit{b}) fine-scale-band imbalance $\mathcal A_{\rm hi}$,
   (\textit{c}) transmission $\mathcal A_{\rm hi}/\mathcal A_{\rm lo}$,
-  (\textit{d}) upwash energy fraction, against total strain: the SC-ODT
-  baseline, hierarchical sub-scale kernels at fixed depth ($1$--$3$ levels),
-  depth tied to eddy size, the per-event iterated variant, concurrent
-  relaxation ($N=3$ randomly placed same-size intervals per event), and
-  the stacked variant (concurrent intervals each running the adaptive
-  hierarchy). Medians over $1024$ paired-seed realisations, $95\%$
-  bootstrap intervals.}
+  (\textit{d}) upwash energy fraction, against total strain: the SC-ODT reference (C0.2), sub-scale relaxation kernels at fixed depth (C3.1--C3.3), depth tied to eddy size (C3.4), the per-event iterated variant (C3.5), concurrent relaxation (C4.2, $N=3$ randomly placed same-size intervals per event), and the stacked variant (C4.3, concurrent intervals each running the adaptive hierarchy). Medians over $1024$ paired-seed realisations; error bars are the $95\%$ bootstrap confidence intervals of the median.}
   \label{fig:s-klevels}
 \end{figure}
 
@@ -245,34 +213,17 @@ figure and the five-way benchmark comparison).
 % =========================================================================
 
 Figure~\ref{fig:s-dividend} shows the spectral counterpart of the
-transmission-diagnostic results of the main text, on the Gate-A
-production ensembles ($1024$ realisations per case and variant, both
-rapidities): the size-capped relaxation clock roughly halves the
-distance between the model's strained line spectra and the exact
-rapid-distortion reference family, and---unlike the standard
-model---holds that distance \emph{constant in strain}. The frozen
-isotropic fit included for reference is the spectral content of any
-frozen-inflow practice: unable to represent the strained anisotropy at
-all, its distance grows to $45$--$51\%$ by $e=2$. The component-ratio
-panel localises the improvement: exact rapid distortion drives the
-fine scales towards component equality, the standard model
-over-transmits the anisotropy there, and the clock moves the measured
-ratio towards the linear reference precisely below its size cap.
+transmission-diagnostic results of the main text, on the $1024$-realisation strained line spectrum ensembles at both rapidities (Appendix~B of the main text): the size-capped relaxation clock (C5.2) roughly halves the distance between the model's strained line spectra and the exact
+rapid-distortion reference family, and---unlike SC-ODT (C0.2)---holds that distance \emph{constant in strain}. A frozen isotropic spectrum is included for reference; it stands for any frozen-inflow practice, which cannot represent the strained anisotropy at all, so its distance from the reference family grows to $45$--$51\%$ by $e=2$. The component-ratio
+panel localises the improvement: exact rapid distortion drives the fine scales towards component equality, SC-ODT (C0.2) over-transmits the anisotropy there, and the clock (C5.2) moves the measured ratio towards the linear reference precisely below its size cap $\ell^*$.
 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{Figures/fig_dividend.pdf}
   \caption{(\textit{a}) Binned component spectra over their best
   exact-RDT-family curves at $e=2$, $Sk_t/\varepsilon\approx8$
-  (solid: $E_2$; dashed: $E_\perp$): the standard model's
-  misallocation (upwash high, transverse low) and its reduction by the
-  clock. (\textit{b}) rms log-distance from the family against total
-  strain at both rapidities: frozen isotropic representation (gold),
-  standard model (black), size-capped clock (red) --- the clock's
-  distance is strain-independent. (\textit{c}) Component ratio
-  $E_2/E_\perp(\kappa_2)$ at $e=1$, rapid: measured standard and
-  clock ensembles against the exact-RDT reference; any frozen form
-  predicts the ratio $1$ identically.}
+  (solid: $E_2$; dashed: $E_\perp$): the SC-ODT (C0.2) misallocation (upwash high, transverse low) and its reduction by the clock (C5.2). (\textit{b}) rms log-distance from the exact-RDT family against total strain at both rapidities: frozen isotropic representation (gold), SC-ODT (C0.2, black), size-capped clock (C5.2, red); the clock's distance is strain-independent. (\textit{c}) Component ratio
+  $E_2/E_\perp(\kappa_2)$ at $e=1$, rapid: measured SC-ODT (C0.2) and clock (C5.2) ensembles against the exact-RDT reference; any frozen form predicts the ratio $1$ identically.}
   \label{fig:s-dividend}
 \end{figure}
 

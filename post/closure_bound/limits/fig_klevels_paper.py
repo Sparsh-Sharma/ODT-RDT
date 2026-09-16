@@ -19,18 +19,18 @@ NB = os.path.join(HERE, "newbands")
 # light->dark grey ramp (deeper = darker); the other four each a distinct
 # black line style.  (label, file, marker, colour, linestyle)
 CASES = [
-    ("SC-ODT (baseline)", "bands_homogeneousStrain2.npz", "o", "k", "-"),
-    ("1 level (thirds)", "bands_homogeneousStrain2K1.npz", "s", "0.62",
+    ("SC-ODT (C0.2)", "bands_homogeneousStrain2.npz", "o", "k", "-"),
+    (r"C3.1: 1 level ($\ell/3$)", "bands_homogeneousStrain2K1.npz", "s", "0.62",
      "-"),
-    ("2 levels", "bands_homogeneousStrain2K2.npz", "^", "0.42", "-"),
-    ("3 levels", "bands_homogeneousStrain2K3.npz", "D", "0.18", "-"),
-    ("depth tied to eddy size", "bands_homogeneousStrain2KS.npz",
+    (r"C3.2: 2 levels ($\ell/9$)", "bands_homogeneousStrain2K2.npz", "^", "0.42", "-"),
+    (r"C3.3: 3 levels ($\ell/27$)", "bands_homogeneousStrain2K3.npz", "D", "0.18", "-"),
+    (r"C3.4: depth tied to eddy size", "bands_homogeneousStrain2KS.npz",
      "v", "k", (0, (6, 2))),
-    ("2 levels, iterated 3x", "bands_homogeneousStrain2K2I3.npz",
+    (r"C3.5: 2 levels, iterated $3\times$", "bands_homogeneousStrain2K2I3.npz",
      "P", "k", (0, (1, 1.4))),
-    ("concurrent, $N{=}3$", "bands_homogeneousStrain2CR3.npz",
+    (r"C4.2: concurrent, $N{=}3$", "bands_homogeneousStrain2CR3.npz",
      "X", "k", (0, (5, 1.6, 1, 1.6))),
-    ("concurrent + depth", "bands_homogeneousStrain2CRS.npz", "*", "k",
+    (r"C4.3: concurrent + depth", "bands_homogeneousStrain2CRS.npz", "*", "k",
      (0, (4, 1.4, 1, 1.4, 1, 1.4))),
 ]
 NBOOT = 2000
