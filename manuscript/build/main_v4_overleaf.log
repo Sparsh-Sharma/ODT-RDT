@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  16 SEP 2026 13:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  16 SEP 2026 17:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**main_v3.tex
-(./main_v3.tex
+**main_v4_overleaf.tex
+(./main_v4_overleaf.tex
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-07-20>
 (./JFM-FLM_Au.cls
@@ -953,8 +953,8 @@ File: ot1ntxtlf.fd 2021/05/24 v1.0 font definition file for OT1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 10.74011pt on input line 31.
- (build/main_v3.aux)
-\openout1 = `main_v3.aux'.
+ (build/main_v4_overleaf.aux)
+\openout1 = `main_v4_overleaf.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 31.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 31.
@@ -1815,7 +1815,7 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[46] (build/main_v3.bbl
+[46] (build/main_v4_overleaf.bbl
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 8.73pt on input line 1.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
@@ -1837,22 +1837,26 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[48]) [49] (build/main_v3.aux)
+[48]) [49] (build/main_v4_overleaf.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2020/03/25>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
  29759 strings out of 467159
- 544324 string characters out of 5398120
- 940925 words of memory out of 5000000
+ 544477 string characters out of 5398120
+ 940855 words of memory out of 5000000
  58189 multiletter control sequences out of 15000+600000
  836063 words of font info for 417 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 92i,13n,131p,3762b,911s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 92i,13n,131p,3771b,911s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexas.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/main_v3.pdf (49 pages, 913949 bytes).
+Output written on build/main_v4_overleaf.pdf (49 pages, 913146 bytes).
 PDF statistics:
  1811 PDF objects out of 2073 (max. 8388607)
  1371 compressed objects within 14 object streams

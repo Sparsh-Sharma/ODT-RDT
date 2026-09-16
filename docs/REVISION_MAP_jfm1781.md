@@ -1,5 +1,10 @@
 # Revision map — JFM-2026-1781 (rejected 18 Aug 2026)
 
+> **FILE OF RECORD (2026-09-16):** the live manuscript is
+> `manuscript/main_v4_overleaf.tex` (the Overleaf source, now the single
+> tracked file). `main_v3.tex` was retired; historical mentions of
+> `main_v3.tex` below refer to that earlier name. ESM: `supplementary.tex`.
+
 > The working document for fixing paper 1. Objection ledger, asset inventory,
 > the combine-vs-split decision, resubmission outline, and the ordered task
 > list. Sources: `JFM_reject.txt` (Refs 1, 3), `Review2_refjfm_sharma.pdf`
