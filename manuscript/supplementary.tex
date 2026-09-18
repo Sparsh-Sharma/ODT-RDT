@@ -149,7 +149,79 @@ independent confirmation their DNS provides for the experiment.
 \section{The intervention categories and variants}\label{sec:s-family}
 % =========================================================================
 
-Table~\ref{tab:s-interventions} records every intervention variant of the measured-limits campaign---its measured fine-scale effect on the transmission diagnostic and the remarks, keyed by the category.variant label---and figure~\ref{fig:s-klevels} shows the eddy-locked categories on all four diagnostic panels. The variant descriptions, together with the reference configurations C0.1 (standard ODT) and C0.2 (SC-ODT), are collected in Appendix~B of the main text. Each case was run at $1024$ realisations with seeds paired to the SC-ODT (C0.2) reference; effects are median paired same-seed contrasts, with ``significant'' meaning the $95\%$ bootstrap confidence interval excludes zero. The main text sets out the reading these results establish and retains the two figures that decide it (figures~16 and~17 of the main text: the relaxation clock and the five-way benchmark).
+Table~\ref{tab:s-interventions} records every intervention variant of the measured-limits campaign---its measured fine-scale effect on the transmission diagnostic and the remarks, keyed by the category.variant label---and figure~\ref{fig:s-klevels} shows the eddy-locked categories on all four diagnostic panels. The variant descriptions, together with the reference configurations C0.1 (standard ODT) and C0.2 (SC-ODT), are collected in Appendix~B of the main text. Each case was run at $1024$ realisations with seeds paired to SC-ODT (C0.2); effects are median paired same-seed contrasts, with ``significant'' meaning the $95\%$ bootstrap confidence interval excludes zero. The main text sets out the reading these results establish and retains the two figures that decide it (figures~16 and~17 of the main text: the relaxation clock and the five-way benchmark).
+The case-by-case record follows.
+
+Two categories fail for instructive reasons. Acceptance gating
+(C1.1)---rejecting accepted eddies whose post-event state remains
+anisotropic, at thresholds spanning $45$ to $98$ per cent
+rejection---is scale-blind: at mild thresholds the surviving eddy
+population reproduces the SC-ODT (C0.2) anisotropy budget in every
+band (the gate self-selects eddies whose kernels were already going to
+do the relaxing, and the unrelaxed field keeps generating candidates),
+while at the harshest threshold the model merely drifts towards its
+eddy-free limit. Restricting the gate to sub-band-scale eddies (C1.2)
+sharpens the negative result: removing up to $97$ per cent of
+small-eddy events leaves both the fine-scale anisotropy \emph{and} the
+fine-scale energy unchanged, so no acceptance-gating scheme can
+control transmission at this Reynolds number. Reweighting the
+triplet-map images (C2.1; a middle image of relative size $\tfrac23$,
+which halves the compression of the map's dominant central channel)
+moves one-point and energy-containing
+statistics---$\mathcal A_{\rm lo}$ falls significantly and the upwash
+energy fraction with it---but not the fine scales: with the image
+fractions summing to one, slowing the middle channel necessarily
+speeds the outer ones, and one outer image maps the energy peak
+directly into the measurement band.
+
+What works is relaxation applied at the scale of the imbalance. After
+each accepted eddy's map and kernels, the same energy-equalising
+kernel procedure of the main text's formulation section is applied to
+each of the three map images---the sub-interval's own triplet-map
+displacement shape as the kernel, coefficients from the sub-interval's
+own integrals, so that each sub-application conserves the momentum
+components and the total kinetic energy exactly, with no map applied
+and no random numbers drawn---and then recursively to $9$ and $27$
+sub-regions. One sub-level (C3.1; $\ell/3$ for an eddy of size $\ell$)
+is inconsequential: for the large eddies that feed the band, $\ell/3$
+still sits above it. Two sub-levels (C3.2) produce the first
+statistically significant fine-scale isotropisation among the
+categories ($\mathcal A_{\rm hi}$ from $1.43$ to $1.27$ at $e=1$,
+significant in both bands), and three sub-levels (C3.3) extend the
+effect to deep strain: the sub-levels that work, $\ell/9$ and
+$\ell/27$, are exactly those that reach the measured band. Band
+energies move by only a few per cent throughout, the upwash energy
+fraction and the intermittency tails are unchanged, and even at $e=0$,
+before any strain, the fine-scale imbalance is pulled towards
+component equality ($\mathcal A_{\rm hi}$ from $0.83$ to $0.95$).
+
+Four further variants instantiate distinct candidate explanations for
+the one remaining limitation, the fading of the gains beyond
+$e\approx3$. Tying the recursion depth to the eddy size (C3.4;
+subdividing while the sub-interval remains above a near-dissipative
+floor, so that large eddies do proportionally more sub-scale work)
+gives the gains of depth with no reversal at the deepest strain: both
+bands significant at $e=1$ and the effect retaining its sign through
+$e=3$. Iterating the two-level pass three times within each event
+(C3.5) answers the amplitude hypothesis in the negative: a stronger
+early isotropiser that overshoots at deep strain. Spatially
+delocalising the relaxation---after each eddy, applying the kernel
+isotropisation in $N$ randomly placed intervals of the same size,
+overlaps allowed---tests whether the \emph{location} of the events is
+the limiter: $N=1$ (C4.1) is inconsequential, and $N=3$ (C4.2) is
+significant in both bands at $e=1$ but acts mainly at the
+energy-containing scales, since the sampled intervals inherit the
+eddy-size distribution and full-interval isotropisation acts at that
+scale. Stacking the two ideas (C4.3)---the adaptive hierarchy inside
+each sampled interval---is the strongest early isotropiser among the
+categories ($\mathcal A_{\rm hi}$ from $1.43$ to $1.26$ at $e=1$) and
+delivers the only significant deep-strain effect, in the
+energy-containing band at $e=3.9$; yet at the fine scales and deep
+strain it overshoots the depth-only variant significantly. For every
+scheme locked to the eddy clock, depth sets where the relaxation acts
+and is necessary; dosage and delocalisation raise the early gains in
+proportion to the total relaxation delivered; and no eddy-locked
+combination prevents the fine-scale fade beyond $e\approx3$.
 
 \begin{table}
   \centering\small
@@ -287,6 +359,64 @@ step restates the main text.
   potential-flow stagnation-line accumulation truncated at the eddy
   scale.
 \end{enumerate}
+
+% =========================================================================
+\section{Verification of the implementation}\label{sec:s-level1a}
+% =========================================================================
+
+The rapid-distortion checks of the main text verify the
+\emph{formulation}; this section verifies the \emph{implementation},
+in which the operator is not prescribed but reconstructed at every
+substep: the line Reynolds stress is formed from the resolved field,
+the closure supplies $\Pi^{(\mathrm r)}_{ij}$, the Lyapunov equation
+of the main text is solved for $B_{ij}$, and
+$\mathcal{A}_{ij}=-A_{ij}+B_{ij}$ is applied pointwise. To isolate
+this chain the solver is run in the rapid-distortion limit---plane
+strain, eddy events suppressed, zero molecular diffusion---from a
+statistically isotropic resolved initial field, and the component
+energies are evaluated as length-weighted line averages. With the
+events inactive the line's component-energy evolution must coincide
+with the closed moment equation across the whole strain range, not
+merely at onset.
+
+Figure~\ref{fig:s-level1a} shows that it does: the solver output lies
+on the LRR trajectory over $0\le e\le4$ to within $10^{-4}$ in each
+component fraction, so the per-substep stress reconstruction, Lyapunov
+solve and operator assembly are correct at every state of anisotropy.
+The comparison must be read correctly: the solver reproduces the
+\emph{closure}, and it should---with the events and diffusion
+suppressed the line carries no information beyond the single-point
+statistics the closure itself uses. The offset from the exact solution
+is the single-point closure error quantified in the main text's
+finite-strain comparison, not an implementation error; agreement with
+the exact solution here would indicate a fault. The fractions test
+only the anisotropy; the kinetic energy, which the traceless rapid
+term cannot change directly and which grows through the production
+integral $\mathrm{d}\ln k_t/\mathrm{d}e=f_{22}-f_{11}$, provides the
+independent magnitude check, and the solver reproduces the LRR
+amplification to within $0.3\%$. The test requires a resolved spectral
+initialisation (a white-noise start places energy at the grid scale,
+where mesh-adaption interpolation damps it) and a strain-resolved
+timestep bound in the inviscid limit; both effects act nearly
+isotropically, so the energy panel is what distinguishes them.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Figures/fig_level1a.pdf}
+  \caption{Verification of the SC-ODT implementation under plane
+  strain, eddy events suppressed and zero molecular diffusion.
+  (\textit{a}) Component energy fractions; (\textit{b}) kinetic-energy
+  amplification $k_t(e)/k_t(0)$. Open symbols: the SC-ODT line solver
+  (length-weighted line averages), by component
+  ($\circ\,\overline{u_1^2}$, $\square\,\overline{u_2^2}$,
+  $\triangle\,\overline{u_3^2}$); dashed: the LRR closure integrated as
+  a moment equation; solid with filled symbols: exact rapid-distortion
+  theory. The solver reproduces the closure to $10^{-4}$ in the
+  fractions and $0.3\%$ in the energy; the offset from the exact
+  solution is the closure error quantified in the main text, as it
+  must be.}
+  \label{fig:s-level1a}
+\end{figure}
 
 \bibliographystyle{jfm}
 \bibliography{jfm}

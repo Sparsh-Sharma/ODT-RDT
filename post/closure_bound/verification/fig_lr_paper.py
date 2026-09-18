@@ -128,7 +128,7 @@ def fig_plane():
         ax.plot(sel[:, 1], sel[:, col], ls="none", marker=MK[comp],
                 ms=3.0, mfc="k", mec="k", mew=0.6, zorder=5)
     ax.axhline(0, color="0.6", lw=0.5, ls=":")
-    ax.set_xlabel(r"reference total strain $c=\exp\!\int S\,\mathrm{d}t$")
+    ax.set_xlabel(r"total strain $c=\exp\!\int S\,\mathrm{d}t$")
     ax.set_ylabel(r"$b_{ij}$")
     hand = [Line2D([0], [0], color="k", ls=LS[c], marker=MK[c],
                    mfc="none", mew=0.9, ms=4, lw=1.2) for c in range(3)]
@@ -187,7 +187,7 @@ def fig_axisym():
     ax.plot(np.exp(ez), -0.5 * b11z, "^", ms=3.0, mfc="k", mec="k",
             mew=0.6, zorder=5, label="Zusi & Perot 2014 transverse")
     ax.axhline(0, color="0.6", lw=0.5, ls=":")
-    ax.set_xlabel(r"reference total strain $c=\exp\!\int S\,\mathrm{d}t$")
+    ax.set_xlabel(r"total strain $c=\exp\!\int S\,\mathrm{d}t$")
     ax.set_ylabel(r"$b_{ij}$")
     fig.legend(fontsize=6.0, loc="lower center", ncol=2,
                bbox_to_anchor=(0.5, -0.02), columnspacing=1.3,
@@ -241,7 +241,7 @@ def fig_b11():
     ax.plot(x, y, "s", ms=3.6, mfc="none", mec="k", mew=0.9,
             label="L&R DNS (fast $S^{*}$)")
     ax.axhline(0, color="0.6", lw=0.5, ls=":")
-    ax.set_xlabel(r"reference total strain $c=\exp\!\int S\,\mathrm{d}t$")
+    ax.set_xlabel(r"total strain $c=\exp\!\int S\,\mathrm{d}t$")
     ax.set_ylabel(r"$b_{11}$")
     from matplotlib.patches import Patch
     h, la = ax.get_legend_handles_labels()
