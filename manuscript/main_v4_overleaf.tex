@@ -410,7 +410,7 @@ mean-strain-driven part.
 
 The event sequence is a Poisson process whose rate density
 $\lambda(y_0,l;t)$ follows the standard eddy time-scale construction
-applied to the $Q_i$, with a rate constant, a viscous cutoff and a
+governed by the $Q_i$, with a rate constant, a viscous cutoff and a
 large-eddy suppression parameter as the only tunable constants; the
 inertial-range cascade and the $k^{-5/3}$ spectrum are \emph{outcomes}
 of the sampling, not inputs
@@ -735,9 +735,9 @@ out of the coordinate direction and lies outside the formulation.
 
 The strain-coupled model advances the line field over a sub-step by
 composing (a) a \emph{continuous strain--diffusion phase on a dilating
-domain}---integrate
+domain}---time advance
 $\partial_t u_i=\nu\partial_y^2u_i+\mathcal{A}_{ij}u_j$ with
-$\mathcal{A}_{ij}=-A_{ij}+B_{ij}$, the production exact and $B_{ij}$
+$\mathcal{A}_{ij}=-A_{ij}+B_{ij}$, where the production is exact and $B_{ij}$ is
 given by \eqref{eq:lyapunov} from the running Reynolds stress and the
 spectral closure (the IP form \eqref{eq:iso-B}; the LRR alternative of
 \S\,\ref{sec:verification} is used for the strained results), while dilating the domain
@@ -860,9 +860,9 @@ its implementation, isolated from any closure or cascade effect.
 Beyond onset the turbulence becomes anisotropic and the rapid term
 \eqref{eq:exact-rps} ceases to be a function of the Reynolds stress
 alone, so the verification becomes a test of the spectral closure rather
-than of the construction. We integrate the model moment equation along
+than of the construction. We integrate the model's second-moment (Reynolds-stress) equation along
 each canonical strain with two closures: the isotropisation-of-production
-closure \eqref{eq:iso-closure} (IP, with $C_2=3/5$) and the
+closure \eqref{eq:crow} (IP, with $C_2=3/5$) and the
 quasi-isotropic model of \citet{LaunderReeceRodi1975} (LRR-QI, abbreviated
 LRR),
 \begin{equation}
@@ -882,8 +882,8 @@ solution, obtained by integrating the spectral equations \eqref{eq:rdt}
 over a Gauss--Legendre ensemble of initial wavevector directions on the
 unit sphere: for initially isotropic turbulence the modal dynamics depend
 only on direction, so the Reynolds stress is the spherical average of the
-evolved modal covariance. This integration is independent of the moment
-models and reproduces the onset slope \eqref{eq:onset-rate} to within
+evolved modal covariance. This integration is independent of the IP and
+LRR closures and reproduces the onset slope \eqref{eq:onset-rate} to within
 $10^{-16}$, verifying the rapid-distortion machinery itself.
 
 Figure~\ref{fig:rdt-components} reports the component-energy fractions
@@ -916,8 +916,8 @@ $b$-dependent term.
   isotropic turbulence under (\textit{a}) plane strain and (\textit{b})
   axisymmetric strain, normalised to $S=1$: exact rapid-distortion
   theory (wavevector-ensemble integration of \eqref{eq:rdt}) against the
-  SC-ODT moment equation with the LRR closure \eqref{eq:lrr} and the IP
-  closure \eqref{eq:iso-closure}. Line style denotes the source (solid
+  SC-ODT second-moment equation with the LRR closure \eqref{eq:lrr} and the IP
+  closure \eqref{eq:crow}. Line style denotes the source (solid
   exact RDT, dashed LRR, dotted IP) and marker the component
   ($\circ\,\overline{u_1^2}$, $\square\,\overline{u_2^2}$,
   $\triangle\,\overline{u_3^2}$). For axisymmetric strain the two
@@ -1058,8 +1058,8 @@ reaches.
   \centering
   \includegraphics[width=0.8\textwidth]{Figures/fig_LR_plane.pdf}
   \caption{Reynolds-stress anisotropy under plane strain: SC-ODT
-  (lines; ensemble mean over $1000$ realisations, standard-error band)
-  against the DNS of \citet{LeeReynolds1985} (open symbols, digitised
+  (lines; ensemble mean over $1000$ realisations, standard error within
+  the line width) against the DNS of \citet{LeeReynolds1985} (open symbols, digitised
   from their figure~5.4). As noted in \S\,\ref{sec:level1a}, here and
   henceforth all strained computations use the LRR closure. Line style and marker denote the component
   ($b_{11}$ solid/$\circ$, $b_{22}$ dashed/$\square$, $b_{33}$
@@ -1122,9 +1122,9 @@ decomposition on which \S\,\ref{sec:gate} rests.
   \centering
   \includegraphics[width=0.82\textwidth]{Figures/fig_LR_b11_closure.pdf}
   \caption{The unstrained-direction anisotropy $b_{11}$ under plane
-  strain: SC-ODT (solid, $1000$ realisations, standard-error band)
+  strain: SC-ODT (solid, $1000$ realisations, grey standard-error band)
   against exact linear rapid distortion (long-dashed,
-  wavevector-ensemble integration), the IP (dotted) and LRR-QI
+  wavevector-ensemble integration), the IP (dotted) and LRR
   (short-dashed) closures, and the DNS of \citet{LeeReynolds1985} (open
   squares; hatched band = DNS range over slow-to-fast $S^{*}$). The
   fast-strain DNS tracks exact RDT, whose rapid pressure--strain feeds
@@ -1970,7 +1970,7 @@ predict the opposite. The exact rapid term evaluated in the DNS settles the
 matter: at $e=1$, $\Pi^{(\mathrm r)}_{33}/k_tS = 0.14$ at
 $Sk_t/\varepsilon=0.8$ and $0.27$ at $16$, exceeding
 $\Pi^{(\mathrm r)}_{11}=0.23$ in the rapid case---the overtaking is real
-and sets in at rapid strain. LRR-QI, whose spanwise component is carried by
+and sets in at rapid strain. LRR, whose spanwise component is carried by
 its $b$-dependent term, matches at $Sk_t/\varepsilon=0.8$
 ($\Pi^{(\mathrm r)}_{33}=0.143\,k_tS$) but delivers half the exact value at
 $16$; IP gives zero identically. The deficiency thus lives in the moment

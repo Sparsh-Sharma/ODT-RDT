@@ -101,9 +101,9 @@ def fig_plane():
             ax.fill_between(xl, yl, np.interp(xl, xu, yu),
                             facecolor="none", edgecolor="0.55", lw=0.0,
                             hatch="////", alpha=0.9)
-        else:             # ODT standard-error bands: light grey
-            ax.fill_between(xl, yl, np.interp(xl, xu, yu),
-                            color="0.8", alpha=0.6, lw=0)
+        # ODT standard-error band omitted in the plane figure: it is within
+        # the line width (Alan review 2026-09-19), so drawing it only adds a
+        # confusing grey smudge behind the curves.
     for i in range(3):
         comp = comp_of("plane", "curves", i)
         ax.plot(get("plane", "curves", i, "x"),
@@ -234,7 +234,7 @@ def fig_b11():
     ax.plot(*ana["IP"], color="k", ls=(0, (1, 1.4)), lw=1.0,
             label=r"IP ($C_2=3/5$)")
     ax.plot(*ana["LRR"], color="k", ls=(0, (3, 1.4)), lw=1.0,
-            label="LRR-QI")
+            label="LRR")
     ax.plot(get("b11", "curves", 3, "x"), get("b11", "curves", 3, "y"),
             color="k", ls="-", lw=1.4, label="SC-ODT ($N=1000$)")
     x, y = markers_by("b11", lambda i: True)
