@@ -109,9 +109,12 @@ one-dimensional turbulence (ODT) model
 linear-eddy model \citep{Kerstein1991}, evolves a three-component
 velocity field along a notional line, resolving the full range of length
 scales while representing turbulent advection as a stochastic sequence
-of mapping events; a kernel mechanism redistributes energy among
-components, emulating pressure scrambling
-\citep{WunschKerstein2001,Kerstein2001}. Generalised to variable density
+of mapping events interleaved with a continuous, one-dimensional
+specialisation of viscous transport; at each event a kernel mechanism
+redistributes energy among components, emulating pressure scrambling
+\citep{WunschKerstein2001,Kerstein2001}.
+
+Generalised to variable density
 \citep{AshurstKerstein2005}, adaptive meshes \citep{Lignell2013,
 StephensLignell2021} and cylindrical geometry \citep{Lignell2018},
 embedded as a subgrid closure \citep{SchmidtKerstein2010}, and coupled
@@ -163,7 +166,7 @@ alone, and the axisymmetry hypothesis is measured rather than assumed: it
 is exact for axisymmetric distortion and carries a quantified error under
 plane strain (\S\,\ref{sec:gate}).
 
-\item The measured limits of the model and a mechanism that moves them
+\item The measured limits of the model and a mechanism that extends them
 (\S\,\ref{sec:limits}). A transmission diagnostic shows the strain-induced
 anisotropy crossing two triplet-map generations (a factor of nine in
 scale) undiminished; a controlled family of interventions rules out
@@ -186,7 +189,12 @@ Throughout we show where the model agrees with reference data and, where it
 does not, by how much and for what reason.
 
 
-The paper falls into three parts:
+The paper falls into three parts. The strain-coupled formulation of the
+first part modifies the model's \emph{continuous} advancement---the
+production and rapid pressure--strain of \eqref{eq:cont-evolution}---and
+leaves the discrete eddy events unchanged; the mechanism of the second
+part in turn modifies the \emph{discrete} process, giving relaxation its
+own clock.
 \begin{itemize}
 \item The model and what a line can know: \S\,\ref{sec:formulation}
 reviews standard ODT and derives the strain-coupled formulation;
@@ -199,7 +207,7 @@ treats the single-line closure question.
 
 \item \S\,\ref{sec:limits} measures the model's limits and establishes
 scale-local relaxation---timed by its own clock---as the mechanism that
-moves them.
+extends them.
 
 \item \S\,\ref{sec:lenoise} applies the computed distortion as a
 correction to the leading-edge-noise input.
@@ -337,11 +345,15 @@ $i=1,2,3$, on a one-dimensional domain whose coordinate $y$ is identified
 with the direction $x_2$. The fields represent individual realisations;
 ensemble statistics are accumulated over many independent simulations.
 Two interleaved mechanisms advance the state
-(figure~\ref{fig:odt-schematic}): between events the fields
+(figure~\ref{fig:odt-schematic}). Between events the fields
 obey ordinary one-dimensional diffusion,
-$(\partial_t-\nu\,\partial_y^2)\,u_i=0$, with kinematic viscosity $\nu$;
-and a stochastic sequence of instantaneous \emph{eddy events} represents
-the effect of individual turbulent overturns.
+\begin{equation}
+  (\partial_t-\nu\,\partial_y^2)\,u_i=0,
+  \label{eq:odt-diffusion}
+\end{equation}
+with kinematic viscosity $\nu$; and a stochastic sequence of
+instantaneous \emph{eddy events} represents the effect of individual
+turbulent overturns.
 
 
 Because a continuum rotational motion cannot be represented on a line, an
@@ -420,10 +432,100 @@ not advect fluid, so diagonal component spectra and variances are read
 from the fields while shear stresses are read from eddy-induced
 transport.
 
+\subsection{The strain-coupled line equation and its structural
+admissibility}\label{sec:strain-forcing}
+
+Standard ODT carries no mean strain: between events the field obeys the
+pure diffusion \eqref{eq:odt-diffusion}, and the eddy events supply only
+the turbulence-driven cascade and return to isotropy. The strain-coupled
+formulation generalises the \emph{continuous} advancement to carry the
+distortion by an imposed mean velocity gradient $A_{ij}$, which is
+prescribed---the input to the problem---rather than evolved. Two
+irrotational homogeneous strains are studied, both admitting exact
+rapid-distortion solutions and isolating the physics of interest.
+\emph{Plane strain},
+\begin{equation}
+  \mathsf{A}=\operatorname{diag}(a,-a,0),\qquad a>0,
+  \label{eq:plane-strain}
+\end{equation}
+is the strain of a two-dimensional stagnation region: with $x_1$
+tangential to the surface, $x_2$ normal to it and $x_3$ spanwise, the
+component compressed by the strain is the wall-normal (upwash) component
+$u_2$, whose amplification is the pre-impact distortion relevant to
+leading-edge noise. \emph{Axisymmetric strain},
+\begin{equation}
+  \mathsf{A}=\operatorname{diag}(-\tfrac12\gamma,-\tfrac12\gamma,\gamma),
+  \qquad \gamma>0,
+  \label{eq:axi-strain}
+\end{equation}
+is the strain of a contraction or a three-dimensional stagnation flow and
+provides an independent test in which two components are amplified and
+one suppressed. For both, $\mathsf{A}$ is symmetric, so the
+principal-axis alignment assumed in \S\,\ref{sec:domain-strain} holds,
+and the line is taken along $x_2$. The modelling task is to add to the
+continuous advancement the two processes through which $A_{ij}$
+acts---an exact production and a modelled rapid pressure--strain---while
+leaving the eddy events unchanged.
+
+The production term of the fluctuation momentum equation, $-A_{ij}u_j$,
+is a pointwise linear combination of the local velocity components and is
+therefore exactly representable on the line. Between eddy events the
+molecular evolution is replaced by
+\begin{equation}
+  \partial_t u_i
+  = \nu\,\partial_y^2 u_i \;-\; A_{ij}\,u_j \;+\; B_{ij}\,u_j,
+  \label{eq:cont-evolution}
+\end{equation}
+the line form of the fluctuation momentum equation for a spatially
+uniform mean gradient: molecular diffusion as in standard ODT, the
+exact production $-A_{ij}u_j$ (whose second moment is the production
+$\mathcal{P}_{ij}$ of \eqref{eq:rstransport}), and, in place of the
+fluctuating pressure gradient, the modelled rapid pressure--strain
+operator $B_{ij}u_j$ constructed in \S\,\ref{sec:rapid-kernel}. The
+eddy events \eqref{eq:event}--\eqref{eq:ci} are retained without
+modification, and the advancement is split between the continuous phase
+\eqref{eq:cont-evolution} and the discrete event sequence.
+
+The forcing preserves the structural properties on which the model
+rests; we record the argument as a consistency check. Measure
+preservation, scale locality and the kernel identities
+\eqref{eq:kernel-identities} are geometric properties of $f$ and $K$
+on a fixed domain, and the operator splitting applies the discrete
+event exactly as in the standard model, so they hold verbatim. For a
+mean gradient uniform along the line the operator
+$\mathcal{A}_{ij}\equiv-A_{ij}+B_{ij}$ acts pointwise, so over a
+non-diffusive sub-step the profile is advanced by a $y$-independent
+matrix,
+$u_i(y,t)=[\exp\!\int_{t_0}^{t}\mathcal{A}\,\mathrm{d}t']_{ij}\,
+u_j(y,t_0)$---continuous profiles therefore map
+to continuous profiles while the molecular term is smoothing; and the
+forcing displaces no fluid along $y$, leaving the domain measure
+untouched (the deliberate domain straining is the separate operation
+of \S\,\ref{sec:domain-strain}).
+
+The energetic role of the forcing is exact. At fixed domain length the
+production term evolves the Reynolds stress as
+\begin{equation}
+  \left.\frac{\mathrm{d}R_{ij}}{\mathrm{d}t}\right|_{\text{prod}}
+  = -A_{ik}R_{kj}-A_{jk}R_{ki}
+  \;\equiv\; \mathcal{P}_{ij},
+  \label{eq:production-rate}
+\end{equation}
+exactly the Reynolds-stress production tensor of \eqref{eq:rstransport}:
+the term carries no model assumption. The kinetic-energy budget of the
+formulation thus separates into an exact production by the mean strain,
+energy-conserving redistribution (the kernels), and dissipation by
+molecular diffusion---the structure of the exact transport equation. The
+forcing adds the one term the standard model lacks without disturbing the
+terms it already represents.
+
 \subsection{Rapid and slow pressure--strain, and linear rapid
 distortion}\label{sec:rapid-slow}
 
-The Reynolds-stress transport equation for a fluctuating field about a
+The production in \eqref{eq:cont-evolution} is exact; the rapid operator
+$B_{ij}$ is not. Constructing it requires the second-moment and
+rapid-distortion physics it must reproduce, set out here. The
+Reynolds-stress transport equation for a fluctuating field about a
 mean with constant gradient $A_{ij}$ reads, in homogeneous turbulence,
 \begin{equation}
   \frac{\mathrm{d}R_{ij}}{\mathrm{d}t}
@@ -460,8 +562,8 @@ represents neither $\mathcal{P}_{ij}$ nor $\Pi^{(\mathrm r)}_{ij}$.
 When the strain outruns the eddy turnover---the rapid limit---the
 response is computed exactly by linear theory
 \citep{BatchelorProudman1954,Hunt1973,HuntCarruthers1990}. Writing the
-fluctuation as Fourier modes that follow the mean flow, each mode of
-time-dependent wavevector $\boldsymbol{\kappa}(t)$ and amplitude
+fluctuation as Fourier modes with wavevectors convected by the mean
+flow, each mode of time-dependent wavevector $\boldsymbol{\kappa}(t)$ and amplitude
 $\hat{u}_i$ evolves, in the inviscid rapid limit, according to
 \begin{equation}
   \frac{\mathrm{d}\kappa_i}{\mathrm{d}t}=-A_{ji}\,\kappa_j,
@@ -483,59 +585,10 @@ $\kappa_1,\kappa_2,\kappa_3$, whereas a single line resolves only the
 wavenumber along its own coordinate, so \eqref{eq:rdt} cannot be
 evaluated on the line as written. Second, the rapid/slow decomposition
 furnishes the organising principle of the formulation: the slow part is
-already carried by the kernel, and it remains to supply the production
-and a rapid redistribution consistent with \eqref{eq:rdt}, expressed in
-quantities available on the line.
-
-\subsection{The strain-coupled line equation and its structural
-admissibility}\label{sec:strain-forcing}
-
-The production term of the fluctuation momentum equation, $-A_{ij}u_j$,
-is a pointwise linear combination of the local velocity components and is
-therefore exactly representable on the line. Between eddy events the
-molecular evolution is replaced by
-\begin{equation}
-  \partial_t u_i
-  = \nu\,\partial_y^2 u_i \;-\; A_{ij}\,u_j \;+\; B_{ij}\,u_j,
-  \label{eq:cont-evolution}
-\end{equation}
-in which $-A_{ij}u_j$ is the production and $B_{ij}u_j$ is the rapid
-pressure--strain operator constructed in \S\,\ref{sec:rapid-kernel}; the
-eddy events \eqref{eq:event}--\eqref{eq:ci} are retained without
-modification, and the advancement is split between the continuous phase
-\eqref{eq:cont-evolution} and the discrete event sequence.
-
-The forcing preserves the structural properties on which the model
-rests; we record the argument as a consistency check. Measure
-preservation, scale locality and the kernel identities
-\eqref{eq:kernel-identities} are geometric properties of $f$ and $K$
-on a fixed domain, and the operator splitting applies the discrete
-event exactly as in the standard model, so they hold verbatim. For a
-mean gradient uniform along the line the operator
-$\mathcal{A}_{ij}\equiv-A_{ij}+B_{ij}$ acts pointwise---the
-non-diffusive sub-step solution
-$u_i(y,t)=[\exp\!\int_{t_0}^{t}\mathcal{A}\,\mathrm{d}t']_{ij}\,
-u_j(y,t_0)$ is a $y$-independent matrix---so continuous profiles map
-to continuous profiles while the molecular term is smoothing; and the
-forcing displaces no fluid along $y$, leaving the domain measure
-untouched (the deliberate domain straining is the separate operation
-of \S\,\ref{sec:domain-strain}).
-
-The energetic role of the forcing is exact. At fixed domain length the
-production term evolves the Reynolds stress as
-\begin{equation}
-  \left.\frac{\mathrm{d}R_{ij}}{\mathrm{d}t}\right|_{\text{prod}}
-  = -A_{ik}R_{kj}-A_{jk}R_{ki}
-  \;\equiv\; \mathcal{P}_{ij},
-  \label{eq:production-rate}
-\end{equation}
-exactly the Reynolds-stress production tensor of \eqref{eq:rstransport}:
-the term carries no model assumption. The kinetic-energy budget of the
-formulation thus separates into an exact production by the mean strain,
-energy-conserving redistribution (the kernels), and dissipation by
-molecular diffusion---the structure of the exact transport equation. The
-forcing adds the one term the standard model lacks without disturbing the
-terms it already represents.
+already carried by the eddy kernel and the production by
+\eqref{eq:cont-evolution}; what remains is to construct the rapid
+redistribution $B_{ij}$ consistent with \eqref{eq:rdt} from quantities
+available on the line---the task of \S\,\ref{sec:rapid-kernel}.
 
 \subsection{The rapid redistribution operator}\label{sec:rapid-kernel}
 
@@ -657,12 +710,12 @@ $\mathsf{R}=\tfrac23k_t\mathsf{I}$ it reduces to the closed form
   \mathcal{A}_{ij} = -A_{ij} + \tfrac{3}{5}\,S_{ij}.
   \label{eq:iso-B}
 \end{equation}
-$B_{ij}$ is evaluated from the running Reynolds stress and applied
-continuously, paced by the mean strain, exactly as the production is.
-This is deliberate: the rapid pressure--strain is by construction the
-part of the redistribution driven by the mean gradient and therefore acts
-at the strain rate, in contrast to the slow redistribution that the eddy
-kernel supplies at the eddy rate. Strain-driven effects (production and
+$B_{ij}$ is evaluated from the running Reynolds stress at each sub-step
+and enters the continuous advancement \eqref{eq:cont-evolution}
+alongside the production. Phenomenologically it represents the part of
+the redistribution driven by the mean gradient, which proceeds
+continuously at the strain rate, in contrast to the slow return to
+isotropy that the eddy kernel supplies at the eddy rate. Strain-driven effects (production and
 rapid pressure--strain) are continuous and enter through
 $\mathcal{A}_{ij}$; turbulence-driven effects (the inertial cascade and
 the slow return to isotropy) remain the discrete events.
@@ -743,8 +796,13 @@ spectral closure (the IP form \eqref{eq:iso-B}; the LRR alternative of
 \S\,\ref{sec:verification} is used for the strained results), while dilating the domain
 by \eqref{eq:dilatation}---and (b) \emph{discrete eddy events} sampled
 from the standard rate distribution: the triplet map and the slow kernel,
-unchanged. Step (a) carries the mean-strain physics; step (b) carries the
-turbulence-driven physics; standard ODT is recovered exactly when
+unchanged. Step (a), the continuous advancement, carries the strain-driven physics
+(the exact production and the rapid pressure--strain); step (b), the
+discrete events, carries the turbulence-driven physics (the cascade and
+the slow return to isotropy). The strain coupling thus modifies only the
+continuous advancement and leaves the discrete events unchanged; the
+discrete process is itself modified later, by the relaxation mechanism
+of \S\,\ref{sec:limits}. Standard ODT is recovered exactly when
 $A_{ij}=0$.
 
 The relative importance of the two steps is governed by the ratio of the
@@ -805,29 +863,12 @@ is its strain-off ($A_{ij}=0$) limit, and the relaxation mechanism of
 \S\,\ref{sec:limits} (``clock-relaxed ODT'') does not enter until
 Part~II.
 
-\subsection{Canonical strains and the exact onset rate}\label{sec:onset}
+\subsection{The exact onset rate}\label{sec:onset}
 
-Two irrotational homogeneous strains admit exact rapid-distortion
-solutions and isolate the physics of interest. \emph{Plane strain},
-\begin{equation}
-  \mathsf{A}=\operatorname{diag}(a,-a,0),\qquad a>0,
-  \label{eq:plane-strain}
-\end{equation}
-is the strain of a two-dimensional stagnation region: with $x_1$
-tangential to the surface, $x_2$ normal to it and $x_3$ spanwise, the
-component compressed by the strain is the wall-normal (upwash) component
-$u_2$, whose amplification is the pre-impact distortion relevant to
-leading-edge noise. \emph{Axisymmetric strain},
-\begin{equation}
-  \mathsf{A}=\operatorname{diag}(-\tfrac12\gamma,-\tfrac12\gamma,\gamma),
-  \qquad \gamma>0,
-  \label{eq:axi-strain}
-\end{equation}
-is the strain of a contraction or a three-dimensional stagnation flow and
-provides an independent test in which two components are amplified and
-one suppressed. For both, $\mathsf{A}$ is symmetric, so the
-principal-axis alignment assumed in \S\,\ref{sec:domain-strain} holds;
-the line is taken along $x_2$.
+The two canonical strains of \S\,\ref{sec:strain-forcing}---plane strain
+\eqref{eq:plane-strain} and axisymmetric strain
+\eqref{eq:axi-strain}---admit exact rapid-distortion solutions and
+isolate the physics of interest.
 
 For turbulence isotropic at the onset of straining the continuous
 evolution \eqref{eq:cont-evolution} gives, by
@@ -1688,7 +1729,9 @@ confront.
 
 \subsection{The obstruction: what an ODT line resolves}\label{sec:obstruction}
 
-ODT evolves a velocity vector $\boldsymbol{u}'(y)$ on a single line aligned
+In the present formulation the line carries the fluctuation velocity
+$\boldsymbol{u}'(y)$ about a prescribed uniform mean gradient---standard
+ODT can also evolve a mean profile---on a single line aligned
 with the resolved direction, here taken along the contraction axis of the
 strain, $y\equiv x_2$. From it the model has access to the one-dimensional
 spectra
