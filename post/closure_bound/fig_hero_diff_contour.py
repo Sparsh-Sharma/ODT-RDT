@@ -68,10 +68,8 @@ def main():
                 color=("0.15" if MONO else "0.1"))
     axs[0].set_ylabel(r"$y\,/\,$half-width")
     axs[0].set_yticks([-1, 0, 1])
-    fig.suptitle("fine-scale upwash structure at high strain (single line)",
-                 fontsize=8.5, y=1.02)
     fig.tight_layout(pad=0.4, w_pad=1.4)
-    fig.subplots_adjust(bottom=0.30, top=0.86)
+    fig.subplots_adjust(bottom=0.28)
     save(fig, os.path.join(HERE, "fig_hero_diff_contour"
                            + ("_mono" if MONO else "")))
 
