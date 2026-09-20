@@ -189,12 +189,7 @@ Throughout we show where the model agrees with reference data and, where it
 does not, by how much and for what reason.
 
 
-The paper falls into three parts. The strain-coupled formulation of the
-first part modifies the model's \emph{continuous} advancement---the
-production and rapid pressure--strain of \eqref{eq:cont-evolution}---and
-leaves the discrete eddy events unchanged; the mechanism of the second
-part in turn modifies the \emph{discrete} process, giving relaxation its
-own clock.
+The paper falls into three parts.
 \begin{itemize}
 \item The model and what a line can know: \S\,\ref{sec:formulation}
 reviews standard ODT and derives the strain-coupled formulation;
@@ -213,6 +208,11 @@ extends them.
 correction to the leading-edge-noise input.
 % \end{enumerate}
 \end{itemize}
+The strain-coupled formulation of the first part modifies the model's
+\emph{continuous} advancement, yielding the generalized momentum
+equation \eqref{eq:cont-evolution}, and leaves the discrete eddy events
+unchanged; the mechanism of the second part in turn modifies the
+\emph{discrete} process, giving relaxation its own clock.
 Section~\ref{sec:conclusions} concludes. Supplementary material contains
 the validation against the strained-turbulence experiment of
 \citet{ChenMeneveauKatz2006} (CMK) and the complete set of intervention categories, labelled by category.variant (Appendix~\ref{app:numerics}).
@@ -250,7 +250,10 @@ statistically homogeneous directions (equivalently, the ensemble of
 independent realisations), and $k_t\equiv\tfrac12R_{ii}$ the turbulent
 kinetic energy. In the homogeneous configurations used to establish and
 test the formulation the spatial line average and the ensemble average
-coincide.
+coincide. A prime marks the fluctuating part of a field where a mean
+must be distinguished; the velocity fluctuation, the only velocity the
+line carries, is written $u_i$ without a prime, and $p'$ is the
+fluctuating pressure.
 
 
 \subsection{The standard model}\label{sec:odt-review}
@@ -467,21 +470,20 @@ continuous advancement the two processes through which $A_{ij}$
 acts---an exact production and a modelled rapid pressure--strain---while
 leaving the eddy events unchanged.
 
-The production term of the fluctuation momentum equation, $-A_{ij}u_j$,
-is a pointwise linear combination of the local velocity components and is
-therefore exactly representable on the line. Between eddy events the
-molecular evolution is replaced by
+Between eddy events the molecular evolution is replaced by
 \begin{equation}
   \partial_t u_i
   = \nu\,\partial_y^2 u_i \;-\; A_{ij}\,u_j \;+\; B_{ij}\,u_j,
   \label{eq:cont-evolution}
 \end{equation}
 the line form of the fluctuation momentum equation for a spatially
-uniform mean gradient: molecular diffusion as in standard ODT, the
-exact production $-A_{ij}u_j$ (its contribution to the Reynolds-stress
-equation is $\mathcal{P}_{ij}$ of \eqref{eq:rstransport}), and, in place of the
-fluctuating pressure gradient, the modelled rapid pressure--strain
-operator $B_{ij}u_j$ constructed in \S\,\ref{sec:rapid-kernel}. The
+uniform mean gradient: molecular diffusion as in standard ODT; the
+exact production $-A_{ij}u_j$---a pointwise linear combination of the
+local velocity components, exactly representable on the line, whose
+contribution to the Reynolds-stress equation is $\mathcal{P}_{ij}$ of
+\eqref{eq:rstransport}---and, in place of the fluctuating pressure
+gradient, the modelled rapid pressure--strain operator $B_{ij}u_j$
+constructed in \S\,\ref{sec:rapid-kernel}. The
 eddy events \eqref{eq:event}--\eqref{eq:ci} are retained without
 modification, and the advancement is split between the continuous phase
 \eqref{eq:cont-evolution} and the discrete event sequence.
@@ -524,7 +526,7 @@ terms it already represents.
 distortion}\label{sec:rapid-slow}
 
 The production in \eqref{eq:cont-evolution} is exact; the rapid operator
-$B_{ij}$ is not. Constructing it requires the second-moment and
+$B_{ij}$ is not. Constructing it requires the Reynolds-stress and
 rapid-distortion physics it must reproduce, set out here. The
 Reynolds-stress transport equation for a fluctuating field about a
 mean with constant gradient $A_{ij}$ reads, in homogeneous turbulence,
@@ -535,7 +537,7 @@ mean with constant gradient $A_{ij}$ reads, in homogeneous turbulence,
   \mathcal{P}_{ij}=-A_{ik}R_{kj}-A_{jk}R_{ki},
   \quad
   \Pi_{ij}=\Big\langle \tfrac{p'}{\rho}
-            \big(\partial_j u_i'+\partial_i u_j'\big)\Big\rangle,
+            \big(\partial_j u_i+\partial_i u_j\big)\Big\rangle,
   \label{eq:rstransport}
 \end{equation}
 with $\varepsilon_{ij}$ the dissipation tensor \citep{Pope2000}. The
@@ -544,10 +546,10 @@ into a part linear in the mean gradient and a part quadratic in the
 fluctuations \citep{Pope2000},
 \begin{equation}
   \frac{1}{\rho}\nabla^2 p'
-  = \underbrace{-2\,A_{lm}\,\partial_l u_m'}_{\text{rapid}}
+  = \underbrace{-2\,A_{lm}\,\partial_l u_m}_{\text{rapid}}
     \;-\;
-    \underbrace{\partial_l\partial_m\!\left(u_l' u_m'
-     -\langle u_l' u_m'\rangle\right)}_{\text{slow}} ,
+    \underbrace{\partial_l\partial_m\!\left(u_l u_m
+     -\langle u_l u_m\rangle\right)}_{\text{slow}} ,
   \label{eq:poisson}
 \end{equation}
 and the pressure--strain correlation inherits the decomposition
@@ -650,7 +652,7 @@ unavoidable, and we make it explicit. (What a line's data \emph{do}
 determine about this integral, and how sharply, is the analytical
 question taken up in \S\,\ref{sec:gate}.)
 
-\subsubsection{Isotropy-based closure}\label{sec:iso-closure}
+\subsubsection{Closure of the pressure contribution}\label{sec:iso-closure}
 
 The minimal closure takes the spectrum tensor instantaneously isotropic,
 $\Phi_{nj}=\frac{E(\kappa)}{4\pi\kappa^2}
@@ -670,7 +672,7 @@ $e_i=\kappa_i/\kappa$,
 and substitution into \eqref{eq:exact-rps} gives, with
 $S_{ij}=\tfrac12(A_{ij}+A_{ji})$ and $A_{nn}=0$,
 \begin{equation}
-  \Pi^{(\mathrm r),\mathrm{iso}}_{ij}
+  \Pi^{(\mathrm r),\mathrm{IP}}_{ij}
   = \tfrac{4}{5}\,k_t\,S_{ij}
   \;=\; -\tfrac{3}{5}\,\mathcal{P}_{ij}
   \quad\text{(isotropic $R_{ij}$)},
@@ -680,13 +682,28 @@ which is the exact response of initially isotropic turbulence to a weak rapid
 strain \citep{Crow1968} and the content of the
 isotropisation-of-production model with $C_2=\tfrac35$
 \citep{Pope2000}---obtained here, with no adjustable constant, as the
-isotropic limit of \eqref{eq:exact-rps}. For anisotropic turbulence
-$\mathcal{R}_{ijmn}$ must be modelled as a tensor function of $R_{ij}$;
-the general representation linear in the anisotropy is that of
-\citet{LaunderReeceRodi1975}, to which the construction reduces in form.
-We take the isotropic closure \eqref{eq:iso-closure}---the
-isotropisation-of-production (IP) model---as the starting point, and
-assess the anisotropic correction in \S\,\ref{sec:verification}.
+isotropic limit of \eqref{eq:exact-rps}.
+
+For anisotropic turbulence $\mathcal{R}_{ijmn}$ must be modelled as a
+tensor function of $R_{ij}$; the general representation linear in the
+anisotropy is the quasi-isotropic model of \citet{LaunderReeceRodi1975}
+(LRR),
+\begin{equation}
+  \Pi^{(\mathrm r),\mathrm{QI}}_{ij} = C_2\,k_t S_{ij}
+  + C_3\,k_t\big(b_{ik}S_{jk}+b_{jk}S_{ik}
+  -\tfrac{2}{3}b_{mn}S_{mn}\delta_{ij}\big)
+  + C_4\,k_t\big(b_{ik}W_{jk}+b_{jk}W_{ik}\big),
+  \label{eq:lrr}
+\end{equation}
+with anisotropy $b_{ij}=R_{ij}/2k_t-\tfrac13\delta_{ij}$, mean rotation
+$W_{ij}=\tfrac12(A_{ij}-A_{ji})$ (zero for the irrotational strains
+considered), and $C_2=4/5$, $C_3=7/4$, $C_4=131/100$; the value
+$C_2=4/5$ is fixed by requiring that \eqref{eq:lrr} reduce at isotropy
+to the exact $\tfrac45k_tS_{ij}$ of \eqref{eq:crow}, so both closures
+share the constant-free onset slope. The isotropy-based form
+\eqref{eq:crow} (IP) is retained only for the onset consistency check
+of \S\,\ref{sec:onset}; every numerically simulated result in the paper
+uses the anisotropic closure \eqref{eq:lrr} (QI).
 
 \subsubsection{Realisation on the line}\label{sec:line-realisation}
 
@@ -876,7 +893,7 @@ evolution \eqref{eq:cont-evolution} gives, by
 \eqref{eq:production-rate} and \eqref{eq:crow},
 \begin{equation}
   \left.\frac{\mathrm{d}R_{ij}}{\mathrm{d}t}\right|_{0}
-  = \mathcal{P}_{ij}+\Pi^{(\mathrm r),\mathrm{iso}}_{ij}
+  = \mathcal{P}_{ij}+\Pi^{(\mathrm r),\mathrm{IP}}_{ij}
   = \tfrac{2}{5}\,\mathcal{P}_{ij}
   = -\tfrac{8}{15}\,k_t\,S_{ij},
   \label{eq:onset-rate}
@@ -884,9 +901,9 @@ evolution \eqref{eq:cont-evolution} gives, by
 the exact rapid-distortion rate for initially isotropic turbulence, with
 no adjustable constant. This is a
 closed-form prediction the model must satisfy identically. Evaluated for the two canonical strains it gives, under
-plane strain, onset rates $\mp\tfrac{8}{15}k_ta$ for the stretched and
+plane strain~\eqref{eq:plane-strain}, onset rates $\mp\tfrac{8}{15}k_ta$ for the stretched and
 compressed components with the neutral component unchanged, and, under
-axisymmetric strain, $+\tfrac{4}{15}k_t\gamma$ for each lateral
+axisymmetric strain~\eqref{eq:axi-strain}, $+\tfrac{4}{15}k_t\gamma$ for each lateral
 component against $-\tfrac{8}{15}k_t\gamma$ for the axis. For plane
 strain the predicted upwash growth rate $+\tfrac{8}{15}k_ta$ is to be
 compared with the $\tfrac43k_ta$ that production alone would give---the
@@ -903,24 +920,12 @@ Beyond onset the turbulence becomes anisotropic and the rapid term
 \eqref{eq:exact-rps} ceases to be a function of the Reynolds stress
 alone, so the verification becomes a test of the spectral closure rather
 than of the construction. For each canonical strain we integrate the
-Reynolds-stress equation~\eqref{eq:rstransport} in time, closing the
-rapid pressure--strain $\Pi^{(\mathrm r)}_{ij}$ two ways: the isotropisation-of-production
-closure \eqref{eq:crow} (IP, with $C_2=3/5$) and the
-quasi-isotropic model of \citet{LaunderReeceRodi1975} (LRR-QI, abbreviated
-LRR),
-\begin{equation}
-  \Pi^{(\mathrm r)}_{ij} = C_2\,k_t S_{ij}
-  + C_3\,k_t\big(b_{ik}S_{jk}+b_{jk}S_{ik}
-  -\tfrac{2}{3}b_{mn}S_{mn}\delta_{ij}\big)
-  + C_4\,k_t\big(b_{ik}W_{jk}+b_{jk}W_{ik}\big),
-  \label{eq:lrr}
-\end{equation}
-with anisotropy $b_{ij}=R_{ij}/2k_t-\tfrac13\delta_{ij}$, mean rotation
-$W_{ij}=\tfrac12(A_{ij}-A_{ji})$ (zero for the irrotational strains
-considered), and $C_2=4/5$, $C_3=7/4$, $C_4=131/100$; the value
-$C_2=4/5$ is fixed by requiring that \eqref{eq:lrr} reduce at isotropy to
-the exact $\tfrac45k_tS_{ij}$ of \eqref{eq:crow}, so LRR shares the
-constant-free onset slope. The benchmark is the exact rapid-distortion
+Reynolds-stress equation~\eqref{eq:rstransport} forward in time, closing
+the rapid pressure--strain two ways---the isotropy-based form
+\eqref{eq:crow} (IP) and the anisotropic closure \eqref{eq:lrr} (QI, or
+LRR) of \S\,\ref{sec:iso-closure}---to obtain the component energies
+$R_{ij}(e)$ as functions of the accumulated total strain
+$e=\int_0^{t}S\,\mathrm{d}t'$, plotted below. The benchmark is the exact rapid-distortion
 solution, obtained by integrating the spectral equations \eqref{eq:rdt}
 over a Gauss--Legendre ensemble of initial wavevector directions on the
 unit sphere: for initially isotropic turbulence the modal dynamics depend
@@ -1692,20 +1697,20 @@ free-space Green's function $G(\boldsymbol{x})=-1/4\pi|\boldsymbol{x}|$,
   p'_{\mathrm r}(\boldsymbol{x})
   = \frac{\rho}{2\pi}\,A_{kl}\!\int
     \frac{1}{|\boldsymbol{x}-\boldsymbol{x}'|}\,
-    \frac{\partial u'_l}{\partial x'_k}(\boldsymbol{x}')\,
+    \frac{\partial u_l}{\partial x'_k}(\boldsymbol{x}')\,
     \mathrm{d}\boldsymbol{x}' .
   \label{eq:prapid}
 \end{equation}
 The rapid pressure--strain correlation that redistributes energy among the
 Reynolds-stress components is
 $\Pi^{(\mathrm r)}_{ij}
-   = \overline{(p'_{\mathrm r}/\rho)\,(\partial u'_i/\partial x_j
-     + \partial u'_j/\partial x_i)}$.
+   = \overline{(p'_{\mathrm r}/\rho)\,(\partial u_i/\partial x_j
+     + \partial u_j/\partial x_i)}$.
 Substituting \eqref{eq:prapid} and using homogeneity to pass to the
 velocity spectrum tensor
 $\Phi_{mn}(\boldsymbol{\kappa})$
-(the Fourier transform of $\overline{u'_m(\boldsymbol{x})\,
-u'_n(\boldsymbol{x}+\boldsymbol{r})}$),
+(the Fourier transform of $\overline{u_m(\boldsymbol{x})\,
+u_n(\boldsymbol{x}+\boldsymbol{r})}$),
 one obtains the standard exact result
 \citep{BatchelorProudman1954,Crow1968,HuntCarruthers1990}
 \begin{equation}
@@ -2791,8 +2796,8 @@ at $e=1$, so a rigid spectral translation---the model's own
 kinematics---is not the linear prediction, and comparisons built on it
 conflate a structural approximation with nonlinear physics. Second,
 against a strained-box DNS with exact-RDT companions reduced to the
-same observables, the strain-coupled model carries the correct
-integrated anisotropy but allocates it uniformly over wavenumber, while
+same observables, the preliminary strain-coupled model, SC-ODT, carries
+the correct integrated anisotropy but allocates it uniformly over wavenumber, while
 linear theory and DNS concentrate it at the energy-containing scales;
 the deficiency is localised in the wavenumber-uniform rapid operator
 and grows with strain rapidity, a measured artefact that
@@ -2810,7 +2815,7 @@ anisotropy is delivered directly by large-eddy maps, which is why no
 acceptance-gating or map-reweighting scheme can control it; what does
 move it is supplementary relaxation applied at the scale of the imbalance---the
 model's own energy-equalising kernel, applied hierarchically to eddy
-sub-scales. The intervention broadly reproduced the phenomenology: depth that reaches the measured scales is necessary and
+sub-scales. The intervention broadly reproduces the phenomenology: depth that reaches the measured scales is necessary and
 sufficient at moderate strain; dosage and delocalised application
 raise the early gains in proportion; and the fine-scale fade beyond
 $e\approx3$, common to every scheme locked to the eddy clock, is
