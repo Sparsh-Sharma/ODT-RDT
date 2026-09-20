@@ -506,22 +506,6 @@ forcing displaces no fluid along $y$, leaving the domain measure
 untouched (the deliberate domain straining is the separate operation
 of \S\,\ref{sec:domain-strain}).
 
-The energetic role of the forcing is exact. At fixed domain length the
-production term evolves the Reynolds stress as
-\begin{equation}
-  \left.\frac{\mathrm{d}R_{ij}}{\mathrm{d}t}\right|_{\text{prod}}
-  = -A_{ik}R_{kj}-A_{jk}R_{ki}
-  \;\equiv\; \mathcal{P}_{ij},
-  \label{eq:production-rate}
-\end{equation}
-exactly the Reynolds-stress production tensor of \eqref{eq:rstransport}:
-the term carries no model assumption. The kinetic-energy budget of the
-formulation thus separates into an exact production by the mean strain,
-energy-conserving redistribution (the kernels), and dissipation by
-molecular diffusion---the structure of the exact transport equation. The
-forcing adds the one term the standard model lacks without disturbing the
-terms it already represents.
-
 \subsection{Rapid and slow pressure--strain, and linear rapid
 distortion}\label{sec:rapid-slow}
 
@@ -561,6 +545,22 @@ towards isotropy---the mechanism that the kernel
 rapid part is linear in $A_{lm}$ and is determined by the velocity
 spectrum tensor $\Phi_{ij}(\boldsymbol{\kappa})$; the standard model
 represents neither $\mathcal{P}_{ij}$ nor $\Pi^{(\mathrm r)}_{ij}$.
+
+Of the two, the production is supplied exactly on the line: the
+pointwise forcing $-A_{ij}u_j$ of \eqref{eq:cont-evolution} evolves the
+Reynolds stress at fixed domain length by
+\begin{equation}
+  \left.\frac{\mathrm{d}R_{ij}}{\mathrm{d}t}\right|_{\text{prod}}
+  = -A_{ik}R_{kj}-A_{jk}R_{ki}
+  \;\equiv\; \mathcal{P}_{ij},
+  \label{eq:production-rate}
+\end{equation}
+the production tensor of \eqref{eq:rstransport}, with no model
+assumption, so the kinetic-energy budget separates into exact
+production, energy-conserving redistribution by the kernels, and
+molecular dissipation. Only the rapid pressure--strain
+$\Pi^{(\mathrm r)}_{ij}$, determined by the spectrum tensor, requires a
+closure; its construction is the subject of the rest of this section.
 
 When the strain outruns the eddy turnover---the rapid limit---the
 response is computed exactly by linear theory
