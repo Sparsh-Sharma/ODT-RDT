@@ -34,7 +34,7 @@ CASES = [("hero_std", "standard ODT", "strain off"),
          ("hero_scodt", "SC-ODT", "plane strain, dilatation"),
          ("hero_clock", "clock-relaxed ODT", "strain + relaxation clock")]
 
-CMAP = "RdBu_r" if COLOR else "gray"
+CMAP = "RdBu" if COLOR else "gray"   # colour: blue positive, red negative
 
 
 def colnorm(A):

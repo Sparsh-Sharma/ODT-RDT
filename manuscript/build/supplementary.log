@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  20 SEP 2026 12:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  21 SEP 2026 08:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1174,10 +1174,10 @@ File: Figures/fig_level1a.pdf Graphic file (type pdf)
 <use Figures/fig_level1a.pdf>
 Package pdftex.def Info: Figures/fig_level1a.pdf  used on input line 405.
 (pdftex.def)             Requested size: 384.0pt x 164.13594pt.
-<Figures/fig_hero_lines.pdf, id=216, 391.1904pt x 239.98032pt>
-File: Figures/fig_hero_lines.pdf Graphic file (type pdf)
-<use Figures/fig_hero_lines.pdf>
-Package pdftex.def Info: Figures/fig_hero_lines.pdf  used on input line 441.
+<Figures/fig_hero_lines_color.pdf, id=216, 391.1904pt x 239.98032pt>
+File: Figures/fig_hero_lines_color.pdf Graphic file (type pdf)
+<use Figures/fig_hero_lines_color.pdf>
+Package pdftex.def Info: Figures/fig_hero_lines_color.pdf  used on input line 441.
 (pdftex.def)             Requested size: 384.0pt x 235.56725pt.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 7.84023pt on input line 458.
@@ -1195,9 +1195,9 @@ File: Figures/fig_hero_diff_contour.pdf Graphic file (type pdf)
 Package pdftex.def Info: Figures/fig_hero_diff_contour.pdf  used on input line 467.
 (pdftex.def)             Requested size: 384.0pt x 201.57463pt.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.37477pt on input line 475.
+(Font)              scaled to size 6.37477pt on input line 476.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 4.80296pt on input line 475.
+(Font)              scaled to size 4.80296pt on input line 476.
  (build/supplementary.bbl
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 8.73pt on input line 1.
@@ -1209,9 +1209,9 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
 (Font)              scaled to size 8.73pt on input line 6.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 (Font)              scaled to size 8.73pt on input line 6.
-) [9{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc} <./Figures/fig_hero_lines.pdf>]
+) [9{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc} <./Figures/fig_hero_lines_color.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 482.
+Package xcolor Warning: Incompatible color definition on input line 483.
 
 [10 <./Figures/fig_hero_diff_contour.pdf>] (build/supplementary.aux)
  ***********
@@ -1221,14 +1221,14 @@ L3 programming layer <2020/03/25>
  ) 
 Here is how much of TeX's memory you used:
  17866 strings out of 467159
- 281101 string characters out of 5398120
- 702890 words of memory out of 5000000
+ 281143 string characters out of 5398120
+ 702972 words of memory out of 5000000
  46757 multiletter control sequences out of 15000+600000
  729293 words of font info for 255 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  89i,13n,131p,980b,543s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/supplementary.pdf (10 pages, 788405 bytes).
+Output written on build/supplementary.pdf (10 pages, 981150 bytes).
 PDF statistics:
  393 PDF objects out of 1000 (max. 8388607)
  235 compressed objects within 3 object streams

@@ -50,7 +50,7 @@ def hp_field(key, comp="V"):
 
 
 def main():
-    cmap = "gray" if MONO else "RdBu_r"
+    cmap = "gray" if MONO else "RdBu"   # colour: blue positive, red negative
     fig, axs = plt.subplots(1, 2, figsize=(FULL, 2.6), sharey=True)
     s = np.nanstd(np.concatenate(
         [hp_field(c[0])[2][np.isfinite(hp_field(c[0])[2])] for c in CASES]))
