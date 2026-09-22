@@ -1,0 +1,206 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\definecolor{commentgray}{gray}{0.35}
+\newenvironment{refcomment}%
+  {\begin{quote}\color{commentgray}\itshape}%
+  {\end{quote}}
+\newcommand{\response}{\medskip\noindent\textbf{Response.}\ }
+\newcommand{\point}[1]{\bigskip\noindent\textbf{#1}}
+
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+
+\title{Response to Referee 2\\[2pt]
+\large Manuscript JFM-2026-1781\\
+\emph{Strain-coupled one-dimensional turbulence for rapid distortion}\\
+Sharma \& Kerstein}
+\date{}
+
+\begin{document}
+\maketitle
+
+We thank the referee for the report and for the specific reading
+recommendations, in particular the pointer to Sagaut \& Cambon (2018),
+which has been adopted as the rapid-distortion reference spine. The
+manuscript has been substantially rewritten: it is reorganised into three
+declared parts around a single take-home message, Section~2 is compressed
+and its two halves connected, redundant closure discussion is consolidated,
+an independent DNS benchmark has been added, and the leading-edge
+application flagged in the old conclusions is now carried out. Section,
+figure and table numbers below refer to the revised manuscript.
+
+\point{1. Length, readability, and the absence of a clear take-home
+message.}
+\begin{refcomment}
+``Under its present form, this very long (42 pages) manuscript is very
+difficult to read, with no clear take-home message(s) on its relevant and
+original results. Often, similar discussions and models took place in
+different sections (and plenty of sub- and subsubsections), with unuseful
+redundancy.''
+\end{refcomment}
+
+\response
+The paper is restructured into three explicitly announced parts (\S\,1,
+closing paragraphs): the model and what a single line can know
+(\S\S\,2--5); the measured limits and the relaxation mechanism (\S\,6); and
+the consequence for leading-edge noise (\S\,7). The abstract and the
+introduction now state the take-home message in one line---that the model
+evolves the strained spectrum, carrying rapid distortion and nonlinear
+relaxation together, and that the difference this makes to a downstream
+(leading-edge-noise) prediction is a term too large to neglect. The
+six contributions are listed once, as an itemised list in \S\,1. Redundant
+discussion has been removed by moving the CMK comparison, the full
+intervention catalogue, the implementation-verification detail and the
+leading-edge-chain steps to electronic supplementary material (\S\S\,S1--S5)
+and to Appendices~A--B, leaving each topic in a single place in the main
+text.
+
+\point{2. Section 2, and the disconnected subsections 2.1 and 2.2.}
+\begin{refcomment}
+``Section 2 illustrates what is the most difficult to understand \ldots\
+with almost disconnected sections 2.1 and 2.2. \ldots\ Since the
+application to flows with mean shear has been published to JFM in 2001 by
+Kerstein et al., I wonder if a clear review of the JFM paper should be
+better than the ms.\ subsection 2.1?''
+\end{refcomment}
+
+\response
+Section~2 has been reorganised around a single organising principle---the
+separation of the distortion physics by structure (production and a
+spectrally closed rapid operator as continuous forcing; the eddy events as
+the turbulence-driven relaxation)---which is stated at the outset and
+carried through to the summary (\S\,2.6). Following the referee's
+suggestion, the standard-ODT subsection (\S\,2.1) is now a compact review
+keyed to Kerstein (1999) and Kerstein \textit{et~al.} (2001) rather than a
+self-contained re-derivation. The link the referee found missing is made
+explicit: \S\,2.2 derives the strain-coupled line equation and its
+structural admissibility directly from the ODT kernel of \S\,2.1, and
+\S\,2.3 connects the Reynolds-stress/RDT description to that line equation
+through the rapid/slow pressure split, so 2.1 and 2.2 are now two stages of
+one construction rather than two reviews.
+
+\point{3. Sagaut \& Cambon (2018) as the reference set; RDT solution
+machinery.}
+\begin{refcomment}
+``all details for solving RDT equations (2.14) by a tensorial kernel are
+gathered in the monograph by Sagaut \& Cambon \ldots\ a new edition 2018
+\ldots\ is of particular interest with its more complete chapter 8 on
+turbulence with strain \ldots\ often more recent and more relevant that the
+ones of the ms.''
+\end{refcomment}
+
+\response
+Sagaut \& Cambon (2018) is now cited as the modern systematic reference for
+rapid distortion in the introduction and is used as the reference for the
+RDT solution machinery where the wavevector-ensemble integration is
+introduced (\S\S\,1, 2.3). We have taken the referee's point that the exact
+rapid pressure--strain and its spectral integration are standard results
+and now present them as such, attributed to the classical sources and the
+monograph, and separated from what is new here (the single-line reduction,
+its bounds and the measured axisymmetry hypothesis in \S\,5).
+
+\point{4. What are the objectives and achievements; the model description.}
+\begin{refcomment}
+``What are really the objectives and the achievements of the study remain
+very difficult to size. \ldots\ Near the end of the paper, before Eq.\
+(5.4) a useful possible description of the model is given: ODT evolves a
+velocity vector $u'(y)$ on a single line aligned with the resolved
+direction \ldots''
+\end{refcomment}
+
+\response
+The objectives and achievements are now stated up front: the abstract gives
+the aim and the outcome, and \S\,1 lists the six results with the section
+where each is established and, in each case, the reference data it is
+measured against. The concise description of the model the referee found
+useful late in the paper has been moved forward: the line and its
+observables are defined where the single-line question is set up (\S\,5.2,
+equation~(5.3)), and the operational picture---ODT evolving $\boldsymbol
+u'(y)$ on the resolved axis, with production and the rapid operator as
+continuous forcing and the eddy events as relaxation---is now given in the
+formulation and its summary (\S\S\,2.2, 2.6).
+
+\point{5. The closure appears in many places.}
+\begin{refcomment}
+``The related problem of closure appears in different sections,
+subsections, subsubsections \ldots\ p.\ 37, 5.3. Eqs.\ (5.7)-(5.10).
+Perhaps the sole original result for the closure of $\Pi^{(r)}_{ij}$?''
+\end{refcomment}
+
+\response
+The closure material is consolidated. The exact rapid term and the closure
+problem are stated once in the formulation (\S\,2.4.1); the isotropic
+moment closure actually used in the simulations is given once (\S\,2.4.2);
+and the single-line treatment---which the referee identifies as the
+original contribution---is collected in Section~5, where the collapsed
+spectral form (now equations~(5.6)--(5.9)) and its kernels appear, with the
+derivation in Appendix~A.3. Section~5.7 then shows explicitly that this
+spectral form reduces to the moment closure used earlier, so the two
+appearances of ``closure'' are the same object at two levels of resolution
+rather than separate treatments. We agree with the referee's reading that
+Section~5 is the original result, and the paper is now built around it.
+
+\point{6. Validation, and the reliance on the 1985 Lee \& Reynolds DNS.}
+\begin{refcomment}
+``Validation of (several versions of) the model is not clear. Why the
+author favours the old DNS by Lee and Reynolds (1985)? \ldots\ None of the
+15 figures of the ms.\ gives a convincing validation of a new model,
+capable of incorporating RDT and nonlinearity, vs.\ numerical or
+experimental results.''
+\end{refcomment}
+
+\response
+Validation has been strengthened and its versions delimited. Lee \&
+Reynolds (1985) is retained because it resolves a Reynolds number a single
+line can match and gives a graded moment-level target, but it is now one
+condensed subsection (\S\,3.4) and its figures (4--6) carry the independent
+DNS of Zusi \& Perot (2013, 2014) as an overlay, which agree where they
+overlap. The convincing spectral validation the referee asks for is new:
+figure~11 (with table~1) is a three-way comparison of the strain-induced
+spectral anisotropy against our own $128^3$ strained-box DNS and its
+exact-RDT companion at matched projection; figure~12 quantifies the
+distance from linear theory versus strain rapidity; figure~16 extends this
+to a five-way comparison across three rapidities; and figure~19 tests the
+assembled leading-edge-noise chain against four published experiments. The
+several ``versions'' are labelled explicitly (category.variant, table~4 and
+supplementary \S\,S2) so that which model produced which figure is
+unambiguous.
+
+\point{7. Introduction references far from the model; shock-turbulence.}
+\begin{refcomment}
+``The introduction incorporates many references of studies of sound
+radiation, that are very far from the model developped in the ms.\ Idem
+with the shock-turbulence interaction \ldots''
+\end{refcomment}
+
+\response
+The introduction has been rewritten and trimmed. The far-field
+sound-radiation citations not connected to the distortion problem have been
+removed, and the shock-turbulence material has been dropped; the retained
+acoustics references are confined to the leading-edge-noise framework that
+consumes the model output. The introduction now moves from the distortion
+problem to the specific gap the model fills, without the surrounding survey.
+
+\point{8. The conclusions open an application that is not carried out.}
+\begin{refcomment}
+``The last paragraph of the conclusions seems to open the way to an
+application to complex flow: \ldots\ the distorted, anisotropic upwash
+spectrum at the leading-edge plane \ldots\ I think that such an objective
+merits to be supported, but this is not really done in the present ms.''
+\end{refcomment}
+
+\response
+That application is now carried out in the body of the paper rather than
+deferred. Section~7 supplies the computed distorted upwash spectrum to
+Amiet's leading-edge-noise theory, both as a geometry-independent kernel
+ratio (figure~17) and as an absolute far-field prediction at the reference
+operating point (figure~18), quantifies the $5$--$20$\,dB difference from
+the frozen-spectrum practice, and compares the assembled prediction with
+four published experiments (figure~19), agreeing within $1$--$2$\,dB rms
+where the facilities are cleanest. The conclusions now report this result
+rather than proposing it.
+
+\end{document}

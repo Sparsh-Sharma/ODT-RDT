@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  20 SEP 2026 11:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.10)  22 SEP 2026 15:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1177,73 +1177,71 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 (Font)              scaled to size 9.0pt on input line 33.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 39.
+(Font)              scaled to size 10.0pt on input line 57.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 39.
+(Font)              scaled to size 10.0pt on input line 57.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.04pt on input line 43.
+(Font)              scaled to size 10.04pt on input line 61.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.04pt on input line 43.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.74011pt on input line 74.
+(Font)              scaled to size 10.04pt on input line 61.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.5pt on input line 78.
+(Font)              scaled to size 8.5pt on input line 83.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 8.5pt on input line 78.
+(Font)              scaled to size 8.5pt on input line 83.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 
  []
 
-LaTeX Font Info:    Calculating math sizes for size <10.74011> on input line 78.
+LaTeX Font Info:    Calculating math sizes for size <10.74011> on input line 83.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 10.74011pt on input line 78.
+(Font)              scaled to size 10.74011pt on input line 83.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 7.84023pt on input line 78.
+(Font)              scaled to size 7.84023pt on input line 83.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 5.90709pt on input line 78.
+(Font)              scaled to size 5.90709pt on input line 83.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.74011pt on input line 78.
+(Font)              scaled to size 10.74011pt on input line 83.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 7.84023pt on input line 78.
+(Font)              scaled to size 7.84023pt on input line 83.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 5.90709pt on input line 78.
+(Font)              scaled to size 5.90709pt on input line 83.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.74011pt on input line 78.
+(Font)              scaled to size 10.74011pt on input line 83.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 7.84023pt on input line 78.
+(Font)              scaled to size 7.84023pt on input line 83.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 5.90709pt on input line 78.
+(Font)              scaled to size 5.90709pt on input line 83.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.74011pt on input line 78.
+(Font)              scaled to size 10.74011pt on input line 83.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 7.84023pt on input line 78.
+(Font)              scaled to size 7.84023pt on input line 83.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 5.90709pt on input line 78.
+(Font)              scaled to size 5.90709pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.74011pt on input line 78.
+(Font)              scaled to size 10.74011pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 7.84023pt on input line 78.
+(Font)              scaled to size 7.84023pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 5.90709pt on input line 78.
+(Font)              scaled to size 5.90709pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.74011pt on input line 78.
+(Font)              scaled to size 10.74011pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 7.84023pt on input line 78.
+(Font)              scaled to size 7.84023pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 5.90709pt on input line 78.
+(Font)              scaled to size 5.90709pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.74011pt on input line 78.
+(Font)              scaled to size 10.74011pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 7.84023pt on input line 78.
+(Font)              scaled to size 7.84023pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 5.90709pt on input line 78.
+(Font)              scaled to size 5.90709pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.74011pt on input line 78.
+(Font)              scaled to size 10.74011pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 7.84023pt on input line 78.
+(Font)              scaled to size 7.84023pt on input line 83.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 5.90709pt on input line 78.
+(Font)              scaled to size 5.90709pt on input line 83.
 
 Overfull \hbox (1.0pt too wide) has occurred while \output is active
 []
@@ -1253,199 +1251,202 @@ Overfull \hbox (1.0pt too wide) has occurred while \output is active
 Overfull \vbox (34.02812pt too high) has occurred while \output is active []
 
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.24pt on input line 78.
+(Font)              scaled to size 10.24pt on input line 83.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.24pt on input line 78.
+(Font)              scaled to size 10.24pt on input line 83.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 78.
+(Font)              scaled to size 12.0pt on input line 83.
 
 
-Package xcolor Warning: Incompatible color definition on input line 78.
+Package xcolor Warning: Incompatible color definition on input line 83.
 
 [1{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}
 Non-PDF special ignored!
 <special> papersize=174mm,247mm
 ]
-LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 137.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
+(Font)              scaled to size 10.74011pt on input line 92.
+
+Overfull \hbox (1.61096pt too wide) has occurred while \output is active
+[] 
+ []
+
+[2]
+LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 155.
  (c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.74011pt on input line 137.
+(Font)              scaled to size 10.74011pt on input line 155.
 
-Overfull \hbox (1.61096pt too wide) has occurred while \output is active
-[] 
- []
-
-[2{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [3]
+ [3{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 279.
+(Font)              scaled to size 8.0pt on input line 297.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 6.0pt on input line 279.
+(Font)              scaled to size 6.0pt on input line 297.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 8.0pt on input line 279.
+(Font)              scaled to size 8.0pt on input line 297.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 6.0pt on input line 279.
+(Font)              scaled to size 6.0pt on input line 297.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 8.0pt on input line 279.
+(Font)              scaled to size 8.0pt on input line 297.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.0pt on input line 279.
+(Font)              scaled to size 6.0pt on input line 297.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 279.
+(Font)              scaled to size 8.0pt on input line 297.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.0pt on input line 279.
+(Font)              scaled to size 6.0pt on input line 297.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 8.0pt on input line 279.
+(Font)              scaled to size 8.0pt on input line 297.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.0pt on input line 279.
+(Font)              scaled to size 6.0pt on input line 297.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 8.0pt on input line 279.
+(Font)              scaled to size 8.0pt on input line 297.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 6.0pt on input line 279.
+(Font)              scaled to size 6.0pt on input line 297.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 8.0pt on input line 279.
+(Font)              scaled to size 8.0pt on input line 297.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.0pt on input line 279.
+(Font)              scaled to size 6.0pt on input line 297.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 8.0pt on input line 279.
+(Font)              scaled to size 8.0pt on input line 297.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.0pt on input line 279.
+(Font)              scaled to size 6.0pt on input line 297.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 7.2pt on input line 302.
+(Font)              scaled to size 7.2pt on input line 320.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 8.0pt on input line 313.
+(Font)              scaled to size 8.0pt on input line 331.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.73262pt on input line 340.
+(Font)              scaled to size 8.73262pt on input line 358.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 8.73262pt on input line 340.
-LaTeX Font Info:    Calculating math sizes for size <8.73262> on input line 340.
+(Font)              scaled to size 8.73262pt on input line 358.
+LaTeX Font Info:    Calculating math sizes for size <8.73262> on input line 358.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 8.73262pt on input line 340.
+(Font)              scaled to size 8.73262pt on input line 358.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 6.37477pt on input line 340.
+(Font)              scaled to size 6.37477pt on input line 358.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 4.80296pt on input line 340.
+(Font)              scaled to size 4.80296pt on input line 358.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 8.73262pt on input line 340.
+(Font)              scaled to size 8.73262pt on input line 358.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 6.37477pt on input line 340.
+(Font)              scaled to size 6.37477pt on input line 358.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 4.80296pt on input line 340.
+(Font)              scaled to size 4.80296pt on input line 358.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 8.73262pt on input line 340.
+(Font)              scaled to size 8.73262pt on input line 358.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.37477pt on input line 340.
+(Font)              scaled to size 6.37477pt on input line 358.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 4.80296pt on input line 340.
+(Font)              scaled to size 4.80296pt on input line 358.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 8.73262pt on input line 340.
+(Font)              scaled to size 8.73262pt on input line 358.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.37477pt on input line 340.
+(Font)              scaled to size 6.37477pt on input line 358.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 4.80296pt on input line 340.
+(Font)              scaled to size 4.80296pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 8.73262pt on input line 340.
+(Font)              scaled to size 8.73262pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.37477pt on input line 340.
+(Font)              scaled to size 6.37477pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 4.80296pt on input line 340.
+(Font)              scaled to size 4.80296pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 8.73262pt on input line 340.
+(Font)              scaled to size 8.73262pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 6.37477pt on input line 340.
+(Font)              scaled to size 6.37477pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 4.80296pt on input line 340.
+(Font)              scaled to size 4.80296pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 8.73262pt on input line 340.
+(Font)              scaled to size 8.73262pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.37477pt on input line 340.
+(Font)              scaled to size 6.37477pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 4.80296pt on input line 340.
+(Font)              scaled to size 4.80296pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 8.73262pt on input line 340.
+(Font)              scaled to size 8.73262pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.37477pt on input line 340.
+(Font)              scaled to size 6.37477pt on input line 358.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 4.80296pt on input line 340.
+(Font)              scaled to size 4.80296pt on input line 358.
 
 
-Package xcolor Warning: Incompatible color definition on input line 380.
+Package xcolor Warning: Incompatible color definition on input line 371.
 
 [4]
-LaTeX Font Info:    Trying to load font information for OT1+qhv on input line 400.
+LaTeX Font Info:    Trying to load font information for OT1+qhv on input line 418.
  (c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tex-gyre/ot1qhv.fd
 File: ot1qhv.fd 2009/09/25 v1.2 font definition file for OT1/qhv
 )
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 10.09572pt on input line 400.
+(Font)              scaled to size 10.09572pt on input line 418.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 7.36983pt on input line 400.
+(Font)              scaled to size 7.36983pt on input line 418.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 5.55267pt on input line 400.
- [5{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}]
+(Font)              scaled to size 5.55267pt on input line 418.
+ [5]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[6]
+[6{c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.84023pt on input line 533.
+(Font)              scaled to size 7.84023pt on input line 551.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.90709pt on input line 533.
+(Font)              scaled to size 5.90709pt on input line 551.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 10.74011pt on input line 546.
+(Font)              scaled to size 10.74011pt on input line 564.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 7.84023pt on input line 546.
+(Font)              scaled to size 7.84023pt on input line 564.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 5.90709pt on input line 546.
+(Font)              scaled to size 5.90709pt on input line 564.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 10.74011pt on input line 546.
+(Font)              scaled to size 10.74011pt on input line 564.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 7.84023pt on input line 546.
+(Font)              scaled to size 7.84023pt on input line 564.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 5.90709pt on input line 546.
+(Font)              scaled to size 5.90709pt on input line 564.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 10.74011pt on input line 546.
+(Font)              scaled to size 10.74011pt on input line 564.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 7.84023pt on input line 546.
+(Font)              scaled to size 7.84023pt on input line 564.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 5.90709pt on input line 546.
+(Font)              scaled to size 5.90709pt on input line 564.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 10.74011pt on input line 546.
+(Font)              scaled to size 10.74011pt on input line 564.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 7.84023pt on input line 546.
+(Font)              scaled to size 7.84023pt on input line 564.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 5.90709pt on input line 546.
+(Font)              scaled to size 5.90709pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 10.74011pt on input line 546.
+(Font)              scaled to size 10.74011pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 7.84023pt on input line 546.
+(Font)              scaled to size 7.84023pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 5.90709pt on input line 546.
+(Font)              scaled to size 5.90709pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 10.74011pt on input line 546.
+(Font)              scaled to size 10.74011pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 7.84023pt on input line 546.
+(Font)              scaled to size 7.84023pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 5.90709pt on input line 546.
+(Font)              scaled to size 5.90709pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 10.74011pt on input line 546.
+(Font)              scaled to size 10.74011pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 7.84023pt on input line 546.
+(Font)              scaled to size 7.84023pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 5.90709pt on input line 546.
+(Font)              scaled to size 5.90709pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 10.74011pt on input line 546.
+(Font)              scaled to size 10.74011pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 7.84023pt on input line 546.
+(Font)              scaled to size 7.84023pt on input line 564.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 5.90709pt on input line 546.
+(Font)              scaled to size 5.90709pt on input line 564.
  [7]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
@@ -1453,89 +1454,72 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 
 [8] [9]
 
-Package xcolor Warning: Incompatible color definition on input line 844.
+Package xcolor Warning: Incompatible color definition on input line 843.
 
 [10] [11]
-<Figures/fig_rdt_components.pdf, id=378, 377.8134pt x 182.55pt>
+<Figures/fig_rdt_components.pdf, id=377, 377.8134pt x 182.55pt>
 File: Figures/fig_rdt_components.pdf Graphic file (type pdf)
 <use Figures/fig_rdt_components.pdf>
-Package pdftex.def Info: Figures/fig_rdt_components.pdf  used on input line 962.
+Package pdftex.def Info: Figures/fig_rdt_components.pdf  used on input line 980.
 (pdftex.def)             Requested size: 384.0pt x 185.55229pt.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 8.20868pt on input line 975.
+(Font)              scaled to size 8.20868pt on input line 993.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 5.9923pt on input line 975.
+(Font)              scaled to size 5.9923pt on input line 993.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 4.51479pt on input line 975.
-<Figures/fig_upwash_amplification.pdf, id=388, 231.85574pt x 161.72545pt>
-File: Figures/fig_upwash_amplification.pdf Graphic file (type pdf)
-<use Figures/fig_upwash_amplification.pdf>
-Package pdftex.def Info: Figures/fig_upwash_amplification.pdf  used on input line 998.
-(pdftex.def)             Requested size: 238.07813pt x 166.07318pt.
+(Font)              scaled to size 4.51479pt on input line 993.
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
 [12]
-Underfull \vbox (badness 3250) has occurred while \output is active []
-
-
-Underfull \vbox (badness 3250) has occurred while \output is active []
-
+<Figures/fig_upwash_amplification.pdf, id=397, 231.85574pt x 161.72545pt>
+File: Figures/fig_upwash_amplification.pdf Graphic file (type pdf)
+<use Figures/fig_upwash_amplification.pdf>
+Package pdftex.def Info: Figures/fig_upwash_amplification.pdf  used on input line 1016.
+(pdftex.def)             Requested size: 238.07813pt x 166.07318pt.
  [13 <./Figures/fig_rdt_components.pdf> <./Figures/fig_upwash_amplification.pdf>]
-<Figures/fig_LR_plane.pdf, id=483, 300.13724pt x 186.73163pt>
-File: Figures/fig_LR_plane.pdf Graphic file (type pdf)
-<use Figures/fig_LR_plane.pdf>
-Package pdftex.def Info: Figures/fig_LR_plane.pdf  used on input line 1107.
-(pdftex.def)             Requested size: 307.20117pt x 191.1333pt.
-LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.73262pt on input line 1121.
-<Figures/fig_LR_axisym.pdf, id=498, 269.41725pt x 186.8822pt>
-File: Figures/fig_LR_axisym.pdf Graphic file (type pdf)
-<use Figures/fig_LR_axisym.pdf>
-Package pdftex.def Info: Figures/fig_LR_axisym.pdf  used on input line 1127.
-(pdftex.def)             Requested size: 276.48047pt x 191.78645pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[14] [15 <./Figures/fig_LR_plane.pdf> <./Figures/fig_LR_axisym.pdf>]
-<Figures/fig_LR_b11_closure.pdf, id=580, 269.95523pt x 182.2239pt>
+[14]
+<Figures/fig_LR_plane.pdf, id=497, 300.13724pt x 186.73163pt>
+File: Figures/fig_LR_plane.pdf Graphic file (type pdf)
+<use Figures/fig_LR_plane.pdf>
+Package pdftex.def Info: Figures/fig_LR_plane.pdf  used on input line 1125.
+(pdftex.def)             Requested size: 307.20117pt x 191.1333pt.
+LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.73262pt on input line 1139.
+<Figures/fig_LR_axisym.pdf, id=512, 269.41725pt x 186.8822pt>
+File: Figures/fig_LR_axisym.pdf Graphic file (type pdf)
+<use Figures/fig_LR_axisym.pdf>
+Package pdftex.def Info: Figures/fig_LR_axisym.pdf  used on input line 1145.
+(pdftex.def)             Requested size: 276.48047pt x 191.78645pt.
+ [15 <./Figures/fig_LR_plane.pdf>]
+<Figures/fig_LR_b11_closure.pdf, id=560, 269.95523pt x 182.2239pt>
 File: Figures/fig_LR_b11_closure.pdf Graphic file (type pdf)
 <use Figures/fig_LR_b11_closure.pdf>
-Package pdftex.def Info: Figures/fig_LR_b11_closure.pdf  used on input line 1171.
+Package pdftex.def Info: Figures/fig_LR_b11_closure.pdf  used on input line 1189.
 (pdftex.def)             Requested size: 314.88281pt x 212.56158pt.
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[16 <./Figures/fig_LR_b11_closure.pdf>]
-<Figures/fig_spec_kinematic.pdf, id=625, 378.25217pt x 159.99774pt>
+[16 <./Figures/fig_LR_axisym.pdf>]
+<Figures/fig_spec_kinematic.pdf, id=609, 378.25217pt x 159.99774pt>
 File: Figures/fig_spec_kinematic.pdf Graphic file (type pdf)
 <use Figures/fig_spec_kinematic.pdf>
-Package pdftex.def Info: Figures/fig_spec_kinematic.pdf  used on input line 1231.
+Package pdftex.def Info: Figures/fig_spec_kinematic.pdf  used on input line 1249.
 (pdftex.def)             Requested size: 384.0pt x 162.42894pt.
- [17 <./Figures/fig_spec_kinematic.pdf>]
+ [17 <./Figures/fig_LR_b11_closure.pdf> <./Figures/fig_spec_kinematic.pdf>]
 <Figures/fig_rdt_projection.pdf, id=656, 376.85335pt x 152.65633pt>
 File: Figures/fig_rdt_projection.pdf Graphic file (type pdf)
 <use Figures/fig_rdt_projection.pdf>
-Package pdftex.def Info: Figures/fig_rdt_projection.pdf  used on input line 1290.
+Package pdftex.def Info: Figures/fig_rdt_projection.pdf  used on input line 1308.
 (pdftex.def)             Requested size: 384.0pt x 155.55363pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
@@ -1545,14 +1529,20 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 <Figures/fig_spec_bvc.pdf, id=696, 378.40276pt x 160.1423pt>
 File: Figures/fig_spec_bvc.pdf Graphic file (type pdf)
 <use Figures/fig_spec_bvc.pdf>
-Package pdftex.def Info: Figures/fig_spec_bvc.pdf  used on input line 1376.
+Package pdftex.def Info: Figures/fig_spec_bvc.pdf  used on input line 1394.
 (pdftex.def)             Requested size: 384.0pt x 162.52194pt.
  [19]
-<Figures/fig_spec_op.pdf, id=712, 377.71515pt x 160.04092pt>
+<Figures/fig_spec_op.pdf, id=710, 377.71515pt x 160.04092pt>
 File: Figures/fig_spec_op.pdf Graphic file (type pdf)
 <use Figures/fig_spec_op.pdf>
-Package pdftex.def Info: Figures/fig_spec_op.pdf  used on input line 1450.
+Package pdftex.def Info: Figures/fig_spec_op.pdf  used on input line 1468.
 (pdftex.def)             Requested size: 384.0pt x 162.71452pt.
+
+Underfull \vbox (badness 1565) has occurred while \output is active []
+
+
+Underfull \vbox (badness 1565) has occurred while \output is active []
+
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
@@ -1560,42 +1550,42 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 
 [20 <./Figures/fig_spec_bvc.pdf>] [21 <./Figures/fig_spec_op.pdf>]
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 8.46002pt on input line 1544.
+(Font)              scaled to size 8.46002pt on input line 1562.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 6.20401pt on input line 1544.
+(Font)              scaled to size 6.20401pt on input line 1562.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 5.17001pt on input line 1544.
-<Figures/fig_threeway.pdf, id=769, 376.06752pt x 166.53618pt>
-File: Figures/fig_threeway.pdf Graphic file (type pdf)
-<use Figures/fig_threeway.pdf>
-Package pdftex.def Info: Figures/fig_threeway.pdf  used on input line 1589.
-(pdftex.def)             Requested size: 384.0pt x 170.05013pt.
+(Font)              scaled to size 5.17001pt on input line 1562.
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
 [22]
-<Figures/fig_rdt_distance.pdf, id=779, 232.89375pt x 161.48016pt>
+<Figures/fig_threeway.pdf, id=776, 376.06752pt x 166.53618pt>
+File: Figures/fig_threeway.pdf Graphic file (type pdf)
+<use Figures/fig_threeway.pdf>
+Package pdftex.def Info: Figures/fig_threeway.pdf  used on input line 1607.
+(pdftex.def)             Requested size: 384.0pt x 170.05013pt.
+<Figures/fig_rdt_distance.pdf, id=778, 232.89375pt x 161.48016pt>
 File: Figures/fig_rdt_distance.pdf Graphic file (type pdf)
 <use Figures/fig_rdt_distance.pdf>
-Package pdftex.def Info: Figures/fig_rdt_distance.pdf  used on input line 1637.
+Package pdftex.def Info: Figures/fig_rdt_distance.pdf  used on input line 1655.
 (pdftex.def)             Requested size: 238.07813pt x 165.0747pt.
+
+Underfull \vbox (badness 5359) has occurred while \output is active []
+
+
+Underfull \vbox (badness 5359) has occurred while \output is active []
+
  [23 <./Figures/fig_threeway.pdf>]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[24 <./Figures/fig_rdt_distance.pdf>]
-Overfull \hbox (14.10033pt too wide) in paragraph at lines 1797--1801
+[24 <./Figures/fig_rdt_distance.pdf>] [25]
+Overfull \hbox (14.10033pt too wide) in paragraph at lines 1815--1819
 []\OT1/minntx/m/n/10.74011 Under A1 the an-gu-lar in-te-gral in [] can be car-ried out. Writ-ing $[] \U/ntxmia/m/it/10.74011 = \LMS/ntxsy/m/n/10.74011 ¹\OML/ntxmi/m/it/10.74011 ^^T[] [] ^^R;  ^^T[];  ^^T[] [] ^^R\LMS/ntxsy/m/n/10.74011 º$
  []
-
-[25]
-Underfull \vbox (badness 4217) has occurred while \output is active []
-
-
-Underfull \vbox (badness 4217) has occurred while \output is active []
 
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
@@ -1603,63 +1593,51 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
  []
 
 [26] [27]
-<Figures/fig_a1_control.pdf, id=922, 377.44029pt x 153.3159pt>
+<Figures/fig_a1_control.pdf, id=921, 377.44029pt x 153.3159pt>
 File: Figures/fig_a1_control.pdf Graphic file (type pdf)
 <use Figures/fig_a1_control.pdf>
-Package pdftex.def Info: Figures/fig_a1_control.pdf  used on input line 2001.
+Package pdftex.def Info: Figures/fig_a1_control.pdf  used on input line 2019.
 (pdftex.def)             Requested size: 384.0pt x 155.9801pt.
+
+Underfull \vbox (badness 1264) has occurred while \output is active []
+
+
+Underfull \vbox (badness 1264) has occurred while \output is active []
+
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[28 <./Figures/fig_a1_control.pdf>] [29]
-<Figures/fig_pi_kernels.pdf, id=985, 271.2423pt x 175.14145pt>
+[28] [29 <./Figures/fig_a1_control.pdf>]
+<Figures/fig_pi_kernels.pdf, id=984, 271.2423pt x 175.14145pt>
 File: Figures/fig_pi_kernels.pdf Graphic file (type pdf)
 <use Figures/fig_pi_kernels.pdf>
-Package pdftex.def Info: Figures/fig_pi_kernels.pdf  used on input line 2105.
+Package pdftex.def Info: Figures/fig_pi_kernels.pdf  used on input line 2123.
 (pdftex.def)             Requested size: 276.48047pt x 178.53767pt.
-
-Underfull \vbox (badness 1009) has occurred while \output is active []
-
-
-Underfull \vbox (badness 1009) has occurred while \output is active []
-
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
 [30 <./Figures/fig_pi_kernels.pdf>] [31]
-Overfull \hbox (3.95331pt too wide) in paragraph at lines 2251--2283
+Overfull \hbox (3.95331pt too wide) in paragraph at lines 2269--2301
 \OT1/minntx/m/n/10.74011 The mech-a-nism was lo-cated by a con-trolled search: ev-ery in-ter-ven-tion category---acceptance
  []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[32]
-<Figures/fig_clock.pdf, id=1079, 378.45828pt x 187.53664pt>
+[32] [33]
+<Figures/fig_clock.pdf, id=1086, 378.45828pt x 187.53664pt>
 File: Figures/fig_clock.pdf Graphic file (type pdf)
 <use Figures/fig_clock.pdf>
-Package pdftex.def Info: Figures/fig_clock.pdf  used on input line 2353.
+Package pdftex.def Info: Figures/fig_clock.pdf  used on input line 2371.
 (pdftex.def)             Requested size: 384.0pt x 190.29185pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [33]
-Overfull \hbox (20.32889pt too wide) in paragraph at lines 2389--2415
+Overfull \hbox (20.32889pt too wide) in paragraph at lines 2407--2433
 \OT1/minntx/m/n/10.74011 anisotropy per wavenum-ber band---the ob-serv-able on which \TS1/ntxtlf/m/n/10.74011 §[][]\OT1/minntx/m/n/10.74011 4.6.1[][] es-tab-lished the benchmark---
  []
 
@@ -1672,13 +1650,13 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 <Figures/fig_fourway5.pdf, id=1138, 376.86206pt x 171.1213pt>
 File: Figures/fig_fourway5.pdf Graphic file (type pdf)
 <use Figures/fig_fourway5.pdf>
-Package pdftex.def Info: Figures/fig_fourway5.pdf  used on input line 2418.
+Package pdftex.def Info: Figures/fig_fourway5.pdf  used on input line 2436.
 (pdftex.def)             Requested size: 384.0pt x 174.36908pt.
  [35 <./Figures/fig_fourway5.pdf>]
 <Figures/fig_lenoise.pdf, id=1187, 378.11365pt x 184.21222pt>
 File: Figures/fig_lenoise.pdf Graphic file (type pdf)
 <use Figures/fig_lenoise.pdf>
-Package pdftex.def Info: Figures/fig_lenoise.pdf  used on input line 2497.
+Package pdftex.def Info: Figures/fig_lenoise.pdf  used on input line 2515.
 (pdftex.def)             Requested size: 384.0pt x 187.08725pt.
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
@@ -1689,124 +1667,125 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 <Figures/fig_amiet_abs.pdf, id=1221, 261.75366pt x 181.38968pt>
 File: Figures/fig_amiet_abs.pdf Graphic file (type pdf)
 <use Figures/fig_amiet_abs.pdf>
-Package pdftex.def Info: Figures/fig_amiet_abs.pdf  used on input line 2542.
+Package pdftex.def Info: Figures/fig_amiet_abs.pdf  used on input line 2560.
 (pdftex.def)             Requested size: 268.79883pt x 186.27158pt.
  [37 <./Figures/fig_amiet_abs.pdf>]
 <Figures/fig_expval_paper.pdf, id=1261, 376.06691pt x 346.16127pt>
 File: Figures/fig_expval_paper.pdf Graphic file (type pdf)
 <use Figures/fig_expval_paper.pdf>
-Package pdftex.def Info: Figures/fig_expval_paper.pdf  used on input line 2599.
+Package pdftex.def Info: Figures/fig_expval_paper.pdf  used on input line 2617.
 (pdftex.def)             Requested size: 384.0pt x 353.4654pt.
-
-Underfull \vbox (badness 5288) has occurred while \output is active []
-
-
-Underfull \vbox (badness 5288) has occurred while \output is active []
-
-
-Overfull \hbox (1.61096pt too wide) has occurred while \output is active
-[] 
- []
-
-[38 <./Figures/fig_expval_paper.pdf>]
-<Figures/fig_amiet_rapid.pdf, id=1334, 376.95367pt x 197.32721pt>
+<Figures/fig_amiet_rapid.pdf, id=1295, 376.95367pt x 197.32721pt>
 File: Figures/fig_amiet_rapid.pdf Graphic file (type pdf)
 <use Figures/fig_amiet_rapid.pdf>
-Package pdftex.def Info: Figures/fig_amiet_rapid.pdf  used on input line 2661.
+Package pdftex.def Info: Figures/fig_amiet_rapid.pdf  used on input line 2679.
 (pdftex.def)             Requested size: 384.0pt x 201.02115pt.
-<Figures/fig_frozen_cost.pdf, id=1342, 298.56726pt x 194.00166pt>
-File: Figures/fig_frozen_cost.pdf Graphic file (type pdf)
-<use Figures/fig_frozen_cost.pdf>
-Package pdftex.def Info: Figures/fig_frozen_cost.pdf  used on input line 2712.
-(pdftex.def)             Requested size: 307.20117pt x 199.61375pt.
- [39]
+
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
-[40 <./Figures/fig_amiet_rapid.pdf> <./Figures/fig_frozen_cost.pdf>] [41]
-pdfTeX warning (ext4): destination with the same identifier (name{section.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2861 ...n{The forward map and the bound kernels}
-                                                  \label{app:forward}
+[38] [39 <./Figures/fig_expval_paper.pdf>]
+<Figures/fig_frozen_cost.pdf, id=1349, 298.56726pt x 194.00166pt>
+File: Figures/fig_frozen_cost.pdf Graphic file (type pdf)
+<use Figures/fig_frozen_cost.pdf>
+Package pdftex.def Info: Figures/fig_frozen_cost.pdf  used on input line 2730.
+(pdftex.def)             Requested size: 307.20117pt x 199.61375pt.
+
+Underfull \vbox (badness 4266) has occurred while \output is active []
+
+
+Underfull \vbox (badness 4266) has occurred while \output is active []
+
+
+Overfull \hbox (1.61096pt too wide) has occurred while \output is active
+[] 
+ []
+
+[40 <./Figures/fig_amiet_rapid.pdf>] [41 <./Figures/fig_frozen_cost.pdf>]
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
  []
 
 [42]
+pdfTeX warning (ext4): destination with the same identifier (name{section.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2879 ...n{The forward map and the bound kernels}
+                                                  \label{app:forward}
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2877.
+(Font)              scaled to size 8.73262pt on input line 2895.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2877.
+(Font)              scaled to size 6.37477pt on input line 2895.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2877.
+(Font)              scaled to size 4.80296pt on input line 2895.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 8.73262pt on input line 2877.
+(Font)              scaled to size 8.73262pt on input line 2895.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 6.37477pt on input line 2877.
+(Font)              scaled to size 6.37477pt on input line 2895.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 4.80296pt on input line 2877.
+(Font)              scaled to size 4.80296pt on input line 2895.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2877.
+(Font)              scaled to size 8.73262pt on input line 2895.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2877.
+(Font)              scaled to size 6.37477pt on input line 2895.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2877.
+(Font)              scaled to size 4.80296pt on input line 2895.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2877.
+(Font)              scaled to size 8.73262pt on input line 2895.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2877.
+(Font)              scaled to size 6.37477pt on input line 2895.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2877.
+(Font)              scaled to size 4.80296pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 8.73262pt on input line 2877.
+(Font)              scaled to size 8.73262pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 6.37477pt on input line 2877.
+(Font)              scaled to size 6.37477pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 4.80296pt on input line 2877.
+(Font)              scaled to size 4.80296pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2877.
+(Font)              scaled to size 8.73262pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2877.
+(Font)              scaled to size 6.37477pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2877.
+(Font)              scaled to size 4.80296pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2877.
+(Font)              scaled to size 8.73262pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2877.
+(Font)              scaled to size 6.37477pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2877.
+(Font)              scaled to size 4.80296pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2877.
+(Font)              scaled to size 8.73262pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 6.37477pt on input line 2877.
+(Font)              scaled to size 6.37477pt on input line 2895.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 4.80296pt on input line 2877.
+(Font)              scaled to size 4.80296pt on input line 2895.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.73262pt on input line 2936.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.37477pt on input line 2985.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 4.80296pt on input line 2985.
+(Font)              scaled to size 8.73262pt on input line 2954.
  [43]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.37477pt on input line 3003.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 4.80296pt on input line 3003.
+
 pdfTeX warning (ext4): destination with the same identifier (name{section.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3066 ...ters, initial conditions and statistics}
+l.3084 ...ters, initial conditions and statistics}
                                                   
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3071 ... configurations and intervention labels}
+l.3089 ... configurations and intervention labels}
                                                   
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 9.0pt on input line 3094.
+(Font)              scaled to size 9.0pt on input line 3112.
 
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3126 \subsection{ODT configurations}
+l.3144 \subsection{ODT configurations}
                                       
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
@@ -1816,12 +1795,18 @@ Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3147 ...rained-box DNS and exact-RDT companions}
-                                                   [45]
+l.3165 ...rained-box DNS and exact-RDT companions}
+                                                  
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [45]
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3172 \subsection{Statistics policy}
+l.3190 \subsection{Statistics policy}
                                       (build/main_v4_overleaf.bbl
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 8.73pt on input line 1.
@@ -1833,6 +1818,12 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
 (Font)              scaled to size 8.73pt on input line 6.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 (Font)              scaled to size 8.73pt on input line 6.
+
+Underfull \vbox (badness 1014) has occurred while \output is active []
+
+
+Underfull \vbox (badness 1014) has occurred while \output is active []
+
 
 Overfull \hbox (1.61096pt too wide) has occurred while \output is active
 [] 
@@ -1858,13 +1849,13 @@ L3 programming layer <2020/03/25>
 Here is how much of TeX's memory you used:
  29749 strings out of 467159
  544214 string characters out of 5398120
- 962614 words of memory out of 5000000
+ 962814 words of memory out of 5000000
  58181 multiletter control sequences out of 15000+600000
  836063 words of font info for 417 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  92i,13n,131p,3771b,911s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexas.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/Users/shar_sp/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on build/main_v4_overleaf.pdf (48 pages, 893440 bytes).
+Output written on build/main_v4_overleaf.pdf (48 pages, 894833 bytes).
 PDF statistics:
  1803 PDF objects out of 2073 (max. 8388607)
  1377 compressed objects within 14 object streams

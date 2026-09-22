@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+% ---- a visually distinct block for the referee's comments ----
+\definecolor{commentgray}{gray}{0.35}
+\newenvironment{refcomment}%
+  {\begin{quote}\color{commentgray}\itshape}%
+  {\end{quote}}
+\newcommand{\response}{\medskip\noindent\textbf{Response.}\ }
+\newcommand{\point}[1]{\bigskip\noindent\textbf{#1}}
+
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+
+\title{Response to Referee 1\\[2pt]
+\large Manuscript JFM-2026-1781\\
+\emph{Strain-coupled one-dimensional turbulence for rapid distortion}\\
+Sharma \& Kerstein}
+\date{}
+
+\begin{document}
+\maketitle
+
+We thank the referee for a careful reading and for identifying the two
+directions in which the original manuscript was underdeveloped. The paper
+has been substantially rewritten. It is now built around the single-line
+analysis the referee identified as the strongest part; an independent
+strained-box DNS with exact-RDT companions has been added as the spectral
+benchmark of record; the leading-edge application is carried through to an
+absolute prediction and compared with four experiments; and the closure
+deficiencies the referee named are now measured against the DNS and stated
+as quantified limits rather than left open. Section, figure, table and
+equation numbers below refer to the revised manuscript.
+
+\point{Major point 1 (validation of the main result outside the model).}
+\begin{refcomment}
+``The central claim is that at $Sk_t/\varepsilon \approx 0.8$ the spectrum
+develops a broadband distortion that differs from the rigid spectral
+translation predicted by rapid-distortion theory. This is established by
+comparing the model with itself, once with the strain switched on and once
+with it switched off. \ldots\ the predicted distorted spectrum is never
+directly compared against an independent spectral benchmark.''
+\end{refcomment}
+
+\response
+We accept the objection. The strain-on/strain-off comparison is retained
+only as an internal decomposition (now \S\,4.3, figure~9) and is no longer
+offered as validation. The validation of record is now an independent,
+projection-matched spectral benchmark: a $128^3$ strained-box DNS of
+plane-strained homogeneous turbulence in a deforming-frame pseudo-spectral
+formulation, together with exact-RDT companion calculations, all reduced to
+the same one-dimensional line observables (\S\,4.6; DNS protocol in
+Appendix~B.3). The three-way comparison of the strain-induced spectral
+anisotropy---SC-ODT against exact projected RDT against DNS---is
+figure~11 and table~1 at $e=1$, $Sk_t/\varepsilon=0.8$. It shows directly
+what the model reproduces (the upwash amplification) and where it departs
+(its wavenumber-uniform signature against the wavenumber-dependent DNS and
+RDT). Section~4.6.2 and figure~12 add a distance-from-linear-theory
+envelope (the rms log-residual of a two-parameter exact-RDT-distorted
+von~K\'arm\'an fit) as a function of strain rapidity $Sk_t/\varepsilon$,
+giving the departure a measured, monotone size. A five-way version at three
+rapidities ($Sk_t/\varepsilon=0.4,0.8,16$) is figure~16.
+
+\point{Major point 2 (the original single-line development is not used in
+the reported calculations).}
+\begin{refcomment}
+``The simulations are performed using the closure introduced in Section
+3.2, whereas the more complete single-line formulation developed later is
+not used in generating the principal results. \ldots\ it is unclear whether
+the main spectral conclusions would remain unchanged under the formulation
+that the paper ultimately argues is the more appropriate one.''
+\end{refcomment}
+
+\response
+The referee is correct that the reported spectral calculations use the
+algebraic (LRR) moment closure, and we now state this plainly at each
+figure and in Section~5.7. Section~5 has been reframed so that it no longer
+claims a closed single-line functional that then goes unused. Instead it
+(i) states the obstruction exactly---the line carries the
+transverse-integrated spectra of equation~(5.3), and the rapid term
+requires the direction-resolved projection weight that those integrals
+destroy (\S\,5.2); (ii) derives sharp bounds on the rapid term from line
+data alone by linear programming, with the residual indeterminacy tabulated
+(\S\,5.4, table~2, Appendix~A.4); and (iii) shows that the collapsed
+spectral form of equations~(5.6)--(5.9) reduces exactly to the moment
+closure in the isotropic limit, equation~(5.11), which is what justifies
+using that closure in the simulations (\S\,5.7, figure~14). The consistency
+question the referee raises---whether the conclusions survive where the
+moment closure loses accuracy---is answered by measurement rather than
+assumption: the axisymmetry hypothesis on which the collapse rests is
+measured against the DNS (\S\,5.5, table~3, figure~13) and the
+component-ordering error is localised (\S\,5.6; next point), while the
+envelope of \S\,4.6.2 bounds the resulting distance from linear theory over
+the strain range. Exercising the full wavenumber-dependent kernel of
+equation~(5.6) inside ODT is identified as the missing ingredient (\S\,6.4)
+and left as future work; we do not claim it here.
+
+\point{Major point 3 (the rapid pressure--strain closure becomes
+qualitatively inaccurate under plane strain).}
+\begin{refcomment}
+``Under plane strain, the exact solution predicts growth of the neutral
+spanwise component, which eventually overtakes the upwash component,
+whereas both closures predict the opposite trend. \ldots\ What remains
+unclear is how sensitive the subsequent spectral predictions are to this
+known deficiency.''
+\end{refcomment}
+
+\response
+This is now measured, localised and bounded rather than only acknowledged.
+The exact rapid term evaluated in the DNS (\S\,5.6) gives
+$\Pi^{(\mathrm r)}_{33}/k_tS=0.14$ at $Sk_t/\varepsilon=0.8$ and $0.27$ at
+$16$, the latter exceeding $\Pi^{(\mathrm r)}_{11}=0.23$: the overtaking is
+real and sets in at rapid strain. We show that the error lives in the
+moment closure's anisotropy-dependent term---LRR reproduces
+$\Pi^{(\mathrm r)}_{33}$ at $Sk_t/\varepsilon=0.8$ but delivers half the
+exact value at $16$, and IP gives zero identically---and not in the line
+model: the ODT moment-level $b_{ij}$ follows the closure to $\sim 2\%$. In
+the spectral representation the ordering is carried by the anisotropy
+scalar $c$ through the kernels~(5.7)--(5.9), which the moment reduction
+discards. The same deficiency appears at the moment level in the
+plane-strain $b_{11}$ (\S\,3.4, figure~6): the fast-strain DNS tracks exact
+RDT while the closures give $b_{11}\approx0$. On sensitivity: the
+acoustically relevant quantity is the upwash amplification $b_{22}$, and
+the A1 control experiment (figure~13\textit{b}, table~3) shows it
+indistinguishable between plane and axisymmetric strain even at
+$Sk_t/\varepsilon=16$, i.e.\ robust to the azimuthal structure that carries
+the ordering error; the distance envelope of \S\,4.6.2 gives the overall
+sensitivity of the spectral prediction its measured bound.
+
+\point{Major point 4 (the leading-edge connection is not carried through).}
+\begin{refcomment}
+``First, it is not demonstrated that the spectrum produced by the ODT line
+is the same quantity required by Amiet's theory, which is naturally
+formulated in terms of chordwise and spanwise wavenumbers. Second, the
+strain history responsible for generating the turbulence distortion is
+deferred to future work.''
+\end{refcomment}
+
+\response
+The connection is now carried through in a dedicated Section~7. The
+two-dimensional upwash spectrum $\Phi_{ww}(K_x,K_y)$ that Amiet's theory
+consumes is supplied from the axisymmetric representation of \S\,5.3 fitted
+to the line spectra, so the model's one-dimensional output is mapped to the
+quantity the aeroacoustic kernel requires; the computed distorted inflow is
+then fed to Amiet's response both as a ratio from which aerofoil geometry
+and observer position cancel (figure~17) and as an absolute far-field
+prediction at the reference operating point (figure~18). The assembled
+chain is compared with four published experiments (figure~19) and lies
+within $1$--$2$\,dB rms where the facilities are cleanest; the term omitted
+by the frozen-spectrum assumption is $5$--$20$\,dB (figures~17--21). On the
+second part, we agree the strain history from a real stagnation flow is not
+modelled, and we now scope the claim as a frozen-strain calculation: the
+operating point is entered through an effective strain estimated
+geometrically (potential-flow stagnation-line accumulation truncated at the
+eddy scale, varied over $\Lambda/4$--$\Lambda$; figure~19 caption), and the
+distance envelope of \S\,4.6.2 is carried through as the uncertainty
+statement (figures~20--21). The mapping from model operating point to the
+stagnation environment is stated as the remaining step, not claimed as
+solved.
+
+\bigskip
+\hrule
+\bigskip
+\noindent\textbf{Minor points.}
+
+\point{(i) Novelty of pre-impact distortion; dos Santos, Ribeiro, Piccolo.}
+\response
+The introduction has been rewritten. The pre-impact distortion is now
+presented as established, with references to dos Santos \textit{et al.}
+(2023), Ribeiro \textit{et al.} (2023) and Piccolo \textit{et al.} (2024),
+and the distinction our contribution rests on---prescribing an RDT- or
+measurement-derived spectrum versus \emph{evolving} one, including the
+nonlinear relaxation---is stated explicitly (\S\,1).
+
+\point{(ii) The dissipation estimate as the residual of two larger terms.}
+\response
+The residual-of-two-large-terms estimate has been replaced. Because the
+eddy events conserve energy and the production is exact, molecular
+dissipation is the only sink and is fixed by the resolved energy budget of
+equation~(4.1), with every term available on the line (\S\,4.4). This
+estimator-free budget gives $\chi=Sk_t/\varepsilon\approx1.2$, corroborated
+within a few tens of per cent by the direct gradient estimate
+$\langle 2\nu(\partial u_i/\partial y)^2\rangle\approx1.1$; the spectral
+peak migration corroborates the $\chi=O(1)$ reading independently of the
+dissipation estimate altogether.
+
+\point{(iii) The Lee \& Reynolds strain-parameter identification (factor of
+two).}
+\response
+This is now discussed where the comparison is made (\S\,3.4). Lee \&
+Reynolds characterise each run by $S^{*}=Sq^2/\varepsilon$, which equals
+$2\chi$ \emph{identically} because $q^2=2k_t$; the manuscript now states
+that this is a correspondence of definitions, not a calibration, and notes
+that the axisymmetric anisotropy they report is essentially independent of
+$S^{*}$, so the comparison target is parameter-free.
+
+\point{(iv) Propositions 1 and 2.}
+\response
+Agreed. They are demoted from results to consistency checks and presented
+as such in the verification section (\S\,3.1--3.2).
+
+\point{(v) Length; Section 2 non-original; implementation detail to
+supplementary material.}
+\response
+The standard-ODT material of \S\,2.1 is compressed to a review keyed to
+citations of the original ODT papers, and established-versus-new material
+is separated through Section~2. Implementation detail, the CMK comparison
+(\S\,4.5 summary; full account in supplementary \S\,S1) and the full
+intervention catalogue (supplementary \S\,S2; labels in Appendix~B.1) have
+been moved out of the main text.
+
+\bigskip
+\noindent
+We are grateful for the recommendation to build the study around the
+single-line analysis; that is now the organising spine of the revised
+paper.
+
+\end{document}

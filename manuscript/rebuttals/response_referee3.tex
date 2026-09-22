@@ -1,0 +1,146 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\definecolor{commentgray}{gray}{0.35}
+\newenvironment{refcomment}%
+  {\begin{quote}\color{commentgray}\itshape}%
+  {\end{quote}}
+\newcommand{\response}{\medskip\noindent\textbf{Response.}\ }
+\newcommand{\point}[1]{\bigskip\noindent\textbf{#1}}
+
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+
+\title{Response to Referee 3\\[2pt]
+\large Manuscript JFM-2026-1781\\
+\emph{Strain-coupled one-dimensional turbulence for rapid distortion}\\
+Sharma \& Kerstein}
+\date{}
+
+\begin{document}
+\maketitle
+
+We thank the referee. Both of the fundamental objections were correct, and
+addressing them has changed the theory rather than only its presentation.
+The rigid-translation object is no longer treated as a linear-RDT
+benchmark; the exact projected RDT, which is broadband, is now the linear
+reference, and the spectral results are validated against a strained-box
+DNS. Section~5 no longer claims a closed single-line functional: it states
+the obstruction exactly, bounds the rapid term from line data, and measures
+the axisymmetry hypothesis instead of assuming it. Established results,
+assumptions and new developments are separated, the hypothesis labelled A1
+is defined at first use, and the kernel equations are derived in an
+appendix. Section, figure, table and equation numbers below refer to the
+revised manuscript.
+
+\point{1. The linear-RDT spectral benchmark is not justified.}
+\begin{refcomment}
+``the manuscript treats rigid translation of the one-dimensional spectrum
+as an exact linear-RDT benchmark, although this is neither derived from the
+full RDT equations nor demonstrated by a full spectral RDT calculation.
+\ldots\ In Equation (2.14), the Fourier velocity amplitudes depend on the
+full three-dimensional wavevector. The manuscript provides no derivation
+showing that the projected spectrum must undergo a rigid translation.''
+\end{refcomment}
+
+\response
+We accept this in full and have removed the incorrect identification. The
+$\mathrm{d}\kappa_2/\mathrm{d}t=-A_{22}\kappa_2$ relation is now presented
+for what it is---the kinematics of the ODT domain dilatation
+(\S\,2.5, equation~(2.20))---and the eddy-free run that follows it is
+labelled the model's \emph{kinematic reference}, not linear RDT
+(\S\,4.1, figure~7). The linear reference against which the line model must
+be judged is now the exact projected RDT, and it is computed, not asserted:
+\S\,4.2 and figure~8 give the closed-form Cauchy solution for an isotropic
+initial spectrum, integrated over the transverse wavenumber plane, and show
+that the exactly distorted, line-projected component spectra are
+\emph{not} a rigid translation---the shape ratio to a rigid translation
+departs from unity and the components split. The manuscript now states
+explicitly that the reference already differs from the model's own
+kinematics at the linear level. The consequences the referee flags are
+correspondingly revised: the claim of ``suppressed spectral migration''
+relative to a rigid law is replaced by a measured comparison against exact
+RDT and DNS, and the spectral results are validated against the
+strained-box DNS of \S\,4.6 (figure~11, table~1), with the
+distance-from-linear-theory envelope of \S\,4.6.2 (figure~12) as the
+quantitative statement. The referee is also right that the \S\,4.1
+(formerly Reynolds-stress-level) tests do not establish a spectral result;
+that is now the explicit reason the strained-box DNS was performed
+(\S\,4.6, opening paragraph).
+
+\point{2. The claimed single-line closure of the rapid pressure--strain
+term is not closed.}
+\begin{refcomment}
+``Eq.\ (5.7) still requires the two-variable spectral functions
+$a(k_2,k_\perp)$ and $c(k_2,k_\perp)$ and integration over the unresolved
+transverse wavenumber $k_\perp$. \ldots\ the paper appears to derive only
+an axisymmetric 2D representation, not a single-line closure. Moreover,
+this spectral formulation is not used in the simulations \ldots''
+\end{refcomment}
+
+\response
+The referee's diagnosis is correct and is now the stated position of the
+section, not a claim it contends with. Section~5.3 carries out the
+axisymmetric collapse and then states its status precisely: under the
+axisymmetry hypothesis the rapid term is a linear functional of the two
+scalars $a(\kappa_2,\kappa_\perp)$ and $c(\kappa_2,\kappa_\perp)$ on the
+resolved half-plane (equation~(5.6) with kernels~(5.7)--(5.9))---``a
+two-dimensional representation, not yet a single-line closure, since the
+line determines only the $\kappa_\perp$-integrals of fixed combinations of
+$a$ and $c$ and not the functions themselves.'' The infinite-dimensional
+null space of the map from line data to the rapid term is stated exactly
+(\S\,5.2). What the line \emph{does} determine is then made quantitative:
+because the rapid term is linear in $(a,c)$, its extreme values over
+everything consistent with the line spectra, solenoidality and
+realisability are the solution of a family of linear programs, giving sharp
+bounds $[\Pi^-_{nn},\Pi^+_{nn}]$ and a tabulated kinematic indeterminacy
+(\S\,5.4, table~2; forward map and linear programs in Appendices~A.2 and
+A.4). The representation also yields two falsifiers the line reports for
+itself ($\phi_{11}=\phi_{33}$ and vanishing cross-spectra), so the
+hypothesis is monitored rather than assumed. On the referee's second
+sentence: we agree, and now say plainly that the spectral formulation is
+not exercised in the simulations---the reported results use the moment
+closure to which equation~(5.6) reduces in the isotropic limit
+(\S\,5.7)---and we identify the wavenumber-dependent kernel as the missing
+ingredient whose implementation is future work (\S\,6.4). The section's
+claim is thus reduced to what is demonstrated: an exact obstruction, sharp
+bounds from line data, a measured hypothesis, and exactness for
+axisymmetric distortion.
+
+\point{3. The theoretical presentation is not sufficiently clear or
+self-contained.}
+\begin{refcomment}
+``The manuscript frequently mixes established RDT results, existing
+closures, assumptions, and new developments without clearly separating
+them. In Section 5, `A1' is repeatedly used without formal definition,
+while Eqs.\ (5.8)-(5.10), described as a central result, appear essentially
+without derivation.''
+\end{refcomment}
+
+\response
+The presentation has been reorganised to separate the four categories.
+Established RDT results (the exact rapid pressure--strain integral and its
+spectral form) are attributed to the classical sources and Sagaut \& Cambon
+(2018) and presented as standard (\S\S\,2.4.1, 5.1); the existing algebraic
+closures (Rotta, IP, LRR) are identified as such and confined to
+\S\,2.4.2; the assumptions are stated as labelled hypotheses; and the new
+developments (the obstruction, the bounds, the measured hypothesis, the
+kernel reduction) are collected in Section~5. The hypothesis the referee
+refers to, A1, is now given a formal definition at first use---``Assumption
+A1 (axisymmetry of the undistorted spectrum about the line)'' in
+\S\,5.3---with its justification for the present configuration and a
+subsection (\S\,5.5, table~3, figure~13) that measures the error it incurs
+under plane strain rather than presuming it. The kernel equations the
+referee cites (now equations~(5.7)--(5.9)) are derived in Appendix~A.3 from
+the azimuthal average of the exact projection weights: $g_2$ is worked
+through in full and $g_1,g_3$ follow by the same steps, and the two exact
+constraints that verify the reduction---the pointwise trace condition
+$g_1+g_2+g_3=0$ (equation~(5.10)) and the isotropic ratio
+$+\tfrac15:-\tfrac15:0$ (equation~(5.11))---are stated and checked in the
+main text. We would welcome the additional issues the referee chose not to
+enumerate and will address them in a further revision if the paper is
+reconsidered.
+
+\end{document}
