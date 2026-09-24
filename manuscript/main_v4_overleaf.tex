@@ -517,8 +517,13 @@ line-averaged Reynolds stress (\S\,\ref{sec:line-realisation}), are
 uniform along the line, so $\mathcal{A}_{ij}\equiv-A_{ij}+B_{ij}$ is a
 constant matrix; over a non-diffusive sub-step it advances the profile
 by the $y$-independent map
-$u_i(y,t)=[\exp\!\int_{t_0}^{t}\mathcal{A}\,\mathrm{d}t']_{ij}\,
-u_j(y,t_0)$, so continuous profiles map
+\begin{equation}
+  u_i(y,t)=\Big[\exp\!\int_{t_0}^{t}\mathcal{A}\,\mathrm{d}t'\Big]_{ij}\,
+  u_j(y,t_0),
+  \label{eq:strain-map}
+\end{equation}
+a multiplication of the local velocity vector by a matrix set by the
+accumulated strain, uniform along the line. Continuous profiles map
 to continuous profiles while the molecular term is smoothing; and the
 forcing displaces no fluid along $y$, leaving the domain measure
 untouched (the deliberate domain straining is the separate operation
@@ -803,7 +808,18 @@ reproduces the wavevector kinematics exactly:
 \end{equation}
 with $L$ the domain length, implemented within the Lagrangian
 adaptive-mesh advancement of the model \citep{Lignell2013} by imposing
-the mean-flow stretching on the mesh.
+the mean-flow stretching on the mesh. This dilating mesh is the
+physical-space counterpart of the deforming frame of
+\citet{Rogallo1981} used by the benchmark direct simulation of
+\S\,\ref{sec:box-dns}: the mean straining is carried by the frame, so
+that in it the mean velocity vanishes pointwise and the line field
+\emph{is} the full velocity. The eddy events therefore act on the full
+velocity in the strained frame, and the kernel conservation laws
+\eqref{eq:kernel-identities} hold per event with no mean-flow
+correction---the strain enters the fluctuation only through the exact
+production of \eqref{eq:cont-evolution}, never through eddy transport of
+a mean gradient, which the irrotational (symmetric $A_{ij}$) strains
+studied here do not present along the line.
 
 This step is not redundant with the amplitude operator. The Reynolds
 stress is an intensive second moment and is invariant under the uniform
@@ -823,23 +839,34 @@ out of the coordinate direction and lies outside the formulation.
 \subsection{Summary of the formulation}\label{sec:summary}
 
 The strain-coupled model advances the line field over a sub-step by
-composing (a) a \emph{continuous strain--diffusion phase on a dilating
-domain}---time advance
-$\partial_t u_i=\nu\partial_y^2u_i+\mathcal{A}_{ij}u_j$ with
-$\mathcal{A}_{ij}=-A_{ij}+B_{ij}$, where the production is exact and $B_{ij}$ is
-given by \eqref{eq:lyapunov} from the running Reynolds stress and the
-spectral closure---the LRR closure of \S\,\ref{sec:verification}, with
-the isotropic form \eqref{eq:iso-B} its onset limit---while dilating the domain
-by \eqref{eq:dilatation}---and (b) \emph{discrete eddy events} sampled
-from the standard rate distribution: the triplet map and the slow kernel,
-unchanged. Step (a), the continuous advancement, carries the strain-driven physics
-(the exact production and the rapid pressure--strain); step (b), the
-discrete events, carries the turbulence-driven physics (the cascade and
-the slow return to isotropy). The strain coupling thus modifies only the
-continuous advancement and leaves the discrete events unchanged; the
-discrete process is itself modified later, by the relaxation mechanism
-of \S\,\ref{sec:limits}. Standard ODT is recovered exactly when
-$A_{ij}=0$.
+composing a \emph{continuous strain--diffusion phase on a dilating
+domain} (step~(a)) with \emph{discrete eddy events} (step~(b)). As an
+ordered cycle, the operational steps are:
+\begin{enumerate}
+\item[(a1)] \emph{strain forcing}---advance the velocity profile by the
+  $y$-independent map \eqref{eq:strain-map}, whose generator
+  $\mathcal{A}_{ij}=-A_{ij}+B_{ij}$ combines the exact production
+  $-A_{ij}u_j$ with the modelled rapid pressure--strain $B_{ij}u_j$ of
+  \eqref{eq:cont-evolution}, $B_{ij}$ being given by \eqref{eq:lyapunov}
+  from the running Reynolds stress and the spectral closure (the LRR
+  closure of \S\,\ref{sec:verification}, with the isotropic form
+  \eqref{eq:iso-B} its onset limit);
+\item[(a2)] \emph{molecular diffusion} \eqref{eq:odt-diffusion}, as in
+  standard ODT;
+\item[(a3)] \emph{domain straining}---dilate the mesh by
+  \eqref{eq:dilatation}, carrying the wavevector kinematics; and
+\item[(b)] \emph{discrete eddy events}---sampled from the standard rate
+  distribution, applying the triplet map and slow kernel
+  \eqref{eq:event}--\eqref{eq:ci}, unchanged.
+\end{enumerate}
+Step (a), the continuous advancement (a1)--(a3), carries the
+strain-driven physics (the exact production and the rapid
+pressure--strain); step (b), the discrete events, carries the
+turbulence-driven physics (the cascade and the slow return to isotropy).
+The strain coupling thus modifies only the continuous advancement and
+leaves the discrete events unchanged; the discrete process is itself
+modified later, by the relaxation mechanism of \S\,\ref{sec:limits}.
+Standard ODT is recovered exactly when $A_{ij}=0$.
 
 The relative importance of the two steps is governed by the ratio of the
 mean strain rate $S\equiv(2S_{ij}S_{ij})^{1/2}$ to the turbulence
