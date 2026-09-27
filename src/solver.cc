@@ -323,7 +323,12 @@ void solver::shiftLineMean(const double sign) {
     const double xc  = domn->pram->xDomainCenter;
     vector<double> &v = domn->vvel->d;
     vector<double> &p = domn->pos->d;
-    for(int i=0; i<domn->ngrd; i++) v[i] += sign*A22*(p[i]-xc);
+    double mx=0.0;
+    for(int i=0; i<domn->ngrd; i++){ double m=A22*(p[i]-xc); v[i]+=sign*m; if(std::fabs(m)>mx) mx=std::fabs(m); }
+    static long n=0;
+    if(sign>0 && (++n)%20000==0)
+        fprintf(stderr,"shiftLineMean DIAG: A22=%.3f xc=%.4f maxmean=%.3e ngrd=%d time=%.5f tStrainOn=%.3f\n",
+                A22,xc,mx,domn->ngrd,domn->mimx->time,domn->pram->tStrainOn);
 }
 
 bool solver::sampleEddyAndImplementIfAccepted_core() {
