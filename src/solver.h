@@ -58,7 +58,8 @@ class solver {
 
         bool   sampleEddyAndImplementIfAccepted();
         bool   sampleEddyAndImplementIfAccepted_core();
-        void   shiftLineMean(const double sign);   ///< eddy-on-mean: add(+1)/remove(-1) analytic mean U_2=A_22(y-xc) on vvel
+        void   shiftLineMean(const double scale);  ///< eddy-on-mean: add/remove scale*(analytic mean U_2=A_22(y-xc)) on vvel
+        double meanGate();                         ///< eddy-on-mean gate g=kref/(kref+kt): 1 laminar -> 0 turbulent
         void   computeDtSmean();
         void   computeDtCUmax();
         double sampleDt();

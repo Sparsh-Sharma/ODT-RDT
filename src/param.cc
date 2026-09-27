@@ -99,6 +99,7 @@ param::param(inputoutput *p_io) {
     Ldilatation    = io->params["Ldilatation"]    ? io->params["Ldilatation"].as<bool>()      : false;
     LeddyMean      = io->params["LeddyMean"]      ? io->params["LeddyMean"].as<bool>()        : false;
     LlaminarIC     = io->params["LlaminarIC"]     ? io->params["LlaminarIC"].as<bool>()       : false;
+    LeddyMeanKt    = io->params["LeddyMeanKt"]    ? io->params["LeddyMeanKt"].as<double>()    : 1.0e-3;
     LnoEddies      = io->params["LnoEddies"]      ? io->params["LnoEddies"].as<bool>()        : false;
     LanisoReject   = io->params["LanisoReject"]   ? io->params["LanisoReject"].as<bool>()     : false;
     anisoRejectFac = io->params["anisoRejectFac"] ? io->params["anisoRejectFac"].as<double>() : 0.9;

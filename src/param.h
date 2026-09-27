@@ -121,8 +121,9 @@ class param {
 
         bool                    Lstrain;        ///< apply mean-strain operator A_ij u_j
         bool                    Ldilatation;    ///< apply mean-strain line dilatation dL/L = A_22 dt
-        bool                    LeddyMean;      ///< eddy-on-mean rebuild (Kerstein 2026-09-27): the eddy taps the analytic mean U_2=A_22(y-xc) (sawtooth injection + mean in the eddy rate); the on-line A_22 production is then dropped from Acal. default false = bit-identical
+        bool                    LeddyMean;      ///< eddy-on-mean rebuild (Kerstein 2026-09-27): the eddy taps the analytic mean U_2=A_22(y-xc) (sawtooth injection + mean in the eddy rate). Full exact production retained. default false = bit-identical
         bool                    LlaminarIC;     ///< start laminar (u=v=w=0, skip the isotropic seed) to test transition driven by the mean gradient; default false
+        double                  LeddyMeanKt;    ///< eddy-on-mean gate scale: the injected mean is scaled by kref/(kref+kt) with kt the line TKE, so it drives transition when kt<<kref (laminar) and fades once turbulence is established (kt>>kref), leaving established turbulence as normal ODT (no over-isotropisation). default 1e-3
         bool                    LnoEddies;      ///< suppress eddy events (Level 1a)
         bool                    LanisoReject;   ///< Option A: reject accepted eddies whose kernels do not reduce eddy-region component anisotropy enough
         double                  anisoRejectFac; ///< Option A threshold: require a_after <= fac * a_before

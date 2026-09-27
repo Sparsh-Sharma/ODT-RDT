@@ -312,18 +312,38 @@ void solver::raiseDtSmean() {
 bool solver::sampleEddyAndImplementIfAccepted() {
     if(!domn->pram->LeddyMean || time < domn->pram->tStrainOn)  // 'time' is the live sampling time (mimx->time lags here)
         return sampleEddyAndImplementIfAccepted_core();
-    shiftLineMean(+1.0);
+    const double g = meanGate();          // fade the mean out as turbulence builds
+    shiftLineMean(+g);                     // g computed once; same g used to remove,
     bool r = sampleEddyAndImplementIfAccepted_core();
-    shiftLineMean(-1.0);
+    shiftLineMean(-g);                     // so a rejected eddy cancels exactly
     return r;
 }
 
-void solver::shiftLineMean(const double sign) {
+/** Gate the eddy-on-mean by the line TKE: g = kref/(kref+kt). Near laminar
+ *  (kt << kref) g -> 1 and the mean drives transition; once turbulence is
+ *  established (kt >> kref) g -> 0 and eddies revert to normal ODT, so the
+ *  extra mean-driven eddies no longer over-isotropise the strained anisotropy.
+ */
+double solver::meanGate() {
+    const vector<double> &u=domn->uvel->d, &v=domn->vvel->d, &w=domn->wvel->d;
+    const vector<double> &pf=domn->posf->d;
+    double L=0, mu=0, mv=0, mw=0;
+    for(int i=0;i<domn->ngrd;i++){ double dx=std::fabs(pf[i+1]-pf[i]); L+=dx; mu+=u[i]*dx; mv+=v[i]*dx; mw+=w[i]*dx; }
+    mu/=L; mv/=L; mw/=L;
+    double R=0;
+    for(int i=0;i<domn->ngrd;i++){ double dx=std::fabs(pf[i+1]-pf[i]);
+        R += ((u[i]-mu)*(u[i]-mu)+(v[i]-mv)*(v[i]-mv)+(w[i]-mw)*(w[i]-mw))*dx; }
+    const double kt = 0.5*R/L;
+    const double kref = domn->pram->LeddyMeanKt;
+    return kref/(kref+kt);
+}
+
+void solver::shiftLineMean(const double scale) {
     const double A22 = domn->pram->Astrain[1][1];
     const double xc  = domn->pram->xDomainCenter;
     vector<double> &v = domn->vvel->d;
     vector<double> &p = domn->pos->d;
-    for(int i=0; i<domn->ngrd; i++) v[i] += sign*A22*(p[i]-xc);
+    for(int i=0; i<domn->ngrd; i++) v[i] += scale*A22*(p[i]-xc);
 }
 
 bool solver::sampleEddyAndImplementIfAccepted_core() {
