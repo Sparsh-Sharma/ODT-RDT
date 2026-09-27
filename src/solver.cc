@@ -310,7 +310,7 @@ void solver::raiseDtSmean() {
  *  and everything outside the eddy stays pure fluctuation.
  */
 bool solver::sampleEddyAndImplementIfAccepted() {
-    if(!domn->pram->LeddyMean || domn->mimx->time < domn->pram->tStrainOn)
+    if(!domn->pram->LeddyMean || time < domn->pram->tStrainOn)  // 'time' is the live sampling time (mimx->time lags here)
         return sampleEddyAndImplementIfAccepted_core();
     shiftLineMean(+1.0);
     bool r = sampleEddyAndImplementIfAccepted_core();
