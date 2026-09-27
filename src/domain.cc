@@ -477,8 +477,7 @@ void domain::updateStrainOperator() {
     //     turbulence. Needed for the transition-from-laminar test. ---
     if(kt < 1e-30) {
         for(int i=0;i<3;i++) for(int j=0;j<3;j++) pram->Acal[i][j] = -A[i][j];
-        if(pram->LeddyMean) pram->Acal[1][1] += A[1][1];
-        return;
+        return;   // full production (inert on the zero field); eddy regenerates
     }
 
     // --- production P_ij = -(A R + R A^T) ---
@@ -515,13 +514,16 @@ void domain::updateStrainOperator() {
     }  // kt > 0
 
     // --- Lyapunov solve for B, then Acal = -A + B ---
+    //     The exact production -A_ij u_j is retained in FULL, including the
+    //     on-line A_22 v: the sweep showed the eddy-on-mean injection alone
+    //     (R-independent) cannot sustain strained turbulence -- it decays, and
+    //     collapses at high strain -- because sustaining needs the
+    //     R-proportional amplification P_22 = 2 a R_22. The eddy-on-mean
+    //     (LeddyMean) supplements this: at kt->0 the production vanishes and
+    //     only the eddy fires (transition from laminar); once turbulence
+    //     exists the exact production dominates and the eddy add is negligible.
     double B[3][3]; lyapunovSym(R, Pir, B);
     for(int i=0;i<3;i++) for(int j=0;j<3;j++) pram->Acal[i][j] = -A[i][j] + B[i][j];
-
-    // --- eddy-on-mean: the on-line (x_2) production A_22 v is now carried by the
-    //     eddy tapping the mean, so drop it here to avoid double counting; keep
-    //     the rapid operator B and the off-line productions. Diagonal A only. ---
-    if(pram->LeddyMean) pram->Acal[1][1] += A[1][1];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
