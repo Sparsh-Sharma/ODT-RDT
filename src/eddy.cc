@@ -426,6 +426,15 @@ bool eddy::eddyTau(const double Z_value, const double C) {
 
     Etot = eKinEddy - eViscPenalty + eDL + ePeEddy;
 
+    if(domn->pram->LeddyMean) {   // DIAG (temporary): eddy viability under eddy-on-mean
+        static long nc=0, nviable=0; static double maxek=0.0, maxv=0.0;
+        nc++; if(Etot>=0.0) nviable++; if(eKinEddy>maxek) maxek=eKinEddy;
+        double vmax=0.0; for(int q=0;q<eddl->ngrd;q++) if(std::fabs(eddl->vvel->d.at(q))>vmax) vmax=std::fabs(eddl->vvel->d.at(q));
+        if(vmax>maxv) maxv=vmax;
+        if(nc%20000==0) fprintf(stderr,"eddyTau DIAG: calls=%ld viable=%ld maxeKin=%.3e eKin=%.3e eVisc=%.3e |v|eddl=%.3e size=%.3e\n",
+                                nc,nviable,maxek,eKinEddy,eViscPenalty,maxv,eddySize);
+    }
+
     if(Etot < 0.0) return false;
 
     invTauEddy = sqrt(2.0*KK/(rhoKK*VolE*eddySize*eddySize) * Etot);
