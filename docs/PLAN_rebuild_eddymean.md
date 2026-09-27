@@ -128,14 +128,29 @@ running it.
 
 ## Implementation map (src/, this repo; runs on caro)
 
-- `src/eddy.cc :: tripMap()` (l.116) -- currently maps the fluctuation; make it
-  act on the FULL velocity (mean U_2=-a x_2 + u') so the map taps the mean =
-  the sawtooth. (Add mean before map, remove after; or inject delta directly.)
-- `src/eddy.cc :: eddyTau()` (l.285) -- the rate/energy measure (`invTauEddy`
-  from `Etot`); include the mean's contribution so eddies fire from u'=0.
-- `src/domaincases/domaincase_odt_homogeneousStrain.cc` + `src/micromixer.cc` --
-  the continuous strain forcing; drop the on-line `A_22 u_2` production now
-  carried by eddies (keep off-line components + dilatation eq 2.21).
+Orthodox reference: the canonical BYUignite/ODT is the `upstream` remote
+(`upstream/master`, `upstream/dev`); the orthodox mechanism (eddies on the FULL
+velocity incl. a mean profile on the line) already exists in our fork's
+shear/channel/jet cases. `domaincase_odt_channel.cc` even has a commented linear
+mean-profile init (`uvel = 10*pos`) -- the pattern to copy.
+
+Key realisation: the eddy machinery is generic -- `tripMap` rearranges whatever
+is on the line and `eddyTau` builds the rate from whatever velocity is there.
+So **no `eddy.cc` change is needed**; putting the mean on the line makes the
+existing eddies tap it (sawtooth + mean-in-rate, both free).
+
+- `domaincase_odt_homogeneousStrain.cc :: init()` -- currently seeds an isotropic
+  fluctuation (zero mean). ADD the mean profile U_2 = -a x_2 onto `vvel`
+  (v = x_2 component) on top of the seed. (Channel-case pattern.)
+- `domain.cc :: updateStrainOperator()` (the `Acal` = -A + B operator, applied
+  as a source via micromixer l.164) -- DROP the on-line `-A_22 v` production now
+  carried by the eddy; keep off-line `-A_11 u`, `-A_33 w`, the rapid operator B,
+  and `applyStrainDilatation` (micromixer l.183, dilatation eq 2.21).
+- OPEN design Q (maybe for Alan): with no walls, how is the imposed mean gradient
+  -a maintained after eddies scramble it + dilatation compresses it? Candidates:
+  (i) re-impose the slope each step (subtract current mean slope, add -a);
+  (ii) let the dilatation sustain it (compression steepens the profile). This is
+  the lab-frame vs deforming-frame question, made concrete.
 
 ## STEP 4 (implement) and STEP 5 (re-validate)
 
