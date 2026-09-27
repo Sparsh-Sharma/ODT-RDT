@@ -100,12 +100,49 @@ guessed). General A: each component with `A_i2 != 0` gets a sawtooth with
 coefficient `A_i2 * l` -- for HST (`A_12 = S`) this is exactly the standard
 shear-ODT mechanism, so the formulation unifies with existing ODT practice.
 
-## Remaining steps
+## DECISION (2026-09-27): rebuild folded INTO the JFM-1781 resubmission
 
-- **STEP 3.** Formalise the frame transform writeup (the transform itself is
-  now known: event -> event + sawtooth, mean in the rate measure, dilatation
-  unchanged) and design the rapid-limit suppression + dose control precisely;
-  send the note to Alan for adjudication BEFORE implementing.
+Sparsh's call: hold the submission and rebuild the model into this paper (not a
+paper 2). The finished submission stays on `master` as the fallback; all rebuild
+work stays on `eddy-mean-forcing` until it validates.
+
+## STEP 3 — rate question resolved by Alan (2026-09-25 reply)
+
+Keep the mean in the eddy rate. No explicit rapid-limit suppression is needed:
+the viscous penalty caps the smallest/fastest eddy (timescale `tau_marg`, the
+ODT Kolmogorov analog), so over one strain time `1/S` the eddy probability
+`P_e ~ 1/(S*tau_marg) -> 0` as `S -> inf`. The no-eddy limit is exact RDT; ODT
+lands on it with an `O(P_e)` correction that may differ from Navier-Stokes RDT.
+Alan: that is fine -- "the RDT limit is a sanity check, not a relevant ODT
+application regime" -- and this correction may be subdominant to the finite-chi
+correction already derived ("nothing changes"). Implication (my read, to settle
+empirically, not Alan's explicit words): this points to an eddy-dominant
+architecture -- eddies carry the on-line production `u'_2 A_22`, so it is NOT
+also carried continuously (no double count); the off-line `P_11, P_33` and the
+rapid pressure-strain stay continuous. Trade vs. current SC-ODT: lose exact
+`P_22` / exact RDT and possibly the tight L&R/Zusi-Perot moment match; gain
+transition, scale-selective injection, possibly no interventions. Settle by
+running it.
+
+## Implementation map (src/, this repo; runs on caro)
+
+- `src/eddy.cc :: tripMap()` (l.116) -- currently maps the fluctuation; make it
+  act on the FULL velocity (mean U_2=-a x_2 + u') so the map taps the mean =
+  the sawtooth. (Add mean before map, remove after; or inject delta directly.)
+- `src/eddy.cc :: eddyTau()` (l.285) -- the rate/energy measure (`invTauEddy`
+  from `Etot`); include the mean's contribution so eddies fire from u'=0.
+- `src/domaincases/domaincase_odt_homogeneousStrain.cc` + `src/micromixer.cc` --
+  the continuous strain forcing; drop the on-line `A_22 u_2` production now
+  carried by eddies (keep off-line components + dilatation eq 2.21).
+
+## STEP 4 (implement) and STEP 5 (re-validate)
+
+4a. Implement tripMap-on-full-velocity + mean-in-rate; build on caro.
+4b. Run from u'=0 -> confirm transition (Alan's bar).
+5.  Re-validate: strained anisotropy vs L&R / Zusi-Perot / 128^3 DNS (Fig 4-6,
+    11, 12 analogues); rapid limit ~ RDT; and the big question -- do the small
+    scales sustain on their own, making the interventions (main-text sec 5-6)
+    unnecessary? Then decide the paper's new structure and rewrite.
 - **STEP 4.** Reimplement in the ODT solver (`code/strainbox` shares the DNS
   side; ODT changes in the fork). Run from `u == 0`, confirm generation.
 - **STEP 5.** Re-validate: moments vs L&R / Zusi-Perot, spectra vs the 128^3
