@@ -478,7 +478,12 @@ void domain::updateStrainOperator() {
     }
 
     // --- rapid pressure-strain Pi^r per closure ---
-    double Pir[3][3];
+    //     laminar guard: with no turbulence (kt -> 0) there is no rapid
+    //     redistribution, and the LRR anisotropy b_ij = R_ij/(2 kt) is 0/0.
+    //     Leave Pir = 0 in that limit (relevant for the LeddyMean transition
+    //     test, which starts from kt = 0 and lets the eddy generate turbulence).
+    double Pir[3][3] = {{0,0,0},{0,0,0},{0,0,0}};
+    if(kt > 1e-30) {
     if(pram->strainClosure == "IP") {                 // -C2 (P - 1/3 trP I), C2=3/5
         double trP = P[0][0]+P[1][1]+P[2][2];
         for(int i=0;i<3;i++) for(int j=0;j<3;j++)
@@ -496,6 +501,7 @@ void domain::updateStrainOperator() {
                       + 1.31*kt*Wb_bW;
         }
     }
+    }  // kt > 0
 
     // --- Lyapunov solve for B, then Acal = -A + B ---
     double B[3][3]; lyapunovSym(R, Pir, B);
