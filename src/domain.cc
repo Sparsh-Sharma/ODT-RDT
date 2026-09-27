@@ -470,6 +470,17 @@ void domain::updateStrainOperator() {
         S[i][j]=0.5*(A[i][j]+A[j][i]); W[i][j]=0.5*(A[i][j]-A[j][i]);
     }
 
+    // --- laminar early-out: with no turbulence (kt -> 0) there is no rapid
+    //     redistribution and the Lyapunov solve for B is singular (R = 0).
+    //     Acal is then just the mean production, which acts harmlessly on the
+    //     zero field; the eddy channel (LeddyMean) is what regenerates the
+    //     turbulence. Needed for the transition-from-laminar test. ---
+    if(kt < 1e-30) {
+        for(int i=0;i<3;i++) for(int j=0;j<3;j++) pram->Acal[i][j] = -A[i][j];
+        if(pram->LeddyMean) pram->Acal[1][1] += A[1][1];
+        return;
+    }
+
     // --- production P_ij = -(A R + R A^T) ---
     double P[3][3];
     for(int i=0;i<3;i++) for(int j=0;j<3;j++){
