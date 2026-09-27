@@ -166,6 +166,43 @@ existing eddies tap it (sawtooth + mean-in-rate, both free).
   strained-box DNS (Fig 11 analogue), and whether the interventions are still
   needed. Then decide the paper's new structure.
 
+## STEP 4 RESULTS (2026-09-27, in the real solver) -- MILESTONE
+
+Implemented `LeddyMean` (default off, bit-identical): the eddy attempt is wrapped
+to add the analytic mean `U_2=A_22(y-xc)` to vvel for the whole event and remove
+it after, so the existing eddy (rate, triplet map, kernels) taps the mean and
+leaves exactly the sawtooth; `LlaminarIC` starts u=v=w=0. Test deck
+`input/emTransition`. Bugs the transition test exposed and fixed:
+  1. LRR closure `b=R/(2kt)` was 0/0 at kt=0 (laminar). Guarded.
+  2. Lyapunov solve for B singular at R=0. Full laminar early-out in the strain op.
+  3. eddy-mean gate used `mimx->time` (lags/negative during sampling) -> wrapper
+     bypassed; fixed to the solver's live sampling `time`.
+
+**Transition from laminar WORKS** (Alan's bar met): from u'=0 the eddy taps the
+mean and generates turbulence, injected first into R_22 (upwash) then spread by
+the kernels -- the predicted signature. Grid refines (62 frozen -> 130-186).
+
+**Architecture fork SETTLED empirically.** A sweep (a in {0.5,2}, kvisc in
+{1e-4,3e-5,1e-5}) showed the pure-eddy variant (on-line production dropped)
+DECAYS (end/peak ~0.02-0.08) and COLLAPSES at a=2 -- because sustaining needs the
+R-proportional amplification `P_22=2a R_22`, which the R-independent eddy
+injection cannot provide. Keeping the FULL exact production + eddy-on-mean as a
+supplement sustains it (end/peak ~0.45-0.53 at a=0.5). This confirms the step-2
+derivation ("supplements, not replaces") in the solver. So: NO dose-matched
+subtraction needed -- at kt->0 production vanishes and only the eddy fires
+(transition); once turbulent the production dominates and the eddy add is
+negligible.
+
+**Open issues (next phase):**
+- Sustained k_t is low (~1e-3), not O(1) -- is that the physical equilibrium for
+  these params, or is generation too weak? Needs comparison to a turbulent-start
+  SC-ODT run and to DNS.
+- a=2 (high strain) collapses to numerical underflow (k_t~1e-264) after an early
+  peak -- likely the extreme domain compression (exp(-8)~3000x) driving denormals,
+  a numerical not physics failure. Investigate (compression floor / rescale).
+- Then STEP 5 re-validation and the big question: do the interventions (sec 5-6)
+  become unnecessary?
+
 ## Notes
 
 - Keep the current forcing intact on `master`; all rebuild work here.
