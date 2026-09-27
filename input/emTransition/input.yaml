@@ -1,0 +1,81 @@
+################### Eddy-on-mean rebuild -- transition-from-laminar test
+# Plane strain A = diag(a,-a,0), a=0.5 -> S=1, e = S t = t.
+# LlaminarIC starts u=v=w=0 (no isotropic seed): the ONLY structure is the
+# mean gradient. LeddyMean lets the eddy tap the analytic mean U_2=A_22(y-xc).
+# If Alan's mechanism holds, eddies fire off the mean and turbulence GROWS
+# from zero (k_t: 0 -> finite). Eddies ON, viscous (matches SC-ODT).
+
+params:
+
+    seed:          22
+    tEnd:          4.0            #  e = t since S = 1
+    domainLength:  1.0
+    ngrd0:         4000
+    rho0:          1.0
+    kvisc0:        1.0e-4         #  as the SC-ODT runs
+    dPdx:          0.0
+    pres:          101325.0
+    chemMechFile:  not_used.yaml
+    probType:      HOMOGENEOUS_STRAIN
+    #----------------------------------------------------------------------------------
+    #  strain-coupled ODT controls
+    Lstrain:       true
+    LnoEddies:     false          #  eddies ON: they must generate the turbulence
+    Ldilatation:   true
+    LeddyMean:     true           #  REBUILD: eddy taps the analytic mean (sawtooth + mean in rate)
+    LlaminarIC:    true           #  start laminar: only the mean gradient is present
+    strainClosure: LRR
+    Astrain:       [ 0.5, 0.0, 0.0,
+                     0.0,-0.5, 0.0,
+                     0.0, 0.0, 0.0 ]   #  row-major 3x3 mean velocity gradient A_ij
+    specKpWaves:   8.0            #  (unused with LlaminarIC)
+    specNmodes:    64
+    strainCFL:     0.01
+    tStrainOn:     0.0            #  strain on from the start
+    #----------------------------------------------------------------------------------
+    Z_param:       450.
+    A_param:       0.66666666667
+    C_param:       7.00
+    LES_type:      NONE
+    Z_LES:         0.0
+    diffCFL:       0.5
+    #----------------------------------------------------------------------------------
+    Lsolver:       EXPLICIT
+    #----------------------------------------------------------------------------------
+    bcType:        WALL
+    cCoord:        1
+    Lrestart:      false
+    #----------------------------------------------------------------------------------
+    gDens:         30
+    dxmin:         0.0002
+    dxmax:         0.02
+    #----------------------------------------------------------------------------------
+    Pmax:          0.4
+    Pav:           0.02
+    dtfac:         2.0
+    nDtSmeanWait:  100000
+    eddyMinCells:  3
+    DAtimeFac:     4.0
+    tdfac:         1.0
+    sLastDA:       100
+    Lp:            0.015
+    Lmax:          0.333333333
+    #----------------------------------------------------------------------------------
+    modDump:       1000000
+
+bcCond:
+    uBClo:  0.0
+    uBChi:  0.0
+    vBClo:  0.0
+    vBChi:  0.0
+    wBClo:  0.0
+    wBChi:  0.0
+    sBClo:  0.0
+    sBChi:  0.0
+
+dumpTimesGen:
+    dTimeStart: 0.0
+    dTimeEnd:   4.0
+    dTimeStep:  0.1
+
+dumpTimes:
