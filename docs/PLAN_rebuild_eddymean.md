@@ -1,7 +1,9 @@
 # Rebuild: embedding the mean gradient in the eddy machinery
 
-Branch: `eddy-mean-forcing` (off `master`; the JFM-1781 resubmission stays on
-`master`). Started 2026-09-25. Driven by Alan Kerstein's objection.
+Branch: `eddymean-rebuild` (off `LEN_Extension`, which carries the real SC-ODT
+solver + clock/interventions; caro builds/runs on this line). The JFM-1781
+manuscript stays on `master`; the two converge at the manuscript-rewrite step.
+Started 2026-09-25. Driven by Alan Kerstein's objection.
 
 ## The bar Alan set
 
@@ -104,7 +106,7 @@ shear-ODT mechanism, so the formulation unifies with existing ODT practice.
 
 Sparsh's call: hold the submission and rebuild the model into this paper (not a
 paper 2). The finished submission stays on `master` as the fallback; all rebuild
-work stays on `eddy-mean-forcing` until it validates.
+work stays on `eddymean-rebuild` (off `LEN_Extension`) until it validates.
 
 ## STEP 3 — rate question resolved by Alan (2026-09-25 reply)
 
