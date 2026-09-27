@@ -119,6 +119,11 @@ void domaincase_odt_homogeneousStrain::init(domain *p_domn){
         double y2=(x2-L20*y0-L21*y1)/L22;
         u[i]=s*y0; v[i]=s*y1; w[i]=s*y2;
     }
+
+    //------------------- laminar start (transition test): overwrite the seed
+    //  with zeros, leaving only the mean gradient that the eddy taps.
+    if(domn->pram->LlaminarIC)
+        for(int i=0;i<N;i++){ u[i]=0.0; v[i]=0.0; w[i]=0.0; }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

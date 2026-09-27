@@ -300,7 +300,33 @@ void solver::raiseDtSmean() {
  * @return true if the sampled eddy was implemented.
  */
 
+/** Eddy-on-mean wrapper (Kerstein 2026-09-27 rebuild).
+ *  When LeddyMean is on and strain has started, temporarily add the analytic
+ *  mean U_2 = A_22 (y - xc) onto vvel for the whole eddy attempt, so the eddy
+ *  (rate in eddyTau, triplet map, kernels) acts on the FULL velocity, then
+ *  remove it. A rejected eddy leaves positions unchanged, so add+remove cancel
+ *  exactly; an accepted eddy moves cells in its region, and remove-at-new-pos
+ *  leaves exactly the sawtooth (M-I)[U_2] behind. No grid-index bookkeeping,
+ *  and everything outside the eddy stays pure fluctuation.
+ */
 bool solver::sampleEddyAndImplementIfAccepted() {
+    if(!domn->pram->LeddyMean || domn->mimx->time < domn->pram->tStrainOn)
+        return sampleEddyAndImplementIfAccepted_core();
+    shiftLineMean(+1.0);
+    bool r = sampleEddyAndImplementIfAccepted_core();
+    shiftLineMean(-1.0);
+    return r;
+}
+
+void solver::shiftLineMean(const double sign) {
+    const double A22 = domn->pram->Astrain[1][1];
+    const double xc  = domn->pram->xDomainCenter;
+    vector<double> &v = domn->vvel->d;
+    vector<double> &p = domn->pos->d;
+    for(int i=0; i<domn->ngrd; i++) v[i] += sign*A22*(p[i]-xc);
+}
+
+bool solver::sampleEddyAndImplementIfAccepted_core() {
 
     if(domn->pram->LnoEddies) return false;   // strain-coupled ODT Level 1a: eddies off
 

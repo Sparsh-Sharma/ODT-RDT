@@ -500,6 +500,11 @@ void domain::updateStrainOperator() {
     // --- Lyapunov solve for B, then Acal = -A + B ---
     double B[3][3]; lyapunovSym(R, Pir, B);
     for(int i=0;i<3;i++) for(int j=0;j<3;j++) pram->Acal[i][j] = -A[i][j] + B[i][j];
+
+    // --- eddy-on-mean: the on-line (x_2) production A_22 v is now carried by the
+    //     eddy tapping the mean, so drop it here to avoid double counting; keep
+    //     the rapid operator B and the off-line productions. Diagonal A only. ---
+    if(pram->LeddyMean) pram->Acal[1][1] += A[1][1];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

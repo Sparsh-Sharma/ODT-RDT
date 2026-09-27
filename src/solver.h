@@ -57,6 +57,8 @@ class solver {
     private:
 
         bool   sampleEddyAndImplementIfAccepted();
+        bool   sampleEddyAndImplementIfAccepted_core();
+        void   shiftLineMean(const double sign);   ///< eddy-on-mean: add(+1)/remove(-1) analytic mean U_2=A_22(y-xc) on vvel
         void   computeDtSmean();
         void   computeDtCUmax();
         double sampleDt();
